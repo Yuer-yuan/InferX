@@ -25,7 +25,11 @@ def summarize(rows):
     for row in successes:
         winner = next(e for e in row['candidates'] if e['candidate_id'] == row['winner'])
         feedback.append((winner['verify_end'] - winner['generation_end']) / row['solution_latency'])
-    queue = [e['verify_start'] - e['verify_queued'] for e in events if 'verify_start' in e]
+    queued = [e for e in events if 'verify_queued' in e]
+    # Cancellation ends observed queue residence; do not drop waiting losers.
+    # These waits are censored relative to eventual service, but are real cost.
+    queue = [(e['verify_start'] if 'verify_start' in e else e['cancel_at'])
+             - e['verify_queued'] for e in queued]
     service = [e['verify_end'] - e['verify_start'] for e in events if 'verify_end' in e]
     busy = sum((e.get('verify_end', e.get('cancel_done', e['verify_start'])) - e['verify_start'])
                for e in events if 'verify_start' in e)
@@ -44,6 +48,7 @@ def summarize(rows):
                 solved_p95_s=percentile([x['solution_latency'] for x in successes], .95),
                 feedback_fraction_median=percentile(feedback, .5), feedback_fraction_p95=percentile(feedback, .95),
                 verification_queue_p95_s=percentile(queue, .95),
+                verification_queue_cancelled=sum('verify_start' not in e for e in queued),
                 verification_service_median_s=percentile(service, .5),
                 verification_service_p95_s=percentile(service, .95),
                 test_execution_median_s=percentile(test_cost, .5),
@@ -143,7 +148,7 @@ def analyze(rows):
         else:
             decision = 'mixed_or_borderline'
     return dict(selected_width=width, decision=decision, groups=summaries,
-                note='Cancelled token counts are observed lower bounds. Wall time includes server drain. Unresolved tails use completed events only. This is a screening experiment, not a publication claim.')
+                note='Cancelled token counts are observed lower bounds. Queue residence includes waits ended by cancellation (censored relative to service). Wall time includes server drain. Unresolved tails use completed events only. This is a screening experiment, not a publication claim.')
 
 
 if __name__ == '__main__':

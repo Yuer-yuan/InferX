@@ -1,0 +1,2118 @@
+{
+  "source_runs": {
+    "qwen38-v2-r0": {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/runs/qwen38-v2-r0/results.jsonl",
+      "rows": 256,
+      "raw_sha256": "3f3767d60a3bdd4d2c0144292b207a67820adc75df8cb752ae8b455220d6410f",
+      "code_revision": "0a0b2d6",
+      "runtime_sources": {
+        "git_revision": "0a0b2d6",
+        "files": {
+          "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+          "inferx/scheduler.py": "77644d14a9b13cb721633e5d7de6f4df184c83f9d5134a7cbf182d621be686bf",
+          "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+          "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+          "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+          "scripts/start_server.sh": "73fec0c1de886e5d6d4b57121e5a577fa26821a63a031e43cc058ef98d7f2c42"
+        }
+      }
+    },
+    "qwen38-v2-r1": {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/runs/qwen38-v2-r1/results.jsonl",
+      "rows": 256,
+      "raw_sha256": "58780833135ae749e82fa80b8049f8cab8a41150f1da145b7678c6b3c1c33c2a",
+      "code_revision": "0a0b2d6",
+      "runtime_sources": {
+        "git_revision": "0a0b2d6",
+        "files": {
+          "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+          "inferx/scheduler.py": "77644d14a9b13cb721633e5d7de6f4df184c83f9d5134a7cbf182d621be686bf",
+          "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+          "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+          "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+          "scripts/start_server.sh": "73fec0c1de886e5d6d4b57121e5a577fa26821a63a031e43cc058ef98d7f2c42"
+        }
+      }
+    }
+  },
+  "configs": {
+    "qwen38-v2-r0": {
+      "name": "qwen38-v2-r0",
+      "url": "http://127.0.0.1:18080",
+      "gpu": 0,
+      "context_per_slot": 2048,
+      "splits": "dev,eval",
+      "limit": 0,
+      "widths": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 1,
+      "round_offset": 0,
+      "budget": 8,
+      "deadline": 120,
+      "max_tokens": 768,
+      "verify_timeout": 3,
+      "verify_cpus": "8,9",
+      "model_manifest": {
+        "repo": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+        "filename": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "size": 16464440224,
+        "expected_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482",
+        "endpoint": "https://hf-mirror.com",
+        "verified": true,
+        "actual_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482"
+      },
+      "server_props": {
+        "default_generation_settings": {
+          "params": {
+            "seed": 4294967295,
+            "temperature": 1.0,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 20,
+            "top_p": 0.949999988079071,
+            "min_p": 0.05000000074505806,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": -1,
+            "n_predict": -1,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": false,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "none",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "n_ctx": 2048
+        },
+        "total_slots": 8,
+        "model_alias": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "model_ftype": "Q4_K - Medium",
+        "model_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "modalities": {
+          "vision": false,
+          "video": false,
+          "audio": false
+        },
+        "media_marker": "<__media_kL7KlKnU5Uo7fgmYCqoC52gQ79yqTEsx__>",
+        "endpoint_slots": true,
+        "endpoint_props": false,
+        "endpoint_metrics": true,
+        "ui": false,
+        "ui_settings": {},
+        "chat_template": "{%- set image_count = namespace(value=0) %}\n{%- set video_count = namespace(value=0) %}\n{%- macro render_content(content, do_vision_count, is_system_content=false) %}\n    {%- if content is string %}\n        {{- content }}\n    {%- elif content is iterable and content is not mapping %}\n        {%- for item in content %}\n            {%- if 'image' in item or 'image_url' in item or item.type == 'image' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain images.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Picture ' ~ image_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' }}\n            {%- elif 'video' in item or item.type == 'video' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain videos.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Video ' ~ video_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' }}\n            {%- elif 'text' in item %}\n                {{- item.text }}\n            {%- else %}\n                {{- raise_exception('Unexpected item type in content.') }}\n            {%- endif %}\n        {%- endfor %}\n    {%- elif content is none or content is undefined %}\n        {{- '' }}\n    {%- else %}\n        {{- raise_exception('Unexpected content type.') }}\n    {%- endif %}\n{%- endmacro %}\n{%- if not messages %}\n    {{- raise_exception('No messages provided.') }}\n{%- endif %}\n{%- set sysns = namespace(count=0, text='') %}\n{%- for message in messages %}\n    {%- if sysns.count == loop.index0 and (message.role == 'system' or message.role == 'developer') %}\n        {%- set sys_content = render_content(message.content, false, true)|trim %}\n        {%- if sys_content %}\n            {%- set sysns.text = sysns.text + ('\\n' if sysns.text else '') + sys_content %}\n        {%- endif %}\n        {%- set sysns.count = sysns.count + 1 %}\n    {%- endif %}\n{%- endfor %}\n{%- set num_sys = sysns.count %}\n{%- set merged_system = sysns.text %}\n{%- set reasoning_instructions = '' %}\n{%- if enable_thinking is undefined or enable_thinking is true %}\n    {%- set resolved_reasoning_effort = reasoning_effort|default('xhigh') %}\n    {%- if resolved_reasoning_effort == 'high' %}\n        {%- set resolved_reasoning_effort = 'xhigh' %}\n    {%- endif %}\n    {%- if resolved_reasoning_effort not in ('xhigh', 'medium', 'low') %}\n        {{- raise_exception('Unexpected reasoning effort ' ~ reasoning_effort ~ '. Supported types are xhigh (default), medium, and low.') }}\n    {%- endif %}\n    {%- if resolved_reasoning_effort == 'xhigh' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to xhigh. Please think carefully through the task, validate key assumptions, consider plausible alternatives, and prioritize correctness, consistency, and clarity in the final answer.' %}\n    {%- elif resolved_reasoning_effort == 'low' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to low. Keep your thinking brief and focused, moving directly to the conclusion without unnecessary elaboration.' %}\n    {%- endif %}\n{%- endif %}\n{%- if tools and tools is iterable and tools is not mapping %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if reasoning_instructions %}\n        {{- reasoning_instructions + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou have access to the following functions:\\n\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\" }}\n    {{- '\\n\\nIf you choose to call a function ONLY reply in the following format with NO suffix:\\n\\n<tool_call>\\n<function=example_function_name>\\n<parameter=example_parameter_1>\\nvalue_1\\n</parameter>\\n<parameter=example_parameter_2>\\nThis is the value for the second parameter\\nthat can span\\nmultiple lines\\n</parameter>\\n</function>\\n</tool_call>\\n\\n<IMPORTANT>\\nReminder:\\n- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags\\n- Required parameters MUST be specified\\n- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after\\n- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls\\n</IMPORTANT>' }}\n    {%- if merged_system %}\n        {{- '\\n\\n' + merged_system }}\n    {%- endif %}\n    {{- '<|im_end|>\\n' }}\n{%- else %}\n    {%- if merged_system %}\n        {{- '<|im_start|>system\\n' + (reasoning_instructions + '\\n\\n' if reasoning_instructions else '')  + merged_system + '<|im_end|>\\n' }}\n    {%- elif reasoning_instructions %}\n        {{- '<|im_start|>system\\n' + reasoning_instructions + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" %}\n        {%- set content = render_content(message.content, false)|trim %}\n        {%- if not(content.startswith('<tool_response>') and content.endswith('</tool_response>')) %}\n            {%- set ns.multi_step_tool = false %}\n            {%- set ns.last_query_index = index %}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if loop.index0 >= num_sys %}\n    {%- set content = render_content(message.content, true)|trim %}\n    {%- if message.role == \"system\" or message.role == \"developer\" %}\n        {{- raise_exception('System message must be at the beginning.') }}\n    {%- elif message.role == \"user\" %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- endif %}\n        {%- set reasoning_content = reasoning_content|trim %}\n        {%- if preserve_thinking is undefined or preserve_thinking is true or loop.index0 > ns.last_query_index %}\n            {{- '<|im_start|>' + message.role + '\\n<think>\\n' + reasoning_content + '\\n</think>\\n\\n' + content }}\n        {%- else %}\n            {{- '<|im_start|>' + message.role + '\\n' + content }}\n        {%- endif %}\n        {%- if message.tool_calls and message.tool_calls is iterable and message.tool_calls is not mapping %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if tool_call.function is defined %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {%- if tool_call.name is not defined or tool_call.name is none %}\n                    {{- raise_exception('Tool call is missing a function name.') }}\n                {%- endif %}\n                {%- if loop.first %}\n                    {%- if content|trim %}\n                        {{- '\\n\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- else %}\n                        {{- '<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- endif %}\n                {%- else %}\n                    {{- '\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                {%- endif %}\n                {%- if tool_call.arguments is mapping %}\n                    {%- for args_name, args_value in tool_call.arguments|items %}\n                        {{- '<parameter=' + args_name + '>\\n' }}\n                        {%- set args_value = args_value | string if args_value is string else args_value | tojson | safe %}\n                        {{- args_value }}\n                        {{- '\\n</parameter>\\n' }}\n                    {%- endfor %}\n                {%- elif tool_call.arguments is string %}\n                    {%- if tool_call.arguments|trim %}\n                        {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" were passed as a JSON string. Parse them into an object before calling apply_chat_template.') }}\n                    {%- endif %}\n                {%- elif tool_call.arguments is defined and tool_call.arguments is not none %}\n                    {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" must be an object/mapping or a JSON string.') }}\n                {%- endif %}\n                {{- '</function>\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.previtem and loop.previtem.role != \"tool\" %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if not loop.last and loop.nextitem.role != \"tool\" %}\n            {{- '<|im_end|>\\n' }}\n        {%- elif loop.last %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- else %}\n        {{- raise_exception('Unexpected message role.') }}\n    {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- else %}\n        {{- '<think>\\n' }}\n    {%- endif %}\n{%- endif %}\n{#- Unsloth fixes - developer role, merged system messages, tool calling #}",
+        "chat_template_caps": {
+          "supports_object_arguments": true,
+          "supports_parallel_tool_calls": true,
+          "supports_preserve_reasoning": true,
+          "supports_reasoning_effort": true,
+          "supports_string_content": true,
+          "supports_system_role": true,
+          "supports_tool_calls": true,
+          "supports_tools": true,
+          "supports_typed_content": true
+        },
+        "bos_token": "<|endoftext|>",
+        "eos_token": "<|im_end|>",
+        "build_info": "b0-unknown",
+        "is_sleeping": false,
+        "cors_proxy_enabled": false
+      },
+      "server_slots": [
+        {
+          "id": 0,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 6,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8101,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 12,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8100,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 7,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8102,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 11,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8107,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 9,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8104,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 8,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8106,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 5,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8105,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 10,
+          "n_prompt_tokens": 108,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8103,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        }
+      ],
+      "engine": "llama.cpp v0.6.0 / native streaming HTTP",
+      "client_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "verifier_workers": 2,
+      "python": "3.12.8 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:31:09) [GCC 11.2.0]",
+      "aiohttp": "3.11.11",
+      "transport": "fresh TCP connection per HTTP request; no POST retries",
+      "tasks_sha256": "e1a6f59bb1b9b1877e3763e122a63a6839020f1c73f53473a08e98763a89df8a",
+      "prompts": {
+        "HumanEval/5": {
+          "tokens": 157,
+          "sha256": "536651ddf7f05f5a4c1d7910ff03136d875b91738b9d836e8ffc9aca14a8edf8",
+          "tail": "    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/49": {
+          "tokens": 182,
+          "sha256": "3d5b5c4498b21495acb3d719ad4292c4d2cf261e5bbc208e57c81b64d72fe324",
+          "tail": "    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/132": {
+          "tokens": 196,
+          "sha256": "255c413c419ea96bb628914693ef2abca31c7a72f5c667e77e1a237bd02f499e",
+          "tail": "   is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/8": {
+          "tokens": 179,
+          "sha256": "fb55161c298fea3219afe0b818711edcf57e4bc132a37a28578682dcebc6e67d",
+          "tail": "])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/75": {
+          "tokens": 145,
+          "sha256": "8bd2b5b16b32bdbf612ebc1d48b326f41e14bfa667c73517fd2d184bfd7fd1fc",
+          "tail": "xample:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/43": {
+          "tokens": 225,
+          "sha256": "ccb6047bb0dcbd5e8a1c879ce5ff7bfc0e4ab033f7c47b940991d7d9b19fa1c6",
+          "tail": " 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/10": {
+          "tokens": 213,
+          "sha256": "e08cc0cc152611af3601c75a9c639b3a63b6e69d630b20d941f95cad7c963ccd",
+          "tail": "at')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/22": {
+          "tokens": 156,
+          "sha256": "470ec784fee6ce6cca0249afd71e8635efcb45a987e4b9b47fd71f48d1b08c39",
+          "tail": " >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/155": {
+          "tokens": 132,
+          "sha256": "b33aec5678eb58c43d5ef85011f2c54c16a84bdfea2147171748562eefddc6a0",
+          "tail": "count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/82": {
+          "tokens": 141,
+          "sha256": "9d26e01c9012941e1e65dccc558e01e350446c2f0e98506db705ab918ff0e5e1",
+          "tail": "ength('kittens') == True\n    prime_length('orange') == False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/20": {
+          "tokens": 231,
+          "sha256": "95e758437b1deed9c4ec204f58091022a41779af646ff97a0808a16192818504",
+          "tail": "sest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/129": {
+          "tokens": 470,
+          "sha256": "716a75386a61f00b70aef5a6d113fd79cb2d9d4dc93541ca367a08d4c3b80b48",
+          "tail": "id = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/136": {
+          "tokens": 205,
+          "sha256": "685259ad0e2450f7656995d8b5c1e873ad55702e549f18b2ee3017c2c6258c2a",
+          "tail": "ne, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/147": {
+          "tokens": 235,
+          "sha256": "06ab89dc88fd03c2c1ee8054a87c08b8564a99f679f810431548af01f2cadeda",
+          "tail": ", 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13).\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/6": {
+          "tokens": 177,
+          "sha256": "ba46965d4b20a1d125df06179cb0a01078bd5b46f086580fb1cfa72ebaf539e2",
+          "tail": "ested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/127": {
+          "tokens": 328,
+          "sha256": "0e178de15f787198824833bd6f43e605fa10e9d360298f5e439543a70575a24f",
+          "tail": ", 4)) ==> \"NO\"\n    intersection((-3, -1), (-5, 5)) ==> \"YES\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/24": {
+          "tokens": 114,
+          "sha256": "fe5b69731ddfc90fc31ae661a23e46ccb700255b29c9aa6b2d341fbcfbbbdf6e",
+          "tail": "s n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/102": {
+          "tokens": 161,
+          "sha256": "7e28d1a410bde1130556c2987b3aa7143c629bbd1c6032ce7a68d12a522fcd9f",
+          "tail": "ple:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/78": {
+          "tokens": 386,
+          "sha256": "8ddb344dd5d789f7b4f9d773da5c0266ba6948fcd7577881eaac741ce8456ac9",
+          "tail": "ut should be 6.\n    For num = \"2020\" the output should be 2.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/122": {
+          "tokens": 202,
+          "sha256": "8c5be229eca71b89afc7c72eade03fe6a4c27f8104f677f91c68c1f860fadf21",
+          "tail": "       1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/105": {
+          "tokens": 352,
+          "sha256": "3de2573efb6221073dbc273d21043fd19573807ffb51fc68eadcb242a5ad5c44",
+          "tail": "        -> reverse arr -> [55, 1, -1]\n      return = ['One']\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/65": {
+          "tokens": 152,
+          "sha256": "af9a6b5d6b3f58b7ce1e9bfc63612f42f9a991c79b1a4c022de843ea331f5d44",
+          "tail": "shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/120": {
+          "tokens": 295,
+          "sha256": "4c8684ca4c01ce5178ac0d372278c84735abc44bf4fc910f73fedbfb39be3707",
+          "tail": "in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/41": {
+          "tokens": 216,
+          "sha256": "86ba7cea029e83d86ec6caf87d71dd01ea1e5ea695c0017f8f7f106d04a9e16c",
+          "tail": "e.\n\n    This function outputs the number of such collisions.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/53": {
+          "tokens": 116,
+          "sha256": "a341f446e0dfcac5765a9912244c7abe2d7edacc6fc6c3d01c1485a259cf40ce",
+          "tail": "ers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/160": {
+          "tokens": 277,
+          "sha256": "e1c953370497ade29302b0d84f785839001c59c292a9ff535afd483bdde39ff2",
+          "tail": "t one operator, and operand list has at least two operands.\n\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/64": {
+          "tokens": 194,
+          "sha256": "eac1a607b24243d9c7856a4932ded33a81a08d8ecad41b4e894769ef927c4e7f",
+          "tail": "els_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/54": {
+          "tokens": 208,
+          "sha256": "116ad48a7e25b34585820009d44ffd092e4655aa3a091fe162dae2ca486a1404",
+          "tail": "  >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/126": {
+          "tokens": 311,
+          "sha256": "890dbfe107540abab5dfca5754c0326d00db8dc2ad40406696da85852d02b125",
+          "tail": ", 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/72": {
+          "tokens": 298,
+          "sha256": "a47bee0a9791da20a84c8b4d122b57a4db524b6a1ce46edcfd4ff9fe46b1bda0",
+          "tail": "is less than the maximum possible weight, and it's balanced.\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/153": {
+          "tokens": 343,
+          "sha256": "de8fc9994d9771924d057670f3b32b7b35f428df6e9c7425df68e2363c72e57c",
+          "tail": "t_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/59": {
+          "tokens": 132,
+          "sha256": "7cbcf64303e783c1082a0ad32ae7ea9e862bb0c115b9a13955381aaa31ce358c",
+          "tail": "actor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/23": {
+          "tokens": 106,
+          "sha256": "849db45d739890daf31697804fc1aa89ac4f9bd4315313d4b956e5384ed8de93",
+          "tail": " string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/31": {
+          "tokens": 174,
+          "sha256": "01cb8448eae595fb0a1b6f6bf09a79c7f8e4ebfbae03ff4824facf6860206ee7",
+          "tail": "\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/158": {
+          "tokens": 183,
+          "sha256": "78756b9716047b796e7d920863fd26be7a7bdf52d04306c3a3984806f6276db4",
+          "tail": "= \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/4": {
+          "tokens": 181,
+          "sha256": "47bdd935a9ae9152ceefd4410a38fc1a668d5e2864ea9caf1ea4222de60571b2",
+          "tail": "   >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/92": {
+          "tokens": 199,
+          "sha256": "f688a6f7a6374bd0bc63f52249fd2ecd6988869eb3030ed758d18d0d28934c8b",
+          "tail": "2, 1) \u279e True\n    \n    any_int(3.6, -2.2, 2) \u279e False\n  \n\n    \n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/157": {
+          "tokens": 173,
+          "sha256": "4a50418eb5b865ecf7d30bed169590519b118232632ac7521384e9b0f5ce9c48",
+          "tail": "(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/145": {
+          "tokens": 188,
+          "sha256": "ffeb9bf2b409abc22d155a2701ea0912681cc142f88891153e7bf52ca9ec611f",
+          "tail": ") == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/135": {
+          "tokens": 165,
+          "sha256": "b2ffa9de1ae00517b79d845781bef48a742333d2d1c7c730b70f1fea8afdca0c",
+          "tail": "  can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/162": {
+          "tokens": 150,
+          "sha256": "6e54fa0c66d9fa8a39a6247e2089b3435b6daf052b2de51bcc1acd52520c3093",
+          "tail": "_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/63": {
+          "tokens": 216,
+          "sha256": "b4762b6bacca5081ad871e73a4ab36e105c96f47c016891eb54c1be14b03e1ec",
+          "tail": "ib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/98": {
+          "tokens": 135,
+          "sha256": "cc350f38abe6d787a325bd2aa5c8c522ab815881d4300c34186fe10898dfceb2",
+          "tail": "upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/42": {
+          "tokens": 178,
+          "sha256": "061329ffb87eace0ce276d207944ad4c7d1588f1ab967564b3de8846bb0a66a3",
+          "tail": ", 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/56": {
+          "tokens": 158,
+          "sha256": "ddb59f83bcd843075220e54f5b841ddcdb437cac9beee0cb8c96c9ace395f62c",
+          "tail": "><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/39": {
+          "tokens": 166,
+          "sha256": "9b5247c66355ef4e9f09caa28cbbac029beb612b3dad52a45d03430c5cfba0d0",
+          "tail": "   5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/83": {
+          "tokens": 106,
+          "sha256": "bdbfd60fad686ad63046761789b19b77a456e613c217735d9d32e8ee7571d03e",
+          "tail": "s of n-digit\n    positive integers that start or end with 1.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/99": {
+          "tokens": 230,
+          "sha256": "c660eda414e41713a2fd00755fc6b04756a7aa62f3013592c3591d7e93bcc16b",
+          "tail": "   return 15 and closest_integer(\"-14.5\") should return -15.\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/86": {
+          "tokens": 198,
+          "sha256": "86e5fc2e712d26662a4dbf0d0d64e0fc6c4d97865357cd699044bf2a233807d3",
+          "tail": "\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/100": {
+          "tokens": 202,
+          "sha256": "fdab6c2f0991e2de8f00b533ad8d4dd4fc9d0245e5ee00c7f9267e6fb961b271",
+          "tail": "l (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/74": {
+          "tokens": 261,
+          "sha256": "fbea95775fa42324f963e5794cb14ed032b5b434809ac6cf5060251a0e31382a",
+          "tail": "']\n    total_match(['4'], ['1', '2', '3', '4', '5']) \u279e ['4']\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/52": {
+          "tokens": 147,
+          "sha256": "3de9e4d25f4a817e0cbce0eb1998959bd9cf90f55c64c91aff25ca5f25083a14",
+          "tail": "   True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/149": {
+          "tokens": 259,
+          "sha256": "da5bc43b5a5f1e32ce4d78361eb1f6a0cfb93455c53f359b3312aaf942eb3113",
+          "tail": "  assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/58": {
+          "tokens": 188,
+          "sha256": "0a4abe14eff39f2de6c0e7a1436c7f4529a1ea313dadeebc410f2429564d6c25",
+          "tail": "[1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/13": {
+          "tokens": 134,
+          "sha256": "96065d0a60a42f4de0d07e8e413e7166ef7b750faf284e535cbabb3ba0dfce63",
+          "tail": "or(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/152": {
+          "tokens": 297,
+          "sha256": "231b1625e8ec2f6e0335965a5249a6fefd5df355b66f459d716cae806edd08f8",
+          "tail": "]\n    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/57": {
+          "tokens": 155,
+          "sha256": "8a8221778be1bd587ac690fb3d4cc16bf450cda4e6e1e889c81a6ab5329181eb",
+          "tail": "4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/125": {
+          "tokens": 204,
+          "sha256": "f4caae5815b58129591c2e563551edbd5da504c0ca981eb0315f68a3e0e88709",
+          "tail": "rld!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/9": {
+          "tokens": 163,
+          "sha256": "109f9a664ed2e417880bda467fa29bce5f43e5b2b21736049633386c87178f12",
+          "tail": "rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/32": {
+          "tokens": 329,
+          "sha256": "1a861d3c5b4d70e613d20b3c711f5a1914f5c9eb5ca3adebafe1214b4881fdd9",
+          "tail": " (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/124": {
+          "tokens": 354,
+          "sha256": "751aa8c65f91981c23ea0eecc65968ff5be784f4505649bbe5de542804040808",
+          "tail": "'06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/121": {
+          "tokens": 164,
+          "sha256": "ba742ad3ca81f2e2a0729741e27b3afab9f3cda69a0a1f9248ea58e3dea576c6",
+          "tail": "([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/95": {
+          "tokens": 242,
+          "sha256": "9f8d6bff54907424aac53e46f5f3533142ac00dbc8665b16a7c0257c7040335a",
+          "tail": "ict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/137": {
+          "tokens": 207,
+          "sha256": "e782ecc46316b5b724f407bdb47bb647e84ed4e2bf315925a5e6608c36846ccf",
+          "tail": "compare_one(\"5,1\", \"6\") \u279e \"6\"\n    compare_one(\"1\", 1) \u279e None\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        }
+      },
+      "utc_start": "2026-10-13T18:39:05Z"
+    },
+    "qwen38-v2-r1": {
+      "name": "qwen38-v2-r1",
+      "url": "http://127.0.0.1:18081",
+      "gpu": 1,
+      "context_per_slot": 2048,
+      "splits": "dev,eval",
+      "limit": 0,
+      "widths": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 1,
+      "round_offset": 1,
+      "budget": 8,
+      "deadline": 120,
+      "max_tokens": 768,
+      "verify_timeout": 3,
+      "verify_cpus": "36,37",
+      "model_manifest": {
+        "repo": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+        "filename": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "size": 16464440224,
+        "expected_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482",
+        "endpoint": "https://hf-mirror.com",
+        "verified": true,
+        "actual_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482"
+      },
+      "server_props": {
+        "default_generation_settings": {
+          "params": {
+            "seed": 4294967295,
+            "temperature": 1.0,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 20,
+            "top_p": 0.949999988079071,
+            "min_p": 0.05000000074505806,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": -1,
+            "n_predict": -1,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": false,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "none",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "n_ctx": 2048
+        },
+        "total_slots": 8,
+        "model_alias": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "model_ftype": "Q4_K - Medium",
+        "model_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "modalities": {
+          "vision": false,
+          "video": false,
+          "audio": false
+        },
+        "media_marker": "<__media_2DVs9tzJ4FFjhG2og1aR57drXm1ftK8x__>",
+        "endpoint_slots": true,
+        "endpoint_props": false,
+        "endpoint_metrics": true,
+        "ui": false,
+        "ui_settings": {},
+        "chat_template": "{%- set image_count = namespace(value=0) %}\n{%- set video_count = namespace(value=0) %}\n{%- macro render_content(content, do_vision_count, is_system_content=false) %}\n    {%- if content is string %}\n        {{- content }}\n    {%- elif content is iterable and content is not mapping %}\n        {%- for item in content %}\n            {%- if 'image' in item or 'image_url' in item or item.type == 'image' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain images.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Picture ' ~ image_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' }}\n            {%- elif 'video' in item or item.type == 'video' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain videos.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Video ' ~ video_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' }}\n            {%- elif 'text' in item %}\n                {{- item.text }}\n            {%- else %}\n                {{- raise_exception('Unexpected item type in content.') }}\n            {%- endif %}\n        {%- endfor %}\n    {%- elif content is none or content is undefined %}\n        {{- '' }}\n    {%- else %}\n        {{- raise_exception('Unexpected content type.') }}\n    {%- endif %}\n{%- endmacro %}\n{%- if not messages %}\n    {{- raise_exception('No messages provided.') }}\n{%- endif %}\n{%- set sysns = namespace(count=0, text='') %}\n{%- for message in messages %}\n    {%- if sysns.count == loop.index0 and (message.role == 'system' or message.role == 'developer') %}\n        {%- set sys_content = render_content(message.content, false, true)|trim %}\n        {%- if sys_content %}\n            {%- set sysns.text = sysns.text + ('\\n' if sysns.text else '') + sys_content %}\n        {%- endif %}\n        {%- set sysns.count = sysns.count + 1 %}\n    {%- endif %}\n{%- endfor %}\n{%- set num_sys = sysns.count %}\n{%- set merged_system = sysns.text %}\n{%- set reasoning_instructions = '' %}\n{%- if enable_thinking is undefined or enable_thinking is true %}\n    {%- set resolved_reasoning_effort = reasoning_effort|default('xhigh') %}\n    {%- if resolved_reasoning_effort == 'high' %}\n        {%- set resolved_reasoning_effort = 'xhigh' %}\n    {%- endif %}\n    {%- if resolved_reasoning_effort not in ('xhigh', 'medium', 'low') %}\n        {{- raise_exception('Unexpected reasoning effort ' ~ reasoning_effort ~ '. Supported types are xhigh (default), medium, and low.') }}\n    {%- endif %}\n    {%- if resolved_reasoning_effort == 'xhigh' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to xhigh. Please think carefully through the task, validate key assumptions, consider plausible alternatives, and prioritize correctness, consistency, and clarity in the final answer.' %}\n    {%- elif resolved_reasoning_effort == 'low' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to low. Keep your thinking brief and focused, moving directly to the conclusion without unnecessary elaboration.' %}\n    {%- endif %}\n{%- endif %}\n{%- if tools and tools is iterable and tools is not mapping %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if reasoning_instructions %}\n        {{- reasoning_instructions + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou have access to the following functions:\\n\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\" }}\n    {{- '\\n\\nIf you choose to call a function ONLY reply in the following format with NO suffix:\\n\\n<tool_call>\\n<function=example_function_name>\\n<parameter=example_parameter_1>\\nvalue_1\\n</parameter>\\n<parameter=example_parameter_2>\\nThis is the value for the second parameter\\nthat can span\\nmultiple lines\\n</parameter>\\n</function>\\n</tool_call>\\n\\n<IMPORTANT>\\nReminder:\\n- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags\\n- Required parameters MUST be specified\\n- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after\\n- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls\\n</IMPORTANT>' }}\n    {%- if merged_system %}\n        {{- '\\n\\n' + merged_system }}\n    {%- endif %}\n    {{- '<|im_end|>\\n' }}\n{%- else %}\n    {%- if merged_system %}\n        {{- '<|im_start|>system\\n' + (reasoning_instructions + '\\n\\n' if reasoning_instructions else '')  + merged_system + '<|im_end|>\\n' }}\n    {%- elif reasoning_instructions %}\n        {{- '<|im_start|>system\\n' + reasoning_instructions + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" %}\n        {%- set content = render_content(message.content, false)|trim %}\n        {%- if not(content.startswith('<tool_response>') and content.endswith('</tool_response>')) %}\n            {%- set ns.multi_step_tool = false %}\n            {%- set ns.last_query_index = index %}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if loop.index0 >= num_sys %}\n    {%- set content = render_content(message.content, true)|trim %}\n    {%- if message.role == \"system\" or message.role == \"developer\" %}\n        {{- raise_exception('System message must be at the beginning.') }}\n    {%- elif message.role == \"user\" %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- endif %}\n        {%- set reasoning_content = reasoning_content|trim %}\n        {%- if preserve_thinking is undefined or preserve_thinking is true or loop.index0 > ns.last_query_index %}\n            {{- '<|im_start|>' + message.role + '\\n<think>\\n' + reasoning_content + '\\n</think>\\n\\n' + content }}\n        {%- else %}\n            {{- '<|im_start|>' + message.role + '\\n' + content }}\n        {%- endif %}\n        {%- if message.tool_calls and message.tool_calls is iterable and message.tool_calls is not mapping %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if tool_call.function is defined %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {%- if tool_call.name is not defined or tool_call.name is none %}\n                    {{- raise_exception('Tool call is missing a function name.') }}\n                {%- endif %}\n                {%- if loop.first %}\n                    {%- if content|trim %}\n                        {{- '\\n\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- else %}\n                        {{- '<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- endif %}\n                {%- else %}\n                    {{- '\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                {%- endif %}\n                {%- if tool_call.arguments is mapping %}\n                    {%- for args_name, args_value in tool_call.arguments|items %}\n                        {{- '<parameter=' + args_name + '>\\n' }}\n                        {%- set args_value = args_value | string if args_value is string else args_value | tojson | safe %}\n                        {{- args_value }}\n                        {{- '\\n</parameter>\\n' }}\n                    {%- endfor %}\n                {%- elif tool_call.arguments is string %}\n                    {%- if tool_call.arguments|trim %}\n                        {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" were passed as a JSON string. Parse them into an object before calling apply_chat_template.') }}\n                    {%- endif %}\n                {%- elif tool_call.arguments is defined and tool_call.arguments is not none %}\n                    {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" must be an object/mapping or a JSON string.') }}\n                {%- endif %}\n                {{- '</function>\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.previtem and loop.previtem.role != \"tool\" %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if not loop.last and loop.nextitem.role != \"tool\" %}\n            {{- '<|im_end|>\\n' }}\n        {%- elif loop.last %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- else %}\n        {{- raise_exception('Unexpected message role.') }}\n    {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- else %}\n        {{- '<think>\\n' }}\n    {%- endif %}\n{%- endif %}\n{#- Unsloth fixes - developer role, merged system messages, tool calling #}",
+        "chat_template_caps": {
+          "supports_object_arguments": true,
+          "supports_parallel_tool_calls": true,
+          "supports_preserve_reasoning": true,
+          "supports_reasoning_effort": true,
+          "supports_string_content": true,
+          "supports_system_role": true,
+          "supports_tool_calls": true,
+          "supports_tools": true,
+          "supports_typed_content": true
+        },
+        "bos_token": "<|endoftext|>",
+        "eos_token": "<|im_end|>",
+        "build_info": "b0-unknown",
+        "is_sleeping": false,
+        "cors_proxy_enabled": false
+      },
+      "server_slots": [
+        {
+          "id": 0,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 6,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8103,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 10,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8104,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 12,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8107,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 8,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8102,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 7,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8100,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 9,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8101,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 5,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8105,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "n_ctx": 2048,
+          "speculative": false,
+          "is_processing": false,
+          "id_task": 11,
+          "n_prompt_tokens": 107,
+          "n_prompt_tokens_processed": 0,
+          "n_prompt_tokens_cache": 0,
+          "params": {
+            "seed": 8106,
+            "temperature": 0.800000011920929,
+            "dynatemp_range": 0.0,
+            "dynatemp_exponent": 1.0,
+            "top_k": 0,
+            "top_p": 0.949999988079071,
+            "min_p": 0.0,
+            "top_n_sigma": -1.0,
+            "xtc_probability": 0.0,
+            "xtc_threshold": 0.10000000149011612,
+            "typical_p": 1.0,
+            "repeat_last_n": 64,
+            "repeat_penalty": 1.0,
+            "presence_penalty": 0.0,
+            "frequency_penalty": 0.0,
+            "dry_multiplier": 0.0,
+            "dry_base": 1.75,
+            "dry_allowed_length": 2,
+            "dry_penalty_last_n": 64,
+            "mirostat": 0,
+            "mirostat_tau": 5.0,
+            "mirostat_eta": 0.10000000149011612,
+            "adaptive_target": -1.0,
+            "adaptive_decay": 0.8999999761581421,
+            "max_tokens": 512,
+            "n_predict": 512,
+            "n_keep": 0,
+            "n_discard": 0,
+            "ignore_eos": false,
+            "stream": true,
+            "n_probs": 0,
+            "min_keep": 0,
+            "chat_format": "Content-only",
+            "reasoning_format": "deepseek",
+            "reasoning_in_content": false,
+            "generation_prompt": "",
+            "samplers": [
+              "penalties",
+              "dry",
+              "top_n_sigma",
+              "top_k",
+              "typ_p",
+              "top_p",
+              "min_p",
+              "xtc",
+              "temperature"
+            ],
+            "speculative.types": "none",
+            "timings_per_token": false,
+            "post_sampling_probs": false,
+            "backend_sampling": false,
+            "lora": []
+          },
+          "next_token": [
+            {
+              "has_next_token": true,
+              "has_new_line": false,
+              "n_remain": -1,
+              "n_decoded": 0
+            }
+          ]
+        }
+      ],
+      "engine": "llama.cpp v0.6.0 / native streaming HTTP",
+      "client_affinity": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "verifier_workers": 2,
+      "python": "3.12.8 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:31:09) [GCC 11.2.0]",
+      "aiohttp": "3.11.11",
+      "transport": "fresh TCP connection per HTTP request; no POST retries",
+      "tasks_sha256": "e1a6f59bb1b9b1877e3763e122a63a6839020f1c73f53473a08e98763a89df8a",
+      "prompts": {
+        "HumanEval/5": {
+          "tokens": 157,
+          "sha256": "536651ddf7f05f5a4c1d7910ff03136d875b91738b9d836e8ffc9aca14a8edf8",
+          "tail": "    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/49": {
+          "tokens": 182,
+          "sha256": "3d5b5c4498b21495acb3d719ad4292c4d2cf261e5bbc208e57c81b64d72fe324",
+          "tail": "    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/132": {
+          "tokens": 196,
+          "sha256": "255c413c419ea96bb628914693ef2abca31c7a72f5c667e77e1a237bd02f499e",
+          "tail": "   is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/8": {
+          "tokens": 179,
+          "sha256": "fb55161c298fea3219afe0b818711edcf57e4bc132a37a28578682dcebc6e67d",
+          "tail": "])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/75": {
+          "tokens": 145,
+          "sha256": "8bd2b5b16b32bdbf612ebc1d48b326f41e14bfa667c73517fd2d184bfd7fd1fc",
+          "tail": "xample:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/43": {
+          "tokens": 225,
+          "sha256": "ccb6047bb0dcbd5e8a1c879ce5ff7bfc0e4ab033f7c47b940991d7d9b19fa1c6",
+          "tail": " 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/10": {
+          "tokens": 213,
+          "sha256": "e08cc0cc152611af3601c75a9c639b3a63b6e69d630b20d941f95cad7c963ccd",
+          "tail": "at')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/22": {
+          "tokens": 156,
+          "sha256": "470ec784fee6ce6cca0249afd71e8635efcb45a987e4b9b47fd71f48d1b08c39",
+          "tail": " >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/155": {
+          "tokens": 132,
+          "sha256": "b33aec5678eb58c43d5ef85011f2c54c16a84bdfea2147171748562eefddc6a0",
+          "tail": "count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/82": {
+          "tokens": 141,
+          "sha256": "9d26e01c9012941e1e65dccc558e01e350446c2f0e98506db705ab918ff0e5e1",
+          "tail": "ength('kittens') == True\n    prime_length('orange') == False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/20": {
+          "tokens": 231,
+          "sha256": "95e758437b1deed9c4ec204f58091022a41779af646ff97a0808a16192818504",
+          "tail": "sest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/129": {
+          "tokens": 470,
+          "sha256": "716a75386a61f00b70aef5a6d113fd79cb2d9d4dc93541ca367a08d4c3b80b48",
+          "tail": "id = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/136": {
+          "tokens": 205,
+          "sha256": "685259ad0e2450f7656995d8b5c1e873ad55702e549f18b2ee3017c2c6258c2a",
+          "tail": "ne, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/147": {
+          "tokens": 235,
+          "sha256": "06ab89dc88fd03c2c1ee8054a87c08b8564a99f679f810431548af01f2cadeda",
+          "tail": ", 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13).\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/6": {
+          "tokens": 177,
+          "sha256": "ba46965d4b20a1d125df06179cb0a01078bd5b46f086580fb1cfa72ebaf539e2",
+          "tail": "ested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/127": {
+          "tokens": 328,
+          "sha256": "0e178de15f787198824833bd6f43e605fa10e9d360298f5e439543a70575a24f",
+          "tail": ", 4)) ==> \"NO\"\n    intersection((-3, -1), (-5, 5)) ==> \"YES\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/24": {
+          "tokens": 114,
+          "sha256": "fe5b69731ddfc90fc31ae661a23e46ccb700255b29c9aa6b2d341fbcfbbbdf6e",
+          "tail": "s n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/102": {
+          "tokens": 161,
+          "sha256": "7e28d1a410bde1130556c2987b3aa7143c629bbd1c6032ce7a68d12a522fcd9f",
+          "tail": "ple:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/78": {
+          "tokens": 386,
+          "sha256": "8ddb344dd5d789f7b4f9d773da5c0266ba6948fcd7577881eaac741ce8456ac9",
+          "tail": "ut should be 6.\n    For num = \"2020\" the output should be 2.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/122": {
+          "tokens": 202,
+          "sha256": "8c5be229eca71b89afc7c72eade03fe6a4c27f8104f677f91c68c1f860fadf21",
+          "tail": "       1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/105": {
+          "tokens": 352,
+          "sha256": "3de2573efb6221073dbc273d21043fd19573807ffb51fc68eadcb242a5ad5c44",
+          "tail": "        -> reverse arr -> [55, 1, -1]\n      return = ['One']\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/65": {
+          "tokens": 152,
+          "sha256": "af9a6b5d6b3f58b7ce1e9bfc63612f42f9a991c79b1a4c022de843ea331f5d44",
+          "tail": "shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/120": {
+          "tokens": 295,
+          "sha256": "4c8684ca4c01ce5178ac0d372278c84735abc44bf4fc910f73fedbfb39be3707",
+          "tail": "in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/41": {
+          "tokens": 216,
+          "sha256": "86ba7cea029e83d86ec6caf87d71dd01ea1e5ea695c0017f8f7f106d04a9e16c",
+          "tail": "e.\n\n    This function outputs the number of such collisions.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/53": {
+          "tokens": 116,
+          "sha256": "a341f446e0dfcac5765a9912244c7abe2d7edacc6fc6c3d01c1485a259cf40ce",
+          "tail": "ers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/160": {
+          "tokens": 277,
+          "sha256": "e1c953370497ade29302b0d84f785839001c59c292a9ff535afd483bdde39ff2",
+          "tail": "t one operator, and operand list has at least two operands.\n\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/64": {
+          "tokens": 194,
+          "sha256": "eac1a607b24243d9c7856a4932ded33a81a08d8ecad41b4e894769ef927c4e7f",
+          "tail": "els_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/54": {
+          "tokens": 208,
+          "sha256": "116ad48a7e25b34585820009d44ffd092e4655aa3a091fe162dae2ca486a1404",
+          "tail": "  >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/126": {
+          "tokens": 311,
+          "sha256": "890dbfe107540abab5dfca5754c0326d00db8dc2ad40406696da85852d02b125",
+          "tail": ", 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/72": {
+          "tokens": 298,
+          "sha256": "a47bee0a9791da20a84c8b4d122b57a4db524b6a1ce46edcfd4ff9fe46b1bda0",
+          "tail": "is less than the maximum possible weight, and it's balanced.\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/153": {
+          "tokens": 343,
+          "sha256": "de8fc9994d9771924d057670f3b32b7b35f428df6e9c7425df68e2363c72e57c",
+          "tail": "t_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/59": {
+          "tokens": 132,
+          "sha256": "7cbcf64303e783c1082a0ad32ae7ea9e862bb0c115b9a13955381aaa31ce358c",
+          "tail": "actor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/23": {
+          "tokens": 106,
+          "sha256": "849db45d739890daf31697804fc1aa89ac4f9bd4315313d4b956e5384ed8de93",
+          "tail": " string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/31": {
+          "tokens": 174,
+          "sha256": "01cb8448eae595fb0a1b6f6bf09a79c7f8e4ebfbae03ff4824facf6860206ee7",
+          "tail": "\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/158": {
+          "tokens": 183,
+          "sha256": "78756b9716047b796e7d920863fd26be7a7bdf52d04306c3a3984806f6276db4",
+          "tail": "= \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/4": {
+          "tokens": 181,
+          "sha256": "47bdd935a9ae9152ceefd4410a38fc1a668d5e2864ea9caf1ea4222de60571b2",
+          "tail": "   >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/92": {
+          "tokens": 199,
+          "sha256": "f688a6f7a6374bd0bc63f52249fd2ecd6988869eb3030ed758d18d0d28934c8b",
+          "tail": "2, 1) \u279e True\n    \n    any_int(3.6, -2.2, 2) \u279e False\n  \n\n    \n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/157": {
+          "tokens": 173,
+          "sha256": "4a50418eb5b865ecf7d30bed169590519b118232632ac7521384e9b0f5ce9c48",
+          "tail": "(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/145": {
+          "tokens": 188,
+          "sha256": "ffeb9bf2b409abc22d155a2701ea0912681cc142f88891153e7bf52ca9ec611f",
+          "tail": ") == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/135": {
+          "tokens": 165,
+          "sha256": "b2ffa9de1ae00517b79d845781bef48a742333d2d1c7c730b70f1fea8afdca0c",
+          "tail": "  can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/162": {
+          "tokens": 150,
+          "sha256": "6e54fa0c66d9fa8a39a6247e2089b3435b6daf052b2de51bcc1acd52520c3093",
+          "tail": "_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/63": {
+          "tokens": 216,
+          "sha256": "b4762b6bacca5081ad871e73a4ab36e105c96f47c016891eb54c1be14b03e1ec",
+          "tail": "ib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/98": {
+          "tokens": 135,
+          "sha256": "cc350f38abe6d787a325bd2aa5c8c522ab815881d4300c34186fe10898dfceb2",
+          "tail": "upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/42": {
+          "tokens": 178,
+          "sha256": "061329ffb87eace0ce276d207944ad4c7d1588f1ab967564b3de8846bb0a66a3",
+          "tail": ", 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/56": {
+          "tokens": 158,
+          "sha256": "ddb59f83bcd843075220e54f5b841ddcdb437cac9beee0cb8c96c9ace395f62c",
+          "tail": "><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/39": {
+          "tokens": 166,
+          "sha256": "9b5247c66355ef4e9f09caa28cbbac029beb612b3dad52a45d03430c5cfba0d0",
+          "tail": "   5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/83": {
+          "tokens": 106,
+          "sha256": "bdbfd60fad686ad63046761789b19b77a456e613c217735d9d32e8ee7571d03e",
+          "tail": "s of n-digit\n    positive integers that start or end with 1.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/99": {
+          "tokens": 230,
+          "sha256": "c660eda414e41713a2fd00755fc6b04756a7aa62f3013592c3591d7e93bcc16b",
+          "tail": "   return 15 and closest_integer(\"-14.5\") should return -15.\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/86": {
+          "tokens": 198,
+          "sha256": "86e5fc2e712d26662a4dbf0d0d64e0fc6c4d97865357cd699044bf2a233807d3",
+          "tail": "\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/100": {
+          "tokens": 202,
+          "sha256": "fdab6c2f0991e2de8f00b533ad8d4dd4fc9d0245e5ee00c7f9267e6fb961b271",
+          "tail": "l (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/74": {
+          "tokens": 261,
+          "sha256": "fbea95775fa42324f963e5794cb14ed032b5b434809ac6cf5060251a0e31382a",
+          "tail": "']\n    total_match(['4'], ['1', '2', '3', '4', '5']) \u279e ['4']\n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/52": {
+          "tokens": 147,
+          "sha256": "3de9e4d25f4a817e0cbce0eb1998959bd9cf90f55c64c91aff25ca5f25083a14",
+          "tail": "   True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/149": {
+          "tokens": 259,
+          "sha256": "da5bc43b5a5f1e32ce4d78361eb1f6a0cfb93455c53f359b3312aaf942eb3113",
+          "tail": "  assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/58": {
+          "tokens": 188,
+          "sha256": "0a4abe14eff39f2de6c0e7a1436c7f4529a1ea313dadeebc410f2429564d6c25",
+          "tail": "[1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/13": {
+          "tokens": 134,
+          "sha256": "96065d0a60a42f4de0d07e8e413e7166ef7b750faf284e535cbabb3ba0dfce63",
+          "tail": "or(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/152": {
+          "tokens": 297,
+          "sha256": "231b1625e8ec2f6e0335965a5249a6fefd5df355b66f459d716cae806edd08f8",
+          "tail": "]\n    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/57": {
+          "tokens": 155,
+          "sha256": "8a8221778be1bd587ac690fb3d4cc16bf450cda4e6e1e889c81a6ab5329181eb",
+          "tail": "4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/125": {
+          "tokens": 204,
+          "sha256": "f4caae5815b58129591c2e563551edbd5da504c0ca981eb0315f68a3e0e88709",
+          "tail": "rld!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/9": {
+          "tokens": 163,
+          "sha256": "109f9a664ed2e417880bda467fa29bce5f43e5b2b21736049633386c87178f12",
+          "tail": "rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/32": {
+          "tokens": 329,
+          "sha256": "1a861d3c5b4d70e613d20b3c711f5a1914f5c9eb5ca3adebafe1214b4881fdd9",
+          "tail": " (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/124": {
+          "tokens": 354,
+          "sha256": "751aa8c65f91981c23ea0eecc65968ff5be784f4505649bbe5de542804040808",
+          "tail": "'06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/121": {
+          "tokens": 164,
+          "sha256": "ba742ad3ca81f2e2a0729741e27b3afab9f3cda69a0a1f9248ea58e3dea576c6",
+          "tail": "([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/95": {
+          "tokens": 242,
+          "sha256": "9f8d6bff54907424aac53e46f5f3533142ac00dbc8665b16a7c0257c7040335a",
+          "tail": "ict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        },
+        "HumanEval/137": {
+          "tokens": 207,
+          "sha256": "e782ecc46316b5b724f407bdb47bb647e84ed4e2bf315925a5e6608c36846ccf",
+          "tail": "compare_one(\"5,1\", \"6\") \u279e \"6\"\n    compare_one(\"1\", 1) \u279e None\n    \"\"\"<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+        }
+      },
+      "utc_start": "2026-10-13T18:39:05Z"
+    }
+  }
+}

@@ -25,6 +25,11 @@ def main(args):
         configs[name] = json.loads((directory / 'config.json').read_text())
         origins[name] = dict(path=str(path), rows=len(current),
                              raw_sha256=hashlib.sha256(content).hexdigest())
+        revision = directory / 'code-revision.txt'
+        origins[name]['code_revision'] = revision.read_text().strip() if revision.exists() else 'unrecorded'
+        hashes = directory / 'runtime-source-hashes.json'
+        if hashes.exists():
+            origins[name]['runtime_sources'] = json.loads(hashes.read_text())
         for row in current:
             for event in row['candidates']:
                 event.pop('raw_output', None)

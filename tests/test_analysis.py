@@ -20,6 +20,13 @@ def row(split, width, solved, latency=4, task='test/0', round_id=0):
 
 
 class AnalysisTests(unittest.TestCase):
+    def test_cancelled_verification_wait_remains_visible(self):
+        r = row('eval', 2, True)
+        r['candidates'][1]['verify_queued'] = 3
+        result = summarize([r])
+        self.assertAlmostEqual(result['verification_queue_p95_s'], .955)
+        self.assertEqual(result['verification_queue_cancelled'], 1)
+
     def test_paired_intervals_include_failed_task_penalty(self):
         self.assertIsNotNone(paired_intervals)
         rows = [row('eval', w, w == 2, latency=4, task=f'test/{t}', round_id=r)
