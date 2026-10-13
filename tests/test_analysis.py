@@ -1,9 +1,10 @@
 import unittest
 
+from scripts.analyze import summarize, select_width, analyze
 try:
-    from scripts.analyze import summarize, select_width, analyze
+    from scripts.analyze import validate_coverage, paired_intervals
 except ImportError:
-    summarize = select_width = analyze = None
+    paired_intervals = None
 
 
 def row(split, width, solved, latency=4, task='test/0', round_id=0):
@@ -19,6 +20,34 @@ def row(split, width, solved, latency=4, task='test/0', round_id=0):
 
 
 class AnalysisTests(unittest.TestCase):
+    def test_paired_intervals_include_failed_task_penalty(self):
+        self.assertIsNotNone(paired_intervals)
+        rows = [row('eval', w, w == 2, latency=4, task=f'test/{t}', round_id=r)
+                for t in range(3) for r in [0, 1] for w in [1, 2]]
+        result = paired_intervals(rows, 2, draws=50)
+        self.assertEqual(result['capped_solution_delta_s']['estimate'], -116)
+        self.assertEqual(result['capped_solution_delta_s']['ci95'], [-116, -116])
+        self.assertEqual(result['success_rate_delta']['ci95'], [1, 1])
+        with self.assertRaises(ValueError):
+            paired_intervals(rows[:-1], 2, draws=50)
+
+    def test_partial_evaluation_grid_rejected(self):
+        self.assertIsNotNone(validate_coverage)
+        rows = [row(split, width, True, task=split + '/0', round_id=r)
+                for split in ['dev', 'eval'] for width in [1, 2] for r in [0, 1]]
+        validate_coverage(rows, {'dev': 1, 'eval': 1}, [1, 2], [0, 1])
+        with self.assertRaises(ValueError):
+            validate_coverage(rows[:-1], {'dev': 1, 'eval': 1}, [1, 2], [0, 1])
+
+    def test_actual_workers_drain_and_unresolved_tail(self):
+        r = row('eval', 1, False)
+        r.update(verifier_workers=1, total_with_drain=10, server_drain_s=1)
+        result = summarize([r])
+        self.assertAlmostEqual(result['verifier_occupancy'], .9 / 10)
+        self.assertEqual(result['total_wall_s'], 10)
+        self.assertEqual(result['unresolved_verification_tail_p95_s'], 1)
+        self.assertEqual(result['server_drain_p95_s'], 1)
+
     def test_failures_get_deadline_penalty(self):
         self.assertIsNotNone(summarize, 'analyzer missing')
         result = summarize([row('eval', 1, True), row('eval', 1, False, task='test/1')])

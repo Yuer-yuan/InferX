@@ -4,9 +4,9 @@
 
 **Goal:** 在 vlm-server 单张 4090 上完成可复现瓶颈筛查，决定代码生成—验证反馈调度假设是否值得继续。
 
-**Architecture:** HDD 上的独立 vLLM 环境运行异步生成；受限 CPU 子进程验证候选，调度器成功即取消。JSONL 原始事件保留在 HDD，轻量汇总和结论回存仓库。
+**Architecture:** HDD 上源码编译的 llama.cpp 服务运行单卡异步生成；受限 CPU 子进程验证候选，调度器成功即取消。JSONL 原始事件保留在 HDD，轻量汇总和结论回存仓库。
 
-**Tech Stack:** Python 3.12、vLLM 0.8.5、PyTorch CUDA 12.4、Hugging Face mirror、Linux seccomp、stdlib unittest。
+**Tech Stack:** Python 3.12 客户端、llama.cpp v0.6.0、CUDA 12.6、Hugging Face mirror、Linux seccomp、stdlib unittest；Qwen3.8-27B UD-Q4_K_M。
 
 **Spec:** `docs/superpowers/specs/2026-10-14-feedback-validation-design.md`
 
@@ -29,10 +29,10 @@
 
 ## File Map
 
-- `scripts/remote-env.sh`：HDD 环境与缓存；`scripts/download.py`：固定模型/数据版本及 manifest。
+- `scripts/remote-env.sh`：HDD 环境与缓存；`scripts/download.py`：固定数据版本及 manifest；`scripts/prepare_27b.py`：固定模型下载及哈希验证。
 - `inferx/sandbox_worker.py`、`inferx/verifier.py`：seccomp 子进程与异步有界验证。
 - `inferx/scheduler.py`：候选并发、预算、deadline、取消、事件。
-- `scripts/run_pilot.py`：vLLM 适配器与实验编排；`scripts/analyze.py`：汇总和分集选择。
+- `scripts/run_pilot.py`：llama.cpp HTTP 适配器与实验编排；`scripts/analyze.py`：汇总和分集选择。
 - `tests/test_verifier.py`、`tests/test_scheduler.py`、`tests/test_analysis.py`：行为测试。
 - `docs/reports/2026-10-14-pilot.md`、`results/pilot/`：实际结果、版本、复现方法。
 
@@ -46,18 +46,18 @@
 - [ ] Run `python3 -m unittest discover -s tests -p test_verifier.py -v`; expected missing-feature failure before implementation.
 - [ ] Implement seccomp allowlist after standard library preload, resource limits, capped stdout, process-group cleanup and explicit infrastructure error. Create HDD-only environment script and pinned download script.
 - [ ] Run verifier tests locally and remotely; all pass. Validate canonical solutions on selected tasks to distinguish sandbox incompatibility from model failures.
-- [ ] Provision isolated remote venv, download model/data through mirror, record package freeze and hardware. Confirm model files and caches resolve under HDD.
+- [ ] Build pinned llama.cpp v0.6.0 with CUDA 12.6 on HDD; use existing Python client environment read-only, with hf_transfer installed into the HDD project. Download pinned Qwen3.8-27B GGUF/data through mirror, record hashes, relevant package versions and hardware. Confirm model files and caches resolve under HDD.
 - [ ] Commit Task 1.
 
 ### Task 2: Measured asynchronous baseline
 
-**Files:** Create `inferx/scheduler.py`, `scripts/run_pilot.py`, `tests/test_scheduler.py`.
+**Files:** Create `inferx/scheduler.py`, `inferx/llama_client.py`, `scripts/run_pilot.py`, `scripts/start_server.sh`, `tests/test_scheduler.py`, `tests/test_llama_client.py`.
 
 **Interfaces:** Consumes Task 1 verify; produces `async run_task(task: dict, generate, verify_candidate, width: int, budget: int, deadline: float, seed: int) -> dict`. Generate receives candidate id, seed and mutable event record, returns code; cancellation must abort underlying request. Per-task result includes candidate events and total/solution latency.
 
 - [ ] Write tests for earliest verified success and loser cleanup, budget exhaustion, deadline during verification, generator failure, nonzero tokens from cancelled generation.
 - [ ] Run scheduler tests; expected missing-feature failure.
-- [ ] Implement bounded asynchronous workers, shared verification semaphore, monotonic event timestamps and cancellation cleanup; use vLLM AsyncLLMEngine streaming and abort in adapter. Persist one result per task immediately.
+- [ ] Implement bounded asynchronous workers, shared verification semaphore, monotonic event timestamps and cancellation cleanup; use native llama.cpp SSE streaming, close HTTP response on cancellation, then confirm all server slots idle before the next trial. Persist one result per task immediately.
 - [ ] Run `python3 -m unittest discover -s tests -v`; all pass.
 - [ ] Run two-task single-GPU smoke; expected valid results, nonzero generated tokens, verifier timing, no residual requests after cancellation.
 - [ ] Commit Task 2.
@@ -78,3 +78,7 @@
 ## Execution choice
 
 用户已要求直接继续，本轮由主 agent 在当前目录的 `research/feedback-validation-pilot` 分支执行，保持计划、技能和结果在用户指定 work-dir 可见；不再为流程确认暂停。实验本身是可丢弃的选题筛查。远端路径已由用户授权，原始大文件不纳入 Git。最终保留本地分支，不自动发布或合并。
+
+## 2026-10-14 model/backend amendment
+
+用户选择 Qwen3.8 的较大 dense 模型。最终采用 Qwen3.8-27B UD-Q4_K_M 单卡全层 offload；16.46 GB GGUF、8 slots、总上下文 16384，具体模型 revision/哈希见 spec。关闭 thinking，采样和题目分割不变。源代码为 llama.cpp v0.6.0/CUDA 12.6；旧模型与 vLLM 安装尝试不产生主实验数据。新增 SSE 取消与完整结果网格检查，统计计入服务端取消清理时间。远端有现成可用的 Python 客户端依赖，读取使用它，不修改已有环境；只将 hf_transfer 下载器安装到项目 HDD 目录。

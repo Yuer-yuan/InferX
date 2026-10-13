@@ -8,8 +8,12 @@
 
 ## 作者选择与实验边界
 
-- 模型：Qwen/Qwen2.5-Coder-3B-Instruct，BF16，revision `488639f1ff808d1d3d0ba301aef8c11461451ec5`；选成熟模型减少量化和模型兼容性的干扰。初选 7B，但镜像分段下载仍约 0.5 MiB/s，首个分片预计 2.5 小时。作者改用 HDD 上已有的完整 3B 权重，复制到本项目数据目录并对照 hf-mirror 的 LFS SHA256 校验。这是筛查用配置，不能证明 7B、新模型和量化模型也有同样现象。
-- 引擎：隔离环境中的 vLLM 0.8.5 / CUDA 12.4 兼容依赖；当前驱动 565.57.01，不更新驱动或已有环境。旧引擎结果必须注明，正向结论需在新引擎复验。
+2026-10-14 最终模型修订：用户明确要求较大的 Qwen3.8 dense 模型，已核对为 **Qwen3.8-27B**（模型页面总参数标签约 28B）。主配置为 `unsloth/Qwen3.8-27B-GGUF` 的 `Qwen3.8-27B-UD-Q4_K_M.gguf`，文件 16,464,440,224 字节，revision `4ca720788d1e01f1bff70c033e0d0028fd02e502`，LFS SHA256 `322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482`。后端为 llama.cpp v0.6.0，CUDA 12.6、SM89、本机回环 HTTP；保留同一调度器和验证器。3B、14B 和 Qwen3.5 的准备均未产生 GPU 评估数据，已停止相关下载，不作为主实验结果。
+
+新配置先验证并发槽位 8、每槽位 2048 token、全部模型层 GPU offload，记录 KV/recurrent state 实际显存；不足时降低上下文/最大并发并记录，不偷偷 CPU offload。关闭 thinking 以避免将 768 token 上限全消耗在推理过程；用服务端 chat template 构建一致提示。流式候选取消通过关闭 HTTP 响应触发，须实测服务端槽位归还。请求之间缓存策略相同，记录冷/热提示的限制。模型与源码仍全放 HDD，经 hf-mirror 获取模型并校验发布哈希。下载使用 hf_transfer 0.1.9 的 64 个并行 range，避免原 aria2 16 连接约 1 MiB/s 的传输瓶颈。
+
+Dense 表示非 MoE，不代表纯全注意力：该模型 64 层采用 16 × (3 Gated DeltaNet + 1 Gated Attention)。服务内存包括 attention KV 和 recurrent state。按官方结构及 f16 KV 估算，attention KV 每 token 为 16 × 2 × 4 × 256 × 2 = 65,536 字节；16384 token 总池约 1 GiB，尚未计 recurrent state、权重和工作区。此处仅为容量预估，不能替代启动日志和 nvidia-smi 实测。本轮仅用文本能力，不加载视觉 projector。
+
 - 数据：公开 HumanEval 全集下载后，按固定 seed=20261014 打乱；16 题调试/选择并发，48 题评估，其余留作后续扩展。题目选择不依赖模型输出或正确性。使用原始测试作为执行验证器，测试代码和 canonical_solution 不进入生成提示。
 - 每题最多 8 个候选；temperature=0.8、top_p=0.95、max_tokens=768；同一题和候选序号的 seed 在策略间相同。并发和取消可能导致引擎非确定性，记录真实生成结果，不声称严格配对输出。
 - 固定并发基线宽度 1、2、4、8，宽度只限制活跃的生成请求。生成完成即排队异步验证，并立即补充生成，不等待验证失败；宽度 1 也保留生成与验证重叠。一旦通过即取消该题其他生成/验证；直到预算或 120 秒期限。调试集选出质量优先、其次平均截止时间截断的解决耗时最小的宽度，在评估集锁定。
@@ -25,7 +29,7 @@
 
 ## 组件与记录
 
-环境脚本负责 HDD 路径和依赖；下载脚本负责固定 revision 和数据 manifest；沙箱负责隔离与验证结果；异步调度器负责有界并发、预算、绝对截止时间和取消；vLLM 适配器负责流式 token 计数与 abort；分析器只读 JSONL，产生可复核汇总。
+环境脚本负责 HDD 路径和依赖；下载脚本负责固定 revision 和数据 manifest；沙箱负责隔离与验证结果；异步调度器负责有界并发、预算、绝对截止时间和取消；llama.cpp HTTP 适配器负责流式 token 计数、断连取消和服务端空闲确认；分析器只读 JSONL，产生可复核汇总。
 
 每次候选记录：题号、候选号、seed、策略、提交/首 token/生成结束/验证入队/验证开始/结束/取消时间、完成 token 数、验证结果、源码哈希与可追溯输出。时间使用单调时钟，带相对起点。每题记录 solved、首次通过时刻、总 wall time、停止原因、有效与被取消候选的已观察 token；无法获知服务端尾部已算 token 时明确计数为下界。
 
@@ -44,5 +48,5 @@
 ## 相关工作入口
 
 - [Adaptive Generate–Rank–Verify](https://arxiv.org/abs/2605.17609)：不能把泛泛的动态验证预算直接当作创新。
-- [vLLM 0.8.5 GPU 安装](https://docs.vllm.ai/en/v0.8.5/getting_started/installation/gpu.html)：本轮兼容性选择。
-- [模型](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct)、[HumanEval](https://huggingface.co/datasets/openai/openai_humaneval)。
+- [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)、[所选 GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)、[HumanEval](https://huggingface.co/datasets/openai/openai_humaneval)。
+- [llama.cpp v0.6.0](https://github.com/ggml-org/llama.cpp/releases/tag/v0.6.0)、[服务接口](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md)。
