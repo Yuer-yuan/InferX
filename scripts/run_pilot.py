@@ -11,13 +11,12 @@ import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from inferx.llama_client import LlamaClient
+from inferx.llama_client import LlamaClient, create_session
 from inferx.scheduler import run_task
 from inferx.verifier import verify
 
 
 async def main(args):
-    import aiohttp
     root = Path(os.environ['INFERX_ROOT'])
     model_manifest = json.loads((root / 'models/qwen38-27b/manifest.json').read_text())
     if not model_manifest.get('verified'):
@@ -38,8 +37,7 @@ async def main(args):
         free_cpus.put_nowait(cpu)
     output = root / 'runs' / args.name
     output.mkdir(parents=True, exist_ok=False)
-    timeout = aiohttp.ClientTimeout(total=None, sock_connect=10, sock_read=30)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
+    async with create_session() as session:
         client = LlamaClient(session, args.url)
         await client.wait_idle()
         props = await client.request_json('GET', '/props')
@@ -61,6 +59,7 @@ async def main(args):
             server_slots=server_slots, engine='llama.cpp v0.6.0 / native streaming HTTP',
             client_affinity=sorted(os.sched_getaffinity(0)), verifier_workers=len(cpus),
             python=sys.version, aiohttp=importlib.metadata.version('aiohttp'),
+            transport='fresh TCP connection per HTTP request; no POST retries',
             tasks_sha256=hashlib.sha256(taskfile.read_bytes()).hexdigest(),
             prompts=prompt_metadata,
             utc_start=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))

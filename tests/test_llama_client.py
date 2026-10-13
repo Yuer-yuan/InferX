@@ -8,7 +8,7 @@ try:
 except ImportError:
     web = None
 try:
-    from inferx.llama_client import LlamaClient
+    from inferx.llama_client import LlamaClient, create_session
 except ImportError:
     LlamaClient = None
 
@@ -22,13 +22,30 @@ class ClientTests(unittest.IsolatedAsyncioTestCase):
         self.mode = 'normal'
         app = web.Application()
         app.router.add_post('/completion', self.completion)
+        app.router.add_post('/probe', self.probe)
+        self.transports = set()
         self.runner = web.AppRunner(app)
         await self.runner.setup()
         site = web.TCPSite(self.runner, '127.0.0.1', 0)
         await site.start()
         port = site._server.sockets[0].getsockname()[1]
-        self.session = ClientSession()
+        self.session = create_session()
         self.client = LlamaClient(self.session, f'http://127.0.0.1:{port}')
+
+    async def probe(self, request):
+        # Model an HTTP peer closing a pooled connection before accepting
+        # the next POST. Retrying POST would risk duplicated inference work.
+        transport = request.transport
+        if transport in self.transports:
+            transport.abort()
+        self.transports.add(transport)
+        return web.json_response({'status': 'ok'})
+
+    async def test_post_does_not_reuse_closing_connection(self):
+        for _ in range(2):
+            result = await self.client.request_json('POST', '/probe', {})
+            self.assertEqual(result['status'], 'ok')
+        self.assertEqual(len(self.transports), 2)
 
     async def asyncTearDown(self):
         if hasattr(self, 'session'):

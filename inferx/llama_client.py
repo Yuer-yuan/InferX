@@ -6,6 +6,14 @@ import re
 import time
 
 
+def create_session():
+    import aiohttp
+    # Avoid reuse races with peer-closed HTTP keep-alive connections. A POST
+    # retry could duplicate generation, so use fresh loopback connections.
+    return aiohttp.ClientSession(connector=aiohttp.TCPConnector(force_close=True),
+        timeout=aiohttp.ClientTimeout(total=None, sock_connect=10, sock_read=30))
+
+
 def extract_code(text):
     block = re.search(r"```(?:python)?\s*\n(.*?)```", text, re.DOTALL | re.IGNORECASE)
     return (block.group(1) if block else text).strip()

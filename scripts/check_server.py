@@ -7,12 +7,11 @@ import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from inferx.llama_client import LlamaClient
+from inferx.llama_client import LlamaClient, create_session
 
 
 async def main(args):
-    import aiohttp
-    async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=60)) as session:
+    async with create_session() as session:
         client = LlamaClient(session, args.url)
         await client.wait_idle()
         chat = await client.request_json('POST', '/v1/chat/completions', {
