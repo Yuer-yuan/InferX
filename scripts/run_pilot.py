@@ -87,7 +87,8 @@ async def main(args):
                 drain = await client.wait_idle()
             result.update(split=task['split'], round=round_id, policy='fixed',
                           wall_timestamp=time.time(), server_drain_s=drain,
-                          verifier_workers=len(cpus), gpu=args.gpu)
+                          verifier_workers=len(cpus), gpu=args.gpu,
+                          host_loadavg=list(os.getloadavg()))
             result['total_with_drain'] = result['total'] + drain
             return result
 

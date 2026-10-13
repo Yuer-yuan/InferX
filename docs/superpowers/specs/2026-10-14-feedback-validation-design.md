@@ -50,3 +50,16 @@ Dense 表示非 MoE，不代表纯全注意力：该模型 64 层采用 16 × (3
 - [Adaptive Generate–Rank–Verify](https://arxiv.org/abs/2605.17609)：不能把泛泛的动态验证预算直接当作创新。
 - [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)、[所选 GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)、[HumanEval](https://huggingface.co/datasets/openai/openai_humaneval)。
 - [llama.cpp v0.6.0](https://github.com/ggml-org/llama.cpp/releases/tag/v0.6.0)、[服务接口](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md)。
+
+### 2026-10-14 补查：论文贡献边界
+
+| 已有工作 | 已覆盖的机制 | 对本轮选题的约束 |
+| --- | --- | --- |
+| [Adaptive Generate–Rank–Verify §5.1](https://arxiv.org/html/2605.17609v2#S5.SS1) | 在线扩大候选与验证预算；实验主成本设为生成/打分 1、验证 10，在预先生成样本的顺序排列上比较策略 | 动态预算本身已有；本轮测真实单卡 wall time、并发成本和取消，不能把人工成本比当硬件瓶颈证据 |
+| [PASTE](https://arxiv.org/abs/2603.18897) | 预测未来工具调用，将工具执行与 LLM 生成重叠，并联合调度工具与返回的会话 | 异步化、推测执行工具与恢复会话已经有研究 |
+| [SpecBox](https://arxiv.org/abs/2607.23933) | 生成期间预测并预热沙箱，结合依赖图预取、结果缓存和共享内存传输 | 若只测出 Python 进程启动成本，不能直接包装为新的验证调度贡献 |
+| [Agentic CPU-GPU Scheduling](https://arxiv.org/html/2607.22242v1) | 根据竞争和显存压力，在 CPU、立即 GPU、排队 GPU 三类工具放置之间选择 | 一般的运行时成本修正和 CPU/GPU 放置已有；本文部分场景重复放大工具，本轮坚持真实测试成本 |
+| [SGLang Unified Radix Cache](https://www.sglang.io/blog/unified-radix-cache) | FULL/SWA/MAMBA 的共同安全复用边界、状态写时复制、分层缓存、session-aware eviction | 混合缓存与会话保留也已有；使用混合模型或单卡本身不构成新机制 |
+| [SuffixReplay](https://arxiv.org/abs/2609.33477) | 通过后缀重放近似重建 recurrent state，减少 checkpoint 占用 | 重算换容量的方向已有近期工作，后续若做缓存必须对照精度、重算及存储开销 |
+
+这些文献构成必要对照，并非新颖性的穷尽证明。本轮产物是可复核的部署与瓶颈筛查，尚不是论文机制。只有真实工作流在充分调优基线下仍存在稳定的关键路径或资源浪费，才进一步研究反馈如何影响候选预算、抢占及状态保留；需要明确展示现有策略为什么仍解决不好。

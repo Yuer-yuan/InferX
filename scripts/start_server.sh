@@ -19,7 +19,9 @@ if used > 512:
     raise RuntimeError(f'GPU {sys.argv[1]} already uses {used} MiB; inspect existing jobs first')
 PY
 export CUDA_VISIBLE_DEVICES="$inferx_gpu"
-exec taskset -c "$inferx_cpus" "$INFERX_ROOT/source/llama-build/bin/llama-server" \
+export LD_LIBRARY_PATH="/usr/local/cuda-12.6/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+test -f "$INFERX_ROOT/source/llama-build-cuda126/READY"
+exec taskset -c "$inferx_cpus" "$INFERX_ROOT/source/llama-build-cuda126/bin/llama-server" \
   --model "$INFERX_ROOT/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf" \
   --host 127.0.0.1 --port "$inferx_port" --parallel 8 --ctx-size 16384 \
   --gpu-layers all --split-mode none --fit off --flash-attn on \
