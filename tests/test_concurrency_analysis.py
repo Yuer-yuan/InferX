@@ -99,3 +99,23 @@ def test_native_class_counters_require_unique_usage_sizes_and_matching_completio
     result=export(tmp_path,tmp_path/'out')
     assert result['groups'][0]['class_native']['tool']['observations'] is None
     assert result['groups'][0]['class_native']['cold']['observations'] is None
+
+
+def test_telemetry_is_clipped_to_measurement_and_memory_activity_is_not_bandwidth(tmp_path):
+    from datetime import datetime,timezone
+    group=fixture(tmp_path)
+    start=datetime(2026,10,14,13,0,0,tzinfo=timezone.utc).timestamp()*1000
+    result=json.loads((group/'result.json').read_text());result.update(start_unix_ms=start,end_unix_ms=start+1000)
+    write(group/'result.json',result)
+    (group.parent/'gpu.csv').write_text(
+        '2026/10/14 20:59:59.000, 20000, 4000, 0, 0, 2500, 10251, 100, 50\n'
+        '2026/10/14 21:00:00.000, 20000, 4000, 100, 80, 2700, 10251, 350, 65\n'
+        '2026/10/14 21:00:00.500, 20000, 4000, 100, 90, 2700, 10251, 370, 66\n'
+        '2026/10/14 21:00:02.000, 20000, 4000, 0, 0, 2500, 10251, 100, 50\n')
+    result=export(tmp_path,tmp_path/'out')
+    telemetry=result['groups'][0]['gpu_telemetry']
+    assert telemetry['samples']==2
+    assert telemetry['memory_activity_percent']['median']==85
+    assert telemetry['gpu_util_percent']['median']==100
+    assert 'GB/s' in telemetry['limitation']
+    assert 'd0-c1/gpu.csv' in result['source_hashes']

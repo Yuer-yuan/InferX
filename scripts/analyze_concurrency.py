@@ -3,10 +3,41 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import sqlite3
+import statistics
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from inferx.concurrency import summarize_load, summarize_native
+
+
+def summarize_gpu_telemetry(text, start_ms, end_ms):
+    fields=['memory_used_mib','memory_free_mib','gpu_util_percent','memory_activity_percent',
+            'sm_clock_mhz','memory_clock_mhz','power_w','temperature_c']
+    values={field:[] for field in fields}
+    samples=0
+    for row in csv.reader(text.splitlines()):
+        if not row:
+            continue
+        timestamp=datetime.strptime(row[0].strip(),'%Y/%m/%d %H:%M:%S.%f').replace(tzinfo=ZoneInfo('Asia/Shanghai')).timestamp()*1000
+        if not start_ms<=timestamp<=end_ms:
+            continue
+        samples+=1
+        if len(row)!=9:
+            raise ValueError('unexpected telemetry columns')
+        for field,value in zip(fields,row[1:]):
+            try:
+                number=float(value)
+            except ValueError:
+                continue
+            if math.isfinite(number):
+                values[field].append(number)
+    return dict(samples=samples,timezone='Asia/Shanghai (node CST+0800 verified)',
+        limitation='Memory activity measures read/write time, not GB/s; samples can be correlated.',
+        **{key:dict(n=len(v),median=statistics.median(v) if v else None,minimum=min(v) if v else None,
+                    maximum=max(v) if v else None) for key,v in values.items()})
 
 
 def summarize_cuda_timeline(path: Path) -> dict:
@@ -69,6 +100,11 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
         if Path(name).name != name:
             raise ValueError('invalid case path')
         directory = root/name
+        telemetry=None
+        if (directory/'gpu.csv').exists():
+            data=(directory/'gpu.csv').read_bytes()
+            sources[name+'/gpu.csv']=dict(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data))
+            telemetry=data.decode()
         if not (directory/'case.json').exists():
             cases.append(dict(configuration=configuration,status='not_finished'))
         else:
@@ -100,6 +136,8 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
                 if result['requested'] != len(rows):
                     raise ValueError('request count mismatch')
                 result['summary'] = summarize_load(rows,result['summary']['measured_span_s'])
+                if telemetry is not None and 'start_unix_ms' in result and 'end_unix_ms' in result:
+                    result['gpu_telemetry']=summarize_gpu_telemetry(telemetry,result['start_unix_ms'],result['end_unix_ms'])
                 result['native'] = summarize_native(native)
                 result['status'] = 'completed'
                 result['classes'] = {}
