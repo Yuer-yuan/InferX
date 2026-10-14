@@ -1,0 +1,44 @@
+[
+  {
+    "id": "code_merge",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful coding assistant. Answer directly without hidden reasoning. Follow the requested output format."
+      },
+      {
+        "role": "user",
+        "content": "Implement Python merge_intervals(intervals) that merges overlapping closed integer intervals. Handle empty input, reversed endpoints and unsorted input without mutating it. Return only a Python code block with type hints and docstring. Include the algorithm explanation in the docstring."
+      }
+    ],
+    "max_tokens": 512
+  },
+  {
+    "id": "reason_schedule",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful coding assistant. Answer directly without hidden reasoning. Follow the requested output format."
+      },
+      {
+        "role": "user",
+        "content": "A build machine has one CPU and one GPU. Tasks: A needs CPU for 3 min; B needs GPU for 5 min and depends on A; C needs CPU for 4 min and depends on A; D needs GPU for 2 min and depends on C; E needs CPU for 2 min and depends on B and D. Tasks cannot be interrupted and each resource handles one task at a time. Find the earliest finish time and explain a schedule and lower bound."
+      }
+    ],
+    "max_tokens": 384
+  },
+  {
+    "id": "prose_cache",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful coding assistant. Answer directly without hidden reasoning. Follow the requested output format."
+      },
+      {
+        "role": "user",
+        "content": "Explain how prefix caching, continuous batching, and multi-token prediction interact in a local code assistant. Discuss latency and memory, give one case where each optimization hurts, and provide a compact deployment checklist. Use about 250 words."
+      }
+    ],
+    "max_tokens": 384
+  }
+]

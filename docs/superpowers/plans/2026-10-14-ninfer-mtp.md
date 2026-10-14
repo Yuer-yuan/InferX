@@ -33,9 +33,9 @@
 
 **Interfaces:** Produces `summarize_response(events: list[dict], wall_s: float, ttft_s: float | None, cache_mode: str) -> dict` and a CLI accepting endpoint, model, corpus and output paths. Successful summaries require terminal completion, positive completion tokens and finite positive wall time. Missing usage remains unavailable, never inferred from chunk counts. Raw JSON retains errors, usage, engine timings and texts.
 
-- [ ] Write tests for valid throughput, API errors, missing usage, non-finite times and mislabeled cold cache reuse; run them and observe failures.
-- [ ] Implement metrics and the streaming CLI with deterministic prompts/sampling; preserve complete raw responses on HDD.
-- [ ] Run the whole pytest suite on the existing remote Python environment; commit the harness.
+- [x] Write tests for valid throughput, API errors, missing usage, non-finite times and mislabeled cold cache reuse; run them and observe failures.
+- [x] Implement metrics and the streaming CLI with deterministic prompts/sampling; preserve complete raw responses on HDD.
+- [x] Run the whole pytest suite on the existing remote Python environment; commit the harness.
 
 ### Task 2: Engines and staged development sweep
 
@@ -43,10 +43,10 @@
 
 **Interfaces:** Consumes Task 1 CLI; produces pinned engine/model manifests, recorded launch configurations and development JSONL. No production library API changes.
 
-- [ ] Record hardware, GPU occupancy and source revisions; build NInfer dependencies in an isolated HDD prefix and obtain a verified model via the mirror.
-- [ ] Start single-slot llama.cpp baseline with 65,536 context and test native MTP. Run draft-length sweep 0/2/4/6/8, then promising KV/microbatch combinations, inspecting quality and errors after each stage.
-- [ ] Run NInfer baseline/MTP staged sweeps with comparable corpus; audit cache behavior and quantify acceptance when exposed.
-- [ ] Verify launchers with shell syntax checks and actual runtime requests. Record build limitations instead of inventing NInfer results. Commit launchers and provenance.
+- [x] Record hardware, GPU occupancy and source revisions; build NInfer dependencies in an isolated HDD prefix and obtain a verified model via the mirror.
+- [x] Start single-slot llama.cpp baseline with 65,536 context and test native MTP. Run draft-length sweep 0/2/4/6/8, then promising KV/microbatch combinations, inspecting quality and errors after each stage.
+- [x] Run NInfer baseline/MTP staged sweeps with comparable corpus; audit cache behavior and quantify acceptance when exposed.
+- [x] Verify launchers with shell syntax checks and actual runtime requests. Record build limitations instead of inventing NInfer results. Commit launchers and provenance.
 
 ### Task 3: Held-out validation and deployment
 

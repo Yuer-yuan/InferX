@@ -102,7 +102,6 @@ async def benchmark(endpoint: str, model: str, corpus: list[dict], output,
                                stream_options={'include_usage': True}, temperature=0,
                                top_p=1, seed=42, max_tokens=prompt.get('max_tokens', 256),
                                presence_penalty=0, frequency_penalty=0,
-                               chat_template_kwargs={'enable_thinking': False},
                                cache_prompt=cache_mode != 'cold')
                 payload.update(prompt.get('parameters', {}))
                 if cache_mode == 'warm':
