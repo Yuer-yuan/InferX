@@ -8,8 +8,15 @@ from pathlib import Path
 
 root = Path(os.environ['INFERX_ROOT'])
 directory = root/'context-agents'
-rows = [json.loads(l) for p in sorted(directory.glob('trials-*.jsonl'))
-        for l in p.read_text().splitlines()]
+raw_names = {f'trials-{client}.jsonl' for client in ['all', 'opencode', 'pi', 'claude']}
+rows = [json.loads(l) for p in sorted(directory.iterdir()) if p.name in raw_names
+        for l in p.read_text().splitlines() if l.strip()]
+identities = set()
+for row in rows:
+    identity = (row['client'], row['task_id'])
+    if identity in identities:
+        raise ValueError(f'duplicate client/task identity: {identity}')
+    identities.add(identity)
 compact = [{k:v for k,v in row.items() if k not in {'server_requests','command','baseline'}} for row in rows]
 (directory/'trials-compact.jsonl').write_text(''.join(json.dumps(j)+'\n' for j in compact))
 summary = {}

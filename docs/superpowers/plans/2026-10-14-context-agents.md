@@ -50,4 +50,4 @@
 - [x] Write failing tests for pristine-testverification, missingtoolactivity, nonzeroexit/APIerrors and ownedgroup timeout (realminimalprocesses), then implementboundedtrialrunner. Expectedfailures classified withoutsuccessclaim.
 - [x] Run3clients×3tasks freshcopies serially; archive transcripts/diffs and independentlyrunoriginaltests. Expected9complete result records (qualityfailuresallowed, infrastructure failures investigated).
 - [x] Validateartifacts, health/GPU0preservation, fullsuite; writereproductionandcontextlimitationsreport; commitandtask-done.
-- [ ] Freshwhole-branch review perexecuting-plans, fixImportant/Critical oncewithRED→GREEN, recordminors; preservebranchandrunningservice.
+- [x] Freshwhole-branch review perexecuting-plans, fixImportant/Critical oncewithRED→GREEN, recordminors; preservebranchandrunningservice.

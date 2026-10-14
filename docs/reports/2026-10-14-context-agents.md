@@ -108,7 +108,9 @@ bash "$INFERX_ROOT/code-tuning/scripts/start_tuned_server.sh" ninfer 7 int8 2048
 
 ## 复现与证据
 
-最终检查：完整远端测试套件86通过（5.76秒）；四个安装/启动脚本bash语法检查通过，三个CLI版本符合固定值。GPU1服务PID2726457的UID、可执行文件和start ticks均匹配runtime；18081与GPU0的18080健康，requests_processing/deferred均为0。GPU0原PID2504785仍在。服务和客户端留给用户直接使用，没有开机自启。
+最终检查：完整远端测试套件88通过（最终回归后5.82秒）；四个安装/启动脚本bash语法检查通过，三个CLI版本符合固定值。GPU1服务PID2726457的UID、可执行文件和start ticks均匹配runtime；18081与GPU0的18080健康，requests_processing/deferred均为0。GPU0原PID2504785仍在。服务和客户端留给用户直接使用，没有开机自启。
+
+最终审查修复汇总器重复读取自己的导出文件：两个真实 CLI 回归先失败再通过；在实际 HDD 目录连续导出两次，九次结果和三份摘要的 SHA256 均保持不变。审查与本轮决定见 [执行记录](2026-10-14-context-agents-execution.md)。
 
 仓库轻量证据：`results/context-agents/summary.json`、`trials-compact.jsonl`（九次）、`tasks-manifest.json`、`clients.json`、`client-package-lock.json`及`raw-manifest.json`（35份原始文件的路径/大小/SHA256）。`summary.json`含两种上下文的功能探针、短提示速度、客户端汇总和运行配置。原生API请求记录在HDD `context-agents/agent-server-requests.jsonl`，不把仍随服务追加的日志声明为冻结文件。
 
