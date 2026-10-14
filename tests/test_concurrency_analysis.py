@@ -74,3 +74,28 @@ def test_partial_group_and_running_campaign_cannot_become_completed(tmp_path):
     with pytest.raises(ValueError,match='running'):
         export(tmp_path,tmp_path/'out')
     assert export(tmp_path,tmp_path/'out',allow_running=True)['campaign']['status']=='running'
+
+
+def test_native_class_counters_require_unique_usage_sizes_and_matching_completions(tmp_path):
+    group=fixture(tmp_path)
+    rows=[json.loads(line) for line in (group/'requests.jsonl').read_text().splitlines()]
+    rows[0]['summary']['prompt_tokens']=512
+    rows[0]['summary']['cached_tokens']=508
+    write(group/'requests.jsonl',rows,True)
+    event=dict(event='request_done',request=dict(request_id=1),
+        result=dict(completion_tokens=8,prompt_tokens=512,prefix_cache_hit_tokens=508,
+                    computed_prefill_tokens=4,prefix_reuse_path='restore_turn_checkpoint'),
+        speculative=dict(accepted_tokens=5,drafted_tokens=7,rounds=1),
+        timings_seconds=dict(prepare=.01,prefill=.02,decode=.9,ttft=.03,total=1))
+    write(group/'native.jsonl',[event],True)
+    result=export(tmp_path,tmp_path/'out')
+    native=result['groups'][0]['class_native']['tool']
+    assert native['matching']=='disjoint_prompt_usage_sizes'
+    assert native['observations']['cached_tokens']==508
+    assert native['observations']['computed_prefill_tokens']==4
+    rows[1].update(prompt_id='cold-512')
+    rows[1]['summary'].update(ok=True,prompt_tokens=512,completion_tokens=8)
+    write(group/'requests.jsonl',rows,True)
+    result=export(tmp_path,tmp_path/'out')
+    assert result['groups'][0]['class_native']['tool']['observations'] is None
+    assert result['groups'][0]['class_native']['cold']['observations'] is None

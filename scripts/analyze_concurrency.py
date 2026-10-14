@@ -3,9 +3,40 @@ import argparse
 import csv
 import hashlib
 import json
+import sqlite3
 from pathlib import Path
 
 from inferx.concurrency import summarize_load, summarize_native
+
+
+def summarize_cuda_timeline(path: Path) -> dict:
+    connection=sqlite3.connect(Path(path).resolve().as_uri()+'?mode=ro',uri=True)
+    try:
+        tables={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if 'CUPTI_ACTIVITY_KIND_KERNEL' not in tables:
+            return dict(status='no_kernel_table')
+        intervals=connection.execute('SELECT start,end,deviceId FROM CUPTI_ACTIVITY_KIND_KERNEL ORDER BY start').fetchall()
+    finally:
+        connection.close()
+    if not intervals:
+        return dict(status='no_kernels')
+    if any(end<=start for start,end,_ in intervals):
+        raise ValueError('invalid kernel interval')
+    duration=sum(end-start for start,end,_ in intervals)
+    union=0
+    first,tail=intervals[0][:2]
+    left,right=first,tail
+    for start,end,_ in intervals[1:]:
+        if start>right:
+            union+=right-left;left,right=start,end
+        else:
+            right=max(right,end)
+    union+=right-left
+    envelope=right-first
+    return dict(status='observed',kernel_count=len(intervals),device_ids=sorted({x[2] for x in intervals}),
+        kernel_duration_sum_ns=duration,kernel_union_ns=union,kernel_envelope_ns=envelope,
+        no_kernel_fraction=1-union/envelope,
+        limitation='Kernel envelope includes warmup; gaps can include copies and are not automatically GPU idle. No DRAM counters.')
 
 
 def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
@@ -72,9 +103,22 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
                 result['native'] = summarize_native(native)
                 result['status'] = 'completed'
                 result['classes'] = {}
+                class_rows = {}
                 for kind in sorted({(r.get('prompt_id') or 'unknown').split('-')[0] for r in rows}):
                     subset = [r for r in rows if (r.get('prompt_id') or 'unknown').split('-')[0]==kind]
+                    class_rows[kind] = subset
                     result['classes'][kind] = summarize_load(subset,result['summary']['measured_span_s'])
+                sizes = {kind:{r['summary'].get('prompt_tokens') for r in subset
+                               if r['summary']['ok'] and r['summary'].get('prompt_tokens') is not None}
+                         for kind,subset in class_rows.items()}
+                result['class_native'] = {}
+                for kind, subset in class_rows.items():
+                    disjoint = all(not sizes[kind].intersection(other) for key,other in sizes.items() if key!=kind)
+                    matched = [e for e in native if e.get('event')=='request_done'
+                               and e['result']['prompt_tokens'] in sizes[kind]]
+                    valid = disjoint and len(matched)==sum(r['summary']['ok'] for r in subset) and bool(matched)
+                    result['class_native'][kind] = dict(matching='disjoint_prompt_usage_sizes' if valid else 'unavailable_or_ambiguous',
+                        observations=summarize_native(matched) if valid else None)
                 result['native_count_audit'] = dict(client_attempts=len(rows),client_protocol_ok=result['summary']['protocol_ok'],
                     native_done=result['native']['request_done'],native_errors=result['native']['request_errors'])
                 result['warmup_protocol_ok'] = sum(r['summary']['ok'] for r in warm)
@@ -93,7 +137,19 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
     for name in ['profile-d0-c1','profile-d7-c4']:
         path=Path('profiles')/name/'profile.json'
         if (root/path).exists():
-            profiles.append(read(path))
+            profile=read(path)
+            sqlite=path.parent/'trace.sqlite'
+            if (root/sqlite).exists():
+                data=(root/sqlite).read_bytes()
+                sources[str(sqlite)]=dict(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data))
+                try:
+                    profile['kernel_timeline']=summarize_cuda_timeline(root/sqlite)
+                except (ValueError,sqlite3.Error) as exc:
+                    profile['kernel_timeline']=dict(status='analysis_error',error=str(exc))
+            for csv_path in (root/path.parent).glob('stats_*.csv'):
+                data=csv_path.read_bytes()
+                sources[str(csv_path.relative_to(root))]=dict(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data))
+            profiles.append(profile)
     restored=read('restored-service.json') if (root/'restored-service.json').exists() else None
     result=dict(campaign=campaign,grid=grid,cases=cases,groups=groups,requests=requests,
         incomplete_groups=incomplete,bandwidth=bandwidth,profiles=profiles,restored_service=restored,
