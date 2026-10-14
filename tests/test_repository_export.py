@@ -32,12 +32,16 @@ class ExportTests(unittest.TestCase):
             (prepared/'manifest.json').write_text('{}')
             (prepared/'dependencies.txt').write_text('pinned')
             (prepared/'calibration.json').write_text('[]')
+            (root/'manifest.json').write_text('{"upstream":"pinned"}')
+            (root/'fixtures-manifest.json').write_text('{"files":{}}')
             output = root/'export'
             script = Path(__file__).resolve().parents[1]/'scripts/export_repository_results.py'
             result = subprocess.run([sys.executable, str(script), '--dev', str(root/'dev'),
                 '--eval', str(root/'eval'), '--prepared', str(prepared), '--output', str(output)],
                 capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads((output/'upstream-manifest.json').read_text()), {'upstream': 'pinned'})
+            self.assertTrue((output/'fixtures-manifest.json').is_file())
             exported = [json.loads(line) for phase in ('dev', 'eval')
                         for line in (output/f'{phase}-episodes.jsonl').read_text().splitlines()]
             self.assertEqual(analyze(rows), analyze(exported))

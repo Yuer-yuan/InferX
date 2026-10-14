@@ -1,0 +1,5966 @@
+{
+  "phase": "dev",
+  "runtime_revision": "3e474b3",
+  "runtime_hashes": {
+    "inferx/repository.py": "7a023a2b8ea2197f94648607bcf98a871bc2a6689148c2782e80e8eb3151b665",
+    "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+    "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+    "inferx/repo_verifier.py": "638513a8e5cd951fbed31102d68914d6b75b0c3277121c2068e5591481f2e507",
+    "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+    "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+    "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+    "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+    "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+    "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+    "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+    "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+    "scripts/start_repo_server.sh": "18dd1a982ed58996af2d7c57d654feab3f40a80401250ab9332b914b1d0b070f"
+  },
+  "dataset_manifest": {
+    "seed": 2026101402,
+    "repositories": [
+      "json_repair",
+      "xmltodict",
+      "PTable",
+      "algorithms"
+    ],
+    "tasks": 24,
+    "tasks_sha256": "910a83fe9fc2829d164d297ed0021c8ead536908a0721805b6a1b3c437f50cc2",
+    "selected_ids": {
+      "dev": [
+        "ExecRepoBench/604",
+        "ExecRepoBench/591",
+        "ExecRepoBench/1155",
+        "ExecRepoBench/1147",
+        "ExecRepoBench/33",
+        "ExecRepoBench/26",
+        "ExecRepoBench/97",
+        "ExecRepoBench/93"
+      ],
+      "eval": [
+        "ExecRepoBench/592",
+        "ExecRepoBench/603",
+        "ExecRepoBench/582",
+        "ExecRepoBench/597",
+        "ExecRepoBench/1137",
+        "ExecRepoBench/1161",
+        "ExecRepoBench/1150",
+        "ExecRepoBench/1152",
+        "ExecRepoBench/17",
+        "ExecRepoBench/30",
+        "ExecRepoBench/25",
+        "ExecRepoBench/23",
+        "ExecRepoBench/87",
+        "ExecRepoBench/104",
+        "ExecRepoBench/99",
+        "ExecRepoBench/94"
+      ]
+    },
+    "exclusions": [
+      {
+        "task_id": "ExecRepoBench/0",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/2",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/3",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/4",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/5",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/6",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/7",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/8",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/9",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/10",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/11",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/12",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/13",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/14",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/15",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/16",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/18",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/19",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/24",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/29",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/31",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/34",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/37",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/38",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/39",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/40",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/41",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/42",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/43",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/44",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/45",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/46",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/47",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/50",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/55",
+        "reason": "pass ablation is not syntactically valid"
+      },
+      {
+        "task_id": "ExecRepoBench/56",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/57",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/60",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/61",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/62",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/63",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/64",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/65",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/66",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/67",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/68",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/69",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/70",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/71",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/72",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/73",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/74",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/75",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/76",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/77",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/78",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/79",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/80",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/81",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/82",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/83",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/84",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/85",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/86",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/88",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/89",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/95",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/96",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/100",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/102",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/103",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/105",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/106",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/107",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/108",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/109",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/110",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/111",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/112",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/113",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/114",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/115",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/116",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/117",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/118",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/119",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/123",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/128",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/130",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/131",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/132",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/133",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/134",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/135",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/136",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/137",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/138",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/139",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/140",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/141",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/142",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/143",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/144",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/145",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/146",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/147",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/148",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/149",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/150",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/151",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/152",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/153",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/154",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/155",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/156",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/158",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/159",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/160",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/161",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/162",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/164",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/166",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/168",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/169",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/170",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/171",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/172",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/173",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/174",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/175",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/176",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/178",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/180",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/181",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/182",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/184",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/185",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/186",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/187",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/188",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/189",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/190",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/191",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/192",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/193",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/194",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/195",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/196",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/197",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/198",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/199",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/200",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/201",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/202",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/203",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/204",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/205",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/206",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/207",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/208",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/209",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/210",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/211",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/212",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/213",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/214",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/215",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/216",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/217",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/218",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/219",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/220",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/221",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/222",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/223",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/224",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/225",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/226",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/227",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/228",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/229",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/230",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/231",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/232",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/233",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/234",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/235",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/236",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/237",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/238",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/239",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/240",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/241",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/242",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/243",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/244",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/245",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/246",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/247",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/248",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/249",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/250",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/251",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/252",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/253",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/254",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/255",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/256",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/257",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/258",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/259",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/260",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/261",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/262",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/263",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/264",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/265",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/266",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/267",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/268",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/269",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/270",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/271",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/272",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/273",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/274",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/275",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/276",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/277",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/278",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/279",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/280",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/281",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/282",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/283",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/284",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/285",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/286",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/287",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/288",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/289",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/290",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/291",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/292",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/293",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/294",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/295",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/296",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/297",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/298",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/299",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/300",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/301",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/302",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/303",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/304",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/305",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/306",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/307",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/308",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/309",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/310",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/311",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/312",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/313",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/314",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/315",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/316",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/317",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/318",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/319",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/320",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/321",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/322",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/323",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/324",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/325",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/326",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/327",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/328",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/329",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/330",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/331",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/332",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/333",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/334",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/335",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/336",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/337",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/338",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/339",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/340",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/341",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/342",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/343",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/344",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/345",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/346",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/347",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/348",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/349",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/350",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/351",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/352",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/353",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/354",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/355",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/356",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/357",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/358",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/359",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/360",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/361",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/362",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/363",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/364",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/365",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/366",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/367",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/368",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/369",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/370",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/371",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/372",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/373",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/374",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/375",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/376",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/377",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/378",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/379",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/380",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/381",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/382",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/383",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/384",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/385",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/386",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/387",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/388",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/389",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/390",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/391",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/392",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/393",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/394",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/395",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/396",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/397",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/398",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/399",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/400",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/401",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/402",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/403",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/404",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/405",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/406",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/407",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/408",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/409",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/410",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/411",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/412",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/413",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/414",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/415",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/416",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/417",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/418",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/419",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/420",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/421",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/422",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/423",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/424",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/425",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/426",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/427",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/428",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/429",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/430",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/431",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/432",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/433",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/434",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/435",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/436",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/437",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/438",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/439",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/440",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/441",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/442",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/443",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/444",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/445",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/446",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/447",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/448",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/449",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/450",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/451",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/452",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/453",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/454",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/455",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/456",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/457",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/458",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/459",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/460",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/461",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/462",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/463",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/464",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/465",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/466",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/467",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/468",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/469",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/470",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/471",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/472",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/473",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/474",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/475",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/476",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/477",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/478",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/479",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/480",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/481",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/482",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/483",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/484",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/485",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/486",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/487",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/488",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/489",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/490",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/491",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/492",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/493",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/494",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/495",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/496",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/497",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/498",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/499",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/500",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/501",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/502",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/503",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/504",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/505",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/506",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/507",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/508",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/509",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/510",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/511",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/512",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/513",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/514",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/515",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/516",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/517",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/518",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/519",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/520",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/521",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/522",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/523",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/524",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/525",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/526",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/527",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/528",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/529",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/530",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/531",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/532",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/533",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/534",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/535",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/536",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/537",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/538",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/539",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/540",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/541",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/542",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/543",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/544",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/545",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/546",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/547",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/548",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/549",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/550",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/551",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/552",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/553",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/554",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/555",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/556",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/557",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/558",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/559",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/560",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/561",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/562",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/563",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/564",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/565",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/566",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/567",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/568",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/569",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/570",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/571",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/572",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/573",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/574",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/575",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/576",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/577",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/578",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/579",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/580",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/581",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/583",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/588",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/589",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/590",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/594",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/596",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/598",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/599",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/601",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/602",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/605",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/606",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/607",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/608",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/611",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/612",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/613",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/614",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/615",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/616",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/617",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/618",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/619",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/620",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/621",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/622",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/623",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/624",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/625",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/626",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/627",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/628",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/629",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/630",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/631",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/632",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/633",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/634",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/635",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/636",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/637",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/638",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/639",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/640",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/641",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/642",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/643",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/644",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/645",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/646",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/647",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/648",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/649",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/650",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/651",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/652",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/653",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/654",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/655",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/656",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/657",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/658",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/659",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/660",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/661",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/662",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/663",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/664",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/665",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/666",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/667",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/668",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/669",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/670",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/671",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/672",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/673",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/674",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/675",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/676",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/677",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/678",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/679",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/680",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/681",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/682",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/683",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/684",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/685",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/686",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/687",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/688",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/689",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/690",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/691",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/692",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/693",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/694",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/695",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/696",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/697",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/698",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/699",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/700",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/701",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/702",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/703",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/704",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/705",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/706",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/708",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/710",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/712",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/713",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/717",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/721",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/722",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/728",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/730",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/732",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/733",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/736",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/738",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/739",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/740",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/742",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/743",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/747",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/751",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/752",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/753",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/754",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/755",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/756",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/757",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/758",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/759",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/760",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/761",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/762",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/763",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/764",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/765",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/766",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/767",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/768",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/769",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/770",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/771",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/772",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/773",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/774",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/775",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/776",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/777",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/778",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/779",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/780",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/781",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/782",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/783",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/784",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/785",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/786",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/787",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/788",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/789",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/790",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/791",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/792",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/793",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/794",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/795",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/796",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/797",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/798",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/799",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/800",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/801",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/802",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/803",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/804",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/805",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/806",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/807",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/808",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/809",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/812",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/814",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/818",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/820",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/822",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/823",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/825",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/826",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/827",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/828",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/829",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/831",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/832",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/836",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/837",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/838",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/839",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/840",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/841",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/842",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/843",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/844",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/845",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/846",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/847",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/848",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/849",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/850",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/851",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/852",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/853",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/856",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/857",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/858",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/859",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/860",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/862",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/864",
+        "reason": "pass ablation is not syntactically valid"
+      },
+      {
+        "task_id": "ExecRepoBench/865",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/867",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/869",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/871",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/873",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/874",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/875",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/876",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/877",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/878",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/879",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/880",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/881",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/882",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/883",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/884",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/885",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/886",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/887",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/888",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/889",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/890",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/891",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/892",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/893",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/894",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/895",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/896",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/897",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/898",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/899",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/900",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/901",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/902",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/903",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/904",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/905",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/906",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/907",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/908",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/909",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/910",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/911",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/912",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/913",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/914",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/915",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/916",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/917",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/918",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/919",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/920",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/921",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/922",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/923",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/924",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/925",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/926",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/927",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/928",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/929",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/930",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/934",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/935",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/936",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/937",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/939",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/942",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/945",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/946",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/947",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/949",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/951",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/952",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/954",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/955",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/956",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/959",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/960",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/961",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/962",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/963",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/964",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/965",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/966",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/967",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/968",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/969",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/970",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/971",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/972",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/973",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/974",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/975",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/976",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/977",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/978",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/979",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/980",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/981",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/982",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/983",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/984",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/985",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/986",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/987",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/988",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/989",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/990",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/991",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/992",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/993",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/994",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/995",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/996",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/997",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/998",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/999",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1000",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1001",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1002",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1003",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1004",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1005",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1006",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1007",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1008",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1009",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1010",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1011",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1012",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1013",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1014",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1015",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1016",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1017",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1018",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1019",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1020",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1021",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1022",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1023",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1024",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1025",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1026",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1027",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1028",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1029",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1030",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1031",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1032",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1033",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1034",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1035",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1036",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1037",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1038",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1039",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1040",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1041",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1042",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1043",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1044",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1045",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1046",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1047",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1048",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1049",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1050",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1051",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1052",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1053",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1054",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1055",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1056",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1057",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1058",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1059",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1060",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1061",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1062",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1063",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1064",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1065",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1066",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1067",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1068",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1069",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1070",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1071",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1072",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1073",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1074",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1075",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1076",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1077",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1078",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1079",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1080",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1081",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1082",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1083",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1084",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1085",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1086",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1087",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1088",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1089",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1090",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1091",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1092",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1093",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1094",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1095",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1096",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1097",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1098",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1099",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1100",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1101",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1102",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1103",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1104",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1105",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1106",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1107",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1108",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1109",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1110",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1111",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1112",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1113",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1114",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1115",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1116",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1117",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1118",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1119",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1120",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1121",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1122",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1123",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1124",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1125",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1126",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1127",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1128",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1129",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1130",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1131",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1132",
+        "reason": "repository outside declared pool"
+      },
+      {
+        "task_id": "ExecRepoBench/1133",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1134",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1135",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1136",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1138",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1139",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1140",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1144",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1149",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1151",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1154",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1156",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1157",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1159",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1160",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1162",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/1163",
+        "reason": "not grammar-based block"
+      },
+      {
+        "task_id": "ExecRepoBench/734",
+        "reason": "canonical suite failed"
+      },
+      {
+        "task_id": "ExecRepoBench/719",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/737",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/725",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/748",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/724",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/716",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/741",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/723",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/727",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/711",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/709",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/746",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/749",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/726",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/707",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/731",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/735",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/750",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/720",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/729",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/714",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/715",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/745",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/744",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/718",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/943",
+        "reason": "canonical suite failed"
+      },
+      {
+        "task_id": "ExecRepoBench/940",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/931",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/958",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/948",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/941",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/950",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/944",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/932",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/933",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/957",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/953",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/938",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/595",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/610",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/587",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/593",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/584",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/585",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/609",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/600",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/586",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/819",
+        "reason": "canonical suite failed"
+      },
+      {
+        "task_id": "ExecRepoBench/816",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/810",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/835",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/824",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/817",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/830",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/821",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/811",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/813",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/834",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/833",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/815",
+        "reason": "repository canonical suite unavailable"
+      },
+      {
+        "task_id": "ExecRepoBench/157",
+        "reason": "no demonstrated test failure under valid pass ablation"
+      },
+      {
+        "task_id": "ExecRepoBench/183",
+        "reason": "no demonstrated test failure under valid pass ablation"
+      },
+      {
+        "task_id": "ExecRepoBench/167",
+        "reason": "repository has fewer than six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/165",
+        "reason": "repository has fewer than six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/177",
+        "reason": "repository has fewer than six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/179",
+        "reason": "repository has fewer than six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/163",
+        "reason": "repository has fewer than six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1146",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1145",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1148",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1141",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1142",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1158",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1153",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/1143",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/36",
+        "reason": "no demonstrated test failure under valid pass ablation"
+      },
+      {
+        "task_id": "ExecRepoBench/28",
+        "reason": "no demonstrated test failure under valid pass ablation"
+      },
+      {
+        "task_id": "ExecRepoBench/27",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/20",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/21",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/35",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/32",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/22",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/101",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/98",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/90",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/91",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/92",
+        "reason": "after first six eligible"
+      },
+      {
+        "task_id": "ExecRepoBench/59",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/51",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/53",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/48",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/49",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/58",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/54",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/52",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/872",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/861",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/866",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/854",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/855",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/870",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/868",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/863",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/129",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/122",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/125",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/120",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/121",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/127",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/126",
+        "reason": "fallback not needed"
+      },
+      {
+        "task_id": "ExecRepoBench/124",
+        "reason": "fallback not needed"
+      }
+    ],
+    "complete": true
+  },
+  "insertion_boundary": "line start; prefix indentation moved into gap before generation",
+  "dependency_freeze": "aiohappyeyeballs==2.7.1\naiohttp==3.11.11\naiosignal==1.4.0\nattrs==26.1.0\nfrozenlist==1.8.0\nidna==3.20\niniconfig==2.0.0\nmultidict==6.9.1\npackaging==24.1\npluggy==1.5.0\npropcache==0.5.4\npytest==8.2.2\ntyping_extensions==4.16.0\nyarl==1.25.1\n",
+  "model_manifest": {
+    "repo": "unsloth/Qwen3.8-27B-GGUF",
+    "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+    "filename": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+    "size": 16464440224,
+    "expected_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482",
+    "endpoint": "https://hf-mirror.com",
+    "verified": true,
+    "actual_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482"
+  },
+  "server_props": {
+    "default_generation_settings": {
+      "params": {
+        "seed": 4294967295,
+        "temperature": 1.0,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 20,
+        "top_p": 0.949999988079071,
+        "min_p": 0.05000000074505806,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": -1,
+        "n_predict": -1,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": false,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "none",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "n_ctx": 8192
+    },
+    "total_slots": 8,
+    "model_alias": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+    "model_ftype": "Q4_K - Medium",
+    "model_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+    "modalities": {
+      "vision": false,
+      "video": false,
+      "audio": false
+    },
+    "media_marker": "<__media_QEubXOAp3fgOOD8pXtNix3zJEcyR3lWp__>",
+    "endpoint_slots": true,
+    "endpoint_props": false,
+    "endpoint_metrics": true,
+    "ui": false,
+    "ui_settings": {},
+    "chat_template": "{%- set image_count = namespace(value=0) %}\n{%- set video_count = namespace(value=0) %}\n{%- macro render_content(content, do_vision_count, is_system_content=false) %}\n    {%- if content is string %}\n        {{- content }}\n    {%- elif content is iterable and content is not mapping %}\n        {%- for item in content %}\n            {%- if 'image' in item or 'image_url' in item or item.type == 'image' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain images.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Picture ' ~ image_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' }}\n            {%- elif 'video' in item or item.type == 'video' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain videos.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Video ' ~ video_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' }}\n            {%- elif 'text' in item %}\n                {{- item.text }}\n            {%- else %}\n                {{- raise_exception('Unexpected item type in content.') }}\n            {%- endif %}\n        {%- endfor %}\n    {%- elif content is none or content is undefined %}\n        {{- '' }}\n    {%- else %}\n        {{- raise_exception('Unexpected content type.') }}\n    {%- endif %}\n{%- endmacro %}\n{%- if not messages %}\n    {{- raise_exception('No messages provided.') }}\n{%- endif %}\n{%- set sysns = namespace(count=0, text='') %}\n{%- for message in messages %}\n    {%- if sysns.count == loop.index0 and (message.role == 'system' or message.role == 'developer') %}\n        {%- set sys_content = render_content(message.content, false, true)|trim %}\n        {%- if sys_content %}\n            {%- set sysns.text = sysns.text + ('\\n' if sysns.text else '') + sys_content %}\n        {%- endif %}\n        {%- set sysns.count = sysns.count + 1 %}\n    {%- endif %}\n{%- endfor %}\n{%- set num_sys = sysns.count %}\n{%- set merged_system = sysns.text %}\n{%- set reasoning_instructions = '' %}\n{%- if enable_thinking is undefined or enable_thinking is true %}\n    {%- set resolved_reasoning_effort = reasoning_effort|default('xhigh') %}\n    {%- if resolved_reasoning_effort == 'high' %}\n        {%- set resolved_reasoning_effort = 'xhigh' %}\n    {%- endif %}\n    {%- if resolved_reasoning_effort not in ('xhigh', 'medium', 'low') %}\n        {{- raise_exception('Unexpected reasoning effort ' ~ reasoning_effort ~ '. Supported types are xhigh (default), medium, and low.') }}\n    {%- endif %}\n    {%- if resolved_reasoning_effort == 'xhigh' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to xhigh. Please think carefully through the task, validate key assumptions, consider plausible alternatives, and prioritize correctness, consistency, and clarity in the final answer.' %}\n    {%- elif resolved_reasoning_effort == 'low' %}\n        {%- set reasoning_instructions = 'Reasoning effort is set to low. Keep your thinking brief and focused, moving directly to the conclusion without unnecessary elaboration.' %}\n    {%- endif %}\n{%- endif %}\n{%- if tools and tools is iterable and tools is not mapping %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if reasoning_instructions %}\n        {{- reasoning_instructions + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou have access to the following functions:\\n\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\" }}\n    {{- '\\n\\nIf you choose to call a function ONLY reply in the following format with NO suffix:\\n\\n<tool_call>\\n<function=example_function_name>\\n<parameter=example_parameter_1>\\nvalue_1\\n</parameter>\\n<parameter=example_parameter_2>\\nThis is the value for the second parameter\\nthat can span\\nmultiple lines\\n</parameter>\\n</function>\\n</tool_call>\\n\\n<IMPORTANT>\\nReminder:\\n- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags\\n- Required parameters MUST be specified\\n- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after\\n- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls\\n</IMPORTANT>' }}\n    {%- if merged_system %}\n        {{- '\\n\\n' + merged_system }}\n    {%- endif %}\n    {{- '<|im_end|>\\n' }}\n{%- else %}\n    {%- if merged_system %}\n        {{- '<|im_start|>system\\n' + (reasoning_instructions + '\\n\\n' if reasoning_instructions else '')  + merged_system + '<|im_end|>\\n' }}\n    {%- elif reasoning_instructions %}\n        {{- '<|im_start|>system\\n' + reasoning_instructions + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" %}\n        {%- set content = render_content(message.content, false)|trim %}\n        {%- if not(content.startswith('<tool_response>') and content.endswith('</tool_response>')) %}\n            {%- set ns.multi_step_tool = false %}\n            {%- set ns.last_query_index = index %}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if loop.index0 >= num_sys %}\n    {%- set content = render_content(message.content, true)|trim %}\n    {%- if message.role == \"system\" or message.role == \"developer\" %}\n        {{- raise_exception('System message must be at the beginning.') }}\n    {%- elif message.role == \"user\" %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- endif %}\n        {%- set reasoning_content = reasoning_content|trim %}\n        {%- if preserve_thinking is undefined or preserve_thinking is true or loop.index0 > ns.last_query_index %}\n            {{- '<|im_start|>' + message.role + '\\n<think>\\n' + reasoning_content + '\\n</think>\\n\\n' + content }}\n        {%- else %}\n            {{- '<|im_start|>' + message.role + '\\n' + content }}\n        {%- endif %}\n        {%- if message.tool_calls and message.tool_calls is iterable and message.tool_calls is not mapping %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if tool_call.function is defined %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {%- if tool_call.name is not defined or tool_call.name is none %}\n                    {{- raise_exception('Tool call is missing a function name.') }}\n                {%- endif %}\n                {%- if loop.first %}\n                    {%- if content|trim %}\n                        {{- '\\n\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- else %}\n                        {{- '<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- endif %}\n                {%- else %}\n                    {{- '\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                {%- endif %}\n                {%- if tool_call.arguments is mapping %}\n                    {%- for args_name, args_value in tool_call.arguments|items %}\n                        {{- '<parameter=' + args_name + '>\\n' }}\n                        {%- set args_value = args_value | string if args_value is string else args_value | tojson | safe %}\n                        {{- args_value }}\n                        {{- '\\n</parameter>\\n' }}\n                    {%- endfor %}\n                {%- elif tool_call.arguments is string %}\n                    {%- if tool_call.arguments|trim %}\n                        {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" were passed as a JSON string. Parse them into an object before calling apply_chat_template.') }}\n                    {%- endif %}\n                {%- elif tool_call.arguments is defined and tool_call.arguments is not none %}\n                    {{- raise_exception('Tool call arguments for function \"' + (tool_call.name | string) + '\" must be an object/mapping or a JSON string.') }}\n                {%- endif %}\n                {{- '</function>\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.previtem and loop.previtem.role != \"tool\" %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if not loop.last and loop.nextitem.role != \"tool\" %}\n            {{- '<|im_end|>\\n' }}\n        {%- elif loop.last %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- else %}\n        {{- raise_exception('Unexpected message role.') }}\n    {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- else %}\n        {{- '<think>\\n' }}\n    {%- endif %}\n{%- endif %}\n{#- Unsloth fixes - developer role, merged system messages, tool calling #}",
+    "chat_template_caps": {
+      "supports_object_arguments": true,
+      "supports_parallel_tool_calls": true,
+      "supports_preserve_reasoning": true,
+      "supports_reasoning_effort": true,
+      "supports_string_content": true,
+      "supports_system_role": true,
+      "supports_tool_calls": true,
+      "supports_tools": true,
+      "supports_typed_content": true
+    },
+    "bos_token": "<|endoftext|>",
+    "eos_token": "<|im_end|>",
+    "build_info": "b0-unknown",
+    "is_sleeping": false,
+    "cors_proxy_enabled": false
+  },
+  "server_slots": [
+    {
+      "id": 0,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3750,
+      "n_prompt_tokens": 3134,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99904105,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3722,
+      "n_prompt_tokens": 5444,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99902059,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3628,
+      "n_prompt_tokens": 3748,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99937963,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3752,
+      "n_prompt_tokens": 3129,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99904107,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3677,
+      "n_prompt_tokens": 5493,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99902056,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3678,
+      "n_prompt_tokens": 5539,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99902057,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3740,
+      "n_prompt_tokens": 3127,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99904104,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "n_ctx": 8192,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 3753,
+      "n_prompt_tokens": 3127,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 99904106,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 0,
+        "top_p": 0.949999988079071,
+        "min_p": 0.0,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 1024,
+        "n_predict": 1024,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": true,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    }
+  ],
+  "prompts": {
+    "ExecRepoBench/26": {
+      "tokens": 2852,
+      "sha256": "e4665a6f7d2d42c120cdc6f00e21c3348024f517c60dfb60b397ec756754c79a",
+      "prefix_chars": 991,
+      "suffix_chars": 3877,
+      "context_chars": 5998
+    },
+    "ExecRepoBench/33": {
+      "tokens": 5421,
+      "sha256": "f64a507455e676bd3464fec9e69c3349135b3d8a9c472c53a378b81b2057454e",
+      "prefix_chars": 7998,
+      "suffix_chars": 7969,
+      "context_chars": 6000
+    },
+    "ExecRepoBench/604": {
+      "tokens": 3627,
+      "sha256": "01cd7ac7288ff7116366d8e1e52287870d3bf61ce5c478ab7f5b06d11974e34a",
+      "prefix_chars": 7974,
+      "suffix_chars": 7359,
+      "context_chars": 225
+    },
+    "ExecRepoBench/1155": {
+      "tokens": 3228,
+      "sha256": "3c774200a872094faa96a7c69d3ada2abc43a20762b8320e05be5696ab42a70a",
+      "prefix_chars": 7996,
+      "suffix_chars": 4566,
+      "context_chars": 0
+    },
+    "ExecRepoBench/591": {
+      "tokens": 3617,
+      "sha256": "d05ed3dd57dab865d037e76ad11461c11a1818c50a3139b9d4b3204bb7687714",
+      "prefix_chars": 7972,
+      "suffix_chars": 7992,
+      "context_chars": 225
+    },
+    "ExecRepoBench/93": {
+      "tokens": 2516,
+      "sha256": "a944a3a0cf6d217225041058c78cd36197a6a4ab4f8d9c2068e2813e78d0917a",
+      "prefix_chars": 1137,
+      "suffix_chars": 1104,
+      "context_chars": 6000
+    },
+    "ExecRepoBench/1147": {
+      "tokens": 3434,
+      "sha256": "df538145e8d4e59d8f10caa9cfba74b7961e29e216a627479ee408214a616e1b",
+      "prefix_chars": 5697,
+      "suffix_chars": 7979,
+      "context_chars": 0
+    },
+    "ExecRepoBench/97": {
+      "tokens": 3069,
+      "sha256": "7c718ae9b8a51d0d8f633f38c5f11804e969e6c5c7b6e6399ab0b94f6091ea89",
+      "prefix_chars": 418,
+      "suffix_chars": 1732,
+      "context_chars": 6000
+    }
+  },
+  "client_affinity": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "gpu": 1,
+  "verify_cpus": [
+    36,
+    37
+  ],
+  "max_tokens": 1024,
+  "max_prompt_tokens": 6000,
+  "budget": 4,
+  "deadline": 120,
+  "verify_timeout": 30,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "top_k": 0,
+  "min_p": 0,
+  "repeat_penalty": 1,
+  "planned_jobs": [
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/93"
+      ],
+      "policy": "fixed1",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/93"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/604"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/604"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed4",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/591"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/591"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1155"
+      ],
+      "policy": "fixed2",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1155"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/1147"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/1147"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/97"
+      ],
+      "policy": "fixed2",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/97"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/26"
+      ],
+      "policy": "fixed4",
+      "round_id": 1,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/26"
+    },
+    {
+      "tasks": [
+        "ExecRepoBench/33"
+      ],
+      "policy": "fixed1",
+      "round_id": 0,
+      "arrivals": [
+        0
+      ],
+      "mode": "single",
+      "episode_id": "ExecRepoBench/33"
+    }
+  ],
+  "utc_start": "2026-10-14T02:04:37Z"
+}

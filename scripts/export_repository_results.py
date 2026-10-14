@@ -48,6 +48,11 @@ def main(args):
     shutil.copyfile(args.dev/'selection.json', args.output/'development-selection.json')
     for name in ('manifest.json', 'dependencies.txt'):
         shutil.copyfile(args.prepared/name, args.output/f'dataset-{name}')
+    for source, name in [('manifest.json', 'upstream-manifest.json'),
+                         ('fixtures-manifest.json', 'fixtures-manifest.json')]:
+        path = args.prepared.parent/source
+        shutil.copyfile(path, args.output/name)
+        sources[str(path)] = digest(path)
     calibration = json.loads((args.prepared/'calibration.json').read_text())
     for record in calibration:
         for key in ('canonical', 'ablation'):

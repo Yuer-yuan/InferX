@@ -1,6 +1,6 @@
 # Repository Branch Budget Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 在真实仓库执行和受控多会话竞争下，验证候选并发浪费及普通反馈/公平基线能否解决它。
 
@@ -43,12 +43,12 @@
 - `verify_repo(code: str, task: dict, *, fixture_root: Path, python: str, work_root: Path, cpu: int, timeout: float = 30) -> dict`: fresh private copy, patch only specified source file, subprocess result with status/test_elapsed/elapsed/counts, supports cancellation and InfrastructureError.
 - Prepared task dict: task_id/repo_name/file_name/prefix_code/suffix_code/middle_code/split/test_mode/expected_counts; manifest includes source hashes, exclusions, split IDs, dependency freeze.
 
-- [ ] Write tests for path traversal/symlink rejection, whitespace-preserving JSON, valid pass ablation, reference reconstruction and answer-free context filtering. Run `python3 -m unittest discover -s tests -p test_repository.py -v`; expected missing-module failure.
-- [ ] Implement preparation helpers and manifest generation; rerun focused tests; expected all pass.
-- [ ] Write isolated fixture tests: correct/wrong code, zero or reduced tests, outside-file read/write, network/fork/exec denial, timeout/cancellation reaping and missing worker failure. Run focused verifier tests; expected missing-module failure.
-- [ ] Implement Landlock worker and async parent using bounded pipe output, subprocess-group cleanup, read-only repo and writable scratch. Fixture uses unittest so local checks need no pytest. Run tests; expected all pass.
-- [ ] Create HDD-only venv with pinned pytest dependencies, safely extract white-listed upstream repos, freeze packages. Run canonical full suites and deterministic coverage filtering; expected 24 eligible tasks or explicit disclosed shortfall. Do not alter test assertions to force compatibility.
-- [ ] Save positive/ablation timings and full exclusions, verify selected IDs and source reconstruction. Commit implementation; run full tests remotely; expected all pass.
+- [x] Write tests for path traversal/symlink rejection, whitespace-preserving JSON, valid pass ablation, reference reconstruction and answer-free context filtering. Run `python3 -m unittest discover -s tests -p test_repository.py -v`; expected missing-module failure.
+- [x] Implement preparation helpers and manifest generation; rerun focused tests; expected all pass.
+- [x] Write isolated fixture tests: correct/wrong code, zero or reduced tests, outside-file read/write, network/fork/exec denial, timeout/cancellation reaping and missing worker failure. Run focused verifier tests; expected missing-module failure.
+- [x] Implement Landlock worker and async parent using bounded pipe output, subprocess-group cleanup, read-only repo and writable scratch. Fixture uses unittest so local checks need no pytest. Run tests; expected all pass.
+- [x] Create HDD-only venv with pinned pytest dependencies, safely extract white-listed upstream repos, freeze packages. Run canonical full suites and deterministic coverage filtering; expected 24 eligible tasks or explicit disclosed shortfall. Do not alter test assertions to force compatibility.
+- [x] Save positive/ablation timings and full exclusions, verify selected IDs and source reconstruction. Commit implementation; run full tests remotely; expected all pass.
 
 ### Task 2: Live multi-session candidate admission
 
@@ -59,11 +59,11 @@
 - `run_episode(tasks: list[dict], generate, verify_candidate, *, policy: str, arrivals: list[float], round_id: int, slots: int = 8, budget: int = 4, deadline: float = 120) -> dict`: independent per-task lifecycles, shared FIFO generation permits, task records include scheduled/actual arrival and admission timing; feedback-fair uses width 1 and feedback gating. FIFO with at most one outstanding candidate per task supplies the round-robin admission behavior.
 - Runner writes config, runtime source hashes, prompts metadata, warmup, episode JSONL and COMPLETE only after all predeclared episodes; raw outputs stay remote.
 
-- [ ] Write tests for feedback gating, overlap in fixed mode, shared capacity, deterministic arrival handling, one task success without canceling its neighbor, waiting cancellation without permit leakage, deadline including admission and infrastructure error cleanup. Run focused tests; expected missing feature failures.
-- [ ] Implement optional gating and shared episode wrapper, recording queued vs admitted generation separately. Preserve old pilot behavior by default. Rerun focused plus prior scheduler tests; expected all pass.
-- [ ] Implement model prompt construction with line-boundary truncation/tokenizer check, exact JSON parsing, pipeline adapter, deterministic episode seeds/order, fixed CPU bindings and metadata. No per-task global wait_idle during concurrent execution.
-- [ ] Start owned GPU 1 service with 65536 total context; verify model load/memory, prompt bounds, eight active streams cancel to idle, and one canonical repository integration. Expected no OOM and full cleanup.
-- [ ] Run development-only smoke before freezing config. Commit; run complete remote suite; expected all pass. Any implementation/config fix before main sweep is documented and smoke repeated, not silently mixed into full results.
+- [x] Write tests for feedback gating, overlap in fixed mode, shared capacity, deterministic arrival handling, one task success without canceling its neighbor, waiting cancellation without permit leakage, deadline including admission and infrastructure error cleanup. Run focused tests; expected missing feature failures.
+- [x] Implement optional gating and shared episode wrapper, recording queued vs admitted generation separately. Preserve old pilot behavior by default. Rerun focused plus prior scheduler tests; expected all pass.
+- [x] Implement model prompt construction with line-boundary truncation/tokenizer check, exact JSON parsing, pipeline adapter, deterministic episode seeds/order, fixed CPU bindings and metadata. No per-task global wait_idle during concurrent execution.
+- [x] Start owned GPU 1 service with 65536 total context; verify model load/memory, prompt bounds, eight active streams cancel to idle, and one canonical repository integration. Expected no OOM and full cleanup.
+- [x] Run development-only smoke before freezing config. Commit; run complete remote suite; expected all pass. Any implementation/config fix before main sweep is documented and smoke repeated, not silently mixed into full results.
 
 ### Task 3: Complete measurements and scientific decision
 
@@ -71,11 +71,11 @@
 
 **Interfaces:** analyzer consumes episode records, produces dev-selected fixed width, per-mode/policy/round task success/capped time/queue/feedback/token/makespan metrics and paired episode-cluster bootstrap intervals; rejects missing/duplicate grid or split overlap.
 
-- [ ] Write hand-computed analysis tests for development-only selection, failures and pre-admission deadlines, cancellation lower bounds, correlated-episode resampling, incomplete/duplicate grid, split overlap and stated screening gates. Run focused tests; expected missing-module failure.
-- [ ] Implement analyzer/export/plots. Run tests; expected all pass.
-- [ ] Execute 48 development trials and 64 evaluation episodes (256 task outcomes) with frozen sampling and randomized ordering, two seeds on GPU 1; collect 1-second telemetry. Expected complete coverage; infrastructure failure requires explicit excluded batch and rerun, not removal of a difficult task.
-- [ ] Export lightweight evidence, reproduce summaries locally, inspect charts and failed cases, compare gate exactly with spec. Report negative/mixed/insufficient evidence honestly; no engine mechanism unless justified by a separate follow-up plan.
-- [ ] Write report with real repository/sandbox limits, ordinary baseline tradeoffs, latest related work, precise reproduction and all deviations. Commit and run complete suite.
+- [x] Write hand-computed analysis tests for development-only selection, failures and pre-admission deadlines, cancellation lower bounds, correlated-episode resampling, incomplete/duplicate grid, split overlap and stated screening gates. Run focused tests; expected missing-module failure.
+- [x] Implement analyzer/export/plots. Run tests; expected all pass.
+- [x] Execute 48 development trials and 64 evaluation episodes (256 task outcomes) with frozen sampling and randomized ordering, two seeds on GPU 1; collect 1-second telemetry. Expected complete coverage; infrastructure failure requires explicit excluded batch and rerun, not removal of a difficult task.
+- [x] Export lightweight evidence, reproduce summaries locally, inspect charts and failed cases, compare gate exactly with spec. Report negative/mixed/insufficient evidence honestly; no engine mechanism unless justified by a separate follow-up plan.
+- [x] Write report with real repository/sandbox limits, ordinary baseline tradeoffs, latest related work, precise reproduction and all deviations. Commit and run complete suite.
 - [ ] Independent whole-branch review required by executing-plans. Fix Critical/Important with RED→GREEN and full suite; preserve review/decision record. Keep branch and existing GPU 0 deployment; free owned GPU 1 experiment process at completion.
 
 ## Execution choice
