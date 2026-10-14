@@ -27,11 +27,15 @@
 
 先检查源文件等于 prefix + middle + suffix；屏蔽区前缀当前行只含缩进、后缀从换行开始，并且把 middle 替换为 `pass` 后整个文件仍能通过 AST 解析。原始代码必须通过完整仓库测试，`pass` 消融必须实际测试失败，不能只因语法错误被判失败。这样排除文档补全和没有测试覆盖的样本。每仓库选最先通过环境/覆盖检查的 6 题，按固定随机顺序分成 2 dev、4 eval，共 8 dev / 16 eval。所有筛除及原因留存。若某仓库不足 6 条，不看生成表现，由同一算法使用 `compressed_rtf` 作为后备；仍不足时完整报告可用题目数量，不伪装成原定网格。
 
-依赖在 HDD 单独 venv 安装，冻结依赖版本，不修改现有 conda 环境。仓库包通过 cwd 或 src 加入 sys.path，避免从已安装同名包执行“正确版本”。归档仅提取白名单仓库，拒绝路径穿越和 symlink；跳过旧缓存、字节码、.git、构建目录。保留原始源码，不更改生产库行为或测试断言来适配环境。
+依赖在 HDD 单独 venv 安装，冻结依赖版本，不修改现有 conda 环境。仓库包通过绝对仓库路径及 src 加入 sys.path，cwd 使用该候选 scratch，避免从已安装同名包执行“正确版本”。归档仅提取白名单仓库，拒绝路径穿越和 symlink；跳过旧缓存、字节码、.git、构建目录。保留原始源码，不更改生产库行为或测试断言来适配环境。
 
 新的独立仓库 worker 使用 [Landlock](https://docs.kernel.org/userspace-api/landlock.html)（服务器 ABI 4）与 seccomp allowlist：只读候选仓库、Python 标准库/独立 venv 依赖，只有该候选的 scratch 可写；网络、进程创建/exec、ptrace、向其他进程发信号等均禁止。不允许读取其他用户文件。过滤器安装失败即基础设施错误，禁止降级裸执行。清除秘密环境变量及额外 FD，固定单个验证 CPU，限制地址空间 2 GiB、文件大小 8 MiB、输出 256 KiB、验证 wall time 30 秒并 kill/reap 整个进程组。仍只面向非对抗性基准输出，不是通用恶意代码服务。
 
-运行完整 `tests/`：more-itertools 使用 unittest discovery，其余使用 pytest，关闭外部插件自动加载与缓存写入。记录收集/通过/失败/跳过计数，成功必须有测试运行，并符合该仓库 canonical 的收集数量和跳过数量上限，避免零测试成功。使用隔离目录运行正确参考、错误消融、文件/网络/进程访问及死循环检查。若已知正确版本在环境限制下失败，先排查环境，不能算模型失败。保留原始 evaluate_repo.py 及本轮测试入口的差异说明。
+运行完整 `tests/`：more-itertools、compressed_rtf、PTable 使用 unittest discovery，其余使用 pytest，关闭外部插件自动加载与缓存写入。记录收集/通过/失败/跳过计数，成功必须有测试运行，并符合该仓库 canonical 的收集数量和跳过数量上限，避免零测试成功。使用隔离目录运行正确参考、错误消融、文件/网络/进程访问及死循环检查。若已知正确版本在环境限制下失败，先排查环境，不能算模型失败。保留原始 evaluate_repo.py 及本轮测试入口的差异说明。
+
+## 生成前校准修订
+
+calibration-v1～v3 记录初始环境排查。more-itertools 需要线程，sqlparse 需要子进程，fastjsonschema 超过 2 GiB 且缺少 benchmark 插件；compressed_rtf 只有 5 条满足覆盖条件，不能凑足 6 题。没有删除测试、放宽资源上限或观察模型表现来挑题。生成前将后备顺序扩展为 xmltodict、PTable、algorithms、PyPattyrn、python-pinyin、boltons。pytest 日志定向 scratch，所有测试 cwd 也使用 scratch，使相对路径输出无需写入只读源码目录。完整校准 v4 最终选定 json_repair、xmltodict、PTable、algorithms，各 2 dev / 4 eval，维持 24 题及原有实验网格。消融资格还要求实际失败计数大于零，且收集数不变；结果清单 hash 见 calibration-v4/manifest.json。此兼容性筛选限制外推范围，不能代表任意企业仓库。
 
 ## 模型与提示
 
