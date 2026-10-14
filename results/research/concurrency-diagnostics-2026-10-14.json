@@ -1,0 +1,494 @@
+{
+  "created_utc": "2026-10-14T11:40:17.611064+00:00",
+  "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/context-agents/trials-all.jsonl",
+  "source_sha256": "c0492e65988b170407f322fed1c0b2f2ad6eb63930ee20b54789ea4485a1e684",
+  "engine_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+  "scope": "Only the nine completed benchmark trials; no user interactive sessions, no GPU requests or service changes.",
+  "interpretation_limits": [
+    "These trials are C1 and do not establish a high-concurrency bottleneck.",
+    "Timeout traces contain software loops and must not define the target enterprise workload.",
+    "prepare includes prompt conversion/rendering/tokenization/position preparation and has no measured substage split.",
+    "Band comparisons are observational; output, context, tool state and acceptance are not paired controls.",
+    "No novel mechanism is claimed."
+  ],
+  "trials": [
+    {
+      "client": "opencode",
+      "task_id": "ExecRepoBench/604",
+      "status": "timeout",
+      "wall_s": 600.0841346159577,
+      "completed_requests": 313,
+      "timing_totals_s": {
+        "decode": 243.32566792899988,
+        "prefill": 59.359690906000026,
+        "prepare": 219.22640021399997,
+        "total": 522.4178387280002,
+        "ttft": 278.8241887620001,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 45012,
+        "drafted_tokens": 53998,
+        "rounds": 7714
+      },
+      "prefix_paths": {
+        "full_reset": 2,
+        "append_frontier": 310,
+        "restore_turn_checkpoint": 1
+      },
+      "cached_fraction": 0.996979171194424,
+      "context_bands": {
+        "<32K": {
+          "n": 74,
+          "median": {
+            "prepare_s": 0.084480893,
+            "prefill_s": 0.12395144550000001,
+            "decode_tokens_per_s": 222.8952407272726,
+            "draft_acceptance": 0.8285714285714286
+          }
+        },
+        "32-64K": {
+          "n": 130,
+          "median": {
+            "prepare_s": 0.47020551099999996,
+            "prefill_s": 0.1533373785,
+            "decode_tokens_per_s": 214.9266824223266,
+            "draft_acceptance": 0.84
+          }
+        },
+        "64-96K": {
+          "n": 106,
+          "median": {
+            "prepare_s": 1.4175850775,
+            "prefill_s": 0.19365722800000001,
+            "decode_tokens_per_s": 203.94485893590615,
+            "draft_acceptance": 0.84
+          }
+        }
+      }
+    },
+    {
+      "client": "pi",
+      "task_id": "ExecRepoBench/604",
+      "status": "timeout",
+      "wall_s": 600.0271224156022,
+      "completed_requests": 341,
+      "timing_totals_s": {
+        "decode": 243.6189173240001,
+        "prefill": 60.161404411000014,
+        "prepare": 260.7608179220001,
+        "total": 565.0415459260001,
+        "ttft": 321.1671771239999,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 47845,
+        "drafted_tokens": 53970,
+        "rounds": 7710
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 340
+      },
+      "cached_fraction": 0.9977341052520519,
+      "context_bands": {
+        "<32K": {
+          "n": 82,
+          "median": {
+            "prepare_s": 0.0771152575,
+            "prefill_s": 0.123964024,
+            "decode_tokens_per_s": 234.91827145187304,
+            "draft_acceptance": 0.8881987577639752
+          }
+        },
+        "32-64K": {
+          "n": 135,
+          "median": {
+            "prepare_s": 0.509222503,
+            "prefill_s": 0.152462459,
+            "decode_tokens_per_s": 226.57452422877103,
+            "draft_acceptance": 0.8944099378881988
+          }
+        },
+        "64-96K": {
+          "n": 123,
+          "median": {
+            "prepare_s": 1.491724406,
+            "prefill_s": 0.194309545,
+            "decode_tokens_per_s": 214.42374971553835,
+            "draft_acceptance": 0.8944099378881988
+          }
+        }
+      }
+    },
+    {
+      "client": "claude",
+      "task_id": "ExecRepoBench/604",
+      "status": "no_source_change",
+      "wall_s": 35.7538175880909,
+      "completed_requests": 7,
+      "timing_totals_s": {
+        "decode": 23.821651665000005,
+        "prefill": 10.015839096,
+        "prepare": 0.30419102600000003,
+        "total": 34.174953462000005,
+        "ttft": 10.322548196,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 4136,
+        "drafted_tokens": 5593,
+        "rounds": 799
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 6
+      },
+      "cached_fraction": 0.7851962893381744,
+      "context_bands": {
+        "<32K": {
+          "n": 4,
+          "median": {
+            "prepare_s": 0.0432333355,
+            "prefill_s": 0.2646151585,
+            "decode_tokens_per_s": 180.4204053864567,
+            "draft_acceptance": 0.632554945054945
+          }
+        }
+      }
+    },
+    {
+      "client": "opencode",
+      "task_id": "ExecRepoBench/1155",
+      "status": "passed",
+      "wall_s": 47.18641988188028,
+      "completed_requests": 20,
+      "timing_totals_s": {
+        "decode": 9.924732143000004,
+        "prefill": 28.976454423000003,
+        "prepare": 1.1213444600000002,
+        "total": 40.042205970999994,
+        "ttft": 30.105369300999996,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 1735,
+        "drafted_tokens": 2331,
+        "rounds": 333
+      },
+      "prefix_paths": {
+        "full_reset": 2,
+        "append_frontier": 16,
+        "restore_turn_checkpoint": 2
+      },
+      "cached_fraction": 0.8351742216724103,
+      "context_bands": {
+        "<32K": {
+          "n": 16,
+          "median": {
+            "prepare_s": 0.060446496,
+            "prefill_s": 0.243116065,
+            "decode_tokens_per_s": 199.6340530396899,
+            "draft_acceptance": 0.7295518207282914
+          }
+        }
+      }
+    },
+    {
+      "client": "pi",
+      "task_id": "ExecRepoBench/1155",
+      "status": "timeout",
+      "wall_s": 600.0238234438002,
+      "completed_requests": 444,
+      "timing_totals_s": {
+        "decode": 109.04793028700003,
+        "prefill": 62.984656845000046,
+        "prepare": 406.67625765299994,
+        "total": 579.0416711179998,
+        "ttft": 469.8870098990004,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 22126,
+        "drafted_tokens": 24997,
+        "rounds": 3571
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 443
+      },
+      "cached_fraction": 0.9972296186235923,
+      "context_bands": {
+        "<32K": {
+          "n": 199,
+          "median": {
+            "prepare_s": 0.193482663,
+            "prefill_s": 0.116750475,
+            "decode_tokens_per_s": 229.24553095007232,
+            "draft_acceptance": 0.875
+          }
+        },
+        "32-64K": {
+          "n": 226,
+          "median": {
+            "prepare_s": 1.388473994,
+            "prefill_s": 0.1530812545,
+            "decode_tokens_per_s": 220.12288394339913,
+            "draft_acceptance": 0.8928571428571429
+          }
+        },
+        "64-96K": {
+          "n": 17,
+          "median": {
+            "prepare_s": 2.314549126,
+            "prefill_s": 0.185299613,
+            "decode_tokens_per_s": 212.767136102665,
+            "draft_acceptance": 0.9107142857142857
+          }
+        }
+      }
+    },
+    {
+      "client": "claude",
+      "task_id": "ExecRepoBench/1155",
+      "status": "passed",
+      "wall_s": 63.414036471396685,
+      "completed_requests": 12,
+      "timing_totals_s": {
+        "decode": 51.89033711999999,
+        "prefill": 9.032985437,
+        "prepare": 0.485989698,
+        "total": 61.479014859,
+        "ttft": 9.52215804,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 7894,
+        "drafted_tokens": 12439,
+        "rounds": 1777
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 10,
+        "restore_turn_checkpoint": 1
+      },
+      "cached_fraction": 0.8692093312009501,
+      "context_bands": {
+        "<32K": {
+          "n": 5,
+          "median": {
+            "prepare_s": 0.045279333,
+            "prefill_s": 0.155286766,
+            "decode_tokens_per_s": 172.69930679087625,
+            "draft_acceptance": 0.5885714285714285
+          }
+        }
+      }
+    },
+    {
+      "client": "opencode",
+      "task_id": "ExecRepoBench/33",
+      "status": "passed",
+      "wall_s": 21.123085636645555,
+      "completed_requests": 11,
+      "timing_totals_s": {
+        "decode": 5.679870334,
+        "prefill": 10.012166839999999,
+        "prepare": 0.4562219780000001,
+        "total": 16.158675498,
+        "ttft": 10.471502056999999,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 1026,
+        "drafted_tokens": 1365,
+        "rounds": 195
+      },
+      "prefix_paths": {
+        "full_reset": 2,
+        "append_frontier": 6,
+        "restore_turn_checkpoint": 3
+      },
+      "cached_fraction": 0.7904646132051993,
+      "context_bands": {
+        "<32K": {
+          "n": 6,
+          "median": {
+            "prepare_s": 0.0447984815,
+            "prefill_s": 0.304281758,
+            "decode_tokens_per_s": 210.31609376012125,
+            "draft_acceptance": 0.7571428571428571
+          }
+        }
+      }
+    },
+    {
+      "client": "pi",
+      "task_id": "ExecRepoBench/33",
+      "status": "timeout",
+      "wall_s": 600.0234207734466,
+      "completed_requests": 381,
+      "timing_totals_s": {
+        "decode": 196.5971196290001,
+        "prefill": 85.48979709299992,
+        "prepare": 299.61778196500006,
+        "total": 582.1564492369997,
+        "ttft": 385.41112604799997,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 38578,
+        "drafted_tokens": 42630,
+        "rounds": 6090
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 380
+      },
+      "cached_fraction": 0.9965498837216044,
+      "context_bands": {
+        "<32K": {
+          "n": 89,
+          "median": {
+            "prepare_s": 0.069999647,
+            "prefill_s": 0.163345034,
+            "decode_tokens_per_s": 237.16555802378332,
+            "draft_acceptance": 0.9017857142857143
+          }
+        },
+        "32-64K": {
+          "n": 97,
+          "median": {
+            "prepare_s": 0.381029513,
+            "prefill_s": 0.198693985,
+            "decode_tokens_per_s": 227.94798865153342,
+            "draft_acceptance": 0.9107142857142857
+          }
+        },
+        "64-96K": {
+          "n": 98,
+          "median": {
+            "prepare_s": 1.0120559944999998,
+            "prefill_s": 0.23744981050000002,
+            "decode_tokens_per_s": 215.30210028014602,
+            "draft_acceptance": 0.9107142857142857
+          }
+        },
+        ">=96K": {
+          "n": 96,
+          "median": {
+            "prepare_s": 1.588465524,
+            "prefill_s": 0.280603575,
+            "decode_tokens_per_s": 203.72648463207094,
+            "draft_acceptance": 0.9107142857142857
+          }
+        }
+      }
+    },
+    {
+      "client": "claude",
+      "task_id": "ExecRepoBench/33",
+      "status": "passed",
+      "wall_s": 73.04115477576852,
+      "completed_requests": 16,
+      "timing_totals_s": {
+        "decode": 55.79237183399997,
+        "prefill": 14.557923713000001,
+        "prepare": 0.710995746,
+        "total": 71.145484951,
+        "ttft": 15.274217854,
+        "vision": 0.0
+      },
+      "speculative": {
+        "accepted_tokens": 7363,
+        "drafted_tokens": 13209,
+        "rounds": 1887
+      },
+      "prefix_paths": {
+        "full_reset": 1,
+        "append_frontier": 13,
+        "restore_turn_checkpoint": 2
+      },
+      "cached_fraction": 0.8658816029771544,
+      "context_bands": {
+        "<32K": {
+          "n": 6,
+          "median": {
+            "prepare_s": 0.048126076000000004,
+            "prefill_s": 0.3713659545,
+            "decode_tokens_per_s": 181.17555318254023,
+            "draft_acceptance": 0.6338143953233467
+          }
+        }
+      }
+    }
+  ],
+  "prior_art": {
+    "concurrency_chunking": "https://www.usenix.org/conference/osdi24/presentation/agrawal",
+    "single_gpu_agent_scheduling": "https://arxiv.org/abs/2603.10342",
+    "adaptive_prefill": "https://arxiv.org/abs/2609.07883",
+    "async_speculative_batch": "https://arxiv.org/abs/2609.17943",
+    "batched_speculation": "https://arxiv.org/abs/2404.15778",
+    "load_dependent_speculation": "https://arxiv.org/abs/2605.15051",
+    "normal_coding_agent_traces": "https://arxiv.org/abs/2606.30560",
+    "stateful_tokenization": "https://arxiv.org/abs/2607.29678",
+    "gpu_tokenization": "https://arxiv.org/abs/2610.13325"
+  },
+  "source_observations": {
+    "prepare_scope": "src/serve/generation_service.cpp:384-403",
+    "full_render_and_encoding": "src/targets/qwen3_6/impl/frontend/frontend.cpp:980-988",
+    "optional_second_prefix_encoding": "src/targets/qwen3_6/impl/frontend/processor.cpp:521-541",
+    "mtp_batch_common_width_and_max_frontier": "src/targets/qwen3_6/impl/runtime/program_impl.h:2083-2148",
+    "gdn_record_for_replay": "src/targets/qwen3_6/impl/runtime/speculative_target_impl.h:16-38",
+    "status": "Source observations establish execution structure, not the amount of kernel waste."
+  },
+  "user_scope": {
+    "primary": "High-concurrency inference-system bottlenecks in normal coding-agent workloads",
+    "excluded": [
+      "Tool retry/client behavior as the core research problem",
+      "Manual KV management",
+      "Assumed necessity of a HBM/DRAM/SSD hierarchy"
+    ],
+    "current_user_observation": "OpenCode feels smooth in short sessions; long conversations not yet tried."
+  },
+  "earlier_concurrency_probe": {
+    "source": "docs/reports/2026-10-14-ninfer-mtp.md",
+    "context_capacity": 65536,
+    "draft_window": 7,
+    "not_current_256k_validation": true,
+    "samples": "Small simultaneous waves; no sustained arrival-rate/SLO benchmark",
+    "rows": [
+      {
+        "active_concurrency": 2,
+        "aggregate_code_tokens_per_s": 240.55,
+        "median_single_stream_code_tokens_per_s": 128.86
+      },
+      {
+        "active_concurrency": 4,
+        "aggregate_code_tokens_per_s": 264.84,
+        "median_single_stream_code_tokens_per_s": 71.67
+      }
+    ],
+    "interpretation": "Scaling tradeoff may be ordinary bandwidth sharing; extra avoidable work has not been established."
+  },
+  "candidate_to_validate": {
+    "problem": "Normal mixed agent concurrency: long histories, short tool-call responses, occasional large resume/cold prefills, and heterogeneous speculation acceptance.",
+    "possible_mechanism": "Joint batch composition, per-request speculation budgets and prefill admission using measured marginal verified progress and request latency constraints. For the hybrid Attention/GDN target, quantify verification, replay and graph-shape costs.",
+    "novelty_status": "Unproven. Plain adaptive draft length, async speculative batching, chunked prefill and single-GPU agent scheduling all have close prior art. Porting them to RTX4090 or a larger model is insufficient.",
+    "falsification": "If efficient conventional batching/chunking plus adaptive speculation independently remove the bottleneck, do not claim a new joint mechanism.",
+    "measurement_only_next": [
+      "Paired MTP on/off and depth sweeps at active batch1/2/4 under steady arrivals.",
+      "Mix long cold/resume prefills with short warm tool-call responses; measure queue time and tail latency.",
+      "Control context length/output budgets while varying acceptance and hybrid-state costs; collect kernel-level timings."
+    ],
+    "metrics": [
+      "SLO-satisfied requests per second",
+      "P95/P99 TTFT and complete-response/tool-call latency",
+      "Aggregate tokens per second",
+      "Per-request slowdown and starvation",
+      "Measured prefill/draft/verify/replay cost",
+      "Correctness and memory-budget compliance"
+    ],
+    "load_accounting": "Report logical sessions separately from active GPU batch size; retain overload/rejections/timeouts. No measured claim about 8/16 active 128K contexts fitting24GB."
+  }
+}
