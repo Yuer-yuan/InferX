@@ -33,7 +33,11 @@ def test_timeout_kills_owned_descendants_and_preserves_logs(tmp_path):
         path = Path(f'/proc/{child_pid}/stat')
         # Container init may reap the killed grandchild asynchronously.
         for _ in range(50):
-            if not path.exists() or path.read_text().rsplit(')',1)[1].split()[0] == 'Z':
+            try:
+                state = path.read_text().rsplit(')',1)[1].split()[0]
+            except FileNotFoundError:
+                break
+            if state == 'Z':
                 break
             time.sleep(.02)
         else:
