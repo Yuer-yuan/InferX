@@ -73,6 +73,15 @@ def reference_matches(row: dict, fixture_root: Path) -> bool:
     return path.read_text() == row['prefix_code'] + row['middle_code'] + row['suffix_code']
 
 
+def line_start_task(row: dict) -> dict:
+    """Move known prefix indentation into the requested gap, before generation."""
+    indent = row['prefix_code'].rsplit('\n', 1)[-1]
+    if indent.strip():
+        raise ValueError('only whole-block boundaries can move to line start')
+    return dict(row, prefix_code=row['prefix_code'][:-len(indent)] if indent else row['prefix_code'],
+                middle_code=indent + row['middle_code'], infill_indent=indent)
+
+
 def source_context(row: dict, limit: int = 6000) -> str:
     result = []
     remaining = limit

@@ -23,7 +23,7 @@
 
 ## 数据与验证环境
 
-优先仓库为 `more-itertools`、`sqlparse`、`json_repair`、`python-fastjsonschema`，均为 Python 库。只使用 `grammar-based: block`，屏蔽区对应源文件，禁止修改测试或执行入口。每条按原始 JSONL 行号作为稳定 ID，顺序由 seed `2026101402` 固定；选题在模型生成前完成。
+优先仓库为 `more-itertools`、`sqlparse`、`json_repair`、`python-fastjsonschema`，均为 Python 库。只使用 `grammar-based: block`，屏蔽区对应源文件，禁止修改测试断言。每条按原始 JSONL 行号作为稳定 ID，顺序由 seed `2026101402` 固定；选题在模型生成前完成。
 
 先检查源文件等于 prefix + middle + suffix；屏蔽区前缀当前行只含缩进、后缀从换行开始，并且把 middle 替换为 `pass` 后整个文件仍能通过 AST 解析。原始代码必须通过完整仓库测试，`pass` 消融必须实际测试失败，不能只因语法错误被判失败。这样排除文档补全和没有测试覆盖的样本。每仓库选最先通过环境/覆盖检查的 6 题，按固定随机顺序分成 2 dev、4 eval，共 8 dev / 16 eval。所有筛除及原因留存。若某仓库不足 6 条，不看生成表现，由同一算法使用 `compressed_rtf` 作为后备；仍不足时完整报告可用题目数量，不伪装成原定网格。
 
@@ -35,11 +35,13 @@
 
 ## 生成前校准修订
 
-calibration-v1～v3 记录初始环境排查。more-itertools 需要线程，sqlparse 需要子进程，fastjsonschema 超过 2 GiB 且缺少 benchmark 插件；compressed_rtf 只有 5 条满足覆盖条件，不能凑足 6 题。没有删除测试、放宽资源上限或观察模型表现来挑题。生成前将后备顺序扩展为 xmltodict、PTable、algorithms、PyPattyrn、python-pinyin、boltons。pytest 日志定向 scratch，所有测试 cwd 也使用 scratch，使相对路径输出无需写入只读源码目录。完整校准 v4 最终选定 json_repair、xmltodict、PTable、algorithms，各 2 dev / 4 eval，维持 24 题及原有实验网格。消融资格还要求实际失败计数大于零，且收集数不变；结果清单 hash 见 calibration-v4/manifest.json。此兼容性筛选限制外推范围，不能代表任意企业仓库。
+calibration-v1～v3 记录初始环境排查。more-itertools 需要线程，sqlparse 需要子进程，fastjsonschema 超过 2 GiB 且缺少 benchmark 插件；compressed_rtf 只有 5 条满足覆盖条件，不能凑足 6 题。没有删除测试、放宽资源上限或观察模型表现来挑题。生成前将后备顺序扩展为 xmltodict、PTable、algorithms、PyPattyrn、python-pinyin、boltons。pytest 日志定向 scratch，所有测试 cwd 也使用 scratch，使相对路径输出无需写入只读源码目录。完整校准 v4 及显式 pytest root 的复核 v5 最终选定 json_repair、xmltodict、PTable、algorithms，各 2 dev / 4 eval，维持 24 题及原有实验网格。消融资格还要求实际失败计数大于零，且收集数不变；结果清单 hash 见 calibration-v5/manifest.json。此兼容性筛选限制外推范围，不能代表任意企业仓库。
 
 ## 模型与提示
 
 沿用同一已校验 Qwen3.8-27B UD-Q4_K_M 与 llama.cpp v0.6.0 / CUDA 12.6。GPU 0 旧服务保留；GPU 1 承担新试验，两轮均在 GPU 1 顺序完成。单卡 8 slots × 8192 context，总 ctx 65536，f16 KV，全部层 GPU offload；预估新增 KV 3 GiB，必须先实测可用容量及八路取消。若不合适，记录原因后收缩配置再冻结，不暗中 CPU offload。
+
+开发 smoke-v1 发现原始 prefix 已含首行缩进，而模型重复返回缩进会掩盖推理与调度效果。正式生成前统一把 prefix 当前行的已知空白移入缺口，让请求从行首开始；canonical 仍严格重构相同源文件。该转换只读 prefix，不读取答案或测试，生成结果不自动补齐/删除空格。smoke-v1 单独保留且排除，smoke-v2 复核后冻结；评估集尚未用于该修订。
 
 提示要求补全 prefix/suffix 之间的代码，返回 JSON `{"code": "精确保留缩进与换行的补全文本"}`。使用 chat template、thinking 关闭，temperature 0.8、top_p 0.95、top_k 0、min_p 0、repeat_penalty 1、max_tokens 1024。解析 JSON（可容忍外层 JSON fence），不自动修改源码缩进；格式错误是候选失败。只有 prefix/suffix 和源代码上下文进入提示，middle_code、测试内容、验证输出不进入提示。本轮候选相互独立，不包含迭代修复。
 

@@ -74,6 +74,18 @@ class SchedulerTests(unittest.IsolatedAsyncioTestCase):
         with self.assertRaises(ValueError):
             await self.run_case(None, None, width=0, budget=2, deadline=1)
 
+    async def test_feedback_gating_waits_for_failure_before_next_candidate(self):
+        async def generate(i, seed, event):
+            return 'code'
+        async def check(code, event):
+            await asyncio.sleep(.01)
+            return {'status': 'passed' if event['candidate_id'] == 1 else 'failed'}
+        result = await self.run_case(generate, check, width=1, budget=4,
+                                     deadline=1, await_feedback=True)
+        self.assertEqual(len(result['candidates']), 2)
+        self.assertGreaterEqual(result['candidates'][1]['generation_start'],
+                                result['candidates'][0]['verify_end'])
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -4,7 +4,7 @@ import time
 
 
 async def run_task(task: dict, generate, verify_candidate, width: int, budget: int,
-                   deadline: float, seed: int) -> dict:
+                   deadline: float, seed: int, *, await_feedback: bool = False) -> dict:
     if min(width, budget, deadline) <= 0:
         raise ValueError("width, budget and deadline must be positive")
     start = time.monotonic()
@@ -29,7 +29,7 @@ async def run_task(task: dict, generate, verify_candidate, width: int, budget: i
         return result
 
     def refill():
-        active = sum(stage == 'generate' for stage, _ in pending.values())
+        active = sum(await_feedback or stage == 'generate' for stage, _ in pending.values())
         while active < width and len(events) < budget:
             i = len(events)
             event = dict(candidate_id=i, seed=seed + i, generation_start=time.monotonic() - start,

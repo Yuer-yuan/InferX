@@ -82,6 +82,17 @@ class RepositoryTests(unittest.TestCase):
             self.assertTrue(reference_matches(row, root))
             self.assertFalse(reference_matches(dict(row, middle_code='return 2'), root))
 
+    def test_line_start_boundary_preserves_reference_and_does_not_repair_output(self):
+        from inferx.repository import line_start_task
+        row = dict(prefix_code='def f():\n    ', middle_code='return 1', suffix_code='\n')
+        normalized = line_start_task(row)
+        self.assertEqual(normalized['prefix_code'], 'def f():\n')
+        self.assertEqual(normalized['middle_code'], '    return 1')
+        self.assertEqual(normalized['infill_indent'], '    ')
+        self.assertEqual(normalized['prefix_code'] + normalized['middle_code'] + normalized['suffix_code'],
+                         row['prefix_code'] + row['middle_code'] + row['suffix_code'])
+        self.assertEqual(row['prefix_code'], 'def f():\n    ')
+
 
 if __name__ == '__main__':
     unittest.main()
