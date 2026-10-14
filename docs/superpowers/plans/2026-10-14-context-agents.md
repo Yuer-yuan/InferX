@@ -28,26 +28,26 @@
 **Files:** Create `inferx/context_agents.py`, `scripts/prepare_long_context.py`, `scripts/run_context_probe.py`, `tests/test_context_agents.py`; reuse `start_tuned_server.sh`.
 **Interfaces:** `verify_process_identity(pid:int, start_ticks:str, executable:Path)->bool`; `long_context_messages(records:int)->list[dict]`; probe JSONL from existing `stream_request`; chosen runtime manifest for Task 2.
 
-- [ ] Write failing tests for stale/mismatched identity (real subprocess/temp paths), prompt early/middle/late expected lookups and output reserve; run targetedpytest, expectedFAIL before implementation.
-- [ ] Implement helpers; generate131K/262K-fit corpora using GPU0 read-only tokenizer, keep>=8192 output headroom; preserve request text and hashes. Expectedthree expected values correctly generated and actual token counts belowcapacity-reserve.
-- [ ] Stop only verified owned64KPID; run staged128KINT8 and256Krk4 probes, short heldoutcode and telemetry. Expectedquality/fit success or explicitfailedcandidate, no hidden exclusion. Leave selectedwarmserviceandmanifest,64Krollback.
-- [ ] Run fullsuite, inspect evidence, commit; task-done usesremote `repo-venv/bin/python -m pytest -q`.
+- [x] Write failing tests for stale/mismatched identity (real subprocess/temp paths), prompt early/middle/late expected lookups and output reserve; run targetedpytest, expectedFAIL before implementation.
+- [x] Implement helpers; generate131K/262K-fit corpora using GPU0 read-only tokenizer, keep>=8192 output headroom; preserve request text and hashes. Expectedthree expected values correctly generated and actual token counts belowcapacity-reserve.
+- [x] Stop only verified owned64KPID; run staged128KINT8 and256Krk4 probes, short heldoutcode and telemetry. Expectedquality/fit success or explicitfailedcandidate, no hidden exclusion. Leave selectedwarmserviceandmanifest,64Krollback.
+- [x] Run fullsuite, inspect evidence, commit; task-done usesremote `repo-venv/bin/python -m pytest -q`.
 
 ### Task 2: Isolated client setup
 
 **Files:** Create `scripts/install_agent_clients.sh`, `scripts/agent-env.sh`, `scripts/run_local_agent.sh`; configurations under `configs/agents/`; tests in `tests/test_agent_clients.py` if helpers enforce semantic invariants.
 **Interfaces:** Consumeschosenruntimecontext; wrapperCLI `run_local_agent.sh {opencode|pi|claude} [CLIargs...]`, all state/cache/logpathsHDD, localmodelqwen38-27b. Producesversion/protocolsmoke manifests.
 
-- [ ] Downloadandhash-checkNode22.23.3, installpinnedOpenCode1.19.0/Pi1.2.0 underHDDprefix; reuseClaude2.1.92. Expectedversions recorded, noexistingconfigmutation.
-- [ ] Configure nativeOpenAI/Anthropic APIs and matchingcontext/outputbudget; isolateauxiliarymodelrouting. Runactualtoolsmoke (read/edit/test) perclient; fixonlyobservedcompatibilityerrors withRED→GREEN regressions ifanadapterisneeded.
-- [ ] Verifylauncher syntax/statepaths/localserverrequestlogs and fullsuite, commit; savecommands.
+- [x] Downloadandhash-checkNode22.23.3, installpinnedOpenCode1.19.0/Pi1.2.0 underHDDprefix; reuseClaude2.1.92. Expectedversions recorded, noexistingconfigmutation.
+- [x] Configure nativeOpenAI/Anthropic APIs and matchingcontext/outputbudget; isolateauxiliarymodelrouting. Runactualtoolsmoke (read/edit/test) perclient; fixonlyobservedcompatibilityerrors withRED→GREEN regressions ifanadapterisneeded.
+- [x] Verifylauncher syntax/statepaths/localserverrequestlogs and fullsuite, commit; savecommands.
 
 ### Task 3: Repository agents, results and handoff
 
 **Files:** Create `scripts/run_agent_trials.py`, `scripts/analyze_agent_trials.py`, `tests/test_agent_trials.py`, `results/context-agents/`, `docs/reports/2026-10-14-context-agents.md`; updateREADME.
 **Interfaces:** Consumes3clientwrappers and frozen3tasks; producestrialmanifest withclient/task/version/wall/status/verification/toolcounts/requestusage/diffhash/rawpaths.
 
-- [ ] Write failing tests for pristine-testverification, missingtoolactivity, nonzeroexit/APIerrors and ownedgroup timeout (realminimalprocesses), then implementboundedtrialrunner. Expectedfailures classified withoutsuccessclaim.
-- [ ] Run3clients×3tasks freshcopies serially; archive transcripts/diffs and independentlyrunoriginaltests. Expected9complete result records (qualityfailuresallowed, infrastructure failures investigated).
-- [ ] Validateartifacts, health/GPU0preservation, fullsuite; writereproductionandcontextlimitationsreport; commitandtask-done.
+- [x] Write failing tests for pristine-testverification, missingtoolactivity, nonzeroexit/APIerrors and ownedgroup timeout (realminimalprocesses), then implementboundedtrialrunner. Expectedfailures classified withoutsuccessclaim.
+- [x] Run3clients×3tasks freshcopies serially; archive transcripts/diffs and independentlyrunoriginaltests. Expected9complete result records (qualityfailuresallowed, infrastructure failures investigated).
+- [x] Validateartifacts, health/GPU0preservation, fullsuite; writereproductionandcontextlimitationsreport; commitandtask-done.
 - [ ] Freshwhole-branch review perexecuting-plans, fixImportant/Critical oncewithRED→GREEN, recordminors; preservebranchandrunningservice.

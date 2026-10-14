@@ -1,0 +1,303 @@
+{
+  "contexts": [
+    {
+      "args": [
+        "bash",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_tuned_server.sh",
+        "ninfer",
+        "7",
+        "int8",
+        "2048",
+        "131072",
+        "1",
+        "cold"
+      ],
+      "started_unix": 1791962364.654291,
+      "context": 131072,
+      "kv": "int8",
+      "lookup_expected": {
+        "early": "dc1618dcb95446f1",
+        "middle": "f3401c324372fc0c",
+        "late": "b7ac00c50210afbb"
+      },
+      "lookup_answer": {
+        "early": "dc1618dcb95446f1",
+        "middle": "f3401c324372fc0c",
+        "late": "b7ac00c50210afbb"
+      },
+      "lookup_passed": true,
+      "max_observed_memory_mib": 22665,
+      "min_observed_free_mib": 1443,
+      "headroom_passed": true,
+      "ok": true,
+      "finished_unix": 1791962555.6613264,
+      "prompt_tokens": 122879,
+      "ttft_s": 69.31191354990005,
+      "response_tokens": 67,
+      "heldout": {
+        "code_lru": {
+          "n": 3,
+          "decode_median": 232.44589657437265,
+          "decode_min": 232.18109116962552,
+          "decode_max": 241.475989851072,
+          "truncated": 0
+        },
+        "code_toposort": {
+          "n": 3,
+          "decode_median": 179.3111132437999,
+          "decode_min": 171.25883934671268,
+          "decode_max": 188.12383718878073,
+          "truncated": 0
+        },
+        "reason_probability": {
+          "n": 3,
+          "decode_median": 211.7132057068945,
+          "decode_min": 201.40253241953158,
+          "decode_max": 214.2031275108376,
+          "truncated": 3
+        },
+        "prose_migration": {
+          "n": 3,
+          "decode_median": 95.46484702795054,
+          "decode_min": 94.94563394579008,
+          "decode_max": 97.77516043111966,
+          "truncated": 0
+        }
+      }
+    },
+    {
+      "args": [
+        "bash",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_tuned_server.sh",
+        "ninfer",
+        "7",
+        "rk4v4-e8",
+        "2048",
+        "262144",
+        "1",
+        "cold"
+      ],
+      "started_unix": 1791962628.5770032,
+      "context": 262144,
+      "kv": "rk4v4-e8",
+      "lookup_expected": {
+        "early": "dc1618dcb95446f1",
+        "middle": "327107ccc64c5291",
+        "late": "78a2b446ef862773"
+      },
+      "lookup_answer": {
+        "early": "dc1618dcb95446f1",
+        "middle": "327107ccc64c5291",
+        "late": "78a2b446ef862773"
+      },
+      "lookup_passed": true,
+      "max_observed_memory_mib": 22801,
+      "min_observed_free_mib": 1307,
+      "headroom_passed": true,
+      "ok": true,
+      "finished_unix": 1791962940.896669,
+      "prompt_tokens": 253914,
+      "ttft_s": 200.80420642718673,
+      "response_tokens": 68,
+      "heldout": {
+        "code_lru": {
+          "n": 3,
+          "decode_median": 230.56860659339827,
+          "decode_min": 222.50354001174136,
+          "decode_max": 239.31100298432665,
+          "truncated": 0
+        },
+        "code_toposort": {
+          "n": 3,
+          "decode_median": 182.02205799493726,
+          "decode_min": 172.7858651519078,
+          "decode_max": 185.7687306651875,
+          "truncated": 0
+        },
+        "reason_probability": {
+          "n": 3,
+          "decode_median": 201.12760646152898,
+          "decode_min": 198.88514143123626,
+          "decode_max": 204.4954655785508,
+          "truncated": 3
+        },
+        "prose_migration": {
+          "n": 3,
+          "decode_median": 103.25233173628507,
+          "decode_min": 101.42168697007077,
+          "decode_max": 103.6700184596927,
+          "truncated": 0
+        }
+      }
+    }
+  ],
+  "clients": {
+    "opencode": {
+      "n": 3,
+      "statuses": {
+        "timeout": 1,
+        "passed": 2
+      },
+      "wall_s_median": 47.18641988188028,
+      "wall_s_total": 668.3936401344836,
+      "completion_tokens": 54746,
+      "max_prompt_tokens": 92301,
+      "cached_fraction": 0.992147893929139
+    },
+    "pi": {
+      "n": 3,
+      "statuses": {
+        "timeout": 3
+      },
+      "wall_s_median": 600.0238234438002,
+      "wall_s_total": 1800.074366632849,
+      "completion_tokens": 121857,
+      "max_prompt_tokens": 130209,
+      "cached_fraction": 0.9970947062232624
+    },
+    "claude": {
+      "n": 3,
+      "statuses": {
+        "no_source_change": 1,
+        "passed": 2
+      },
+      "wall_s_median": 63.414036471396685,
+      "wall_s_total": 172.2090088352561,
+      "completion_tokens": 23778,
+      "max_prompt_tokens": 26740,
+      "cached_fraction": 0.84974435405411
+    }
+  },
+  "trial_count": 9,
+  "runtime": {
+    "pid": 2726457,
+    "proc_start_ticks": "2079689921",
+    "created_unix": 1791963035.2539783,
+    "endpoint": "http://127.0.0.1:18081",
+    "model_id": "qwen38-27b",
+    "gpu_index": 1,
+    "draft_tokens": 7,
+    "kv_dtype": "rk4v4-e8",
+    "prefill_chunk": 2048,
+    "max_context": 262144,
+    "max_concurrency": 1,
+    "max_output_tokens": 8192,
+    "prefix_reuse": true,
+    "thinking": false,
+    "launcher": "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_agent_server.sh",
+    "command": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve /home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer --host 127.0.0.1 --port 18081 --model-id qwen38-27b --max-context 262144 --kv-capacity 262144 --default-max-tokens 8192 --pending-timeout-ms 120000 --max-concurrency 1 --prefill-chunk 2048 --kv-dtype rk4v4-e8 --no-thinking --greedy --presence-penalty 0 --frequency-penalty 0 --request-log-jsonl /home/guokc/mypro/gnn-mount-sda1/InferX/context-agents/agent-server-requests.jsonl --spec mtp --draft-tokens 7 --lm-head-draft",
+    "cwd": "/home/guokc/mypro/gnn-mount-sda1/InferX"
+  },
+  "client_versions": {
+    "node": "22.23.3",
+    "opencode": "1.19.0",
+    "pi": "1.2.0",
+    "pi_package": "@earendil-works/pi-coding-agent",
+    "claude": "2.1.92",
+    "backend_context": 262144,
+    "claude_reported_context": 200000,
+    "max_request_output": 8192,
+    "smoke": {
+      "opencode": {
+        "tool_counts": {
+          "read": 2,
+          "edit": 1,
+          "bash": 1
+        },
+        "event_counts": {
+          "step_start": 4,
+          "tool_use": 4,
+          "step_finish": 4,
+          "text": 1
+        },
+        "errors": [],
+        "terminal": true,
+        "tool_errors": 0,
+        "tests_passed": true,
+        "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+      },
+      "pi": {
+        "tool_counts": {
+          "read": 2,
+          "edit": 1,
+          "bash": 1
+        },
+        "event_counts": {
+          "session": 1,
+          "agent_start": 1,
+          "turn_start": 4,
+          "message_start": 10,
+          "message_end": 10,
+          "message_update": 21,
+          "tool_execution_start": 4,
+          "tool_execution_end": 4,
+          "turn_end": 4,
+          "tool_execution_update": 3,
+          "agent_end": 1,
+          "agent_settled": 1
+        },
+        "errors": [],
+        "terminal": true,
+        "tool_errors": 0,
+        "tests_passed": true,
+        "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+      },
+      "claude": {
+        "tool_counts": {
+          "read": 2,
+          "edit": 1,
+          "bash": 1
+        },
+        "event_counts": {
+          "system": 1,
+          "assistant": 9,
+          "user": 4,
+          "result": 1
+        },
+        "errors": [],
+        "terminal": true,
+        "tool_errors": 0,
+        "tests_passed": true,
+        "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+      }
+    }
+  },
+  "frozen_tasks": [
+    {
+      "task_id": "ExecRepoBench/604",
+      "repo": "json_repair",
+      "target": "src/json_repair/json_repair.py",
+      "line": 467,
+      "expected_counts": {
+        "collected": 17,
+        "skipped": 0,
+        "failed": 0
+      },
+      "source_sha256": "9a23efe4d67b856788c3c92d373773fa99619dee20ab3827ef405b63c333d4bd"
+    },
+    {
+      "task_id": "ExecRepoBench/1155",
+      "repo": "xmltodict",
+      "target": "xmltodict.py",
+      "line": 415,
+      "expected_counts": {
+        "collected": 60,
+        "skipped": 0,
+        "failed": 0
+      },
+      "source_sha256": "abe0f41f4bbcc378dc9bb5c1e03192b32cf2d583a89998a48f584e95803e791a"
+    },
+    {
+      "task_id": "ExecRepoBench/33",
+      "repo": "PTable",
+      "target": "prettytable/prettytable.py",
+      "line": 1159,
+      "expected_counts": {
+        "collected": 66,
+        "skipped": 0,
+        "failed": 0
+      },
+      "source_sha256": "74904bdfac9277994abb5abdf4c39754d23ee4effa6fc81e41d06270ed7905ff"
+    }
+  ]
+}

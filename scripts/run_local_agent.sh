@@ -3,12 +3,18 @@ set -euo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/agent-env.sh"
 inferx_client=${1:?usage: run_local_agent.sh opencode|pi|claude [args...]}
 shift
+inferx_exec() {
+  if [[ "${INFERX_AGENT_RESTRICT:-0}" == 1 ]]; then
+    exec "$INFERX_ROOT/repo-venv/bin/python" "$INFERX_ROOT/code-tuning/scripts/restrict_agent.py" -- "$@"
+  fi
+  exec "$@"
+}
 case "$inferx_client" in
   opencode)
-    exec opencode --pure "$@"
+    inferx_exec opencode --pure "$@"
     ;;
   pi)
-    exec pi --provider inferx --model qwen38-27b --thinking off \
+    inferx_exec pi --provider inferx --model qwen38-27b --thinking off \
       --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --offline "$@"
     ;;
   claude)
@@ -20,7 +26,7 @@ settings=json.loads((Path(os.environ['INFERX_ROOT'])/'context-agents/config/clau
 for key,value in settings['env'].items():print('export '+key+'='+shlex.quote(value))
 PY
 )"
-    exec /home/guokc/.local/bin/claude --bare --model qwen38-27b \
+    inferx_exec /home/guokc/.local/bin/claude --bare --model qwen38-27b \
       --settings "$INFERX_ROOT/context-agents/config/claude.json" --setting-sources '' \
       --strict-mcp-config --mcp-config '{"mcpServers":{}}' --disable-slash-commands "$@"
     ;;
