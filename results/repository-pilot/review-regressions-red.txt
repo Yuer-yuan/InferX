@@ -1,0 +1,47 @@
+test_dataset_paths_stay_inside_named_repository (test_repository.RepositoryTests.test_dataset_paths_stay_inside_named_repository) ... ok
+test_json_preserves_code_whitespace_and_rejects_nonstring (test_repository.RepositoryTests.test_json_preserves_code_whitespace_and_rejects_nonstring) ... ok
+test_line_start_boundary_preserves_reference_and_does_not_repair_output (test_repository.RepositoryTests.test_line_start_boundary_preserves_reference_and_does_not_repair_output) ... ok
+test_pass_ablation_is_valid_python_and_requires_block_boundary (test_repository.RepositoryTests.test_pass_ablation_is_valid_python_and_requires_block_boundary) ... ok
+test_reference_must_reconstruct_exact_fixture (test_repository.RepositoryTests.test_reference_must_reconstruct_exact_fixture) ... ok
+test_safe_zip_extract_excludes_cache_and_rejects_symlinks (test_repository.RepositoryTests.test_safe_zip_extract_excludes_cache_and_rejects_symlinks) ... ok
+test_source_context_excludes_pytest_suffix_filenames (test_repository.RepositoryTests.test_source_context_excludes_pytest_suffix_filenames) ... FAIL
+test_source_context_excludes_tests_and_target (test_repository.RepositoryTests.test_source_context_excludes_tests_and_target) ... ok
+test_bootstrap_resamples_episode_clusters_with_both_rounds (test_repository_analysis.RepositoryAnalysisTests.test_bootstrap_resamples_episode_clusters_with_both_rounds) ... ok
+test_development_only_rejects_corrupted_tokens_and_late_success (test_repository_analysis.RepositoryAnalysisTests.test_development_only_rejects_corrupted_tokens_and_late_success) ... 
+  test_development_only_rejects_corrupted_tokens_and_late_success (test_repository_analysis.RepositoryAnalysisTests.test_development_only_rejects_corrupted_tokens_and_late_success) (field='observed_tokens') ... FAIL
+  test_development_only_rejects_corrupted_tokens_and_late_success (test_repository_analysis.RepositoryAnalysisTests.test_development_only_rejects_corrupted_tokens_and_late_success) (field='solution_latency') ... FAIL
+test_development_only_selection_quality_before_latency_and_width (test_repository_analysis.RepositoryAnalysisTests.test_development_only_selection_quality_before_latency_and_width) ... ok
+test_failure_penalty_empty_deadline_and_censored_queue_are_retained (test_repository_analysis.RepositoryAnalysisTests.test_failure_penalty_empty_deadline_and_censored_queue_are_retained) ... ok
+test_full_grid_missing_duplicate_overlap_and_changed_pair_rejected (test_repository_analysis.RepositoryAnalysisTests.test_full_grid_missing_duplicate_overlap_and_changed_pair_rejected) ... ok
+test_screening_gates_quality_first_and_both_modes_required (test_repository_analysis.RepositoryAnalysisTests.test_screening_gates_quality_first_and_both_modes_required) ... ok
+test_export_preserves_all_metrics_and_verifiable_sources (test_repository_export.ExportTests.test_export_preserves_all_metrics_and_verifiable_sources) ... ok
+test_complete_paired_grid_and_split_isolation (test_repository_grid.GridTests.test_complete_paired_grid_and_split_isolation) ... ok
+
+======================================================================
+FAIL: test_source_context_excludes_pytest_suffix_filenames (test_repository.RepositoryTests.test_source_context_excludes_pytest_suffix_filenames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_repository.py", line 91, in test_source_context_excludes_pytest_suffix_filenames
+    self.assertNotIn('assert answer()', result)
+AssertionError: 'assert answer()' unexpectedly found in 'File: /repo/mod_test.py\nassert answer() == 42\n\nFile: /repo/pkg/another_test.py\nassert answer() == 43\n\nFile: /repo/pkg/helper.py\ndef answer(): pass'
+
+======================================================================
+FAIL: test_development_only_rejects_corrupted_tokens_and_late_success (test_repository_analysis.RepositoryAnalysisTests.test_development_only_rejects_corrupted_tokens_and_late_success) (field='observed_tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_repository_analysis.py", line 101, in test_development_only_rejects_corrupted_tokens_and_late_success
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_development_only_rejects_corrupted_tokens_and_late_success (test_repository_analysis.RepositoryAnalysisTests.test_development_only_rejects_corrupted_tokens_and_late_success) (field='solution_latency')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_repository_analysis.py", line 101, in test_development_only_rejects_corrupted_tokens_and_late_success
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.330s
+
+FAILED (failures=3)

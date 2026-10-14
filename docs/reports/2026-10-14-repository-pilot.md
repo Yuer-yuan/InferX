@@ -97,12 +97,14 @@ fixed1 的验证排队 p95 在同时到达、错峰下分别约 0.020、0.374 �
 source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh
 cd "$INFERX_ROOT/code"
 taskset -c 50,51 "$INFERX_ROOT/repo-venv/bin/python" -m unittest discover -s tests -v
+# 重现实测版本使用已归档的原始代码；当前 code 包含审查后的防护修订。
+cd "$INFERX_ROOT/code-frozen-3e474b3"
 # GPU 1 空闲时，用独立终端启动：
 bash scripts/start_repo_server.sh
 # 另一个终端，使用新的运行名称：
 taskset -c 28-35 "$INFERX_ROOT/repo-venv/bin/python" scripts/run_repository_pilot.py \
   --name repository-dev-reproduce --phase dev --revision 3e474b3
-"$INFERX_ROOT/repo-venv/bin/python" scripts/analyze_repository.py \
+"$INFERX_ROOT/repo-venv/bin/python" "$INFERX_ROOT/code/scripts/analyze_repository.py" \
   "$INFERX_ROOT/runs/repository-dev-reproduce/episodes.jsonl" --dev-only \
   --output "$INFERX_ROOT/runs/repository-dev-reproduce/selection.json"
 taskset -c 28-35 "$INFERX_ROOT/repo-venv/bin/python" scripts/run_repository_pilot.py \
@@ -121,4 +123,6 @@ cmp /tmp/repository-summary.json results/repository-pilot/summary.json
 
 本地与远端摘要逐字相同。轻量证据包含完整 episode 网格（仅去掉代码正文与日志尾）、配置、依赖、校准、源文件/模型哈希和遥测，见 [results/repository-pilot](../../results/repository-pilot/)；原始输出和准备阶段各版本继续保留在 HDD。`SHA256.json` 覆盖导出的源证据，`derived-SHA256.json` 覆盖本地分析与图表；`raw-sources.json` 指向完整远端原始文件的哈希。正式采样运行代码固定于 `3e474b3`，事后分析、导出或审查修订不等同于重新运行模型。
 
-远端完整测试套件 59/59 通过。最终独立审查、运行资源释放和所有执行裁决另见 [执行记录](2026-10-14-repository-execution-record.md)。
+独立审查复现了相同摘要与全部哈希，发现测试上下文遗漏 `*_test.py` 命名，以及开发集单独分析跳过任务完整性检查。两项均通过先失败再通过的回归测试修复，远端完整套件 **61/61** 通过。修订后重建全部 24 个提示，与正式开发/评估保存的完整字符串及元数据全部相同；原始运行代码另存 HDD `code-frozen-3e474b3/`，与正式哈希全部相符。因此保留原始实验，无需重采样。审查、提示核对与所有执行裁决见 [执行记录](2026-10-14-repository-execution-record.md) 和 [提示审计](../../results/repository-pilot/review-prompt-audit.json)。
+
+收尾已停止本轮专用 GPU 1 服务，显存回落至 15 MiB，无遗留仓库验证进程。GPU 0 的原有服务保留，8 个槽均空闲；模型、数据和完整原始输出保留在 HDD。进程归属与检查结果见 [teardown.json](../../results/repository-pilot/teardown.json)。代码保留在本地 `research/repository-branch-pilot` 分支。

@@ -82,6 +82,15 @@ class RepositoryTests(unittest.TestCase):
             self.assertTrue(reference_matches(row, root))
             self.assertFalse(reference_matches(dict(row, middle_code='return 2'), root))
 
+    def test_source_context_excludes_pytest_suffix_filenames(self):
+        row = dict(file_name='/repo/a.py', context_code=[
+            ['/repo/mod_test.py', 'assert answer() == 42'],
+            ['/repo/pkg/another_test.py', 'assert answer() == 43'],
+            ['/repo/pkg/helper.py', 'def answer(): pass']])
+        result = source_context(row)
+        self.assertNotIn('assert answer()', result)
+        self.assertIn('def answer(): pass', result)
+
     def test_line_start_boundary_preserves_reference_and_does_not_repair_output(self):
         from inferx.repository import line_start_task
         row = dict(prefix_code='def f():\n    ', middle_code='return 1', suffix_code='\n')

@@ -92,6 +92,15 @@ class RepositoryAnalysisTests(unittest.TestCase):
         self.assertEqual(result['capped_solution_delta_s']['ci95'], [-3, -3])
         self.assertEqual(result['token_reduction_fraction']['ci95'], [0, 0])
 
+    def test_development_only_rejects_corrupted_tokens_and_late_success(self):
+        for field, value in [('observed_tokens', 1020), ('solution_latency', 121)]:
+            with self.subTest(field=field):
+                rows = [e for e in grid() if e['split'] == 'dev']
+                validate_grid(rows, dev_only=True)
+                rows[0]['tasks'][0][field] = value
+                with self.assertRaises(ValueError):
+                    validate_grid(rows, dev_only=True)
+
     def test_screening_gates_quality_first_and_both_modes_required(self):
         base = dict(solved=12, trials=16, mean_capped_solution_s=40,
                     observed_tokens=100, candidate_queue_fraction_median=.1,

@@ -1,6 +1,18 @@
 # 仓库多会话实验执行记录
 
-正式测量、分析及测试已完成；独立审查和服务收尾在本记录最后追加。所有裁决与成本保留如下。
+正式测量、分析、独立审查和服务收尾已完成。48 次开发试验 + 64 个评估 episode，共 304 个任务结果；结论 mixed_or_unsupported。
+
+独立审查由 fresh-context gpt-6-astra 完成，范围 `89b6461..2f3c075`。审查提出的测试上下文过滤和开发集完整性校验两项均通过 RED→GREEN 修复；远端最终 61/61 测试通过，无跳过。全部 24 个提示重建逐字一致，无需重跑模型。未遗留 Minor 项；各项不作判断的边界均逐条裁决于下文。
+
+GPU 1 本轮服务已停止，GPU 0 原部署保留。研究分支和 HDD 原始数据保留；测量时代码另存 `code-frozen-3e474b3/`。
+
+- [研究结论、完整结果与复现](2026-10-14-repository-pilot.md)
+- [最终测试输出](../../results/repository-pilot/verification-tests.txt)
+- [回归修复前的失败输出](../../results/repository-pilot/review-regressions-red.txt)
+- [提示与归档代码核对](../../results/repository-pilot/review-prompt-audit.json)
+- [资源释放核对](../../results/repository-pilot/teardown.json)
+
+以下完整保留执行过程，包括所有 Ruling 及判断错误时的代价；中途状态以随后完成记录为准。
 
 ```text
 # SDD ledger — plan: docs/superpowers/plans/2026-10-14-repository-branches.md
@@ -36,4 +48,18 @@ Task 3 protocol clarification: job_grid deterministically shuffles the combined 
 Task 3: Upstream/fixture source-manifest export regression RED→GREEN; lightweight evidence now carries original download revision/hash metadata and every extracted source-file hash, in addition to prepared split/dependency/runtime hashes. Runtime code remains unchanged.
 Task 3: Formal eval completed 64/64 episodes, 256 outcomes; dev 48/48, total 304. Local compact-record recomputation byte-identical to remote summary. Source SHA256 mismatches 0. Plot PNG visually checked, SVG/PDF exported. Decision mixed_or_unsupported; burst token savings 20.23% but stagger +12.51% tokens and -1 solved. No primary residual queue threshold. Eval statuses 139 passed/526 failed/204 cancelled/36 output_limit, no eval timeout; dev has 1 timeout, preserved. Unsolved tasks account for 83–96% of unused primary tokens. Eval sampled GPU peak 20639 MiB.
 Task 3: Report completed with full eight-policy-mode table, paired clustered CIs, cache/shared-host/quality/sample caveats, intrinsic feedback versus queue distinction, and cancellation hypothesis explicitly unvalidated. Latest remote full suite 59/59, no skips.
+Task 3: complete (commits 3e474b3..2f3c075, tests: ssh vlm-server 'source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh; cd "$INFERX_ROOT/code" && taskset -c 50,51 "$INFERX_ROOT/repo-venv/bin/python" -m unittest discover -s tests -v' → OK)
+Final review: fresh-context gpt-6-astra repository_final_review reviewed 89b6461..2f3c075 read-only, no subagents. Independently reproduced summary byte-for-byte and both hash manifests; local 59 tests, 54 pass/5 environment skips. Critical 0; Important context admits *_test.py; Minor dev-only skips integrity checks; verdict With fixes. No demonstrated current-data contamination.
+Final: Ruling: Re-grade dev-only integrity bypass from Minor to Important — selection is a pre-evaluation scientific gate and a reasonable user expects malformed tokens/deadlines rejected before choosing baseline, even though current full evidence passes — cost if wrong: one extra focused regression/fix, no measurement change.
+Final: fixed test-context suffix filtering — test_source_context_excludes_pytest_suffix_filenames RED→GREEN; fixed development-only integrity bypass — test_development_only_rejects_corrupted_tokens_and_late_success RED→GREEN for both corrupt totals and success after deadline; remote full suite 61/61 no skips. One fix pass, no second review.
+Final: Ruling: Preserve original measured runtime in HDD code-frozen-3e474b3 and keep existing formal data — all frozen runtime hashes match archive, all 24 reconstructed prompts and all dev/eval prompt metadata match byte-for-byte, fixed analyzer gives identical dev selection and complete summary — cost if wrong: undiscovered prompt/runtime difference would require a disclosed rerun.
+Final: Ruling: Deliberately hostile result-marker spoofing or in-process test-runner modification remains outside scope — the tool is documented for non-adversarial benchmark candidates, not a malicious multi-tenant execution service — cost if wrong: adversarial candidates could fake verification; no production-security claim permitted.
+Final: Ruling: Concurrent malicious fixture replacement remains outside scope — fixtures are frozen and executor-owned during this pilot, source hashes are preserved — cost if wrong: racing external mutation could invalidate source isolation or results.
+Final: Ruling: Namespace packages/custom import hooks/unseen repositories are not generalized from this pool — canonical/pass-ablation validation is required for each new repository — cost if wrong: a new package may import incorrectly or require another verifier integration.
+Final: Ruling: Repeated forced interruption/process termination during cleanup is outside crash-proof supervision guarantees — ordinary cancellation and timeout reaping are tested; abrupt executor death is not claimed safe — cost if wrong: process supervision/manual cleanup may be needed after such crashes.
+Final: Ruling: Production traffic/cold caches/independently restarted replications remain unjudged — the report explicitly limits inference to four template clusters and interleaved seeds with cache history — cost if wrong: observed tradeoffs may not generalize.
+Final: Ruling: Reviewer did not audit external literature exhaustively — primary-source research is an executor responsibility and links/limited claims are preserved; this pilot claims no new mechanism or publication readiness — cost if wrong: omissions could invalidate a future novelty claim and require a fresh survey.
+Final: Deferred minors: none after severity re-grading and the single verified fix pass.
+Finish: Verified exact executable, port18081 and CUDA_VISIBLE_DEVICES=1 through procfs and pidfd before SIGTERM of owned PID2583495. GPU1 returned to15MiB, GPU0 retained17561MiB/port18080/8idle slots; no owned repo workers. Teardown JSON exported.
+Finish: Retain local branch research/repository-branch-pilot and user work-dir per existing execution choice; no push/merge. All source/derived manifests verified and local analysis matches frozen evidence. Preserve this complete ledger and verification logs in committed report/results before removing only this plan workspace.
 ```

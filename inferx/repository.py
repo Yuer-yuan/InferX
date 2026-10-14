@@ -88,6 +88,7 @@ def source_context(row: dict, limit: int = 6000) -> str:
     for name, code in row['context_code']:
         parts = PurePosixPath(name).parts
         if (name.lstrip('/') == row['file_name'].lstrip('/') or not name.endswith('.py')
+                or name.endswith('_test.py')
                 or any(p.startswith('test') or p == 'conftest.py' for p in parts)):
             continue
         entry = f'File: {name}\n{code}'

@@ -76,7 +76,7 @@
 - [x] Execute 48 development trials and 64 evaluation episodes (256 task outcomes) with frozen sampling and randomized ordering, two seeds on GPU 1; collect 1-second telemetry. Expected complete coverage; infrastructure failure requires explicit excluded batch and rerun, not removal of a difficult task.
 - [x] Export lightweight evidence, reproduce summaries locally, inspect charts and failed cases, compare gate exactly with spec. Report negative/mixed/insufficient evidence honestly; no engine mechanism unless justified by a separate follow-up plan.
 - [x] Write report with real repository/sandbox limits, ordinary baseline tradeoffs, latest related work, precise reproduction and all deviations. Commit and run complete suite.
-- [ ] Independent whole-branch review required by executing-plans. Fix Critical/Important with RED→GREEN and full suite; preserve review/decision record. Keep branch and existing GPU 0 deployment; free owned GPU 1 experiment process at completion.
+- [x] Independent whole-branch review required by executing-plans. Fix Critical/Important with RED→GREEN and full suite; preserve review/decision record. Keep branch and existing GPU 0 deployment; free owned GPU 1 experiment process at completion.
 
 ## Execution choice
 

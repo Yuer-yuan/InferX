@@ -86,6 +86,12 @@ def validate_grid(rows, *, dev_only=False):
             or e['tasks'][0]['task_id'] != e['episode_id'] for e in dev)
             or len(actual_dev) != len(expected_dev) or set(actual_dev) != expected_dev):
         raise ValueError('incomplete or duplicated development grid')
+    for e in rows:
+        for t in e['tasks']:
+            if t['solved'] and (t['solution_latency'] is None or t['solution_latency'] > t['deadline']):
+                raise ValueError('success outside deadline')
+            if t['observed_tokens'] != sum(c['tokens'] for c in t['candidates']):
+                raise ValueError('token accounting mismatch')
     if dev_only:
         if evaluation:
             raise ValueError('dev-only selection input contains evaluation')
@@ -105,12 +111,6 @@ def validate_grid(rows, *, dev_only=False):
         membership.extend(next(iter(tuples)))
     if len(set(membership)) != len(membership):
         raise ValueError('evaluation tasks reused across episode templates')
-    for e in rows:
-        for t in e['tasks']:
-            if t['solved'] and (t['solution_latency'] is None or t['solution_latency'] > t['deadline']):
-                raise ValueError('success outside deadline')
-            if t['observed_tokens'] != sum(c['tokens'] for c in t['candidates']):
-                raise ValueError('token accounting mismatch')
 
 
 def select_baseline(rows):
