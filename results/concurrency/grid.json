@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "endpoint": "http://127.0.0.1:18083",
+  "max_context": 65536,
+  "kv_capacity": 131072,
+  "kv_dtype": "rk4v4-e8",
+  "prefill_chunk": 2048,
+  "configs": [
+    {
+      "id": "d0-c1",
+      "draft": 0,
+      "concurrency": 1,
+      "exploratory": false
+    },
+    {
+      "id": "d4-c1",
+      "draft": 4,
+      "concurrency": 1,
+      "exploratory": false
+    },
+    {
+      "id": "d7-c1",
+      "draft": 7,
+      "concurrency": 1,
+      "exploratory": false
+    },
+    {
+      "id": "d0-c2",
+      "draft": 0,
+      "concurrency": 2,
+      "exploratory": false
+    },
+    {
+      "id": "d4-c2",
+      "draft": 4,
+      "concurrency": 2,
+      "exploratory": false
+    },
+    {
+      "id": "d7-c2",
+      "draft": 7,
+      "concurrency": 2,
+      "exploratory": false
+    },
+    {
+      "id": "d0-c4",
+      "draft": 0,
+      "concurrency": 4,
+      "exploratory": false
+    },
+    {
+      "id": "d4-c4",
+      "draft": 4,
+      "concurrency": 4,
+      "exploratory": false
+    },
+    {
+      "id": "d7-c4",
+      "draft": 7,
+      "concurrency": 4,
+      "exploratory": false
+    },
+    {
+      "id": "d0-c8",
+      "draft": 0,
+      "concurrency": 8,
+      "exploratory": true
+    },
+    {
+      "id": "d7-c8",
+      "draft": 7,
+      "concurrency": 8,
+      "exploratory": true
+    }
+  ],
+  "pure_requests_per_class": 12,
+  "uniform_long_requests": 8,
+  "mixed_requests": 16,
+  "arrival_duration_s": 48,
+  "mixed_cases": [
+    {
+      "name": "short-control",
+      "rate": 2.5,
+      "long_mode": null
+    },
+    {
+      "name": "cold-low",
+      "rate": 0.5,
+      "long_mode": "cold"
+    },
+    {
+      "name": "cold-high",
+      "rate": 2.5,
+      "long_mode": "cold"
+    },
+    {
+      "name": "resume-high",
+      "rate": 2.5,
+      "long_mode": "resume"
+    }
+  ],
+  "long_offsets_s": [
+    0,
+    16,
+    32
+  ],
+  "long_targets": [
+    16384,
+    24576,
+    32768
+  ]
+}

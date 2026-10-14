@@ -1,0 +1,146 @@
+{
+  "scope": "Synthetic serving snapshots; no live agent outcome claim.",
+  "tokenizer_reference": "GPU0 read-only llama.cpp apply-template/tokenize; NInfer usage authoritative",
+  "files": [
+    {
+      "file": "workloads.json",
+      "sha256": "314a3a251515c2b0242f48466f3d2571ff319ba754a33f8cb572e648465ab8e7",
+      "bytes": 308537
+    },
+    {
+      "file": "grid.json",
+      "sha256": "3b18e8cd817b260943ddb23724728b7c5889156f32d8d625c75f19ca3804be59",
+      "bytes": 1897
+    }
+  ],
+  "templates": {
+    "code-512": {
+      "id": "code-512",
+      "reference_prompt_tokens": 505,
+      "registry_records": 11,
+      "expected_tool": null
+    },
+    "prose-512": {
+      "id": "prose-512",
+      "reference_prompt_tokens": 508,
+      "registry_records": 11,
+      "expected_tool": null
+    },
+    "tool-512": {
+      "id": "tool-512",
+      "reference_prompt_tokens": 511,
+      "registry_records": 4,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "status-probe",
+          "attempt": 3
+        }
+      }
+    },
+    "code-12288": {
+      "id": "code-12288",
+      "reference_prompt_tokens": 12259,
+      "registry_records": 323,
+      "expected_tool": null
+    },
+    "prose-12288": {
+      "id": "prose-12288",
+      "reference_prompt_tokens": 12262,
+      "registry_records": 323,
+      "expected_tool": null
+    },
+    "tool-12288": {
+      "id": "tool-12288",
+      "reference_prompt_tokens": 12270,
+      "registry_records": 316,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "status-probe",
+          "attempt": 3
+        }
+      }
+    },
+    "resume-16384": {
+      "id": "resume-16384",
+      "reference_prompt_tokens": 16357,
+      "registry_records": 93,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "218b16cb68d6486f",
+          "attempt": 1
+        }
+      }
+    },
+    "cold-16384": {
+      "id": "cold-16384",
+      "reference_prompt_tokens": 16367,
+      "registry_records": 93,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "218b16cb68d6486f",
+          "attempt": 1
+        }
+      }
+    },
+    "resume-24576": {
+      "id": "resume-24576",
+      "reference_prompt_tokens": 24547,
+      "registry_records": 280,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "87098c87c76434e5",
+          "attempt": 1
+        }
+      }
+    },
+    "cold-24576": {
+      "id": "cold-24576",
+      "reference_prompt_tokens": 24557,
+      "registry_records": 280,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "87098c87c76434e5",
+          "attempt": 1
+        }
+      }
+    },
+    "resume-32768": {
+      "id": "resume-32768",
+      "reference_prompt_tokens": 32743,
+      "registry_records": 469,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "624392cd47f2f9fe",
+          "attempt": 1
+        }
+      }
+    },
+    "cold-32768": {
+      "id": "cold-32768",
+      "reference_prompt_tokens": 32753,
+      "registry_records": 469,
+      "expected_tool": {
+        "name": "record_status",
+        "arguments": {
+          "status": "ready",
+          "task": "624392cd47f2f9fe",
+          "attempt": 1
+        }
+      }
+    }
+  }
+}
