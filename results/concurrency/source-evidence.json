@@ -1,0 +1,35 @@
+{
+  "engine_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+  "source_file": "src/runtime/engine/concurrent_executor.h",
+  "source_sha256": "96ad2eb15cb9536b3a62817b8adec95b98536b7fde94ed5020c426c90feeb3ae",
+  "source_tracked_clean": true,
+  "admission_gate_lines": [
+    1197,
+    1208
+  ],
+  "outstanding_cap_lines": [
+    47,
+    155
+  ],
+  "observations": [
+    {
+      "case": "d0-c4",
+      "group": "contention-cold-high",
+      "samples_with_prefill_and_waiting": 90,
+      "samples_with_running_below_four": 65,
+      "samples_with_only_prefill": 25,
+      "interval_sum_s": 90.01571417,
+      "waiting_max": 17
+    },
+    {
+      "case": "d0-c4",
+      "group": "contention-resume-high",
+      "samples_with_prefill_and_waiting": 80,
+      "samples_with_running_below_four": 53,
+      "samples_with_only_prefill": 8,
+      "interval_sum_s": 80.014249441,
+      "waiting_max": 17
+    }
+  ],
+  "limitation": "Periodic correlated samples, not GPU execution durations or independent trials."
+}

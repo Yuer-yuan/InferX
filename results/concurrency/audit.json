@@ -1,0 +1,224 @@
+{
+  "planned_cases": 12,
+  "planned_groups": 107,
+  "planned_requests": 2528,
+  "measured_groups": 89,
+  "offered_requests": 1973,
+  "protocol_ok": 1544,
+  "errors": 429,
+  "warmup_requests": 269,
+  "quality_passed": 9,
+  "tool_valid": 840,
+  "invalid_protocol_successful_tools": 0,
+  "truncated_performance_samples": 704,
+  "error_messages": {
+    "HTTP 429: {\"error\":{\"code\":\"server_overloaded\",\"message\":\"inference request queue is full\",\"param\":null,\"type\":\"rate_limit_error\"}}": 429,
+    "missing terminal completion": 429,
+    "missing or non-positive completion_tokens": 429,
+    "empty output": 429
+  },
+  "native_completion_matches_all_groups": true,
+  "case_counts": [
+    {
+      "case": "d0-c1",
+      "status": "completed",
+      "planned_groups": 13,
+      "measured_groups": 13,
+      "planned_requests": 479,
+      "offered_requests": 479
+    },
+    {
+      "case": "d4-c1",
+      "status": "completed",
+      "planned_groups": 9,
+      "measured_groups": 9,
+      "planned_requests": 92,
+      "offered_requests": 92
+    },
+    {
+      "case": "d7-c1",
+      "status": "completed",
+      "planned_groups": 13,
+      "measured_groups": 13,
+      "planned_requests": 479,
+      "offered_requests": 479
+    },
+    {
+      "case": "d0-c2",
+      "status": "completed",
+      "planned_groups": 9,
+      "measured_groups": 9,
+      "planned_requests": 92,
+      "offered_requests": 92
+    },
+    {
+      "case": "d4-c2",
+      "status": "completed",
+      "planned_groups": 9,
+      "measured_groups": 9,
+      "planned_requests": 92,
+      "offered_requests": 92
+    },
+    {
+      "case": "d7-c2",
+      "status": "completed",
+      "planned_groups": 9,
+      "measured_groups": 9,
+      "planned_requests": 92,
+      "offered_requests": 92
+    },
+    {
+      "case": "d0-c4",
+      "status": "completed",
+      "planned_groups": 11,
+      "measured_groups": 11,
+      "planned_requests": 471,
+      "offered_requests": 471
+    },
+    {
+      "case": "d4-c4",
+      "status": "completed",
+      "planned_groups": 7,
+      "measured_groups": 7,
+      "planned_requests": 84,
+      "offered_requests": 84
+    },
+    {
+      "case": "d7-c4",
+      "status": "infrastructure_error",
+      "planned_groups": 11,
+      "measured_groups": 0,
+      "planned_requests": 471,
+      "offered_requests": 0
+    },
+    {
+      "case": "d0-c8",
+      "status": "completed",
+      "planned_groups": 7,
+      "measured_groups": 7,
+      "planned_requests": 84,
+      "offered_requests": 84
+    },
+    {
+      "case": "d7-c8",
+      "status": "infrastructure_error",
+      "planned_groups": 7,
+      "measured_groups": 0,
+      "planned_requests": 84,
+      "offered_requests": 0
+    },
+    {
+      "case": "d7-c1-near256",
+      "status": "completed",
+      "planned_groups": 2,
+      "measured_groups": 2,
+      "planned_requests": 8,
+      "offered_requests": 8
+    }
+  ],
+  "roofline": {
+    "classification": "undetermined",
+    "reason": "No valid inference-kernel DRAM traffic counters; copy bandwidth and utilization are insufficient.",
+    "counter_permission": [
+      "RmProfilingAdminOnly: 1"
+    ]
+  },
+  "prefix_reset_groups": [
+    {
+      "case": "d0-c1",
+      "group": "contention-cold-low",
+      "resets": 2,
+      "computed_prefill_tokens": 155696
+    },
+    {
+      "case": "d0-c1",
+      "group": "mixed-context",
+      "resets": 2,
+      "computed_prefill_tokens": 197150
+    },
+    {
+      "case": "d0-c1",
+      "group": "mixed-long",
+      "resets": 2,
+      "computed_prefill_tokens": 98307
+    },
+    {
+      "case": "d4-c1",
+      "group": "mixed-context",
+      "resets": 2,
+      "computed_prefill_tokens": 197150
+    },
+    {
+      "case": "d4-c1",
+      "group": "mixed-long",
+      "resets": 2,
+      "computed_prefill_tokens": 98307
+    },
+    {
+      "case": "d7-c1",
+      "group": "contention-cold-high",
+      "resets": 2,
+      "computed_prefill_tokens": 155828
+    },
+    {
+      "case": "d7-c1",
+      "group": "contention-cold-low",
+      "resets": 2,
+      "computed_prefill_tokens": 155696
+    },
+    {
+      "case": "d7-c1",
+      "group": "contention-resume-high",
+      "resets": 1,
+      "computed_prefill_tokens": 131263
+    },
+    {
+      "case": "d7-c1",
+      "group": "mixed-context",
+      "resets": 2,
+      "computed_prefill_tokens": 197150
+    },
+    {
+      "case": "d7-c1",
+      "group": "mixed-long",
+      "resets": 2,
+      "computed_prefill_tokens": 98307
+    },
+    {
+      "case": "d4-c2",
+      "group": "mixed-context",
+      "resets": 1,
+      "computed_prefill_tokens": 561
+    },
+    {
+      "case": "d7-c2",
+      "group": "mixed-context",
+      "resets": 1,
+      "computed_prefill_tokens": 561
+    },
+    {
+      "case": "d0-c4",
+      "group": "contention-cold-high",
+      "resets": 2,
+      "computed_prefill_tokens": 155832
+    },
+    {
+      "case": "d0-c4",
+      "group": "contention-cold-low",
+      "resets": 2,
+      "computed_prefill_tokens": 155696
+    },
+    {
+      "case": "d0-c4",
+      "group": "contention-resume-high",
+      "resets": 1,
+      "computed_prefill_tokens": 131267
+    },
+    {
+      "case": "d4-c4",
+      "group": "uniform-long-code",
+      "resets": 1,
+      "computed_prefill_tokens": 49152
+    }
+  ]
+}

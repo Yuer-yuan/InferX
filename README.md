@@ -4,6 +4,7 @@
 
 - [OpenCode、Pi、Claude Code 直接接入 Qwen](docs/agent-quickstart.md)（已配置，GPU1 的 18081 服务，256K 后端）
 - [256K 上下文与三个 Agent 的验证结果](docs/reports/2026-10-14-context-agents.md)
+- [长上下文、并发与 Roofline 验证](docs/reports/2026-10-14-concurrency-roofline.md)（48K–248K 输入；长预填充准入阻塞与 MTP 对照）
 - [NInfer + MTP 单卡调优结果与服务使用](docs/reports/2026-10-14-ninfer-mtp.md)（此前64K调优，代码生成约185–241 token/s）
 - [考题原文](docs/competition-requirements.md)
 - [实验设计、判断标准及相关工作](docs/superpowers/specs/2026-10-14-feedback-validation-design.md)

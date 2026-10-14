@@ -17,6 +17,11 @@ def main(summary, output):
             observed=[(c,lookup[(f'd{draft}-c{c}',group)]) for c in [1,2,4] if (f'd{draft}-c{c}',group) in lookup]
             ax.plot([x[0] for x in observed],[x[1]['summary']['aggregate_tokens_per_s'] for x in observed],
                     marker='o',color=colors[draft],label=f'Draft {draft}')
+            for c,g in observed:
+                if g['native']['prefix_paths'].get('full_reset',0):
+                    y=g['summary']['aggregate_tokens_per_s']
+                    ax.scatter([c],[y],marker='D',facecolors='none',edgecolors='#dc2626',s=90,zorder=4)
+                    ax.annotate('prefix reset',(c,y),xytext=(-65,10),textcoords='offset points',fontsize=8)
         ax.set(title=title,xlabel='Configured active slots',ylabel='Committed output tokens / s',xticks=[1,2,4])
         ax.legend(frameon=False)
     names=['short-control','cold-low','cold-high','resume-high']
@@ -27,6 +32,8 @@ def main(summary, output):
                 group=lookup.get((f'd{draft}-c{c}','contention-'+name))
                 if group and 'tool' in group['classes']:
                     observed.append((i,group['classes']['tool']))
+            if not observed:
+                continue
             axes[1,0].plot([x[0] for x in observed],[x[1]['slo']['5']['tool_goodput_per_s'] for x in observed],
                 marker='o',linestyle=style,color=colors[draft],label=f'D{draft} C{c}')
             quantiles=[(i,g['latency_s']['p95']) for i,g in observed if g['latency_s']['p95'] is not None]
@@ -39,7 +46,7 @@ def main(summary, output):
     for ax in axes.flat:
         ax.grid(alpha=.2);ax.spines[['top','right']].set_visible(False)
     fig.suptitle('Qwen3.8-27B / one RTX 4090 / NInfer / synthetic serving snapshots\n'
-                 'One group per point; errors and drain included in throughput; counter roofline undetermined',fontsize=11)
+                 'One group per point; errors and drain included; red diamond: prefix reset; roofline undetermined',fontsize=10)
     output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
     for extension in ['png','svg','pdf']:
         fig.savefig(output.with_suffix('.'+extension),dpi=180)
