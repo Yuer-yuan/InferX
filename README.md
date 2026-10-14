@@ -2,6 +2,7 @@
 
 单 RTX 4090 上的 Qwen3.8-27B 部署及代码生成—CPU 验证反馈实验。HumanEval 阶段用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于 GPU 1 的同一服务会话，每个试验只使用一张卡。
 
+- [NInfer + MTP 单卡调优结果与服务使用](docs/reports/2026-10-14-ninfer-mtp.md)（代码生成约185–241 token/s，GPU1服务18081）
 - [考题原文](docs/competition-requirements.md)
 - [实验设计、判断标准及相关工作](docs/superpowers/specs/2026-10-14-feedback-validation-design.md)
 - [实施计划](docs/superpowers/plans/2026-10-14-feedback-validation.md)

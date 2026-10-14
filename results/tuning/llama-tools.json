@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "first": {
+    "id": "chatcmpl-Wd5E4TnhtZDsy7RYRFtMP6Fs3DFl1she",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "QyibT8cvdGfFFqnvuRH2WMNGTRuINjUO",
+        "name": "add_numbers",
+        "input": {
+          "a": 2,
+          "b": 3
+        }
+      }
+    ],
+    "model": "qwen38-27b",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "usage": {
+      "cache_read_input_tokens": 0,
+      "input_tokens": 306,
+      "output_tokens": 36
+    }
+  },
+  "second": {
+    "id": "chatcmpl-IrAoQJ6SuoDclZcUebUm9QP9vzkxl0AB",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "5"
+      }
+    ],
+    "model": "qwen38-27b",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "usage": {
+      "cache_read_input_tokens": 341,
+      "input_tokens": 19,
+      "output_tokens": 2
+    }
+  },
+  "first_wall_s": 0.7524214908480644,
+  "second_wall_s": 0.29053226485848427
+}

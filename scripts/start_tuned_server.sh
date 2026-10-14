@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh
+cd "$INFERX_ROOT"
 # Tuning defaults are explicit; the report records the final selected invocation.
 inferx_engine=${1:-llama}
 inferx_draft=${2:-0}
@@ -59,6 +60,7 @@ else
     "$INFERX_ROOT/models/qwen38-ninfer/qwen3_8_27b.ninfer" \
     --host 127.0.0.1 --port 18081 --model-id qwen38-27b \
     --max-context "$inferx_context" --kv-capacity "$inferx_context" \
+    --default-max-tokens 8192 --pending-timeout-ms 120000 \
     --max-concurrency "$inferx_concurrency" --prefill-chunk "$inferx_ubatch" \
     --kv-dtype "$inferx_kv" --no-thinking --greedy \
     --presence-penalty 0 --frequency-penalty 0 \

@@ -1,0 +1,28 @@
+{
+  "pid": 2675225,
+  "proc_start_ticks": "2078882721",
+  "created_unix": 1791954963.261294,
+  "endpoint": "http://127.0.0.1:18081",
+  "model_id": "qwen38-27b",
+  "gpu_index": 1,
+  "draft_tokens": 7,
+  "kv_dtype": "int8",
+  "prefill_chunk": 2048,
+  "max_context": 65536,
+  "max_concurrency": 1,
+  "prefix_reuse": true,
+  "thinking": false,
+  "launcher": "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_best_server.sh",
+  "verified_unix": 1791955505.9510536,
+  "command": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve /home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer --host 127.0.0.1 --port 18081 --model-id qwen38-27b --max-context 65536 --kv-capacity 65536 --default-max-tokens 8192 --pending-timeout-ms 120000 --max-concurrency 1 --prefill-chunk 2048 --kv-dtype int8 --no-thinking --greedy --presence-penalty 0 --frequency-penalty 0 --request-log-jsonl /home/guokc/mypro/gnn-mount-sda1/InferX/tuning/ninfer-best-requests.jsonl --spec mtp --draft-tokens 7 --lm-head-draft",
+  "cwd": "/home/guokc/mypro/gnn-mount-sda1/InferX",
+  "owner_uid": 1004,
+  "gpu_snapshot": "GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03, 2504785, 17538 MiB\nGPU-4d9bef9d-631c-bb36-3ff4-589d6a184189, 2675225, 20398 MiB\n",
+  "disk": "Filesystem         1B-blocks          Used    Available Use% Mounted on\n/dev/sda1      3936065982464 2920386166784 815663112192  79% /home/guokc/mypro/gnn-mount-sda1\n",
+  "health_18080": {
+    "status": "ok"
+  },
+  "health_18081": {
+    "status": "ok"
+  }
+}
