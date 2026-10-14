@@ -83,9 +83,14 @@ async def run_load(endpoint: str, requests: list[dict], output, mode: str,
         raise ValueError('duplicate request identity')
     if mode == 'open' and any(r.get('offset_s', -1) < 0 for r in requests):
         raise ValueError('open-loop offsets must be nonnegative')
+    affinity = mode == 'closed' and any('producer' in r for r in requests)
+    if affinity and any(type(r.get('producer')) is not int or
+                        not 0 <= r['producer'] < workers for r in requests):
+        raise ValueError('every closed-loop request needs a producer within workers')
     origin = time.perf_counter()
     records = []
-    timeout = aiohttp.ClientTimeout(total=180, sock_connect=10, sock_read=150)
+    # Near256K cold prefills already measured >200s; allow queued requests as well.
+    timeout = aiohttp.ClientTimeout(total=900, sock_connect=10, sock_read=850)
     async with aiohttp.ClientSession(timeout=timeout,
             connector=aiohttp.TCPConnector(limit=0, force_close=True)) as session:
         async def execute(specification):
@@ -106,6 +111,8 @@ async def run_load(endpoint: str, requests: list[dict], output, mode: str,
                 arrival_ttft_s=lag+result['summary']['ttft_s']
                     if result['summary']['ttft_s'] is not None else None,
                 functional_ok=valid, expected_tool=expected, reconstructed_tools=calls, **result)
+            if 'producer' in specification:
+                record['producer'] = specification['producer']
             records.append(record)
             output.write(json.dumps(record, ensure_ascii=False) + '\n')
             output.flush()
@@ -113,12 +120,17 @@ async def run_load(endpoint: str, requests: list[dict], output, mode: str,
         if mode == 'open':
             await asyncio.gather(*(execute(specification) for specification in requests))
         else:
-            queue = collections.deque(requests)
-            async def worker():
+            async def worker(queue):
                 while queue:
                     specification = queue.popleft()
                     await execute(specification)
-            await asyncio.gather(*(worker() for _ in range(min(workers, len(requests)))))
+            if affinity:
+                queues = [collections.deque(r for r in requests if r['producer'] == p)
+                          for p in range(workers)]
+            else:
+                queue = collections.deque(requests)
+                queues = [queue] * min(workers, len(requests))
+            await asyncio.gather(*(worker(queue) for queue in queues))
     return records
 
 

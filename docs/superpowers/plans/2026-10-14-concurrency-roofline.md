@@ -12,7 +12,7 @@
 - GPU1 only; preserve GPU0PID2504785/UUIDGPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03/health18080.
 - HDD root `/home/guokc/mypro/gnn-mount-sda1/InferX`; no new model/engine build, driver/global/account/profile-permission changes, push or merge.
 - Original18081 service must be idle and identity-verified throughpidfd before stop; restore256K,rk4v4-e8,MTP7,prefill2048,C1,warm/no-thinking/greedy and refreshruntime/best-service manifests in finally.
-- Experiments bind127.0.0.1:18083; max-context65536, pooledKV131072,rk4v4-e8,prefill2048,pending16/120s; primaryD0/4/7×C1/2/4, exploratoryD0/7×C8, startup headroom>=1024MiB.
+- Experiments bind127.0.0.1:18083; max-context=min(262144,pooledKV), pooledKV212992,rk4v4-e8,prefill2048,pending16/600s; primaryD0/4/7×C1/2/4, exploratoryD0/7×C8(KV131072) plusD7/C1 near256K(KV262144), startup headroom>=1024MiB.
 - Retain errors/overload/timeouts/truncation and actual cache misses; profiler traces separate; no innovation, live-agent accuracy, losslessness or counter-based roofline proof without evidence.
 - Cold/resume/control arrangement and counts/rates exactly as Spec; empiricalP95n>=20/P99n>=100, source counts and limitations explicit.
 
@@ -31,7 +31,7 @@
 
 - [ ] RED tests for fragmented tool arguments, error retention/quantile thresholds and bandwidth units; real localHTTP delay proves arrivals overlap rather than serialize and closed-loopworker cap is honored. ExpectedmissingmoduleFAIL.
 - [ ] RED realprocess test: mismatchedstartticks refusesstop, unrelatedprocesssurvives correctstop; metadatarefreshpreservesconfigandupdatesPID/startticks. Implementhelpers, targetedGREEN.
-- [ ] Freeze code/prose/tool payloads, token-sizedshared12K history and matched16/24/32K cold/resume inputs; plannedcounts/rates/configs saved beforegeneration. Use readonlyGPU0tokenizer only. Verifybounds/hashes/tool schema invariants.
+- [ ] Freeze code/prose/tool payloads, token-sizedshared24K history and matched128K cold/resume inputs plus48K/96K/192K/248K strata; plannedcounts/rates/configs saved beforegeneration. Use readonlyGPU0tokenizer only. Verifybounds/hashes/tool schema invariants.
 - [ ] FullremotepytestGREEN, commit andtask-done.
 
 ### Task 2: Owned campaign, bandwidth reference and three studies
@@ -40,7 +40,7 @@
 **Interfaces:** Consumesfrozenworkloads/configs; writesper-group rawJSONL/nativeevents/telemetry/quality/status/ownership/restoration manifests and independentprofilerruns onHDD.
 
 - [ ] Confirm88testbaseline andcurrentoriginalidentity/GPU0/idle; save recoverymetadata. Stoporiginalthroughpidfd; devicebandwidthuses2×256MiB,8warmups,64copies×5samples. ExpectedrealCUDAmeasurementorarchivederror, nevercounterproof.
-- [ ] Run primary9 configurations plus2C8admissionprobes, sequentialownedservers. For each admittedcandidate run studies1/3 and declaredsubsetstudy2; eachgroup warmup/measurement/nativecursor bounded separately. Recordstartupfailures/headroombelow1024withoutdroppingthem. Expectedcompletegroup recordsorinvestigated explicitfailure.
+- [ ] Run primary9 configurations plus2C8admissionprobes and1near256Kprobe, sequentialownedservers. For each admittedcandidate run studies1/3 and declaredsubsetstudy2; eachgroup warmup/measurement/nativecursor bounded separately. Recordstartupfailures/headroombelow1024withoutdroppingthem. Expectedcompletegroup recordsorinvestigated explicitfailure.
 - [ ] Run existingisolatedmerge-intervalqualitygate withfullbudget andnativeforcedtoolchecks; saveprofilerpermissionrecord andboundedNsightCUDAtraces onrepresentatives only. Expectedtrace/kernelartifactsor exactprofilererrors, neither countedthroughput.
 - [ ] Finallyrestoreexactoriginalconfiguration at18081, refreshactualPID/startticks/exe/time inboth manifests, verifyOpenAI/Anthropictools,262144advertisement/GPU0health. FullsuiteGREEN, commitandtask-done.
 

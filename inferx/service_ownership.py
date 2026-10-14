@@ -2,6 +2,7 @@
 import os
 import signal
 import time
+import json
 from pathlib import Path
 
 from inferx.context_agents import process_start_ticks, verify_process_identity
@@ -38,3 +39,23 @@ def stop_matching_process(identity: dict, timeout: float = 20) -> None:
 
 def refreshed_manifest(saved: dict, identity: dict) -> dict:
     return {**saved, **identity, 'created_unix': time.time()}
+
+
+class RestorableService:
+    """Stop a checked service and restore its configuration even on experiment failure."""
+    def __init__(self, saved, restore, manifest_paths):
+        self.saved, self.restore = saved, restore
+        self.manifest_paths = manifest_paths
+        self.restored = None
+
+    def __enter__(self):
+        stop_matching_process(self.saved)
+        return self
+
+    def __exit__(self, kind, value, traceback):
+        self.restored = self.restore(self.saved)
+        for path in self.manifest_paths:
+            temporary = path.with_name(path.name + f'.refresh-{os.getpid()}')
+            temporary.write_text(json.dumps(self.restored, indent=2))
+            os.replace(temporary, path)
+        return False

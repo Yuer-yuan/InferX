@@ -3,12 +3,18 @@ import copy
 import hashlib
 import json
 import os
+import shutil
 import urllib.request
 from pathlib import Path
 
 root = Path(os.environ['INFERX_ROOT'])
 directory = root / 'concurrency-roofline'
 directory.mkdir(exist_ok=True)
+if (directory/'grid.json').exists():
+    archive = directory/'before-long-context-steering'
+    archive.mkdir(exist_ok=False)
+    for filename in ['workloads.json','grid.json','workload-manifest.json']:
+        shutil.move(directory/filename, archive/filename)
 system = 'You are a precise local coding assistant. Answer directly without hidden reasoning.'
 tool = dict(type='function', function=dict(name='record_status',
     description='Record the explicitly requested status, task identifier and attempt number.',
@@ -71,8 +77,8 @@ def fit(builder, target):
 
 
 templates = {}
-for length in [512, 12288]:
-    for kind in ['code', 'prose', 'tool']:
+for length in [512, 15360, 24576, 49152, 98304, 196608, 253952]:
+    for kind in (['code', 'prose', 'tool'] if length in [512,15360,24576] else ['code','prose']):
         def builder(records):
             return payload([dict(role='system', content=system),
                 dict(role='user', content=registry(records)),
@@ -83,8 +89,16 @@ for length in [512, 12288]:
         templates[name] = dict(id=name, payload=p, reference_prompt_tokens=actual,
             registry_records=records, expected_tool=expected if kind == 'tool' else None)
 
-base = templates['tool-12288']['payload']['messages'][:-1]
-for target in [16384, 24576, 32768]:
+# Code/prose at a given length share exactly the same historical registry.
+for length in [512,15360,24576,49152,98304,196608,253952]:
+    records = min(templates[f'{kind}-{length}']['registry_records'] for kind in ['code','prose'])
+    for kind in ['code','prose']:
+        item = templates[f'{kind}-{length}']
+        item['payload']['messages'][1]['content'] = registry(records)
+        item['registry_records'] = records
+        item['reference_prompt_tokens'] = token_count(item['payload'])
+base = templates['tool-24576']['payload']['messages'][:-1]
+for target in [131072, 196608, 253952]:
     prefix = f'D{target}_'
     answer = hashlib.sha256(f'registry:{prefix}:0'.encode()).hexdigest()[:16]
     wanted = dict(name='record_status', arguments=dict(status='ready', task=answer, attempt=1))
@@ -104,20 +118,23 @@ for target in [16384, 24576, 32768]:
 
 configs = [dict(id=f'd{draft}-c{concurrency}', draft=draft, concurrency=concurrency,
                exploratory=False) for concurrency in [1, 2, 4] for draft in [0, 4, 7]]
-configs += [dict(id=f'd{draft}-c8', draft=draft, concurrency=8, exploratory=True) for draft in [0, 7]]
-grid = dict(version=1, endpoint='http://127.0.0.1:18083', max_context=65536,
-            kv_capacity=131072, kv_dtype='rk4v4-e8', prefill_chunk=2048,
-            configs=configs, pure_requests_per_class=12, uniform_long_requests=8,
+configs += [dict(id=f'd{draft}-c8', draft=draft, concurrency=8, exploratory=True, kv_capacity=131072) for draft in [0, 7]]
+configs += [dict(id='d7-c1-near256', draft=7, concurrency=1, exploratory=True, kv_capacity=262144, near256_only=True)]
+grid = dict(version=2, endpoint='http://127.0.0.1:18083', max_context=262144,
+            kv_capacity=212992, kv_dtype='rk4v4-e8', prefill_chunk=2048,
+            configs=configs, pure_requests_per_class=12, uniform_long_requests=8, common_long_target=49152,
+            capacity_targets={'1':196608,'2':98304,'4':49152,'8':15360}, capacity_uniform_requests=4,
             mixed_requests=16, arrival_duration_s=48,
             mixed_cases=[dict(name='short-control', rate=2.5, long_mode=None),
                          dict(name='cold-low', rate=.5, long_mode='cold'),
                          dict(name='cold-high', rate=2.5, long_mode='cold'),
                          dict(name='resume-high', rate=2.5, long_mode='resume')],
-            long_offsets_s=[0,16,32], long_targets=[16384,24576,32768])
+            long_offsets_s=[16], long_targets=[131072])
 for name, value in [('workloads.json', templates), ('grid.json', grid)]:
     with (directory/name).open('x') as f:
         json.dump(value, f, ensure_ascii=False, indent=2)
 manifest = dict(scope='Synthetic serving snapshots; no live agent outcome claim.',
+    revision_reason='User requested much longer inputs:48K common controls,96K/192K capacity strata,128K mixed inputs and248K near-limit probe. C8 has separate128K pooled budget and15K per-request history.',
     tokenizer_reference='GPU0 read-only llama.cpp apply-template/tokenize; NInfer usage authoritative',
     files=[dict(file=name, sha256=hashlib.sha256((directory/name).read_bytes()).hexdigest(),
                 bytes=(directory/name).stat().st_size) for name in ['workloads.json', 'grid.json']],
