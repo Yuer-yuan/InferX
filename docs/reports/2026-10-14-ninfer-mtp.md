@@ -150,6 +150,6 @@ INFERX_GRID="$INFERX_ROOT/tuning/ninfer-final.json" \
 
 冷测须使用冷启动参数 `... 1 cold`（禁用 prefix reuse），不能在已有 warm 服务上只改标签。`run_tuning_grid.py` 独占它自己创建的进程；现有 winner 需按前述身份核对停止后再运行。导出结果按源文件及 output budget 分组，避免将截断性能样本与完整质量样本混算。失败原始记录仍保留在导出数据里。
 
-归档共 **247 次请求记录、155 个分组**：243 次协议成功，其中 80 次达到输出预算；4 次失败保留（旧客户端 keep-alive 断连1次，NInfer不支持的模板字段HTTP400三次）。draft8启动失败单列，未混入请求吞吐。独立代码检查30/30、完整质量补测代码10/10通过。`results/tuning/trials.jsonl` 保留请求/输出哈希、缓存计数和单次指标；`summary.json` 保留每组 n/min/median/max；`ninfer-final-telemetry.json` 保留原生接收计数与 timing，并按请求顺序与生成 token 数核对。`*-launch.json`、corpus、网格和版本清单支持复核；完整文本及服务器日志留在 HDD。
+归档共 **247 次请求记录、155 个分组**：243 次协议成功，其中 80 次达到输出预算；4 次失败保留（旧客户端 keep-alive 断连1次，NInfer不支持的模板字段HTTP400三次）。draft8启动失败单列，未混入请求吞吐。独立代码检查30/30、完整质量补测代码10/10通过。`results/tuning/trials.jsonl` 保留请求/输出哈希、缓存计数和单次指标；`summary.json` 保留每组 n/min/median/max；`ninfer-final-telemetry.json` 保留原生接收计数与 timing，并按请求顺序与生成 token 数核对。`*-launch.json`、corpus、网格和版本清单支持复核；完整文本及服务器日志留在 HDD；58份静态原始文件的大小与SHA256见 `raw-manifest.json`。
 
-工程执行决策、修复证据和审查记录见 [执行记录](2026-10-14-ninfer-execution-record.md)。后续可研究按任务和接收率调整 draft 长度，但这次没有实现自适应调度，也不把调参结果包装成新的研究机制。
+75项自动测试通过，独立审查没有Critical/Important。已知非阻塞问题：预热请求失败会报错，但该次原始响应未落盘，不影响本轮有效结果。工程执行决策、修复证据和审查记录见 [执行记录](2026-10-14-ninfer-execution-record.md)。后续可研究按任务和接收率调整 draft 长度，但这次没有实现自适应调度，也不把调参结果包装成新的研究机制。

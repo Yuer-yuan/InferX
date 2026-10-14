@@ -57,4 +57,4 @@
 - [x] Repeat finalists three times on held-out code/reasoning/prose; retain individual observations and dispersion. Compare MTP/no-MTP output parity and runnable code checks.
 - [x] Probe cold/warm 2K/8K, 32K and near-64K fit, concurrency 2/4 where supported, and Anthropic tool use. Report all failures and truncations separately.
 - [x] Leave a quality-gated winner on GPU 1; inspect process ownership before replacing only our tuning processes. Verify health, real completion, free disk, and GPU 0 preservation.
-- [ ] Write results/report, run full pytest plus artifact validation, commit. Run one fresh final review, fix important findings once, preserve branch without push/merge.
+- [x] Write results/report, run full pytest plus artifact validation, commit. Run one fresh final review, fix important findings once, preserve branch without push/merge.
