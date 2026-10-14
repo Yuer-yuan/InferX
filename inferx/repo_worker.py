@@ -66,6 +66,7 @@ def main():
                     if report.failed:
                         counts['failed'] += 1
             passed = pytest.main(['-q', '-p', 'no:cacheprovider',
+                                  '--rootdir=' + str(repo), '--confcutdir=' + str(repo),
                                   '-o', 'log_file=' + str(scratch/'pytest.log'), str(repo/'tests')],
                                  plugins=[Counter()]) == 0
         expected = payload.get('expected_counts')
