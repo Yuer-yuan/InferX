@@ -1,0 +1,958 @@
+{
+  "status": "measured",
+  "started_unix": 1791984329.1277325,
+  "controller_pid": 2870907,
+  "harness_sha256": {
+    "scripts/run_concurrency_campaign.py": "4c5f8bf30f0a34bff196f95f58e2ee692fc85fa57eccb140df92d45d0efb28b9",
+    "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+    "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+    "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+    "inferx/concurrency.py": "a891970ba63e9f6b8067aa76c9351698fa0668f9413df2aa6450af772d72d62c",
+    "inferx/service_ownership.py": "93233bbde4ad0c6ad85596c5c3168dd4c731a03849bb0190797a3dae3968f994"
+  },
+  "binary_sha256": "af33cb2792c462a6353c68e41d2dc2459bc98f4f2a43d0dfd1454725db2e6756",
+  "engine_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+  "grid_sha256": "947532037a1b417900ec30de05db5c460e97fcd1356687622e6a49c6d6f10a4d",
+  "hardware_counter_permission": [
+    "RmProfilingAdminOnly: 1"
+  ],
+  "model": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+  "binary": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+  "cases": [
+    {
+      "configuration": {
+        "id": "d0-c1",
+        "draft": 0,
+        "concurrency": 1,
+        "exploratory": false
+      },
+      "started_unix": 1791984331.5198922,
+      "startup": {
+        "configuration": {
+          "id": "d0-c1",
+          "draft": 0,
+          "concurrency": 1,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "1",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d0-c1/native.jsonl"
+        ],
+        "identity": {
+          "pid": 2870962,
+          "proc_start_ticks": "2081819561",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 20917,
+        "memory_free_mib": 3191,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791984390,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791985821.6027954
+    },
+    {
+      "configuration": {
+        "id": "d4-c1",
+        "draft": 4,
+        "concurrency": 1,
+        "exploratory": false
+      },
+      "started_unix": 1791985821.6046715,
+      "startup": {
+        "configuration": {
+          "id": "d4-c1",
+          "draft": 4,
+          "concurrency": 1,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "1",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d4-c1/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "4",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2882279,
+          "proc_start_ticks": "2081968569",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 21925,
+        "memory_free_mib": 2183,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791985882,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791986766.6371536
+    },
+    {
+      "configuration": {
+        "id": "d7-c1",
+        "draft": 7,
+        "concurrency": 1,
+        "exploratory": false
+      },
+      "started_unix": 1791986766.6390953,
+      "startup": {
+        "configuration": {
+          "id": "d7-c1",
+          "draft": 7,
+          "concurrency": 1,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "1",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d7-c1/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "7",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2888869,
+          "proc_start_ticks": "2082063072",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 21935,
+        "memory_free_mib": 2173,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791986827,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791988107.98501
+    },
+    {
+      "configuration": {
+        "id": "d0-c2",
+        "draft": 0,
+        "concurrency": 2,
+        "exploratory": false
+      },
+      "started_unix": 1791988107.987612,
+      "startup": {
+        "configuration": {
+          "id": "d0-c2",
+          "draft": 0,
+          "concurrency": 2,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "2",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d0-c2/native.jsonl"
+        ],
+        "identity": {
+          "pid": 2897015,
+          "proc_start_ticks": "2082197208",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 21221,
+        "memory_free_mib": 2887,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791988166,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791988808.790156
+    },
+    {
+      "configuration": {
+        "id": "d4-c2",
+        "draft": 4,
+        "concurrency": 2,
+        "exploratory": false
+      },
+      "started_unix": 1791988808.7929046,
+      "startup": {
+        "configuration": {
+          "id": "d4-c2",
+          "draft": 4,
+          "concurrency": 2,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "2",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d4-c2/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "4",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2901457,
+          "proc_start_ticks": "2082267288",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 22237,
+        "memory_free_mib": 1871,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791988870,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791989450.0447254
+    },
+    {
+      "configuration": {
+        "id": "d7-c2",
+        "draft": 7,
+        "concurrency": 2,
+        "exploratory": false
+      },
+      "started_unix": 1791989450.047835,
+      "startup": {
+        "configuration": {
+          "id": "d7-c2",
+          "draft": 7,
+          "concurrency": 2,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "2",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d7-c2/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "7",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2905534,
+          "proc_start_ticks": "2082331414",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 22257,
+        "memory_free_mib": 1851,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791989511,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791990113.1060035
+    },
+    {
+      "configuration": {
+        "id": "d0-c4",
+        "draft": 0,
+        "concurrency": 4,
+        "exploratory": false
+      },
+      "started_unix": 1791990113.1093123,
+      "startup": {
+        "configuration": {
+          "id": "d0-c4",
+          "draft": 0,
+          "concurrency": 4,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "4",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d0-c4/native.jsonl"
+        ],
+        "identity": {
+          "pid": 2909499,
+          "proc_start_ticks": "2082397719",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 21827,
+        "memory_free_mib": 2281,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791990171,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791990988.5745442
+    },
+    {
+      "configuration": {
+        "id": "d4-c4",
+        "draft": 4,
+        "concurrency": 4,
+        "exploratory": false
+      },
+      "started_unix": 1791990988.5777133,
+      "startup": {
+        "configuration": {
+          "id": "d4-c4",
+          "draft": 4,
+          "concurrency": 4,
+          "exploratory": false
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "212992",
+          "--kv-capacity",
+          "212992",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "4",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d4-c4/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "4",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2914402,
+          "proc_start_ticks": "2082485266",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 22869,
+        "memory_free_mib": 1239,
+        "model": {
+          "data": [
+            {
+              "context_window": 212992,
+              "created": 1791991049,
+              "id": "qwen38-27b",
+              "max_model_len": 212992,
+              "max_output_tokens": 212992,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791991476.6226795
+    },
+    {
+      "configuration": {
+        "id": "d7-c4",
+        "draft": 7,
+        "concurrency": 4,
+        "exploratory": false
+      },
+      "started_unix": 1791991476.6262934,
+      "status": "infrastructure_error",
+      "error": "RuntimeError: server startup exit 1",
+      "finished_unix": 1791991477.7136981
+    },
+    {
+      "configuration": {
+        "id": "d0-c8",
+        "draft": 0,
+        "concurrency": 8,
+        "exploratory": true,
+        "kv_capacity": 131072
+      },
+      "started_unix": 1791991477.717129,
+      "startup": {
+        "configuration": {
+          "id": "d0-c8",
+          "draft": 0,
+          "concurrency": 8,
+          "exploratory": true,
+          "kv_capacity": 131072
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "131072",
+          "--kv-capacity",
+          "131072",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "8",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d0-c8/native.jsonl"
+        ],
+        "identity": {
+          "pid": 2918361,
+          "proc_start_ticks": "2082534181",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 21681,
+        "memory_free_mib": 2427,
+        "model": {
+          "data": [
+            {
+              "context_window": 131072,
+              "created": 1791991537,
+              "id": "qwen38-27b",
+              "max_model_len": 131072,
+              "max_output_tokens": 131072,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791991805.775507
+    },
+    {
+      "configuration": {
+        "id": "d7-c8",
+        "draft": 7,
+        "concurrency": 8,
+        "exploratory": true,
+        "kv_capacity": 131072
+      },
+      "started_unix": 1791991805.779257,
+      "status": "infrastructure_error",
+      "error": "RuntimeError: server startup exit 1",
+      "finished_unix": 1791991806.975326
+    },
+    {
+      "configuration": {
+        "id": "d7-c1-near256",
+        "draft": 7,
+        "concurrency": 1,
+        "exploratory": true,
+        "kv_capacity": 262144,
+        "near256_only": true
+      },
+      "started_unix": 1791991806.978995,
+      "startup": {
+        "configuration": {
+          "id": "d7-c1-near256",
+          "draft": 7,
+          "concurrency": 1,
+          "exploratory": true,
+          "kv_capacity": 262144,
+          "near256_only": true
+        },
+        "args": [
+          "taskset",
+          "-c",
+          "28-35",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18083",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "262144",
+          "--kv-capacity",
+          "262144",
+          "--kv-dtype",
+          "rk4v4-e8",
+          "--prefill-chunk",
+          "2048",
+          "--default-max-tokens",
+          "8192",
+          "--max-concurrency",
+          "1",
+          "--max-pending-requests",
+          "16",
+          "--pending-timeout-ms",
+          "600000",
+          "--log-stats-interval-ms",
+          "1000",
+          "--no-thinking",
+          "--greedy",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--request-log-jsonl",
+          "/home/guokc/mypro/gnn-mount-sda1/InferX/concurrency-roofline/d7-c1-near256/native.jsonl",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "7",
+          "--lm-head-draft"
+        ],
+        "identity": {
+          "pid": 2920944,
+          "proc_start_ticks": "2082567107",
+          "uid": 1004,
+          "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+        },
+        "memory_used_mib": 22801,
+        "memory_free_mib": 1307,
+        "model": {
+          "data": [
+            {
+              "context_window": 262144,
+              "created": 1791991868,
+              "id": "qwen38-27b",
+              "max_model_len": 262144,
+              "max_output_tokens": 262144,
+              "modalities": {
+                "vision": false
+              },
+              "name": "qwen38-27b",
+              "object": "model",
+              "owned_by": "ninfer"
+            }
+          ],
+          "object": "list"
+        }
+      },
+      "status": "completed",
+      "finished_unix": 1791992300.248617
+    }
+  ],
+  "profiles": [
+    {
+      "configuration": {
+        "id": "profile-d0-c1",
+        "draft": 0,
+        "concurrency": 1,
+        "profiler": true
+      },
+      "trace_delay_s": 75,
+      "trace_duration_s": 60,
+      "independent_of_performance_groups": true,
+      "status": "profile_error",
+      "error": "RuntimeError: GPU1 process ownership ambiguous",
+      "stats_returncode": 0,
+      "report_bytes": 500395
+    },
+    {
+      "configuration": {
+        "id": "profile-d7-c4",
+        "draft": 7,
+        "concurrency": 4,
+        "profiler": true
+      },
+      "trace_delay_s": 75,
+      "trace_duration_s": 60,
+      "independent_of_performance_groups": true,
+      "status": "profile_error",
+      "error": "RuntimeError: server startup exit 1",
+      "report_missing": true
+    }
+  ],
+  "finished_unix": 1791992468.4020343,
+  "restored": true,
+  "gpu0_healthy": true
+}
