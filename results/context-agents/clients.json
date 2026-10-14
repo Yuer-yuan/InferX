@@ -1,0 +1,74 @@
+{
+  "node": "22.23.3",
+  "opencode": "1.19.0",
+  "pi": "1.2.0",
+  "pi_package": "@earendil-works/pi-coding-agent",
+  "claude": "2.1.92",
+  "backend_context": 262144,
+  "claude_reported_context": 200000,
+  "max_request_output": 8192,
+  "smoke": {
+    "opencode": {
+      "tool_counts": {
+        "read": 2,
+        "edit": 1,
+        "bash": 1
+      },
+      "event_counts": {
+        "step_start": 4,
+        "tool_use": 4,
+        "step_finish": 4,
+        "text": 1
+      },
+      "errors": [],
+      "terminal": true,
+      "tool_errors": 0,
+      "tests_passed": true,
+      "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+    },
+    "pi": {
+      "tool_counts": {
+        "read": 2,
+        "edit": 1,
+        "bash": 1
+      },
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 4,
+        "message_start": 10,
+        "message_end": 10,
+        "message_update": 21,
+        "tool_execution_start": 4,
+        "tool_execution_end": 4,
+        "turn_end": 4,
+        "tool_execution_update": 3,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "errors": [],
+      "terminal": true,
+      "tool_errors": 0,
+      "tests_passed": true,
+      "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+    },
+    "claude": {
+      "tool_counts": {
+        "read": 2,
+        "edit": 1,
+        "bash": 1
+      },
+      "event_counts": {
+        "system": 1,
+        "assistant": 9,
+        "user": 4,
+        "result": 1
+      },
+      "errors": [],
+      "terminal": true,
+      "tool_errors": 0,
+      "tests_passed": true,
+      "source_sha256": "ba1a531f581d2e6094e978ed6f7aca7a8d92eeb62c6e7ad73ee692f7f18bc772"
+    }
+  }
+}

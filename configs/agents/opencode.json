@@ -1,0 +1,45 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "inferx/qwen38-27b",
+  "small_model": "inferx/qwen38-27b",
+  "enabled_providers": [
+    "inferx"
+  ],
+  "autoupdate": false,
+  "lsp": false,
+  "formatter": false,
+  "plugin": [],
+  "mcp": {},
+  "provider": {
+    "inferx": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "InferX local",
+      "options": {
+        "baseURL": "http://127.0.0.1:18081/v1",
+        "apiKey": "inferx-local"
+      },
+      "models": {
+        "qwen38-27b": {
+          "name": "Qwen3.8-27B NInfer",
+          "tool_call": true,
+          "reasoning": false,
+          "attachment": false,
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 16384
+  },
+  "agent": {
+    "compaction": {
+      "model": "inferx/qwen38-27b"
+    }
+  }
+}
