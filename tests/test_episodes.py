@@ -54,18 +54,23 @@ class EpisodeTests(unittest.IsolatedAsyncioTestCase):
     async def test_waiting_deadline_cleans_permit_for_later_arrival(self):
         async def generate(task, i, seed, event):
             if task['task_id'] != 'test/2':
-                await asyncio.sleep(10)
+                try:
+                    await asyncio.sleep(10)
+                finally:
+                    # Hold the permit through cancellation cleanup so both
+                    # deadlines expire before the queued task can be admitted.
+                    await asyncio.sleep(.08)
             return 'ok'
         async def check(task, code, event):
             return {'status': 'passed'}
         result = await self.run_case(generate, check, policy='fixed1', slots=1,
-                                     budget=1, deadline=.04, arrivals=[0, 0, .07])
+                                     budget=1, deadline=.04, arrivals=[0, 0, .2])
         first, waiting, later = result['tasks']
         self.assertFalse(first['solved']); self.assertFalse(waiting['solved'])
         self.assertNotIn('generation_admitted', waiting['candidates'][0])
         self.assertTrue(later['solved'])
-        self.assertGreaterEqual(later['actual_arrival'], .07)
-        self.assertLess(result['makespan'], .2)
+        self.assertGreaterEqual(later['actual_arrival'], .2)
+        self.assertLess(result['makespan'], 1)
 
     async def test_infrastructure_failure_cancels_other_tasks(self):
         closed = []

@@ -17,23 +17,23 @@
 
 ## Review Focus
 
-- Reused PID cannot kill a foreign process: identity/executable/start-ticks test and actual process check (Task1).
-- Long-input probes cannot overflow output reserve or turn failed retrieval into a capacity pass (Task1).
-- Client context declarations and auxiliary models cannot exceed runtime or use cloud defaults (Task2).
-- CLI exit0/model claims/test modifications cannot substitute for pristine verification and actual tool events (Task3).
-- Timeout must terminate only the owned client group and preserve failure logs (Task3).
+- Reused PID cannot kill a foreign process: identity/executable/start-ticks test and actual process check (Task 1).
+- Long-input probes cannot overflow output reserve or turn failed retrieval into a capacity pass (Task 1).
+- Client context declarations and auxiliary models cannot exceed runtime or use cloud defaults (Task 2).
+- CLI exit0/model claims/test modifications cannot substitute for pristine verification and actual tool events (Task 3).
+- Timeout must terminate only the owned client group and preserve failure logs (Task 3).
 
-### Task1: Context validation and safe deployment
+### Task 1: Context validation and safe deployment
 
 **Files:** Create `inferx/context_agents.py`, `scripts/prepare_long_context.py`, `scripts/run_context_probe.py`, `tests/test_context_agents.py`; reuse `start_tuned_server.sh`.
-**Interfaces:** `verify_process_identity(pid:int, start_ticks:str, executable:Path)->bool`; `long_context_messages(records:int)->list[dict]`; probe JSONL from existing `stream_request`; chosen runtime manifest for Task2.
+**Interfaces:** `verify_process_identity(pid:int, start_ticks:str, executable:Path)->bool`; `long_context_messages(records:int)->list[dict]`; probe JSONL from existing `stream_request`; chosen runtime manifest for Task 2.
 
 - [ ] Write failing tests for stale/mismatched identity (real subprocess/temp paths), prompt early/middle/late expected lookups and output reserve; run targetedpytest, expectedFAIL before implementation.
 - [ ] Implement helpers; generate131K/262K-fit corpora using GPU0 read-only tokenizer, keep>=8192 output headroom; preserve request text and hashes. Expectedthree expected values correctly generated and actual token counts belowcapacity-reserve.
 - [ ] Stop only verified owned64KPID; run staged128KINT8 and256Krk4 probes, short heldoutcode and telemetry. Expectedquality/fit success or explicitfailedcandidate, no hidden exclusion. Leave selectedwarmserviceandmanifest,64Krollback.
 - [ ] Run fullsuite, inspect evidence, commit; task-done usesremote `repo-venv/bin/python -m pytest -q`.
 
-### Task2: Isolated client setup
+### Task 2: Isolated client setup
 
 **Files:** Create `scripts/install_agent_clients.sh`, `scripts/agent-env.sh`, `scripts/run_local_agent.sh`; configurations under `configs/agents/`; tests in `tests/test_agent_clients.py` if helpers enforce semantic invariants.
 **Interfaces:** Consumeschosenruntimecontext; wrapperCLI `run_local_agent.sh {opencode|pi|claude} [CLIargs...]`, all state/cache/logpathsHDD, localmodelqwen38-27b. Producesversion/protocolsmoke manifests.
@@ -42,7 +42,7 @@
 - [ ] Configure nativeOpenAI/Anthropic APIs and matchingcontext/outputbudget; isolateauxiliarymodelrouting. Runactualtoolsmoke (read/edit/test) perclient; fixonlyobservedcompatibilityerrors withRED→GREEN regressions ifanadapterisneeded.
 - [ ] Verifylauncher syntax/statepaths/localserverrequestlogs and fullsuite, commit; savecommands.
 
-### Task3: Repository agents, results and handoff
+### Task 3: Repository agents, results and handoff
 
 **Files:** Create `scripts/run_agent_trials.py`, `scripts/analyze_agent_trials.py`, `tests/test_agent_trials.py`, `results/context-agents/`, `docs/reports/2026-10-14-context-agents.md`; updateREADME.
 **Interfaces:** Consumes3clientwrappers and frozen3tasks; producestrialmanifest withclient/task/version/wall/status/verification/toolcounts/requestusage/diffhash/rawpaths.

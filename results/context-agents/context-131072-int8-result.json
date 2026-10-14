@@ -1,0 +1,32 @@
+{
+  "args": [
+    "bash",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_tuned_server.sh",
+    "ninfer",
+    "7",
+    "int8",
+    "2048",
+    "131072",
+    "1",
+    "cold"
+  ],
+  "started_unix": 1791962364.654291,
+  "context": 131072,
+  "kv": "int8",
+  "lookup_expected": {
+    "early": "dc1618dcb95446f1",
+    "middle": "f3401c324372fc0c",
+    "late": "b7ac00c50210afbb"
+  },
+  "lookup_answer": {
+    "early": "dc1618dcb95446f1",
+    "middle": "f3401c324372fc0c",
+    "late": "b7ac00c50210afbb"
+  },
+  "lookup_passed": true,
+  "max_observed_memory_mib": 22665,
+  "min_observed_free_mib": 1443,
+  "headroom_passed": true,
+  "ok": true,
+  "finished_unix": 1791962555.6613264
+}
