@@ -58,6 +58,19 @@ def gpu_processes():
             for row in text.splitlines() if row.strip()}
 
 
+def final_shutdown_check(saved):
+    processes = gpu_processes()
+    if ((saved['pid'], GPU) not in processes or
+            (2504785, 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03') not in processes):
+        raise RuntimeError('GPU process ownership changed; refusing shutdown')
+    if get('/health', 'http://127.0.0.1:18080')['status'] != 'ok':
+        raise RuntimeError('GPU0 service health changed; refusing shutdown')
+    metrics = get('/metrics', 'http://127.0.0.1:18081')
+    if (float(metrics['llamacpp:requests_processing']) != 0 or
+            float(metrics['llamacpp:requests_deferred']) != 0):
+        raise RuntimeError('original service became busy; refusing shutdown')
+
+
 def gpu_free(timeout=45):
     deadline = time.monotonic()+timeout
     while time.monotonic() < deadline:
@@ -347,7 +360,8 @@ def main():
     for sig in [signal.SIGINT, signal.SIGTERM, signal.SIGHUP]:
         signal.signal(sig, interrupted)
     try:
-        with RestorableService(saved, restore, [ROOT/'context-agents/runtime.json', ROOT/'tuning/best-service.json']):
+        with RestorableService(saved, restore, [ROOT/'context-agents/runtime.json', ROOT/'tuning/best-service.json'],
+                pre_stop_check=lambda: final_shutdown_check(saved)):
             gpu_free()
             measurement = subprocess.run([sys.executable,'-m','scripts.measure_device_bandwidth'],
                 cwd=ROOT/'code-tuning', env=ENV, stdin=subprocess.DEVNULL, capture_output=True, text=True)

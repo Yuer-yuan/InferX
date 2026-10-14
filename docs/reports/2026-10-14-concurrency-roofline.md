@@ -169,4 +169,6 @@ v3保留完整seed query与工具回复。独立语义预检查中，607token续
 - 两次只读raw导出的summary/groups/requests哈希一致，仓库副本也匹配，见[export-audit.json](../../results/concurrency/export-audit.json)。未混入v2或profiler请求。
 - [恢复核验](../../results/concurrency/restoration-audit.json)：实际PID/executable/startticks核对，两份manifest一致，原argv与所有客户端预算保持，窗口262144，原服务idle，OpenAI与Anthropic强制工具调用的名称/参数/结束状态通过，GPU0身份与health保持。
 
-代码完整验证命令为`ssh vlm-server 'source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh; cd "$INFERX_ROOT/code-tuning"; "$INFERX_ROOT/repo-venv/bin/python" -m pytest -q'`。本轮107项完整测试通过；测试与执行裁决记录将在最终代码复审后归档，数据与引擎保持独立。
+代码完整验证命令为`ssh vlm-server 'source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh; cd "$INFERX_ROOT/code-tuning"; "$INFERX_ROOT/repo-venv/bin/python" -m pytest -q'`。最终110项完整测试通过。独立复审发现的三处问题已修复：停服发信号后中断时保证恢复、在pidfd身份核对之后立即复查GPU与idle、压测工具有效性要求协议成功且未截断。三条回归先失败后通过；CPU修复后的重新导出与原终版哈希完全一致，无需重跑GPU实验。实际运行的冻结代码哈希保留在campaign记录，修复后的差异见[post-review-fixes.json](../../results/concurrency/post-review-fixes.json)。
+
+该引擎没有原子暂停准入API；最后一次idle读取之后仍可能有新请求到达，因此当前控制器拒绝检查时已经繁忙的服务，但不声称完全消除切换时的到达竞态。实验与复审执行记录见[执行记录](2026-10-14-concurrency-execution-record.md)。

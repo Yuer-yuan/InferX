@@ -66,7 +66,8 @@ def summarize_load(records: list[dict], span_s: float) -> dict:
     if len({r['id'] for r in records}) != len(records):
         raise ValueError('duplicate request identity')
     good = [r for r in records if r['summary']['ok']]
-    valid_tools = [r for r in good if r.get('functional_ok') is True]
+    valid_tools = [r for r in good if r.get('functional_ok') is True
+                   and not r['summary'].get('truncated')]
     tokens = sum(r['summary']['completion_tokens'] for r in good)
     slo = {}
     for threshold in [.5, 1, 2, 5, 10]:
@@ -113,7 +114,8 @@ async def run_load(endpoint: str, requests: list[dict], output, mode: str,
             lag = max(0, dispatched - scheduled)
             expected = specification.get('expected_tool')
             calls = reconstruct_tool_calls(result['events']) if expected is not None else []
-            valid = (len(calls) == 1 and calls[0]['name'] == expected['name']
+            valid = (result['summary']['ok'] and not result['summary'].get('truncated')
+                     and len(calls) == 1 and calls[0]['name'] == expected['name']
                      and calls[0]['arguments'] == expected['arguments']) if expected is not None else None
             record = dict(id=specification['id'], prompt_id=specification.get('prompt_id'),
                 scheduled_s=scheduled, dispatched_s=dispatched, finished_s=finished,

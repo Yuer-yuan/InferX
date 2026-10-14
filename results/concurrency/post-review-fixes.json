@@ -1,0 +1,57 @@
+{
+  "reviewed_head": "6754cda9f1b4226c6701fd3aa8f437452e75f0c8",
+  "review_model": "gpt-6-astra",
+  "findings": {
+    "critical": 0,
+    "important": 3,
+    "minor": 0
+  },
+  "important_fixed": [
+    "restore interrupted context entry after shutdown began",
+    "pidfd-held final GPU/idle check immediately before signal",
+    "protocol-successful nontruncated tool validity in runner and aggregation"
+  ],
+  "regression_tests": [
+    "test_interrupt_after_shutdown_signal_still_restores_service",
+    "test_final_idle_check_refuses_newly_busy_service_before_signal",
+    "test_runner_rejects_complete_tool_json_when_truncated_or_protocol_failed"
+  ],
+  "red": 3,
+  "green_full_suite": 110,
+  "green_elapsed_s": 7.39,
+  "gpu_campaign_repeated": false,
+  "final_exports_unchanged": true,
+  "harness": [
+    {
+      "file": "scripts/run_concurrency_campaign.py",
+      "actual_run_sha256": "4c5f8bf30f0a34bff196f95f58e2ee692fc85fa57eccb140df92d45d0efb28b9",
+      "current_sha256": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d"
+    },
+    {
+      "file": "scripts/measure_device_bandwidth.py",
+      "actual_run_sha256": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+      "current_sha256": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c"
+    },
+    {
+      "file": "scripts/profile_concurrency.py",
+      "actual_run_sha256": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+      "current_sha256": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa"
+    },
+    {
+      "file": "scripts/prepare_concurrency_workloads.py",
+      "actual_run_sha256": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+      "current_sha256": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2"
+    },
+    {
+      "file": "inferx/concurrency.py",
+      "actual_run_sha256": "a891970ba63e9f6b8067aa76c9351698fa0668f9413df2aa6450af772d72d62c",
+      "current_sha256": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6"
+    },
+    {
+      "file": "inferx/service_ownership.py",
+      "actual_run_sha256": "93233bbde4ad0c6ad85596c5c3168dd4c731a03849bb0190797a3dae3968f994",
+      "current_sha256": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea"
+    }
+  ],
+  "remaining_limitation": "No atomic engine admission-pause API: arrivals after the final idle read may race an authorized shutdown."
+}

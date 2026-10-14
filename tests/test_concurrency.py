@@ -94,3 +94,37 @@ def test_real_http_arrivals_overlap_and_closed_loop_obeys_worker_cap():
             await runner.cleanup()
 
     asyncio.run(exercise())
+
+
+def test_runner_rejects_complete_tool_json_when_truncated_or_protocol_failed():
+    async def exercise():
+        expected = dict(name='record_status', arguments={'status': 'ready'})
+
+        async def handler(request):
+            body = await request.json()
+            event = dict(choices=[dict(delta=dict(tool_calls=[dict(index=0,
+                function=dict(name=expected['name'], arguments=json.dumps(expected['arguments'])))]),
+                finish_reason=body['finish'])], usage=dict(prompt_tokens=3, completion_tokens=8))
+            return web.Response(text='data: '+json.dumps(event)+'\n\ndata: [DONE]\n\n',
+                                content_type='text/event-stream')
+
+        app = web.Application()
+        app.router.add_post('/v1/chat/completions', handler)
+        runner = web.AppRunner(app)
+        await runner.setup()
+        site = web.TCPSite(runner, '127.0.0.1', 0)
+        await site.start()
+        port = site._server.sockets[0].getsockname()[1]
+        try:
+            rows = await run_load(f'http://127.0.0.1:{port}', [dict(id=str(i),
+                payload={'finish': finish}, expected_tool=expected)
+                for i,finish in enumerate(['length', None, 'tool_calls'])],
+                io.StringIO(), mode='closed', workers=1)
+            assert [r['functional_ok'] for r in rows] == [False, False, True]
+            assert summarize_load(rows, 1)['tool_valid'] == 1
+            # Defensive aggregation of historical/caller-provided classifications.
+            rows[0]['functional_ok'] = True
+            assert summarize_load(rows, 1)['tool_valid'] == 1
+        finally:
+            await runner.cleanup()
+    asyncio.run(exercise())
