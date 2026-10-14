@@ -7,6 +7,8 @@ import shutil
 import urllib.request
 from pathlib import Path
 
+from inferx.concurrency import tool_resume_history
+
 root = Path(os.environ['INFERX_ROOT'])
 directory = root / 'concurrency-roofline'
 directory.mkdir(exist_ok=True)
@@ -97,7 +99,7 @@ for length in [512,15360,24576,49152,98304,196608,253952]:
         item['payload']['messages'][1]['content'] = registry(records)
         item['registry_records'] = records
         item['reference_prompt_tokens'] = token_count(item['payload'])
-base = templates['tool-24576']['payload']['messages'][:-1]
+base = tool_resume_history(templates['tool-24576']['payload']['messages'], expected)
 for target in [131072, 196608, 253952]:
     prefix = f'D{target}_'
     answer = hashlib.sha256(f'registry:{prefix}:0'.encode()).hexdigest()[:16]
@@ -120,7 +122,7 @@ configs = [dict(id=f'd{draft}-c{concurrency}', draft=draft, concurrency=concurre
                exploratory=False) for concurrency in [1, 2, 4] for draft in [0, 4, 7]]
 configs += [dict(id=f'd{draft}-c8', draft=draft, concurrency=8, exploratory=True, kv_capacity=131072) for draft in [0, 7]]
 configs += [dict(id='d7-c1-near256', draft=7, concurrency=1, exploratory=True, kv_capacity=262144, near256_only=True)]
-grid = dict(version=2, endpoint='http://127.0.0.1:18083', max_context=262144,
+grid = dict(version=3, endpoint='http://127.0.0.1:18083', max_context=262144,
             kv_capacity=212992, kv_dtype='rk4v4-e8', prefill_chunk=2048,
             configs=configs, pure_requests_per_class=12, uniform_long_requests=8, common_long_target=49152,
             capacity_targets={'1':196608,'2':98304,'4':49152,'8':15360}, capacity_uniform_requests=4,

@@ -1,6 +1,7 @@
 """Measured arrivals and protocol observations, independent of serving-engine policy."""
 import asyncio
 import collections
+import copy
 import json
 import math
 import statistics
@@ -9,6 +10,15 @@ import time
 import aiohttp
 
 from inferx.tuning import stream_request
+
+
+def tool_resume_history(messages: list[dict], expected: dict) -> list[dict]:
+    history = copy.deepcopy(messages)
+    call = dict(id='seed-record-status', type='function', function=dict(name=expected['name'],
+                arguments=json.dumps(expected['arguments'], separators=(',', ':'))))
+    history.extend([dict(role='assistant', content='', tool_calls=[call]),
+                    dict(role='tool', tool_call_id=call['id'], content='{"recorded":true}')])
+    return history
 
 
 def reconstruct_tool_calls(events: list[dict]) -> list[dict]:

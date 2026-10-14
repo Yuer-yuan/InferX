@@ -250,6 +250,8 @@ def measure_case(server, templates, grid):
     if c > 1:
         for i, request in enumerate(requests):
             request['producer'] = i % c
+    else:
+        requests.sort(key=lambda request: request['prompt_id'])
     group(server, 'mixed-long', requests, names, templates)
     names = ['code-512', f'prose-{capacity}']
     requests = snapshots(names, 16, templates, 'mixed-context')
@@ -330,6 +332,12 @@ def main():
     wait_idle('http://127.0.0.1:18081', timeout=180)
     (DIRECTORY/'original-service.json').write_text(json.dumps(saved, indent=2))
     metadata = dict(status='running', started_unix=time.time(), controller_pid=os.getpid(),
+        harness_sha256={name:hashlib.sha256((ROOT/'code-tuning'/name).read_bytes()).hexdigest()
+            for name in ['scripts/run_concurrency_campaign.py','scripts/measure_device_bandwidth.py',
+                'scripts/profile_concurrency.py','scripts/prepare_concurrency_workloads.py',
+                'inferx/concurrency.py','inferx/service_ownership.py']},
+        binary_sha256=hashlib.sha256(BINARY.read_bytes()).hexdigest(),
+        engine_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT/'source/ninfer-4090',text=True).strip(),
         grid_sha256=hashlib.sha256((DIRECTORY/'grid.json').read_bytes()).hexdigest(),
         hardware_counter_permission=[s for s in Path('/proc/driver/nvidia/params').read_text().splitlines() if 'Profil' in s],
         model=str(MODEL), binary=str(BINARY), cases=[])
@@ -353,9 +361,12 @@ def main():
                     result['startup'] = server.start()
                     measure_case(server, templates, grid)
                     result['status'] = 'completed'
-                except Exception as exc:
-                    result.update(status='infrastructure_error', error=f'{type(exc).__name__}: {exc}')
+                except BaseException as exc:
+                    result.update(status='interrupted' if not isinstance(exc,Exception) else 'infrastructure_error',
+                                  error=f'{type(exc).__name__}: {exc}')
                     print(json.dumps(dict(event='case_error', **result)), flush=True)
+                    if not isinstance(exc,Exception):
+                        raise
                 finally:
                     server.stop()
                     result['finished_unix'] = time.time()
