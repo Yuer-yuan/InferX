@@ -50,8 +50,11 @@ async def verify_repo(code: str, task: dict, *, fixture_root: Path, python: str,
         status = None
         try:
             async with asyncio.timeout(timeout):
-                process.stdin.write(json.dumps(payload).encode())
-                await process.stdin.drain()
+                try:
+                    process.stdin.write(json.dumps(payload).encode())
+                    await process.stdin.drain()
+                except (BrokenPipeError, ConnectionResetError) as exc:
+                    raise InfrastructureError('worker input closed before setup') from exc
                 process.stdin.close()
                 while chunk := await process.stdout.read(4096):
                     output.extend(chunk)

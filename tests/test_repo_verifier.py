@@ -119,6 +119,13 @@ class RepoVerifierTests(unittest.IsolatedAsyncioTestCase):
         with self.assertRaises(ProcessLookupError):
             os.kill(pid, 0)
 
+    async def test_worker_closing_input_before_setup_is_infrastructure_failure(self):
+        worker = self.root/'closes-input.py'
+        worker.write_text('import os\nos.close(0)\n')
+        self.task['expected_counts'] = {'diagnostic': 'x'*(1024*1024)}
+        with self.assertRaises(InfrastructureError):
+            await self.check('return x + 1', worker=worker)
+
     async def test_missing_worker_is_infrastructure_failure(self):
         with self.assertRaises(InfrastructureError):
             await self.check('return x + 1', worker=self.root/'missing.py')

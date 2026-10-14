@@ -119,3 +119,23 @@ def test_telemetry_is_clipped_to_measurement_and_memory_activity_is_not_bandwidt
     assert telemetry['gpu_util_percent']['median']==100
     assert 'GB/s' in telemetry['limitation']
     assert 'd0-c1/gpu.csv' in result['source_hashes']
+
+
+def test_export_rechecks_tool_arguments_and_rejects_truncation(tmp_path):
+    group=fixture(tmp_path)
+    rows=[json.loads(line) for line in (group/'requests.jsonl').read_text().splitlines()]
+    expected=dict(name='record_status',arguments=dict(status='ready'))
+    rows[0]['expected_tool']=expected
+    rows[0]['events']=[dict(choices=[dict(delta=dict(tool_calls=[dict(index=0,function=dict(name='record_status',arguments='{"status":"ready"}'))]))])]
+    rows[0]['summary']['truncated']=True
+    write(group/'requests.jsonl',rows,True)
+    result=export(tmp_path,tmp_path/'out')
+    assert result['groups'][0]['summary']['tool_valid']==0
+    assert result['requests'][0]['functional_ok'] is False
+    rows[0]['summary']['truncated']=False
+    rows[0]['events'][0]['choices'][0]['delta']['tool_calls'][0]['function']['arguments']='{"status":"wrong"}'
+    write(group/'requests.jsonl',rows,True)
+    assert export(tmp_path,tmp_path/'out')['groups'][0]['summary']['tool_valid']==0
+    rows[0]['events'][0]['choices'][0]['delta']['tool_calls'][0]['function']['arguments']='{"status":"ready"}'
+    write(group/'requests.jsonl',rows,True)
+    assert export(tmp_path,tmp_path/'out')['groups'][0]['summary']['tool_valid']==1

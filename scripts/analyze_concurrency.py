@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from inferx.concurrency import summarize_load, summarize_native
+from inferx.concurrency import reconstruct_tool_calls, summarize_load, summarize_native
 
 
 def summarize_gpu_telemetry(text, start_ms, end_ms):
@@ -122,6 +122,16 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
                 continue
             relative = path.relative_to(root)
             rows = read(relative/'requests.jsonl',True) if (path/'requests.jsonl').exists() else []
+            for row in rows:
+                row['source_functional_ok']=row.get('functional_ok')
+                expected=row.get('expected_tool')
+                if expected is not None:
+                    calls=reconstruct_tool_calls(row.get('events',[]))
+                    row['functional_ok']=bool(row['summary']['ok'] and not row['summary'].get('truncated')
+                        and len(calls)==1 and calls[0]['name']==expected['name']
+                        and calls[0]['arguments']==expected['arguments'])
+                elif row.get('functional_ok') is not None and row['summary'].get('truncated'):
+                    row['functional_ok']=False
             if len({r['id'] for r in rows}) != len(rows):
                 raise ValueError('duplicate request identity')
             warm = read(relative/'warmup.jsonl',True) if (path/'warmup.jsonl').exists() else []
@@ -136,6 +146,7 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
                 if result['requested'] != len(rows):
                     raise ValueError('request count mismatch')
                 result['summary'] = summarize_load(rows,result['summary']['measured_span_s'])
+                result['functional_classification_corrections']=sum(r.get('source_functional_ok')!=r.get('functional_ok') for r in rows)
                 if telemetry is not None and 'start_unix_ms' in result and 'end_unix_ms' in result:
                     result['gpu_telemetry']=summarize_gpu_telemetry(telemetry,result['start_unix_ms'],result['end_unix_ms'])
                 result['native'] = summarize_native(native)
@@ -167,6 +178,7 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
                     requests.append(dict(case=name,group=path.name,phase=phase,id=row['id'],
                         prompt_id=row.get('prompt_id'),producer=row.get('producer'),ok=summary['ok'],
                         functional_ok=row.get('functional_ok'),errors=summary.get('errors',[]),
+                        source_functional_ok=row.get('source_functional_ok',row.get('functional_ok')),
                         truncated=summary.get('truncated'),prompt_tokens=summary.get('prompt_tokens'),
                         completion_tokens=summary.get('completion_tokens'),latency_s=row.get('latency_s'),
                         ttft_s=row.get('arrival_ttft_s'),dispatch_lag_s=row.get('dispatch_lag_s')))
@@ -203,7 +215,7 @@ def export(root: Path, destination: Path, allow_running: bool = False) -> dict:
     destination.mkdir(parents=True,exist_ok=True)
     (destination/'summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     with (destination/'requests.csv').open('w',newline='') as output:
-        fields=['case','group','phase','id','prompt_id','producer','ok','functional_ok','errors','truncated',
+        fields=['case','group','phase','id','prompt_id','producer','ok','functional_ok','source_functional_ok','errors','truncated',
                 'prompt_tokens','completion_tokens','latency_s','ttft_s','dispatch_lag_s']
         writer=csv.DictWriter(output,fieldnames=fields);writer.writeheader();writer.writerows(requests)
     with (destination/'groups.csv').open('w',newline='') as output:
