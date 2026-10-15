@@ -1,0 +1,40 @@
+# Validate advanced single-GPU scheduling against isolated and mixed execution
+
+## Authorization and question
+
+The user requests actual SOTA validation, explicitly including MorphX, after providing an audited isolated-execution supplement. Continue the already authorized research on vlm-server without another execution/approval menu. Prior instructions to proceed and avoid repeated confirmation still apply. Use the established Python/CUDA toolchains and existing research checkout; this is not a new application or a KV-management project.
+
+The question is whether an actual open-source mechanism can improve the observed short/long tradeoff under one4090/27B/128K, not whether a paper reports an unrelated speedup. MorphX is the priority; BulletServe is a second source-backed candidate; DuetServe is a literature reference unless a verified author implementation is found. SGLangPD is an already-qualified advanced reference, not assumed the strongest possible baseline.
+
+## Binding constraints
+
+- Branch research/ninfer-mtp-tuning in /home/yuer/mypro/InferX; preserve the existing dirty report and untracked solo-comparison work. Do not silently commit, overwrite or clean those files. New report/results use sota-validation paths.
+- GPU1 UUID GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189 only. GPU0 is intentionally stopped; preserve that state. Source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh before remote work. All downloads/source/builds/envs/raw/cache stay on that HDD. hf-mirror only if any model is needed; reuse existing27B weights.
+- No global driver/permission/package changes, no installation of gdrdrv, no unverified process termination. All GPU execution goes through owned identity+final idle/stopped-GPU0 checks and signal-safe finally restoration of original256K/MTP7 service and both manifests. Re-read manifest PID each campaign; currentPID3634509 is not permanent.
+- Keep full128K inputs and outputs, C4, MTP0, eager for mechanism comparisons. Same model/checkpoint/quantization/KV/state/resource config within a causal pair. NInfer and SGLang quantizations differ: cross-engine numbers are whole-deployment comparisons, not scheduler-only speedups.
+- Retain original formal3-wave evidence and new78-request isolated diagnostic untouched. Solo supplement is one diagnostic restart per configuration, not3independent solo repetitions; cached API counts are not physical work. Rehash sources and inspect actual observed reuse before calling conditions matched.
+- No invalid/truncated/stalled/refused long request can create a performance win. Failed adaptations establish compatibility limits, not negative efficacy of the original method. An unchanged-admission kernel hook is not full MorphXPD scheduling.
+
+## Qualification order
+
+First pin current public repository commits and inspect actual code paths/dependencies/weight ownership, beyond README claims. Initial public heads: MorphX4404aed4c180ad83c31179e1ce08ae2234390853; BulletServec4aa493b737c861128e6a5b6b0b3413cb26aed63. Retain timestamp, URLs, source SHA and compatibility evidence. Check MorphX author's real PD orchestrator and scheduler flags; check Bullet hybrid model handling, INT4 loader, MPS/libsmctrl CUDA constraints and whether weights/pools are duplicated or shared. Do not substitute an invented approximation under either paper's name.
+
+MorphX already has an LLVM18/SM89/mapped-host-control port. GDRCopy unavailable is a documented deviation. Fixed prior lifetime/publication bugs improved CTest74/79; capture bypass fixed3targeted Graph failures but GDN cooperative launch and GQA correctness remained. Independent integer probes did not reproduce the shared-memory hypothesis. Do not repeat them as proof of a fix.
+
+Investigate demonstrated launch-attribute loss first: upstream cuLaunchKernelEx converts to cuLaunchKernel, discarding attrs, while NInferGDN uses Cooperative plus grid.sync. Build a fresh isolated runtime from pinned ported bytes. Any preservation/native-bypass correction must preserve semantics, be explicitly labeled and record transformed/native coverage. CPU RED→GREEN plus an actual independent cooperative integer oracle and affected numerical tests establish qualification; no claim that static suspicion alone identifies the original failure. Investigate remaining GQA numerical failure from real outputs/source, with at most three root-backed compatibility correction attempts rather than speculative patches. Preserve every binary/source hash and failure. Do not overwrite old shared libraries, source copies or existing overlays.
+
+If numerical tests pass, require full model code quality, four24K strict-tool warmups and a complete128K forced tool. Same compiler/runtime hook-off control must also pass; do not change the quality prompt or cherry-pick reruns to obtain a pass. For efficacy, actual P/D admission/streams and actual transformed launch coverage are required, with unchanged-policy hook-off/priority/SM ablations where feasible. If full model or mechanism cannot qualify, report the exact blocked gate and leave efficacy unknown.
+
+For Bullet, make a bounded actual compatibility probe if source inspection identifies a feasible path for this hybrid model and resource budget. If stock support is missing, document concrete dispatch/state/weight-ownership boundaries; do not rebuild an entire second serving system or silently replace hybridGDN with attention-only. Dedicated GPU1-only MPS would be reversible only if needed and all paths/caches are HDD; never run a stock script that defaults to GPU0/global settings. Do not start MPS or install another stack merely to rediscover a proven source incompatibility.
+
+## Measurement and judgment
+
+For every qualified performance lane, use the exact frozen24K-short/128K-cold/128K-resume payloads, strict expected tools, .5shortRPS48s and longat16s. Record actual runtime capacity/C4/precision/cache/state and source hashes. Each group restarts and warms independently. Qualify one diagnostic wave before selecting a configuration; at most three meaningful policy settings per mechanism; freeze selection and then3independent mixed repetitions. Use the same lane's isolated execution with originalC4server and serial producer; retain one diagnostic solo baseline initially, add repeats if a claimed small gain depends on it. Do not pool correlated requests as independent runs.
+
+Report shortP95/soloP95 and longmixed/longsolo, TTFT/ITL if observed, complete long latency, fixed48s strict completions, completed output tokens/full wave includingdrain, correctness, headroom and overhead. Unknown cache/bandwidth counters remain unknown. Compare Pareto tradeoff against simple128 and qualifiedSGPD; a one-sided short win bought with a large long slowdown is not a joint solution. Existing5s/25%longcost/10%throughput criteria remain explicitly study criteria; also present continuous ratios instead of manufacturing a gap from a threshold. Different engine/checkpoint pairs require separate controls.
+
+## Deliverables and finish
+
+A new docs/reports/2026-10-15-sota-validation.md, exact pinned source/compatibility/binary/coverage artifacts under results/sota-validation and HDD equivalents; executable reproducible commands; no replacement of actual results with paper graphs. Complete runnable attempts and analyze every qualified lane, or report a demonstrated unqualified boundary after bounded targeted work. Source-backed incompatibility does not authorize saying SOTA fails.
+
+Execute inline with one builder check now and one fresh whole-change read-only review after all tasks. One consolidated Important/Critical fix pass under RED→GREEN, no rereview. Archive only this plan scratch, retain branch, no merge/push. The executor chooses routine implementation details without more questions; clarification is necessary only for newly discovered authorization/resource conflicts.
