@@ -51,7 +51,7 @@ Expected: every candidate command has explicit GPU/environment/context/budget/mo
 - [x] Pin MorphX full source and compiler/runtime, inspect compile interfaces, build for SM89 using isolated toolchains. Add required adapter tests before persistent implementation changes.
 - [x] Execute patched kernel correctness/coverage probe on owned GPU1; inspect failures and adapt missing components as feasible, preserve failure logs.
 - [x] Verify existing llama.cpp 27B path and seek modern vLLM INT4 path through hf-mirror; validate versions/driver/API/context and functional gates.
-- [ ] Verify newly discovered official CUDA12.9 wheels for vLLM0.31/Torch2.13 and SGLang0.5.19 in isolated environments; do not infer incompatibility from cu128-only resolution.
+- [x] Verify newly discovered official CUDA12.9 wheels for vLLM0.31/Torch2.13 and SGLang0.5.19 in isolated environments; do not infer incompatibility from cu128-only resolution. SGLang is explicitly labeled with its singleton-group compatibility patch and BF16 SSM state.
 - [x] Freeze runnable candidate config/source/weight hashes, commit adapters and compatibility evidence.
 
 Expected: actually runnable same27B candidates or reproducible attempted compatibility failures, never untested paper claims.
@@ -64,8 +64,8 @@ Expected: actually runnable same27B candidates or reproducible attempted compati
 
 - [ ] Recheck baseline tests and current service identity/idle before replacingGPU1.
 - [ ] Run protocol/code gates and128K admission probes before comparativegroups; retain actualtoken counts and cache state.
-- [ ] Run four coregroups with3 independentrepetitions on baseline and validcandidates. Iterate chunk budgets if necessary and compare matched configurations; add MTP after plain PD groups.
-- [ ] Revalidate MorphX actualpatchedcoverage with/withoutsameadmissionfix; capture fairness/longcompletion and rejectrates.
+- [ ] Run matched short-control/cold/resume groups with3 independentrepetitions on baseline and validcandidates. Retain original2.5RPS groups as overload diagnostics (ledger ruling); add MTP after plain PD groups.
+- [x] Attempt MorphX actualpatchedcoverage and fullmodel correctness before PD measurements; it failed qualification. Retain failure evidence and exclude performance comparisons (ledger ruling), rather than label fallback execution as MorphX.
 - [ ] Restore originalservice, validate bothmanifests/argv256K/OpenAI+Anthropictools/GPU0health, commit runsummary.
 
 Expected: all attemptedrequests included; capacity/startupfailures separate; controllerterminal andoriginalservicehealthy. Do not stop atshort smoke orsinglewave.
