@@ -1,0 +1,220 @@
+{
+  "status": "complete",
+  "pid": 3859666,
+  "started_unix": 1792096851.273851,
+  "cpu_gate_status": "complete",
+  "export_sha256": "ec10be3d77cd3e0ec75b647c6483f410b46c70eaae75b02328c6e49f465ee589",
+  "placement": [
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r0-cold-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r0-resume-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r1-cold-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r1-resume-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r2-cold-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "mixed",
+      "identity": "morphx-control-both-96-ablation-r2-resume-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "solo",
+      "identity": "morphx-control-both-96-ablation-r0-short-control",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "solo",
+      "identity": "morphx-control-both-96-ablation-r0-cold-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    },
+    {
+      "kind": "solo",
+      "identity": "morphx-control-both-96-ablation-r0-resume-high",
+      "observed_cpu": 36,
+      "library_sha256": "ad638e0d657fd0120f42b1a871393d4502aa5acc00597be213b7c18c1c4535a9"
+    }
+  ],
+  "strict_mixed": 300,
+  "strict_solo": 52,
+  "comparison": [
+    {
+      "case": "compiled-primary-control",
+      "completed_within_48s": 22,
+      "group": "cold-high",
+      "independent_mixed_repeats": 3,
+      "independent_solo_repeats": 1,
+      "long_s": 120.0572900287807,
+      "long_slowdown": 1.3591352277393778,
+      "long_solo_s": 88.33358710631728,
+      "output_tokens_per_s": 9.63995259957363,
+      "repeat_values": [
+        {
+          "completed_within_48s": 22,
+          "long_s": 120.0572900287807,
+          "output_tokens_per_s": 9.63995259957363,
+          "repeat": 0,
+          "short_p95_s": 4.54110886529088
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 120.71570945158601,
+          "output_tokens_per_s": 9.59364952549749,
+          "repeat": 1,
+          "short_p95_s": 4.446849588304758
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 119.5962311848998,
+          "output_tokens_per_s": 9.672727671862626,
+          "repeat": 2,
+          "short_p95_s": 4.520206857472658
+        }
+      ],
+      "scope": "Median of three fresh mixed waves divided by one lane-specific serial-C4 solo diagnostic; no request pooling or enterprise SLA inferred.",
+      "short_p95_s": 4.520206857472658,
+      "short_slowdown": 1.5330432616020844,
+      "short_solo_p95_s": 2.9485187865793705
+    },
+    {
+      "case": "compiled-primary-control",
+      "completed_within_48s": 22,
+      "group": "resume-high",
+      "independent_mixed_repeats": 3,
+      "independent_solo_repeats": 1,
+      "long_s": 110.1748593300581,
+      "long_slowdown": 1.3496133568907671,
+      "long_solo_s": 81.63438718765974,
+      "output_tokens_per_s": 10.394856803322332,
+      "repeat_values": [
+        {
+          "completed_within_48s": 22,
+          "long_s": 110.14493879303336,
+          "output_tokens_per_s": 10.397171602858352,
+          "repeat": 0,
+          "short_p95_s": 4.494295887649059
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 110.35653620958328,
+          "output_tokens_per_s": 10.379812277169563,
+          "repeat": 1,
+          "short_p95_s": 4.505334135144949
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 110.1748593300581,
+          "output_tokens_per_s": 10.394856803322332,
+          "repeat": 2,
+          "short_p95_s": 4.533438939601183
+        }
+      ],
+      "scope": "Median of three fresh mixed waves divided by one lane-specific serial-C4 solo diagnostic; no request pooling or enterprise SLA inferred.",
+      "short_p95_s": 4.505334135144949,
+      "short_slowdown": 1.527999128122113,
+      "short_solo_p95_s": 2.9485187865793705
+    },
+    {
+      "case": "morphx-control-both-96-ablation",
+      "completed_within_48s": 22,
+      "group": "cold-high",
+      "independent_mixed_repeats": 3,
+      "independent_solo_repeats": 1,
+      "long_s": 124.3644347935915,
+      "long_slowdown": 1.3609639706282513,
+      "long_solo_s": 91.37966726347804,
+      "output_tokens_per_s": 9.344274731890359,
+      "repeat_values": [
+        {
+          "completed_within_48s": 22,
+          "long_s": 124.3644347935915,
+          "output_tokens_per_s": 9.344274731890359,
+          "repeat": 0,
+          "short_p95_s": 6.48678482696414
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 124.66023536026478,
+          "output_tokens_per_s": 9.324577970009472,
+          "repeat": 1,
+          "short_p95_s": 6.674865175038576
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 124.09463878720999,
+          "output_tokens_per_s": 9.362162720630241,
+          "repeat": 2,
+          "short_p95_s": 6.252323251217604
+        }
+      ],
+      "scope": "Median of three fresh mixed waves divided by one lane-specific serial-C4 solo diagnostic; no request pooling or enterprise SLA inferred.",
+      "short_p95_s": 6.48678482696414,
+      "short_slowdown": 1.7603898069726163,
+      "short_solo_p95_s": 3.6848570704460144
+    },
+    {
+      "case": "morphx-control-both-96-ablation",
+      "completed_within_48s": 22,
+      "group": "resume-high",
+      "independent_mixed_repeats": 3,
+      "independent_solo_repeats": 1,
+      "long_s": 115.12601362913847,
+      "long_slowdown": 1.3852511167228354,
+      "long_solo_s": 83.10840701684356,
+      "output_tokens_per_s": 10.002351118884686,
+      "repeat_values": [
+        {
+          "completed_within_48s": 22,
+          "long_s": 115.29867914319038,
+          "output_tokens_per_s": 9.98932109907144,
+          "repeat": 0,
+          "short_p95_s": 6.447913318872452
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 115.12601362913847,
+          "output_tokens_per_s": 10.002351118884686,
+          "repeat": 1,
+          "short_p95_s": 5.9803287088871
+        },
+        {
+          "completed_within_48s": 22,
+          "long_s": 114.57820466533303,
+          "output_tokens_per_s": 10.044214502962088,
+          "repeat": 2,
+          "short_p95_s": 5.974184945225716
+        }
+      ],
+      "scope": "Median of three fresh mixed waves divided by one lane-specific serial-C4 solo diagnostic; no request pooling or enterprise SLA inferred.",
+      "short_p95_s": 5.9803287088871,
+      "short_slowdown": 1.6229472662187254,
+      "short_solo_p95_s": 3.6848570704460144
+    }
+  ],
+  "finished_unix": 1792098558.2108805
+}

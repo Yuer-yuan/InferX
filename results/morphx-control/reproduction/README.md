@@ -55,8 +55,13 @@ request mixed wave (.5RPS48seconds,longat16; full131060cold tokens). Controls
 and treatments have matched checkpoint/quantization/C4/131328KV/16BF16SSM/
 FP8KV/eager/MTP0. Current-process transformation and actual agentCPU36 logging
 are required. The completed7 diagnostic waves contain175 strict responses. Selection is
-frozen in ../selection.json; formal3-repeat/serial-C4 solo evidence remains
-in progress at this snapshot.
+frozen in ../selection.json. All12formalwaves and6serial-C4sologroups completed:
+300mixed+52solostrictresponses, separately from175diagnostics. See
+../comparison.json and ../determinism-and-placement.json for all wave values,
+lane-specific solo denominators, source hashes and placement checks. Each solo
+has one independent repeat; ratios remain diagnostic, not an enterprise SLA.
+Two strict exports have identical SHA256
+`ec10be3d77cd3e0ec75b647c6483f410b46c70eaae75b02328c6e49f465ee589`.
 
 For formal runs use `run_local_formal.py` with
 `--repeat 3 --groups cold-high resume-high --cases compiled-primary-control
@@ -74,3 +79,9 @@ Full CPU checks (currently272) belong outside timed performance campaigns:
 ```sh
 taskset -c 40-43,96-99 "$INFERX_ROOT/repo-venv/bin/python" -m pytest -q
 ```
+
+Final read-only service evidence: ../final-service-verification.json. Original
+256K/MTP7/C1/rk4v4-e8 argv and both manifests matched; GPU0 stayed stopped.
+Formal and solo campaign metadata are under ../qualification/. Large raw SSE,
+payloads, event logs, IR and binaries remain on the HDD with source hashes in
+the exports; these paths are independent of the later EB+ candidate tree.
