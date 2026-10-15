@@ -1,0 +1,24 @@
+{
+  "scope": "Exact fallback forward CPU hybrid state contract probe; native tinyHF CPU, not fullBullet engine/GPU/INT4/SOTA efficacy",
+  "bullet_commit": "c4aa493b737c861128e6a5b6b0b3413cb26aed63",
+  "fallback_sha256": "fc22f49e98befc7beacf190b80586fd841376df1af08b5cf600b4f172c193abd",
+  "model": "Qwen3_5TextModel",
+  "layers": 2,
+  "layer_types": [
+    "linear_attention",
+    "full_attention"
+  ],
+  "hidden_size": 64,
+  "sequence_tokens": 8,
+  "fallback_passes_no_hf_cache": true,
+  "dropped_state_max_abs": 1.4881010055541992,
+  "preserved_state_max_abs": 4.76837158203125e-07,
+  "preserved_state_matches_full": true,
+  "only_gdn_dropped_max_abs": 0.04716155305504799,
+  "attention_history_preserved": true,
+  "limits": [
+    "Exact fallback forward body executed with nativeHF eager attention; BulletRadixAttention/RPC/quantization not executed.",
+    "Selective-cache control preserves MHA K/V and deletes only recurrent conv/SSM state; preserving full state is a positive adapter/control, not a full Bullet integration."
+  ],
+  "missing_integration": "Per-request recurrent conv/SSM state ownership, batching/prefix forks and P/D handoff; cached HF control proves state-preserving path exists but does not implement Bullet engine integration."
+}
