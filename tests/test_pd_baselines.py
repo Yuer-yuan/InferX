@@ -28,6 +28,31 @@ def test_sglang_strategy_flags_and_owned_pdmux_config(tmp_path):
     with pytest.raises(ValueError,match='HDD'):pd.engine_command(c,tmp_path,tmp_path/'run')
 
 
+def test_pdmux_stream_group_count_is_explicit(tmp_path):
+    c=case('sglang');c.update(pdmux_config='pd-strategies/pdmux.yaml',sm_group_num=3)
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert args[args.index('--sm-group-num')+1]=='3'
+
+
+def test_explicit_matched_pool_cannot_silently_shrink():
+    c=case('sglang');c.update(context_window=131328,max_total_tokens=152000)
+    info={'context_length':131328,'internal_states':[{'effective_max_running_requests_per_dp':4,
+          'memory_usage':{'token_capacity':140000}}]}
+    with pytest.raises(RuntimeError,match='pool'):pd.validate_sglang_runtime(c,info)
+    info['internal_states'][0]['memory_usage']['token_capacity']=152000
+    pd.validate_sglang_runtime(c,info)
+
+
+def test_only_pdmux_can_disable_token_chunking(tmp_path):
+    c=case('sglang');c.update(chunk=-1,pdmux_config='pd-strategies/pdmux.yaml',mixed_chunk=False,disable_overlap_schedule=True)
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert args[args.index('--chunked-prefill-size')+1]=='-1'
+    assert '--enable-mixed-chunk' not in args
+    assert '--disable-overlap-schedule' in args
+    del c['pdmux_config']
+    with pytest.raises(ValueError):pd.validate_case(c)
+
+
 def test_llama_preserves_long_window_with_shared_capacity(tmp_path):
     c = case()
     pd.validate_case(c)

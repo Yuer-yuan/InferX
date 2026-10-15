@@ -25,6 +25,12 @@ Adapt the actual open-source PD-Multiplexing scheduler and Green Context path, r
 
 Begin with the minimum useful PD-Multiplexing configuration (three stream groups, one P/D partition); sweep at most three valid splits if the mechanism qualifies. Record actual Green Context availability, layer intervals and P/D execution evidence; interface presence alone is not proof of GPU overlap. Include an unsplit/normal-forward correctness reference. Preserve source-backed compatibility failures separately from efficacy results.
 
+## Adaptation findings carried into execution
+
+Actual GPU tests showed the faithful PD path requires token chunking off and ordinary overlap off; lazy Mamba buffers therefore must use stock eager extra_buffer. Green Context96/32SM works, but whole-input prefill failed C4 warmup even at the minimum131328 pool (240MiB allocation,109.62MiBfree). Keep these failures separate. A separately labeled PD-Multiplexing+token-chunk variant retains the actual SM/layer scheduler while allowing only512-token chunks, stashing unfinished chunks and excluding them from decode using the normal scheduler's transition. Its post-merge metadata handoff waits on the prefill stream. A combined reserve128 variant is permitted, with an admission-only ablation at the same pool/buffer/overlap settings.
+
+The initial simple implementation exposed a single-active-chunk invariant: original add_one_req can start another partial request when budget is reserved. The corrected policy only admits a candidate that fully fits the remaining round while another chunk is active; otherwise it returns the original OTHER result so the scheduler releases staged state. This is an adaptation correction, not evidence the simple strategy fails. Retain the failed first campaign.
+
 ## Capacity and fairness
 
 First probe the original actual pool and PD-Multiplexing overhead. Main causal comparisons require the same explicit token-pool limit, actual concurrency, precision and chunk budget across control/simple/PD. If PD needs a smaller pool, qualify one common pool >=131328 tokens for all lanes and repeat their controls. Do not reuse old152639-token results as a matched control for a different pool. If no common valid pool exists, report that resource incompatibility and continue simple-policy comparisons at their common original pool. Do not lower context length to qualify PD.

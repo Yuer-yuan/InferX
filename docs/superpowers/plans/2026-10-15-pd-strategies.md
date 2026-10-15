@@ -34,9 +34,9 @@
 
 **Interfaces:** `cap_chunk_budget(adder, req, original, cap)` invokes original admission with a temporary per-request cap and restores remaining round budget; `prepare_overlay(source:Path, destination:Path, policy:str, cap:int|None)->dict` copies and patches source under a new owned directory and writes hashes. Engine adapter emits native cache-report/max-total-tokens/PD-config flags from explicit fields.
 
-- [ ] Write failing tests for budget conservation, no-wait control, exhausted budget, exceptions, original capacity rejection, and valid128/256 caps; test explicit flags, HDD-only PD-config and no accidental GPU override.
-- [ ] Run RED; implement smallest policy hooks and source-anchored atomic overlay preparation with equal instrumentation for control.
-- [ ] GREEN targeted and full repository suite; CPU-validate real installed PrefillAdder accounting and preserve source hashes; commit.
+- [x] Write failing tests for budget conservation, no-wait control, exhausted budget, exceptions, original capacity rejection, and valid128/256 caps; test explicit flags, HDD-only PD-config and no accidental GPU override.
+- [x] Run RED; implement smallest policy hooks and source-anchored atomic overlay preparation with equal instrumentation for control.
+- [x] GREEN targeted and full repository suite; CPU-validate real installed PrefillAdder accounting and preserve source hashes; commit.
 
 Expected: instrumented independent overlays, verified unchanged no-wait behavior and no installed-package mutations.
 
@@ -48,7 +48,7 @@ Expected: instrumented independent overlays, verified unchanged no-wait behavior
 
 - [ ] Write failing interval/residual/interleaving/final-logits/unsupported-mode tests, run RED, implement adapter, run GREEN.
 - [ ] Use real installed ModelRunner CPU entry to validate call compatibility, then owned GPU1 Green Context and full27B code/tool/full128K probes. Record native split/stream evidence and every failure.
-- [ ] Resolve demonstrated hybrid dispatch/topology/capacity issues with targeted regressions; qualify matched actual pool or document why none fits. Preserve exact precision/context and restore service.
+- [ ] If whole-input prefill cannot fit, qualify a separately labeled512-token-chunk PD adapter with stash/exclude/stream handoff and its reserve-only ablation. Resolve demonstrated hybrid dispatch/topology/capacity issues with targeted regressions; qualify matched actual pool or document why none fits. Preserve exact precision/context and restore service.
 - [ ] Run full repository suite and commit adapter plus actual qualification evidence.
 
 Expected: a correctness/capacity-qualified actual PD path, or reproducible adapted failure with efficacy explicitly unknown.

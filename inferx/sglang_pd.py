@@ -37,7 +37,7 @@ def _admission_event(adder, req, method, before, result):
     logging.getLogger('inferx.pd').info('PD_ADMISSION %s', json.dumps(event,sort_keys=True))
 
 
-def install_admission_hooks(cls, cap=None):
+def install_admission_hooks(cls, cap=None, blocked_result=None):
     if getattr(cls, '_inferx_admission_installed', False):
         raise RuntimeError('admission hooks already installed')
     if cap is not None and (type(cap) is not int or cap <= 0):
@@ -54,7 +54,19 @@ def install_admission_hooks(cls, cap=None):
     @functools.wraps(one)
     def add_one(self, req, *args, **kwargs):
         before=self.rem_chunk_tokens
-        result=one(self,req,*args,**kwargs)
+        has_chunk=kwargs.get('has_chunked_req',args[0] if args else False)
+        remaining=len(req.full_untruncated_fill_ids)-len(req.prefix_indices)
+        page=getattr(self,'page_size',1)
+        needed=-(-remaining//page)*page
+        if cap is not None and has_chunk and before is not None and needed>before:
+            # The stock scheduler tracks one unfinished chunk only. Its usual
+            # all-budget consumption makes this branch unreachable; reserving
+            # tokens must not let add_one_req start a second partial request.
+            if blocked_result is None:
+                raise RuntimeError('reserved admission requires original OTHER result')
+            result=blocked_result
+        else:
+            result=one(self,req,*args,**kwargs)
         _admission_event(self,req,'new',before,result)
         return result
     cls.add_chunked_req=add_chunked
@@ -66,17 +78,115 @@ def _sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def qwen_split_prefill(self, input_ids, positions, forward_batch, split_interval, input_embeds=None):
+    """Dense Qwen3.5 text path, preserving the upstream layer calling convention."""
+    model=self.model
+    if (not self.language_model_only or getattr(self,'capture_aux_hidden_states',False)
+            or getattr(self,'is_mrope_enabled',False) or self.pp_group.world_size!=1
+            or 'moe' in getattr(self.config,'model_type','').lower()
+            or 'Moe' in type(model).__name__
+            or getattr(forward_batch,'spec_info',None) is not None
+            or getattr(model,'flashinfer_mnnvl_cutedsl_fusion',None) is not None):
+        details=dict(text_only=self.language_model_only,aux=getattr(self,'capture_aux_hidden_states',False),
+            mrope=getattr(self,'is_mrope_enabled',False),pp=self.pp_group.world_size,
+            experts=getattr(self.config,'num_experts',None),
+            spec=type(getattr(forward_batch,'spec_info',None)).__name__,
+            fusion=type(getattr(model,'flashinfer_mnnvl_cutedsl_fusion',None)).__name__)
+        raise ValueError('unsupported split-prefill execution mode: '+repr(details))
+    start,end=split_interval
+    total=self.config.num_hidden_layers
+    if not (0<=start<end<=total) or (start and getattr(forward_batch,'_inferx_split_next',None)!=start):
+        raise ValueError('invalid or noncontiguous layer interval')
+    if start==0:
+        forward_batch.hidden_states=(model.embed_tokens(input_ids) if input_embeds is None else input_embeds)
+        forward_batch.residual=None
+    for index in range(start,end):
+        forward_batch.hidden_states,forward_batch.residual=model.layers[index](
+            positions=positions,hidden_states=forward_batch.hidden_states,
+            residual=forward_batch.residual,forward_batch=forward_batch)
+    forward_batch._inferx_split_next=end
+    if start==0 or end==total:
+        details=dict(unix=time.time(),start=start,end=end,layers=total)
+        if getattr(input_ids,'is_cuda',False):
+            import torch
+            details['cuda_stream']=torch.cuda.current_stream().cuda_stream
+        logging.getLogger('inferx.pd').info('PD_SPLIT %s',json.dumps(details,sort_keys=True))
+    if end!=total:
+        return None
+    hidden,_=model.norm(forward_batch.hidden_states,forward_batch.residual)
+    forward_batch.hidden_states=hidden
+    return self.logits_processor(input_ids,hidden,self.lm_head,forward_batch,None)
+
+
+def install_qwen_split(cls, parallel_size):
+    def forward(self,input_ids,positions,forward_batch,split_interval,input_embeds=None):
+        if parallel_size()!=1:
+            raise ValueError('adapted Qwen split prefill supports TP1 only')
+        return qwen_split_prefill(self,input_ids,positions,forward_batch,split_interval,input_embeds)
+    cls.forward_split_prefill=forward
+
+
+def patch_pdmux_topology(text):
+    # Pinned wheel's scheduler stores topology under ps; legacy mixin still
+    # references two removed aliases. Fail if the expected source has changed.
+    if text.count('self.gpu_id')!=1 or text.count('self.tp_size')!=1:
+        raise ValueError('unexpected PD-Multiplexing topology source')
+    return text.replace('self.gpu_id','self.ps.gpu_id').replace('self.tp_size','self.ps.tp_size')
+
+
+def finish_pdmux_chunk(scheduler, batch):
+    """Mirror the normal scheduler's stash/exclude transition before decode."""
+    chunk=scheduler.chunked_req
+    if chunk is not None:
+        if not any(req is chunk for req in batch.reqs):
+            raise RuntimeError('ongoing chunk does not belong to completed prefill batch')
+        if chunk.extend_range.end>len(chunk.prefix_indices):
+            scheduler.stash_chunked_request(chunk)
+    batch.filter_batch(chunked_req_to_exclude=[] if chunk is None else [chunk])
+    return batch
+
+
+def patch_pdmux_chunk_validation(text):
+    anchor='cfg.chunked_prefill_size == -1'
+    if text.count(anchor)!=1:
+        raise ValueError('unexpected token-chunk validation source')
+    return text.replace(anchor,'cfg.chunked_prefill_size in (-1, 512)')
+
+
+def _patch_chunk_transition(text):
+    original='''                        if running_batch and not running_batch.is_empty():
+                            running_batch.merge_batch(self.split_prefill_batch)
+                        else:
+                            running_batch = self.split_prefill_batch
+                        self.running_batch = running_batch'''
+    modified='''                        ready = _inferx_finish_chunk(self, self.split_prefill_batch)
+                        if not ready.is_empty():
+                            if running_batch and not running_batch.is_empty():
+                                running_batch.merge_batch(ready)
+                            else:
+                                running_batch = ready
+                        self.running_batch = running_batch
+                        # Stash/filter/merge enqueue metadata on the prefill
+                        # stream; make it visible before next decode preparation.
+                        decode_stream.wait_stream(prefill_stream)'''
+    if text.count(original)!=1:
+        raise ValueError('unexpected PDMux prefill-to-decode merge source')
+    return text.replace(original,modified)+'\nfrom inferx_pd_runtime import finish_pdmux_chunk as _inferx_finish_chunk\n'
+
+
 def prepare_overlay(source: Path, destination: Path, policy: str, cap=None) -> dict:
     source,destination=Path(source).resolve(),Path(destination).resolve()
     if destination.is_relative_to(source) or source.is_relative_to(destination):
         raise ValueError('overlay must be independent of installed source')
     if destination.exists():
         raise FileExistsError(destination)
-    if policy not in {'control','reserve','pdmux'}:
+    if policy not in {'control','reserve','pdmux','pdmux-chunked'}:
         raise ValueError('unknown overlay policy')
     if policy=='reserve' and (type(cap) is not int or cap not in (128,256)):
         raise ValueError('reserve cap must be128 or256')
-    if policy!='reserve' and cap is not None:
+    if policy=='pdmux-chunked' and cap is not None and (type(cap) is not int or cap not in (128,256)):
+        raise ValueError('chunked PDMux cap must be128 or256')
+    if policy not in {'reserve','pdmux-chunked'} and cap is not None:
         raise ValueError('only reserve policy accepts a cap')
     destination.parent.mkdir(parents=True,exist_ok=True)
     staging=Path(tempfile.mkdtemp(prefix='.prepare-',dir=destination.parent))
@@ -88,10 +198,33 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None) -> d
         if b'class PrefillAdder' not in original:
             raise ValueError('expected PrefillAdder source anchor missing')
         footer=('\nfrom inferx_pd_runtime import install_admission_hooks as _inferx_install\n'
-                f'_inferx_install(PrefillAdder, cap={cap!r})\n')
+                f'_inferx_install(PrefillAdder, cap={cap!r}, blocked_result=AddReqResult.OTHER)\n')
         target.write_bytes(original+footer.encode())
         manifest['files']['srt/managers/schedule_policy.py']=dict(
             before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
+        if policy.startswith('pdmux'):
+            target=staging/'sglang/srt/models/qwen3_5.py'
+            original=target.read_bytes()
+            if b'class Qwen3_5ForConditionalGeneration' not in original:
+                raise ValueError('expected dense Qwen wrapper source anchor missing')
+            target.write_bytes(original+(
+                '\nfrom inferx_pd_runtime import install_qwen_split as _inferx_split\n'
+                '_inferx_split(Qwen3_5ForConditionalGeneration, lambda: get_parallel().tp_size)\n').encode())
+            manifest['files']['srt/models/qwen3_5.py']=dict(
+                before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
+            target=staging/'sglang/srt/multiplex/multiplexing_mixin.py'
+            original=target.read_bytes()
+            changed=patch_pdmux_topology(original.decode())
+            if policy=='pdmux-chunked':changed=_patch_chunk_transition(changed)
+            target.write_text(changed)
+            manifest['files']['srt/multiplex/multiplexing_mixin.py']=dict(
+                before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
+            if policy=='pdmux-chunked':
+                target=staging/'sglang/srt/arg_groups/validation_hook.py'
+                original=target.read_bytes()
+                target.write_text(patch_pdmux_chunk_validation(original.decode()))
+                manifest['files']['srt/arg_groups/validation_hook.py']=dict(
+                    before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
         runtime=Path(__file__).read_bytes()
         (staging/'inferx_pd_runtime.py').write_bytes(runtime)
         manifest['runtime_sha256']=_sha(runtime)

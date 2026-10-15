@@ -10,7 +10,7 @@ from inferx.sglang_pd import prepare_overlay
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--name',required=True)
-    parser.add_argument('--policy',choices=['control','reserve','pdmux'],required=True)
+    parser.add_argument('--policy',choices=['control','reserve','pdmux','pdmux-chunked'],required=True)
     parser.add_argument('--cap',type=int)
     args=parser.parse_args()
     root=Path(os.environ['INFERX_ROOT']).resolve()

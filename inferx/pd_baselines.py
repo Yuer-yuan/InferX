@@ -143,6 +143,9 @@ def validate_case(case: dict) -> None:
     if case['engine'] not in {'llama', 'ninfer', 'vllm', 'sglang'}:
         raise ValueError('unknown engine')
     for key in ('context_window', 'kv_capacity', 'concurrency', 'chunk'):
+        if (key=='chunk' and case['engine']=='sglang' and case.get('pdmux_config')
+                and case[key]==-1):
+            continue
         if type(case[key]) is not int or case[key] <= 0:
             raise ValueError(f'positive integer {key} required')
     if type(case['draft']) is not int or case['draft'] < 0:
@@ -178,6 +181,9 @@ def validate_sglang_runtime(case: dict, info: dict) -> None:
             or workers[0].get('effective_max_running_requests_per_dp')!=case['concurrency']
             or workers[0].get('memory_usage',{}).get('token_capacity',0)<case['context_window']):
         raise RuntimeError('SGLang resolved capacity does not preserve requested context/concurrency')
+    if ('max_total_tokens' in case and
+            workers[0]['memory_usage']['token_capacity']!=case['max_total_tokens']):
+        raise RuntimeError('SGLang actual token pool differs from matched pool limit')
 
 
 def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
@@ -240,6 +246,8 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             args += ['--disable-prefill-cuda-graph', '--disable-decode-cuda-graph']
         if case.get('enable_cache_report'):
             args += ['--enable-cache-report']
+        if case.get('disable_overlap_schedule'):
+            args += ['--disable-overlap-schedule']
         if 'max_total_tokens' in case:
             if type(case['max_total_tokens']) is not int or case['max_total_tokens'] < case['context_window']:
                 raise ValueError('actual token-pool limit must preserve full context')
@@ -250,6 +258,7 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
                             ('mamba_full_memory_ratio', '--mamba-full-memory-ratio'),
                             ('mamba_radix_cache_strategy', '--mamba-radix-cache-strategy'),
                             ('mamba_ssm_dtype', '--mamba-ssm-dtype'),
+                            ('sm_group_num', '--sm-group-num'),
                             ('attention_backend', '--attention-backend'),
                             ('cuda_graph_max_bs_decode', '--cuda-graph-max-bs-decode')]:
             if field in case:
