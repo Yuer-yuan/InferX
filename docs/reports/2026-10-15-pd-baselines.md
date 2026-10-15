@@ -174,6 +174,17 @@ SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型�
 
 因此有依据的下一步是：先看容量可用、质量合格的现成调度在本机能达到的延迟与长请求完成代价，再决定是否值得研究更细的调度机制。上表未在本机测试的方案不归为失败，也不以论文数值替代这里的128K混合负载结果。
 
+### 后续方案的源码核查（2026-10-15）
+
+本轮仅做源码可行性核查，未新增GPU性能实验。下载位于服务器HDD的`pd-baselines/feasibility-20261015`；固定提交、逐文件SHA256和原始检索结果见[源码审计](../../results/pd-baselines/compatibility/sota-source-audit-20261015.json)。
+
+- **PD-Multiplexing：** 已安装SGLang0.5.19的实际CPU入口调用证明本模型缺少`forward_split_prefill`，见[接口探针](../../results/pd-baselines/compatibility/sglang-pdmux-cpu-interface.json)。本次也固定了上游源码86f4ede4fbc3543ea431bb7caccd7069dde7430b；不能把有`--enable-pdmux`参数当作本模型已经可用，模型适配、Green Context硬件路径和实际P/D重叠仍需验证。作者的[公开实现与实验说明](https://github.com/sgl-project/sglang/issues/10813)主要针对ITL；本负载还必须测新短请求的准入等待。
+- **DuetServe：** [ICML2026正式论文](https://proceedings.mlr.press/v306/gao26m.html)采用按需SM切分与提前decode派发，属于直接相关的单GPU机制基线。本轮核对了论文和作者主页，尚未找到可确认的作者公开实现入口；不将其列为已经下载或可直接部署的代码。
+- **HYPIC：** 已实际取得作者仓库98147c01909004e66d98bcb18b886927d41b0ee5的README和Qwen模型源码，后者含Dense和MoE类及PIC路径。审计中的单独`qwen3_5_moe.py`返回404，是路径探查结果，不能解释为不支持MoE；相关类位于同一`qwen3_5.py`中。它适合可复用片段场景，当前27B INT4完整128K资格尚未验证。对于完全不可复用的冷输入，单卡缓存复用不能消除原始预填充工作量；多worker分段并行不属于单4090预算。
+- **POD-Attention：** [作者公开的ASPLOS2025论文及artifact说明](https://akkamath.github.io/files/ASPLOS25_POD.pdf)提供融合P/D Attention算子的实现，可作为算子层机制参考；原实验为A100及传统Attention模型。当前Hybrid模型仅部分层使用Full Attention，不能假定它覆盖GDN或解决请求准入，尚未适配或实测。
+
+“简单方法已经无效”尚无证据。较小chunk已明显改善llama.cpp；下一项应在同引擎、同量化、同实际容量下对照短请求优先准入、每请求预算与长请求进度约束。SGLang中正在续算的长prefill先消耗当轮chunk预算、随后才扫描等待队列，是需要插桩及因果消融的线索；单凭静态顺序不能证明全部延迟由它造成。vLLM已存在单请求预算机制，因此即便普通准入修正有效，也首先应作为现有策略基线，而非创新点。只有这些基线仍无法在短请求SLO、长请求完成时间及总吞吐之间取得可接受平衡，才有依据继续提出更复杂的机制。
+
 ## 可复现性与恢复检查
 
 完整原始数据、源码、编译日志和模型均在服务器HDD的InferX/pd-baselines目录。当前正式llama实验的启动时4个关键Python文件已按其启动时SHA256精确重建并留档，明确标为事后重建；见 [重建清单](../../results/pd-baselines/harness-llama-main-v2/provenance.json)。后续controller会在启动时保存完整脚本及inferx模块字节，避免工作目录更新覆盖实验实现。

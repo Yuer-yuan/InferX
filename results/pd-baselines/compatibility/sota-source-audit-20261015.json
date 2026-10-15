@@ -1,0 +1,275 @@
+{
+  "captured_unix": 1792051503.8583076,
+  "gpu_used": false,
+  "repositories": [
+    {
+      "repo": "redai-studio/HYPIC",
+      "scope": "read-only source inspection, not GPU correctness or performance",
+      "commit": "98147c01909004e66d98bcb18b886927d41b0ee5",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/redai-studio/HYPIC/98147c01909004e66d98bcb18b886927d41b0ee5/README.md",
+          "sha256": "88272c9aebf4dff894922b9442b582c9d6a17b91c1768eceaf570fc3d5f3a2aa",
+          "bytes": 6440,
+          "matches": [
+            {
+              "line": 1,
+              "text": "# HYPIC: Accelerating Hybrid-Attention LLM Serving with Position-Independent Caching"
+            },
+            {
+              "line": 5,
+              "text": "HYPIC is the first serving system to bring position-independent caching (PIC) to hybrid-attention LLMs. Existing PIC reuses per-token KV cache, but hybrid stacks are mostly linear-attention layers that expose only a per-request recurrent st"
+            },
+            {
+              "line": 13,
+              "text": "Across four hybrid-attention models and five workloads, HYPIC cuts TTFT by **3.25\u00d7** and lifts QPS by **1.66\u00d7** over Prefix Cache, within **1.71** points of Full Recompute. Built on [SGLang](https://github.com/sgl-project/sglang) v0.5.14. S"
+            },
+            {
+              "line": 18,
+              "text": "git clone https://github.com/redai-infra/HYPIC.git && cd HYPIC"
+            },
+            {
+              "line": 24,
+              "text": "Enable PIC on any launch by adding the PIC flags. Prompts are split into"
+            },
+            {
+              "line": 25,
+              "text": "reusable segments at a separator string (`<<PIC_SEP>>`):"
+            },
+            {
+              "line": 33,
+              "text": "  --pic-separator-str '<<PIC_SEP>>' \\"
+            },
+            {
+              "line": 47,
+              "text": "  \"text\": \"You are a helpful assistant.<<PIC_SEP>>The Eiffel Tower is in Paris, France.<<PIC_SEP>>Mount Fuji is the tallest mountain in Japan.<<PIC_SEP>>Question: In which country is the Eiffel Tower?\","
+            },
+            {
+              "line": 52,
+              "text": "Each `<<PIC_SEP>>`-delimited chunk is cached position-independently and reused across requests regardless of order. "
+            },
+            {
+              "line": 59,
+              "text": "| `quick_test_offline.py` | 6-way in-process (`sgl.Engine`) comparison \u2014 full_recompute / prefix_cache / pic_addition / pic_transition / pic_transition_rope / pic_transition_rope_recompute \u2014 on one model. |"
+            },
+            {
+              "line": 61,
+              "text": "| `diag_layer_divergence.py` | Per-layer bisect: finds the first decoder layer where PIC's residual diverges from the baseline (accuracy debugging). |"
+            },
+            {
+              "line": 62,
+              "text": "| `distribute/` | Segment parallelism \u2014 4-prefill + 1-decode PIC scatter cluster, with an LPT-vs-RR speedup/correctness harness. See `examples/pic/distribute/README.md`. |"
+            },
+            {
+              "line": 69,
+              "text": "# per-layer divergence bisect (PIC vs baseline)"
+            },
+            {
+              "line": 70,
+              "text": "PIC_DIAG_MODE=transition_rope python examples/pic/diag_layer_divergence.py"
+            },
+            {
+              "line": 74,
+              "text": "export DISTPIC_UCX_ENV=\"UCX_NET_DEVICES=mlx5_1:1,... UCX_IB_GID_INDEX=7\"  # required on RDMA/IB hosts (see distribute/README.md)"
+            },
+            {
+              "line": 75,
+              "text": "bash cluster.sh up          # 4 prefill + 1 decode + single-GPU PIC baseline (boots in background)"
+            },
+            {
+              "line": 83,
+              "text": "model path / TP with `PIC_MODEL` / `PIC_TP`."
+            },
+            {
+              "line": 85,
+              "text": "## PIC modes"
+            },
+            {
+              "line": 91,
+              "text": "| `addition` | segment state add      | no               | no | naive linear-attention PIC baseline.                          |"
+            },
+            {
+              "line": 92,
+              "text": "| `transition` | cached transition operator | no              | no | Core HYPIC state compose.                                     |"
+            },
+            {
+              "line": 96,
+              "text": "The seam width is a runtime knob independent of mode: `PIC_SEAM_SINK`"
+            },
+            {
+              "line": 115,
+              "text": "  title={HYPIC: Accelerating Hybrid-Attention LLM Serving with Position-Independent Caching},"
+            }
+          ]
+        },
+        {
+          "path": "python/sglang/srt/models/qwen3_5.py",
+          "url": "https://raw.githubusercontent.com/redai-studio/HYPIC/98147c01909004e66d98bcb18b886927d41b0ee5/python/sglang/srt/models/qwen3_5.py",
+          "sha256": "fda2a1da39e6a515b017ac5b3943e1c0ee556fe6e323ef7a2b46112050b2fc9b",
+          "bytes": 86595,
+          "matches": [
+            {
+              "line": 70,
+              "text": "from sglang.srt.pic import pic_rope_positions"
+            },
+            {
+              "line": 121,
+              "text": "    dump_dir = os.environ.get(\"PIC_MOTI2_DUMP_DIR\")"
+            },
+            {
+              "line": 126,
+              "text": "    min_tokens = int(os.environ.get(\"PIC_MOTI2_MIN_TOKENS\", \"0\"))"
+            },
+            {
+              "line": 148,
+              "text": "    dump_dir = os.environ.get(\"PIC_MOTI2_DUMP_DIR\")"
+            },
+            {
+              "line": 151,
+              "text": "    if q.shape[0] < int(os.environ.get(\"PIC_MOTI2_MIN_TOKENS\", \"0\")):"
+            },
+            {
+              "line": 212,
+              "text": "class Qwen3_5GatedDeltaNet(nn.Module):"
+            },
+            {
+              "line": 632,
+              "text": "class Qwen3_5LinearDecoderLayer(nn.Module):"
+            },
+            {
+              "line": 633,
+              "text": "    \"\"\"Qwen3.5 Decoder Layer with Linear Attention (GatedDeltaNet).\"\"\""
+            },
+            {
+              "line": 653,
+              "text": "        self.linear_attn = Qwen3_5GatedDeltaNet("
+            },
+            {
+              "line": 767,
+              "text": "        from sglang.srt.pic.diag_layer_dump import dump as _pic_dump, enabled as _pic_diag_on"
+            },
+            {
+              "line": 768,
+              "text": "        if _pic_diag_on():"
+            },
+            {
+              "line": 769,
+              "text": "            _pic_dump(self.layer_id, \"linear\","
+            },
+            {
+              "line": 775,
+              "text": "class Qwen3_5AttentionDecoderLayer(nn.Module):"
+            },
+            {
+              "line": 977,
+              "text": "        # PIC: rope from the corrected real per-segment positions on"
+            },
+            {
+              "line": 979,
+              "text": "        # fallback). No-op for non-PIC requests. See pic.pic_rope_positions."
+            },
+            {
+              "line": 981,
+              "text": "            pic_rope_positions(positions, q, forward_batch), q, k"
+            },
+            {
+              "line": 1148,
+              "text": "        from sglang.srt.pic.diag_layer_dump import dump as _pic_dump, enabled as _pic_diag_on"
+            },
+            {
+              "line": 1149,
+              "text": "        if _pic_diag_on():"
+            },
+            {
+              "line": 1150,
+              "text": "            _pic_dump(self.layer_id, \"full\","
+            },
+            {
+              "line": 1162,
+              "text": "class Qwen3_5ForCausalLM(nn.Module):"
+            },
+            {
+              "line": 1475,
+              "text": "class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):"
+            },
+            {
+              "line": 1685,
+              "text": "class Qwen3_5ForConditionalGeneration(Qwen3VLForConditionalGeneration):"
+            },
+            {
+              "line": 1837,
+              "text": "class Qwen3_5MoeForConditionalGeneration(Qwen3VLForConditionalGeneration):"
+            }
+          ]
+        },
+        {
+          "path": "python/sglang/srt/models/qwen3_5_moe.py",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "scope": "read-only source inspection, not GPU correctness or performance",
+      "commit": "86f4ede4fbc3543ea431bb7caccd7069dde7430b",
+      "files": [
+        {
+          "path": "python/sglang/srt/models/qwen3_5.py",
+          "url": "https://raw.githubusercontent.com/sgl-project/sglang/86f4ede4fbc3543ea431bb7caccd7069dde7430b/python/sglang/srt/models/qwen3_5.py",
+          "sha256": "ea8d9aa210d4a3f746e247f2d6e877fe312c3bb31b26c68cd560dfb3a74a0786",
+          "bytes": 121318,
+          "matches": [
+            {
+              "line": 355,
+              "text": "class Qwen3_5GatedDeltaNet(nn.Module):"
+            },
+            {
+              "line": 1116,
+              "text": "class Qwen3_5LinearDecoderLayer(nn.Module):"
+            },
+            {
+              "line": 1117,
+              "text": "    \"\"\"Qwen3.5 Decoder Layer with Linear Attention (GatedDeltaNet).\"\"\""
+            },
+            {
+              "line": 1135,
+              "text": "        self.linear_attn = Qwen3_5GatedDeltaNet("
+            },
+            {
+              "line": 1256,
+              "text": "class Qwen3_5AttentionDecoderLayer(nn.Module):"
+            },
+            {
+              "line": 1676,
+              "text": "class Qwen3_5ForCausalLM(nn.Module):"
+            },
+            {
+              "line": 1853,
+              "text": "                if isinstance(module, Qwen3_5GatedDeltaNet):"
+            },
+            {
+              "line": 2036,
+              "text": "class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):"
+            },
+            {
+              "line": 2345,
+              "text": "class Qwen3_5ForConditionalGeneration(Qwen3VLForConditionalGeneration):"
+            },
+            {
+              "line": 2557,
+              "text": "class Qwen3_5MoeForConditionalGeneration(Qwen3VLForConditionalGeneration):"
+            }
+          ]
+        },
+        {
+          "path": "python/sglang/srt/multiplex/multiplexing_mixin.py",
+          "url": "https://raw.githubusercontent.com/sgl-project/sglang/86f4ede4fbc3543ea431bb7caccd7069dde7430b/python/sglang/srt/multiplex/multiplexing_mixin.py",
+          "sha256": "8fad265a491273b25f8dc7d3845afa85a5ce649f32b0db5f202746ddc9200cb5",
+          "bytes": 9451,
+          "matches": []
+        }
+      ]
+    }
+  ]
+}
