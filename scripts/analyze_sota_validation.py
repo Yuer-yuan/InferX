@@ -46,6 +46,11 @@ def export_campaign(root,templates):
             expected['environment']['INFERX_MORPHX_IR']=startup['case']['environment']['INFERX_MORPHX_IR']
         if expected!=startup['case']:raise ValueError('startup configuration mismatch')
         validate_sglang_runtime(case,startup['server_info']);runtime=startup['server_info']['internal_states'][0]
+        graph=runtime.get('memory_usage',{}).get('graph')
+        if not isinstance(graph,dict) or not graph or any(value!=0 for value in graph.values()):
+            raise ValueError('actual eager graph allocation must be zero')
+        if runtime.get('speculative_algorithm') is not None:
+            raise ValueError('actual MTP0 configuration required')
         if (runtime.get('mamba_ssm_dtype')!='bfloat16' or runtime.get('max_mamba_cache_size')!=16 or
             runtime.get('kv_cache_dtype')!='fp8_e4m3' or not runtime.get('disable_overlap_schedule')):
             raise ValueError('unmatched hybrid-state/precision/scheduling configuration')

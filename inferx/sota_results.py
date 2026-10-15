@@ -18,6 +18,12 @@ def audit_wave(specifications, records, span_s, *, kind):
         raise ValueError('duplicate request identity')
     if set(specs)!={r['id'] for r in records}:
         raise ValueError('missing or unexpected requests')
+    if kind=='mixed':
+        if any(type(s.get('offset_s')) not in (int,float) or not math.isfinite(s['offset_s']) for s in specifications):
+            raise ValueError('finite frozen arrivals required')
+        offsets=lambda short:sorted(s['offset_s'] for s in specifications if (s['prompt_id']=='tool-24576')==short)
+        if offsets(True)!=list(range(0,48,2)) or offsets(False)!=[16] or span_s<48:
+            raise ValueError('frozen .5RPS/48s/long-at16 arrival schedule changed')
     if kind=='isolated-serial-C4':
         ordered=sorted(records,key=lambda r:r['dispatched_s'])
         if any('offset_s' in s or s.get('producer')!=0 for s in specifications):
