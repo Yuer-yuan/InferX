@@ -116,3 +116,24 @@ def test_truncated_tool_and_rejected_long_cannot_be_counted_as_success(tmp_path)
     assert result['groups'][0]['short']['tool_valid']==0
     assert result['repeats'][0]['long_completed']==0
     assert result['repeats'][0]['long_offered']==1
+
+
+def test_gpu_memory_samples_keep_sampling_scope_and_invalid_values_visible(tmp_path):
+    from scripts.analyze_pd_baselines import export
+    _,group=make_group(tmp_path)
+    path=group.parent/'gpu.csv'
+    raw=('2026/10/15 12:00:00.000, 22000, 2108, 90, 40, 250\n'
+         '2026/10/15 12:00:00.200, 23500, 608, 99, 60, 300\n'
+         '2026/10/15 12:00:00.400, nan, N/A, 99, 60, 300\n')
+    path.write_text(raw)
+    result=export(tmp_path,tmp_path/'out')
+    observed=result['groups'][0]['gpu_memory']
+    assert observed['status']=='partial' and observed['valid_samples']==2
+    assert observed['invalid_rows']==1 and observed['sampled_peak_mib']==23500
+    assert observed['sampled_min_free_mib']==608
+    assert observed['sampling_interval_ms']==200
+    assert 'startup excluded' in observed['scope']
+    assert result['source_hashes']['main/engine-r0-cold-low/gpu.csv']['sha256']==hashlib.sha256(raw.encode()).hexdigest()
+    path.unlink()
+    absent=export(tmp_path,tmp_path/'out')['groups'][0]['gpu_memory']
+    assert absent['status']=='unobserved' and absent['sampled_peak_mib'] is None

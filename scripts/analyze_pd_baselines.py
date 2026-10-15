@@ -4,11 +4,34 @@ import collections
 import copy
 import csv
 import hashlib
+import io
 import json
+import math
 import statistics
 from pathlib import Path
 
 from inferx.concurrency import distribution, reconstruct_tool_calls, summarize_load
+
+
+def sampled_gpu_memory(data):
+    used, free, invalid = [], [], 0
+    if data is not None:
+        for row in csv.reader(io.StringIO(data.decode(errors='replace'))):
+            try:
+                if len(row) != 6:
+                    raise ValueError('expected nvidia-smi six-column sample')
+                values = float(row[1]), float(row[2])
+                if not all(math.isfinite(v) and v >= 0 for v in values):
+                    raise ValueError('invalid memory sample')
+                used.append(values[0]); free.append(values[1])
+            except ValueError:
+                invalid += 1
+    return dict(status=('partial' if invalid else 'observed') if used else 'unobserved',
+        valid_samples=len(used), invalid_rows=invalid, sampling_interval_ms=200,
+        sampled_peak_mib=max(used) if used else None,
+        sampled_min_free_mib=min(free) if free else None,
+        scope='Healthy server lifetime including quality/warmups/measurement; startup excluded. '
+              '200 ms samples can miss short peaks; values cover the selected GPU device.')
 
 
 def prefix_observations(rows):
@@ -118,6 +141,12 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             short=[r for r in rows if r.get('prompt_id')=='tool-24576']
             long=[r for r in rows if r.get('prompt_id')!='tool-24576']
             entry['prefix']=dict(short=prefix_observations(short),long=prefix_observations(long))
+            gpu_path=case_dir/'gpu.csv'
+            gpu_data=gpu_path.read_bytes() if gpu_path.exists() else None
+            if gpu_data is not None:
+                sources[str(gpu_path.relative_to(root))]=dict(
+                    sha256=hashlib.sha256(gpu_data).hexdigest(),bytes=len(gpu_data))
+            entry['gpu_memory']=sampled_gpu_memory(gpu_data)
             if complete:
                 span=result['summary']['measured_span_s']
                 entry.update(summary=summarize_load(rows,span),short=summarize_load(short,span),
@@ -145,6 +174,7 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             errors=g['summary']['errors'] if g['summary'] else None,
             short_p95_s=g['short']['latency_s']['p95'] if g['short'] else None,
             short_5s_goodput_per_s=g['short']['slo']['5']['tool_goodput_per_s'] if g['short'] else None,
+            gpu_sampled_peak_mib=g['gpu_memory']['sampled_peak_mib'],
             full_long_completed=g.get('full_long_completed'),quality=g['quality_status']))
     for name,records in [('groups',group_rows),('requests',requests)]:
         with (destination/f'{name}.csv').open('w') as output:
