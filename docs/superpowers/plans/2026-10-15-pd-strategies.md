@@ -78,7 +78,7 @@ Expected: direct measured answer, source-backed compatibility boundaries, and ve
 
 ## Final review and finish
 
-- [ ] After the last task completion line, run one fresh whole-change review; one Important/Critical fix pass under RED→GREEN, then suite and final service verification.
-- [ ] Archive execution ledger/artifacts, close plan, keep the research branch in place and leave reviewable files; no merge/push.
+- [x] After the last task completion line, run one fresh whole-change review; one Important/Critical fix pass under RED→GREEN, then suite and final service verification.
+- [x] Archive execution ledger/artifacts, close plan, keep the research branch in place and leave reviewable files; no merge/push.
 
 Expected: independently reviewed restoration/reproducibility and an archived execution record.

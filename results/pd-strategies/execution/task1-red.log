@@ -1,0 +1,323 @@
+FFFFFFFFFFFFFFFF                                                         [100%]
+=================================== FAILURES ===================================
+___________ test_reserved_budget_can_admit_a_new_short_request[128] ____________
+
+cap = 128
+
+    @pytest.mark.parametrize('cap', [128,256])
+    def test_reserved_budget_can_admit_a_new_short_request(cap):
+>       m=implementation(); a=adder(); request=NS(remaining=10000)
+
+tests/test_sglang_pd.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+___________ test_reserved_budget_can_admit_a_new_short_request[256] ____________
+
+cap = 256
+
+    @pytest.mark.parametrize('cap', [128,256])
+    def test_reserved_budget_can_admit_a_new_short_request(cap):
+>       m=implementation(); a=adder(); request=NS(remaining=10000)
+
+tests/test_sglang_pd.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+__ test_original_progress_and_short_final_chunk_are_preserved[0-512-10000-0] ___
+
+waiting = 0, budget = 512, remaining = 10000, expected = 0
+
+    @pytest.mark.parametrize('waiting,budget,remaining,expected',[(0,512,10000,0),(1,64,10000,0),(1,512,20,492),(1,0,20,0)])
+    def test_original_progress_and_short_final_chunk_are_preserved(waiting,budget,remaining,expected):
+>       m=implementation();a=adder(waiting,budget)
+
+tests/test_sglang_pd.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+___ test_original_progress_and_short_final_chunk_are_preserved[1-64-10000-0] ___
+
+waiting = 1, budget = 64, remaining = 10000, expected = 0
+
+    @pytest.mark.parametrize('waiting,budget,remaining,expected',[(0,512,10000,0),(1,64,10000,0),(1,512,20,492),(1,0,20,0)])
+    def test_original_progress_and_short_final_chunk_are_preserved(waiting,budget,remaining,expected):
+>       m=implementation();a=adder(waiting,budget)
+
+tests/test_sglang_pd.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+___ test_original_progress_and_short_final_chunk_are_preserved[1-512-20-492] ___
+
+waiting = 1, budget = 512, remaining = 20, expected = 492
+
+    @pytest.mark.parametrize('waiting,budget,remaining,expected',[(0,512,10000,0),(1,64,10000,0),(1,512,20,492),(1,0,20,0)])
+    def test_original_progress_and_short_final_chunk_are_preserved(waiting,budget,remaining,expected):
+>       m=implementation();a=adder(waiting,budget)
+
+tests/test_sglang_pd.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+_____ test_original_progress_and_short_final_chunk_are_preserved[1-0-20-0] _____
+
+waiting = 1, budget = 0, remaining = 20, expected = 0
+
+    @pytest.mark.parametrize('waiting,budget,remaining,expected',[(0,512,10000,0),(1,64,10000,0),(1,512,20,492),(1,0,20,0)])
+    def test_original_progress_and_short_final_chunk_are_preserved(waiting,budget,remaining,expected):
+>       m=implementation();a=adder(waiting,budget)
+
+tests/test_sglang_pd.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+_________________ test_exception_restores_unspent_reservation __________________
+
+    def test_exception_restores_unspent_reservation():
+>       m=implementation();a=adder()
+
+tests/test_sglang_pd.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+_______________________ test_invalid_caps_fail_closed[0] _______________________
+
+cap = 0
+
+    @pytest.mark.parametrize('cap',[0,-1,True,1.5])
+    def test_invalid_caps_fail_closed(cap):
+>       m=implementation()
+
+tests/test_sglang_pd.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+______________________ test_invalid_caps_fail_closed[-1] _______________________
+
+cap = -1
+
+    @pytest.mark.parametrize('cap',[0,-1,True,1.5])
+    def test_invalid_caps_fail_closed(cap):
+>       m=implementation()
+
+tests/test_sglang_pd.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+_____________________ test_invalid_caps_fail_closed[True] ______________________
+
+cap = True
+
+    @pytest.mark.parametrize('cap',[0,-1,True,1.5])
+    def test_invalid_caps_fail_closed(cap):
+>       m=implementation()
+
+tests/test_sglang_pd.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+______________________ test_invalid_caps_fail_closed[1.5] ______________________
+
+cap = 1.5
+
+    @pytest.mark.parametrize('cap',[0,-1,True,1.5])
+    def test_invalid_caps_fail_closed(cap):
+>       m=implementation()
+
+tests/test_sglang_pd.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+______________ test_original_capacity_rejection_is_not_overridden ______________
+
+    def test_original_capacity_rejection_is_not_overridden():
+>       m=implementation();a=adder()
+
+tests/test_sglang_pd.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+______________ test_overlay_is_independent_and_refuses_overwrite _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-guokc/pytest-249/test_overlay_is_independent_an0')
+
+    def test_overlay_is_independent_and_refuses_overwrite(tmp_path):
+>       m=implementation();src=tmp_path/'installed';src.mkdir()
+
+tests/test_sglang_pd.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+___________________ test_overlay_rejects_nested_destination ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-guokc/pytest-249/test_overlay_rejects_nested_de0')
+
+    def test_overlay_rejects_nested_destination(tmp_path):
+>       m=implementation()
+
+tests/test_sglang_pd.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+____________ test_instrumentation_distinguishes_admission_rejection ____________
+
+caplog = <_pytest.logging.LogCaptureFixture object at 0x72556c3ecc20>
+
+    def test_instrumentation_distinguishes_admission_rejection(caplog):
+>       m=implementation()
+
+tests/test_sglang_pd.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def implementation():
+>       assert importlib.util.find_spec('inferx.sglang_pd') is not None, 'PD strategy implementation missing'
+E       AssertionError: PD strategy implementation missing
+E       assert None is not None
+E        +  where None = <function find_spec at 0x72556cf977e0>('inferx.sglang_pd')
+E        +    where <function find_spec at 0x72556cf977e0> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_sglang_pd.py:12: AssertionError
+______________ test_sglang_strategy_flags_and_owned_pdmux_config _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-guokc/pytest-249/test_sglang_strategy_flags_and0')
+
+    def test_sglang_strategy_flags_and_owned_pdmux_config(tmp_path):
+        c=case('sglang');c.update(context_window=131328,max_total_tokens=140000,
+            enable_cache_report=True,pdmux_config='pd-strategies/pdmux.yaml')
+        args=pd.engine_command(c,tmp_path,tmp_path/'run')
+>       assert '--enable-cache-report' in args and '--enable-pdmux' in args
+E       AssertionError: assert ('--enable-cache-report' in ['taskset', '-c', '28-35', '/tmp/pytest-of-guokc/pytest-249/test_sglang_strategy_flags_and0/source/llama/bin/llama-server', '-m', 'sglang.launch_server', ...])
+
+tests/test_pd_baselines.py:24: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_sglang_pd.py::test_reserved_budget_can_admit_a_new_short_request[128]
+FAILED tests/test_sglang_pd.py::test_reserved_budget_can_admit_a_new_short_request[256]
+FAILED tests/test_sglang_pd.py::test_original_progress_and_short_final_chunk_are_preserved[0-512-10000-0]
+FAILED tests/test_sglang_pd.py::test_original_progress_and_short_final_chunk_are_preserved[1-64-10000-0]
+FAILED tests/test_sglang_pd.py::test_original_progress_and_short_final_chunk_are_preserved[1-512-20-492]
+FAILED tests/test_sglang_pd.py::test_original_progress_and_short_final_chunk_are_preserved[1-0-20-0]
+FAILED tests/test_sglang_pd.py::test_exception_restores_unspent_reservation
+FAILED tests/test_sglang_pd.py::test_invalid_caps_fail_closed[0] - AssertionE...
+FAILED tests/test_sglang_pd.py::test_invalid_caps_fail_closed[-1] - Assertion...
+FAILED tests/test_sglang_pd.py::test_invalid_caps_fail_closed[True] - Asserti...
+FAILED tests/test_sglang_pd.py::test_invalid_caps_fail_closed[1.5] - Assertio...
+FAILED tests/test_sglang_pd.py::test_original_capacity_rejection_is_not_overridden
+FAILED tests/test_sglang_pd.py::test_overlay_is_independent_and_refuses_overwrite
+FAILED tests/test_sglang_pd.py::test_overlay_rejects_nested_destination - Ass...
+FAILED tests/test_sglang_pd.py::test_instrumentation_distinguishes_admission_rejection
+FAILED tests/test_pd_baselines.py::test_sglang_strategy_flags_and_owned_pdmux_config
+16 failed in 0.20s

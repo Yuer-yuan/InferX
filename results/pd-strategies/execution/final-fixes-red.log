@@ -1,0 +1,225 @@
+FFFFFFFFFF                                                               [100%]
+=================================== FAILURES ===================================
+______ test_stopped_gpu0_requires_explicit_mode_and_keeps_gpu1_idle_check ______
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...ferred': 0, 'port_open': False, 'processes': {(42, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 0, ...})
+
+    def test_stopped_gpu0_requires_explicit_mode_and_keeps_gpu1_idle_check(shutdown_guard):
+        campaign, state = shutdown_guard
+        with pytest.raises(RuntimeError, match='ownership'):
+            campaign.final_shutdown_check({'pid': 42})
+>       campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E       TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:41: TypeError
+____ test_stopped_mode_refuses_changed_ownership_or_new_work[missing-gpu1] _____
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/run_concurrency_campaign.py'>, {'deferred': 0, 'port_open': False, 'processes': set(), 'processing': 0, ...})
+change = 'missing-gpu1'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+____ test_stopped_mode_refuses_changed_ownership_or_new_work[foreign-gpu1] _____
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru... 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189'), (43, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 0, ...})
+change = 'foreign-gpu1'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+___ test_stopped_mode_refuses_changed_ownership_or_new_work[gpu0-restarted] ____
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...-4d9bef9d-631c-bb36-3ff4-589d6a184189'), (2504785, 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03')}, 'processing': 0, ...})
+change = 'gpu0-restarted'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+____ test_stopped_mode_refuses_changed_ownership_or_new_work[gpu0-replaced] ____
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru... 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189'), (99, 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03')}, 'processing': 0, ...})
+change = 'gpu0-replaced'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+_____ test_stopped_mode_refuses_changed_ownership_or_new_work[processing] ______
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...ferred': 0, 'port_open': False, 'processes': {(42, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 1, ...})
+change = 'processing'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+______ test_stopped_mode_refuses_changed_ownership_or_new_work[deferred] _______
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...ferred': 1, 'port_open': False, 'processes': {(42, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 0, ...})
+change = 'deferred'
+
+    @pytest.mark.parametrize('change', ['missing-gpu1', 'foreign-gpu1', 'gpu0-restarted',
+                                       'gpu0-replaced', 'processing', 'deferred'])
+    def test_stopped_mode_refuses_changed_ownership_or_new_work(shutdown_guard, change):
+        campaign, state = shutdown_guard
+        if change == 'missing-gpu1':
+            state['processes'].clear()
+        elif change == 'foreign-gpu1':
+            state['processes'].add((43, campaign.GPU))
+        elif change == 'gpu0-restarted':
+            state['processes'].add((2504785, GPU0))
+        elif change == 'gpu0-replaced':
+            state['processes'].add((99, GPU0))
+        else:
+            state[change] = 1
+        with pytest.raises(RuntimeError):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:60: TypeError
+_____________ test_stopped_mode_refuses_a_listening_gpu0_endpoint ______________
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...ferred': 0, 'port_open': False, 'processes': {(42, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 0, ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7de3c031f8f0>
+
+    def test_stopped_mode_refuses_a_listening_gpu0_endpoint(shutdown_guard, monkeypatch):
+        campaign, _ = shutdown_guard
+        real_connect = socket.socket.connect
+        with socket.socket() as listener:
+            listener.bind(('127.0.0.1', 0))
+            listener.listen(1)
+    
+            def connect(address, timeout):
+                connection = socket.socket()
+                connection.settimeout(timeout)
+                real_connect(connection, listener.getsockname())
+                return connection
+    
+            monkeypatch.setattr(socket, 'create_connection', connect)
+            with pytest.raises(RuntimeError, match='GPU0'):
+>               campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E               TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:78: TypeError
+________ test_stopped_mode_does_not_treat_unknown_port_state_as_absent _________
+
+shutdown_guard = (<module 'scripts.run_concurrency_campaign' from '/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/ru...ferred': 0, 'port_open': False, 'processes': {(42, 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189')}, 'processing': 0, ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7de3c031dd00>
+
+    def test_stopped_mode_does_not_treat_unknown_port_state_as_absent(shutdown_guard, monkeypatch):
+        campaign, _ = shutdown_guard
+    
+        def timeout(*args, **kwargs):
+            raise TimeoutError('unobservable endpoint')
+    
+        monkeypatch.setattr(socket, 'create_connection', timeout)
+        with pytest.raises(RuntimeError, match='GPU0'):
+>           campaign.final_shutdown_check({'pid': 42}, gpu0_state='stopped')
+E           TypeError: final_shutdown_check() got an unexpected keyword argument 'gpu0_state'
+
+tests/test_pd_reproduction.py:89: TypeError
+_ test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects __
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7de3c031d9d0>
+
+    def test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects(monkeypatch):
+        from scripts import run_pd_baselines as runner
+        report = (Path(__file__).parents[1]/'docs/reports/2026-10-15-pd-strategies.md').read_text()
+        command = re.search(r'^"\$INFERX_ROOT/repo-venv/bin/python" -m scripts\.run_pd_baselines .*?(?=\n[^ ]|\Z)',
+                            report, re.M | re.S)
+>       assert command is not None, 'report needs a complete executable GPU rerun command'
+E       AssertionError: report needs a complete executable GPU rerun command
+E       assert None is not None
+
+tests/test_pd_reproduction.py:97: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_pd_reproduction.py::test_stopped_gpu0_requires_explicit_mode_and_keeps_gpu1_idle_check
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[missing-gpu1]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[foreign-gpu1]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[gpu0-restarted]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[gpu0-replaced]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[processing]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_changed_ownership_or_new_work[deferred]
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_refuses_a_listening_gpu0_endpoint
+FAILED tests/test_pd_reproduction.py::test_stopped_mode_does_not_treat_unknown_port_state_as_absent
+FAILED tests/test_pd_reproduction.py::test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects
+10 failed in 0.23s

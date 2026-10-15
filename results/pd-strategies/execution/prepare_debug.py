@@ -1,0 +1,8 @@
+import copy,hashlib,json,os,pathlib,shutil,tempfile
+r=pathlib.Path('/home/guokc/mypro/gnn-mount-sda1/InferX');p=r/'code-pd-baselines/configs/pd-strategies.json';d=json.loads(p.read_text());c=copy.deepcopy(next(x for x in d['cases'] if x['id']=='sglang-pdmux-responsive128-bound-l16'));source=pathlib.Path(c['environment']['PYTHONPATH']);dest=source.parent/'pdmux-l16-stacks-v7';assert not dest.exists();stage=pathlib.Path(tempfile.mkdtemp(prefix='.debug-',dir=source.parent))
+shutil.copytree(source,stage,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+site=stage/'sitecustomize.py';site.write_text('import faulthandler\nfaulthandler.dump_traceback_later(30, repeat=True)\n')
+sha=lambda b:hashlib.sha256(b).hexdigest();m=json.loads((stage/'overlay-manifest.json').read_text());m['diagnostic_only']='30second Python stack dumps; watchdog60 via captured diagnostic launcher. No performance qualification.';m['files']['sitecustomize.py']={'before_sha256':None,'after_sha256':sha(site.read_bytes())}
+inv={str(x.relative_to(stage)):sha(x.read_bytes()) for x in sorted(stage.rglob('*')) if x.is_file() and x.name not in {'source-hashes.json','overlay-manifest.json'}}
+(stage/'source-hashes.json').write_text(json.dumps(inv,indent=2)+'\n');m['source_hashes_sha256']=sha((stage/'source-hashes.json').read_bytes());(stage/'overlay-manifest.json').write_text(json.dumps(m,indent=2)+'\n');os.rename(stage,dest)
+c.update(id='sglang-pdmux-l16-debug',overlay_manifest=m,diagnostic_only=True,diagnostic_extra_flags=['--watchdog-timeout','60']);c['environment']['PYTHONPATH']=str(dest);d['cases'].append(c);p.write_text(json.dumps(d,indent=2)+'\n');print('prepared immutable diagnostic overlay')
