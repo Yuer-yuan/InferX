@@ -141,6 +141,10 @@ SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型�
 
 这个补丁是明确标注的兼容修复，没有增加PD调度机制。补丁及源码前后SHA、失败和通过日志见 [修复记录](../../results/pd-baselines/compatibility/sglang-singleton-guard/provenance.json)，依赖及实际源码清单见 [修复后环境](../../results/pd-baselines/sglang0519-environment-singleton-guard.json)。完整128K、四路工具调用和混合负载的GPU验证仍在执行；目前没有合格的SGLang混合性能结果。
 
+还检查了该版本已有的PD-Multiplexing开关。它采用green-context流并调用模型的forward_split_prefill接口；在CPU上实际调用当前Qwen模型对应的ModelRunner入口，得到缺少该模型方法的AttributeError，继承链上也没有该接口。见 [实际接口探针及源码SHA](../../results/pd-baselines/compatibility/sglang-pdmux-cpu-interface.json)。因此它需要额外模型适配，不能把打开开关当作现成可用的当前模型基线；这里未测其GPU执行、green-context支持或PD效果。
+
+源码检查也提示，分块不等于新请求能立即准入：该版本scheduler先调用add_chunked_req，后遍历等待队列；add_chunked_req会消耗当前可用chunk预算。另一方面，完整候选输入和输出还受总token预算约束。实际152639池小于两个完全不共享前缀的131K与24K历史之和。这些是需要区分的准入与容量因素；当前没有记录每次准入拒绝分支，也没有固定容量的因果消融，不能据此判定唯一根因或宣称带宽已达roofline。
+
 ## 现有方法已经覆盖什么
 
 | 方法 | 已有机制或证据 | 对本课题的含义 |
