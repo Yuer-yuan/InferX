@@ -214,8 +214,43 @@
       },
       "environment": {
         "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
-        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
       }
+    },
+    {
+      "id": "vllm024-int4-c4-b4096-cap2048-eager-mem95",
+      "engine": "vllm",
+      "binary": "pd-baselines/vllm-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 4096,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.95,
+      "mamba_cache_mode": "align",
+      "long_prefill_token_threshold": 2048,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "597949743f2a00c0539d9e2ff0f67b32c608a378e973f99e7529fd6fa9445f70",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
+      },
+      "capacity_note": "Reserve additional transient GDN prefill workspace after observed mem98 warmup CUDA OOM; actual GPU KV token pool must be read from this run."
     }
   ]
 }

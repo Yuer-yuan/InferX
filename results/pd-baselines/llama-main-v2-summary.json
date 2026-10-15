@@ -1,0 +1,1811 @@
+{
+  "status": "completed_llama_measurement_only_overall_PD_study_in_progress",
+  "groups": [
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/short-control",
+      "group": "short-control",
+      "repetition": 0,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 48.002254359424114,
+        "aggregate_tokens_per_s": 25.998778945993077,
+        "latency_s": {
+          "n": 24,
+          "median": 1.3434847109019756,
+          "minimum": 1.3285278268158436,
+          "maximum": 2.3642011769115925,
+          "p95": 1.9797783344984055,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 1.3434847109019756,
+          "minimum": 1.3285278268158436,
+          "maximum": 2.3642011769115925,
+          "p95": 1.9797783344984055,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 0.3926161155104637,
+          "minimum": 0.3778196647763252,
+          "maximum": 1.1479201912879944,
+          "p95": 1.0293272957205772,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0012776665389537811,
+          "minimum": 0.0005078166723251343,
+          "maximum": 0.0018348805606365204,
+          "p95": 0.0017832480370998383,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 23,
+            "tool_met": 23,
+            "protocol_goodput_per_s": 0.4791441632675006,
+            "tool_goodput_per_s": 0.4791441632675006,
+            "offered_fraction": 0.9583333333333334
+          },
+          "5": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.49997651819217453,
+            "tool_goodput_per_s": 0.49997651819217453,
+            "offered_fraction": 1.0
+          },
+          "10": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.49997651819217453,
+            "tool_goodput_per_s": 0.49997651819217453,
+            "offered_fraction": 1.0
+          }
+        }
+      },
+      "long": {
+        "offered": 0,
+        "protocol_ok": 0,
+        "errors": 0,
+        "tool_valid": 0,
+        "tool_checked": 0,
+        "truncated": 0,
+        "completion_tokens": 0,
+        "measured_span_s": 48.002254359424114,
+        "aggregate_tokens_per_s": 0.0,
+        "latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 589272,
+          "computed_tokens": 96
+        },
+        "long": {
+          "status": "unobserved",
+          "successful_requests": 0,
+          "counter_observations": 0,
+          "cached_tokens": null,
+          "computed_tokens": null
+        }
+      },
+      "full_long_completed": 0
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/cold-low",
+      "group": "cold-low",
+      "repetition": 0,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 180.72652308642864,
+        "aggregate_tokens_per_s": 6.905461238819774,
+        "latency_s": {
+          "n": 24,
+          "median": 17.744269205257297,
+          "minimum": 1.3295468427240849,
+          "maximum": 134.22058885917068,
+          "p95": 58.45122614130378,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.744269205257297,
+          "minimum": 1.3295468427240849,
+          "maximum": 134.22058885917068,
+          "p95": 58.45122614130378,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.036595011129975,
+          "minimum": 0.37869251146912575,
+          "maximum": 132.4873764961958,
+          "p95": 51.55179362744093,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0011543184518814087,
+          "minimum": 0.0003705359995365143,
+          "maximum": 0.0020707696676254272,
+          "p95": 0.0018515214323997498,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.03873255502543142,
+            "tool_goodput_per_s": 0.03873255502543142,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04426577717192163,
+            "tool_goodput_per_s": 0.04426577717192163,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.055332221464902034,
+            "tool_goodput_per_s": 0.055332221464902034,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 180.72652308642864,
+        "aggregate_tokens_per_s": 0.35412621737537303,
+        "latency_s": {
+          "n": 1,
+          "median": 164.71479681506753,
+          "minimum": 164.71479681506753,
+          "maximum": 164.71479681506753,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 164.71479681506753,
+          "minimum": 164.71479681506753,
+          "maximum": 164.71479681506753,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 162.56749722361565,
+          "minimum": 162.56749722361565,
+          "maximum": 162.56749722361565,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.0029455795884132385,
+          "minimum": 0.0029455795884132385,
+          "maximum": 0.0029455795884132385,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 564719,
+          "computed_tokens": 24649
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 0,
+          "computed_tokens": 131049
+        }
+      },
+      "full_long_completed": 1
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/resume-high",
+      "group": "resume-high",
+      "repetition": 0,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 184.47549264132977,
+        "aggregate_tokens_per_s": 6.765126262199225,
+        "latency_s": {
+          "n": 24,
+          "median": 17.914557168260217,
+          "minimum": 1.3318348564207554,
+          "maximum": 166.47015541419387,
+          "p95": 42.39245293661952,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.914557168260217,
+          "minimum": 1.3318348564207554,
+          "maximum": 166.47015541419387,
+          "p95": 42.39245293661952,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.186688983812928,
+          "minimum": 0.3793039470911026,
+          "maximum": 165.0047319084406,
+          "p95": 36.01880642399192,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0011019166558980942,
+          "minimum": 0.0004273056983947754,
+          "maximum": 0.003510594367980957,
+          "p95": 0.0023854784667491913,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.037945419739899504,
+            "tool_goodput_per_s": 0.037945419739899504,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04336619398845658,
+            "tool_goodput_per_s": 0.04336619398845658,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.05420774248557072,
+            "tool_goodput_per_s": 0.05420774248557072,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 184.47549264132977,
+        "aggregate_tokens_per_s": 0.3469295519076526,
+        "latency_s": {
+          "n": 1,
+          "median": 147.84449497237802,
+          "minimum": 147.84449497237802,
+          "maximum": 147.84449497237802,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 147.84449497237802,
+          "minimum": 147.84449497237802,
+          "maximum": 147.84449497237802,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 137.78025291860104,
+          "minimum": 137.78025291860104,
+          "maximum": 137.78025291860104,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.0009749419987201691,
+          "minimum": 0.0009749419987201691,
+          "maximum": 0.0009749419987201691,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 540166,
+          "computed_tokens": 49202
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 24608,
+          "computed_tokens": 106430
+        }
+      },
+      "full_long_completed": 1
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/short-control",
+      "group": "short-control",
+      "repetition": 1,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 48.00243628397584,
+        "aggregate_tokens_per_s": 25.998680413156592,
+        "latency_s": {
+          "n": 24,
+          "median": 1.3414089102298021,
+          "minimum": 1.3292342238128185,
+          "maximum": 2.061018444597721,
+          "p95": 1.460485514253378,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 1.3414089102298021,
+          "minimum": 1.3292342238128185,
+          "maximum": 2.061018444597721,
+          "p95": 1.460485514253378,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 0.39124829694628716,
+          "minimum": 0.37882035970687866,
+          "maximum": 1.1098775826394558,
+          "p95": 0.4724182225763798,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0012729335576295853,
+          "minimum": 0.0005198456346988678,
+          "maximum": 0.00184573233127594,
+          "p95": 0.0017953403294086456,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 23,
+            "tool_met": 23,
+            "protocol_goodput_per_s": 0.4791423473578539,
+            "tool_goodput_per_s": 0.4791423473578539,
+            "offered_fraction": 0.9583333333333334
+          },
+          "5": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.4999746233299345,
+            "tool_goodput_per_s": 0.4999746233299345,
+            "offered_fraction": 1.0
+          },
+          "10": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.4999746233299345,
+            "tool_goodput_per_s": 0.4999746233299345,
+            "offered_fraction": 1.0
+          }
+        }
+      },
+      "long": {
+        "offered": 0,
+        "protocol_ok": 0,
+        "errors": 0,
+        "tool_valid": 0,
+        "tool_checked": 0,
+        "truncated": 0,
+        "completion_tokens": 0,
+        "measured_span_s": 48.00243628397584,
+        "aggregate_tokens_per_s": 0.0,
+        "latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 589272,
+          "computed_tokens": 96
+        },
+        "long": {
+          "status": "unobserved",
+          "successful_requests": 0,
+          "counter_observations": 0,
+          "cached_tokens": null,
+          "computed_tokens": null
+        }
+      },
+      "full_long_completed": 0
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/cold-low",
+      "group": "cold-low",
+      "repetition": 1,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 180.69852828979492,
+        "aggregate_tokens_per_s": 6.906531070350072,
+        "latency_s": {
+          "n": 24,
+          "median": 17.78897080756724,
+          "minimum": 1.3261143863201141,
+          "maximum": 134.19419755414128,
+          "p95": 58.45212736353278,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.78897080756724,
+          "minimum": 1.3261143863201141,
+          "maximum": 134.19419755414128,
+          "p95": 58.45212736353278,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.07316106557846,
+          "minimum": 0.37476855516433716,
+          "maximum": 132.46189009025693,
+          "p95": 51.54357561841607,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.001166144385933876,
+          "minimum": 0.000431939959526062,
+          "maximum": 0.003555081784725189,
+          "p95": 0.0018505677580833435,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.03873855568305329,
+            "tool_goodput_per_s": 0.03873855568305329,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04427263506634661,
+            "tool_goodput_per_s": 0.04427263506634661,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.05534079383293326,
+            "tool_goodput_per_s": 0.05534079383293326,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 180.69852828979492,
+        "aggregate_tokens_per_s": 0.3541810805307729,
+        "latency_s": {
+          "n": 1,
+          "median": 164.68677101656795,
+          "minimum": 164.68677101656795,
+          "maximum": 164.68677101656795,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 164.68677101656795,
+          "minimum": 164.68677101656795,
+          "maximum": 164.68677101656795,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 162.54189551621675,
+          "minimum": 162.54189551621675,
+          "maximum": 162.54189551621675,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.001038767397403717,
+          "minimum": 0.001038767397403717,
+          "maximum": 0.001038767397403717,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 564719,
+          "computed_tokens": 24649
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 0,
+          "computed_tokens": 131049
+        }
+      },
+      "full_long_completed": 1
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/resume-high",
+      "group": "resume-high",
+      "repetition": 1,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 191.59631588682532,
+        "aggregate_tokens_per_s": 6.5136951836651455,
+        "latency_s": {
+          "n": 24,
+          "median": 17.473843893036246,
+          "minimum": 1.3156144618988037,
+          "maximum": 171.59060426428914,
+          "p95": 151.34676000848413,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.473843893036246,
+          "minimum": 1.3156144618988037,
+          "maximum": 171.59060426428914,
+          "p95": 151.34676000848413,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.111961657181382,
+          "minimum": 0.36481447517871857,
+          "maximum": 170.1244696676731,
+          "p95": 143.505077265203,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0011971667408943176,
+          "minimum": 0.00046771764755249023,
+          "maximum": 0.004164520651102066,
+          "p95": 0.0019569359719753265,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.03653514926735258,
+            "tool_goodput_per_s": 0.03653514926735258,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.041754456305545806,
+            "tool_goodput_per_s": 0.041754456305545806,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.05219307038193226,
+            "tool_goodput_per_s": 0.05219307038193226,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 191.59631588682532,
+        "aggregate_tokens_per_s": 0.33403565044436645,
+        "latency_s": {
+          "n": 1,
+          "median": 126.18856076523662,
+          "minimum": 126.18856076523662,
+          "maximum": 126.18856076523662,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 126.18856076523662,
+          "minimum": 126.18856076523662,
+          "maximum": 126.18856076523662,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 116.85987761989236,
+          "minimum": 116.85987761989236,
+          "maximum": 116.85987761989236,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.001630738377571106,
+          "minimum": 0.001630738377571106,
+          "maximum": 0.001630738377571106,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 540166,
+          "computed_tokens": 49202
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 24608,
+          "computed_tokens": 106430
+        }
+      },
+      "full_long_completed": 1
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/short-control",
+      "group": "short-control",
+      "repetition": 2,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 48.002691112458706,
+        "aggregate_tokens_per_s": 25.998542395805217,
+        "latency_s": {
+          "n": 24,
+          "median": 1.345130069181323,
+          "minimum": 1.3249609842896461,
+          "maximum": 2.4655136354267597,
+          "p95": 1.9954683184623718,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 1.345130069181323,
+          "minimum": 1.3249609842896461,
+          "maximum": 2.4655136354267597,
+          "p95": 1.9954683184623718,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 0.3930345047265291,
+          "minimum": 0.3725847229361534,
+          "maximum": 1.231041207909584,
+          "p95": 1.0433710366487503,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0011760257184505463,
+          "minimum": 0.00013530626893043518,
+          "maximum": 0.001694999635219574,
+          "p95": 0.0016496442258358002,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 23,
+            "tool_met": 23,
+            "protocol_goodput_per_s": 0.4791398037688462,
+            "tool_goodput_per_s": 0.4791398037688462,
+            "offered_fraction": 0.9583333333333334
+          },
+          "5": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.49997196915010034,
+            "tool_goodput_per_s": 0.49997196915010034,
+            "offered_fraction": 1.0
+          },
+          "10": {
+            "protocol_met": 24,
+            "tool_met": 24,
+            "protocol_goodput_per_s": 0.49997196915010034,
+            "tool_goodput_per_s": 0.49997196915010034,
+            "offered_fraction": 1.0
+          }
+        }
+      },
+      "long": {
+        "offered": 0,
+        "protocol_ok": 0,
+        "errors": 0,
+        "tool_valid": 0,
+        "tool_checked": 0,
+        "truncated": 0,
+        "completion_tokens": 0,
+        "measured_span_s": 48.002691112458706,
+        "aggregate_tokens_per_s": 0.0,
+        "latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 589272,
+          "computed_tokens": 96
+        },
+        "long": {
+          "status": "unobserved",
+          "successful_requests": 0,
+          "counter_observations": 0,
+          "cached_tokens": null,
+          "computed_tokens": null
+        }
+      },
+      "full_long_completed": 0
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/cold-low",
+      "group": "cold-low",
+      "repetition": 2,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 181.23594433814287,
+        "aggregate_tokens_per_s": 6.886051244181071,
+        "latency_s": {
+          "n": 24,
+          "median": 17.74306822568178,
+          "minimum": 1.3282563239336014,
+          "maximum": 136.73132925480604,
+          "p95": 57.848070710897446,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.74306822568178,
+          "minimum": 1.3282563239336014,
+          "maximum": 136.73132925480604,
+          "p95": 57.848070710897446,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.050245368853211,
+          "minimum": 0.37773561477661133,
+          "maximum": 134.9996511414647,
+          "p95": 51.14495970308781,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0011096075177192688,
+          "minimum": 0.0003882311284542084,
+          "maximum": 0.0034149475395679474,
+          "p95": 0.0020227432250976562,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.03862368486319511,
+            "tool_goodput_per_s": 0.03862368486319511,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04414135412936584,
+            "tool_goodput_per_s": 0.04414135412936584,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.0551766926617073,
+            "tool_goodput_per_s": 0.0551766926617073,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 181.23594433814287,
+        "aggregate_tokens_per_s": 0.3531308330349267,
+        "latency_s": {
+          "n": 1,
+          "median": 165.22426604107022,
+          "minimum": 165.22426604107022,
+          "maximum": 165.22426604107022,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 165.22426604107022,
+          "minimum": 165.22426604107022,
+          "maximum": 165.22426604107022,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 163.0797710455954,
+          "minimum": 163.0797710455954,
+          "maximum": 163.0797710455954,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.0009913109242916107,
+          "minimum": 0.0009913109242916107,
+          "maximum": 0.0009913109242916107,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 564719,
+          "computed_tokens": 24649
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 0,
+          "computed_tokens": 131049
+        }
+      },
+      "full_long_completed": 1
+    },
+    {
+      "identity": "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/resume-high",
+      "group": "resume-high",
+      "repetition": 2,
+      "rate": 0.5,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 184.39217015728354,
+        "aggregate_tokens_per_s": 6.768183263614047,
+        "latency_s": {
+          "n": 24,
+          "median": 18.018582148477435,
+          "minimum": 1.326225470751524,
+          "maximum": 166.38642815500498,
+          "p95": 42.376369159668684,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 18.018582148477435,
+          "minimum": 1.326225470751524,
+          "maximum": 166.38642815500498,
+          "p95": 42.376369159668684,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.293557852506638,
+          "minimum": 0.37443113327026367,
+          "maximum": 164.92261834815145,
+          "p95": 36.036813367158175,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.001276850700378418,
+          "minimum": 0.0003158003091812134,
+          "maximum": 0.00411573052406311,
+          "p95": 0.002249438315629959,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.03796256638245058,
+            "tool_goodput_per_s": 0.03796256638245058,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.043385790151372096,
+            "tool_goodput_per_s": 0.043385790151372096,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.05423223768921512,
+            "tool_goodput_per_s": 0.05423223768921512,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 184.39217015728354,
+        "aggregate_tokens_per_s": 0.34708632121097677,
+        "latency_s": {
+          "n": 1,
+          "median": 147.7713365443051,
+          "minimum": 147.7713365443051,
+          "maximum": 147.7713365443051,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 147.7713365443051,
+          "minimum": 147.7713365443051,
+          "maximum": 147.7713365443051,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 137.7198662608862,
+          "minimum": 137.7198662608862,
+          "maximum": 137.7198662608862,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.0015049576759338379,
+          "minimum": 0.0015049576759338379,
+          "maximum": 0.0015049576759338379,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "prefix": {
+        "short": {
+          "status": "observed",
+          "successful_requests": 24,
+          "counter_observations": 24,
+          "cached_tokens": 540166,
+          "computed_tokens": 49202
+        },
+        "long": {
+          "status": "observed",
+          "successful_requests": 1,
+          "counter_observations": 1,
+          "cached_tokens": 24608,
+          "computed_tokens": 106430
+        }
+      },
+      "full_long_completed": 1
+    }
+  ],
+  "total_requests": 222,
+  "tool_valid": 222,
+  "errors": 0,
+  "full_long_completed": 6,
+  "raw_campaign": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/raw/llama-ch128-lowrate-main-v2",
+  "source_hashes": {
+    "llama-ch128-lowrate-main-v2/campaign.json": {
+      "sha256": "0755c8cf63a006f95037a9ca8fb1a38931ed0f628f466d159205dcd7a2d8d43f",
+      "bytes": 3830
+    },
+    "llama-ch128-lowrate-main-v2/config.json": {
+      "sha256": "4a18f0eed42f87e24906a539878a82e8d245827359de288c60a5d73f028864a2",
+      "bytes": 518
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/cold-low/requests.jsonl": {
+      "sha256": "3cb2c4804ef3657357e1578b41fb8a4e006e73bb9699cccc5b6a7d89fc3b2ed2",
+      "bytes": 1341278
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/cold-low/result.json": {
+      "sha256": "613c3594d58612ed576b6511daac545e4470e7cddab2507e872be5fb5d9c3e8a",
+      "bytes": 7868
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/cold-low/specifications.json": {
+      "sha256": "eef680fc115bd1836fc5239b50067f91adf90b8232780070f5631d4b41d0209f",
+      "bytes": 1167740
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/quality-result.json": {
+      "sha256": "af80015999fa4ce299704a7b147908abee326f3e02026f46d0894d3aeacaab3d",
+      "bytes": 116
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/quality-result.json": {
+      "sha256": "e884c8ca582fdf73c34cede225af5d72bee704a3a3a9800672f3030ceb8ec9a0",
+      "bytes": 115
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/resume-high/requests.jsonl": {
+      "sha256": "31e77f7ef3c96c13560a2a0e84e5ae68c45893491952856d4bcf0e59d1558f21",
+      "bytes": 1341374
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/resume-high/result.json": {
+      "sha256": "829d80ca664c3e6c0920732296744aee09422a90422eaeff728e766cfe1446a1",
+      "bytes": 7866
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/resume-high/specifications.json": {
+      "sha256": "aba471e01136ddbf8c10457100408a6d6b263c2185f9acd00cfa664143129ea2",
+      "bytes": 1167783
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/quality-result.json": {
+      "sha256": "782772108a87299d23358697b27b4e23f00e9d066e3748dc713218358cde5cdf",
+      "bytes": 116
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/short-control/requests.jsonl": {
+      "sha256": "46e866c70f32d87dd8789412666e8ff9beee8ea165b5bfb5d59b2b5241b6b123",
+      "bytes": 1128669
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/short-control/result.json": {
+      "sha256": "85ac5b38890e3c146c33fbf514328d7bf9a8cb47056f68980d3f3d558dab220e",
+      "bytes": 7663
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/short-control/specifications.json": {
+      "sha256": "2b697e25cbef9e5a375afeffa1b5019b19dd952fc133794813f83bba76aca24f",
+      "bytes": 965961
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/cold-low/requests.jsonl": {
+      "sha256": "05a520864114fde5431e288cc80807ff12abc8dbacf9ff820864326170e78289",
+      "bytes": 1341281
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/cold-low/result.json": {
+      "sha256": "8193ce646ea6247a2f4ee3f5011b9e12bf5fd0e05f26ad322606d6943f27889c",
+      "bytes": 7854
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/cold-low/specifications.json": {
+      "sha256": "ba9bd9d8ae204c38e58dbb8d26c4e36e93e8d4b4469b62acc013af87f1d022f5",
+      "bytes": 1167740
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/quality-result.json": {
+      "sha256": "a5823ce7cbce6f9571d27095f31050c8951a90c770e6523ef6df9c72fb31b2cf",
+      "bytes": 115
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/quality-result.json": {
+      "sha256": "3917b85e54ef783ceda342ade5f106ea42f4d620e6af9761344bed06db09b42a",
+      "bytes": 116
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/resume-high/requests.jsonl": {
+      "sha256": "70cc80ccaea238a71df16b23c87770700dc9bfe695c6412ee241723c9b6882d9",
+      "bytes": 1341323
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/resume-high/result.json": {
+      "sha256": "6b496f14003abc3532e33b6226775924d2a1fb5aa7f4090d94cdc1f4e697a7e1",
+      "bytes": 7867
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/resume-high/specifications.json": {
+      "sha256": "88a484fb89f7eabdd7bf5dc8de0e24eb2bd9c274f82c4445906fb7d0ac6c05b8",
+      "bytes": 1167783
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/quality-result.json": {
+      "sha256": "04b307d290d83a869ac7763e4db60ed04f4fcefabf29926f3421c55c705042f7",
+      "bytes": 114
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/short-control/requests.jsonl": {
+      "sha256": "b79e4ae9ed3ccf416a82bdfbfa6300190194ea9330c285dd6c112afa5b263840",
+      "bytes": 1128660
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/short-control/result.json": {
+      "sha256": "bebebb2ca75a7df4ecd1cc554d608a8e43475b3d3d51524ba414b7074bc34b44",
+      "bytes": 7647
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/short-control/specifications.json": {
+      "sha256": "e742dbf7e7f3897ebaa86982a6f4507efc7d1c5441cc64c88463af55ef216c0b",
+      "bytes": 965961
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/cold-low/requests.jsonl": {
+      "sha256": "b0eae12b3f952fde54ea4b9d525ee4f5b0d4676d9c608f2e925eb81205763ff5",
+      "bytes": 1341290
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/cold-low/result.json": {
+      "sha256": "f960b8a87788d16d20051bab9c2626f24e266c8a05c1b3d1af5ae1d4e4cb6ac1",
+      "bytes": 7853
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/cold-low/specifications.json": {
+      "sha256": "0792e668a185698a6adea538f2581bfba4d966d33649f59b5deada87bb332e95",
+      "bytes": 1167740
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/quality-result.json": {
+      "sha256": "b4ad661d5f88858ca0d1bea2321301df4c0383aca345c3e74bbe5e33b3f2d260",
+      "bytes": 115
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/quality-result.json": {
+      "sha256": "451ac0d5ac002bf037b4d02b010fee8cfb38d3635535ab320e5a35d1abccf723",
+      "bytes": 115
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/resume-high/requests.jsonl": {
+      "sha256": "27028bc91c9f5d49dc030c3ed8b4e507e7ed95c2a1417130ff03429eec911d3d",
+      "bytes": 1341383
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/resume-high/result.json": {
+      "sha256": "c5d11900a146471857d604f47757bef35d47ef12003f729b1d0e181b69a59f66",
+      "bytes": 7852
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/resume-high/specifications.json": {
+      "sha256": "1d3bb2fa3cb35cfe7f31efe6976858266f279c9c5ef6d45b7c8ad58265c1cde1",
+      "bytes": 1167783
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/quality-result.json": {
+      "sha256": "b1836c941ea0b5f857d109042170866f4ea72ca8844a34c7d6581d768b1e116c",
+      "bytes": 116
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/short-control/requests.jsonl": {
+      "sha256": "ee5c71188d104c5a40d55a2ef983e3d635f6c2e62898c94bf6b90b58461f9faa",
+      "bytes": 1128644
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/short-control/result.json": {
+      "sha256": "6f5b4588f1121220506c91f2a6fa0da00ef37c3518ffb00085e2dfecc9cd0fa1",
+      "bytes": 7660
+    },
+    "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/short-control/specifications.json": {
+      "sha256": "2d02aed137bc2b37872e085ca0264d2ca77fd1f7991fe616c0e2456a631aa887",
+      "bytes": 965961
+    }
+  }
+}

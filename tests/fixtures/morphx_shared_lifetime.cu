@@ -11,7 +11,7 @@ __global__ void late_shared_read(unsigned* output) {
     if(threadIdx.x==0) scratch[0]=blockIdx.x+1234;
     __syncthreads();
     unsigned index=blockIdx.x*blockDim.x+threadIdx.x;
-    if(threadIdx.x==0) {output[index]=scratch[0];return;}
+    if(threadIdx.x<32) {output[index]=scratch[0];return;}
     asm volatile("nanosleep.u32 100000;" ::: "memory");
     output[index]=scratch[0];
 }
