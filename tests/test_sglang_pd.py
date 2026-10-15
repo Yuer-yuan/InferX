@@ -307,3 +307,12 @@ def test_marlin_isolation_flag_cannot_be_silently_ignored_for_normal_policy(tmp_
     m=implementation()
     with pytest.raises(ValueError,match='requires PD'):
         m.prepare_overlay(tmp_path/'source',tmp_path/'dest','control',isolate_marlin_workspaces=True)
+
+
+def test_graph_capture_binds_the_context_of_its_actual_capture_stream():
+    m=implementation()
+    source='with (\n    graph_capture(stream=sg[1]) as graph_capture_context,\n    profile_context as prof,\n):\n    self._capture_one_stream(i)\n'
+    changed=m.patch_pdmux_graph_context(source)
+    assert changed.index('graph_capture(stream=sg[1])')<changed.index('_inferx_bind_stream_context(graph_capture_context.stream.cuda_stream)')<changed.index('profile_context as prof')
+    assert 'from inferx_pd_runtime import bind_stream_context as _inferx_bind_stream_context' in changed
+    with pytest.raises(ValueError):m.patch_pdmux_graph_context('different capture source')

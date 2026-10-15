@@ -1,0 +1,77 @@
+{
+  "verified_unix": 1792071105.520579,
+  "manifest_equal": true,
+  "identity": {
+    "pid": 3604352,
+    "proc_start_ticks": "2090363031",
+    "uid": 1004,
+    "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+  },
+  "argv_matches_preprofile": true,
+  "argv": [
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18081",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "262144",
+    "--kv-capacity",
+    "262144",
+    "--default-max-tokens",
+    "8192",
+    "--pending-timeout-ms",
+    "120000",
+    "--max-concurrency",
+    "1",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "rk4v4-e8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--request-log-jsonl",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/context-agents/agent-server-requests.jsonl",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "7",
+    "--lm-head-draft"
+  ],
+  "gpu0_state": "user_intentionally_stopped",
+  "gpu0_restarted_by_experiment": false,
+  "gpu_processes": [
+    [
+      3604352,
+      "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189"
+    ]
+  ],
+  "models": {
+    "data": [
+      {
+        "context_window": 262144,
+        "created": 1792071104,
+        "id": "qwen38-27b",
+        "max_model_len": 262144,
+        "max_output_tokens": 262144,
+        "modalities": {
+          "vision": false
+        },
+        "name": "qwen38-27b",
+        "object": "model",
+        "owned_by": "ninfer"
+      }
+    ],
+    "object": "list"
+  },
+  "openai_tool_roundtrip": true,
+  "anthropic_tool_roundtrip": true,
+  "anthropic_probe_stdout": "Anthropic tool roundtrip passed 0.321 seconds\n"
+}

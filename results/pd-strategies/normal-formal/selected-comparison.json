@@ -1,0 +1,889 @@
+{
+  "scope": "Every selected case uses three independent fresh repetitions. Normalr1 complete groups survive an interrupted PD lane; default PD8192 and all qualification waves are separate diagnostics. Each wave independent restart; no request-level independence or production-P99 claim. Long/throughput cost uses ratio of 3-wave medians, not artificially paired waves.",
+  "rows": [
+    {
+      "case": "sglang-ctx-control",
+      "group": "short-control",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-short-control/short-control",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-short-control/short-control",
+        "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-short-control/short-control"
+      ],
+      "short_p95_s": [
+        3.0619854107499123,
+        2.9653476737439632,
+        2.9884225577116013
+      ],
+      "long_latency_s": [
+        null,
+        null,
+        null
+      ],
+      "output_tokens_per_s": [
+        25.435985369178752,
+        25.491951540197082,
+        25.494673121911045
+      ],
+      "fixed_48s_strict": [
+        23,
+        23,
+        23
+      ],
+      "short_5s_tool_goodput": [
+        0.48915356479189903,
+        0.49022983731148234,
+        0.4902821754213662
+      ],
+      "errors": 0,
+      "strict_requests": 72,
+      "sampled_peak_mib": [
+        23486.0,
+        23486.0,
+        23486.0
+      ],
+      "sampled_min_free_mib": [
+        622.0,
+        622.0,
+        622.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": true,
+      "output_throughput_change_median": 0.0,
+      "long_cost_change_median": null,
+      "study_criteria_pass": true
+    },
+    {
+      "case": "sglang-ctx-control",
+      "group": "cold-low",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/cold-low"
+      ],
+      "short_p95_s": [
+        99.21942138671875,
+        99.1646389439702,
+        99.37885214015841
+      ],
+      "long_latency_s": [
+        90.63796258345246,
+        90.56387910991907,
+        90.67132953554392
+      ],
+      "output_tokens_per_s": [
+        10.240294067490952,
+        10.242654552538443,
+        10.199014713476908
+      ],
+      "fixed_48s_strict": [
+        9,
+        9,
+        9
+      ],
+      "short_5s_tool_goodput": [
+        0.07024591967028855,
+        0.07026211202198628,
+        0.06996275336988733
+      ],
+      "errors": 0,
+      "strict_requests": 75,
+      "sampled_peak_mib": [
+        23846.0,
+        23846.0,
+        23846.0
+      ],
+      "sampled_min_free_mib": [
+        262.0,
+        262.0,
+        262.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 23,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "partial",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 23,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "partial",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 23,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "partial",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": false,
+      "output_throughput_change_median": 0.0,
+      "long_cost_change_median": 0.0,
+      "study_criteria_pass": false
+    },
+    {
+      "case": "sglang-ctx-control",
+      "group": "resume-high",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/resume-high"
+      ],
+      "short_p95_s": [
+        76.40721474960446,
+        76.99157770723104,
+        76.83458268269897
+      ],
+      "long_latency_s": [
+        79.04775198549032,
+        79.65360220894217,
+        79.49017403274775
+      ],
+      "output_tokens_per_s": [
+        12.28312517086867,
+        12.169759379071692,
+        12.1977745353003
+      ],
+      "fixed_48s_strict": [
+        9,
+        9,
+        9
+      ],
+      "short_5s_tool_goodput": [
+        0.07489710470041872,
+        0.07420584987238836,
+        0.07437667399573354
+      ],
+      "errors": 0,
+      "strict_requests": 75,
+      "sampled_peak_mib": [
+        23704.0,
+        23704.0,
+        23704.0
+      ],
+      "sampled_min_free_mib": [
+        404.0,
+        404.0,
+        404.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588480,
+            "computed_tokens": 1152,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": false,
+      "output_throughput_change_median": 0.0,
+      "long_cost_change_median": 0.0,
+      "study_criteria_pass": false
+    },
+    {
+      "case": "sglang-ctx-responsive128",
+      "group": "short-control",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-short-control/short-control",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-short-control/short-control",
+        "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-short-control/short-control"
+      ],
+      "short_p95_s": [
+        3.023295521736145,
+        2.9966640174388885,
+        3.0751417130231857
+      ],
+      "long_latency_s": [
+        null,
+        null,
+        null
+      ],
+      "output_tokens_per_s": [
+        25.46879219216923,
+        25.501128820161643,
+        25.467947184924473
+      ],
+      "fixed_48s_strict": [
+        23,
+        23,
+        23
+      ],
+      "short_5s_tool_goodput": [
+        0.4897844652340236,
+        0.49040632346464696,
+        0.48976821509470136
+      ],
+      "errors": 0,
+      "strict_requests": 72,
+      "sampled_peak_mib": [
+        23628.0,
+        23628.0,
+        23628.0
+      ],
+      "sampled_min_free_mib": [
+        480.0,
+        480.0,
+        480.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 0
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": true,
+      "output_throughput_change_median": -0.0009084964715758703,
+      "long_cost_change_median": null,
+      "study_criteria_pass": true
+    },
+    {
+      "case": "sglang-ctx-responsive128",
+      "group": "cold-low",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/cold-low"
+      ],
+      "short_p95_s": [
+        5.303962368518114,
+        5.288413882255554,
+        5.230619326233864
+      ],
+      "long_latency_s": [
+        106.4228771738708,
+        106.32703021913767,
+        106.36404176428914
+      ],
+      "output_tokens_per_s": [
+        10.71316244609637,
+        10.721548654117969,
+        10.718425625717442
+      ],
+      "fixed_48s_strict": [
+        22,
+        22,
+        22
+      ],
+      "short_5s_tool_goodput": [
+        0.12248280235628471,
+        0.13075059334290207,
+        0.12254297590378173
+      ],
+      "errors": 0,
+      "strict_requests": 75,
+      "sampled_peak_mib": [
+        23630.0,
+        23628.0,
+        23630.0
+      ],
+      "sampled_min_free_mib": [
+        478.0,
+        480.0,
+        478.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": null,
+            "computed_tokens": null,
+            "counter_observations": 0,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "unobserved",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": false,
+      "output_throughput_change_median": 0.04669119412736178,
+      "long_cost_change_median": 0.17350433231944407,
+      "study_criteria_pass": false
+    },
+    {
+      "case": "sglang-ctx-responsive128",
+      "group": "resume-high",
+      "independent_repetitions": 3,
+      "waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/resume-high"
+      ],
+      "short_p95_s": [
+        5.924985192716122,
+        5.946676257997751,
+        5.962068580091
+      ],
+      "long_latency_s": [
+        92.995555087924,
+        92.81066080182791,
+        92.70249627903104
+      ],
+      "output_tokens_per_s": [
+        12.032452427196246,
+        12.052894549142414,
+        12.064982828451551
+      ],
+      "fixed_48s_strict": [
+        22,
+        22,
+        22
+      ],
+      "short_5s_tool_goodput": [
+        0.08253968890607181,
+        0.08267991687673912,
+        0.082762839524439
+      ],
+      "errors": 0,
+      "strict_requests": 75,
+      "sampled_peak_mib": [
+        23630.0,
+        23630.0,
+        23630.0
+      ],
+      "sampled_min_free_mib": [
+        478.0,
+        478.0,
+        478.0
+      ],
+      "prefix": [
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        },
+        {
+          "long": {
+            "cached_tokens": 24576,
+            "computed_tokens": 106473,
+            "counter_observations": 1,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 1
+          },
+          "short": {
+            "cached_tokens": 588288,
+            "computed_tokens": 1344,
+            "counter_observations": 24,
+            "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+            "status": "observed",
+            "successful_requests": 24
+          }
+        }
+      ],
+      "short_5s_pass_all_repeats": false,
+      "output_throughput_change_median": -0.011877575351028624,
+      "long_cost_change_median": 0.1675740043491727,
+      "study_criteria_pass": false
+    }
+  ],
+  "runtime_input_audit": [
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.62
+    },
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-short-control/short-control",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 24,
+      "full_long": 0,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/cold-low",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    },
+    {
+      "identity": "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/resume-high",
+      "actual_context": 131328,
+      "actual_kv": 131328,
+      "actual_concurrency": 4,
+      "actual_mamba_slots": 16,
+      "strict_requests": 25,
+      "full_long": 1,
+      "native_mamba_max_usage": 0.56
+    }
+  ],
+  "source_sha256": {
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/normal-final-a/summary.json": "ceba02188bfcf1301794d91fb77ab1f9e3c21695db774c15a27b1468b2f5fccd",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-short-control/startup.json": "f9622a0176dc85a856a0853cf6952804ded8766a7e64154f89bdda45848297c5",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-short-control/server.log": "eb3acf683e79d16ce982b7070d98c39977497c032d5ddd56486b8e835f0aabc5",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/campaign.json": "edda5ff9369840732d742ed9185fdb61e7d8a64ed8572e393540218c9fa041ae",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-short-control/short-control/specifications.json": "a10560b50fc83ef7e8ad8dfd34708777a96b9ba1a7f97f2623deaf98a14c15fe",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-short-control/startup.json": "1fa5dfd0a86594abe0ec71ffec98f7edad028552562a85d719ea7cd2b18f589c",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-short-control/server.log": "11bb862236a2e8a75b26a2c5e20617d65ec9879639d5a93506de17998b2475ef",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/campaign.json": "fbd3a5cbdc7d2f71f514784016f69acefb2225363558f573c27393bfcc04b54c",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-short-control/short-control/specifications.json": "a10560b50fc83ef7e8ad8dfd34708777a96b9ba1a7f97f2623deaf98a14c15fe",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-short-control/startup.json": "970848406a9ed07a91aa66f5f44ba9288a849ee9f59308c2a6aee6f3e8b45b9e",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-short-control/server.log": "7bc4c5ed4376e4c86dd4b14caa0d36cca8af80008979502656277c92841dc819",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/campaign.json": "8457177c465e5cba5b1e078b32225d2e542fa21aacbb9c4e35e74113c2c1c45a",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-short-control/short-control/specifications.json": "a10560b50fc83ef7e8ad8dfd34708777a96b9ba1a7f97f2623deaf98a14c15fe",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/startup.json": "f8c735b359654e60d789b4cbdc7f0b23bc95ca15f88c7510c3b746a9df4f973d",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/server.log": "4418ae41c9df50fe50041ecbadbb315777fea6fdf42907d742181f9cfb14a659",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/cold-low/specifications.json": "3d2cba138f29354ad034f9323e716ef1559e6859602cbcf976fc7b85e29ddfd3",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/startup.json": "85b754071400e4ac4e8348ee2447371a3f7cd7ec9f39901ab705134b635b32f2",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/server.log": "9577fd4d84667b6d0c2b524373b128e49a2837a4980f0d3183f2ec14c487d096",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/cold-low/specifications.json": "3d2cba138f29354ad034f9323e716ef1559e6859602cbcf976fc7b85e29ddfd3",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/startup.json": "715eccca9a55d0c66b54e45ea1cadc4fb0c221ada1e79df476db04a65d1a5737",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/server.log": "03f932a59ea0ff56e362f11a5c7b7323f7fe244b0877ebf75e98dcce4a9827e3",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/cold-low/specifications.json": "3d2cba138f29354ad034f9323e716ef1559e6859602cbcf976fc7b85e29ddfd3",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/startup.json": "27ebb64b9567102874afb730314e1c0f88c1e2864f2a24f790c2e9a64a6e717f",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/server.log": "9646eba3577a0c12b2356716d437b96d976d1e9bed2b8c240415beeed592c24d",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/resume-high/specifications.json": "dcfd664f76c9c15ea40b3e52586d1759359db49c8c528cb3c85e71b424e1d4b4",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/startup.json": "be6fd64f28f97646ef86f48f17c0d2822f2bccbb94dca856d667aa5cd88cb032",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/server.log": "6ea1641a51f92ade5d430c9906c78e99a2e9e57c77ead86342544b73c4ef0eea",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/resume-high/specifications.json": "dcfd664f76c9c15ea40b3e52586d1759359db49c8c528cb3c85e71b424e1d4b4",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/startup.json": "6714261a3898def0f8b48588cb4d7ae6cb2f546897eb8270da6994a54b12f91d",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/server.log": "882558a14345682d636cc66637faa1d5a6c170586cef627a9afb969481883221",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/resume-high/specifications.json": "dcfd664f76c9c15ea40b3e52586d1759359db49c8c528cb3c85e71b424e1d4b4",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-short-control/startup.json": "b0765dac8eca900f17d1b5b3d3eb6ecefc439bf0f5de40b343561676c7378c98",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-short-control/server.log": "eaade35e6e50fee4c93a9b92cd94ca71ad83b08df3c2b21ab427151fc0bf372e",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-short-control/short-control/specifications.json": "cca7a4a8ee2e04edb1fb2e4c870c5e2820a7043e4d23dfa6962016dd90a8a20b",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-short-control/startup.json": "f55915faba2ef1f47ea5701497fb33e1348eb85d006bc58ace2b878a3d4befc2",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-short-control/server.log": "231df56dbdbc0baa2e4b75241aff25dc245c183b3220fb0e3ab45e442c347aaa",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-short-control/short-control/specifications.json": "cca7a4a8ee2e04edb1fb2e4c870c5e2820a7043e4d23dfa6962016dd90a8a20b",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-short-control/startup.json": "33794b61c329fb83d436c09350a004c883df51b62c5cfa948444cf39924cb936",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-short-control/server.log": "4d6382bfb90513daec6cb936bb41afed174c908843990b9603b3b383c1dbf5b2",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-short-control/short-control/specifications.json": "cca7a4a8ee2e04edb1fb2e4c870c5e2820a7043e4d23dfa6962016dd90a8a20b",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/startup.json": "edc6e05a22a4a4ee1c77c1cd7c41ffaf78c73c2fd227de2f0bfed0988d937971",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/server.log": "87bb7c0d1752e15db8713493880e05b338c4f4f1c58ef8ddfa27c1519a7deccb",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/cold-low/specifications.json": "345c1e560703a31f669adb80068b014e6425e71d09f576201f6b4c57c9d91577",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/startup.json": "296b1082b2d8b94ce13dd58258784ed1ba43fe19d5b86c4ae05d64d4efc7f5ef",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/server.log": "457b7073ad0d9da1c1308848e5f3f730bb24d2f074015e67f7ff2c11ec9a3ed1",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/cold-low/specifications.json": "345c1e560703a31f669adb80068b014e6425e71d09f576201f6b4c57c9d91577",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/startup.json": "c280f0e9950509bb5c3ef05f9494adbe807d80379919e70c8349abbbd3aab9bf",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/server.log": "63bc35a767b5ee34bdc7afc75841f9b3bcc3d2424c42178f8018d7d0b9652697",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/cold-low/specifications.json": "345c1e560703a31f669adb80068b014e6425e71d09f576201f6b4c57c9d91577",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/startup.json": "6dbdd79cdaee01e0e4522edce326f35c9aa5378d7b1c3f408d5c9a678190937e",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/server.log": "551c1ec614d168ea55834bc69874841a454b09e498e058b5505abc5b0768354d",
+    "pd-baselines/raw/pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/resume-high/specifications.json": "0b93178a90d6e7749cd4b40df9d93fb67b7031abe0cefdf2a43daf837ef06d1c",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/startup.json": "a33a8ab530e235853a174b26b97ba48b008aaf164c689ba9c6a4b2aa6c22890e",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/server.log": "4f1bdfb915d10d5e3ac34ac41559f2f2f0f445628b3e0d9e67bf2d74e9989e99",
+    "pd-baselines/raw/pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/resume-high/specifications.json": "0b93178a90d6e7749cd4b40df9d93fb67b7031abe0cefdf2a43daf837ef06d1c",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/startup.json": "c3d1f333e7d55914d8880de90e93dc43f956bf8ece1b2197bee16fb34b330641",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/server.log": "a842541a36faefd7ff52cad9276e2119e19fcf2068392bdc0e020684423dbc83",
+    "pd-baselines/raw/pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/resume-high/specifications.json": "0b93178a90d6e7749cd4b40df9d93fb67b7031abe0cefdf2a43daf837ef06d1c"
+  }
+}

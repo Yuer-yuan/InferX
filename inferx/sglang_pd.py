@@ -301,6 +301,13 @@ def patch_marlin_workspace(text):
     return text.replace(anchor,'workspace=_inferx_marlin_workspace(self),')+'\nfrom inferx_pd_runtime import marlin_workspace as _inferx_marlin_workspace\n'
 
 
+def patch_pdmux_graph_context(text):
+    anchor='graph_capture(stream=sg[1]) as graph_capture_context,'
+    if text.count(anchor)!=1:
+        raise ValueError('unexpected PD graph capture source')
+    return text.replace(anchor,anchor+'\n                        _inferx_bind_stream_context(graph_capture_context.stream.cuda_stream),')+'\nfrom inferx_pd_runtime import bind_stream_context as _inferx_bind_stream_context\n'
+
+
 def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False, credit_owned_slots=False, bind_green_contexts=False, isolate_marlin_workspaces=False) -> dict:
     source,destination=Path(source).resolve(),Path(destination).resolve()
     if destination.is_relative_to(source) or source.is_relative_to(destination):
@@ -346,6 +353,11 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
             manifest['files']['srt/managers/scheduler.py']=dict(
                 before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
         if policy.startswith('pdmux'):
+            if bind_green_contexts:
+                relative='srt/model_executor/runner/decode_cuda_graph_runner.py'
+                target=staging/'sglang'/relative;original=target.read_bytes()
+                target.write_text(patch_pdmux_graph_context(original.decode()))
+                manifest['files'][relative]=dict(before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
             if isolate_marlin_workspaces:
                 relative='srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py'
                 target=staging/'sglang'/relative;original=target.read_bytes()

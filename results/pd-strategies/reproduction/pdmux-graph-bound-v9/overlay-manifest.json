@@ -1,0 +1,41 @@
+{
+  "policy": "pdmux-chunked",
+  "cap": 128,
+  "protect_decode": true,
+  "credit_owned_slots": true,
+  "bind_green_contexts": true,
+  "isolate_marlin_workspaces": true,
+  "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+  "files": {
+    "srt/managers/schedule_policy.py": {
+      "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+      "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+    },
+    "srt/managers/scheduler.py": {
+      "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+      "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+    },
+    "srt/model_executor/runner/decode_cuda_graph_runner.py": {
+      "before_sha256": "4f9b185ed058b8a6fb1e1d803ab17840a618af5d5816e534fbcdb6f67878072d",
+      "after_sha256": "8634941203e857db65e78d57e04c84d8c7463c64c0d062e2362572a759b9a8c1"
+    },
+    "srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py": {
+      "before_sha256": "a78990db02e703847316fa71f2b8891d034c6fbb6fcaafb104f5e1002a7f396c",
+      "after_sha256": "f5f1f062139ba43f9e66250e2f5275bddcab3fde2b4f8626a9b1e1a31b022c01"
+    },
+    "srt/models/qwen3_5.py": {
+      "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+      "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+    },
+    "srt/multiplex/multiplexing_mixin.py": {
+      "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+      "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+    },
+    "srt/arg_groups/validation_hook.py": {
+      "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+      "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+    }
+  },
+  "runtime_sha256": "4fc04ce0260433ecb5e571dcb95b9f0a138b902ef2871b7101a7d6992ec042ed",
+  "source_hashes_sha256": "bbcddc3bd4920c5199fed36c99582934d5651446384282732da58b785705c152"
+}

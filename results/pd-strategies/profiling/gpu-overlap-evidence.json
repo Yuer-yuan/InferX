@@ -1,0 +1,45 @@
+{
+  "status": "observed",
+  "scope": "Separate profiler-only wave; GDN chunk-prefill and recurrent-decode kernel names identify distinct(device,context,stream)sets. Temporal overlap of kernels on those streams is positive GPU concurrency evidence, not a bandwidth counter, universal progress guarantee, or performance measurement.",
+  "trace": "pd-baselines/raw/pd-strategies-pdmux-profile-v1/traces/pdmux-pdmux-mixed-TP-0.trace.json.gz",
+  "trace_sha256": "93f42a771644da61978e661dd6ffd15214422028090f4137a7fe8605cd708ce2",
+  "kernel_events": 29728,
+  "prefill_marker_count": 228,
+  "decode_marker_count": 1200,
+  "prefill_stream_keys": [
+    [
+      0,
+      3,
+      147
+    ]
+  ],
+  "decode_stream_keys": [
+    [
+      0,
+      4,
+      148
+    ]
+  ],
+  "prefill_stream_kernel_events": 9144,
+  "decode_stream_kernel_events": 20584,
+  "kernel_trace_span_s": 2.071046605957031,
+  "prefill_kernel_union_s": 0.46871734716796876,
+  "decode_kernel_union_s": 0.6371937236328125,
+  "overlapping_kernel_union_s": 0.04457669604492188,
+  "overlap_intervals": 1552,
+  "example_overlap_timestamp_us": [
+    [
+      1211712139119.331,
+      1211712139122.115
+    ],
+    [
+      1211712139254.988,
+      1211712139262.2852
+    ],
+    [
+      1211712139366.004,
+      1211712139624.1338
+    ]
+  ],
+  "profiling_excluded_from_formal_statistics": true
+}

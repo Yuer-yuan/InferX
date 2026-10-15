@@ -59,9 +59,9 @@ Expected: a correctness/capacity-qualified actual PD path, or reproducible adapt
 
 **Interfaces:** Uses existing `scripts.run_pd_baselines` case schema, per-group independent restart and `scripts.analyze_pd_baselines` strict raw export. Records frozen overlay source hashes in case metadata and raw scheduler event files/server logs.
 
-- [ ] Verify active service identity/idle and frozen hashes; run baseline plus128/256 queue-only and128/64 responsive simple diagnostic groups with full code/tool gates.
-- [ ] Complete three repetitions for matched baseline and best simple policy; if PD qualifies, probe at most three SM partitions and complete best configuration's three repetitions. Retain selection diagnostics and failed lanes.
-- [ ] Verify long completion, strict-tool counts, actual capacity, raw arrival counts, restore original service and both manifests, and commit summaries.
+- [x] Verify active service identity/idle and frozen hashes; run baseline plus128/256 queue-only and128/64 responsive simple diagnostic groups with full code/tool gates.
+- [x] Complete three repetitions for matched baseline and best simple policy; if PD qualifies, probe at most three SM partitions and complete best configuration's three repetitions. Retain selection diagnostics and failed lanes.
+- [x] Verify long completion, strict-tool counts, actual capacity, raw arrival counts, restore original service and both manifests, and commit summaries.
 
 Expected: no conclusions from failed/truncated/refused long work, no claims that small-sampleP95 is a productionP99 or that API cache counts are physical recomputation.
 
@@ -72,7 +72,13 @@ Expected: no conclusions from failed/truncated/refused long work, no claims that
 **Interfaces:** Strict raw exports and source manifests produce per-repeat control/simple/PD comparisons, long completion cost, throughput and operational SLO judgments with explicit exclusions.
 
 - [ ] Export deterministically twice and compare hashes; verify original raw/event/provenance hashes; report improvements and remaining unknowns with all repetitions retained.
-- [ ] Run full suite and fresh whole-change review; one Important/Critical fix pass under RED→GREEN, then suite and final service verification.
-- [ ] Archive execution ledger/artifacts, close plan, keep research branch in place and leave reviewable files; no merge/push.
+- [ ] Run full suite, commit the report and analysis evidence, and record Task4 completion before the separate final-review gate below.
 
-Expected: direct measured answer, source-backed compatibility boundaries, and independently reviewed restoration/reproducibility.
+Expected: direct measured answer, source-backed compatibility boundaries, and verified deterministic analysis ready for independent review.
+
+## Final review and finish
+
+- [ ] After the last task completion line, run one fresh whole-change review; one Important/Critical fix pass under RED→GREEN, then suite and final service verification.
+- [ ] Archive execution ledger/artifacts, close plan, keep the research branch in place and leave reviewable files; no merge/push.
+
+Expected: independently reviewed restoration/reproducibility and an archived execution record.
