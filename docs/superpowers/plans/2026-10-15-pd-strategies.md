@@ -71,8 +71,8 @@ Expected: no conclusions from failed/truncated/refused long work, no claims that
 
 **Interfaces:** Strict raw exports and source manifests produce per-repeat control/simple/PD comparisons, long completion cost, throughput and operational SLO judgments with explicit exclusions.
 
-- [ ] Export deterministically twice and compare hashes; verify original raw/event/provenance hashes; report improvements and remaining unknowns with all repetitions retained.
-- [ ] Run full suite, commit the report and analysis evidence, and record Task4 completion before the separate final-review gate below.
+- [x] Export deterministically twice and compare hashes; verify original raw/event/provenance hashes; report improvements and remaining unknowns with all repetitions retained.
+- [x] Run full suite, commit the report and analysis evidence, and record Task4 completion before the separate final-review gate below.
 
 Expected: direct measured answer, source-backed compatibility boundaries, and verified deterministic analysis ready for independent review.
 
