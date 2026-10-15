@@ -7,6 +7,7 @@ import re
 import os
 import signal
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path
 
 GPU1 = 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189'
@@ -46,22 +47,64 @@ def snapshot_harness(source, destination, files):
     return hashes
 
 
-def run_owned_command(command, env, output, timeout=None):
-    """Run an external suite in an owned group, cleaning descendants on failure."""
-    process=subprocess.Popen(command,env=env,stdout=output,stderr=subprocess.STDOUT,
-                             stdin=subprocess.DEVNULL,start_new_session=True)
+@contextmanager
+def defer_interruptions():
+    """Deliver a controller signal after an indivisible spawn/cleanup operation."""
+    numbers=(signal.SIGINT,signal.SIGTERM,signal.SIGHUP)
+    previous={number:signal.getsignal(number) for number in numbers}
+    pending=[]
+    def defer(number,frame):
+        if previous[number]!=signal.SIG_IGN and not pending:
+            pending.append(number)
     try:
-        return process.wait(timeout=timeout)
-    except BaseException:
-        # A still-unreaped Popen anchors this group, including while shutting down.
-        if process.returncode is None:
-            try:os.killpg(process.pid,signal.SIGTERM)
-            except ProcessLookupError:pass
-            try:process.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid,signal.SIGKILL)
-                process.wait(timeout=10)
-        raise
+        for number in numbers:signal.signal(number,defer)
+        yield
+    finally:
+        for number,handler in previous.items():signal.signal(number,handler)
+        if pending:signal.raise_signal(pending[0])
+
+
+@defer_interruptions()
+def stop_owned_group(process, timeout=10):
+    """Clean a private group while its unreaped leader still anchors its ID."""
+    if process.returncode is not None:
+        return
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    import time
+    deadline=time.monotonic()+timeout
+    while (os.waitid(os.P_PID,process.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT) is None
+           and time.monotonic()<deadline):
+        time.sleep(.02)
+    # Leader exit does not establish worker exit. Kill remaining members BEFORE
+    # wait() releases the leader and permits its numeric process group ID reuse.
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    process.wait(timeout=10)
+
+
+def run_owned_command(command, env, output, timeout=None):
+    """Run an external suite and clean its owned descendants on every exit."""
+    import time
+    process=None
+    try:
+        with defer_interruptions():
+            process=subprocess.Popen(command,env=env,stdout=output,stderr=subprocess.STDOUT,
+                                     stdin=subprocess.DEVNULL,start_new_session=True)
+        deadline=None if timeout is None else time.monotonic()+timeout
+        while True:
+            exited=os.waitid(os.P_PID,process.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT)
+            if exited is not None:
+                return exited.si_status if exited.si_code==os.CLD_EXITED else -exited.si_status
+            if deadline is not None and time.monotonic()>=deadline:
+                raise subprocess.TimeoutExpired(command,timeout)
+            time.sleep(.02)
+    finally:
+        if process is not None:stop_owned_group(process)
 
 
 def load_frozen_workloads(directory: Path) -> tuple[dict, dict]:

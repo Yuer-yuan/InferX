@@ -187,3 +187,30 @@ def test_declared_morphx_probe_count_cannot_qualify_unobserved_model_measurement
     import csv
     with (tmp_path/'out/groups.csv').open() as stream:
         assert next(csv.DictReader(stream))['comparison_eligible']=='False'
+
+
+def test_fixed_window_counts_strict_tools_separately_and_keeps_missing_timing_unknown(tmp_path):
+    import csv
+    from scripts.analyze_pd_baselines import export
+    _,raw=make_group(tmp_path)
+    rows=[json.loads(line) for line in (raw/'requests.jsonl').read_text().splitlines()]
+    # One valid tool at exactly48s, an HTTP failure, a protocol success with
+    # truncated tool JSON, and a valid completion after the fixed window.
+    rows[0]['finished_s']=48
+    rows[-1]['finished_s']=49
+    truncated=json.loads(json.dumps(rows[0]));truncated['id']='truncated'
+    truncated['finished_s']=10;truncated['summary']['truncated']=True
+    rows.append(truncated)
+    write(raw/'requests.jsonl',rows,True)
+    write(raw/'specifications.json',[dict(id=r['id']) for r in rows])
+    result=export(tmp_path,tmp_path/'out')
+    window=result['groups'][0]['fixed_window_completion']
+    assert window==dict(status='observed',duration_s=48,protocol=2,strict_tool=1)
+    with (tmp_path/'out/groups.csv').open() as stream:
+        group=next(csv.DictReader(stream))
+        assert group['completed_within_48s_protocol']=='2'
+        assert group['completed_within_48s_strict_tool']=='1'
+    del rows[0]['finished_s'];write(raw/'requests.jsonl',rows,True)
+    missing=export(tmp_path,tmp_path/'out')['groups'][0]['fixed_window_completion']
+    assert missing['status']=='unobserved' and missing['protocol'] is None
+    assert missing['strict_tool'] is None

@@ -182,7 +182,9 @@ SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型�
 
 原GPU1服务恢复为256K/MTP7/C1/rk4v4-e8，PID3433597；实际UID/exe/startticks/完整argv和两份manifest一致，OpenAI严格强制工具调用及Anthropic工具结果往返均通过，GPU0原PID2504785健康。见 [最终服务核验](../../results/pd-baselines/final-service-verification.json)。最终探针首次附带NInfer不支持的chat_template_kwargs字段而收到400；移除该客户端字段、沿用服务本身的no-thinking设置后通过，未修改服务配置，原拒绝记录也已保留。SGLang新版本忽略XDG设置而产生的约11 MiB独立JIT缓存，已在服务终止后按逐文件哈希迁至HDD，并为旧路径建立指向HDD的符号链接；见 [迁移记录](../../results/pd-baselines/sglang-cache-migration.json)。模型及依赖下载均在HDD。
 
-独立复审及控制器中断路径修复仍在收尾，不影响已冻结的性能测量；完成后的测试结果在执行记录中列出。不同量化、池容量和残余预填充尚未被固定成同一条件，因此当前结论是已测工程配置没有解决该负载下的短尾延迟，不是现有最强方法的上限，更不是已证明的新研究空白。
+独立复审已完成，并独立核对590个原始文件哈希、45个不同服务实例及全部主实验响应。随后在一轮修复中补齐SIGTERM/SIGHUP恢复、创建/清理临界区的信号延后、前端退出后仍存活的工作进程清理，以及48秒窗口统计导出。15个新增回归均经历实际失败再通过，完整测试161项通过；原始测量不重写。重新导出的旧字段与原始哈希完全一致，新增固定窗口完成数分别区分协议成功和严格工具有效，时间缺失保持未知。见 [独立复审及处理](../../results/pd-baselines/execution/final-review.md)与[修复后服务核验](../../results/pd-baselines/final-service-after-fixes.json)。
+
+不同量化、池容量和残余预填充尚未被固定成同一条件，因此当前结论是已测工程配置没有解决该负载下的短尾延迟，不是现有最强方法的上限，更不是已证明的新研究空白。
 
 服务器上的复现入口如下；run-id须使用新名称。该命令临时占用实验GPU1，controller结束后恢复原服务。实验GPU0上的服务保持运行。
 

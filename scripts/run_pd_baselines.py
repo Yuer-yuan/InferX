@@ -15,7 +15,7 @@ from inferx.concurrency import run_load, summarize_load
 from inferx.pd_baselines import (GPU1, engine_command, parse_metrics, validate_case,
                                 load_frozen_workloads, arrival_requests, run_owned_command,
                                 snapshot_harness, record_morphx_coverage,
-                                validate_sglang_runtime)
+                                validate_sglang_runtime, stop_owned_group, defer_interruptions)
 from inferx.service_ownership import RestorableService, process_identity, stop_matching_process
 
 ENDPOINT = 'http://127.0.0.1:18083'
@@ -73,8 +73,9 @@ class OwnedEngine:
         if env.get('CUDA_VISIBLE_DEVICES') != GPU1:
             raise RuntimeError('case environment cannot replace owned GPU1')
         self.log = (self.directory/'server.log').open('x')
-        self.proc = subprocess.Popen(self.args, env=env, stdin=subprocess.DEVNULL,
-            stdout=self.log, stderr=subprocess.STDOUT, start_new_session=True)
+        with defer_interruptions():
+            self.proc = subprocess.Popen(self.args, env=env, stdin=subprocess.DEVNULL,
+                stdout=self.log, stderr=subprocess.STDOUT, start_new_session=True)
         deadline = time.monotonic()+self.case.get('startup_timeout_s', 600)
         while time.monotonic() < deadline:
             # Keep an exited leader unreaped until stop() has cleaned its group.
@@ -104,6 +105,7 @@ class OwnedEngine:
             time.sleep(.5)
         raise RuntimeError('server startup timeout')
 
+    @defer_interruptions()
     def stop(self):
         if self.telemetry is not None:
             self.telemetry.terminate()
@@ -123,16 +125,7 @@ class OwnedEngine:
                         if time.monotonic()>=deadline:
                             raise
                         time.sleep(.02)
-            if self.proc.returncode is None:
-                # The unreaped Popen leader anchors the group, including workers
-                # that outlive the HTTP frontend. Startup checks use WNOWAIT.
-                try:os.killpg(self.proc.pid, signal.SIGTERM)
-                except ProcessLookupError:pass
-            try:
-                self.proc.wait(timeout=30)
-            except subprocess.TimeoutExpired:
-                os.killpg(self.proc.pid, signal.SIGKILL)
-                self.proc.wait(timeout=10)
+            stop_owned_group(self.proc, timeout=30)
         if self.log is not None:
             self.log.close()
 
@@ -141,8 +134,23 @@ class OwnedEngine:
 
 
 def run_with_restoration(saved, restore, paths, pre_stop_check, measure):
-    with RestorableService(saved, restore, paths, pre_stop_check=pre_stop_check):
-        return measure()
+    signals=(signal.SIGINT,signal.SIGTERM,signal.SIGHUP)
+    previous={number:signal.getsignal(number) for number in signals}
+    def ignore_interruptions():
+        for number in signals:signal.signal(number,signal.SIG_IGN)
+    def interrupted(number,frame):
+        # A repeated signal must not interrupt child cleanup or restoration.
+        ignore_interruptions()
+        raise KeyboardInterrupt(f'controller received signal{number}')
+    def protected_restore(configuration):
+        ignore_interruptions()
+        return restore(configuration)
+    try:
+        for number in signals:signal.signal(number,interrupted)
+        with RestorableService(saved,protected_restore,paths,pre_stop_check=pre_stop_check):
+            return measure()
+    finally:
+        for number,handler in previous.items():signal.signal(number,handler)
 
 
 def observe(server, name, specifications, warmups=()):

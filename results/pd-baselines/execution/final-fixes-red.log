@@ -1,0 +1,426 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+____ test_owned_engine_kills_stubborn_worker_before_reaping_frontend[False] ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_owned_engine_kills_stubbo0')
+exits = False
+
+    @pytest.mark.parametrize('exits',[False,True])
+    def test_owned_engine_kills_stubborn_worker_before_reaping_frontend(tmp_path,exits):
+        import os,subprocess,sys,time
+        from scripts.run_pd_baselines import OwnedEngine
+        from inferx.service_ownership import process_identity
+        script=stubborn_frontend(tmp_path,exits)
+        engine=OwnedEngine(case(),tmp_path,tmp_path/'run')
+        engine.proc=subprocess.Popen([sys.executable,str(script)],start_new_session=True)
+        other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        identity=None
+        try:
+            identity=fixture_worker(tmp_path)
+            if exits:
+                deadline=time.monotonic()+5
+                while os.waitid(os.P_PID,engine.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT) is None:
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+            else:
+                engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
+            engine.stop()
+            deadline=time.monotonic()+2
+            while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+>           assert not fixture_alive(identity),'TERM-ignoring owned worker survived stop()'
+E           AssertionError: TERM-ignoring owned worker survived stop()
+E           assert not True
+E            +  where True = fixture_alive({'pid': 3439844, 'ticks': '2088367327'})
+
+tests/test_pd_baselines.py:485: AssertionError
+____ test_owned_engine_kills_stubborn_worker_before_reaping_frontend[True] _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_owned_engine_kills_stubbo1')
+exits = True
+
+    @pytest.mark.parametrize('exits',[False,True])
+    def test_owned_engine_kills_stubborn_worker_before_reaping_frontend(tmp_path,exits):
+        import os,subprocess,sys,time
+        from scripts.run_pd_baselines import OwnedEngine
+        from inferx.service_ownership import process_identity
+        script=stubborn_frontend(tmp_path,exits)
+        engine=OwnedEngine(case(),tmp_path,tmp_path/'run')
+        engine.proc=subprocess.Popen([sys.executable,str(script)],start_new_session=True)
+        other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        identity=None
+        try:
+            identity=fixture_worker(tmp_path)
+            if exits:
+                deadline=time.monotonic()+5
+                while os.waitid(os.P_PID,engine.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT) is None:
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+            else:
+                engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
+            engine.stop()
+            deadline=time.monotonic()+2
+            while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+>           assert not fixture_alive(identity),'TERM-ignoring owned worker survived stop()'
+E           AssertionError: TERM-ignoring owned worker survived stop()
+E           assert not True
+E            +  where True = fixture_alive({'pid': 3439859, 'ticks': '2088367545'})
+
+tests/test_pd_baselines.py:485: AssertionError
+___ test_external_suite_cleans_stubborn_worker_on_timeout_and_success[False] ___
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_external_suite_cleans_stu0')
+exits = False
+
+    @pytest.mark.parametrize('exits',[False,True])
+    def test_external_suite_cleans_stubborn_worker_on_timeout_and_success(tmp_path,exits):
+        import os,subprocess,sys,time
+        script=stubborn_frontend(tmp_path,exits)
+        other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        identity=None
+        try:
+            with (tmp_path/'suite.log').open('w') as output:
+                command=[sys.executable,str(script)]
+                if exits:
+                    assert pd.run_owned_command(command,os.environ.copy(),output,timeout=3)==0
+                else:
+                    with pytest.raises(subprocess.TimeoutExpired):
+                        pd.run_owned_command(command,os.environ.copy(),output,timeout=1)
+            identity=fixture_worker(tmp_path)
+            deadline=time.monotonic()+2
+            while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+>           assert not fixture_alive(identity),'external command left its TERM-ignoring worker'
+E           AssertionError: external command left its TERM-ignoring worker
+E           assert not True
+E            +  where True = fixture_alive({'pid': 3439880, 'ticks': '2088367761'})
+
+tests/test_pd_baselines.py:511: AssertionError
+___ test_external_suite_cleans_stubborn_worker_on_timeout_and_success[True] ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_external_suite_cleans_stu1')
+exits = True
+
+    @pytest.mark.parametrize('exits',[False,True])
+    def test_external_suite_cleans_stubborn_worker_on_timeout_and_success(tmp_path,exits):
+        import os,subprocess,sys,time
+        script=stubborn_frontend(tmp_path,exits)
+        other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        identity=None
+        try:
+            with (tmp_path/'suite.log').open('w') as output:
+                command=[sys.executable,str(script)]
+                if exits:
+                    assert pd.run_owned_command(command,os.environ.copy(),output,timeout=3)==0
+                else:
+                    with pytest.raises(subprocess.TimeoutExpired):
+                        pd.run_owned_command(command,os.environ.copy(),output,timeout=1)
+            identity=fixture_worker(tmp_path)
+            deadline=time.monotonic()+2
+            while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+>           assert not fixture_alive(identity),'external command left its TERM-ignoring worker'
+E           AssertionError: external command left its TERM-ignoring worker
+E           assert not True
+E            +  where True = fixture_alive({'pid': 3439895, 'ticks': '2088368066'})
+
+tests/test_pd_baselines.py:511: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[entry-SIGTERM] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_real_controller_signal_re0')
+signal_name = 'SIGTERM', stage = 'entry'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL)))
+    finally:
+        for p in [original,*restored]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+>               assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+E               AssertionError: 
+E               assert -15 == 0
+E                +  where -15 = <bound method Popen.wait of <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>>(timeout=8)
+E                +    where <bound method Popen.wait of <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>> = <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>.wait
+
+tests/test_pd_baselines.py:573: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[entry-SIGHUP] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_real_controller_signal_re1')
+signal_name = 'SIGHUP', stage = 'entry'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL)))
+    finally:
+        for p in [original,*restored]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+>               assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+E               AssertionError: 
+E               assert -1 == 0
+E                +  where -1 = <bound method Popen.wait of <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>>(timeout=8)
+E                +    where <bound method Popen.wait of <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>> = <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>.wait
+
+tests/test_pd_baselines.py:573: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[measurement-SIGTERM] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_real_controller_signal_re2')
+signal_name = 'SIGTERM', stage = 'measurement'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL)))
+    finally:
+        for p in [original,*restored]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+>               assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+E               AssertionError: 
+E               assert -15 == 0
+E                +  where -15 = <bound method Popen.wait of <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>>(timeout=8)
+E                +    where <bound method Popen.wait of <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>> = <Popen: returncode: -15 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo...>.wait
+
+tests/test_pd_baselines.py:573: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[measurement-SIGHUP] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_real_controller_signal_re3')
+signal_name = 'SIGHUP', stage = 'measurement'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL)))
+    finally:
+        for p in [original,*restored]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+>               assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+E               AssertionError: 
+E               assert -1 == 0
+E                +  where -1 = <bound method Popen.wait of <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>>(timeout=8)
+E                +    where <bound method Popen.wait of <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>> = <Popen: returncode: -1 args: ['/home/guokc/mypro/gnn-mount-sda1/InferX/repo-...>.wait
+
+tests/test_pd_baselines.py:573: AssertionError
+_ test_fixed_window_counts_strict_tools_separately_and_keeps_missing_timing_unknown _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-114/test_fixed_window_counts_stric0')
+
+    def test_fixed_window_counts_strict_tools_separately_and_keeps_missing_timing_unknown(tmp_path):
+        import csv
+        from scripts.analyze_pd_baselines import export
+        _,raw=make_group(tmp_path)
+        rows=[json.loads(line) for line in (raw/'requests.jsonl').read_text().splitlines()]
+        # One valid tool at exactly48s, an HTTP failure, a protocol success with
+        # truncated tool JSON, and a valid completion after the fixed window.
+        rows[0]['finished_s']=48
+        rows[-1]['finished_s']=49
+        truncated=json.loads(json.dumps(rows[0]));truncated['id']='truncated'
+        truncated['finished_s']=10;truncated['summary']['truncated']=True
+        rows.append(truncated)
+        write(raw/'requests.jsonl',rows,True)
+        write(raw/'specifications.json',[dict(id=r['id']) for r in rows])
+        result=export(tmp_path,tmp_path/'out')
+>       window=result['groups'][0]['fixed_window_completion']
+E       KeyError: 'fixed_window_completion'
+
+tests/test_pd_baselines_analysis.py:207: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_pd_baselines.py::test_owned_engine_kills_stubborn_worker_before_reaping_frontend[False]
+FAILED tests/test_pd_baselines.py::test_owned_engine_kills_stubborn_worker_before_reaping_frontend[True]
+FAILED tests/test_pd_baselines.py::test_external_suite_cleans_stubborn_worker_on_timeout_and_success[False]
+FAILED tests/test_pd_baselines.py::test_external_suite_cleans_stubborn_worker_on_timeout_and_success[True]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[entry-SIGTERM]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[entry-SIGHUP]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[measurement-SIGTERM]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[measurement-SIGHUP]
+FAILED tests/test_pd_baselines_analysis.py::test_fixed_window_counts_strict_tools_separately_and_keeps_missing_timing_unknown
+9 failed, 36 deselected in 11.04s

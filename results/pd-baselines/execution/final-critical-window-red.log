@@ -1,0 +1,496 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_real_controller_signal_restores_service_and_both_manifests[shutdown-SIGTERM] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-118/test_real_controller_signal_re0')
+signal_name = 'SIGTERM', stage = 'shutdown'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement','restore','shutdown','spawn'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        stubborn_frontend(tmp_path,False)
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts import run_pd_baselines as runner
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[];fronts=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        if stage=='restore':
+            (root/'ready').touch();time.sleep(.3)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        if stage=='restore':return
+        if stage in ('spawn','shutdown'):
+            engine=object.__new__(runner.OwnedEngine)
+            engine.root=root;engine.directory=root/'engine';engine.directory.mkdir()
+            engine.case={'engine':'ninfer','environment':{}}
+            engine.args=[sys.executable,str(root/'frontend.py')]
+            engine.proc=engine.identity=engine.log=engine.telemetry=None
+            real_popen=subprocess.Popen
+            def launch(*args,**kwargs):
+                child=real_popen(*args,**kwargs)
+                if kwargs.get('start_new_session'):
+                    fronts.append(child)
+                    while not (root/'worker.json').exists():time.sleep(.01)
+                    if stage=='spawn':
+                        (root/'ready').touch();time.sleep(.3)
+                return child
+            if stage=='spawn':
+                subprocess.Popen=launch
+                with engine:pass
+            else:
+                engine.proc=launch(engine.args,start_new_session=True)
+                engine.identity=ownership.process_identity(engine.proc.pid,Path(sys.executable))
+                def stop_front(identity,**kwargs):
+                    real_stop(identity,**kwargs)
+                    (root/'ready').touch();time.sleep(.3)
+                runner.stop_matching_process=stop_front
+                engine.stop()
+            return
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        clean=True
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            deadline=time.monotonic()+1
+            while True:
+                try:
+                    stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                    clean=stat[19]!=worker['ticks'] or stat[0]=='Z'
+                except FileNotFoundError:clean=True
+                if clean or time.monotonic()>=deadline:break
+                time.sleep(.01)
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL,workers_clean=clean)))
+    finally:
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            try:
+                fd=os.pidfd_open(worker['pid'])
+                stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                if stat[19]==worker['ticks']:signal.pidfd_send_signal(fd,signal.SIGKILL)
+                os.close(fd)
+            except ProcessLookupError:pass
+        for p in [original,*restored,*fronts]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+                assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+>               assert json.loads((tmp_path/'verified.json').read_text())==dict(
+                    equal=True,live=True,changed=True,handlers_reset=True,workers_clean=True)
+E                   AssertionError: assert {'changed': T...e': True, ...} == {'changed': T...e': True, ...}
+E                     
+E                     Omitting 4 identical items, use -vv to show
+E                     Differing items:
+E                     {'workers_clean': False} != {'workers_clean': True}
+E                     Use -v to get more diff
+
+tests/test_pd_baselines.py:625: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[shutdown-SIGHUP] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-118/test_real_controller_signal_re1')
+signal_name = 'SIGHUP', stage = 'shutdown'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement','restore','shutdown','spawn'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        stubborn_frontend(tmp_path,False)
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts import run_pd_baselines as runner
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[];fronts=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        if stage=='restore':
+            (root/'ready').touch();time.sleep(.3)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        if stage=='restore':return
+        if stage in ('spawn','shutdown'):
+            engine=object.__new__(runner.OwnedEngine)
+            engine.root=root;engine.directory=root/'engine';engine.directory.mkdir()
+            engine.case={'engine':'ninfer','environment':{}}
+            engine.args=[sys.executable,str(root/'frontend.py')]
+            engine.proc=engine.identity=engine.log=engine.telemetry=None
+            real_popen=subprocess.Popen
+            def launch(*args,**kwargs):
+                child=real_popen(*args,**kwargs)
+                if kwargs.get('start_new_session'):
+                    fronts.append(child)
+                    while not (root/'worker.json').exists():time.sleep(.01)
+                    if stage=='spawn':
+                        (root/'ready').touch();time.sleep(.3)
+                return child
+            if stage=='spawn':
+                subprocess.Popen=launch
+                with engine:pass
+            else:
+                engine.proc=launch(engine.args,start_new_session=True)
+                engine.identity=ownership.process_identity(engine.proc.pid,Path(sys.executable))
+                def stop_front(identity,**kwargs):
+                    real_stop(identity,**kwargs)
+                    (root/'ready').touch();time.sleep(.3)
+                runner.stop_matching_process=stop_front
+                engine.stop()
+            return
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        clean=True
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            deadline=time.monotonic()+1
+            while True:
+                try:
+                    stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                    clean=stat[19]!=worker['ticks'] or stat[0]=='Z'
+                except FileNotFoundError:clean=True
+                if clean or time.monotonic()>=deadline:break
+                time.sleep(.01)
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL,workers_clean=clean)))
+    finally:
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            try:
+                fd=os.pidfd_open(worker['pid'])
+                stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                if stat[19]==worker['ticks']:signal.pidfd_send_signal(fd,signal.SIGKILL)
+                os.close(fd)
+            except ProcessLookupError:pass
+        for p in [original,*restored,*fronts]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+                assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+>               assert json.loads((tmp_path/'verified.json').read_text())==dict(
+                    equal=True,live=True,changed=True,handlers_reset=True,workers_clean=True)
+E                   AssertionError: assert {'changed': T...e': True, ...} == {'changed': T...e': True, ...}
+E                     
+E                     Omitting 4 identical items, use -vv to show
+E                     Differing items:
+E                     {'workers_clean': False} != {'workers_clean': True}
+E                     Use -v to get more diff
+
+tests/test_pd_baselines.py:625: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[spawn-SIGTERM] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-118/test_real_controller_signal_re2')
+signal_name = 'SIGTERM', stage = 'spawn'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement','restore','shutdown','spawn'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        stubborn_frontend(tmp_path,False)
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts import run_pd_baselines as runner
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[];fronts=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        if stage=='restore':
+            (root/'ready').touch();time.sleep(.3)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        if stage=='restore':return
+        if stage in ('spawn','shutdown'):
+            engine=object.__new__(runner.OwnedEngine)
+            engine.root=root;engine.directory=root/'engine';engine.directory.mkdir()
+            engine.case={'engine':'ninfer','environment':{}}
+            engine.args=[sys.executable,str(root/'frontend.py')]
+            engine.proc=engine.identity=engine.log=engine.telemetry=None
+            real_popen=subprocess.Popen
+            def launch(*args,**kwargs):
+                child=real_popen(*args,**kwargs)
+                if kwargs.get('start_new_session'):
+                    fronts.append(child)
+                    while not (root/'worker.json').exists():time.sleep(.01)
+                    if stage=='spawn':
+                        (root/'ready').touch();time.sleep(.3)
+                return child
+            if stage=='spawn':
+                subprocess.Popen=launch
+                with engine:pass
+            else:
+                engine.proc=launch(engine.args,start_new_session=True)
+                engine.identity=ownership.process_identity(engine.proc.pid,Path(sys.executable))
+                def stop_front(identity,**kwargs):
+                    real_stop(identity,**kwargs)
+                    (root/'ready').touch();time.sleep(.3)
+                runner.stop_matching_process=stop_front
+                engine.stop()
+            return
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        clean=True
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            deadline=time.monotonic()+1
+            while True:
+                try:
+                    stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                    clean=stat[19]!=worker['ticks'] or stat[0]=='Z'
+                except FileNotFoundError:clean=True
+                if clean or time.monotonic()>=deadline:break
+                time.sleep(.01)
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL,workers_clean=clean)))
+    finally:
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            try:
+                fd=os.pidfd_open(worker['pid'])
+                stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                if stat[19]==worker['ticks']:signal.pidfd_send_signal(fd,signal.SIGKILL)
+                os.close(fd)
+            except ProcessLookupError:pass
+        for p in [original,*restored,*fronts]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+                assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+>               assert json.loads((tmp_path/'verified.json').read_text())==dict(
+                    equal=True,live=True,changed=True,handlers_reset=True,workers_clean=True)
+E                   AssertionError: assert {'changed': T...e': True, ...} == {'changed': T...e': True, ...}
+E                     
+E                     Omitting 4 identical items, use -vv to show
+E                     Differing items:
+E                     {'workers_clean': False} != {'workers_clean': True}
+E                     Use -v to get more diff
+
+tests/test_pd_baselines.py:625: AssertionError
+_ test_real_controller_signal_restores_service_and_both_manifests[spawn-SIGHUP] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-118/test_real_controller_signal_re3')
+signal_name = 'SIGHUP', stage = 'spawn'
+
+    @pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+    @pytest.mark.parametrize('stage',['entry','measurement','restore','shutdown','spawn'])
+    def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+        import json,os,signal,subprocess,sys,time
+        stubborn_frontend(tmp_path,False)
+        controller=tmp_path/'controller.py'
+        controller.write_text('''import json,os,signal,subprocess,sys,time
+    from pathlib import Path
+    from inferx import service_ownership as ownership
+    from inferx.context_agents import verify_process_identity
+    from scripts import run_pd_baselines as runner
+    from scripts.run_pd_baselines import run_with_restoration
+    root=Path(sys.argv[1]);stage=sys.argv[2]
+    original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    saved=ownership.process_identity(original.pid,Path(sys.executable))
+    (root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+    paths=[root/'first.json',root/'second.json']
+    for p in paths:p.write_text(json.dumps(saved))
+    restored=[];fronts=[]
+    def restore(_):
+        child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+        restored.append(child)
+        if stage=='restore':
+            (root/'ready').touch();time.sleep(.3)
+        # Repeated termination while restoring must not abort this callback.
+        os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+        return ownership.process_identity(child.pid,Path(sys.executable))
+    real_stop=ownership.stop_matching_process
+    def stop(identity,**kwargs):
+        real_stop(identity,**kwargs)
+        if stage=='entry' and not (root/'ready').exists():
+            (root/'ready').touch();time.sleep(60)
+    ownership.stop_matching_process=stop
+    def measure():
+        if stage=='restore':return
+        if stage in ('spawn','shutdown'):
+            engine=object.__new__(runner.OwnedEngine)
+            engine.root=root;engine.directory=root/'engine';engine.directory.mkdir()
+            engine.case={'engine':'ninfer','environment':{}}
+            engine.args=[sys.executable,str(root/'frontend.py')]
+            engine.proc=engine.identity=engine.log=engine.telemetry=None
+            real_popen=subprocess.Popen
+            def launch(*args,**kwargs):
+                child=real_popen(*args,**kwargs)
+                if kwargs.get('start_new_session'):
+                    fronts.append(child)
+                    while not (root/'worker.json').exists():time.sleep(.01)
+                    if stage=='spawn':
+                        (root/'ready').touch();time.sleep(.3)
+                return child
+            if stage=='spawn':
+                subprocess.Popen=launch
+                with engine:pass
+            else:
+                engine.proc=launch(engine.args,start_new_session=True)
+                engine.identity=ownership.process_identity(engine.proc.pid,Path(sys.executable))
+                def stop_front(identity,**kwargs):
+                    real_stop(identity,**kwargs)
+                    (root/'ready').touch();time.sleep(.3)
+                runner.stop_matching_process=stop_front
+                engine.stop()
+            return
+        (root/'ready').touch();time.sleep(60)
+    try:
+        try:run_with_restoration(saved,restore,paths,None,measure)
+        except KeyboardInterrupt:pass
+        a,b=[json.loads(p.read_text()) for p in paths]
+        clean=True
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            deadline=time.monotonic()+1
+            while True:
+                try:
+                    stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                    clean=stat[19]!=worker['ticks'] or stat[0]=='Z'
+                except FileNotFoundError:clean=True
+                if clean or time.monotonic()>=deadline:break
+                time.sleep(.01)
+        (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+            live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+            changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+            and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL,workers_clean=clean)))
+    finally:
+        if (root/'worker.json').exists():
+            worker=json.loads((root/'worker.json').read_text())
+            try:
+                fd=os.pidfd_open(worker['pid'])
+                stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                if stat[19]==worker['ticks']:signal.pidfd_send_signal(fd,signal.SIGKILL)
+                os.close(fd)
+            except ProcessLookupError:pass
+        for p in [original,*restored,*fronts]:
+            if p.poll() is None:p.kill()
+            p.wait()
+    ''')
+        env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        with (tmp_path/'controller.log').open('w') as output:
+            process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                     env=env,stdout=output,stderr=subprocess.STDOUT)
+            try:
+                deadline=time.monotonic()+8
+                while not (tmp_path/'ready').exists():
+                    assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                    assert time.monotonic()<deadline
+                    time.sleep(.01)
+                os.kill(process.pid,getattr(signal,signal_name))
+                assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+>               assert json.loads((tmp_path/'verified.json').read_text())==dict(
+                    equal=True,live=True,changed=True,handlers_reset=True,workers_clean=True)
+E                   AssertionError: assert {'changed': T...e': True, ...} == {'changed': T...e': True, ...}
+E                     
+E                     Omitting 4 identical items, use -vv to show
+E                     Differing items:
+E                     {'workers_clean': False} != {'workers_clean': True}
+E                     Use -v to get more diff
+
+tests/test_pd_baselines.py:625: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[shutdown-SIGTERM]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[shutdown-SIGHUP]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[spawn-SIGTERM]
+FAILED tests/test_pd_baselines.py::test_real_controller_signal_restores_service_and_both_manifests[spawn-SIGHUP]
+4 failed, 37 deselected in 6.11s

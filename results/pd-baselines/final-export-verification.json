@@ -1,14 +1,19 @@
 {
-  "export_status": "passed_twice_identical",
+  "status": "passed_twice_identical",
+  "exports": [
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/derived-final-v2-a",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/derived-final-v2-b"
+  ],
   "sha256": {
     "audit.json": "eab52e46421a6a26a5fb7880404889c26b202f564dd090037def4880269b474b",
-    "groups.csv": "1a23af7d9785d8ba80a801cbe6d56c1602faa4c8f9b8f1817a8ef31960f0cee7",
+    "groups.csv": "65d6646082156a935db1c0747bee04b90bbb4ced71259b985e021e22f8f914e2",
     "requests.csv": "b9b77907dea062152296f5d1746e7be4a84cfa90502acf6bb4a8f54a12cb06d4",
-    "summary.json": "3e2282901412153c0eaf67ab6555d7551efb689af38ab9e7544801c4f48cf07b"
+    "summary.json": "75e3faf0843ff415a14d6e11fc88ad6a012e1c3177c8246d0ac3f6001d4834bd"
   },
-  "scope": "Strict export before service API probes; initial helper later stopped on unsupported client field HTTP400, preserved separately.",
-  "first_helper": "finalize-data-v1.json",
-  "service_verification": "final-service-verification.json",
-  "service_verification_sha256": "ef17d66caa21055193e38c6c2887381e56ca3f7c692dcbc90995209809cb3069",
-  "initial_probe_failure": "final-openai-verification-first-failure.json"
+  "source_files_unchanged": true,
+  "previous_group_fields_unchanged": true,
+  "formal_groups": 45,
+  "fixed_window_observed_formal_groups": 45,
+  "previous_export": "derived-final-v1-a",
+  "scope": "Recomputed derived files after fixed-window schema fix; immutable raw and all previously exported group values unchanged."
 }

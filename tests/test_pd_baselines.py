@@ -412,3 +412,220 @@ def test_campaign_preserves_harness_bytes_when_workspace_changes(tmp_path):
     assert hashes['inferx/example.py']==hashlib.sha256(b'original = True\n').hexdigest()
     with pytest.raises(ValueError,match='relative'):
         pd.snapshot_harness(source, tmp_path/'invalid', ['../private.py'])
+
+
+def stubborn_frontend(tmp_path, exits):
+    """Worker publishes identity only after installing its TERM refusal."""
+    worker=tmp_path/'worker.py'
+    worker.write_text('import os,signal,time,json\nfrom pathlib import Path\n'
+        'signal.signal(signal.SIGTERM,signal.SIG_IGN)\n'
+        f'Path({str(tmp_path/"worker.json")!r}).write_text(json.dumps(dict(pid=os.getpid(),'
+        'ticks=Path(f"/proc/{os.getpid()}/stat").read_text().rsplit(")",1)[1].split()[19])))\n'
+        'time.sleep(60)\n')
+    front=tmp_path/'frontend.py'
+    front.write_text('import subprocess,sys,time\nfrom pathlib import Path\n'
+        f'subprocess.Popen([sys.executable,{str(worker)!r}])\n'
+        f'while not Path({str(tmp_path/"worker.json")!r}).exists():time.sleep(.01)\n'
+        + ('' if exits else 'time.sleep(60)\n'))
+    return front
+
+
+def fixture_worker(tmp_path):
+    import json,time
+    path=tmp_path/'worker.json'
+    deadline=time.monotonic()+5
+    while not path.exists():
+        assert time.monotonic()<deadline,'worker fixture did not become ready'
+        time.sleep(.01)
+    return json.loads(path.read_text())
+
+
+def fixture_alive(identity):
+    try:
+        fields=Path(f"/proc/{identity['pid']}/stat").read_text().rsplit(')',1)[1].split()
+        return fields[19]==identity['ticks'] and fields[0]!='Z'
+    except (FileNotFoundError,ProcessLookupError):
+        return False
+
+
+def kill_fixture(identity):
+    import os,signal
+    try:
+        fd=os.pidfd_open(identity['pid'])
+    except ProcessLookupError:
+        return
+    try:
+        if fixture_alive(identity):signal.pidfd_send_signal(fd,signal.SIGKILL)
+    finally:
+        os.close(fd)
+
+
+@pytest.mark.parametrize('exits',[False,True])
+def test_owned_engine_kills_stubborn_worker_before_reaping_frontend(tmp_path,exits):
+    import os,subprocess,sys,time
+    from scripts.run_pd_baselines import OwnedEngine
+    from inferx.service_ownership import process_identity
+    script=stubborn_frontend(tmp_path,exits)
+    engine=OwnedEngine(case(),tmp_path,tmp_path/'run')
+    engine.proc=subprocess.Popen([sys.executable,str(script)],start_new_session=True)
+    other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    identity=None
+    try:
+        identity=fixture_worker(tmp_path)
+        if exits:
+            deadline=time.monotonic()+5
+            while os.waitid(os.P_PID,engine.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT) is None:
+                assert time.monotonic()<deadline
+                time.sleep(.01)
+        else:
+            engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
+        engine.stop()
+        deadline=time.monotonic()+2
+        while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+        assert not fixture_alive(identity),'TERM-ignoring owned worker survived stop()'
+        assert other.poll() is None
+    finally:
+        if identity:kill_fixture(identity)
+        if engine.proc.poll() is None:engine.proc.kill()
+        engine.proc.wait(timeout=3)
+        other.terminate();other.wait(timeout=3)
+
+
+@pytest.mark.parametrize('exits',[False,True])
+def test_external_suite_cleans_stubborn_worker_on_timeout_and_success(tmp_path,exits):
+    import os,subprocess,sys,time
+    script=stubborn_frontend(tmp_path,exits)
+    other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    identity=None
+    try:
+        with (tmp_path/'suite.log').open('w') as output:
+            command=[sys.executable,str(script)]
+            if exits:
+                assert pd.run_owned_command(command,os.environ.copy(),output,timeout=3)==0
+            else:
+                with pytest.raises(subprocess.TimeoutExpired):
+                    pd.run_owned_command(command,os.environ.copy(),output,timeout=1)
+        identity=fixture_worker(tmp_path)
+        deadline=time.monotonic()+2
+        while fixture_alive(identity) and time.monotonic()<deadline:time.sleep(.01)
+        assert not fixture_alive(identity),'external command left its TERM-ignoring worker'
+        assert other.poll() is None
+    finally:
+        if (tmp_path/'worker.json').exists():kill_fixture(fixture_worker(tmp_path))
+        other.terminate();other.wait(timeout=3)
+
+
+@pytest.mark.parametrize('signal_name',['SIGTERM','SIGHUP'])
+@pytest.mark.parametrize('stage',['entry','measurement','restore','shutdown','spawn'])
+def test_real_controller_signal_restores_service_and_both_manifests(tmp_path,signal_name,stage):
+    import json,os,signal,subprocess,sys,time
+    stubborn_frontend(tmp_path,False)
+    controller=tmp_path/'controller.py'
+    controller.write_text('''import json,os,signal,subprocess,sys,time
+from pathlib import Path
+from inferx import service_ownership as ownership
+from inferx.context_agents import verify_process_identity
+from scripts import run_pd_baselines as runner
+from scripts.run_pd_baselines import run_with_restoration
+root=Path(sys.argv[1]);stage=sys.argv[2]
+original=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+saved=ownership.process_identity(original.pid,Path(sys.executable))
+(root/'original.json').write_text(json.dumps(dict(pid=original.pid,ticks=saved['proc_start_ticks'])))
+paths=[root/'first.json',root/'second.json']
+for p in paths:p.write_text(json.dumps(saved))
+restored=[];fronts=[]
+def restore(_):
+    child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(60)'])
+    restored.append(child)
+    if stage=='restore':
+        (root/'ready').touch();time.sleep(.3)
+    # Repeated termination while restoring must not abort this callback.
+    os.kill(os.getpid(),getattr(signal,sys.argv[3]))
+    return ownership.process_identity(child.pid,Path(sys.executable))
+real_stop=ownership.stop_matching_process
+def stop(identity,**kwargs):
+    real_stop(identity,**kwargs)
+    if stage=='entry' and not (root/'ready').exists():
+        (root/'ready').touch();time.sleep(60)
+ownership.stop_matching_process=stop
+def measure():
+    if stage=='restore':return
+    if stage in ('spawn','shutdown'):
+        engine=object.__new__(runner.OwnedEngine)
+        engine.root=root;engine.directory=root/'engine';engine.directory.mkdir()
+        engine.case={'engine':'ninfer','environment':{}}
+        engine.args=[sys.executable,str(root/'frontend.py')]
+        engine.proc=engine.identity=engine.log=engine.telemetry=None
+        real_popen=subprocess.Popen
+        def launch(*args,**kwargs):
+            child=real_popen(*args,**kwargs)
+            if kwargs.get('start_new_session'):
+                fronts.append(child)
+                while not (root/'worker.json').exists():time.sleep(.01)
+                if stage=='spawn':
+                    (root/'ready').touch();time.sleep(.3)
+            return child
+        if stage=='spawn':
+            subprocess.Popen=launch
+            with engine:pass
+        else:
+            engine.proc=launch(engine.args,start_new_session=True)
+            engine.identity=ownership.process_identity(engine.proc.pid,Path(sys.executable))
+            def stop_front(identity,**kwargs):
+                real_stop(identity,**kwargs)
+                (root/'ready').touch();time.sleep(.3)
+            runner.stop_matching_process=stop_front
+            engine.stop()
+        return
+    (root/'ready').touch();time.sleep(60)
+try:
+    try:run_with_restoration(saved,restore,paths,None,measure)
+    except KeyboardInterrupt:pass
+    a,b=[json.loads(p.read_text()) for p in paths]
+    clean=True
+    if (root/'worker.json').exists():
+        worker=json.loads((root/'worker.json').read_text())
+        deadline=time.monotonic()+1
+        while True:
+            try:
+                stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+                clean=stat[19]!=worker['ticks'] or stat[0]=='Z'
+            except FileNotFoundError:clean=True
+            if clean or time.monotonic()>=deadline:break
+            time.sleep(.01)
+    (root/'verified.json').write_text(json.dumps(dict(equal=a==b,
+        live=verify_process_identity(a['pid'],a['proc_start_ticks'],Path(a['executable'])),
+        changed=a['pid']!=original.pid,handlers_reset=signal.getsignal(signal.SIGTERM)==signal.SIG_DFL
+        and signal.getsignal(signal.SIGHUP)==signal.SIG_DFL,workers_clean=clean)))
+finally:
+    if (root/'worker.json').exists():
+        worker=json.loads((root/'worker.json').read_text())
+        try:
+            fd=os.pidfd_open(worker['pid'])
+            stat=Path(f"/proc/{worker['pid']}/stat").read_text().rsplit(')',1)[1].split()
+            if stat[19]==worker['ticks']:signal.pidfd_send_signal(fd,signal.SIGKILL)
+            os.close(fd)
+        except ProcessLookupError:pass
+    for p in [original,*restored,*fronts]:
+        if p.poll() is None:p.kill()
+        p.wait()
+''')
+    env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+    with (tmp_path/'controller.log').open('w') as output:
+        process=subprocess.Popen([sys.executable,str(controller),str(tmp_path),stage,signal_name],
+                                 env=env,stdout=output,stderr=subprocess.STDOUT)
+        try:
+            deadline=time.monotonic()+8
+            while not (tmp_path/'ready').exists():
+                assert process.poll() is None,(tmp_path/'controller.log').read_text()
+                assert time.monotonic()<deadline
+                time.sleep(.01)
+            os.kill(process.pid,getattr(signal,signal_name))
+            assert process.wait(timeout=8)==0,(tmp_path/'controller.log').read_text()
+            assert json.loads((tmp_path/'verified.json').read_text())==dict(
+                equal=True,live=True,changed=True,handlers_reset=True,workers_clean=True)
+        finally:
+            if process.poll() is None:process.kill()
+            process.wait(timeout=3)
+            if (tmp_path/'original.json').exists():
+                kill_fixture(json.loads((tmp_path/'original.json').read_text()))

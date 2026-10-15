@@ -60,6 +60,16 @@ def preemption_observations(result):
     return dict(status='observed',count=after-before,metric=metric)
 
 
+def fixed_window_completion(rows, complete):
+    known=complete and all(type(r.get('finished_s')) in (int,float)
+        and math.isfinite(r['finished_s']) and r['finished_s']>=0 for r in rows)
+    within=[r for r in rows if r['finished_s']<=48] if known else []
+    return dict(status='observed' if known else 'unobserved',duration_s=48,
+        protocol=sum(bool(r['summary']['ok']) for r in within) if known else None,
+        strict_tool=sum(r.get('functional_ok') is True and r['summary']['ok']
+            and not r['summary'].get('truncated') for r in within) if known else None)
+
+
 def _summarize_repeats(groups):
     buckets=collections.defaultdict(list)
     for group in groups:
@@ -163,6 +173,7 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             long=[r for r in rows if r.get('prompt_id')!='tool-24576']
             entry['prefix']=dict(short=prefix_observations(short),long=prefix_observations(long))
             entry['preemptions']=preemption_observations(result)
+            entry['fixed_window_completion']=fixed_window_completion(rows,complete)
             coverage_path=directory/'morphx-coverage.json'
             entry['morphx_coverage']=read(coverage_path) if coverage_path.exists() else None
             entry['comparison_eligible']=bool(complete and quality.get('status')=='passed'
@@ -205,6 +216,8 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             gpu_sampled_peak_mib=g['gpu_memory']['sampled_peak_mib'],
             preemptions=g['preemptions']['count'],
             preemptions_status=g['preemptions']['status'],
+            completed_within_48s_protocol=g['fixed_window_completion']['protocol'],
+            completed_within_48s_strict_tool=g['fixed_window_completion']['strict_tool'],
             full_long_completed=g.get('full_long_completed'),quality=g['quality_status']))
     for name,records in [('groups',group_rows),('requests',requests)]:
         with (destination/f'{name}.csv').open('w') as output:
