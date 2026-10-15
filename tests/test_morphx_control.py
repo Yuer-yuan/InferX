@@ -127,3 +127,15 @@ def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_p
     assert all(hashlib.sha256((destination/n).read_bytes()).hexdigest()==h for n,h in result['source_sha256'].items())
     with pytest.raises(FileExistsError):prepare_control_runtime(source,destination,device_fill=True,event_completion=True)
     with pytest.raises(ValueError,match='overlap'):prepare_control_runtime(source,source/'child',device_fill=True,event_completion=True)
+
+
+def test_model_qualification_reads_exact_hdd_config_before_service_mutation(tmp_path):
+    from inferx.morphx_control import load_qualified_base_case
+    import shutil
+    folder=tmp_path/'sota-validation/configs';folder.mkdir(parents=True)
+    shutil.copy2(ROOT/'configs/sota-validation.json',folder/'sota-validation.json')
+    assert not (tmp_path/'code-pd-baselines/configs').exists()
+    case=load_qualified_base_case(tmp_path)
+    assert case['id']=='morphx-copy96-no-launch-cap' and case['model_revision']=='91bd022d5b49442a868bc35008f6c21e1860edfa'
+    path=folder/'sota-validation.json';path.write_text(path.read_text()+' ')
+    with pytest.raises(ValueError,match='config hash'):load_qualified_base_case(tmp_path)

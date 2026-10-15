@@ -8,6 +8,15 @@ from inferx.morphx_validation import upgrade_proc_address_queries
 
 BASE_LIBRARY_SHA256='64f3268499a920e30db33d48b8ecee9137216e3dd494e0a93d0e2119a542af3a'
 BASE_RUNTIME_SHA256='42c4893adb412045b543dcf4a9f777d851fd155e646f58c31f9cb3ca9fb4e399'
+BASE_CONFIG_SHA256='ab40127993593d35fc4acf2ef02219384ebbe65a495427f8391ee171bb8db6d7'
+
+
+def load_qualified_base_case(root: Path) -> dict:
+    """Read the frozen HDD configuration before creating a run or stopping a service."""
+    raw=(Path(root)/'sota-validation/configs/sota-validation.json').read_bytes()
+    if hashlib.sha256(raw).hexdigest()!=BASE_CONFIG_SHA256:
+        raise ValueError('base config hash mismatch')
+    return next(c for c in json.loads(raw)['cases'] if c['id']=='morphx-copy96-no-launch-cap')
 
 _DRIVER=r'''
 #include "morphx_control_ops.hpp"
