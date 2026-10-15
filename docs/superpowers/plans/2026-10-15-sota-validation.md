@@ -72,9 +72,9 @@ Expected: actual qualified comparison data where possible and reproducible bound
 
 **Interfaces:** Strict raw exports produce continuous short/long slowdown and throughput/headroom/coverage, retaining independent repeat identities and excluded lanes.
 
-- [ ] Export qualified raw twice, verify determinism/source hashes, calculate lane-specific solo/mixed ratios and joint criteria; if no qualified new lane, deterministic compatibility summaries retain failures and existing-reference provenance instead.
-- [ ] Write direct measured answer with candidate/code/hardware distinctions and all unknowns; verify reproduction commands and source/binary inventories.
-- [ ] Full suite and commit; recordTask4 completion before final review.
+- [x] Export qualified raw twice, verify determinism/source hashes, calculate lane-specific solo/mixed ratios and joint criteria; if no qualified new lane, deterministic compatibility summaries retain failures and existing-reference provenance instead.
+- [x] Write direct measured answer with candidate/code/hardware distinctions and all unknowns; verify reproduction commands and source/binary inventories.
+- [x] Full suite and commit; recordTask4 completion before final review.
 
 Expected: evidence-based answer to whether tested SOTA solves this workload, without a universal novelty or optimality claim.
 
