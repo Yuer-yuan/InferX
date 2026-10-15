@@ -1,5 +1,7 @@
 """Narrow, explicitly labeled SGLang source-overlay experiments."""
 import functools
+from contextlib import contextmanager
+import ctypes
 import hashlib
 import json
 import logging
@@ -176,7 +178,108 @@ def _patch_chunk_transition(text):
     return text.replace(original,modified)+'\nfrom inferx_pd_runtime import finish_pdmux_chunk as _inferx_finish_chunk\n'
 
 
-def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False) -> dict:
+def owned_admission_limit(free_limit, requests, hard_limit, credit_existing=True):
+    owned=sum(bool(getattr(getattr(req,'kv',None),'holds_kv',False)) for req in requests) if credit_existing else 0
+    limit=min(max(0,hard_limit),free_limit+owned)
+    if owned and limit!=free_limit:
+        logging.getLogger('inferx.pd').info('PD_CAPACITY %s',json.dumps(dict(
+            unix=time.time(),free_limit=free_limit,owned_rows=owned,hard_limit=hard_limit,
+            can_run=len(requests),corrected_limit=limit),sort_keys=True))
+    return limit
+
+
+def _patch_owned_capacity(text):
+    original='''            if len(adder.can_run_list) >= self.get_num_allocatable_reqs(
+                running_bs,
+                candidate_beam_width,
+                running_batch=running_batch,
+            ):'''
+    replacement='''            if len(adder.can_run_list) >= _inferx_owned_limit(
+                self.get_num_allocatable_reqs(
+                    running_bs, candidate_beam_width, running_batch=running_batch),
+                adder.can_run_list,
+                min(self.max_running_requests, get_parallel().pp_max_micro_batch_size)-running_bs,
+                credit_existing=(candidate_beam_width is None),
+            ):'''
+    if text.count(original)!=1:
+        raise ValueError('unexpected scheduler admission-capacity source')
+    return text.replace(original,replacement)+'\nfrom inferx_pd_runtime import owned_admission_limit as _inferx_owned_limit\n'
+
+
+class CudaContextAPI:
+    """Driver context access for the fixed, lifetime-owned PDMux stream set."""
+    def __init__(self):
+        self.lib=ctypes.CDLL('libcuda.so.1');self.contexts={}
+        ptr=ctypes.c_void_p;out=ctypes.POINTER(ptr)
+        for name,args in [('cuCtxGetCurrent',[out]),('cuCtxSetCurrent',[ptr]),
+                          ('cuStreamGetGreenCtx',[ptr,out]),('cuCtxFromGreenCtx',[out,ptr])]:
+            fn=getattr(self.lib,name);fn.argtypes=args;fn.restype=ctypes.c_int
+
+    def call(self,name,*args):
+        code=getattr(self.lib,name)(*args)
+        if code:raise RuntimeError(f'{name} failed with CUDA driver code{code}')
+
+    def current(self):
+        value=ctypes.c_void_p();self.call('cuCtxGetCurrent',ctypes.byref(value));return value.value
+
+    def set_current(self,value):self.call('cuCtxSetCurrent',value)
+
+    def context_for_stream(self,stream):
+        if stream in (0,1,2):return None  # Special default streams depend on ambient context.
+        if stream not in self.contexts:
+            green=ctypes.c_void_p();self.call('cuStreamGetGreenCtx',stream,ctypes.byref(green))
+            context=ctypes.c_void_p()
+            if green.value:self.call('cuCtxFromGreenCtx',ctypes.byref(context),green)
+            self.contexts[stream]=context.value
+        return self.contexts[stream]
+
+
+_cuda_context_api=None
+
+
+@contextmanager
+def bind_stream_context(stream,api=None):
+    global _cuda_context_api
+    if api is None:
+        if _cuda_context_api is None:_cuda_context_api=CudaContextAPI()
+        api=_cuda_context_api
+    previous=api.current();target=api.context_for_stream(stream)
+    if target is not None:api.set_current(target)
+    try:yield
+    finally:
+        if target is not None:api.set_current(previous)
+
+
+@contextmanager
+def green_stream(stream):
+    import torch
+    with torch.cuda.stream(stream):
+        with bind_stream_context(stream.cuda_stream):yield
+
+
+def green_sync(stream):
+    with bind_stream_context(stream.cuda_stream):stream.synchronize()
+
+
+def green_wait(waiter,source):
+    with bind_stream_context(source.cuda_stream):event=source.record_event()
+    try:
+        with bind_stream_context(waiter.cuda_stream):waiter.wait_event(event)
+    finally:
+        with bind_stream_context(source.cuda_stream):del event
+
+
+def _patch_green_contexts(text):
+    if text.count('with torch.cuda.stream(')<4:
+        raise ValueError('unexpected PDMux stream scopes')
+    text=text.replace('with torch.cuda.stream(','with _inferx_green_stream(')
+    for name in ['prefill_stream','decode_stream']:
+        text=text.replace(name+'.synchronize()',f'_inferx_green_sync({name})')
+    text=text.replace('decode_stream.wait_stream(prefill_stream)','_inferx_green_wait(decode_stream, prefill_stream)')
+    return text+'\nfrom inferx_pd_runtime import green_stream as _inferx_green_stream, green_sync as _inferx_green_sync, green_wait as _inferx_green_wait\n'
+
+
+def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False, credit_owned_slots=False, bind_green_contexts=False) -> dict:
     source,destination=Path(source).resolve(),Path(destination).resolve()
     if destination.is_relative_to(source) or source.is_relative_to(destination):
         raise ValueError('overlay must be independent of installed source')
@@ -199,7 +302,9 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
     staging=Path(tempfile.mkdtemp(prefix='.prepare-',dir=destination.parent))
     try:
         shutil.copytree(source,staging/'sglang',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-        manifest=dict(policy=policy,cap=cap,protect_decode=protect_decode,source=str(source),files={})
+        manifest=dict(policy=policy,cap=cap,protect_decode=protect_decode,
+                      credit_owned_slots=credit_owned_slots,bind_green_contexts=bind_green_contexts,
+                      source=str(source),files={})
         target=staging/'sglang/srt/managers/schedule_policy.py'
         original=target.read_bytes()
         if b'class PrefillAdder' not in original:
@@ -210,6 +315,11 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
         target.write_bytes(original+footer.encode())
         manifest['files']['srt/managers/schedule_policy.py']=dict(
             before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
+        if credit_owned_slots:
+            target=staging/'sglang/srt/managers/scheduler.py';original=target.read_bytes()
+            target.write_text(_patch_owned_capacity(original.decode()))
+            manifest['files']['srt/managers/scheduler.py']=dict(
+                before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
         if policy.startswith('pdmux'):
             target=staging/'sglang/srt/models/qwen3_5.py'
             original=target.read_bytes()
@@ -224,6 +334,7 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
             original=target.read_bytes()
             changed=patch_pdmux_topology(original.decode())
             if policy=='pdmux-chunked':changed=_patch_chunk_transition(changed)
+            if bind_green_contexts:changed=_patch_green_contexts(changed)
             target.write_text(changed)
             manifest['files']['srt/multiplex/multiplexing_mixin.py']=dict(
                 before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))

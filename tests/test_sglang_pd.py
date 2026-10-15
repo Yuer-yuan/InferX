@@ -249,3 +249,31 @@ class PrefillAdder:
     a=scope['PrefillAdder']();req=NS(prefix_indices=[],full_untruncated_fill_ids=[0]*10000)
     a.add_chunked_req(req)
     assert a.rem_chunk_tokens==384
+
+
+def test_owned_chunk_row_is_not_charged_against_free_request_slots():
+    m=implementation();held=NS(kv=NS(holds_kv=True));new=NS(kv=NS(holds_kv=False))
+    assert m.owned_admission_limit(1,[held],2)==2
+    assert m.owned_admission_limit(1,[held,new],2)==2
+    assert m.owned_admission_limit(4,[held],4)==4  # retain hard concurrency bound
+    assert m.owned_admission_limit(0,[held],2)==1  # no new row becomes available
+    assert m.owned_admission_limit(2,[new],3)==2
+    assert m.owned_admission_limit(1,[held],2,credit_existing=False)==1
+
+
+def test_green_context_binding_restores_context_on_exception_and_nested_scopes():
+    m=implementation()
+    class Driver:
+        value=10
+        def current(self):return self.value
+        def context_for_stream(self,stream):return {1:20,2:30,3:None}[stream]
+        def set_current(self,value):self.value=value
+    api=Driver()
+    with pytest.raises(RuntimeError,match='body failure'):
+        with m.bind_stream_context(1,api):
+            assert api.current()==20
+            with m.bind_stream_context(2,api):assert api.current()==30
+            assert api.current()==20
+            raise RuntimeError('body failure')
+    assert api.current()==10
+    with m.bind_stream_context(3,api):assert api.current()==10
