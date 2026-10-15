@@ -49,7 +49,7 @@ class NativeHybridContractTests(unittest.TestCase):
         sys.path.remove(str(cls.overlay))
         cls.tmp.cleanup()
 
-    def scheduler(self, mode='eb'):
+    def scheduler(self, mode='eb', cls=None):
         from vllm.v1.kv_cache_interface import (
             FullAttentionSpec, MambaSpec, KVCacheConfig, KVCacheGroupSpec)
         from vllm.v1.structured_output import StructuredOutputManager
@@ -72,7 +72,40 @@ class NativeHybridContractTests(unittest.TestCase):
                    VLLM_PD_ALPHA_D='0.001', VLLM_PD_BETA_D='0.0001',
                    VLLM_PD_MB_COST_A='0.01')
         with patch.dict(os.environ, env, clear=True):
-            return self.scheduler_cls(config, cache, StructuredOutputManager(config), block_size=256)
+            return (cls or self.scheduler_cls)(config, cache, StructuredOutputManager(config), block_size=256)
+
+    def test_native_control_observes_actual_allocator_without_policy(self):
+        import json
+        module=importlib.import_module('inferx_ebplus_scheduler')
+        path=Path(self.tmp.name)/'native-runtime.json'
+        with patch.dict(os.environ,INFERX_VLLM_RUNTIME=str(path)):
+            scheduler=self.scheduler(cls=module.ObservedNativeScheduler)
+        self.add(scheduler,'native-control')
+        self.assertEqual(set(self.step(scheduler).num_scheduled_tokens),{'native-control'})
+        state=json.loads(path.read_text())
+        self.assertEqual(state['concurrency'],4)
+        self.assertEqual(state['num_gpu_blocks'],256)
+        self.assertEqual({g['type'] for g in state['kv_groups']},{'MambaSpec','FullAttentionSpec'})
+        self.assertFalse(hasattr(scheduler,'pd_phase'))
+
+    def test_calibration_request_uses_current_interface_and_no_cross_request_hits(self):
+        from scripts.calibrate_ebplus_hardware import calibration_request
+        first=calibration_request(256,5)
+        second=calibration_request(256,5)
+        self.assertEqual(len(first.prompt_token_ids),256)
+        self.assertTrue(first.sampling_params.ignore_eos)
+        self.assertEqual(first.sampling_params.temperature,0.0)
+        self.assertEqual(first.cache_salt,first.request_id)
+        self.assertNotEqual(first.cache_salt,second.cache_salt)
+
+    def test_calibration_preserves_native_hybrid_alignment(self):
+        from scripts.calibrate_ebplus_hardware import calibration_engine_args
+        import json
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        config=calibration_engine_args(plan,Path(os.environ['INFERX_ROOT'])).create_engine_config()
+        self.assertTrue(config.cache_config.enable_prefix_caching)
+        self.assertEqual(config.cache_config.mamba_cache_mode,'align')
+        self.assertEqual(config.model_config.max_model_len,131328)
 
     def add(self, scheduler, name, length=32, output=64):
         from vllm import SamplingParams
@@ -156,9 +189,26 @@ class NativeHybridContractTests(unittest.TestCase):
             if i == 24:
                 self.assertFalse(scheduler.pd_param_initialized)
                 self.assertEqual(scheduler._active_scheduler, 'mb')
+                self.assertEqual(scheduler._ebplus_evaluations,0)
         self.assertEqual(scheduler._active_scheduler, 'eb')
         self.assertEqual(scheduler._mode_switch_count, 1)
         self.assertEqual(scheduler.pd_total_completed, 100)
+        self.assertEqual(scheduler._ebplus_evaluations,1)
+
+    def test_shutdown_keeps_actual_policy_evidence(self):
+        import json
+        scheduler=self.scheduler()
+        self.add(scheduler,'evidence',output=4)
+        for _ in range(8):
+            if not scheduler.has_requests():break
+            self.step(scheduler)
+        path=Path(self.tmp.name)/'evidence.json'
+        with patch.dict(os.environ,INFERX_EBPLUS_EVIDENCE=str(path)):
+            scheduler.shutdown()
+        state=json.loads(path.read_text())
+        self.assertEqual(state['mode'],'eb')
+        self.assertGreater(state['execution_counts']['prefill'],0)
+        self.assertGreater(state['execution_counts']['decode'],0)
 
     def test_policy_preemption_uses_native_hybrid_free_and_resumes(self):
         from vllm.v1.request import RequestStatus

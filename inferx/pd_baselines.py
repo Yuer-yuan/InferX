@@ -277,9 +277,14 @@ def engine_command(case: dict, root: Path, run_dir: Path, *, qualify_morphx=Fals
         '{"enable_thinking":false}']
     if case.get('cuda_graph') is False:
         args += ['--enforce-eager']
+    if case.get('async_scheduling') is False:
+        args += ['--no-async-scheduling']
+    if case.get('scheduler_class'):
+        args += ['--scheduler-cls',case['scheduler_class']]
     if 'compilation_config' in case:
         args += ['--compilation-config', json.dumps(case['compilation_config'])]
     for field, flag in [('long_prefill_token_threshold','--long-prefill-token-threshold'),
+                        ('num_gpu_blocks_override','--num-gpu-blocks-override'),
                         ('mamba_cache_mode','--mamba-cache-mode'),
                         ('mamba_block_size','--mamba-block-size'),
                         ('cpu_offload_gb','--cpu-offload-gb')]:

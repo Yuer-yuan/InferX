@@ -1,0 +1,80 @@
+test_auto_evidence_requires_crossover_evaluation_with_measured_costs (test_ebplus_campaign.CalibrationContracts.test_auto_evidence_requires_crossover_evaluation_with_measured_costs) ... ERROR
+test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step (test_ebplus_campaign.CalibrationContracts.test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step) ... ERROR
+test_calibration_cannot_be_reused_on_different_model_gpu_or_precision (test_ebplus_campaign.CalibrationContracts.test_calibration_cannot_be_reused_on_different_model_gpu_or_precision) ... ERROR
+test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected (test_ebplus_campaign.CalibrationContracts.test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected) ... ERROR
+test_old_restoration_record_does_not_authorize_current_service (test_ebplus_campaign.CalibrationContracts.test_old_restoration_record_does_not_authorize_current_service) ... ERROR
+
+======================================================================
+ERROR: test_auto_evidence_requires_crossover_evaluation_with_measured_costs (test_ebplus_campaign.CalibrationContracts.test_auto_evidence_requires_crossover_evaluation_with_measured_costs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 67, in test_auto_evidence_requires_crossover_evaluation_with_measured_costs
+    self.api().validate_policy_evidence(state)
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 12, in api
+    import inferx.ebplus_calibration as api
+ModuleNotFoundError: No module named 'inferx.ebplus_calibration'
+
+======================================================================
+ERROR: test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step (test_ebplus_campaign.CalibrationContracts.test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 44, in test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step
+    plan=self.plan();plan['decomposed']['decode_counts']=[1,2,8]
+         ^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 18, in plan
+    return self.api().make_calibration_plan(case)
+           ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 12, in api
+    import inferx.ebplus_calibration as api
+ModuleNotFoundError: No module named 'inferx.ebplus_calibration'
+
+======================================================================
+ERROR: test_calibration_cannot_be_reused_on_different_model_gpu_or_precision (test_ebplus_campaign.CalibrationContracts.test_calibration_cannot_be_reused_on_different_model_gpu_or_precision)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 28, in test_calibration_cannot_be_reused_on_different_model_gpu_or_precision
+    result=self.result();result['identity'][field]='different'
+           ^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 21, in result
+    return dict(identity=self.plan()['identity'], measurement_type='decomposed_cuda_events',
+                         ^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 18, in plan
+    return self.api().make_calibration_plan(case)
+           ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 12, in api
+    import inferx.ebplus_calibration as api
+ModuleNotFoundError: No module named 'inferx.ebplus_calibration'
+
+======================================================================
+ERROR: test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected (test_ebplus_campaign.CalibrationContracts.test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 38, in test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected
+    result=self.result();mutate(result)
+           ^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 21, in result
+    return dict(identity=self.plan()['identity'], measurement_type='decomposed_cuda_events',
+                         ^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 18, in plan
+    return self.api().make_calibration_plan(case)
+           ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 12, in api
+    import inferx.ebplus_calibration as api
+ModuleNotFoundError: No module named 'inferx.ebplus_calibration'
+
+======================================================================
+ERROR: test_old_restoration_record_does_not_authorize_current_service (test_ebplus_campaign.CalibrationContracts.test_old_restoration_record_does_not_authorize_current_service)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 57, in test_old_restoration_record_does_not_authorize_current_service
+    self.api().require_restored(campaign,restored,identity,expected_count=1)
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 12, in api
+    import inferx.ebplus_calibration as api
+ModuleNotFoundError: No module named 'inferx.ebplus_calibration'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.019s
+
+FAILED (errors=5)

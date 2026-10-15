@@ -1,0 +1,13 @@
+F......
+======================================================================
+FAIL: test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously (test_ebplus_campaign.CalibrationContracts.test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 90, in test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously
+    self.assertIn('--no-async-scheduling',command)
+AssertionError: '--no-async-scheduling' not found in ['taskset', '-c', '28-35', '/hdd/pd-baselines/vllm031-venv/bin/python', '-m', 'vllm.entrypoints.openai.api_server', '--model', '/hdd/models/qwen38-int4-redhat', '--served-model-name', 'qwen38-27b', '--host', '127.0.0.1', '--port', '18083', '--tensor-parallel-size', '1', '--max-model-len', '131328', '--max-num-seqs', '4', '--max-num-batched-tokens', '4096', '--enable-chunked-prefill', '--enable-prefix-caching', '--kv-cache-dtype', 'fp8', '--gpu-memory-utilization', '0.95', '--enable-auto-tool-choice', '--enable-prompt-tokens-details', '--tool-call-parser', 'qwen3_coder', '--reasoning-parser', 'qwen3', '--language-model-only', '--default-chat-template-kwargs', '{"enable_thinking":false}', '--enforce-eager', '--long-prefill-token-threshold', '2048', '--mamba-cache-mode', 'align']
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.037s
+
+FAILED (failures=1)

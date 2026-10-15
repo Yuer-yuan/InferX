@@ -1,0 +1,14 @@
+E.......
+======================================================================
+ERROR: test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously (test_ebplus_campaign.CalibrationContracts.test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 97, in test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously
+    self.assertEqual(command[command.index('--num-gpu-blocks-override')+1],'98')
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: '--num-gpu-blocks-override' is not in list
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.045s
+
+FAILED (errors=1)

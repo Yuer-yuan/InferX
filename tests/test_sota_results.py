@@ -156,6 +156,38 @@ def test_exact_resume_count_remains_qualified():
     assert results.audit_wave(specs,rows,48.,kind='mixed')['actual_prompt_tokens'][-1]==131049
 
 
+def test_vllm_prompt_counts_have_separate_exact_backend_bound_contract():
+    specs,rows=fixture()
+    for row in rows:
+        value=24557 if row['prompt_id']=='tool-24576' else 131049
+        row['summary']['prompt_tokens']=value
+        row['events'][0]['usage']['prompt_tokens']=value
+    out=results.audit_wave(specs,rows,48.,kind='mixed',backend='vllm031')
+    assert out['actual_prompt_tokens'][-1]==131049
+    with pytest.raises(ValueError,match='prompt count'):
+        results.audit_wave(specs,rows,48.,kind='mixed')
+    rows[-1]['summary']['prompt_tokens']=131048
+    rows[-1]['events'][0]['usage']['prompt_tokens']=131048
+    with pytest.raises(ValueError,match='prompt count'):
+        results.audit_wave(specs,rows,48.,kind='mixed',backend='vllm031')
+    with pytest.raises(ValueError,match='backend'):
+        results.audit_wave(specs,rows,48.,kind='mixed',backend='arbitrary')
+
+
+def test_ebplus_model_gate_reconstructs_every_full_input_tool_response():
+    from inferx.ebplus_calibration import qualify_tool_rows
+    specs,rows=fixture();rows=rows[:4]+rows[-1:]
+    templates={s['prompt_id']:dict(payload=s['payload'],expected_tool=s['expected_tool']) for s in specs}
+    for row in rows:
+        n=24557 if row['prompt_id']=='tool-24576' else 131049
+        row['summary']['prompt_tokens']=row['events'][0]['usage']['prompt_tokens']=n
+    expected=['tool-24576']*4+['cold-131072']
+    assert qualify_tool_rows(rows,templates,expected)['strict_requests']==5
+    rows[-1]['events'][0]['choices'][0]['delta']['tool_calls'][0]['function']['arguments']='{"ok":false}'
+    with pytest.raises(ValueError,match='tool'):
+        qualify_tool_rows(rows,templates,expected)
+
+
 def test_model_tokenizer_contract_is_bound_to_pinned_checkpoint_and_file_bytes(tmp_path,monkeypatch):
     contract=copy.deepcopy(results.PROMPT_COUNT_CONTRACT)
     contract['tokenizer_files']={name:hashlib.sha256(name.encode()).hexdigest() for name in contract['tokenizer_files']}

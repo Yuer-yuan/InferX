@@ -43,6 +43,28 @@ def phase_allows_admission(phase, target, prefilled, requests, scheduled):
     return prefilled + completing < target
 
 
+def record_native_runtime(scheduler):
+    """Read actual initialized allocator/configuration once, before measurement."""
+    import os
+    path=os.environ.get('INFERX_VLLM_RUNTIME')
+    if not path:return
+    cfg=scheduler.vllm_config
+    data=dict(model=cfg.model_config.model,context_window=scheduler.max_model_len,
+              concurrency=scheduler.max_num_running_reqs,max_active=scheduler.max_num_active_reqs,
+              chunk=scheduler.max_num_scheduled_tokens,
+              long_prefill_token_threshold=scheduler.scheduler_config.long_prefill_token_threshold,
+              async_scheduling=scheduler.scheduler_config.async_scheduling,
+              enforce_eager=cfg.model_config.enforce_eager,
+              cudagraph_mode=cfg.compilation_config.cudagraph_mode.name,
+              speculative=cfg.speculative_config is not None,quantization=cfg.model_config.quantization,
+              kv_dtype=cfg.cache_config.cache_dtype,mamba_cache_mode=cfg.cache_config.mamba_cache_mode,
+              block_size=scheduler.block_size,num_gpu_blocks=scheduler.kv_cache_config.num_blocks,
+              kv_groups=[dict(type=type(g.kv_cache_spec).__name__,spec=str(g.kv_cache_spec),layers=g.layer_names)
+                         for g in scheduler.kv_cache_config.kv_cache_groups])
+    target=Path(path);temporary=target.with_suffix('.tmp')
+    temporary.write_text(json.dumps(data,indent=2)+'\n');temporary.replace(target)
+
+
 def _verified(path, expected, label):
     raw = Path(path).read_bytes()
     if hashlib.sha256(raw).hexdigest() != expected:
@@ -163,9 +185,15 @@ if hashlib.sha256(Path(_native.__file__).read_bytes()).hexdigest() != {NATIVE_SH
 globals().update({{k:v for k,v in vars(_native).items() if not k.startswith('__')}})
 from inferx_ebplus_policy import AuthorPolicy
 import time
+import os
+import json
 '''
     return (header + '\n' + inspect.getsource(phase_allows_running) + '\n'
-            + inspect.getsource(phase_allows_admission) + '\n' + ast.unparse(bridge) + '\n')
+            + inspect.getsource(phase_allows_admission) + '\n' + inspect.getsource(record_native_runtime)
+            + '\nclass ObservedNativeScheduler(_NativeScheduler):\n'
+            + '    def __init__(self,*args,**kwargs):\n'
+            + '        super().__init__(*args,**kwargs)\n'
+            + '        record_native_runtime(self)\n\n' + ast.unparse(bridge) + '\n')
 
 
 _BRIDGE_CLASS = '''
@@ -173,6 +201,7 @@ class EBPlusScheduler(AuthorPolicy, _NativeScheduler):
     def __init__(self, *args, **kwargs):
         self._ebplus_exclusive = False
         _NativeScheduler.__init__(self, *args, **kwargs)
+        record_native_runtime(self)
         if self.max_num_running_reqs > 4 or self.max_num_active_reqs > 4:
             raise ValueError('EB+ validation requires a hard C4 ceiling')
         if self.vllm_config.max_concurrent_batches != 1:
@@ -181,6 +210,38 @@ class EBPlusScheduler(AuthorPolicy, _NativeScheduler):
         if self.scheduler_mode not in ('auto', 'eb'):
             raise ValueError('EB+ validation requires explicit auto or eb mode')
         self._ebplus_execution_counts = {'mb': 0, 'prefill': 0, 'decode': 0}
+        self._ebplus_evaluations = 0
+
+    def _evaluate_mode_switch(self):
+        eligible = (self.pd_param_initialized and self._avg_prompt_len + self.pd_avg_output_tokens > 0
+                    and 0 < self.pd_k_ratio < 1)
+        result = AuthorPolicy._evaluate_mode_switch(self)
+        if eligible:
+            self._ebplus_evaluations += 1
+            self._ebplus_dump_evidence()
+        return result
+
+    def _ebplus_dump_evidence(self):
+        path = os.environ.get('INFERX_EBPLUS_EVIDENCE')
+        if not path:
+            return
+        state = dict(mode=self.scheduler_mode, active_scheduler=getattr(self,'_active_scheduler',self.scheduler_mode),
+            evaluations=self._ebplus_evaluations, parameters_initialized=self.pd_param_initialized,
+            mb_cost_profiled=getattr(self,'_mb_cost_profiled',False), execution_counts=self._ebplus_execution_counts,
+            mode_switch_history=getattr(self,'_mode_switch_history',[]),
+            completed=self.pd_total_completed + self.pd_batch_completed_count,
+            max_num_running_reqs=self.max_num_running_reqs,
+            block_size=self.block_size, num_gpu_blocks=self.kv_cache_config.num_blocks,
+            kv_groups=[dict(type=type(g.kv_cache_spec).__name__,spec=str(g.kv_cache_spec),layers=g.layer_names)
+                       for g in self.kv_cache_config.kv_cache_groups])
+        target = Path(path)
+        temporary = target.with_suffix('.tmp')
+        temporary.write_text(json.dumps(state,indent=2)+'\\n')
+        temporary.replace(target)
+
+    def shutdown(self):
+        self._ebplus_dump_evidence()
+        return _NativeScheduler.shutdown(self)
 
     def schedule(self, throttle_prefills=False):
         if throttle_prefills:
@@ -288,6 +349,7 @@ def prepare_adapter(scheduler, calibration, native_scheduler, destination):
                     'schedule_pd', '_schedule_default', '_update_after_schedule',
                     '_free_request', '_preempt_request', '_preempt_chunk_prefilling',
                     '_compute_adaptive_N', 'schedule throttle guard',
+                    '_evaluate_mode_switch observational counter', 'shutdown evidence snapshot',
                 ],
                 'extracted_method_sha256': {
                     n.name: hashlib.sha256(ast.get_source_segment(Path(scheduler).read_text(), n).encode()).hexdigest()

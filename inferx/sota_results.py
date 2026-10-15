@@ -22,10 +22,19 @@ PROMPT_COUNT_CONTRACT = dict(
         'config.json':'5498b42f9ea96d2669709c177e29122997ce14786a7530fe1ea1b340e535776c'})
 
 
-def verify_prompt_count_contract(model_root):
+def prompt_count_contract(backend='sglang'):
+    if backend=='sglang':return PROMPT_COUNT_CONTRACT
+    if backend=='vllm031':
+        return dict(PROMPT_COUNT_CONTRACT,backend='vllm031',
+                    prompt_tokens={'tool-24576':24557,'cold-131072':131049,'resume-131072':131038},
+                    template_policy='vLLM0.31 default template; enable_thinking=false; qwen3_coder tools')
+    raise ValueError('unqualified prompt-count backend')
+
+
+def verify_prompt_count_contract(model_root,*,backend='sglang'):
     """Bind exact counts to pinned checkpoint metadata and actual tokenizer bytes."""
     from pathlib import Path
-    model_root=Path(model_root);contract=PROMPT_COUNT_CONTRACT
+    model_root=Path(model_root);contract=prompt_count_contract(backend)
     manifest=json.loads((model_root/'manifest.json').read_text())
     if manifest.get('repo')!=contract['repository'] or manifest.get('revision')!=contract['revision']:
         raise ValueError('prompt-count checkpoint identity differs from qualification')
@@ -35,7 +44,8 @@ def verify_prompt_count_contract(model_root):
     return dict(contract,tokenizer_files=actual)
 
 
-def audit_wave(specifications, records, span_s, *, kind):
+def audit_wave(specifications, records, span_s, *, kind,backend='sglang'):
+    contract=prompt_count_contract(backend)
     if kind not in {'mixed','isolated-serial-C4'}:
         raise ValueError('unknown measurement kind')
     if not math.isfinite(span_s) or span_s<=0:
@@ -87,7 +97,7 @@ def audit_wave(specifications, records, span_s, *, kind):
         if abs(row['arrival_ttft_s']-(lag+actual['ttft_s']))>1e-6:
             raise ValueError('inconsistent TTFT')
         is_short=spec['prompt_id']=='tool-24576'
-        expected_tokens=PROMPT_COUNT_CONTRACT['prompt_tokens'].get(spec['prompt_id'])
+        expected_tokens=contract['prompt_tokens'].get(spec['prompt_id'])
         if expected_tokens is None or type(actual['prompt_tokens']) is not int or actual['prompt_tokens']!=expected_tokens:
             raise ValueError('actual prompt count differs from qualified frozen prompt/tokenizer')
         (short if is_short else long).append(row)

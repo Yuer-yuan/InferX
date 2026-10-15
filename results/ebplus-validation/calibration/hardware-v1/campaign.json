@@ -1,0 +1,29 @@
+{
+  "status": "failed",
+  "controller_pid": 3891587,
+  "started_unix": 1792100868.9330964,
+  "cases": [
+    {
+      "case": "decomposed-hardware",
+      "state": "failed",
+      "command": [
+        "taskset",
+        "-c",
+        "28-35",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+        "-u",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v1/scripts/calibrate_ebplus_hardware.py",
+        "--plan",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v1/plan.json",
+        "--output",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v1/hardware-result.json"
+      ],
+      "worker_sha256": "4a07a7b2787be49745230ec3aec32dfb9dd69fcd2eea937efbe5e09a75fa2c64",
+      "child_pid": 3891611,
+      "exit_code": 1
+    }
+  ],
+  "restored": true,
+  "error": "RuntimeError('hardware calibration failed; keep raw, no efficacy score')",
+  "finished_unix": 1792100954.82398
+}

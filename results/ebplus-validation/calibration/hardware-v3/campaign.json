@@ -1,0 +1,28 @@
+{
+  "status": "restored",
+  "controller_pid": 3895831,
+  "started_unix": 1792101280.8546143,
+  "cases": [
+    {
+      "case": "decomposed-hardware",
+      "state": "measured",
+      "command": [
+        "taskset",
+        "-c",
+        "28-35",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+        "-u",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v3/scripts/calibrate_ebplus_hardware.py",
+        "--plan",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v3/plan.json",
+        "--output",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v3/hardware-result.json"
+      ],
+      "worker_sha256": "630f76dbca9f788d96720457276a97768a8e99dc3252454af32a5148658c9f68",
+      "child_pid": 3895924,
+      "result_sha256": "9dc62752a864c4abda2fff45d4bf707e25f6445c394cba66c1ef3cbe51d3d4a8"
+    }
+  ],
+  "restored": true,
+  "finished_unix": 1792101530.5040994
+}

@@ -1,0 +1,28 @@
+{
+  "status": "failed",
+  "controller_pid": 3893450,
+  "started_unix": 1792101025.8774593,
+  "cases": [
+    {
+      "case": "decomposed-hardware",
+      "state": "starting",
+      "command": [
+        "taskset",
+        "-c",
+        "28-35",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+        "-u",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v2/scripts/calibrate_ebplus_hardware.py",
+        "--plan",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v2/plan.json",
+        "--output",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v2/hardware-result.json"
+      ],
+      "worker_sha256": "bcb9f544e82cc6c71761c5a309119bbd1b85571478984b1db3d950d09ac348d2",
+      "child_pid": 3893474
+    }
+  ],
+  "restored": true,
+  "error": "KeyboardInterrupt('controller received signal15')",
+  "finished_unix": 1792101230.382153
+}

@@ -1,0 +1,25 @@
+test_auto_evidence_requires_crossover_evaluation_with_measured_costs (test_ebplus_campaign.CalibrationContracts.test_auto_evidence_requires_crossover_evaluation_with_measured_costs) ... ok
+test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step (test_ebplus_campaign.CalibrationContracts.test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step) ... ok
+test_calibration_cannot_be_reused_on_different_model_gpu_or_precision (test_ebplus_campaign.CalibrationContracts.test_calibration_cannot_be_reused_on_different_model_gpu_or_precision) ... ok
+test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected (test_ebplus_campaign.CalibrationContracts.test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected) ... ok
+test_old_restoration_record_does_not_authorize_current_service (test_ebplus_campaign.CalibrationContracts.test_old_restoration_record_does_not_authorize_current_service) ... ok
+test_actual_native_completion_hook_drives_default_crossover (test_ebplus_native.NativeHybridContractTests.test_actual_native_completion_hook_drives_default_crossover) ... skipped 'dedicated pinned-vLLM CPU gate; do not run during GPU timing'
+test_allocator_exception_retains_native_queues_and_clears_phase_guard (test_ebplus_native.NativeHybridContractTests.test_allocator_exception_retains_native_queues_and_clears_phase_guard) ... skipped 'dedicated pinned-vLLM CPU gate; do not run during GPU timing'
+test_full_native_running_queue_keeps_fifth_request_out_at_C4 (test_ebplus_native.NativeHybridContractTests.test_full_native_running_queue_keeps_fifth_request_out_at_C4) ... skipped 'dedicated pinned-vLLM CPU gate; do not run during GPU timing'
+test_partial_prefill_preserves_both_native_hybrid_owners (test_ebplus_native.NativeHybridContractTests.test_partial_prefill_preserves_both_native_hybrid_owners) ... skipped 'dedicated pinned-vLLM CPU gate; do not run during GPU timing'
+test_policy_preemption_uses_native_hybrid_free_and_resumes (test_ebplus_native.NativeHybridContractTests.test_policy_preemption_uses_native_hybrid_free_and_resumes) ... skipped 'dedicated pinned-vLLM CPU gate; do not run during GPU timing'
+test_actual_crossover_runs_after_author_completion_threshold (test_ebplus_validation.AuthorPolicyTests.test_actual_crossover_runs_after_author_completion_threshold) ... ok
+test_calibration_mutation_is_rejected_independently (test_ebplus_validation.AuthorPolicyTests.test_calibration_mutation_is_rejected_independently) ... ok
+test_changed_native_source_cannot_publish_a_partially_prepared_adapter (test_ebplus_validation.AuthorPolicyTests.test_changed_native_source_cannot_publish_a_partially_prepared_adapter) ... ok
+test_default_cold_start_does_not_pretend_to_switch_on_25_requests (test_ebplus_validation.AuthorPolicyTests.test_default_cold_start_does_not_pretend_to_switch_on_25_requests) ... ok
+test_exact_cfr_threshold_and_small_batch_midpoint_execute_author_math (test_ebplus_validation.AuthorPolicyTests.test_exact_cfr_threshold_and_small_batch_midpoint_execute_author_math) ... ok
+test_pending_native_prefill_completions_count_toward_refill_target (test_ebplus_validation.AuthorPolicyTests.test_pending_native_prefill_completions_count_toward_refill_target) ... ok
+test_phase_gates_keep_decode_out_of_prefill_and_prefill_out_of_decode (test_ebplus_validation.AuthorPolicyTests.test_phase_gates_keep_decode_out_of_prefill_and_prefill_out_of_decode) ... ok
+test_prepare_refuses_existing_destination_without_overwriting (test_ebplus_validation.AuthorPolicyTests.test_prepare_refuses_existing_destination_without_overwriting) ... ok
+test_prepared_overlay_is_compilable_and_binds_all_input_bytes (test_ebplus_validation.AuthorPolicyTests.test_prepared_overlay_is_compilable_and_binds_all_input_bytes) ... ok
+test_source_mismatch_is_rejected_before_extraction (test_ebplus_validation.AuthorPolicyTests.test_source_mismatch_is_rejected_before_extraction) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.655s
+
+OK (skipped=5)

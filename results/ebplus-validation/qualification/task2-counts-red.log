@@ -1,0 +1,17 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_vllm_prompt_counts_have_separate_exact_backend_bound_contract ______
+
+    def test_vllm_prompt_counts_have_separate_exact_backend_bound_contract():
+        specs,rows=fixture()
+        for row in rows:
+            value=24557 if row['prompt_id']=='tool-24576' else 131049
+            row['summary']['prompt_tokens']=value
+            row['events'][0]['usage']['prompt_tokens']=value
+>       out=results.audit_wave(specs,rows,48.,kind='mixed',backend='vllm031')
+E       TypeError: audit_wave() got an unexpected keyword argument 'backend'
+
+tests/test_sota_results.py:165: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_sota_results.py::test_vllm_prompt_counts_have_separate_exact_backend_bound_contract
+1 failed, 21 deselected in 0.20s

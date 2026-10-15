@@ -1,0 +1,24 @@
+.....F...
+======================================================================
+FAIL: test_generated_plan_matches_qualified_hybrid_geometries (test_ebplus_campaign.CalibrationContracts.test_generated_plan_matches_qualified_hybrid_geometries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_ebplus_campaign.py", line 54, in test_generated_plan_matches_qualified_hybrid_geometries
+    self.assertEqual(self.plan()['decomposed']['prefill_sizes'],frozen['decomposed']['prefill_sizes'])
+AssertionError: Lists differ: [256, 512, 1024, 2048, 4096] != [256, 512, 1024, 1568, 3136]
+
+First differing element 3:
+2048
+1568
+
+- [256, 512, 1024, 2048, 4096]
+?                  ^^^   ^^^
+
++ [256, 512, 1024, 1568, 3136]
+?                  ^^^   ^^^
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.037s
+
+FAILED (failures=1)
