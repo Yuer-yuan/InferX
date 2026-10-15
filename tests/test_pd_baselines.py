@@ -17,6 +17,17 @@ def case(engine='llama'):
                 morphx={'enabled': False, 'patched_launches': 0})
 
 
+def test_sglang_strategy_flags_and_owned_pdmux_config(tmp_path):
+    c=case('sglang');c.update(context_window=131328,max_total_tokens=140000,
+        enable_cache_report=True,pdmux_config='pd-strategies/pdmux.yaml')
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert '--enable-cache-report' in args and '--enable-pdmux' in args
+    assert args[args.index('--max-total-tokens')+1]=='140000'
+    assert args[args.index('--pdmux-config-path')+1]==str(tmp_path/'pd-strategies/pdmux.yaml')
+    c['pdmux_config']='../foreign.yaml'
+    with pytest.raises(ValueError,match='HDD'):pd.engine_command(c,tmp_path,tmp_path/'run')
+
+
 def test_llama_preserves_long_window_with_shared_capacity(tmp_path):
     c = case()
     pd.validate_case(c)

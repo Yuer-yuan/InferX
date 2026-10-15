@@ -238,6 +238,14 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             args += ['--enable-mixed-chunk']
         if case.get('cuda_graph') is False:
             args += ['--disable-prefill-cuda-graph', '--disable-decode-cuda-graph']
+        if case.get('enable_cache_report'):
+            args += ['--enable-cache-report']
+        if 'max_total_tokens' in case:
+            if type(case['max_total_tokens']) is not int or case['max_total_tokens'] < case['context_window']:
+                raise ValueError('actual token-pool limit must preserve full context')
+            args += ['--max-total-tokens', str(case['max_total_tokens'])]
+        if case.get('pdmux_config'):
+            args += ['--enable-pdmux','--pdmux-config-path',_owned_path(root,case['pdmux_config'])]
         for field, flag in [('max_mamba_cache_size', '--max-mamba-cache-size'),
                             ('mamba_full_memory_ratio', '--mamba-full-memory-ratio'),
                             ('mamba_radix_cache_strategy', '--mamba-radix-cache-strategy'),
