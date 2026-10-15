@@ -1,0 +1,32 @@
+{
+  "scope": "Source-backed readiness, not measured SOTA efficacy. Task2 performs new actual MorphX numerical qualification.",
+  "candidates": [
+    {
+      "name": "MorphX",
+      "commit": "4404aed4c180ad83c31179e1ce08ae2234390853",
+      "status": "bounded_runtime_qualification; author_full_PD_engine_not_yet_available",
+      "positive": ["Author runtime/compiler and PD workload scripts are public; existing LLVM18/SM89 mapped-host port can execute selected rewritten kernels."],
+      "boundaries": ["PD scripts call modified LLMEngine.get_prefill_result/wait_prefill_shutdown and enable VLLM_PREFILL_THREAD; author environment records local source vLLM0.1.dev24+g232ce74 and Torch2.6.0a0. The complete public tree does not bundle that modified vLLM/PyTorch tree; current installed stock vLLM has no matching API occurrences.", "NInfer's existing single worker/prefill-lane executor does not become concurrent author PD scheduling merely through LD_PRELOAD.", "Prior mapped-host port remains numerically unqualified for GDN cooperative launch/GQA; targeted corrections and actual probes are required."],
+      "decision": "Prioritize actual launch-semantics/numerical qualification. Do not report a kernel-only hook as complete MorphXPD or infer performance from compatibility failure."
+    },
+    {
+      "name": "BulletServe",
+      "commit": "c4aa493b737c861128e6a5b6b0b3413cb26aed63",
+      "status": "native_hybrid_path_absent; fallback_and_state_contract_need_bounded_probe",
+      "positive": ["P/D weights use CUDA IPC sharing via init_rpc_model_weight; claiming two full weight copies would be incorrect.", "Public P/D scheduler, SM control and request/KV RPC exist."],
+      "boundaries": ["Complete tree has Qwen3 attention-only models but no Qwen3_5 native class. Registry can select TransformersForCausalLM fallback, so missing native class alone is not proof the whole model is rejected.", "Generic fallback states one attention operation per hidden layer; RPC pool types transfer request tables and MHA K/V, without a GDN/SSM recurrent-state handoff in the inspected code. Existing hybrid-cache branch is Llama4 local/full attention rather than GDN.", "Author prerequisites include MPS and libsmctrl/CUDA<=12.6; do not invoke stock scripts defaulting to GPU0."],
+      "decision": "Bounded actual CPU contract/fallback inspection before installing another stack; do not fake Qwen3_5 with attention-only Qwen3 or claim model-level OOM from duplicated weights."
+    },
+    {
+      "name": "DuetServe",
+      "publication": "https://proceedings.mlr.press/v306/gao26m.html",
+      "status": "literature_reference; no_verified_author_code_entry_found",
+      "decision": "Do not manufacture a reproduction or treat third-party implementations/paper speedups as measurements."
+    },
+    {
+      "name": "SGLang PD-Multiplexing",
+      "status": "already_qualified_reference",
+      "decision": "Reuse exact archived measured evidence and new solo audit. This is an advanced open-source baseline, not an established universal SOTA ceiling."
+    }
+  ]
+}
