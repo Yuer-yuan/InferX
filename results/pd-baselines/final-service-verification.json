@@ -1,0 +1,79 @@
+{
+  "captured_unix": 1792049174.3989227,
+  "passed": true,
+  "manifest": {
+    "pid": 3433597,
+    "proc_start_ticks": "2088289334",
+    "created_unix": 1792049091.4623048,
+    "endpoint": "http://127.0.0.1:18081",
+    "model_id": "qwen38-27b",
+    "gpu_index": 1,
+    "draft_tokens": 7,
+    "kv_dtype": "rk4v4-e8",
+    "prefill_chunk": 2048,
+    "max_context": 262144,
+    "max_concurrency": 1,
+    "max_output_tokens": 8192,
+    "prefix_reuse": true,
+    "thinking": false,
+    "launcher": "/home/guokc/mypro/gnn-mount-sda1/InferX/code-tuning/scripts/start_agent_server.sh",
+    "command": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve /home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer --host 127.0.0.1 --port 18081 --model-id qwen38-27b --max-context 262144 --kv-capacity 262144 --default-max-tokens 8192 --pending-timeout-ms 120000 --max-concurrency 1 --prefill-chunk 2048 --kv-dtype rk4v4-e8 --no-thinking --greedy --presence-penalty 0 --frequency-penalty 0 --request-log-jsonl /home/guokc/mypro/gnn-mount-sda1/InferX/context-agents/agent-server-requests.jsonl --spec mtp --draft-tokens 7 --lm-head-draft",
+    "cwd": "/home/guokc/mypro/gnn-mount-sda1/InferX",
+    "uid": 1004,
+    "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve"
+  },
+  "actual_argv": [
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/source/ninfer-build-sm89/apps/ninfer-serve",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18081",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "262144",
+    "--kv-capacity",
+    "262144",
+    "--default-max-tokens",
+    "8192",
+    "--pending-timeout-ms",
+    "120000",
+    "--max-concurrency",
+    "1",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "rk4v4-e8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--request-log-jsonl",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/context-agents/agent-server-requests.jsonl",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "7",
+    "--lm-head-draft"
+  ],
+  "manifests_equal": true,
+  "gpu_processes": "GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03, 2504785\nGPU-4d9bef9d-631c-bb36-3ff4-589d6a184189, 3433597\n",
+  "health": {
+    "18080": {
+      "status": "ok"
+    },
+    "18081": {
+      "status": "ok"
+    }
+  },
+  "openai_forced_tool": true,
+  "anthropic_roundtrip": true,
+  "evidence_sha256": {
+    "final-openai-tool.json": "aa44e9068895164118408bba35a327294f4e345a72ba9eb82d426a5cbb9929cc",
+    "final-anthropic-tools.json": "8b5cdf631d9fa47d6e848ea6a8d086ec5d1cc56e22a1b11ec9bf8fda00b23ba0",
+    "sglang-cache-migration.json": "dc31695da78a32c0ba16e923106d1e6154e1fcd368834b30906a71497e35df4a"
+  }
+}

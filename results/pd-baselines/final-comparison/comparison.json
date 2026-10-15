@@ -1,0 +1,217 @@
+{
+  "summary_sha256": "3e2282901412153c0eaf67ab6555d7551efb689af38ab9e7544801c4f48cf07b",
+  "script_sha256": "49ba9e456e998046ea860215c8794b872e75fdeaa2c0f0c6f4fdb5fca1980dec",
+  "matplotlib": "3.10.0",
+  "observed": [
+    {
+      "label": "NInfer\nchunk2048",
+      "case": "ninfer-d0-c4-chunk2048",
+      "groups": {
+        "short-control": {
+          "p95_s": [
+            1.122196301817894,
+            1.1221287362277508,
+            1.1217056326568127
+          ],
+          "wave_ids": [
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-short-control/short-control",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r1-short-control/short-control",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r2-short-control/short-control"
+          ]
+        },
+        "cold-low": {
+          "p95_s": [
+            83.69980247318745,
+            83.78295117244124,
+            83.77351194247603
+          ],
+          "wave_ids": [
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-cold-low/cold-low",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r1-cold-low/cold-low",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r2-cold-low/cold-low"
+          ]
+        },
+        "resume-high": {
+          "p95_s": [
+            72.95212326198816,
+            72.95143015682697,
+            72.96753625199199
+          ],
+          "wave_ids": [
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-resume-high/resume-high",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r1-resume-high/resume-high",
+            "ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r2-resume-high/resume-high"
+          ]
+        }
+      }
+    },
+    {
+      "label": "llama.cpp\nchunk128",
+      "case": "llama-d0-c4-chunk128",
+      "groups": {
+        "short-control": {
+          "p95_s": [
+            1.9797783344984055,
+            1.460485514253378,
+            1.9954683184623718
+          ],
+          "wave_ids": [
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-short-control/short-control",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-short-control/short-control",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-short-control/short-control"
+          ]
+        },
+        "cold-low": {
+          "p95_s": [
+            58.45122614130378,
+            58.45212736353278,
+            57.848070710897446
+          ],
+          "wave_ids": [
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-cold-low/cold-low",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-cold-low/cold-low",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-cold-low/cold-low"
+          ]
+        },
+        "resume-high": {
+          "p95_s": [
+            42.39245293661952,
+            151.34676000848413,
+            42.376369159668684
+          ],
+          "wave_ids": [
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r0-resume-high/resume-high",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r1-resume-high/resume-high",
+            "llama-ch128-lowrate-main-v2/llama-d0-c4-chunk128-r2-resume-high/resume-high"
+          ]
+        }
+      }
+    },
+    {
+      "label": "vLLM 0.24\nlegacy",
+      "case": "vllm024-int4-c4-b4096-cap2048-eager-mem95",
+      "groups": {
+        "short-control": {
+          "p95_s": [
+            4.757451377809048,
+            5.149071164429188,
+            4.870714746415615
+          ],
+          "wave_ids": [
+            "vllm-mem95-lowrate-diagnostic-v1/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control"
+          ]
+        },
+        "cold-low": {
+          "p95_s": [
+            117.72420654073358,
+            117.6305569447577,
+            117.77645053714514
+          ],
+          "wave_ids": [
+            "vllm-mem95-lowrate-diagnostic-v1/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low"
+          ]
+        },
+        "resume-high": {
+          "p95_s": [
+            113.7117936424911,
+            113.81598664820194,
+            113.138686042279
+          ],
+          "wave_ids": [
+            "vllm-mem95-lowrate-diagnostic-v1/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+            "vllm-mem95-lowrate-repeat-v3/vllm024-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high"
+          ]
+        }
+      }
+    },
+    {
+      "label": "vLLM 0.31",
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "groups": {
+        "short-control": {
+          "p95_s": [
+            4.9730706587433815,
+            5.892550192773342,
+            5.0410060323774815
+          ],
+          "wave_ids": [
+            "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control"
+          ]
+        },
+        "cold-low": {
+          "p95_s": [
+            101.97051666304469,
+            101.78723181039095,
+            101.81071399524808
+          ],
+          "wave_ids": [
+            "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low"
+          ]
+        },
+        "resume-high": {
+          "p95_s": [
+            91.04676205664873,
+            91.31320814415812,
+            90.93257423490286
+          ],
+          "wave_ids": [
+            "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+            "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high"
+          ]
+        }
+      }
+    },
+    {
+      "label": "SGLang 0.5.19\nsingleton guard / BF16 SSM",
+      "case": "sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard",
+      "groups": {
+        "short-control": {
+          "p95_s": [
+            3.1268568448722363,
+            3.045193251222372,
+            3.0195838883519173
+          ],
+          "wave_ids": [
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r0-short-control/short-control",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r1-short-control/short-control",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r2-short-control/short-control"
+          ]
+        },
+        "cold-low": {
+          "p95_s": [
+            97.26047444343567,
+            96.94196473434567,
+            97.07134771719575
+          ],
+          "wave_ids": [
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r0-cold-low/cold-low",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r1-cold-low/cold-low",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r2-cold-low/cold-low"
+          ]
+        },
+        "resume-high": {
+          "p95_s": [
+            71.78711590915918,
+            72.00005832314491,
+            71.78388161584735
+          ],
+          "wave_ids": [
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r0-resume-high/resume-high",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r1-resume-high/resume-high",
+            "sglang-singleton-lowrate-main-v5/sglang0519-int4-c4-ch512-eager-mem97-hftext-bf16-lazy12-skiplock-singleton-guard-r2-resume-high/resume-high"
+          ]
+        }
+      }
+    }
+  ]
+}

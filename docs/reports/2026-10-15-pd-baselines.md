@@ -1,8 +1,8 @@
-# 开源 PD 方案适配与验证（进行中）
+# 开源 PD 方案适配与验证
 
-已测配置中的长短请求干扰仍然明显，但现有证据不足以将它称为研究空白。四种配置已各完成三轮完整27B/128K对照，全部混合长请求完成，未靠拒绝或截断长请求降低短延迟；SGLang还在补充三轮比较，MorphX移植未通过正确性门槛。
+已测配置中的长短请求干扰仍然明显，但现有证据不足以将它称为研究空白。五种配置已各完成三轮完整27B/128K对照，共45组、1110/1110严格工具有效、30/30完整长请求完成、0错误；未靠拒绝或截断长请求降低短延迟。MorphX移植未通过正确性门槛，不能用它的兼容失败推断原方法无效。
 
-更新：vLLM 0.31/cu129已完成完整128K资格验证和三轮混合实验；SGLang 0.5.19/cu129正在进行完整模型资格验证。此前仅cu128依赖解析失败不能证明新版本不可用；下面vLLM 0.24结果只作为旧版本实测，不能称为当前最强基线。
+vLLM 0.31/cu129和SGLang 0.5.19/cu129均已完成完整128K资格验证及三轮混合实验。SGLang明确采用下文标注的兼容补丁和BF16 SSM状态。此前仅cu128依赖解析失败不能证明新版本不可用；vLLM 0.24结果只作为旧版本实测，不能称为当前最强基线。
 
 三轮重复的短请求P95范围如下，单位为秒。每组实际0.5 RPS、C4、MTP0；短请求约24K历史，长请求约128K，第16秒到达。
 
@@ -12,8 +12,13 @@
 | llama.cpp，chunk128 | 1.460–1.995 | 57.848–58.452 | 42.376–151.347 | 222/222；6/6 |
 | vLLM0.24，旧版eager/mem95 | 4.757–5.149 | 117.631–117.776 | 113.139–113.816 | 222/222；6/6 |
 | vLLM0.31，eager/mem95 | 4.973–5.893 | 101.787–101.971 | 90.933–91.313 | 222/222；6/6 |
+| SGLang0.5.19，chunk512/兼容补丁/BF16 SSM | 3.020–3.127 | 96.942–97.260 | 71.784–72.000 | 222/222；6/6 |
 
 这些是各部署配置的端到端观测，不能直接算作调度优劣排名。量化、状态精度、实际缓存池和前缀重算量不同；vLLM的原生抢占也表明容量压力参与了混合延迟。llama.cpp把chunk2048改为128的单轮诊断将冷混合P95从132.968秒降至58.557秒，减少约74.4秒（56%），说明普通调优已有很大收益；调优后的三轮仍未达到5秒目标，续接组还保留了151秒的波动。MTP诊断改善短请求生成延迟，但没有消除长输入干扰。
+
+![五个已测部署配置的全部三轮短请求P95；纵轴为对数尺度](../../results/pd-baselines/final-comparison/comparison.png)
+
+图中每个点是一轮独立重启的实测P95，短横线为三轮中位数，不是置信区间。完整数据与输入哈希见 [严格汇总](../../results/pd-baselines/summary.json)、[组级CSV](../../results/pd-baselines/groups.csv)、[请求级CSV](../../results/pd-baselines/requests.csv)。
 
 ## 已得到的结果
 
@@ -139,7 +144,17 @@ SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型�
 - FP32 SSM、lazy20状态池下，实际KV容量仅69976 token，不能用131328的命令行窗口宣称支持128K。已有unified GPU池在FlashInfer与Triton路径分别出现FP8视图/编译兼容错误。BF16状态和较小状态池能扩大容量，但mem98/mem975在实际质量检查中OOM，尚未获得性能资格。BF16状态的窄功能门槛也不能证明整体质量无损。
 - mem97/96/95均通过代码生成检查，却在强制工具调用时触发单rank NCCL communicator的512 MiB临时分配。调用栈与[上游已知问题35826](https://github.com/sgl-project/sglang/issues/35826)吻合。现在只在所选通信组world_size≤1时跳过恒等归约，保留多rank的MIN操作；修复前CPU回归复现错误，修复后单rank检查和真实双rank Gloo数值检查均通过，项目146项测试通过。
 
-这个补丁是明确标注的兼容修复，没有增加PD调度机制。补丁及源码前后SHA、失败和通过日志见 [修复记录](../../results/pd-baselines/compatibility/sglang-singleton-guard/provenance.json)，依赖及实际源码清单见 [修复后环境](../../results/pd-baselines/sglang0519-environment-singleton-guard.json)。完整128K、四路工具调用和混合负载的GPU验证仍在执行；目前没有合格的SGLang混合性能结果。
+这个补丁是明确标注的兼容修复，没有增加PD调度机制。补丁及源码前后SHA、失败和通过日志见 [修复记录](../../results/pd-baselines/compatibility/sglang-singleton-guard/provenance.json)，依赖及实际源码清单见 [修复后环境](../../results/pd-baselines/sglang0519-environment-singleton-guard.json)。修复后mem97、BF16 SSM/lazy12/skiplock、FP8 KV、chunk512、eager通过代码检查、四路24K工具预热及完整128K工具请求；独立容量探针耗时85.473秒，实际池152639 token（4.658 GiB），实际C4。见 [终态资格记录](../../results/pd-baselines/sglang-singleton-128k-qualified.json)。
+
+同一配置随后完成9组独立重启的正式测量，222/222严格工具有效、6次完整长请求完成、0错误：
+
+| 独立重复 | 纯短请求P95 | 冷长请求混合的短P95 | 续接模板混合的短P95 |
+|---|---:|---:|---:|
+| 第1轮 | 3.127 s | 97.260 s | 71.787 s |
+| 第2轮 | 3.045 s | 96.942 s | 72.000 s |
+| 第3轮 | 3.020 s | 97.071 s | 71.784 s |
+
+冷长请求耗时88.32–88.56秒，续接模板长请求76.54–76.73秒。API未启用逐请求缓存用量报告，因此保留unobserved标签，不能仅凭更快的时间把续接组称为已验证命中。原生prefill日志有缓存命中证据，但不回填缺失API计数；重置型num_retracted_reqs Gauge也不当作累计抢占次数。全部组200 ms采样的显存峰值24106 MiB、最小空闲2 MiB，范围仅覆盖健康后的质量、预热和测量；这没有可观的部署余量。见 [三轮完整统计](../../results/pd-baselines/sglang-main-v5-summary.json)和[所有SGLang尝试及失败](../../results/pd-baselines/sglang-attempts.json)。
 
 还检查了该版本已有的PD-Multiplexing开关。它采用green-context流并调用模型的forward_split_prefill接口；在CPU上实际调用当前Qwen模型对应的ModelRunner入口，得到缺少该模型方法的AttributeError，继承链上也没有该接口。见 [实际接口探针及源码SHA](../../results/pd-baselines/compatibility/sglang-pdmux-cpu-interface.json)。因此它需要额外模型适配，不能把打开开关当作现成可用的当前模型基线；这里未测其GPU执行、green-context支持或PD效果。
 
@@ -159,11 +174,15 @@ SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型�
 
 因此有依据的下一步是：先看容量可用、质量合格的现成调度在本机能达到的延迟与长请求完成代价，再决定是否值得研究更细的调度机制。上表未在本机测试的方案不归为失败，也不以论文数值替代这里的128K混合负载结果。
 
-## 可复现性与剩余工作
+## 可复现性与恢复检查
 
 完整原始数据、源码、编译日志和模型均在服务器HDD的InferX/pd-baselines目录。当前正式llama实验的启动时4个关键Python文件已按其启动时SHA256精确重建并留档，明确标为事后重建；见 [重建清单](../../results/pd-baselines/harness-llama-main-v2/provenance.json)。后续controller会在启动时保存完整脚本及inferx模块字节，避免工作目录更新覆盖实验实现。
 
-NInfer、llama.cpp、vLLM0.24与0.31的128K混合负载三轮重复已经完成，MTP诊断也已完成。剩余为SGLang实际资格与比较、确定性导出、独立复审，以及最终原256K/MTP7服务和两份manifest、OpenAI/Anthropic工具接口的恢复检查。MorphX本轮移植未通过正确性门槛，保留兼容性失败，不宣称取得PD性能收益。当前目标继续执行。
+全部GPU实验均已终止并恢复原服务。严格导出包含41个campaign、63个完整组、30个未完成组、1499条已观察响应和590个输入文件哈希；未完成、兼容失败及操作中断均保留，不进入合格配置的重复比较。两次独立严格导出的四个文件SHA256完全一致，本地副本也逐文件核对。见 [审计计数](../../results/pd-baselines/audit.json)与[导出校验](../../results/pd-baselines/final-export-verification.json)。
+
+原GPU1服务恢复为256K/MTP7/C1/rk4v4-e8，PID3433597；实际UID/exe/startticks/完整argv和两份manifest一致，OpenAI严格强制工具调用及Anthropic工具结果往返均通过，GPU0原PID2504785健康。见 [最终服务核验](../../results/pd-baselines/final-service-verification.json)。最终探针首次附带NInfer不支持的chat_template_kwargs字段而收到400；移除该客户端字段、沿用服务本身的no-thinking设置后通过，未修改服务配置，原拒绝记录也已保留。SGLang新版本忽略XDG设置而产生的约11 MiB独立JIT缓存，已在服务终止后按逐文件哈希迁至HDD，并为旧路径建立指向HDD的符号链接；见 [迁移记录](../../results/pd-baselines/sglang-cache-migration.json)。模型及依赖下载均在HDD。
+
+独立复审及控制器中断路径修复仍在收尾，不影响已冻结的性能测量；完成后的测试结果在执行记录中列出。不同量化、池容量和残余预填充尚未被固定成同一条件，因此当前结论是已测工程配置没有解决该负载下的短尾延迟，不是现有最强方法的上限，更不是已证明的新研究空白。
 
 服务器上的复现入口如下；run-id须使用新名称。该命令临时占用实验GPU1，controller结束后恢复原服务。实验GPU0上的服务保持运行。
 

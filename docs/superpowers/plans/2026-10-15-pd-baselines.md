@@ -62,11 +62,11 @@ Expected: actually runnable same27B candidates or reproducible attempted compati
 
 **Interfaces:** Consumes pinned Task2 cases and frozen prior workload files. Produces immutable raw SSE/native/metrics/arrival data and terminal restored-service manifest.
 
-- [ ] Recheck baseline tests and current service identity/idle before replacingGPU1.
-- [ ] Run protocol/code gates and128K admission probes before comparativegroups; retain actualtoken counts and cache state.
-- [ ] Run matched short-control/cold/resume groups with3 independentrepetitions on baseline and validcandidates. Retain original2.5RPS groups as overload diagnostics (ledger ruling); add MTP after plain PD groups.
+- [x] Recheck baseline tests and current service identity/idle before replacingGPU1.
+- [x] Run protocol/code gates and128K admission probes before comparativegroups; retain actualtoken counts and cache state.
+- [x] Run matched short-control/cold/resume groups with3 independentrepetitions on baseline and validcandidates. Retain original2.5RPS groups as overload diagnostics (ledger ruling); add MTP after plain PD groups.
 - [x] Attempt MorphX actualpatchedcoverage and fullmodel correctness before PD measurements; it failed qualification. Retain failure evidence and exclude performance comparisons (ledger ruling), rather than label fallback execution as MorphX.
-- [ ] Restore originalservice, validate bothmanifests/argv256K/OpenAI+Anthropictools/GPU0health, commit runsummary.
+- [x] Restore originalservice, validate bothmanifests/argv256K/OpenAI+Anthropictools/GPU0health, commit runsummary.
 
 Expected: all attemptedrequests included; capacity/startupfailures separate; controllerterminal andoriginalservicehealthy. Do not stop atshort smoke orsinglewave.
 
@@ -76,8 +76,8 @@ Expected: all attemptedrequests included; capacity/startupfailures separate; con
 
 **Interfaces:** Consumes Task3 immutable raw; produces measuredabsolute/relative improvementswith independent repetitions, exclusions/capacity/quality/coverage labels and reproduction instructions.
 
-- [ ] Test raw-only deterministic export, rejectedrequestretention, missingprefixcounterlabels, repeat aggregation and longcompletionfairness; implement analyzer.
-- [ ] Run completeappropriate tests, twice export and comparehashes; write report that directlyanswersMorphX/alternatives/remainingbottleneck.
+- [x] Test raw-only deterministic export, rejectedrequestretention, missingprefixcounterlabels, repeat aggregation and longcompletionfairness; implement analyzer.
+- [x] Run completeappropriate tests, twice export and comparehashes; write report that directlyanswersMorphX/alternatives/remainingbottleneck.
 - [ ] Freshwhole-changereview; fix important findings with reproducingtests and finalverification; archiveexecutionrecord.
 
 Expected: source-evidence-backed, reproducible answer to full userobjective, no scope substitution and no claim ofcompletion with unverifiedMorphX efficacy.
