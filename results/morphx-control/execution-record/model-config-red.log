@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_model_qualification_reads_exact_hdd_config_before_service_mutation ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-184/test_model_qualification_reads0')
+
+    def test_model_qualification_reads_exact_hdd_config_before_service_mutation(tmp_path):
+>       from inferx.morphx_control import load_qualified_base_case
+E       ImportError: cannot import name 'load_qualified_base_case' from 'inferx.morphx_control' (/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/inferx/morphx_control.py)
+
+tests/test_morphx_control.py:133: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_model_qualification_reads_exact_hdd_config_before_service_mutation
+1 failed in 0.05s

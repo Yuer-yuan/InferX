@@ -1,0 +1,86 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-193/test_preparation_rejects_incom0')
+change = 'unlisted-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+        source=source_tree(tmp_path);destination=tmp_path/'fresh'
+        if change=='unlisted-header':
+            (source/'include/cuda.h').write_text('unlisted header can shadow CUDA headers')
+        elif change=='missing-header':
+            (source/'include/common.h').unlink()
+        else:
+            (source/'include/shadow').symlink_to(source/'runtime/src',target_is_directory=True)
+>       with pytest.raises(ValueError,match='inventory'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_morphx_control.py:129: Failed
+_ test_preparation_rejects_incomplete_source_inventory_before_output[missing-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-193/test_preparation_rejects_incom1')
+change = 'missing-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+        source=source_tree(tmp_path);destination=tmp_path/'fresh'
+        if change=='unlisted-header':
+            (source/'include/cuda.h').write_text('unlisted header can shadow CUDA headers')
+        elif change=='missing-header':
+            (source/'include/common.h').unlink()
+        else:
+            (source/'include/shadow').symlink_to(source/'runtime/src',target_is_directory=True)
+        with pytest.raises(ValueError,match='inventory'):
+>           prepare_control_runtime(source,destination,device_fill=True,event_completion=True)
+
+tests/test_morphx_control.py:130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+inferx/morphx_control.py:80: in prepare_control_runtime
+    if hashlib.sha256((source/relative).read_bytes()).hexdigest()!=expected:
+/usr/lib/python3.12/pathlib.py:1021: in read_bytes
+    with self.open(mode='rb') as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-193/test_preparation_rejects_incom1/source/include/common.h')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-193/test_preparation_rejects_incom1/source/include/common.h'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-193/test_preparation_rejects_incom2')
+change = 'symlink-directory'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+        source=source_tree(tmp_path);destination=tmp_path/'fresh'
+        if change=='unlisted-header':
+            (source/'include/cuda.h').write_text('unlisted header can shadow CUDA headers')
+        elif change=='missing-header':
+            (source/'include/common.h').unlink()
+        else:
+            (source/'include/shadow').symlink_to(source/'runtime/src',target_is_directory=True)
+>       with pytest.raises(ValueError,match='inventory'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_morphx_control.py:129: Failed
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[missing-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory]
+3 failed, 8 deselected in 0.26s

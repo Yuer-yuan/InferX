@@ -1,0 +1,71 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_______ test_native_async_fill_and_event_lifetime_against_driver_oracle ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-181/test_native_async_fill_and_eve0')
+
+    def test_native_async_fill_and_event_lifetime_against_driver_oracle(tmp_path):
+        header=ROOT/'scripts/morphx_control_ops.hpp'
+>       assert header.exists(),'transport helper missing'
+E       AssertionError: transport helper missing
+E       assert False
+E        +  where False = <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_control_ops.hpp')>()
+E        +    where <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_control_ops.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_control_ops.hpp').exists
+
+tests/test_morphx_control.py:25: AssertionError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False] _
+
+fill = True, event = False
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+>       from inferx.morphx_control import patch_control_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_control'
+
+tests/test_morphx_control.py:82: ModuleNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True] _
+
+fill = False, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+>       from inferx.morphx_control import patch_control_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_control'
+
+tests/test_morphx_control.py:82: ModuleNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True] _
+
+fill = True, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+>       from inferx.morphx_control import patch_control_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_control'
+
+tests/test_morphx_control.py:82: ModuleNotFoundError
+_______ test_preparation_rejects_changed_sources_before_creating_output ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-181/test_preparation_rejects_chang0')
+
+    def test_preparation_rejects_changed_sources_before_creating_output(tmp_path):
+>       from inferx.morphx_control import prepare_control_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_control'
+
+tests/test_morphx_control.py:112: ModuleNotFoundError
+____ test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-181/test_preparation_preserves_old0')
+
+    def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_path):
+>       from inferx.morphx_control import prepare_control_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_control'
+
+tests/test_morphx_control.py:120: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_native_async_fill_and_event_lifetime_against_driver_oracle
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_changed_sources_before_creating_output
+FAILED tests/test_morphx_control.py::test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap
+6 failed in 0.07s

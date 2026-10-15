@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____ test_cpu_hint_changes_only_binding_and_preserves_default_and_policy ______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-188/test_cpu_hint_changes_only_bin0')
+
+    def test_cpu_hint_changes_only_binding_and_preserves_default_and_policy(tmp_path):
+>       from inferx.morphx_control import patch_agent_cpu_hint
+E       ImportError: cannot import name 'patch_agent_cpu_hint' from 'inferx.morphx_control' (/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/inferx/morphx_control.py)
+
+tests/test_morphx_control.py:145: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_cpu_hint_changes_only_binding_and_preserves_default_and_policy
+1 failed in 0.05s
