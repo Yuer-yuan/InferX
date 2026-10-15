@@ -100,6 +100,20 @@ def test_vllm_command_retains_solo_gpu_and_disables_image_budget(tmp_path):
     assert '--speculative-config' not in args
 
 
+def test_vllm_preserves_decode_graph_policy_without_inductor(tmp_path):
+    import json
+    c=case('vllm')
+    c.update(cuda_graph=True, compilation_config={
+        'mode':0, 'cudagraph_mode':'FULL_DECODE_ONLY',
+        'cudagraph_capture_sizes':[1,2,4]})
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert '--enforce-eager' not in args
+    assert json.loads(args[args.index('--compilation-config')+1]) == c['compilation_config']
+    c['cuda_graph']=False
+    with pytest.raises(ValueError,match='graph.*conflict'):
+        pd.engine_command(c,tmp_path,tmp_path/'run')
+
+
 def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     c=case();c.update(draft=4,draft_kv_dtype='q4_0')
     args=pd.engine_command(c,tmp_path,tmp_path/'run')

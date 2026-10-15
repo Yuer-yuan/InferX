@@ -36,6 +36,8 @@
 
 完整27B模型也已经实际尝试：hook路径在预热中命中了改写后的bf16_gdn_gating_proj_gemm_mma_kernel，并发生cudaErrorLaunchFailure。关闭hook的Clang对照能启动，但一次完整代码验证生成了缩进错误，未通过质量门槛。这些失败均保留；没有用失败配置生成“有效MorphX吞吐”。见 [兼容性证据](../../results/pd-baselines/compatibility/progress.json)。
 
+另在固定源码中发现明确的launch语义差异：失败的GDN SplitK算子通过cudaLaunchKernelEx设置Cooperative属性，并调用this_grid().sync()；MorphX runtime的cuLaunchKernelEx直接转换为cuLaunchKernel，没有传递attrs/numAttrs。该静态差异尚未用保留属性的GPU A/B验证为本次故障的原因，因此只记录为待解决的兼容问题，不宣称已修复。
+
 因此当前结论是移植尚未合格，不能回答MorphX在本机能改善多少，也不能据此宣称MorphX原方法无效。尤其仅改写kernel并不会自动改变NInfer的单prefill准入策略；要评价PD机制，还需要配套请求准入及实际P/D重叠，并保留相同准入策略关闭MorphX的消融。
 
 另已实际运行共享内存生命周期整数探针，原生、原MorphX改写、增加虚拟CTA结束屏障三条路径均通过32768项独立整数校验，后两者均观察到改写kernel启动。因此这个探针未复现候选问题，不能证明结束屏障是GDN/GQA故障的修复。屏障变体尚未做完整模型算子验证，不替代原始失败记录。见 [探针原始诊断](../../results/pd-baselines/compatibility/morphx-shared-lifetime.json)。
@@ -49,6 +51,8 @@
 单请求上限会给同一轮其他请求留出token预算；其作用需要实测。[官方参数说明](https://docs.vllm.ai/en/v0.24.0/configuration/engine_args/)和[该版本V1调度源码](https://github.com/vllm-project/vllm/blob/v0.24.0/vllm/v1/core/sched/scheduler.py)是配置依据。本次安装源码中的V1路径直接使用long_prefill_token_threshold，不应仅凭max_num_partial_prefills配置项存在就认定它已经改变实际调度。
 
 实际GPU探针V2中模型占16.84 GiB，显存比例0.98时分配5.49 GiB缓存、166348 token实际池，随后通过完整代码检查；4个24K工具预热请求触发引擎OOM，首个失败位置为FLA的recompute_w_u_fwd申请20 MiB张量。故尚未进入128K请求验证，也没有有效PD性能数据，不能用启动时显示的最大并发量作为实际容量通过。见 [失败摘要与完整引擎回溯](../../results/pd-baselines/vllm-mem98-warmup-failure.json)。下一探针只将显存比例降至0.95，保留相同模型、上下文、分块及质量门槛，检查预填充工作空间与实际KV池的取舍。
+
+V3将显存比例降至0.95后，实际池4.78 GiB、144460 token；代码检查、4个并发24K工具预热及完整128K请求均通过。长请求实际输入131049 token、输出64 token，工具参数正确且未截断，TTFT78.943秒、总耗时82.432秒。当前API没有返回逐请求cached_tokens，不将其标为缓存计数已验证；该探针只证明此配置能完成单个128K请求，不证明混合负载SLO。见 [128K探针记录](../../results/pd-baselines/vllm-mem95-128k-probe.json)。原服务已恢复后才开始同到达率混合组，另排队验证默认编译/CUDA Graph配置，避免把eager路径作为最优性能结论。
 
 V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认home缓存，已受控停止并恢复服务；随后只迁移本次生成的0.6.12目录至HDD，保留旧版本目录，显式配置FLASHINFER_WORKSPACE_BASE和TORCH_EXTENSIONS_DIR，并验证解析后的路径位于HDD。该中断不算模型性能或容量失败。
 

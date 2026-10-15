@@ -96,6 +96,9 @@ def validate_case(case: dict) -> None:
         raise ValueError('128K cannot fit the divided per-slot context')
     if case['morphx'].get('enabled') and case['morphx'].get('patched_launches', 0) <= 0:
         raise ValueError('MorphX needs observed patched kernel launches')
+    if (case.get('cuda_graph') is False and
+            case.get('compilation_config', {}).get('cudagraph_mode') not in (None, 0, 'NONE')):
+        raise ValueError('CUDA graph policy conflicts with enforce-eager')
 
 
 def _owned_path(root: Path, relative: str) -> str:
@@ -155,6 +158,8 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
         '{"enable_thinking":false}']
     if case.get('cuda_graph') is False:
         args += ['--enforce-eager']
+    if 'compilation_config' in case:
+        args += ['--compilation-config', json.dumps(case['compilation_config'])]
     for field, flag in [('long_prefill_token_threshold','--long-prefill-token-threshold'),
                         ('mamba_cache_mode','--mamba-cache-mode'),
                         ('mamba_block_size','--mamba-block-size'),
