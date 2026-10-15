@@ -1,0 +1,15 @@
+[MorphX-llm] phase=native-bypass grid=16385 block=(64,1,1) shared=0 stream=(nil) name=_ZN50_GLOBAL__N__2fa45684_17_RangeFactories_cu_38772b0829elementwise_kernel_with_indexIiZZZN2at6native15arange_cuda_outERKN3c106ScalarES6_S6_RNS1_6TensorEENKUlvE_clEvENKUlvE5_clEvEUllE_EEvT_T0_PN15function_traitsISD_E11result_typeE
+[MorphX-llm] phase=native-bypass grid=1025 block=(128,1,1) shared=0 stream=(nil) name=_ZN2at6native29vectorized_elementwise_kernelILi4ENS0_11FillFunctorIfEESt5arrayIPcLm1EEEEviT0_T1_
+[MorphX-llm] phase=patched grid=8193 block=(128,1,1) shared=0 stream=(nil) name=vector_oracle
+[MorphX-control] stream=(nil) name=vector_oracle old=0:128 new=0:114
+[MorphX-control] stream=(nil) name=vector_oracle old=0:114 new=0:100
+[MorphX-control] stream=(nil) name=vector_oracle old=0:100 new=0:86
+[MorphX-control] stream=(nil) name=vector_oracle old=0:86 new=0:72
+[MorphX-control] stream=(nil) name=vector_oracle old=0:72 new=0:58
+[MorphX-control] stream=(nil) name=vector_oracle old=0:58 new=0:44
+[MorphX-control] stream=(nil) name=vector_oracle old=0:44 new=0:30
+[MorphX-control] stream=(nil) name=vector_oracle old=0:30 new=0:16
+[MorphX-control] stream=(nil) name=vector_oracle old=0:16 new=0:2
+[MorphX-control] stream=(nil) name=vector_oracle old=0:2 new=0:1
+[MorphX-profile] name=vector_oracle CI=0.005166 waves=13
+{"status": "passed", "n": 1048613, "entry": "vector_oracle", "ptx_entries": ["vector_oracle", "vector_oracle_pk"], "key": "abd537cd9742b48a25803fa06ccf16c752d73795e2786467da2a114f6fef0ea4", "elapsed_s": 3.200305238366127, "scope": "Independent vector correctness, not model or scheduling performance"}

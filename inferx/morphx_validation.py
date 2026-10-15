@@ -101,3 +101,34 @@ def prepare_runtime(source: Path, destination: Path, expected_sha256: str) -> di
     except BaseException:
         shutil.rmtree(destination)
         raise
+
+
+def patch_profile_wave_accounting(text: str) -> str:
+    """Preserve author's descending SM samples; count their exact integer sum.
+
+    128SM/9 truncates to14: the original loop has ten levels, while its
+    closed-form sum assumes nine. This aborts profiling on an RTX4090.
+    """
+    replacements={
+        '        int dec = nrSM / baseWaves;\n        int baseBlocks = (dec + nrSM) * info->occup * baseWaves / 2;':
+        '        int dec = std::max(1, nrSM / baseWaves);\n        int baseBlocks = 0;\n        for(int k = nrSM; k > 0; k -= dec) baseBlocks += k * info->occup;',
+        '        for(int k = nrSM * info->occup; k; k -= dec * info->occup) {':
+        '        for(int k = nrSM * info->occup; k > 0; k -= dec * info->occup) {',
+        '        profileWaves.push_back(gridSize);\n        return;':
+        '        if(gridSize > 0) profileWaves.push_back(gridSize);\n        return;',
+    }
+    for old in replacements:
+        if text.count(old)!=1:raise ValueError('unexpected or already patched profile source')
+    for old,new in replacements.items():text=text.replace(old,new)
+    return text
+
+
+def remove_debug_kernel_skip(text):
+    old='''    if(strstr(funcName, "float32")) {
+        launchMutex.unlock();
+        return CUDA_SUCCESS;
+        return real_cuLaunchKernel(f, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ, sharedMemBytes, hStream, kernelParams, extra);
+    }
+'''
+    if text.count(old)!=1:raise ValueError('unexpected or already patched debug skip')
+    return text.replace(old,'    // All kernel names retain execution; no upstream debug-only success return.\n')

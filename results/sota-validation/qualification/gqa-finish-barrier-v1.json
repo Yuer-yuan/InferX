@@ -1,0 +1,63 @@
+{
+  "scope": "Only decoder CUDA object recompiled with preexisting end-of-virtual-CTA barrier compiler; no quality/performance claim.",
+  "commands": [
+    [
+      "/usr/bin/clang++-18",
+      "-DNINFER_SM89=1",
+      "-I/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/include",
+      "-I/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/src",
+      "-I/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/third_party",
+      "-I/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/third_party/utf8proc",
+      "--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/13",
+      "-Wno-unknown-cuda-version",
+      "-include",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/cuda18_compat.cuh",
+      "-fpass-plugin=/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/morphx-pass-finish-barrier/libsmsched.so",
+      "-O3",
+      "-DNDEBUG",
+      "-std=gnu++20",
+      "--cuda-gpu-arch=sm_89",
+      "--cuda-path=/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+      "-MD",
+      "-MT",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/gqa_attention_decode.cu.o",
+      "-MF",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/gqa_attention_decode.cu.o.d",
+      "-x",
+      "cuda",
+      "-c",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/src/ops/launcher/gqa_attention_decode.cu",
+      "-o",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/gqa_attention_decode.cu.o"
+    ],
+    [
+      "/usr/bin/g++-13",
+      "-O3",
+      "-DNDEBUG",
+      "-Wl,--dependency-file=/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/test-link.d",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/ninfer-morphx/tests/CMakeFiles/ninfer_gqa_attention_test.dir/ops/test_gqa_attention.cpp.o",
+      "-o",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/ninfer_gqa_attention_test",
+      "-L/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/lib64",
+      "-L/usr/lib/llvm-18/lib",
+      "-Wl,-rpath,/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/lib",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/libninfer_ops.a",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/ninfer-morphx/src/libninfer_core.a",
+      "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/lib/libcudart.so",
+      "/usr/lib/x86_64-linux-gnu/librt.a",
+      "-ldl",
+      "-lcudadevrt",
+      "-lcudart"
+    ]
+  ],
+  "plugin_sha256": "45d1d638a06ea178c03f6abc91d2f84f32c259f3915828ed07316c205ea91429",
+  "original_archive_sha256": "b53656b6718ac93463a75ba2d385ef733cc6b107f93714ea1ff94d232f069b17",
+  "output_sha256": {
+    "ninfer_gqa_attention_test": "17af7823d9fe2cbe5b444acd70dd7cf247103715093680d1284e980e068c210b",
+    "test-link.d": "21c288f7e2bb8ebf49f7bc5214c8080080a2700642147601fbc68608c0584f4e",
+    "gqa_attention_decode.cu.o.d": "357a6af339e51c67fb7e0de9eedcd71c066311ba04b16fb84b4840eff1c74a99",
+    "gqa_attention_decode.cu.o": "d42a623f5a4891197202b759f4bbd45344a25f1cf7fffa2a5110051e2c00f1e1",
+    "libninfer_ops.a": "4d1c0c655b6fc5157555a67df1f3455586da0f5347f1a449d5a2898c4733fce8",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "status": "restored",
+  "scope": "Numerical correctness qualification only, no full model or PD performance claim.",
+  "controller_pid": 3697973,
+  "started_unix": 1792077150.1429489,
+  "cases": [
+    {
+      "test": "triton-unhooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/triton-profile-v2/triton-unhooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": null,
+      "log": "triton-unhooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.590232964605093
+    },
+    {
+      "test": "triton-hooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/triton-profile-v2/triton-hooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": "412482d481d6a87546a93b8a8951181db4835be2bfe9bcccc409954ca23e4c8d",
+      "log": "triton-hooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.501478027552366
+    },
+    {
+      "test": "triton-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/triton-profile-v2/triton-profile-artifacts"
+      ],
+      "profile": "1",
+      "binary_sha256": null,
+      "library_sha256": "412482d481d6a87546a93b8a8951181db4835be2bfe9bcccc409954ca23e4c8d",
+      "log": "triton-profile.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.2808741219341755
+    }
+  ],
+  "finished_unix": 1792077230.8513927,
+  "restored": true
+}

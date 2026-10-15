@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/usr/bin/opt-18",
+    "-load-pass-plugin=/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/morphx-pass-finish-barrier/libsmsched.so",
+    "-passes=default<O3>",
+    "-S",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/model-ir-check-v2/compatible.ll",
+    "-o",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/model-ir-check-v2/morphable.ll"
+  ],
+  "returncode": 0,
+  "changes": {
+    "target_triple": 1,
+    "captures_none": 3,
+    "disjoint_or": 18,
+    "return_range": 2,
+    "gep_wrap_promises": 4
+  },
+  "entries": [
+    "write_req_to_token_pool_triton",
+    "write_req_to_token_pool_triton_pk"
+  ]
+}

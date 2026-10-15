@@ -1,0 +1,107 @@
+{
+  "status": "restored",
+  "scope": "Numerical correctness qualification only, no full model or PD performance claim.",
+  "controller_pid": 3693325,
+  "started_unix": 1792076766.1621385,
+  "cases": [
+    {
+      "test": "gqa-original-unhooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/ninfer-morphx/tests/ninfer_gqa_attention_test"
+      ],
+      "profile": "0",
+      "binary_sha256": "47da45a634b633e11c36ce3e2af7c6f600f7076b73aa4644755cb9d7020878f4",
+      "library_sha256": null,
+      "log": "gqa-original-unhooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 31.233212031424046
+    },
+    {
+      "test": "gqa-finish-barrier-unhooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/ninfer_gqa_attention_test"
+      ],
+      "profile": "0",
+      "binary_sha256": "17af7823d9fe2cbe5b444acd70dd7cf247103715093680d1284e980e068c210b",
+      "library_sha256": null,
+      "log": "gqa-finish-barrier-unhooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 28.47850774228573
+    },
+    {
+      "test": "gqa-original-hooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/ninfer-morphx/tests/ninfer_gqa_attention_test"
+      ],
+      "profile": "0",
+      "binary_sha256": "47da45a634b633e11c36ce3e2af7c6f600f7076b73aa4644755cb9d7020878f4",
+      "library_sha256": "71eb5373cf4d389c989656cc641071926d1a18198f204ebf40ec2d3672bc55f3",
+      "log": "gqa-original-hooked.log",
+      "status": "failed",
+      "returncode": 1,
+      "elapsed_s": 32.05899149924517
+    },
+    {
+      "test": "gqa-finish-barrier-hooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/builds/gqa-finish-barrier-v1/ninfer_gqa_attention_test"
+      ],
+      "profile": "0",
+      "binary_sha256": "17af7823d9fe2cbe5b444acd70dd7cf247103715093680d1284e980e068c210b",
+      "library_sha256": "71eb5373cf4d389c989656cc641071926d1a18198f204ebf40ec2d3672bc55f3",
+      "log": "gqa-finish-barrier-hooked.log",
+      "status": "failed",
+      "returncode": 1,
+      "elapsed_s": 29.502009958028793
+    },
+    {
+      "test": "triton-unhooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/gqa-triton-bridge-v1/triton-unhooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": null,
+      "log": "triton-unhooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.548034701496363
+    },
+    {
+      "test": "triton-hooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/gqa-triton-bridge-v1/triton-hooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": "71eb5373cf4d389c989656cc641071926d1a18198f204ebf40ec2d3672bc55f3",
+      "log": "triton-hooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.219757631421089
+    },
+    {
+      "test": "triton-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/gqa-triton-bridge-v1/triton-profile-artifacts"
+      ],
+      "profile": "1",
+      "binary_sha256": null,
+      "library_sha256": "71eb5373cf4d389c989656cc641071926d1a18198f204ebf40ec2d3672bc55f3",
+      "log": "triton-profile.log",
+      "status": "failed",
+      "returncode": -6,
+      "elapsed_s": 9.538883797824383
+    }
+  ],
+  "finished_unix": 1792076972.2404015,
+  "restored": true
+}
