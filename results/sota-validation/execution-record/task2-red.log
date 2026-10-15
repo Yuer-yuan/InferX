@@ -1,0 +1,42 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_____ test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-136/test_extended_and_ptsz_dispatc0')
+
+    def test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics(tmp_path):
+>       from inferx.morphx_validation import patch_extended_launch
+E       ModuleNotFoundError: No module named 'inferx.morphx_validation'
+
+tests/test_morphx_validation.py:17: ModuleNotFoundError
+____________ test_patch_rejects_unknown_or_already_patched_dispatch ____________
+
+    def test_patch_rejects_unknown_or_already_patched_dispatch():
+>       from inferx.morphx_validation import patch_extended_launch
+E       ModuleNotFoundError: No module named 'inferx.morphx_validation'
+
+tests/test_morphx_validation.py:30: ModuleNotFoundError
+________ test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-136/test_preparation_is_fresh_hash0')
+
+    def test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged(tmp_path):
+>       from inferx.morphx_validation import prepare_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_validation'
+
+tests/test_morphx_validation.py:46: ModuleNotFoundError
+_____ test_preparation_refuses_unpinned_source_before_creating_destination _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-136/test_preparation_refuses_unpin0')
+
+    def test_preparation_refuses_unpinned_source_before_creating_destination(tmp_path):
+>       from inferx.morphx_validation import prepare_runtime
+E       ModuleNotFoundError: No module named 'inferx.morphx_validation'
+
+tests/test_morphx_validation.py:62: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_validation.py::test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics
+FAILED tests/test_morphx_validation.py::test_patch_rejects_unknown_or_already_patched_dispatch
+FAILED tests/test_morphx_validation.py::test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged
+FAILED tests/test_morphx_validation.py::test_preparation_refuses_unpinned_source_before_creating_destination
+4 failed in 0.05s

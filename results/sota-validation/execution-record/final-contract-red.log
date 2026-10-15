@@ -1,0 +1,66 @@
+...........F........F                                                    [100%]
+=================================== FAILURES ===================================
+______ test_campaign_export_audits_frozen_input_runtime_and_source_hashes ______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-178/test_campaign_export_audits_fr0')
+
+    def test_campaign_export_audits_frozen_input_runtime_and_source_hashes(tmp_path):
+        from scripts.analyze_sota_validation import export_campaign
+        specs,rows=fixture();case=dict(id='method',model='models/qwen38-int4-redhat',concurrency=4,context_window=131328,
+            max_total_tokens=131328,morphx={'enabled':False},environment={})
+        def write(path,data):
+            path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(data))
+        write(tmp_path/'campaign.json',dict(status='restored',restored=True,kind='mixed',repeat=1,
+            harness_sha256={},cases=[dict(case='method',repeat=0,group='cold-high',state='measured')]))
+        write(tmp_path/'config.json',[case]);write(tmp_path/'restored-service.json',{'pid':123})
+        folder=tmp_path/'method-r0-cold-high';wave=folder/'cold-high'
+        write(folder/'startup.json',dict(case=case,server_info=dict(model_path='/pinned/models/qwen38-int4-redhat',tokenizer_path='/pinned/models/qwen38-int4-redhat',context_length=131328,internal_states=[dict(
+            effective_max_running_requests_per_dp=4,memory_usage={'token_capacity':131328,'graph':{'decode':0,'prefill':0}},
+            mamba_ssm_dtype='bfloat16',max_mamba_cache_size=16,kv_cache_dtype='fp8_e4m3',
+            disable_overlap_schedule=True,memory_placeholder=None)])))
+        write(folder/'quality-result.json',{'status':'passed'})
+        write(wave/'specifications.json',specs);write(wave/'result.json',{'summary':{'measured_span_s':48.}})
+        (wave/'requests.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
+        (wave/'warmup.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows[:4]))
+        (folder/'server.log').write_text('native log\n');(folder/'gpu.csv').write_text('time,23000,1100,99,99,300\n')
+        templates={s['prompt_id']:{'payload':s['payload'],'expected_tool':s['expected_tool']} for s in specs}
+        output=export_campaign(tmp_path,templates)
+        assert output['groups'][0]['strict_requests']==25
+        assert output['groups'][0]['gpu_memory']['sampled_min_free_mib']==1100
+        assert output['source_sha256']['method-r0-cold-high/cold-high/requests.jsonl']==hashlib.sha256((wave/'requests.jsonl').read_bytes()).hexdigest()
+        assert export_campaign(tmp_path,templates)==output
+        startup=json.loads((folder/'startup.json').read_text())
+        startup['server_info']['internal_states'][0]['memory_usage']['graph']['decode']=.1
+        write(folder/'startup.json',startup)
+        with pytest.raises(ValueError,match='eager'):export_campaign(tmp_path,templates)
+        startup['server_info']['internal_states'][0]['memory_usage']['graph']['decode']=0
+        startup['server_info']['internal_states'][0]['speculative_algorithm']='NEXTN'
+        write(folder/'startup.json',startup)
+        with pytest.raises(ValueError,match='MTP0'):export_campaign(tmp_path,templates)
+        startup['server_info']['internal_states'][0]['speculative_algorithm']=None
+        write(folder/'startup.json',startup)
+        startup['server_info']['tokenizer_path']='/other/tokenizer';write(folder/'startup.json',startup)
+>       with pytest.raises(ValueError,match='tokenizer'):export_campaign(tmp_path,templates)
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:133: Failed
+__ test_model_tokenizer_contract_is_bound_to_pinned_checkpoint_and_file_bytes __
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-178/test_model_tokenizer_contract_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x73853b917f20>
+
+    def test_model_tokenizer_contract_is_bound_to_pinned_checkpoint_and_file_bytes(tmp_path,monkeypatch):
+        contract=copy.deepcopy(results.PROMPT_COUNT_CONTRACT)
+        contract['tokenizer_files']={name:hashlib.sha256(name.encode()).hexdigest() for name in contract['tokenizer_files']}
+        monkeypatch.setattr(results,'PROMPT_COUNT_CONTRACT',contract)
+        for name in contract['tokenizer_files']:(tmp_path/name).write_text(name)
+        manifest={'repo':contract['repository'],'revision':contract['revision']}
+        (tmp_path/'manifest.json').write_text(json.dumps(manifest))
+>       verified=results.verify_prompt_count_contract(tmp_path)
+E       AttributeError: module 'inferx.sota_results' has no attribute 'verify_prompt_count_contract'
+
+tests/test_sota_results.py:165: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_sota_results.py::test_campaign_export_audits_frozen_input_runtime_and_source_hashes
+FAILED tests/test_sota_results.py::test_model_tokenizer_contract_is_bound_to_pinned_checkpoint_and_file_bytes
+2 failed, 19 passed in 0.26s

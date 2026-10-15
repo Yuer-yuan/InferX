@@ -1,0 +1,282 @@
+......F............FFFFFFF.                                              [100%]
+=================================== FAILURES ===================================
+______ test_proc_queries_preserve_per_thread_flags_and_native_rejections _______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_preserve_per0')
+
+    def test_proc_queries_preserve_per_thread_flags_and_native_rejections(tmp_path):
+        import re
+        from inferx.morphx_validation import patch_proc_address_queries
+        original=(FIXTURES/'morphx_proc_address_original.cpp').read_text();changed=patch_proc_address_queries(original)
+        names=set(re.findall(r'\*pfn = \(void\*\)(\w+);',original)) - {'cuGetProcAddress','cuGetProcAddress_v2'}
+        prefix=r'''#include <string>
+    #include <cstring>
+    #include <cassert>
+    using CUresult=int;using cuuint64_t=unsigned long;using CUdriverProcAddressQueryResult=int;
+    const int CUDA_SUCCESS=0, CUDA_ERROR_INVALID_VALUE=1, CU_GET_PROC_ADDRESS_SUCCESS=0;
+    const int CU_GET_PROC_ADDRESS_PER_THREAD_DEFAULT_STREAM=2;
+    void* shared_lib=(void*)1;void ld_init(){};void native(){};
+    CUresult query_legacy(const char*,void**,int,cuuint64_t);
+    CUresult query_v2(const char*,void**,int,cuuint64_t,CUdriverProcAddressQueryResult*);
+    CUresult resolve(const char* s,void** f,int v,cuuint64_t flags){
+     if(!s||!f||v==99999||flags>2)return 1;
+     if(std::string(s)=="cuGetProcAddress")*f=v<12000?(void*)query_legacy:(void*)query_v2;
+     else *f=(std::string(s)=="missing")?nullptr:(void*)native;
+     return 0;
+    }
+    int legacy_calls=0,v2_calls=0;
+    CUresult query_legacy(const char* s,void** f,int v,cuuint64_t flags){++legacy_calls;return resolve(s,f,v,flags);}
+    CUresult query_v2(const char* s,void** f,int v,cuuint64_t flags,CUdriverProcAddressQueryResult* status){
+     ++v2_calls;auto result=resolve(s,f,v,flags);if(result==0 && status)*status=(*f)?0:2;return result;
+    }
+    auto real_cuGetProcAddress=query_legacy;auto real_cuGetProcAddress_v2=query_v2;
+    CUresult cuGetProcAddress(const char*,void**,int,cuuint64_t);
+    CUresult cuGetProcAddress_v2(const char*,void**,int,cuuint64_t,CUdriverProcAddressQueryResult*);
+    '''
+        for name in sorted(names):prefix+='void '+name+'(){}\n'
+        main=r'''int main(){
+     for(bool legacy:{false,true}) {
+      auto invoke=[&](const char* s,void** f,int v,cuuint64_t flags,int* status){
+        return legacy?cuGetProcAddress(s,f,v,flags):cuGetProcAddress_v2(s,f,v,flags,status);
+      };
+      void* f=nullptr;int status=-1;
+      assert(invoke("cuLaunchKernel",&f,12080,0,&status)==0 && f==(void*)cuLaunchKernel);
+      assert(invoke("cuLaunchKernel",&f,12080,2,&status)==0 && f==(void*)cuLaunchKernel_ptsz);
+      assert(invoke("cuLaunchKernelEx",&f,12080,2,&status)==0 && f==(void*)cuLaunchKernelEx_ptsz);
+      assert(invoke("cuLaunchKernel",&f,99999,0,&status)==1);
+      assert(invoke("cuLaunchKernel",nullptr,12080,0,&status)==1);
+      assert(invoke("missing",&f,12080,2,&status)==0 && f==nullptr && (legacy || status==2));
+      assert(invoke("cuLaunchKernel",&f,12080,99,&status)==1);
+      // Either outer ABI must return the self-query ABI requested by cudaVersion.
+      for(int version:{11030,12000}) {
+        assert(invoke("cuGetProcAddress",&f,version,0,&status)==0);
+        void* g=nullptr;int canary=73;
+        if(version==11030) {
+          assert(f==(void*)cuGetProcAddress);int before=legacy_calls;
+          auto call=reinterpret_cast<CUresult(*)(const char*,void**,int,cuuint64_t)>(f);
+          assert(call("cuLaunchKernel",&g,12080,0)==0 && legacy_calls==before+1);
+          assert(canary==73);
+        } else {
+          assert(f==(void*)cuGetProcAddress_v2);int before=v2_calls;
+          auto call=reinterpret_cast<CUresult(*)(const char*,void**,int,cuuint64_t,int*)>(f);
+          assert(call("cuLaunchKernel",&g,12080,0,&canary)==0 && v2_calls==before+1);
+          assert(canary==0);
+        }
+        assert(g==(void*)cuLaunchKernel);
+      }
+     }
+    }
+    '''
+        source=tmp_path/'query.cpp';source.write_text(prefix+changed+main)
+>       subprocess.run(['g++','-std=c++17',str(source),'-o',str(tmp_path/'probe')],check=True,capture_output=True,text=True)
+
+tests/test_morphx_validation.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['g++', '-std=c++17', '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_prese...'-o', '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_preserve_per0/probe'],)
+kwargs = {'stderr': -1, 'stdout': -1, 'text': True}
+process = <Popen: returncode: 1 args: ['g++', '-std=c++17', '/home/guokc/mypro/gnn-mou...>
+stdout = ''
+stderr = '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_preserve_per0/query.cpp: In ...|       assert(f==(void*)cuGetProcAddress);int before=legacy_calls;\n      |                        ^~~~~~~~~~~~~~~~\n'
+retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['g++', '-std=c++17', '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_preserve_per0/query.cpp', '-o', '/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-176/test_proc_queries_preserve_per0/probe']' returned non-zero exit status 1.
+
+/usr/lib/python3.12/subprocess.py:571: CalledProcessError
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[tool-24576-24567] _
+
+prompt = 'tool-24576', count = 24567
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[tool-24576-24000] _
+
+prompt = 'tool-24576', count = 24000
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-131059] _
+
+prompt = 'cold-131072', count = 131059
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-130000] _
+
+prompt = 'cold-131072', count = 130000
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-131061] _
+
+prompt = 'cold-131072', count = 131061
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[resume-131072-131048] _
+
+prompt = 'resume-131072', count = 131048
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+_ test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[resume-131072-131060] _
+
+prompt = 'resume-131072', count = 131060
+
+    @pytest.mark.parametrize('prompt,count',[
+        ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+        ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+        ('resume-131072',131060)])
+    def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+        specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+        specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+        rows[index]['summary']['prompt_tokens']=count
+        rows[index]['events'][0]['usage']['prompt_tokens']=count
+>       with pytest.raises(ValueError,match='prompt count'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_sota_results.py:145: Failed
+=========================== short test summary info ============================
+FAILED tests/test_morphx_validation.py::test_proc_queries_preserve_per_thread_flags_and_native_rejections
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[tool-24576-24567]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[tool-24576-24000]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-131059]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-130000]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[cold-131072-131061]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[resume-131072-131048]
+FAILED tests/test_sota_results.py::test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift[resume-131072-131060]
+8 failed, 19 passed in 1.52s

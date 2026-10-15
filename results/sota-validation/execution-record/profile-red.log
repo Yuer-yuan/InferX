@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_profile_waves_cover_4090_nondivisible_sm_counts_exactly _________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-141/test_profile_waves_cover_4090_0')
+
+    def test_profile_waves_cover_4090_nondivisible_sm_counts_exactly(tmp_path):
+>       from inferx.morphx_validation import patch_profile_wave_accounting
+E       ImportError: cannot import name 'patch_profile_wave_accounting' from 'inferx.morphx_validation' (/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/inferx/morphx_validation.py)
+
+tests/test_morphx_validation.py:71: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_validation.py::test_profile_waves_cover_4090_nondivisible_sm_counts_exactly
+1 failed, 4 deselected in 0.04s

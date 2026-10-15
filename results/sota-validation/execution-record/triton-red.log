@@ -1,0 +1,30 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________ test_ir_bridge_weakens_only_known_optimization_promises ____________
+
+    def test_ir_bridge_weakens_only_known_optimization_promises():
+>       from inferx.morphx_triton import llvm18_compatible_ir
+E       ModuleNotFoundError: No module named 'inferx.morphx_triton'
+
+tests/test_morphx_triton.py:15: ModuleNotFoundError
+_____________ test_ptx_keeps_original_and_only_its_morphable_entry _____________
+
+    def test_ptx_keeps_original_and_only_its_morphable_entry():
+>       from inferx.morphx_triton import finalize_ptx
+E       ModuleNotFoundError: No module named 'inferx.morphx_triton'
+
+tests/test_morphx_triton.py:27: ModuleNotFoundError
+_____________ test_compiler_cache_key_changes_with_pass_and_bridge _____________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-139/test_compiler_cache_key_change0')
+
+    def test_compiler_cache_key_changes_with_pass_and_bridge(tmp_path):
+>       from inferx.morphx_triton import compilation_key
+E       ModuleNotFoundError: No module named 'inferx.morphx_triton'
+
+tests/test_morphx_triton.py:36: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_triton.py::test_ir_bridge_weakens_only_known_optimization_promises
+FAILED tests/test_morphx_triton.py::test_ptx_keeps_original_and_only_its_morphable_entry
+FAILED tests/test_morphx_triton.py::test_compiler_cache_key_changes_with_pass_and_bridge
+3 failed in 0.10s

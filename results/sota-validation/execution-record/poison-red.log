@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_new_function_poison_promise_is_dropped_without_changing_body _______
+
+    def test_new_function_poison_promise_is_dropped_without_changing_body():
+        from inferx.morphx_triton import llvm18_compatible_ir
+        changed,counts=llvm18_compatible_ir(IR+'attributes #4 = { nocallback nocreateundeforpoison nofree nounwind memory(none) }\n')
+>       assert 'attributes #4 = { nocallback nofree nounwind memory(none) }' in changed
+E       assert 'attributes #4 = { nocallback nofree nounwind memory(none) }' in 'target triple = "nvptx64-nvidia-cuda"\nsource_filename = "LLVMDialectModule"\ntarget datalayout = "e-p:64:64"\ndefine...id\n}\ndeclare noundef i32 @tid()\nattributes #4 = { nocallback nocreateundeforpoison nofree nounwind memory(none) }\n'
+
+tests/test_morphx_triton.py:71: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_triton.py::test_new_function_poison_promise_is_dropped_without_changing_body
+1 failed, 6 deselected in 0.04s

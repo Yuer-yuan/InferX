@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_new_gep_wrap_promises_are_weakened_without_changing_address_work _____
+
+    def test_new_gep_wrap_promises_are_weakened_without_changing_address_work():
+        from inferx.morphx_triton import llvm18_compatible_ir
+        source=IR+'  %p = getelementptr inbounds nuw i8, ptr addrspace(3) @global_smem, i32 %78\n  %q = getelementptr nusw i64, ptr %x, i32 %i\n'
+        changed,counts=llvm18_compatible_ir(source)
+>       assert '%p = getelementptr inbounds i8, ptr addrspace(3) @global_smem, i32 %78' in changed
+E       assert '%p = getelementptr inbounds i8, ptr addrspace(3) @global_smem, i32 %78' in 'target triple = "nvptx64-nvidia-cuda"\nsource_filename = "LLVMDialectModule"\ntarget datalayout = "e-p:64:64"\ndefine...getelementptr inbounds nuw i8, ptr addrspace(3) @global_smem, i32 %78\n  %q = getelementptr nusw i64, ptr %x, i32 %i\n'
+
+tests/test_morphx_triton.py:47: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_triton.py::test_new_gep_wrap_promises_are_weakened_without_changing_address_work
+1 failed, 3 deselected in 0.04s

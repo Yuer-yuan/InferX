@@ -1,0 +1,88 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_gpu_kernel_union_overlap_does_not_count_cpu_or_double_count_nested_work _
+
+    def test_gpu_kernel_union_overlap_does_not_count_cpu_or_double_count_nested_work():
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:10: ModuleNotFoundError
+___________ test_no_actual_two_stream_gpu_evidence_stays_unobserved ____________
+
+    def test_no_actual_two_stream_gpu_evidence_stays_unobserved():
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:23: ModuleNotFoundError
+_ test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events0-mapping0] _
+
+events = [{'args': {'device': 0, 'stream': 10}, 'cat': 'kernel', 'dur': nan, 'name': 'native', ...}]
+mapping = {'decode': 20, 'prefill': 10}
+
+    @pytest.mark.parametrize('events,mapping',[
+        ([kernel(0,float('nan'),10)],{'prefill':10,'decode':20}),
+        ([dict(cat='kernel',ph='X',ts=1,dur=2,name='a',args={})],{'prefill':10,'decode':20}),
+        ([kernel(0,2,10)],{'prefill':10,'decode':10}),
+        ([kernel(0,2,10),{**kernel(0,2,20),'args':{'stream':20,'device':1}}],{'prefill':10,'decode':20}),
+    ])
+    def test_ambiguous_trace_is_rejected_instead_of_inventing_overlap(events,mapping):
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:37: ModuleNotFoundError
+_ test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events1-mapping1] _
+
+events = [{'args': {}, 'cat': 'kernel', 'dur': 2, 'name': 'a', ...}]
+mapping = {'decode': 20, 'prefill': 10}
+
+    @pytest.mark.parametrize('events,mapping',[
+        ([kernel(0,float('nan'),10)],{'prefill':10,'decode':20}),
+        ([dict(cat='kernel',ph='X',ts=1,dur=2,name='a',args={})],{'prefill':10,'decode':20}),
+        ([kernel(0,2,10)],{'prefill':10,'decode':10}),
+        ([kernel(0,2,10),{**kernel(0,2,20),'args':{'stream':20,'device':1}}],{'prefill':10,'decode':20}),
+    ])
+    def test_ambiguous_trace_is_rejected_instead_of_inventing_overlap(events,mapping):
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:37: ModuleNotFoundError
+_ test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events2-mapping2] _
+
+events = [{'args': {'device': 0, 'stream': 10}, 'cat': 'kernel', 'dur': 2, 'name': 'native', ...}]
+mapping = {'decode': 10, 'prefill': 10}
+
+    @pytest.mark.parametrize('events,mapping',[
+        ([kernel(0,float('nan'),10)],{'prefill':10,'decode':20}),
+        ([dict(cat='kernel',ph='X',ts=1,dur=2,name='a',args={})],{'prefill':10,'decode':20}),
+        ([kernel(0,2,10)],{'prefill':10,'decode':10}),
+        ([kernel(0,2,10),{**kernel(0,2,20),'args':{'stream':20,'device':1}}],{'prefill':10,'decode':20}),
+    ])
+    def test_ambiguous_trace_is_rejected_instead_of_inventing_overlap(events,mapping):
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:37: ModuleNotFoundError
+_ test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events3-mapping3] _
+
+events = [{'args': {'device': 0, 'stream': 10}, 'cat': 'kernel', 'dur': 2, 'name': 'native', ...}, {'args': {'device': 1, 'stream': 20}, 'cat': 'kernel', 'dur': 2, 'name': 'native', ...}]
+mapping = {'decode': 20, 'prefill': 10}
+
+    @pytest.mark.parametrize('events,mapping',[
+        ([kernel(0,float('nan'),10)],{'prefill':10,'decode':20}),
+        ([dict(cat='kernel',ph='X',ts=1,dur=2,name='a',args={})],{'prefill':10,'decode':20}),
+        ([kernel(0,2,10)],{'prefill':10,'decode':10}),
+        ([kernel(0,2,10),{**kernel(0,2,20),'args':{'stream':20,'device':1}}],{'prefill':10,'decode':20}),
+    ])
+    def test_ambiguous_trace_is_rejected_instead_of_inventing_overlap(events,mapping):
+>       from inferx.sota_trace import analyze_trace
+E       ModuleNotFoundError: No module named 'inferx.sota_trace'
+
+tests/test_sota_trace.py:37: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_sota_trace.py::test_gpu_kernel_union_overlap_does_not_count_cpu_or_double_count_nested_work
+FAILED tests/test_sota_trace.py::test_no_actual_two_stream_gpu_evidence_stays_unobserved
+FAILED tests/test_sota_trace.py::test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events0-mapping0]
+FAILED tests/test_sota_trace.py::test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events1-mapping1]
+FAILED tests/test_sota_trace.py::test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events2-mapping2]
+FAILED tests/test_sota_trace.py::test_ambiguous_trace_is_rejected_instead_of_inventing_overlap[events3-mapping3]
+6 failed in 0.05s

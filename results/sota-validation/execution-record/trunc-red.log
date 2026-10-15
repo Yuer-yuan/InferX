@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________ test_truncation_wrap_promises_keep_original_integer_operation _________
+
+    def test_truncation_wrap_promises_keep_original_integer_operation():
+        from inferx.morphx_triton import llvm18_compatible_ir
+        source=IR+'  %41 = trunc nuw nsw i64 %29 to i32, !dbg !37\n  %42 = trunc nsw i64 %x to i8\n'
+        changed,counts=llvm18_compatible_ir(source)
+>       assert '%41 = trunc i64 %29 to i32, !dbg !37' in changed
+E       assert '%41 = trunc i64 %29 to i32, !dbg !37' in 'target triple = "nvptx64-nvidia-cuda"\nsource_filename = "LLVMDialectModule"\ntarget datalayout = "e-p:64:64"\ndefine... void\n}\ndeclare noundef i32 @tid()\n  %41 = trunc nuw nsw i64 %29 to i32, !dbg !37\n  %42 = trunc nsw i64 %x to i8\n'
+
+tests/test_morphx_triton.py:56: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_triton.py::test_truncation_wrap_promises_keep_original_integer_operation
+1 failed, 4 deselected in 0.04s

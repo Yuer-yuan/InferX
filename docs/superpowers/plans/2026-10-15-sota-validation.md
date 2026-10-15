@@ -80,5 +80,5 @@ Expected: evidence-based answer to whether tested SOTA solves this workload, wit
 
 ## Final review and finish
 
-- [ ] One fresh whole-change read-only reviewer; re-grade findings/declined items, oneImportant/Critical RED→GREEN fix pass, fullsuite and fresh service verification.
-- [ ] Archive ledger/helpers/review/tests, close plan, delete only this scratch, retain branch/no merge/push; preserve prior dirty/user files.
+- [x] One fresh whole-change read-only reviewer; re-grade findings/declined items, oneImportant/Critical RED→GREEN fix pass, fullsuite and fresh service verification.
+- [x] Archive ledger/helpers/review/tests, close plan, delete only this scratch, retain branch/no merge/push; preserve prior dirty/user files.

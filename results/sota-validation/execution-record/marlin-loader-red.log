@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_custom_marlin_loader_uses_exact_library_and_rejects_other_dtypes _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7158c4531fa0>
+
+    def test_custom_marlin_loader_uses_exact_library_and_rejects_other_dtypes(monkeypatch):
+        import sys
+>       from inferx.morphx_sglang import patch_marlin_loader
+E       ImportError: cannot import name 'patch_marlin_loader' from 'inferx.morphx_sglang' (/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/inferx/morphx_sglang.py)
+
+tests/test_morphx_sglang.py:35: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_sglang.py::test_custom_marlin_loader_uses_exact_library_and_rejects_other_dtypes
+1 failed, 2 deselected in 0.03s

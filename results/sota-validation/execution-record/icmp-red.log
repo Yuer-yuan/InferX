@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_comparison_signedness_promise_keeps_predicate_and_operands ________
+
+    def test_comparison_signedness_promise_keeps_predicate_and_operands():
+        from inferx.morphx_triton import llvm18_compatible_ir
+        changed,counts=llvm18_compatible_ir(IR+'  %82 = icmp samesign ult i32 %13, 40, !dbg !48\n')
+>       assert '%82 = icmp ult i32 %13, 40, !dbg !48' in changed
+E       assert '%82 = icmp ult i32 %13, 40, !dbg !48' in 'target triple = "nvptx64-nvidia-cuda"\nsource_filename = "LLVMDialectModule"\ntarget datalayout = "e-p:64:64"\ndefine...x) {\n  %v = or i32 1, 2\n  ret void\n}\ndeclare noundef i32 @tid()\n  %82 = icmp samesign ult i32 %13, 40, !dbg !48\n'
+
+tests/test_morphx_triton.py:64: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_triton.py::test_comparison_signedness_promise_keeps_predicate_and_operands
+1 failed, 5 deselected in 0.04s

@@ -1,0 +1,120 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+_________ test_reconstructs_tools_instead_of_trusting_functional_flag __________
+
+    def test_reconstructs_tools_instead_of_trusting_functional_flag():
+        specs,rows=fixture()
+        rows[-1]['events'][0]['choices'][0]['delta']['tool_calls'][0]['function']['arguments']='{"ok":false}'
+        with pytest.raises(ValueError,match='tool'):
+>           results.audit_wave(specs,rows,48.,kind='mixed')
+E           AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:37: AttributeError
+_____ test_rejects_rehashed_payload_that_differs_from_frozen_specification _____
+
+    def test_rejects_rehashed_payload_that_differs_from_frozen_specification():
+        specs,rows=fixture();rows[-1]['request']['messages'][0]['content']='shortened'
+        rows[-1]['request_sha256']=hashlib.sha256(json.dumps(rows[-1]['request'],sort_keys=True).encode()).hexdigest()
+        with pytest.raises(ValueError,match='payload'):
+>           results.audit_wave(specs,rows,48.,kind='mixed')
+E           AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:44: AttributeError
+_______ test_incomplete_long_never_becomes_a_performance_win[truncated] ________
+
+failure = 'truncated'
+
+    @pytest.mark.parametrize('failure',['truncated','short_long','missing','duplicate'])
+    def test_incomplete_long_never_becomes_a_performance_win(failure):
+        specs,rows=fixture()
+        if failure=='truncated':rows[-1]['summary']['truncated']=True
+        elif failure=='short_long':rows[-1]['summary']['prompt_tokens']=4096
+        elif failure=='missing':rows.pop()
+        else:rows[-1]['id']=rows[0]['id']
+>       with pytest.raises(ValueError):results.audit_wave(specs,rows,48.,kind='mixed')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:54: AttributeError
+_______ test_incomplete_long_never_becomes_a_performance_win[short_long] _______
+
+failure = 'short_long'
+
+    @pytest.mark.parametrize('failure',['truncated','short_long','missing','duplicate'])
+    def test_incomplete_long_never_becomes_a_performance_win(failure):
+        specs,rows=fixture()
+        if failure=='truncated':rows[-1]['summary']['truncated']=True
+        elif failure=='short_long':rows[-1]['summary']['prompt_tokens']=4096
+        elif failure=='missing':rows.pop()
+        else:rows[-1]['id']=rows[0]['id']
+>       with pytest.raises(ValueError):results.audit_wave(specs,rows,48.,kind='mixed')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:54: AttributeError
+________ test_incomplete_long_never_becomes_a_performance_win[missing] _________
+
+failure = 'missing'
+
+    @pytest.mark.parametrize('failure',['truncated','short_long','missing','duplicate'])
+    def test_incomplete_long_never_becomes_a_performance_win(failure):
+        specs,rows=fixture()
+        if failure=='truncated':rows[-1]['summary']['truncated']=True
+        elif failure=='short_long':rows[-1]['summary']['prompt_tokens']=4096
+        elif failure=='missing':rows.pop()
+        else:rows[-1]['id']=rows[0]['id']
+>       with pytest.raises(ValueError):results.audit_wave(specs,rows,48.,kind='mixed')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:54: AttributeError
+_______ test_incomplete_long_never_becomes_a_performance_win[duplicate] ________
+
+failure = 'duplicate'
+
+    @pytest.mark.parametrize('failure',['truncated','short_long','missing','duplicate'])
+    def test_incomplete_long_never_becomes_a_performance_win(failure):
+        specs,rows=fixture()
+        if failure=='truncated':rows[-1]['summary']['truncated']=True
+        elif failure=='short_long':rows[-1]['summary']['prompt_tokens']=4096
+        elif failure=='missing':rows.pop()
+        else:rows[-1]['id']=rows[0]['id']
+>       with pytest.raises(ValueError):results.audit_wave(specs,rows,48.,kind='mixed')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:54: AttributeError
+________ test_valid_full_wave_has_continuous_metrics_and_unknown_cache _________
+
+    def test_valid_full_wave_has_continuous_metrics_and_unknown_cache():
+>       specs,rows=fixture();out=results.audit_wave(specs,rows,48.,kind='mixed')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:58: AttributeError
+_______ test_serial_solo_rejects_concurrent_dispatch_with_same_c4_server _______
+
+    def test_serial_solo_rejects_concurrent_dispatch_with_same_c4_server():
+        specs,rows=fixture();specs=specs[:24];rows=rows[:24]
+        for spec,row in zip(specs,rows):spec.pop('offset_s');spec['producer']=0;row['producer']=0
+>       with pytest.raises(ValueError,match='serial'):results.audit_wave(specs,rows,48.,kind='isolated-serial-C4')
+E       AttributeError: module 'inferx.sota_results' has no attribute 'audit_wave'
+
+tests/test_sota_results.py:69: AttributeError
+_________ test_repeat_median_uses_wave_identity_and_lane_specific_solo _________
+
+    def test_repeat_median_uses_wave_identity_and_lane_specific_solo():
+        waves=[dict(case='method',group='cold-high',repeat=i,short_p95_s=x,long_s=100+x,
+                    output_tokens_per_s=10.,completed_within_48s=20,strict_requests=25) for i,x in enumerate([2.,8.,3.])]
+        solos=[dict(case='method',group='short-control',short_p95_s=2.),
+               dict(case='method',group='cold-high',long_s=100.)]
+>       out=results.compare_lanes(waves,solos)[0]
+E       AttributeError: module 'inferx.sota_results' has no attribute 'compare_lanes'
+
+tests/test_sota_results.py:77: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_sota_results.py::test_reconstructs_tools_instead_of_trusting_functional_flag
+FAILED tests/test_sota_results.py::test_rejects_rehashed_payload_that_differs_from_frozen_specification
+FAILED tests/test_sota_results.py::test_incomplete_long_never_becomes_a_performance_win[truncated]
+FAILED tests/test_sota_results.py::test_incomplete_long_never_becomes_a_performance_win[short_long]
+FAILED tests/test_sota_results.py::test_incomplete_long_never_becomes_a_performance_win[missing]
+FAILED tests/test_sota_results.py::test_incomplete_long_never_becomes_a_performance_win[duplicate]
+FAILED tests/test_sota_results.py::test_valid_full_wave_has_continuous_metrics_and_unknown_cache
+FAILED tests/test_sota_results.py::test_serial_solo_rejects_concurrent_dispatch_with_same_c4_server
+FAILED tests/test_sota_results.py::test_repeat_median_uses_wave_identity_and_lane_specific_solo
+9 failed in 0.08s

@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_proc_queries_preserve_per_thread_flags_and_native_rejections _______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-148/test_proc_queries_preserve_per0')
+
+    def test_proc_queries_preserve_per_thread_flags_and_native_rejections(tmp_path):
+        import re
+>       from inferx.morphx_validation import patch_proc_address_queries
+E       ImportError: cannot import name 'patch_proc_address_queries' from 'inferx.morphx_validation' (/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/inferx/morphx_validation.py)
+
+tests/test_morphx_validation.py:119: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_validation.py::test_proc_queries_preserve_per_thread_flags_and_native_rejections
+1 failed, 6 deselected in 0.04s

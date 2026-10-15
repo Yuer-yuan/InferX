@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_control_pool_keeps_counters_on_device_and_copies_on_private_stream ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-157/test_control_pool_keeps_counte0')
+
+    def test_control_pool_keeps_counters_on_device_and_copies_on_private_stream(tmp_path):
+        header=Path(__file__).parents[1]/'scripts/morphx_cuda_copy_pool.hpp'
+>       assert header.is_file(),'copy-backed CUDA pool not implemented'
+E       AssertionError: copy-backed CUDA pool not implemented
+E       assert False
+E        +  where False = <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_cuda_copy_pool.hpp')>()
+E        +    where <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_cuda_copy_pool.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/morphx_cuda_copy_pool.hpp').is_file
+
+tests/test_morphx_cuda_copy_pool.py:8: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_cuda_copy_pool.py::test_control_pool_keeps_counters_on_device_and_copies_on_private_stream
+1 failed in 0.03s
