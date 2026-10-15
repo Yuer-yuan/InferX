@@ -103,8 +103,16 @@ class OwnedEngine:
             self.telemetry.terminate()
             self.telemetry.wait(timeout=5)
         if self.proc is not None:
-            if self.identity is not None:
-                stop_matching_process(self.identity, timeout=30)
+            if self.proc.returncode is None and self.identity is not None:
+                try:
+                    exited=os.waitid(os.P_PID,self.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT)
+                    if exited is None:
+                        stop_matching_process(self.identity, timeout=30)
+                except (FileNotFoundError,ProcessLookupError,RuntimeError):
+                    # A crashed, unreaped child has no executable symlink. It
+                    # still anchors its workers' group; a live mismatch does not.
+                    if os.waitid(os.P_PID,self.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT) is None:
+                        raise
             if self.proc.returncode is None:
                 # The unreaped Popen leader anchors the group, including workers
                 # that outlive the HTTP frontend. Startup checks use WNOWAIT.

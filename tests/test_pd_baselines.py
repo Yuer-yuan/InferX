@@ -233,14 +233,17 @@ def test_timed_out_external_suite_cleans_its_group_and_preserves_unrelated_proce
         other.terminate();other.wait(timeout=3)
 
 
-def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path):
+@pytest.mark.parametrize('crashed',[False,True])
+def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path,crashed):
     import os,signal,subprocess,sys,time
     from scripts.run_pd_baselines import OwnedEngine
     from inferx.service_ownership import process_identity
     engine=OwnedEngine(case(),tmp_path,tmp_path/'run')
     program=('import subprocess,sys,time;from pathlib import Path;'
         'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"]);'
-        f'Path({str(tmp_path/"worker.pid")!r}).write_text(str(p.pid));time.sleep(30)')
+        f'Path({str(tmp_path/"worker.pid")!r}).write_text(str(p.pid))\n')
+    program+=(f'while not Path({str(tmp_path/"exit")!r}).exists(): time.sleep(.01)\n'
+              if crashed else 'time.sleep(30)\n')
     engine.proc=subprocess.Popen([sys.executable,'-c',program],start_new_session=True)
     other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)'])
     worker_fd=None
@@ -250,6 +253,12 @@ def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path):
             time.sleep(.01)
         worker=int((tmp_path/'worker.pid').read_text());worker_fd=os.pidfd_open(worker)
         engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
+        if crashed:
+            (tmp_path/'exit').touch()
+            for _ in range(100):
+                if os.waitid(os.P_PID,engine.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT):break
+                time.sleep(.01)
+            else:pytest.fail('fixture frontend did not exit')
         engine.stop()
         for _ in range(100):
             try:alive=Path(f'/proc/{worker}/stat').read_text().rsplit(')',1)[1].split()[0]!='Z'
