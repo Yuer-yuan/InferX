@@ -142,6 +142,38 @@ def test_vllm_preserves_decode_graph_policy_without_inductor(tmp_path):
         pd.engine_command(c,tmp_path,tmp_path/'run')
 
 
+def test_sglang_keeps_full_context_and_explicit_mixed_schedule(tmp_path):
+    c=case('sglang')
+    c.update(binary='pd-baselines/sglang0519-venv/bin/python',
+             kv_dtype='fp8_e4m3',context_window=131328,chunk=512,
+             cuda_graph=False,max_mamba_cache_size=16)
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert args[args.index('--context-length')+1]=='131328'
+    assert args[args.index('--tp-size')+1]=='1'
+    assert args[args.index('--max-running-requests')+1]=='4'
+    assert '--enable-mixed-chunk' in args and '--enable-metrics' in args
+    assert '--language-model-only' in args
+    assert '--disable-prefill-cuda-graph' in args
+    assert '--disable-decode-cuda-graph' in args
+    assert args[args.index('--max-mamba-cache-size')+1]=='16'
+    assert '--max-total-tokens' not in args  # Observe the allocator's actual pool.
+    c['draft']=1
+    with pytest.raises(ValueError,match='SGLang.*speculative'):
+        pd.engine_command(c,tmp_path,tmp_path/'run')
+
+
+def test_sglang_idle_wait_observes_running_and_queued_work(monkeypatch):
+    from scripts import run_pd_baselines as runner
+    samples=iter([{'sglang:num_running_reqs':0,'sglang:num_queue_reqs':1},
+                  {'sglang:num_running_reqs':1,'sglang:num_queue_reqs':0},
+                  {'sglang:num_running_reqs':0,'sglang:num_queue_reqs':0}])
+    sleeps=[]
+    monkeypatch.setattr(runner,'get',lambda _:next(samples))
+    monkeypatch.setattr(runner.time,'sleep',lambda seconds:sleeps.append(seconds))
+    runner.wait_idle(timeout=1)
+    assert len(sleeps)==2
+
+
 def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     c=case();c.update(draft=4,draft_kv_dtype='q4_0')
     args=pd.engine_command(c,tmp_path,tmp_path/'run')

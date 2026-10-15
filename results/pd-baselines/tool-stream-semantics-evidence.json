@@ -1,0 +1,26 @@
+{
+  "status": "single_observation_stream_semantics_not_GPU_execution_measurement",
+  "wire_id": "chatcmpl-3729cc3d55161748",
+  "client_summary": {
+    "wall_s": 1.119908720254898,
+    "ttft_s": 1.1194671764969826,
+    "completion_tokens": 52,
+    "observed_decode_tps": 115503.84098003813,
+    "engine_timings": {
+      "cache_n": 24554,
+      "predicted_ms": 1053.85352,
+      "predicted_n": 52,
+      "predicted_per_second": 49.34272079861726,
+      "prompt_ms": 24.205157,
+      "prompt_n": 4,
+      "prompt_per_second": 165.25404069884777
+    }
+  },
+  "native_log_line": "[2026-10-15 12:15:00.334] [info] ninfer-serve: [req 6] done finish=tool_calls tool_calls=1 prompt=24558 gen=52 cache=24554 reuse=restore_turn_checkpoint ttft=62ms prefill=165.3tok/s decode=48.4tok/s wall=1.12s speculative=off",
+  "source_sha256": {
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/raw/ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-short-control/short-control/requests.jsonl": "fc2f3f5df5738392101da04a18e4027bbc775228e20b3ec9a1a2a44ed26d6543",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/raw/ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-short-control/server.log": "93cd61384bc5f39a94ab161f70219b9065470ab830f81ba7f7877054a8c8b29f",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/raw/ninfer-lowrate-main-v2/ninfer-d0-c4-chunk2048-r0-short-control/native.jsonl": "7fdfbce8da5d966a1433649836230c75c784b82c0dcd50cd1e7d39d7963e6561"
+  },
+  "limitation": "NInfer tool API first visible output arrives after generation is buffered; client observed_decode_tps is an output-emission rate and must not be treated as model decode throughput."
+}

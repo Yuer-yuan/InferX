@@ -572,6 +572,73 @@
         "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
       },
       "capacity_note": "Exploratory C4/MTP1 full131328-context capacity and semantic gates; keep speculative model memory cost and failures separate from MTP0."
+    },
+    {
+      "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "engine": "vllm",
+      "binary": "pd-baselines/vllm031-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 4096,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.95,
+      "mamba_cache_mode": "align",
+      "long_prefill_token_threshold": 2048,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
+      },
+      "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate."
+    },
+    {
+      "id": "sglang0519-int4-c4-ch512-eager-mem95",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.95,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
+      },
+      "capacity_note": "Official0.5.19 CUDA12 dependency recipe adapted using uv overrides; full128K quality and allocator capacity required. Bound checkpoint state pool separately from full attention KV.",
+      "mixed_chunk": true,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1
     }
   ]
 }

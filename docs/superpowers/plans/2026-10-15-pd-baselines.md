@@ -51,6 +51,7 @@ Expected: every candidate command has explicit GPU/environment/context/budget/mo
 - [x] Pin MorphX full source and compiler/runtime, inspect compile interfaces, build for SM89 using isolated toolchains. Add required adapter tests before persistent implementation changes.
 - [x] Execute patched kernel correctness/coverage probe on owned GPU1; inspect failures and adapt missing components as feasible, preserve failure logs.
 - [x] Verify existing llama.cpp 27B path and seek modern vLLM INT4 path through hf-mirror; validate versions/driver/API/context and functional gates.
+- [ ] Verify newly discovered official CUDA12.9 wheels for vLLM0.31/Torch2.13 and SGLang0.5.19 in isolated environments; do not infer incompatibility from cu128-only resolution.
 - [x] Freeze runnable candidate config/source/weight hashes, commit adapters and compatibility evidence.
 
 Expected: actually runnable same27B candidates or reproducible attempted compatibility failures, never untested paper claims.

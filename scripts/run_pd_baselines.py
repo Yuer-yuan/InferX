@@ -33,7 +33,8 @@ def wait_idle(timeout=900):
     while time.monotonic() < deadline:
         m = get('/metrics')
         keys = ['llamacpp:requests_processing', 'llamacpp:requests_deferred',
-                'vllm:num_requests_running', 'vllm:num_requests_waiting']
+                'vllm:num_requests_running', 'vllm:num_requests_waiting',
+                'sglang:num_running_reqs', 'sglang:num_queue_reqs']
         observed = [m[k] for k in keys if k in m]
         if observed and all(v == 0 for v in observed):
             return

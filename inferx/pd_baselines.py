@@ -97,13 +97,15 @@ def validate_case(case: dict) -> None:
             raise ValueError(f'missing {key}')
     if case['gpu_uuid'] != GPU1:
         raise ValueError('only owned GPU1 is permitted')
-    if case['engine'] not in {'llama', 'ninfer', 'vllm'}:
+    if case['engine'] not in {'llama', 'ninfer', 'vllm', 'sglang'}:
         raise ValueError('unknown engine')
     for key in ('context_window', 'kv_capacity', 'concurrency', 'chunk'):
         if type(case[key]) is not int or case[key] <= 0:
             raise ValueError(f'positive integer {key} required')
     if type(case['draft']) is not int or case['draft'] < 0:
         raise ValueError('nonnegative draft required')
+    if case['engine']=='sglang' and case['draft']:
+        raise ValueError('SGLang speculative configuration is not yet qualified')
     if min(case['context_window'], case['kv_capacity']) < 131072 + 256:
         raise ValueError('128K input plus output must fit')
     if case['engine']=='ninfer' and case['context_window']>case['kv_capacity']:
@@ -162,6 +164,27 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             if case.get('draft_kv_dtype'):
                 args += ['--spec-draft-type-k', case['draft_kv_dtype'],
                          '--spec-draft-type-v', case['draft_kv_dtype']]
+        return args
+    if case['engine'] == 'sglang':
+        args = common + ['-m', 'sglang.launch_server', '--model-path', model,
+            '--served-model-name', 'qwen38-27b', '--host', '127.0.0.1', '--port', '18083',
+            '--tp-size', '1', '--context-length', str(case['context_window']),
+            '--max-running-requests', str(case['concurrency']),
+            '--chunked-prefill-size', str(case['chunk']), '--kv-cache-dtype', case['kv_dtype'],
+            '--mem-fraction-static', str(case.get('gpu_memory_utilization', .95)),
+            '--enable-metrics', '--tool-call-parser', 'qwen3_coder',
+            '--reasoning-parser', 'qwen3', '--language-model-only',
+            '--default-chat-template-kwargs', '{"enable_thinking":false}']
+        if case.get('mixed_chunk', True):
+            args += ['--enable-mixed-chunk']
+        if case.get('cuda_graph') is False:
+            args += ['--disable-prefill-cuda-graph', '--disable-decode-cuda-graph']
+        for field, flag in [('max_mamba_cache_size', '--max-mamba-cache-size'),
+                            ('mamba_full_memory_ratio', '--mamba-full-memory-ratio'),
+                            ('attention_backend', '--attention-backend'),
+                            ('cuda_graph_max_bs_decode', '--cuda-graph-max-bs-decode')]:
+            if field in case:
+                args += [flag, str(case[field])]
         return args
     args = common + ['-m', 'vllm.entrypoints.openai.api_server', '--model', model,
         '--served-model-name', 'qwen38-27b', '--host', '127.0.0.1', '--port', '18083',

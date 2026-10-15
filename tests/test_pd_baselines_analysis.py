@@ -149,3 +149,6 @@ def test_declared_morphx_probe_count_cannot_qualify_unobserved_model_measurement
     assert result['repeats']==[]
     assert result['groups'][0]['comparison_eligible'] is False
     assert len(result['requests'])==3  # Unqualified attempts are still retained.
+    import csv
+    with (tmp_path/'out/groups.csv').open() as stream:
+        assert next(csv.DictReader(stream))['comparison_eligible']=='False'

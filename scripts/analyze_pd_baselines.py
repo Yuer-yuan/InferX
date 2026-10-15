@@ -175,6 +175,7 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
     group_rows=[]
     for g in groups:
         group_rows.append(dict(run=g['run'],case=g['case'],group=g['group'],repetition=g['repetition'],
+            comparison_eligible=g['comparison_eligible'],
             rate=g['rate'],complete=g['complete'],planned=g['planned'],observed=g['observed_responses'],
             errors=g['summary']['errors'] if g['summary'] else None,
             short_p95_s=g['short']['latency_s']['p95'] if g['short'] else None,
