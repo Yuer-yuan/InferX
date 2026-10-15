@@ -46,10 +46,10 @@ Expected: instrumented independent overlays, verified unchanged no-wait behavior
 
 **Interfaces:** `qwen_split_prefill(self,input_ids,positions,forward_batch,split_interval,input_embeds=None)` matches ModelRunner's real split entry and text-only wrapper hierarchy. Overlay contains narrowly scoped Qwen/backend/topology corrections as demonstrated necessary; manifests enumerate all deviations from upstream.
 
-- [ ] Write failing interval/residual/interleaving/final-logits/unsupported-mode tests, run RED, implement adapter, run GREEN.
-- [ ] Use real installed ModelRunner CPU entry to validate call compatibility, then owned GPU1 Green Context and full27B code/tool/full128K probes. Record native split/stream evidence and every failure.
-- [ ] If whole-input prefill cannot fit, qualify a separately labeled512-token-chunk PD adapter with stash/exclude/stream handoff and its reserve-only ablation. Resolve demonstrated hybrid dispatch/topology/capacity issues with targeted regressions; qualify matched actual pool or document why none fits. Preserve exact precision/context and restore service.
-- [ ] Run full repository suite and commit adapter plus actual qualification evidence.
+- [x] Write failing interval/residual/interleaving/final-logits/unsupported-mode tests, run RED, implement adapter, run GREEN.
+- [x] Use real installed ModelRunner CPU entry to validate call compatibility, then owned GPU1 Green Context and full27B code/tool/full128K probes. Record native split/stream evidence and every failure.
+- [x] If whole-input prefill cannot fit, qualify a separately labeled512-token-chunk PD adapter with stash/exclude/stream handoff and its reserve-only ablation. Resolve demonstrated hybrid dispatch/topology/capacity issues with targeted regressions; qualify matched actual pool or document why none fits. Preserve exact precision/context and restore service.
+- [x] Run full repository suite and commit adapter plus actual qualification evidence.
 
 Expected: a correctness/capacity-qualified actual PD path, or reproducible adapted failure with efficacy explicitly unknown.
 
