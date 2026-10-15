@@ -12,6 +12,23 @@ from pathlib import Path
 GPU1 = 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189'
 
 
+def record_morphx_coverage(server_log: Path, directory: Path) -> dict:
+    """Freeze model-process evidence; a prior standalone probe is insufficient."""
+    raw = Path(server_log).read_bytes()
+    names = re.findall(r'\[MorphX-llm\] phase=patched\b[^\r\n]*\bname=(\S+)',
+                       raw.decode(errors='replace'))
+    evidence = dict(status='observed' if names else 'unobserved',
+        patched_launches_observed=len(names), patched_kernel_names=sorted(set(names)),
+        snapshot_sha256=hashlib.sha256(raw).hexdigest(),
+        scope='Model-process warmup/quality before load; partial kernel coverage '
+              'does not prove PD overlap or a change to request admission.')
+    with (Path(directory)/'morphx-coverage.log').open('xb') as out:
+        out.write(raw)
+    with (Path(directory)/'morphx-coverage.json').open('x') as out:
+        json.dump(evidence, out, indent=2)
+    return evidence
+
+
 def snapshot_harness(source, destination, files):
     """Archive source bytes, so later workspace edits cannot erase provenance."""
     relatives=[Path(name) for name in files]

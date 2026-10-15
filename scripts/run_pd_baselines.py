@@ -14,7 +14,7 @@ from pathlib import Path
 from inferx.concurrency import run_load, summarize_load
 from inferx.pd_baselines import (GPU1, engine_command, parse_metrics, validate_case,
                                 load_frozen_workloads, arrival_requests, run_owned_command,
-                                snapshot_harness)
+                                snapshot_harness, record_morphx_coverage)
 from inferx.service_ownership import RestorableService, process_identity, stop_matching_process
 
 ENDPOINT = 'http://127.0.0.1:18083'
@@ -138,6 +138,10 @@ def run_with_restoration(saved, restore, paths, pre_stop_check, measure):
 def observe(server, name, specifications, warmups=()):
     directory = server.directory/name
     directory.mkdir()
+    if server.case['morphx'].get('enabled'):
+        coverage=record_morphx_coverage(server.directory/'server.log',directory)
+        if coverage['status']!='observed':
+            raise RuntimeError('MorphX model runtime coverage unobserved; raw output retained')
     wait_idle()
     with (directory/'warmup.jsonl').open('x') as out:
         warm = asyncio.run(run_load(ENDPOINT, list(warmups), out, 'closed', server.case['concurrency']))

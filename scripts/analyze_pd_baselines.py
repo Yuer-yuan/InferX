@@ -49,7 +49,7 @@ def prefix_observations(rows):
 def _summarize_repeats(groups):
     buckets=collections.defaultdict(list)
     for group in groups:
-        if group['complete'] and group['quality_status']=='passed':
+        if group['comparison_eligible']:
             key=(group['case'],group['configuration_sha256'],group['group'],group['rate'])
             buckets[key].append(group)
     result=[]
@@ -141,6 +141,11 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             short=[r for r in rows if r.get('prompt_id')=='tool-24576']
             long=[r for r in rows if r.get('prompt_id')!='tool-24576']
             entry['prefix']=dict(short=prefix_observations(short),long=prefix_observations(long))
+            coverage_path=directory/'morphx-coverage.json'
+            entry['morphx_coverage']=read(coverage_path) if coverage_path.exists() else None
+            entry['comparison_eligible']=bool(complete and quality.get('status')=='passed'
+                and (not case.get('morphx',{}).get('enabled') or
+                     (entry['morphx_coverage'] or {}).get('status')=='observed'))
             gpu_path=case_dir/'gpu.csv'
             gpu_data=gpu_path.read_bytes() if gpu_path.exists() else None
             if gpu_data is not None:

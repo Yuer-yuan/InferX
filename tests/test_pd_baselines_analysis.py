@@ -137,3 +137,15 @@ def test_gpu_memory_samples_keep_sampling_scope_and_invalid_values_visible(tmp_p
     path.unlink()
     absent=export(tmp_path,tmp_path/'out')['groups'][0]['gpu_memory']
     assert absent['status']=='unobserved' and absent['sampled_peak_mib'] is None
+
+
+def test_declared_morphx_probe_count_cannot_qualify_unobserved_model_measurements(tmp_path):
+    from scripts.analyze_pd_baselines import export
+    run,_=make_group(tmp_path)
+    cases=json.loads((run/'config.json').read_text())
+    cases[0]['morphx']={'enabled':True,'patched_launches':10}
+    write(run/'config.json',cases)
+    result=export(tmp_path,tmp_path/'out')
+    assert result['repeats']==[]
+    assert result['groups'][0]['comparison_eligible'] is False
+    assert len(result['requests'])==3  # Unqualified attempts are still retained.

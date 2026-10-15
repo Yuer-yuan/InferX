@@ -46,6 +46,33 @@ def test_case_rejects_foreign_gpu_and_unobserved_morphx():
         pd.validate_case(c)
 
 
+def test_serving_measurement_rejects_declared_morphx_without_model_runtime_trace(tmp_path,monkeypatch):
+    from types import SimpleNamespace
+    from scripts import run_pd_baselines as runner
+    c=case();c['morphx']={'enabled':True,'patched_launches':5}
+    (tmp_path/'server.log').write_text('[MorphX-llm] phase=capture-bypass name=native_kernel\n')
+    server=SimpleNamespace(case=c,directory=tmp_path)
+    monkeypatch.setattr(runner,'wait_idle',lambda:pytest.fail('measurement reached without model coverage'))
+    with pytest.raises(RuntimeError,match='runtime coverage'):
+        runner.observe(server,'cold-low',[])
+    assert __import__('json').loads((tmp_path/'cold-low/morphx-coverage.json').read_text())['status']=='unobserved'
+
+
+def test_morphx_model_coverage_snapshot_is_independent_of_later_log_writes(tmp_path):
+    source=tmp_path/'server.log'
+    raw=(b'[MorphX-llm] phase=patched grid=24 name=gdn_kernel\n'
+         b'[MorphX-llm] phase=capture-bypass name=native_kernel\n'
+         b'[MorphX-llm] phase=patched grid=64 name=gemm_kernel\n')
+    source.write_bytes(raw)
+    out=tmp_path/'coverage';out.mkdir()
+    evidence=pd.record_morphx_coverage(source,out)
+    assert evidence['status']=='observed' and evidence['patched_launches_observed']==2
+    assert evidence['patched_kernel_names']==['gdn_kernel','gemm_kernel']
+    source.write_bytes(raw+b'later runtime log\n')
+    import hashlib
+    assert evidence['snapshot_sha256']==hashlib.sha256((out/'morphx-coverage.log').read_bytes()).hexdigest()
+
+
 def test_models_and_commands_are_owned_and_context_is_real(tmp_path):
     c = case('ninfer')
     c['kv_dtype'] = 'rk4v4-e8'
