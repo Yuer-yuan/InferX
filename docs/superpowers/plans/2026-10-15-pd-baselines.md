@@ -36,9 +36,9 @@
 
 **Interfaces:** Consumes run_load(endpoint, requests, output, mode, workers), summarize_load(records, span_s), RestorableService(saved, restore, manifest_paths, pre_stop_check). Produces engine_command(engine:dict, root:Path, run_dir:Path)->list[str], parse_metrics(text:str)->dict[str,float], validate_case(case:dict)->None and a raw campaign schema with engine/provenance/group/repetition/arrival/data/terminal restoration fields.
 
-- [ ] Write failing tests for128K per-slot admission, prohibitedGPU0 selection, explicitquantization/morphxcoverage fields and multi-label Prometheus parsing.
-- [ ] Run targeted tests and inspect failures; implement only required adapter/controller changes, preserve existing protocol semantics.
-- [ ] Pass tests for owned stop/restore and real HTTP tool/error retention; commit.
+- [x] Write failing tests for128K per-slot admission, prohibitedGPU0 selection, explicitquantization/morphxcoverage fields and multi-label Prometheus parsing.
+- [x] Run targeted tests and inspect failures; implement only required adapter/controller changes, preserve existing protocol semantics.
+- [x] Pass tests for owned stop/restore and real HTTP tool/error retention; commit.
 
 Expected: every candidate command has explicit GPU/environment/context/budget/model path and rejects incomplete configuration; controllers preserve all errors and restore on exceptions.
 
@@ -48,10 +48,10 @@ Expected: every candidate command has explicit GPU/environment/context/budget/mo
 
 **Interfaces:** Consumes Task1 engine case schema; produces pinned sources/model manifests, buildlogs, usable binaries/environments and actual compatibility/coverage proof for Task3.
 
-- [ ] Pin MorphX full source and compiler/runtime, inspect compile interfaces, build for SM89 using isolated toolchains. Add required adapter tests before persistent implementation changes.
-- [ ] Execute patched kernel correctness/coverage probe on owned GPU1; inspect failures and adapt missing components as feasible, preserve failure logs.
-- [ ] Verify existing llama.cpp 27B path and seek modern vLLM INT4 path through hf-mirror; validate versions/driver/API/context and functional gates.
-- [ ] Freeze runnable candidate config/source/weight hashes, commit adapters and compatibility evidence.
+- [x] Pin MorphX full source and compiler/runtime, inspect compile interfaces, build for SM89 using isolated toolchains. Add required adapter tests before persistent implementation changes.
+- [x] Execute patched kernel correctness/coverage probe on owned GPU1; inspect failures and adapt missing components as feasible, preserve failure logs.
+- [x] Verify existing llama.cpp 27B path and seek modern vLLM INT4 path through hf-mirror; validate versions/driver/API/context and functional gates.
+- [x] Freeze runnable candidate config/source/weight hashes, commit adapters and compatibility evidence.
 
 Expected: actually runnable same27B candidates or reproducible attempted compatibility failures, never untested paper claims.
 
