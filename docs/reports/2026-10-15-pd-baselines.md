@@ -1,6 +1,6 @@
 # 开源 PD 方案适配与验证（进行中）
 
-目前不能把已发现的长短请求干扰称为现有系统尚未解决的研究空白。llama.cpp 分块调优后三轮独立重复仍有明显尾延迟；MorphX 移植尚未通过正确性门槛；vLLM 已实际启动并通过代码生成检查，但24K工具预热发生GDN临时张量OOM，正在调整容量。以下数据不构成最终跨引擎排名。
+目前不能把已发现的长短请求干扰称为现有系统尚未解决的研究空白。llama.cpp 分块调优后三轮独立重复仍有明显尾延迟；MorphX 移植尚未通过正确性门槛；vLLM 已完成一轮完整27B/128K混合诊断，当前容量下仍有明显延迟及抢占，正在检查Graph与容量配置。以下数据不构成最终跨引擎排名。
 
 ## 已得到的结果
 
@@ -53,6 +53,12 @@
 实际GPU探针V2中模型占16.84 GiB，显存比例0.98时分配5.49 GiB缓存、166348 token实际池，随后通过完整代码检查；4个24K工具预热请求触发引擎OOM，首个失败位置为FLA的recompute_w_u_fwd申请20 MiB张量。故尚未进入128K请求验证，也没有有效PD性能数据，不能用启动时显示的最大并发量作为实际容量通过。见 [失败摘要与完整引擎回溯](../../results/pd-baselines/vllm-mem98-warmup-failure.json)。下一探针只将显存比例降至0.95，保留相同模型、上下文、分块及质量门槛，检查预填充工作空间与实际KV池的取舍。
 
 V3将显存比例降至0.95后，实际池4.78 GiB、144460 token；代码检查、4个并发24K工具预热及完整128K请求均通过。长请求实际输入131049 token、输出64 token，工具参数正确且未截断，TTFT78.943秒、总耗时82.432秒。当前API没有返回逐请求cached_tokens，不将其标为缓存计数已验证；该探针只证明此配置能完成单个128K请求，不证明混合负载SLO。见 [128K探针记录](../../results/pd-baselines/vllm-mem95-128k-probe.json)。原服务已恢复后才开始同到达率混合组，另排队验证默认编译/CUDA Graph配置，避免把eager路径作为最优性能结论。
+
+随后eager/mem95完成一轮3组诊断，均实际0.5 RPS，各组重启服务；74/74请求工具有效、2次128K长请求完成。纯短请求P95为4.757秒；混入冷长请求后117.724秒，续接模板组113.712秒，两混合组各记录到2次抢占。长请求分别耗时102.653、90.013秒。缓存池小于llama.cpp的212992 token，不能将这组结果归因为单独的调度优劣。没有逐请求缓存计数，续接组仅按输入模板命名，尚不称为已验证的长请求缓存命中。见 [完整诊断摘要](../../results/pd-baselines/vllm-mem95-eager-diagnostic.json)。
+
+默认编译/Graph配置实际启动失败：KV可用2.39 GiB，而完整131328窗口至少需要4.31 GiB；标准1 GiB CPU权重卸载使模型显存由16.84降到15.76 GiB，KV增至3.46 GiB，仍不足以启动该窗口。两次失败及恢复均保留，未缩短输入换取通过，见 [Graph容量失败记录](../../results/pd-baselines/vllm-graph-capacity-failures.json)。继续验证受支持的mode0/FULL_DECODE_ONLY组合及容量设置，不能据此笼统断言Graph不能用。
+
+还有一个明确的分块约束：实际启动日志将attention块设为1568 token以匹配Mamba状态页；本版align调度要求long_prefill_token_threshold不小于该块，不能直接照搬llama.cpp的128分块。[10月14日合入的上游内部checkpoint改动](https://github.com/vllm-project/vllm/pull/60050)面向FlashInfer GDN预填充，明确没有改动Triton/FLA路径；本机当前使用Triton，因此不能直接将该改动的GB200收益当成本机结果。
 
 V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认home缓存，已受控停止并恢复服务；随后只迁移本次生成的0.6.12目录至HDD，保留旧版本目录，显式配置FLASHINFER_WORKSPACE_BASE和TORCH_EXTENSIONS_DIR，并验证解析后的路径位于HDD。该中断不算模型性能或容量失败。
 

@@ -153,6 +153,7 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
         str(case['chunk']), '--enable-chunked-prefill', '--enable-prefix-caching',
         '--kv-cache-dtype', case['kv_dtype'], '--gpu-memory-utilization',
         str(case.get('gpu_memory_utilization', .95)), '--enable-auto-tool-choice',
+        '--enable-prompt-tokens-details',
         '--tool-call-parser', 'qwen3_coder', '--reasoning-parser', 'qwen3',
         '--language-model-only', '--default-chat-template-kwargs',
         '{"enable_thinking":false}']

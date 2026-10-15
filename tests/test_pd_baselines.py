@@ -95,6 +95,7 @@ def test_vllm_command_retains_solo_gpu_and_disables_image_budget(tmp_path):
              quantization='compressed-tensors-int4', gpu_memory_utilization=.95)
     args = pd.engine_command(c, tmp_path, tmp_path/'run')
     assert '--enable-chunked-prefill' in args
+    assert '--enable-prompt-tokens-details' in args
     assert args[args.index('--tensor-parallel-size')+1] == '1'
     assert args[args.index('--max-num-seqs')+1] == '4'
     assert '--speculative-config' not in args
