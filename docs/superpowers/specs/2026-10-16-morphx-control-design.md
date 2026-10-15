@@ -33,3 +33,5 @@ A separate profile may test whether control DMA counts change and actual P/D lif
 - CUDA12.8.1 event API: https://docs.nvidia.com/cuda/archive/12.8.1/cuda-driver-api/group__CUDA__EVENT.html (query recorded completion; unrecorded event not a pending-completion test).
 
 Execution clarification: include the freshly built ABI-only libcuda_query_abi_v4.so as a qualification/diagnostic control for all three transport variants. The three-variant limit refers to the treatments, not this causal control. No old ABI/library/source is overwritten.
+
+Hardware correction before timing: GPU1 is NUMA1 (CPU28-55/84-111), whereas author-default agent CPU0 is NUMA0 and overlaps the prior client set. Add only a checked/logged SMSCHED_AGENT_CPU host-binding override in fresh immutable local-v2 builds; keep original default when unset. Use agent36, unchanged server28-35, client40-43/96-99 (disjoint physical cores). Requalify code/four24K/full128K for all four new libraries before any efficacy measurement; preserve old builds/results. Original device kernels, progress profiler, schedule_2 and launch logic stay byte-identical outside the CPU binding helper.

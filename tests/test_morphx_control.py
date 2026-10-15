@@ -139,3 +139,29 @@ def test_model_qualification_reads_exact_hdd_config_before_service_mutation(tmp_
     assert case['id']=='morphx-copy96-no-launch-cap' and case['model_revision']=='91bd022d5b49442a868bc35008f6c21e1860edfa'
     path=folder/'sota-validation.json';path.write_text(path.read_text()+' ')
     with pytest.raises(ValueError,match='config hash'):load_qualified_base_case(tmp_path)
+
+
+def test_cpu_hint_changes_only_binding_and_preserves_default_and_policy(tmp_path):
+    from inferx.morphx_control import patch_agent_cpu_hint
+    import os
+    source=corrected_source();changed=patch_agent_cpu_hint(source)
+    start=changed.index('#include <cerrno>');end=changed.index('std::atomic<int> gCpu;',start)
+    before=source[:source.index('void bind_thread_to_cpu(')]
+    after=source[source.index('std::atomic<int> gCpu;'):]
+    assert changed.startswith(before) and changed.endswith(after)
+    cpp=tmp_path/'cpu.cpp'
+    cpp.write_text('#include <pthread.h>\n#include <sched.h>\n#include <cstdlib>\n#include <cstdio>\n#include <cassert>\n'+changed[start:end]+r'''
+int main(int argc,char** argv){
+ unsetenv("SMSCHED_AGENT_CPU");assert(inferxAgentCpu(0)==0);
+ setenv("SMSCHED_AGENT_CPU",argv[1],1);bind_thread_to_cpu(0);
+ cpu_set_t actual;assert(sched_getaffinity(0,sizeof(actual),&actual)==0);
+ assert(CPU_COUNT(&actual)==1 && CPU_ISSET(atoi(argv[1]),&actual));
+}
+''')
+    subprocess.run(['g++','-std=c++17','-pthread',str(cpp),'-o',str(tmp_path/'cpu')],check=True,capture_output=True,text=True)
+    cpu=min(os.sched_getaffinity(0));good=subprocess.run([str(tmp_path/'cpu'),str(cpu)],capture_output=True,text=True)
+    assert good.returncode==0 and f'requested={cpu} observed={cpu}' in good.stderr
+    for bad in ['not-a-cpu','-1','999999']:
+        failed=subprocess.run([str(tmp_path/'cpu'),bad],capture_output=True,text=True)
+        assert failed.returncode!=0 and 'invalid SMSCHED_AGENT_CPU' in failed.stderr
+    with pytest.raises(ValueError):patch_agent_cpu_hint(changed)

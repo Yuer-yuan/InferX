@@ -96,3 +96,47 @@ def prepare_control_runtime(source: Path, destination: Path, *, device_fill: boo
         (destination/'preparation.json').write_text(json.dumps(result,indent=2)+'\n');return result
     except BaseException:
         shutil.rmtree(destination);raise
+
+
+_CPU_HINT=r'''#include <cerrno>
+int inferxAgentCpu(int fallback) {
+    const char* raw=std::getenv("SMSCHED_AGENT_CPU");
+    if(!raw) return fallback;
+    char* end=nullptr;errno=0;
+    long cpu=std::strtol(raw,&end,10);
+    if(errno || raw==end || *end || cpu<0 || cpu>=CPU_SETSIZE) {
+        fprintf(stderr,"invalid SMSCHED_AGENT_CPU\n");std::abort();
+    }
+    return static_cast<int>(cpu);
+}
+void bind_thread_to_cpu(int cpu_id) {
+    cpu_id=inferxAgentCpu(cpu_id);
+    cpu_set_t cpuset;CPU_ZERO(&cpuset);CPU_SET(cpu_id,&cpuset);
+    int result=pthread_setaffinity_np(pthread_self(),sizeof(cpu_set_t),&cpuset);
+    if(result!=0) {
+        if(std::getenv("SMSCHED_AGENT_CPU")) {
+            fprintf(stderr,"MorphX agent affinity failed: %d\n",result);std::abort();
+        }
+        perror("pthread_setaffinity_np failed");
+    }
+    if(std::getenv("SMSCHED_AGENT_CPU"))
+        fprintf(stderr,"[MorphX-affinity] requested=%d observed=%d\n",cpu_id,sched_getcpu());
+}
+'''
+
+
+def patch_agent_cpu_hint(source: str) -> str:
+    original='''void bind_thread_to_cpu(int cpu_id) {
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(cpu_id, &cpuset);
+
+    pthread_t thread = pthread_self();
+    if (pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset) != 0) {
+        perror("pthread_setaffinity_np failed");
+    }
+}
+'''
+    if source.count(original)!=1 or 'inferxAgentCpu' in source:
+        raise ValueError('unexpected or already patched CPU binding')
+    return source.replace(original,_CPU_HINT,1)
