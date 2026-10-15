@@ -1,0 +1,70 @@
+{
+  "status": "restored",
+  "scope": "Numerical correctness qualification only, no full model or PD performance claim.",
+  "controller_pid": 3721525,
+  "started_unix": 1792079312.8296418,
+  "cases": [
+    {
+      "test": "triton-copy",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/cuda-copy-kernels-v1/triton-copy-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": "818de34c6cc041f7e772c832538086eb11ee31c35c62cf0f642534b76f701938",
+      "log": "triton-copy.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.301581371575594
+    },
+    {
+      "test": "triton-copy-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/cuda-copy-kernels-v1/triton-copy-profile-artifacts"
+      ],
+      "profile": "1",
+      "binary_sha256": null,
+      "library_sha256": "818de34c6cc041f7e772c832538086eb11ee31c35c62cf0f642534b76f701938",
+      "log": "triton-copy-profile.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.381651345640421
+    },
+    {
+      "test": "marlin-copy",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/cuda-copy-kernels-v1/marlin-copy-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": "818de34c6cc041f7e772c832538086eb11ee31c35c62cf0f642534b76f701938",
+      "log": "marlin-copy.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 9.05379455909133
+    },
+    {
+      "test": "marlin-copy-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/cuda-copy-kernels-v1/marlin-copy-profile-artifacts"
+      ],
+      "profile": "1",
+      "binary_sha256": null,
+      "library_sha256": "818de34c6cc041f7e772c832538086eb11ee31c35c62cf0f642534b76f701938",
+      "log": "marlin-copy-profile.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 7.96504020690918
+    }
+  ],
+  "finished_unix": 1792079405.9594407,
+  "restored": true
+}

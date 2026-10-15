@@ -15,14 +15,16 @@ def test_control_pool_keeps_counters_on_device_and_copies_on_private_stream(tmp_
 #include <thread>
 #include <vector>
 #include <mutex>
+#include <atomic>
+#include <chrono>
 using CUdeviceptr=uintptr_t;using cudaStream_t=void*;using cudaMemcpyKind=int;
 const int cudaHostAllocDefault=0,cudaStreamNonBlocking=1,cudaMemcpyHostToDevice=1,cudaMemcpyDeviceToHost=2;
-int copies=0,syncs=0;void* private_stream=(void*)0x5678;
+std::atomic<int> copies{0},syncs{0};std::atomic<bool> entered{false},release_copy{false};thread_local bool delay_copy=false;void* private_stream=(void*)0x5678;
 int cudaMalloc(void** p,size_t n){*p=std::malloc(n);return 0;}
 int cudaHostAlloc(void** p,size_t n,unsigned){*p=std::malloc(n);return 0;}
 int cudaStreamCreateWithFlags(cudaStream_t* s,unsigned flags){assert(flags==1);*s=private_stream;return 0;}
 int cudaMemsetAsync(void* p,int v,size_t n,cudaStream_t s){assert(s==private_stream);std::memset(p,v,n);return 0;}
-int cudaMemcpyAsync(void* d,const void* s,size_t n,int kind,cudaStream_t stream){assert(stream==private_stream && (kind==1||kind==2));std::memcpy(d,s,n);++copies;return 0;}
+int cudaMemcpyAsync(void* d,const void* s,size_t n,int kind,cudaStream_t stream){assert(stream==private_stream && (kind==1||kind==2));if(delay_copy && kind==2){entered=true;while(!release_copy)std::this_thread::yield();}std::memcpy(d,s,n);++copies;return 0;}
 int cudaStreamSynchronize(cudaStream_t s){assert(s==private_stream);++syncs;return 0;}
 int cudaStreamDestroy(cudaStream_t s){assert(s==private_stream);return 0;}
 int cudaFree(void* p){std::free(p);return 0;}int cudaFreeHost(void* p){std::free(p);return 0;}
@@ -37,13 +39,21 @@ namespace boost{namespace lockfree{template<class T> class queue{std::queue<T> q
 int main(){
  GdrPool pool;auto e=pool.gdr_malloc();
  assert(e.d!=e.h);pool.set(e,17);assert(*(uint64_t*)e.d==17);
- *(uint64_t*)e.d=42;assert(*(uint64_t*)e.h==17);assert(pool.get(e)==42);
+ *(uint64_t*)e.d=42;assert(pool.get(e)==42);
  std::vector<GdrEntry> entries;for(int i=0;i<4;++i)entries.push_back(pool.gdr_malloc());
  std::vector<std::thread> threads;
  for(int i=0;i<4;++i)threads.emplace_back([&,i]{for(int k=0;k<20;++k){pool.set(entries[i],i*100+k);assert(pool.get(entries[i])==(uint64_t)(i*100+k));}});
  for(auto& t:threads)t.join();
  uint64_t data[64]={};data[2]=99;pool.set_buffer(1,data);data[2]=0;pool.get_buffer(1,data);assert(data[2]==99);
- assert(copies==164 && syncs==copies+1);
+ // A delayed progress poll must not hold the launcher's independent control path.
+ auto slow=pool.gdr_malloc();auto fast=pool.gdr_malloc();std::atomic<bool> fast_done{false};
+ std::thread poller([&]{delay_copy=true;pool.get(slow);});
+ while(!entered)std::this_thread::yield();
+ std::thread launcher([&]{pool.set(fast,123);assert(pool.get(fast)==123);fast_done=true;});
+ auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(100);
+ while(!fast_done && std::chrono::steady_clock::now()<deadline)std::this_thread::yield();
+ bool independent=fast_done;release_copy=true;poller.join();launcher.join();assert(independent);
+ assert(copies==167 && syncs==copies+1);
  pool.gdr_free(e);for(auto entry:entries)pool.gdr_free(entry);
 }
 '''

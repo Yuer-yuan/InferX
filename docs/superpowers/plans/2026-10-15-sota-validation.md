@@ -34,9 +34,9 @@
 
 **Interfaces:** Existing solo scope/audit/comparison source hashes, frozen raw specifications and startup manifests; pinned author git commits and exact files.
 
-- [ ] Rehash all solo audit/scope sources and verify78strict responses, originalC4/precision/config, serial dispatch and actual cache observations; verify current original service/idle/GPU0state read-only.
-- [ ] Pin/read MorphXPD orchestrator, launch dispatch and compiler/runtime contract; inspect Bullet hybrid dispatch, INT4, CUDA/MPS and weights/pools. Save source bytes/SHA/URLs; classify direct runnable, bounded-adaptation, or unqualified with concrete reasons.
-- [ ] Record scope/cross-engine/cache caveats; run existing full CPU suite in HDD repo-venv and commit audit artifacts.
+- [x] Rehash all solo audit/scope sources and verify78strict responses, originalC4/precision/config, serial dispatch and actual cache observations; verify current original service/idle/GPU0state read-only.
+- [x] Pin/read MorphXPD orchestrator, launch dispatch and compiler/runtime contract; inspect Bullet hybrid dispatch, INT4, CUDA/MPS and weights/pools. Save source bytes/SHA/URLs; classify direct runnable, bounded-adaptation, or unqualified with concrete reasons.
+- [x] Record scope/cross-engine/cache caveats; run existing full CPU suite in HDD repo-venv and commit audit artifacts.
 
 Expected: supported candidate selection and audited solo reference, without treating public logs as this hardware's result.
 
@@ -46,10 +46,10 @@ Expected: supported candidate selection and audited solo reference, without trea
 
 **Interfaces:** A source-anchored launch-attribute correction preserves native attributed launches and records native/transformed coverage; preparation rejects unexpected source or overwrite. Reuse run_owned_command/run_with_restoration, original idle guard and existing affectedCTest binaries; add a narrow qualifier launcher if existing flags cannot express an immutable library.
 
-- [ ] Write RED for source-anchor rejection, no old-file overwrite, attribute-preserving dispatch and explicit coverage; implement smallest demonstrated correction, GREEN. Do not rewrite unaffected runtime behavior.
-- [ ] Build fresh named runtime onHDD; run actual independent cooperative integer oracle and original affected GDN/GQA/Graph numerical tests with compiler-matched native/original-port/corrected-port. Inspect outputs and preserve all failures. Investigate root-backed corrections and custom builds with regressions; no speculative successful-probe claims.
-- [ ] If numerical qualification passes, run hook-off and hook-on full27B code/four24Ktools/128K gates with actual coverage. Establish actual author P/D orchestration path before any efficacy claim; otherwise preserve exact unqualified gate and explanatory source/runtime evidence.
-- [ ] Full CPU suite, exact restoration and hashes; commit actual adaptation/probe evidence.
+- [x] Write RED for source-anchor rejection, no old-file overwrite, attribute-preserving dispatch and explicit coverage; implement smallest demonstrated correction, GREEN. Do not rewrite unaffected runtime behavior.
+- [x] Build fresh named runtime onHDD; run actual independent cooperative integer oracle and original affected GDN/GQA/Graph numerical tests with compiler-matched native/original-port/corrected-port. Inspect outputs and preserve all failures. Investigate root-backed corrections and custom builds with regressions; no speculative successful-probe claims.
+- [x] If numerical qualification passes, run hook-off and hook-on full27B code/four24Ktools/128K gates with actual coverage. Establish actual author P/D orchestration path before any efficacy claim; otherwise preserve exact unqualified gate and explanatory source/runtime evidence.
+- [x] Full CPU suite, exact restoration and hashes; commit actual adaptation/probe evidence.
 
 Expected: qualified actual MorphXPD path or demonstrated compatibility boundary with efficacy unknown, never an invalid performance comparison.
 
