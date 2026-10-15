@@ -281,6 +281,8 @@ def engine_command(case: dict, root: Path, run_dir: Path, *, qualify_morphx=Fals
         args += ['--no-async-scheduling']
     if case.get('scheduler_class'):
         args += ['--scheduler-cls',case['scheduler_class']]
+    if 'shutdown_timeout' in case:
+        args += ['--shutdown-timeout',str(case['shutdown_timeout'])]
     if 'compilation_config' in case:
         args += ['--compilation-config', json.dumps(case['compilation_config'])]
     for field, flag in [('long_prefill_token_threshold','--long-prefill-token-threshold'),

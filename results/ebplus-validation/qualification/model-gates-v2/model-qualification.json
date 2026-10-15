@@ -1,0 +1,386 @@
+{
+  "status": "failed",
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "prompt_count_contract": {
+    "repository": "RedHatAI/Qwen3.8-27B-INT4",
+    "revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "model": "models/qwen38-int4-redhat",
+    "prompt_tokens": {
+      "tool-24576": 24557,
+      "cold-131072": 131049,
+      "resume-131072": 131038
+    },
+    "tokenizer_files": {
+      "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+      "tokenizer_config.json": "5f7aa0d810000c4a0940b35c8f16e56c3439260fccc13a321826ebc3ccf2501f",
+      "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+      "config.json": "5498b42f9ea96d2669709c177e29122997ce14786a7530fe1ea1b340e535776c"
+    },
+    "backend": "vllm031",
+    "template_policy": "vLLM0.31 default template; enable_thinking=false; qwen3_coder tools"
+  },
+  "cases": [
+    {
+      "mode": "native",
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+          "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v3:/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v8",
+          "INFERX_VLLM_RUNTIME": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v2/qualify-native/native-runtime.json"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "qualify-native",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+        "async_scheduling": false,
+        "num_gpu_blocks_override": 98,
+        "scheduler_class": "inferx_ebplus_scheduler.ObservedNativeScheduler"
+      },
+      "native_runtime": {
+        "model": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-int4-redhat",
+        "context_window": 131328,
+        "concurrency": 4,
+        "max_active": 4,
+        "chunk": 4096,
+        "long_prefill_token_threshold": 2048,
+        "async_scheduling": false,
+        "enforce_eager": true,
+        "cudagraph_mode": "NONE",
+        "speculative": false,
+        "quantization": "compressed-tensors",
+        "kv_dtype": "fp8",
+        "mamba_cache_mode": "align",
+        "block_size": 1568,
+        "num_gpu_blocks": 98,
+        "kv_groups": [
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.0.linear_attn",
+              "language_model.model.layers.4.linear_attn",
+              "language_model.model.layers.8.linear_attn",
+              "language_model.model.layers.12.linear_attn",
+              "language_model.model.layers.16.linear_attn",
+              "language_model.model.layers.20.linear_attn",
+              "language_model.model.layers.24.linear_attn",
+              "language_model.model.layers.28.linear_attn",
+              "language_model.model.layers.32.linear_attn",
+              "language_model.model.layers.36.linear_attn",
+              "language_model.model.layers.40.linear_attn",
+              "language_model.model.layers.44.linear_attn",
+              "language_model.model.layers.48.linear_attn",
+              "language_model.model.layers.52.linear_attn",
+              "language_model.model.layers.56.linear_attn",
+              "language_model.model.layers.60.linear_attn"
+            ]
+          },
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.1.linear_attn",
+              "language_model.model.layers.5.linear_attn",
+              "language_model.model.layers.9.linear_attn",
+              "language_model.model.layers.13.linear_attn",
+              "language_model.model.layers.17.linear_attn",
+              "language_model.model.layers.21.linear_attn",
+              "language_model.model.layers.25.linear_attn",
+              "language_model.model.layers.29.linear_attn",
+              "language_model.model.layers.33.linear_attn",
+              "language_model.model.layers.37.linear_attn",
+              "language_model.model.layers.41.linear_attn",
+              "language_model.model.layers.45.linear_attn",
+              "language_model.model.layers.49.linear_attn",
+              "language_model.model.layers.53.linear_attn",
+              "language_model.model.layers.57.linear_attn",
+              "language_model.model.layers.61.linear_attn"
+            ]
+          },
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.2.linear_attn",
+              "language_model.model.layers.6.linear_attn",
+              "language_model.model.layers.10.linear_attn",
+              "language_model.model.layers.14.linear_attn",
+              "language_model.model.layers.18.linear_attn",
+              "language_model.model.layers.22.linear_attn",
+              "language_model.model.layers.26.linear_attn",
+              "language_model.model.layers.30.linear_attn",
+              "language_model.model.layers.34.linear_attn",
+              "language_model.model.layers.38.linear_attn",
+              "language_model.model.layers.42.linear_attn",
+              "language_model.model.layers.46.linear_attn",
+              "language_model.model.layers.50.linear_attn",
+              "language_model.model.layers.54.linear_attn",
+              "language_model.model.layers.58.linear_attn",
+              "language_model.model.layers.62.linear_attn"
+            ]
+          },
+          {
+            "type": "FullAttentionSpec",
+            "spec": "FullAttentionSpec(block_size=1568, dcp_sharded=True, block_stride_alignment=None, max_tp_shards=None, num_kv_heads=4, head_size=256, dtype=torch.uint8, head_size_v=256, kv_quant_mode=<KVQuantMode.FP8_PER_TENSOR: 1>, page_size_padded=None, num_head_slots=None, state_content_bytes=None, tokens_per_state=1, sliding_window=None, attention_chunk_size=None, non_causal=False)",
+            "layers": [
+              "language_model.model.layers.3.self_attn.attn",
+              "language_model.model.layers.7.self_attn.attn",
+              "language_model.model.layers.11.self_attn.attn",
+              "language_model.model.layers.15.self_attn.attn",
+              "language_model.model.layers.19.self_attn.attn",
+              "language_model.model.layers.23.self_attn.attn",
+              "language_model.model.layers.27.self_attn.attn",
+              "language_model.model.layers.31.self_attn.attn",
+              "language_model.model.layers.35.self_attn.attn",
+              "language_model.model.layers.39.self_attn.attn",
+              "language_model.model.layers.43.self_attn.attn",
+              "language_model.model.layers.47.self_attn.attn",
+              "language_model.model.layers.51.self_attn.attn",
+              "language_model.model.layers.55.self_attn.attn",
+              "language_model.model.layers.59.self_attn.attn",
+              "language_model.model.layers.63.self_attn.attn"
+            ]
+          }
+        ]
+      },
+      "warmup": {
+        "strict_requests": 4,
+        "actual_prompt_tokens": [
+          24557,
+          24557,
+          24557,
+          24557
+        ]
+      },
+      "cold": {
+        "strict_requests": 1,
+        "actual_prompt_tokens": [
+          131049
+        ]
+      },
+      "resume": {
+        "strict_requests": 1,
+        "actual_prompt_tokens": [
+          131038
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "mode": "eb",
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+          "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v3:/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v8",
+          "INFERX_VLLM_RUNTIME": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v2/qualify-eb/native-runtime.json",
+          "VLLM_PD_MB_COST_A": "0.0003943935360959075",
+          "VLLM_PD_MB_COST_B": "0.01752476613806461",
+          "VLLM_PD_MB_COST_C": "0.00028762045154248454",
+          "VLLM_PD_SCHEDULER_MODE": "eb",
+          "VLLM_PD_K_MODE": "ifr",
+          "VLLM_PD_CALIBRATION_FILE": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v4/pd-hardware-parameters.json",
+          "VLLM_COLLECT_SCHEDULE_STATS": "1",
+          "VLLM_SCHEDULE_STATS_FILE": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v2/qualify-eb/schedule-stats.json",
+          "INFERX_EBPLUS_EVIDENCE": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v2/qualify-eb/policy-evidence.json"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "qualify-eb",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+        "async_scheduling": false,
+        "num_gpu_blocks_override": 98,
+        "scheduler_class": "inferx_ebplus_scheduler.EBPlusScheduler"
+      },
+      "native_runtime": {
+        "model": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-int4-redhat",
+        "context_window": 131328,
+        "concurrency": 4,
+        "max_active": 4,
+        "chunk": 4096,
+        "long_prefill_token_threshold": 2048,
+        "async_scheduling": false,
+        "enforce_eager": true,
+        "cudagraph_mode": "NONE",
+        "speculative": false,
+        "quantization": "compressed-tensors",
+        "kv_dtype": "fp8",
+        "mamba_cache_mode": "align",
+        "block_size": 1568,
+        "num_gpu_blocks": 98,
+        "kv_groups": [
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.0.linear_attn",
+              "language_model.model.layers.4.linear_attn",
+              "language_model.model.layers.8.linear_attn",
+              "language_model.model.layers.12.linear_attn",
+              "language_model.model.layers.16.linear_attn",
+              "language_model.model.layers.20.linear_attn",
+              "language_model.model.layers.24.linear_attn",
+              "language_model.model.layers.28.linear_attn",
+              "language_model.model.layers.32.linear_attn",
+              "language_model.model.layers.36.linear_attn",
+              "language_model.model.layers.40.linear_attn",
+              "language_model.model.layers.44.linear_attn",
+              "language_model.model.layers.48.linear_attn",
+              "language_model.model.layers.52.linear_attn",
+              "language_model.model.layers.56.linear_attn",
+              "language_model.model.layers.60.linear_attn"
+            ]
+          },
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.1.linear_attn",
+              "language_model.model.layers.5.linear_attn",
+              "language_model.model.layers.9.linear_attn",
+              "language_model.model.layers.13.linear_attn",
+              "language_model.model.layers.17.linear_attn",
+              "language_model.model.layers.21.linear_attn",
+              "language_model.model.layers.25.linear_attn",
+              "language_model.model.layers.29.linear_attn",
+              "language_model.model.layers.33.linear_attn",
+              "language_model.model.layers.37.linear_attn",
+              "language_model.model.layers.41.linear_attn",
+              "language_model.model.layers.45.linear_attn",
+              "language_model.model.layers.49.linear_attn",
+              "language_model.model.layers.53.linear_attn",
+              "language_model.model.layers.57.linear_attn",
+              "language_model.model.layers.61.linear_attn"
+            ]
+          },
+          {
+            "type": "MambaSpec",
+            "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+            "layers": [
+              "language_model.model.layers.2.linear_attn",
+              "language_model.model.layers.6.linear_attn",
+              "language_model.model.layers.10.linear_attn",
+              "language_model.model.layers.14.linear_attn",
+              "language_model.model.layers.18.linear_attn",
+              "language_model.model.layers.22.linear_attn",
+              "language_model.model.layers.26.linear_attn",
+              "language_model.model.layers.30.linear_attn",
+              "language_model.model.layers.34.linear_attn",
+              "language_model.model.layers.38.linear_attn",
+              "language_model.model.layers.42.linear_attn",
+              "language_model.model.layers.46.linear_attn",
+              "language_model.model.layers.50.linear_attn",
+              "language_model.model.layers.54.linear_attn",
+              "language_model.model.layers.58.linear_attn",
+              "language_model.model.layers.62.linear_attn"
+            ]
+          },
+          {
+            "type": "FullAttentionSpec",
+            "spec": "FullAttentionSpec(block_size=1568, dcp_sharded=True, block_stride_alignment=None, max_tp_shards=None, num_kv_heads=4, head_size=256, dtype=torch.uint8, head_size_v=256, kv_quant_mode=<KVQuantMode.FP8_PER_TENSOR: 1>, page_size_padded=None, num_head_slots=None, state_content_bytes=None, tokens_per_state=1, sliding_window=None, attention_chunk_size=None, non_causal=False)",
+            "layers": [
+              "language_model.model.layers.3.self_attn.attn",
+              "language_model.model.layers.7.self_attn.attn",
+              "language_model.model.layers.11.self_attn.attn",
+              "language_model.model.layers.15.self_attn.attn",
+              "language_model.model.layers.19.self_attn.attn",
+              "language_model.model.layers.23.self_attn.attn",
+              "language_model.model.layers.27.self_attn.attn",
+              "language_model.model.layers.31.self_attn.attn",
+              "language_model.model.layers.35.self_attn.attn",
+              "language_model.model.layers.39.self_attn.attn",
+              "language_model.model.layers.43.self_attn.attn",
+              "language_model.model.layers.47.self_attn.attn",
+              "language_model.model.layers.51.self_attn.attn",
+              "language_model.model.layers.55.self_attn.attn",
+              "language_model.model.layers.59.self_attn.attn",
+              "language_model.model.layers.63.self_attn.attn"
+            ]
+          }
+        ]
+      },
+      "warmup": {
+        "strict_requests": 4,
+        "actual_prompt_tokens": [
+          24557,
+          24557,
+          24557,
+          24557
+        ]
+      },
+      "cold": {
+        "strict_requests": 1,
+        "actual_prompt_tokens": [
+          131049
+        ]
+      },
+      "resume": {
+        "strict_requests": 1,
+        "actual_prompt_tokens": [
+          131038
+        ]
+      }
+    }
+  ],
+  "scope": "Full model/code/tools/actual policy qualification; no joint performance conclusion.",
+  "error": "FileNotFoundError(2, 'No such file or directory')"
+}

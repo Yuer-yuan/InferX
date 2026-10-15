@@ -1,0 +1,17 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ CalibrationContracts.test_private_info_endpoint_absence_keeps_actual_native_runtime_evidence _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_private_info_endpoint_absence_keeps_actual_native_runtime_evidence>
+
+    def test_private_info_endpoint_absence_keeps_actual_native_runtime_evidence(self):
+        from unittest.mock import patch
+        from urllib.error import HTTPError
+        with patch.dict(os.environ,INFERX_ROOT='/unused-test-root'):
+>           from scripts.qualify_ebplus_model import configuration_snapshot
+E           ImportError: cannot import name 'configuration_snapshot' from 'scripts.qualify_ebplus_model' (/home/yuer/mypro/InferX/scripts/qualify_ebplus_model.py)
+
+tests/test_ebplus_campaign.py:138: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_private_info_endpoint_absence_keeps_actual_native_runtime_evidence
+1 failed, 10 deselected in 0.38s

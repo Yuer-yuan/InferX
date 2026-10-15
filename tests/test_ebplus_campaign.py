@@ -103,12 +103,13 @@ class CalibrationContracts(unittest.TestCase):
         from inferx.pd_baselines import engine_command
         case=copy.deepcopy(self.plan()['base_case'])
         case.update(scheduler_class='inferx_ebplus_scheduler.EBPlusScheduler',async_scheduling=False,
-                    num_gpu_blocks_override=98)
+                    num_gpu_blocks_override=98,shutdown_timeout=30)
         command=engine_command(case,Path('/hdd'),Path('/hdd/run'))
         self.assertIn('--no-async-scheduling',command)
         index=command.index('--scheduler-cls')
         self.assertEqual(command[index+1],'inferx_ebplus_scheduler.EBPlusScheduler')
         self.assertEqual(command[command.index('--num-gpu-blocks-override')+1],'98')
+        self.assertEqual(command[command.index('--shutdown-timeout')+1],'30')
 
     def test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points(self):
         plan=self.plan();rows=[]
@@ -130,6 +131,19 @@ class CalibrationContracts(unittest.TestCase):
         rows[0]['prompt_tokens']-=1
         with self.assertRaisesRegex(ValueError,'tokens'):
             self.api().fit_mb_cost(rows,plan)
+
+    def test_private_info_endpoint_absence_keeps_actual_native_runtime_evidence(self):
+        from unittest.mock import patch
+        from urllib.error import HTTPError
+        with patch.dict(os.environ,INFERX_ROOT='/unused-test-root'):
+            from scripts.qualify_ebplus_model import configuration_snapshot
+        runtime=dict(context_window=131328,concurrency=4,num_gpu_blocks=98)
+        def missing(path):raise HTTPError(path,404,'not exposed',{},None)
+        snapshot=configuration_snapshot(runtime,missing)
+        self.assertEqual(snapshot['native_runtime'],runtime)
+        self.assertEqual(snapshot['server_info_http_status'],404)
+        def rejected(path):raise HTTPError(path,403,'forbidden',{},None)
+        with self.assertRaises(HTTPError):configuration_snapshot(runtime,rejected)
 
 
 if __name__=='__main__':

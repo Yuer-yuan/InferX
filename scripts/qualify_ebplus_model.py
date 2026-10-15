@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+from urllib.error import HTTPError
 
 from inferx.concurrency import run_load
 from inferx.ebplus_calibration import (validate_hardware_result,fit_mb_cost,
@@ -13,6 +14,16 @@ from inferx.pd_baselines import load_frozen_workloads
 from inferx.sota_results import verify_prompt_count_contract
 from scripts.run_pd_baselines import OwnedEngine,wait_idle,get,ENDPOINT
 from scripts import run_concurrency_campaign as previous
+
+
+def configuration_snapshot(runtime,fetch):
+    """The initialized native scheduler is authoritative when dev APIs are absent."""
+    try:
+        return dict(native_runtime=runtime,server_info=fetch('/server_info?config_format=json'))
+    except HTTPError as exc:
+        if exc.code!=404:raise
+        return dict(native_runtime=runtime,server_info_http_status=404,
+                    runtime_origin='initialized native scheduler, before model requests')
 
 
 def verify_inputs(plan,hardware_run,mb_run,overlay):
@@ -53,7 +64,7 @@ def run_model_gates(plan,root,out,progress,hardware_run,mb_run,overlay):
     try:
         for mode in ['native','eb','auto']:
             previous.gpu_free()
-            case=copy.deepcopy(plan['base_case']);case.update(id='qualify-'+mode,async_scheduling=False,
+            case=copy.deepcopy(plan['base_case']);case.update(id='qualify-'+mode,async_scheduling=False,shutdown_timeout=30,
                 num_gpu_blocks_override=hardware['native_runtime']['num_gpu_blocks'],
                 scheduler_class='inferx_ebplus_scheduler.'+('ObservedNativeScheduler' if mode=='native' else 'EBPlusScheduler'))
             directory=out/case['id']
@@ -68,9 +79,9 @@ def run_model_gates(plan,root,out,progress,hardware_run,mb_run,overlay):
             entry=dict(case=case['id'],state='starting');progress(entry)
             item=dict(mode=mode,configuration=case);report['cases'].append(item);flush()
             with OwnedEngine(case,root,directory) as server:
-                info=get('/server_info?config_format=json')
-                (directory/'server-info.json').write_text(json.dumps(info,indent=2)+'\n')
                 runtime=json.loads((directory/'native-runtime.json').read_text())
+                info=configuration_snapshot(runtime,get)
+                (directory/'configuration-evidence.json').write_text(json.dumps(info,indent=2)+'\n')
                 expected=dict(context_window=131328,concurrency=4,max_active=4,chunk=case['chunk'],
                     long_prefill_token_threshold=case['long_prefill_token_threshold'],async_scheduling=False,
                     enforce_eager=True,cudagraph_mode='NONE',speculative=False,quantization='compressed-tensors',

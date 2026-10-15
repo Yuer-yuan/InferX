@@ -1,0 +1,79 @@
+{
+  "status": "failed",
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "prompt_count_contract": {
+    "repository": "RedHatAI/Qwen3.8-27B-INT4",
+    "revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "model": "models/qwen38-int4-redhat",
+    "prompt_tokens": {
+      "tool-24576": 24557,
+      "cold-131072": 131049,
+      "resume-131072": 131038
+    },
+    "tokenizer_files": {
+      "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+      "tokenizer_config.json": "5f7aa0d810000c4a0940b35c8f16e56c3439260fccc13a321826ebc3ccf2501f",
+      "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+      "config.json": "5498b42f9ea96d2669709c177e29122997ce14786a7530fe1ea1b340e535776c"
+    },
+    "backend": "vllm031",
+    "template_policy": "vLLM0.31 default template; enable_thinking=false; qwen3_coder tools"
+  },
+  "cases": [
+    {
+      "mode": "native",
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+          "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v3:/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task2-v7",
+          "INFERX_VLLM_RUNTIME": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v1/qualify-native/native-runtime.json"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "qualify-native",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+        "async_scheduling": false,
+        "num_gpu_blocks_override": 98,
+        "scheduler_class": "inferx_ebplus_scheduler.ObservedNativeScheduler"
+      }
+    }
+  ],
+  "scope": "Full model/code/tools/actual policy qualification; no joint performance conclusion.",
+  "error": "<HTTPError 404: 'Not Found'>"
+}

@@ -331,7 +331,12 @@ def restore(saved):
                 assert (proc.pid, GPU) in gpu_processes()
                 manifest = refreshed_manifest({k:v for k,v in saved.items() if k!='original_argv'}, identity)
                 (DIRECTORY/'restored-service.json').write_text(json.dumps(manifest, indent=2))
-                print(json.dumps(dict(event='service_restored', pid=proc.pid, context=262144)), flush=True)
+                # A disconnected observer must not make a healthy restoration
+                # retry, leave stale manifests, or fail at buffered stdout exit.
+                try:
+                    os.write(1,(json.dumps(dict(event='service_restored',pid=proc.pid,context=262144))+'\n').encode())
+                except OSError:
+                    pass
                 return manifest
         except (OSError, RuntimeError):
             pass

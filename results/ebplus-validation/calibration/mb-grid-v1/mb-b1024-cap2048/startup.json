@@ -1,0 +1,117 @@
+{
+  "case": {
+    "binary": "pd-baselines/vllm031-venv/bin/python",
+    "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+    "chunk": 1024,
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "engine": "vllm",
+    "environment": {
+      "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+      "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+      "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+      "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+    },
+    "gpu_memory_utilization": 0.95,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "id": "mb-b1024-cap2048",
+    "kv_capacity": 212992,
+    "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+    "kv_dtype": "fp8",
+    "long_prefill_token_threshold": 2048,
+    "mamba_cache_mode": "align",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "morphx": {
+      "enabled": false,
+      "patched_launches": 0
+    },
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "startup_timeout_s": 1200,
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+    "async_scheduling": false
+  },
+  "args": [
+    "taskset",
+    "-c",
+    "28-35",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+    "-m",
+    "vllm.entrypoints.openai.api_server",
+    "--model",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-int4-redhat",
+    "--served-model-name",
+    "qwen38-27b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18083",
+    "--tensor-parallel-size",
+    "1",
+    "--max-model-len",
+    "131328",
+    "--max-num-seqs",
+    "4",
+    "--max-num-batched-tokens",
+    "1024",
+    "--enable-chunked-prefill",
+    "--enable-prefix-caching",
+    "--kv-cache-dtype",
+    "fp8",
+    "--gpu-memory-utilization",
+    "0.95",
+    "--enable-auto-tool-choice",
+    "--enable-prompt-tokens-details",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--language-model-only",
+    "--default-chat-template-kwargs",
+    "{\"enable_thinking\":false}",
+    "--enforce-eager",
+    "--no-async-scheduling",
+    "--long-prefill-token-threshold",
+    "2048",
+    "--mamba-cache-mode",
+    "align"
+  ],
+  "identity": {
+    "pid": 3902778,
+    "proc_start_ticks": "2093580946",
+    "uid": 1004,
+    "executable": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python"
+  },
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen38-27b",
+        "object": "model",
+        "created": 1792101977,
+        "owned_by": "vllm",
+        "root": "/home/guokc/mypro/gnn-mount-sda1/InferX/models/qwen38-int4-redhat",
+        "parent": null,
+        "max_model_len": 131328,
+        "permission": [
+          {
+            "id": "modelperm-bde513f289be9565",
+            "object": "model_permission",
+            "created": 1792101977,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  }
+}

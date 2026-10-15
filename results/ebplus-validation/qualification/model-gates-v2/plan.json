@@ -1,0 +1,101 @@
+{
+  "base_case": {
+    "binary": "pd-baselines/vllm031-venv/bin/python",
+    "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+    "chunk": 4096,
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "engine": "vllm",
+    "environment": {
+      "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+      "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+      "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+      "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+    },
+    "gpu_memory_utilization": 0.95,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+    "kv_capacity": 212992,
+    "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+    "kv_dtype": "fp8",
+    "long_prefill_token_threshold": 2048,
+    "mamba_cache_mode": "align",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "morphx": {
+      "enabled": false,
+      "patched_launches": 0
+    },
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "startup_timeout_s": 1200,
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "decomposed": {
+    "sampling_temperature": 0.0,
+    "cache_isolation": "native prefix caching and align enabled; fresh cache_salt per request prevents cross-request hits",
+    "decode_context_len": 512,
+    "decode_counts": [
+      1,
+      2,
+      4
+    ],
+    "num_iterations": 20,
+    "num_warmup": 5,
+    "prefill_sizes": [
+      256,
+      512,
+      1024,
+      1568,
+      3136
+    ]
+  },
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "mb_grid": {
+    "budgets": [
+      1024,
+      2048,
+      4096
+    ],
+    "counts": [
+      1,
+      2,
+      4
+    ],
+    "prefill_caps": [
+      0,
+      2048
+    ],
+    "scenarios": [
+      {
+        "input": 128,
+        "name": "decode-heavy",
+        "output": 1024
+      },
+      {
+        "input": 512,
+        "name": "balanced",
+        "output": 512
+      },
+      {
+        "input": 1024,
+        "name": "prefill-heavy",
+        "output": 128
+      }
+    ]
+  },
+  "scope": "Author decomposed GPU-event calibration and separate inverse-best-total-token-throughput MB fit. Calibration does not use formal mixed outcomes. Context512 is author protocol; long-context model-fit validation remains explicit."
+}

@@ -1,0 +1,24 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ CalibrationContracts.test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously>
+
+    def test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously(self):
+        from inferx.pd_baselines import engine_command
+        case=copy.deepcopy(self.plan()['base_case'])
+        case.update(scheduler_class='inferx_ebplus_scheduler.EBPlusScheduler',async_scheduling=False,
+                    num_gpu_blocks_override=98,shutdown_timeout=30)
+        command=engine_command(case,Path('/hdd'),Path('/hdd/run'))
+        self.assertIn('--no-async-scheduling',command)
+        index=command.index('--scheduler-cls')
+        self.assertEqual(command[index+1],'inferx_ebplus_scheduler.EBPlusScheduler')
+        self.assertEqual(command[command.index('--num-gpu-blocks-override')+1],'98')
+>       self.assertEqual(command[command.index('--shutdown-timeout')+1],'30')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: '--shutdown-timeout' is not in list
+
+tests/test_ebplus_campaign.py:112: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously
+1 failed, 10 deselected in 0.08s
