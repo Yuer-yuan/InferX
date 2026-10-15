@@ -54,11 +54,15 @@ All cases get a fresh engine/code gate/four24K warmups and the full frozen25
 request mixed wave (.5RPS48seconds,longat16; full131060cold tokens). Controls
 and treatments have matched checkpoint/quantization/C4/131328KV/16BF16SSM/
 FP8KV/eager/MTP0. Current-process transformation and actual agentCPU36 logging
-are required. Candidate transport/policy selection and formal3-repeat/serial-C4
-solo evidence are pending at this snapshot; no invented efficacy numbers here.
+are required. The completed7 diagnostic waves contain175 strict responses. Selection is
+frozen in ../selection.json; formal3-repeat/serial-C4 solo evidence remains
+in progress at this snapshot.
 
-Use the same helper `--repeat 3 --groups cold-high resume-high --cases ...`
-only after freezing selection. Use `--solo --groups short-control cold-high
+For formal runs use `run_local_formal.py` with
+`--repeat 3 --groups cold-high resume-high --cases compiled-primary-control
+morphx-control-both-96-ablation` after freezing selection. It retains the same
+serving/workload harness and alternates treatment order across rounds (12 unique
+wave identities verified). Use `--solo --groups short-control cold-high
 resume-high` for each selected case's serial-client solo with the sameC4server.
 The existing strict exporter (`scripts.analyze_sota_validation`) reconstructs
 SSE, exact frozen inputs/counts, arrivals, runtime/configuration, independent
