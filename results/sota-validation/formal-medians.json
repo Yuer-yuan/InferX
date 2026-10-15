@@ -1,0 +1,53 @@
+{
+  "scope": "Three independent complete mixed waves only; lane-specific serial solos still pending at creation. These are absolute latency medians, not isolated slowdown ratios.",
+  "rows": [
+    {
+      "case": "compiled-primary-control",
+      "group": "cold-high",
+      "independent_mixed_repeats": 3,
+      "medians": {
+        "short_p95_s": 4.526238150894642,
+        "long_s": 119.99952808395028,
+        "output_tokens_per_s": 9.644110497107423,
+        "completed_within_48s": 22
+      },
+      "sampled_min_free_mib": 222.0
+    },
+    {
+      "case": "compiled-primary-control",
+      "group": "resume-high",
+      "independent_mixed_repeats": 3,
+      "medians": {
+        "short_p95_s": 4.546581543982029,
+        "long_s": 110.47514828294516,
+        "output_tokens_per_s": 10.370083497607775,
+        "completed_within_48s": 22
+      },
+      "sampled_min_free_mib": 226.0
+    },
+    {
+      "case": "morphx-copy96-no-launch-cap",
+      "group": "cold-high",
+      "independent_mixed_repeats": 3,
+      "medians": {
+        "short_p95_s": 6.850853323936462,
+        "long_s": 124.57693589106202,
+        "output_tokens_per_s": 9.330190367914796,
+        "completed_within_48s": 22
+      },
+      "sampled_min_free_mib": 124.0
+    },
+    {
+      "case": "morphx-copy96-no-launch-cap",
+      "group": "resume-high",
+      "independent_mixed_repeats": 3,
+      "medians": {
+        "short_p95_s": 6.716260474175215,
+        "long_s": 115.55692129582167,
+        "output_tokens_per_s": 9.9696379389755,
+        "completed_within_48s": 22
+      },
+      "sampled_min_free_mib": 124.0
+    }
+  ]
+}

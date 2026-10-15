@@ -50,9 +50,19 @@ def analyze_trace(events,stream_ids):
         roles[role]=dict(stream_id=stream,kernel_count=len(selected),kernel_union_us=sum(b-a for a,b in unions[role]),kernel_sum_us=sum(k['duration'] for k in selected))
     transformed=[k for k in kernels if k['name'].endswith('_pk')]
     total=sum(k['duration'] for k in kernels);transformed_us=sum(k['duration'] for k in transformed)
+    all_union=_union([(k['start'],k['end']) for k in kernels]);union_us=sum(b-a for a,b in all_union)
+    envelope=all_union[-1][1]-all_union[0][0] if all_union else 0
+    costs={}
+    for k in kernels:
+        cost=costs.setdefault(k['name'],dict(name=k['name'],count=0,sum_us=0,transformed=k['name'].endswith('_pk')))
+        cost['count']+=1;cost['sum_us']+=k['duration']
     return dict(status='observed' if all(roles[r]['kernel_count'] for r in roles) else 'unobserved',
         scope='GPU kernel lifetime overlap; does not establish instantaneous SM occupancy or measured memory bandwidth. Profiled lane excluded from latency comparisons.',
         kernel_count=len(kernels),device=next(iter(devices)) if devices else None,roles=roles,
+        kernel_lifetime_union_us=union_us,kernel_envelope_us=envelope,
+        non_kernel_time_within_envelope_us=envelope-union_us,
+        gap_scope='No recorded kernel during these intervals; not proof of GPU idle or a host-control root cause. Copies and other GPU operations may still run.',
+        kernel_costs=sorted(costs.values(),key=lambda row:(-row['sum_us'],row['name'])),
         pd_kernel_lifetime_overlap_us=_overlap(unions['prefill'],unions['decode']),
         all_kernel_sum_us=total,transformed_kernel_count=len(transformed),transformed_kernel_sum_us=transformed_us,
         transformed_kernel_time_fraction=transformed_us/total if total else None,

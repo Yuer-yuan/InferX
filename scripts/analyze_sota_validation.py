@@ -108,6 +108,10 @@ def main():
                 diagnostic=export_campaign(args.diagnostic,templates) if args.diagnostic else None,
                 frozen_source_sha256={name:hashlib.sha256((args.frozen/name).read_bytes()).hexdigest()
                                       for name in ['workloads.json','grid.json','workload-manifest.json']})
+    code=Path(__file__).resolve().parents[1]
+    output['analysis_source_sha256']={name:hashlib.sha256((code/name).read_bytes()).hexdigest() for name in
+        ['scripts/analyze_sota_validation.py','inferx/sota_results.py','inferx/concurrency.py',
+         'inferx/tuning.py','inferx/pd_baselines.py','scripts/analyze_pd_baselines.py']}
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(output,indent=2,sort_keys=True,allow_nan=False)+'\n')
     print(json.dumps(output['comparison'],indent=2))

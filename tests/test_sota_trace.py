@@ -27,6 +27,23 @@ def test_no_actual_two_stream_gpu_evidence_stays_unobserved():
     assert r['status']=='observed' and r['pd_kernel_lifetime_overlap_us']==0
 
 
+def test_kernel_envelope_gaps_do_not_double_count_concurrent_kernels():
+    from inferx.sota_trace import analyze_trace
+    events=[kernel(0,10,10,'marlin_pk'),kernel(5,10,20,'marlin_pk'),kernel(20,2,10,'native')]
+    r=analyze_trace(events,{'prefill':10,'decode':20})
+    assert r['kernel_lifetime_union_us']==17
+    assert r['kernel_envelope_us']==22
+    assert r['non_kernel_time_within_envelope_us']==5
+    assert 'not proof of GPU idle' in r['gap_scope']
+
+
+def test_per_kernel_costs_preserve_native_and_transformed_entries_separately():
+    from inferx.sota_trace import analyze_trace
+    r=analyze_trace([kernel(0,10,10,'marlin_pk'),kernel(5,10,20,'marlin_pk'),kernel(20,2,10,'marlin')],{'prefill':10,'decode':20})
+    assert r['kernel_costs']==[{'name':'marlin_pk','count':2,'sum_us':20,'transformed':True},
+                              {'name':'marlin','count':1,'sum_us':2,'transformed':False}]
+
+
 @pytest.mark.parametrize('events,mapping',[
     ([kernel(0,float('nan'),10)],{'prefill':10,'decode':20}),
     ([dict(cat='kernel',ph='X',ts=1,dur=2,name='a',args={})],{'prefill':10,'decode':20}),
