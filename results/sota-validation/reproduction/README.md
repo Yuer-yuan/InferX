@@ -19,7 +19,7 @@ restriction only, retaining the actual agent scheduler. Keep its ablation label.
 ```sh
 source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh
 cd "$INFERX_ROOT/code-pd-baselines"
-env PYTHONPATH="$INFERX_ROOT/code-pd-baselines" \
+taskset -c 0-7,56-63 env PYTHONPATH="$INFERX_ROOT/code-pd-baselines" \
   "$INFERX_ROOT/repo-venv/bin/python" -u \
   "$INFERX_ROOT/sota-validation/run_sota_diagnostics.py" \
   --run-id reproduce-morphx-mixed-UNIQUE \
@@ -31,7 +31,7 @@ After that command completes and its campaign is restored, reproduce matched
 isolated execution with the same server capacity, serializing only the client:
 
 ```sh
-env PYTHONPATH="$INFERX_ROOT/code-pd-baselines" \
+taskset -c 0-7,56-63 env PYTHONPATH="$INFERX_ROOT/code-pd-baselines" \
   "$INFERX_ROOT/repo-venv/bin/python" -u \
   "$INFERX_ROOT/sota-validation/run_sota_diagnostics.py" \
   --run-id reproduce-morphx-solo-UNIQUE \
@@ -68,11 +68,11 @@ eager/MTP0 state, four warmups, current-process transformation evidence and
 archived harness/source hashes. Run twice to two output paths and compare their
 SHA256; no wall-clock generation timestamps enter the normalized output.
 
-`source-capsule-v1.tar.gz` contains246 exact custom source files, including the
+`source-capsule-v2.tar.gz` contains249 exact custom source/license files, including the
 runtime, compiler-pass source/build patch, Marlin headers/translation unit and
 the11 overlay files that differ from the pinned installed wheel. Its manifest
-hashes every payload. All246 entries were verified after downloading the archive.
-Archive SHA256: `7f771fe8e41ec6c916324c1810f0ad32755d1b133e4968efc87841a3b9888551`.
+hashes every payload. All249 entries were verified after downloading the archive.
+Archive SHA256: `074aa5e2e6a701645812e2778f76473fc421b6c3bf957c167b35ef607f899b8a`.
 Large unchanged wheels, models, source caches and original raw results remain
 on HDD. Preserve before/after overlay hashes when reconstructing into a fresh
 directory; a newly compiled binary needs numerical/model qualification again.
