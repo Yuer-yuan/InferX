@@ -87,6 +87,13 @@ def test_vllm_command_retains_solo_gpu_and_disables_image_budget(tmp_path):
     assert '--speculative-config' not in args
 
 
+def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
+    c=case();c.update(draft=4,draft_kv_dtype='q4_0')
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert args[args.index('--spec-draft-type-k')+1]=='q4_0'
+    assert args[args.index('--spec-draft-type-v')+1]=='q4_0'
+
+
 def test_owned_engine_start_failure_stops_child_and_leaves_other_process(tmp_path):
     import subprocess
     import sys

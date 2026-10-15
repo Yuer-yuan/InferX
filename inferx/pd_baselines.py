@@ -97,6 +97,9 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             args += ['--kv-unified', '--kv-unified-per-slot', str(case['context_window'])]
         if case['draft']:
             args += ['--spec-type', 'draft-mtp', '--spec-draft-n-max', str(case['draft'])]
+            if case.get('draft_kv_dtype'):
+                args += ['--spec-draft-type-k', case['draft_kv_dtype'],
+                         '--spec-draft-type-v', case['draft_kv_dtype']]
         return args
     args = common + ['-m', 'vllm.entrypoints.openai.api_server', '--model', model,
         '--served-model-name', 'qwen38-27b', '--host', '127.0.0.1', '--port', '18083',

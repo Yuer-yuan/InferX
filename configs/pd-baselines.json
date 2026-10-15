@@ -93,6 +93,46 @@
         "enabled": false,
         "patched_launches": 0
       }
+    },
+    {
+      "id": "llama-d4-c4-chunk512-draftkvq4",
+      "engine": "llama",
+      "binary": "source/llama-build-cuda126/bin/llama-server",
+      "model": "models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+      "quantization": "UD-Q4_K_M",
+      "kv_dtype": "q4_0",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 262144,
+      "kv_capacity": 212992,
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 4,
+      "unified_kv": true,
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "draft_kv_dtype": "q4_0"
+    },
+    {
+      "id": "llama-d4-c4-chunk128-draftkvq4",
+      "engine": "llama",
+      "binary": "source/llama-build-cuda126/bin/llama-server",
+      "model": "models/qwen38-27b/Qwen3.8-27B-UD-Q4_K_M.gguf",
+      "quantization": "UD-Q4_K_M",
+      "kv_dtype": "q4_0",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 262144,
+      "kv_capacity": 212992,
+      "concurrency": 4,
+      "chunk": 128,
+      "draft": 4,
+      "unified_kv": true,
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "draft_kv_dtype": "q4_0"
     }
   ]
 }

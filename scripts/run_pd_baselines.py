@@ -164,6 +164,7 @@ def main():
     parser.add_argument('--repeat', type=int, default=3)
     parser.add_argument('--probe-only', action='store_true')
     parser.add_argument('--kernel-probe', action='store_true')
+    parser.add_argument('--atomic-probe', action='store_true')
     parser.add_argument('--groups', nargs='+')
     parser.add_argument('--short-rate', type=float)
     parser.add_argument('--run-id', required=True)
@@ -210,23 +211,35 @@ def main():
     def flush():
         status.write_text(json.dumps(metadata, indent=2))
     def measurement():
-        if args.kernel_probe:
+        if args.kernel_probe or args.atomic_probe:
             previous.gpu_free()
             env = dict(previous.ENV, SMSCHED_LLM_TRACE_LIMIT='32', SMSCHED_PROFILE='0')
             env['LD_LIBRARY_PATH'] = (str(root/'source/pd-baselines/gdrcopy/src')+':'
                                       +env['LD_LIBRARY_PATH'])
-            for mode, hook in [('unhooked', None), ('upstream-gdr', 'libcuda_hook.so'),
-                               ('mapped-host', 'libcuda_hook_mapped.so')]:
+            probes=([('unhooked',None),('mapped-host','libcuda_hook_mapped.so'),
+                     ('mapped-full','libcuda_mapped_full.so')] if args.atomic_probe
+                else [('unhooked',None),('upstream-gdr','libcuda_hook.so'),
+                      ('mapped-host','libcuda_hook_mapped.so')])
+            for mode, hook in probes:
                 if hook and not (root/'pd-baselines/builds'/hook).exists():
                     continue
                 probe_env = dict(env)
                 if hook:
                     probe_env['LD_PRELOAD'] = str(root/'pd-baselines/builds'/hook)
+                if mode=='mapped-full':
+                    probe_env['LD_PRELOAD'] += ':'+str(root/'pd-baselines/builds/libpreload.so')
+                    probe_env['NEUTRINO_HOOK_DRIVER'] = str(root/'pd-baselines/builds'/hook)
+                command=([str(root/'pd-baselines/builds'/('cuda18_bf16_atomic_morphx' if hook
+                    else 'cuda18_bf16_atomic'))] if args.atomic_probe else
+                    [str(root/'pd-baselines/builds/morphx_probe'),str(root/'pd-baselines/builds/morphx_probe.ptx')])
                 with (output/f'{mode}.log').open('x') as log:
-                    result = subprocess.run([str(root/'pd-baselines/builds/morphx_probe'),
-                        str(root/'pd-baselines/builds/morphx_probe.ptx')], env=probe_env,
+                    result = subprocess.run(command, env=probe_env,
                         stdout=log, stderr=subprocess.STDOUT, timeout=60)
-                metadata['cases'].append(dict(case=mode, returncode=result.returncode))
+                trace=(output/f'{mode}.log').read_text()
+                patched=[line.split('name=',1)[-1] for line in trace.splitlines()
+                         if '[MorphX-llm] phase=patched' in line]
+                metadata['cases'].append(dict(case=mode, returncode=result.returncode,
+                    patched_launches_observed=len(patched),patched_kernel_names=patched))
                 flush()
             return
         for case in cases:

@@ -43,13 +43,19 @@ ported=original.replace('#pragma once', '''#pragma once
 if p.read_text() not in (original,ported):
     raise RuntimeError('unexpected gqa kernel edits')
 p.write_text(ported)
+p=root/'tests/targets/qwen3_6_27b/test_load_plan.cpp'
+original=subprocess.check_output(['git','show','HEAD:tests/targets/qwen3_6_27b/test_load_plan.cpp'],cwd=root,text=True)
+ported='#include <algorithm>\n'+original
+if p.read_text() not in (original,ported):
+    raise RuntimeError('unexpected load-plan test edits')
+p.write_text(ported)
 PY
 cmake -S "$inferx_source" -B "$INFERX_ROOT/pd-baselines/builds/ninfer-morphx" -G Ninja \
   -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr/bin/gcc-13 \
   -DCMAKE_CXX_COMPILER=/usr/bin/g++-13 -DCMAKE_CUDA_COMPILER=/usr/bin/clang++-18 \
   -DCUDAToolkit_ROOT="$inferx_cuda" -DCMAKE_CUDA_ARCHITECTURES=89 \
   -DCMAKE_CUDA_RUNTIME_LIBRARY=Shared \
-  -DCMAKE_CUDA_FLAGS="--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/13 -Wno-unknown-cuda-version -fpass-plugin=$inferx_pass" \
+  -DCMAKE_CUDA_FLAGS="--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/13 -Wno-unknown-cuda-version -include $INFERX_ROOT/code-pd-baselines/scripts/cuda18_compat.cuh -fpass-plugin=$inferx_pass" \
   -DNINFER_BUILD_APPS=ON -DBUILD_TESTING=ON -DNINFER_BUILD_BENCHMARKS=OFF \
   -DNINFER_ENABLE_UI=OFF
 taskset -c 0-3,56-59 cmake --build "$INFERX_ROOT/pd-baselines/builds/ninfer-morphx" --parallel 2
