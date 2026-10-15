@@ -1973,6 +1973,625 @@
       "interleaving": "PD-Multiplexing separate P/D streams",
       "credit_owned_slots": true,
       "protect_decode": true
+    },
+    {
+      "id": "sglang-pdmux-responsive128-bound-l16",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-responsive128-credit-bound-v6",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          }
+        },
+        "runtime_sha256": "b2a660738890a46822d72f7a6ef6dc391c5e3f45c1ed276a4cf345cf234543a3",
+        "source_hashes_sha256": "024560525c9ed340d1924ce280e84a8e211403f24b9b35a1617a12c456574644"
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-96-32-layer2048.yaml",
+      "pdmux_config_sha256": "913e0bb9686491d5deef8739b15938d8bf86107706872a074be3074dafb040c0",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [96, 32, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic."
+    },
+    {
+      "id": "sglang-pdmux-l16-debug",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-l16-stacks-v7",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          },
+          "sitecustomize.py": {
+            "before_sha256": null,
+            "after_sha256": "0c7dedf58a5a0412113c960d4cce431cecef13d44c86bc61d3b050c35aeda206"
+          }
+        },
+        "runtime_sha256": "b2a660738890a46822d72f7a6ef6dc391c5e3f45c1ed276a4cf345cf234543a3",
+        "source_hashes_sha256": "0bfeb51ecf19b42b11589304bd7ed51b2adc0ab3863ce24e30439fc435a4ae3e",
+        "diagnostic_only": "30second Python stack dumps; watchdog60 via captured diagnostic launcher. No performance qualification."
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-96-32-layer2048.yaml",
+      "pdmux_config_sha256": "913e0bb9686491d5deef8739b15938d8bf86107706872a074be3074dafb040c0",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [96, 32, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic.",
+      "diagnostic_only": true,
+      "diagnostic_extra_flags": [
+        "--watchdog-timeout",
+        "60"
+      ]
+    },
+    {
+      "id": "sglang-pdmux-l16-cleanprobe",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-responsive128-credit-bound-v6",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          }
+        },
+        "runtime_sha256": "b2a660738890a46822d72f7a6ef6dc391c5e3f45c1ed276a4cf345cf234543a3",
+        "source_hashes_sha256": "024560525c9ed340d1924ce280e84a8e211403f24b9b35a1617a12c456574644"
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-96-32-layer2048.yaml",
+      "pdmux_config_sha256": "913e0bb9686491d5deef8739b15938d8bf86107706872a074be3074dafb040c0",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [96, 32, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic.",
+      "diagnostic_extra_flags": [
+        "--watchdog-timeout",
+        "60"
+      ],
+      "diagnostic_only": true,
+      "diagnostic_note": "Clean v6bound source/no stack signal instrumentation, layer budget2048; nativewatchdog60 bounds stalls, separate qualification not performance."
+    },
+    {
+      "id": "sglang-pdmux-private-marlin-l16",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-responsive128-private-marlin-v8",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "isolate_marlin_workspaces": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py": {
+            "before_sha256": "a78990db02e703847316fa71f2b8891d034c6fbb6fcaafb104f5e1002a7f396c",
+            "after_sha256": "f5f1f062139ba43f9e66250e2f5275bddcab3fde2b4f8626a9b1e1a31b022c01"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          }
+        },
+        "runtime_sha256": "ad07b4825bc97efedae8506426d9db1e4325c14286fbc73628e053e2f8a0e63c",
+        "source_hashes_sha256": "41ebd3460896784895803d8b36be927df75a3d6720b9b62010a5a731c0ee84fb"
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-96-32-layer2048.yaml",
+      "pdmux_config_sha256": "913e0bb9686491d5deef8739b15938d8bf86107706872a074be3074dafb040c0",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [96, 32, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic.",
+      "isolate_marlin_workspaces": true,
+      "diagnostic_extra_flags": [
+        "--watchdog-timeout",
+        "60"
+      ],
+      "qualification_note": "Per-stream Marlin barrier locks, not yet GPU qualified; same precision/model/capacities. Nativewatchdog bounds stalled request; source/harness captured."
+    },
+    {
+      "id": "sglang-pdmux-private-marlin-112-16",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-responsive128-private-marlin-v8",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "isolate_marlin_workspaces": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py": {
+            "before_sha256": "a78990db02e703847316fa71f2b8891d034c6fbb6fcaafb104f5e1002a7f396c",
+            "after_sha256": "f5f1f062139ba43f9e66250e2f5275bddcab3fde2b4f8626a9b1e1a31b022c01"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          }
+        },
+        "runtime_sha256": "ad07b4825bc97efedae8506426d9db1e4325c14286fbc73628e053e2f8a0e63c",
+        "source_hashes_sha256": "41ebd3460896784895803d8b36be927df75a3d6720b9b62010a5a731c0ee84fb"
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-112-16-layer2048.yaml",
+      "pdmux_config_sha256": "66e7e22cccb3e82e9e2ef2d4956782bd7204e589f14ee549b670acb9d65f7875",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [112, 16, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic.",
+      "isolate_marlin_workspaces": true,
+      "diagnostic_extra_flags": [
+        "--watchdog-timeout",
+        "60"
+      ],
+      "qualification_note": "Per-stream Marlin barrier locks, not yet GPU qualified; same precision/model/capacities. Nativewatchdog bounds stalled request; source/harness captured."
+    },
+    {
+      "id": "sglang-pdmux-private-marlin-104-24",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 131328,
+      "kv_capacity_kind": "explicit matched pool; actual startup capacity must equal limit",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.97,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+        "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1",
+        "PYTHONPATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/overlays/pdmux-responsive128-private-marlin-v8",
+        "SGLANG_FLASHINFER_WORKSPACE_SIZE": "134217728"
+      },
+      "capacity_note": "Same16SSM/131328KV/128MiBworkspace PD plus ordinary responsive128 andownedrowcredit; compare to matching normal ctx-responsive128, full GPU gates required.",
+      "mixed_chunk": false,
+      "max_mamba_cache_size": 16,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer",
+      "mamba_ssm_dtype": "bfloat16",
+      "local_source_patch": {
+        "captured_unix": 1792047265.409613,
+        "upstream_issue": "https://github.com/sgl-project/sglang/issues/35826",
+        "version": "0.5.19+inferx.singleton-guard",
+        "source_path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py",
+        "before_sha256": "78fdd9348ac6fc35696061ecf8e1a992414028dd7cdab47436e5c87bd3f58316",
+        "after_sha256": "076c4c0f54c046868713bb6e5fd94ef6476ee65dc1ddd8a2da94c591e44eaab8",
+        "patch_sha256": "57353a5400b834a4296294cd73d9713bffe72b5bb9bab3bb1b4284a0d9843b81",
+        "scope": "Skip only selected process groups with world_size <= 1; multi-rank MIN unchanged; no scheduler changes"
+      },
+      "enable_cache_report": true,
+      "max_total_tokens": 131328,
+      "policy": "pdmux-chunked",
+      "policy_cap": 128,
+      "overlay_manifest": {
+        "policy": "pdmux-chunked",
+        "cap": 128,
+        "protect_decode": true,
+        "credit_owned_slots": true,
+        "bind_green_contexts": true,
+        "isolate_marlin_workspaces": true,
+        "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang",
+        "files": {
+          "srt/managers/schedule_policy.py": {
+            "before_sha256": "5ceae6ad98493297bf557fdb38b6e53f654319e26238c9e4e22a00aead230e3c",
+            "after_sha256": "e2b569fd963d71d3ab6208670a4a8a11836c9aadc7fe188536dadf37d87c95d1"
+          },
+          "srt/managers/scheduler.py": {
+            "before_sha256": "3a12fdfb9c21571d8007ba60aedd7e84b67636583bac8243373c75d6a2ab324e",
+            "after_sha256": "5a4a81f7e5b6b6f8d153aa94119a2df05861a4e21129c7d4b7419e4c3cbb49c6"
+          },
+          "srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py": {
+            "before_sha256": "a78990db02e703847316fa71f2b8891d034c6fbb6fcaafb104f5e1002a7f396c",
+            "after_sha256": "f5f1f062139ba43f9e66250e2f5275bddcab3fde2b4f8626a9b1e1a31b022c01"
+          },
+          "srt/models/qwen3_5.py": {
+            "before_sha256": "51e1902fc211202d198c53940ab28b9d21bc5496bd185d1a90325b541bb9b1f2",
+            "after_sha256": "326233550bf59bcc1711269a06986cd967a235662f1a8ace672474429783f8de"
+          },
+          "srt/multiplex/multiplexing_mixin.py": {
+            "before_sha256": "a4b50c50a4c0b7b5cae39e9f5f0a6f36e6fe57ae6bc68e4518bcf1fd0ed0d51e",
+            "after_sha256": "dcbd1ef9a3fc41863bc353fd2ff4f1ea3db3c57c29b621bcbd1b9702fad9c674"
+          },
+          "srt/arg_groups/validation_hook.py": {
+            "before_sha256": "8c2663b552693c84b80b83fa29aaa210557a4bcc3ad88870f09d6f00a9995517",
+            "after_sha256": "09f6d2ef00c6f62097425998e7851d14dca0326a2fb7f5b53928d324a63a6421"
+          }
+        },
+        "runtime_sha256": "ad07b4825bc97efedae8506426d9db1e4325c14286fbc73628e053e2f8a0e63c",
+        "source_hashes_sha256": "41ebd3460896784895803d8b36be927df75a3d6720b9b62010a5a731c0ee84fb"
+      },
+      "disable_overlap_schedule": true,
+      "sm_group_num": 3,
+      "pdmux_config": "pd-strategies/configs/pdmux-104-24-layer2048.yaml",
+      "pdmux_config_sha256": "04a0a32abef3f6e95534165d735098bef180c72a44f493836fbd249aa5abd3f0",
+      "pdmux_config_text": "sm_group_num: 3\nmanual_divisions:\n  - [104, 24, 1]\nsplit_forward_token_budget: 2048\ndecode_bs_divisor: 4\n",
+      "interleaving": "PD-Multiplexing separate P/D streams",
+      "credit_owned_slots": true,
+      "protect_decode": true,
+      "layer_budget_note": "Predeclared source calibration before PD8192 mixed data:8192/128=64layers,2048/128=16layers; same96/32SM/resources/admission. Default candidate retained as diagnostic.",
+      "isolate_marlin_workspaces": true,
+      "diagnostic_extra_flags": [
+        "--watchdog-timeout",
+        "60"
+      ],
+      "qualification_note": "Per-stream Marlin barrier locks, not yet GPU qualified; same precision/model/capacities. Nativewatchdog bounds stalled request; source/harness captured."
     }
   ]
 }

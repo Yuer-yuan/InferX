@@ -277,3 +277,33 @@ def test_green_context_binding_restores_context_on_exception_and_nested_scopes()
             raise RuntimeError('body failure')
     assert api.current()==10
     with m.bind_stream_context(3,api):assert api.current()==10
+
+
+def test_marlin_lock_workspaces_are_private_to_stream_and_scheme():
+    import inferx.sglang_pd as m
+    first=NS(workspace=object());second=NS(workspace=object());created=[]
+    def allocate(base):
+        value=object();created.append((base,value));return value
+    a=m.stream_workspace(first,100,allocate);b=m.stream_workspace(first,200,allocate)
+    assert a is m.stream_workspace(first,100,allocate)
+    assert a is not b and a is not first.workspace
+    assert a is not m.stream_workspace(second,100,allocate)
+    assert len(created)==3
+    def fail(base):raise MemoryError('allocation failed')
+    with pytest.raises(MemoryError):m.stream_workspace(first,300,fail)
+    assert m.stream_workspace(first,300,allocate) is not a
+
+
+def test_marlin_source_passes_the_current_stream_workspace_to_real_kernel():
+    import inferx.sglang_pd as m
+    source='def apply(self):\n    return gemm(workspace=self.workspace,)\n'
+    changed=m.patch_marlin_workspace(source)
+    assert 'workspace=_inferx_marlin_workspace(self),' in changed
+    assert 'from inferx_pd_runtime import marlin_workspace as _inferx_marlin_workspace' in changed
+    with pytest.raises(ValueError):m.patch_marlin_workspace('no matching workspace')
+
+
+def test_marlin_isolation_flag_cannot_be_silently_ignored_for_normal_policy(tmp_path):
+    m=implementation()
+    with pytest.raises(ValueError,match='requires PD'):
+        m.prepare_overlay(tmp_path/'source',tmp_path/'dest','control',isolate_marlin_workspaces=True)

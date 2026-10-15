@@ -279,7 +279,29 @@ def _patch_green_contexts(text):
     return text+'\nfrom inferx_pd_runtime import green_stream as _inferx_green_stream, green_sync as _inferx_green_sync, green_wait as _inferx_green_wait\n'
 
 
-def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False, credit_owned_slots=False, bind_green_contexts=False) -> dict:
+def stream_workspace(owner, stream_key, allocate):
+    workspaces=getattr(owner,'_inferx_stream_workspaces',None)
+    if workspaces is None:
+        workspaces={};owner._inferx_stream_workspaces=workspaces
+    if stream_key not in workspaces:
+        workspaces[stream_key]=allocate(owner.workspace)
+    return workspaces[stream_key]
+
+
+def marlin_workspace(owner):
+    import torch
+    stream=torch.cuda.current_stream(owner.workspace.device).cuda_stream
+    return stream_workspace(owner,stream,torch.zeros_like)
+
+
+def patch_marlin_workspace(text):
+    anchor='workspace=self.workspace,'
+    if text.count(anchor)!=1:
+        raise ValueError('unexpected compressed-tensors Marlin workspace source')
+    return text.replace(anchor,'workspace=_inferx_marlin_workspace(self),')+'\nfrom inferx_pd_runtime import marlin_workspace as _inferx_marlin_workspace\n'
+
+
+def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False, credit_owned_slots=False, bind_green_contexts=False, isolate_marlin_workspaces=False) -> dict:
     source,destination=Path(source).resolve(),Path(destination).resolve()
     if destination.is_relative_to(source) or source.is_relative_to(destination):
         raise ValueError('overlay must be independent of installed source')
@@ -287,6 +309,8 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
         raise FileExistsError(destination)
     if policy not in {'control','reserve','responsive','pdmux','pdmux-chunked'}:
         raise ValueError('unknown overlay policy')
+    if isolate_marlin_workspaces and not policy.startswith('pdmux'):
+        raise ValueError('Marlin workspace isolation requires PD policy')
     if policy=='reserve' and (type(cap) is not int or cap not in (128,256)):
         raise ValueError('reserve cap must be128 or256')
     if policy=='responsive' and (type(cap) is not int or cap not in (64,128,256)):
@@ -304,6 +328,7 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
         shutil.copytree(source,staging/'sglang',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
         manifest=dict(policy=policy,cap=cap,protect_decode=protect_decode,
                       credit_owned_slots=credit_owned_slots,bind_green_contexts=bind_green_contexts,
+                      isolate_marlin_workspaces=isolate_marlin_workspaces,
                       source=str(source),files={})
         target=staging/'sglang/srt/managers/schedule_policy.py'
         original=target.read_bytes()
@@ -321,6 +346,11 @@ def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, prot
             manifest['files']['srt/managers/scheduler.py']=dict(
                 before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
         if policy.startswith('pdmux'):
+            if isolate_marlin_workspaces:
+                relative='srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py'
+                target=staging/'sglang'/relative;original=target.read_bytes()
+                target.write_text(patch_marlin_workspace(original.decode()))
+                manifest['files'][relative]=dict(before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))
             target=staging/'sglang/srt/models/qwen3_5.py'
             original=target.read_bytes()
             if b'class Qwen3_5ForConditionalGeneration' not in original:
