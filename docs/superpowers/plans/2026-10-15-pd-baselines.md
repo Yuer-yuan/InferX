@@ -78,6 +78,6 @@ Expected: all attemptedrequests included; capacity/startupfailures separate; con
 
 - [x] Test raw-only deterministic export, rejectedrequestretention, missingprefixcounterlabels, repeat aggregation and longcompletionfairness; implement analyzer.
 - [x] Run completeappropriate tests, twice export and comparehashes; write report that directlyanswersMorphX/alternatives/remainingbottleneck.
-- [ ] Freshwhole-changereview; fix important findings with reproducingtests and finalverification; archiveexecutionrecord.
+- [x] Freshwhole-changereview; fix important findings with reproducingtests and finalverification; archiveexecutionrecord.
 
 Expected: source-evidence-backed, reproducible answer to full userobjective, no scope substitution and no claim ofcompletion with unverifiedMorphX efficacy.
