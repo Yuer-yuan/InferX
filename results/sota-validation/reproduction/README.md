@@ -96,3 +96,19 @@ taskset -c 40-43,96-99 "$INFERX_ROOT/repo-venv/bin/python" -m pytest -q
 Missing GDRCopy, native-library kernel coverage, source-only Bullet/EB+ and
 unqualified NInfer GQA are retained as explicit limits. They do not establish
 negative efficacy of the corresponding author methods or universal novelty.
+
+The completed comparison is `../comparison.json`; it audited452 strict
+diagnostic/mixed/solo responses and exported identically twice (see
+`../comparison-determinism.json`). Its six analysis-source hashes match the
+repository. The separate25-response profile is excluded from those metrics;
+`../profile-evidence.json` records trace, stream mapping, diagnostic overlay,
+profiler warnings and analysis hashes. Large traces remain on the server HDD.
+
+Exact campaign/build/analysis helpers are preserved in `../execution/`.
+They are historical scripts with fixed server paths, including failed and
+superseded qualification attempts. For the final qualified reproduction use
+`run_sota_diagnostics.py`, `run_sota_profile.py`, the selected configuration
+above and the immutable v2 runtime; do not execute the directory wholesale.
+`analyze_sota_profile.py` describes the separate completed profile;
+`plot_sota_tradeoff.py` produces the eight actual median points in
+`../figures/`. Use the existing server `pd-strategies/analysis-venv` for plotting.

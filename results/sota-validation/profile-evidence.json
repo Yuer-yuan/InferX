@@ -455,6 +455,10 @@
     }
   ],
   "profile_latency_excluded": true,
+  "profiler_warnings": {
+    "duplicate_flow_start_ids": 133248,
+    "scope": "Profiler reports runtime-correlation fallback for flow-ID collisions. No CPU/GPU causal flow reconstruction is used; lifetime intervals still carry instrumentation and capture uncertainty."
+  },
   "scope": "Separate profiled8-second mixed diagnostic, not normal latency/throughput or whole-wave coverage. Kernel gaps are not proof of GPU idle. CPU API duration sums overlap across threads/nesting and are not a critical-path decomposition.",
   "sm_bounds": {
     "agent_nonzero_min_writes": 242,
@@ -463,8 +467,14 @@
   },
   "source_sha256": {
     "code-pd-baselines/inferx/sota_trace.py": "96e4619c326df718d5f4a4dd96ada668e23090d9bf1d9833d391aa6fbbd7106d",
-    "sota-validation/analyze_sota_profile.py": "d083361fab1d189c0aa24cd4eed7303c9f4cd1d15a6531e4194eb736a425dd33",
+    "sota-validation/analyze_sota_profile.py": "2e57abbb42c05de05852b5b7086f4f615a19939245fd4397fd20e991be692200",
+    "sota-validation/overlays/morphx-pd-profile-v3/inferx_morphx_runtime.py": "a72d4be7eea492ba2cf8724fe5ab242942426fccf38dfd9efd671410f7f4fefb",
+    "sota-validation/overlays/morphx-pd-profile-v3/inferx_pd_runtime.py": "4fc04ce0260433ecb5e571dcb95b9f0a138b902ef2871b7101a7d6992ec042ed",
+    "sota-validation/overlays/morphx-pd-profile-v3/overlay-manifest.json": "4c50f2a90f2eabb94a53fd648f18820aa2291bdaa49b1162432351171ede867a",
+    "sota-validation/overlays/morphx-pd-profile-v3/sitecustomize.py": "e04b6b66aafb95f0c9be4ee38d86888d9815ea07a0cce4f420116af11593567f",
+    "sota-validation/overlays/morphx-pd-profile-v3/source-hashes.json": "e477dd82697dcd06ab54d08a4952af74032a30b31ae1ac60b2a39613342de005",
     "sota-validation/raw/profile-copy-v2/campaign.json": "338fc93ba595cfc6282f36394d99c20dff76f81f6171c83e88abc7f41d9b0d02",
+    "sota-validation/raw/profile-copy-v2/controller.py": "3a26b352c9b48e94bb2737d81a98a433295f9543478284751a2466d09ea63d54",
     "sota-validation/raw/profile-copy-v2/engine/profiled-cold/requests.jsonl": "81cb05724bba875f86811987007e25534dd249b627ea3a15f7a44e37e4f8e271",
     "sota-validation/raw/profile-copy-v2/engine/profiled-cold/specifications.json": "2279dc139ac3b4e6aaaafca121da9b97a8c4f407a4d491f1fd30943f14534a29",
     "sota-validation/raw/profile-copy-v2/engine/server.log": "9a4dcd9d8b78fbd58f0d31868645002fb3351c37129a2a676d2d504a7da99cd3",
