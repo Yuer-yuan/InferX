@@ -94,7 +94,7 @@ V3将显存比例降至0.95后，实际池4.78 GiB、144460 token；代码检查
 
 ![vLLM单轮请求时间线](../../results/pd-baselines/vllm-diagnostic-timeline.png)
 
-后续重复启用原生prompt_tokens_details后，已观察到控制组24个短请求均命中23520、各重算1037 token；混合冷组23个命中23520、1个命中0。相同输入的llama.cpp控制组则各命中24553、各计算4 token。后续续接长请求也实际报告23520缓存命中、总输入131038。不同缓存复用粒度改变了每次调用的计算量，必须与调度影响分开；不能用端到端延迟比值直接声称某个调度器更差。此前没有计数的诊断轮不补写这些观测。
+后续重复启用原生prompt_tokens_details后，已观察到控制组24个短请求均命中23520、各重算1037 token；混合冷组23个命中23520、1个命中0。相同输入的llama.cpp控制组则各命中24553、各计算4 token。后续续接长请求也实际报告23520缓存命中、总输入131038。不同缓存复用粒度改变了每次调用的计算量，必须与调度影响分开；不能用端到端延迟比值直接声称某个调度器更差。 API的prompt减cached表示请求计费边界上的未命中输入，不覆盖抢占后的内部重放，不能当作全部实际GPU预填充token数。最终导出会另列已观察到的原生抢占计数；缺计数不会填0。此前没有计数的诊断轮不补写这些观测。
 
 默认编译/Graph配置实际启动失败：KV可用2.39 GiB，而完整131328窗口至少需要4.31 GiB；标准1 GiB CPU权重卸载使模型显存由16.84降到15.76 GiB，KV增至3.46 GiB，仍不足以启动该窗口。两次失败及恢复均保留，未缩短输入换取通过，见 [Graph容量失败记录](../../results/pd-baselines/vllm-graph-capacity-failures.json)。继续验证受支持的mode0/FULL_DECODE_ONLY组合及容量设置，不能据此笼统断言Graph不能用。
 
@@ -108,7 +108,7 @@ V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认
 
 vLLM0.31.0+cu129与Torch2.13.0+cu129已在隔离环境完成安装、核心CUDA扩展导入和实际GPU模型推理，无需修改服务器驱动。默认TorchCodec0.17媒体包依赖libnvrtc.so.13，曾导致服务入口导入失败；改用官方CPU媒体包后，相同服务入口检查通过，模型文本推理仍在GPU。完整依赖版本、原失败与修复检查的哈希见 [新版vLLM环境](../../results/pd-baselines/vllm031-environment-before-probe.json)。
 
-同一RedHat27B权重、FP8 KV、C4、MTP0、eager/mem95，在三次独立重启后均通过代码检查、4路24K工具预热及完整128K工具请求。三轮长请求耗时83.052、83.066、82.906秒，均未截断且工具参数正确。首轮实际池143001 token、4.73 GiB，模型16.84 GiB，GDN使用Triton/FLA，Attention使用FlashInfer，Mamba对齐块仍为1568 token。这里证明的是当前硬件可部署与完整上下文资格；混合负载正在实测，不将容量探针当作PD改善结果。
+同一RedHat27B权重、FP8 KV、C4、MTP0、eager/mem95，在三次独立重启后均通过代码检查、4路24K工具预热及完整128K工具请求。三轮长请求耗时83.052、83.066、82.906秒，均未截断且工具参数正确。首轮实际池143001 token、4.73 GiB，模型16.84 GiB，GDN使用Triton/FLA，Attention使用FlashInfer，Mamba对齐块仍为1568 token。[新版128K三轮记录及原始数据哈希](../../results/pd-baselines/vllm031-128k-probes.json)证明当前硬件可部署与完整上下文资格；混合负载正在实测，不将容量探针当作PD改善结果。
 
 SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩展导入及服务入口检查，GPU测量正在队列中。其kernel/DeepEP/DeepGEMM均采用作者发布的cu129 wheel，下载加速传输后逐文件核对官方SHA256。依赖调整依据官方Dockerfile，不修改系统CUDA或驱动。见 [SGLang环境与门槛记录](../../results/pd-baselines/sglang0519-environment-before-probe.json)。
 
@@ -131,6 +131,25 @@ SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩�
 完整原始数据、源码、编译日志和模型均在服务器HDD的InferX/pd-baselines目录。当前正式llama实验的启动时4个关键Python文件已按其启动时SHA256精确重建并留档，明确标为事后重建；见 [重建清单](../../results/pd-baselines/harness-llama-main-v2/provenance.json)。后续controller会在启动时保存完整脚本及inferx模块字节，避免工作目录更新覆盖实验实现。
 
 旧版三引擎的128K混合负载与三轮重复已经完成。剩余为MTP探索、新版vLLM/SGLang实际资格与比较、确定性导出、独立复审，以及最终原256K/MTP7服务和两份manifest、OpenAI/Anthropic工具接口的恢复检查。MorphX本轮移植未通过正确性门槛，保留兼容性失败，不宣称取得PD性能收益。当前目标继续执行。
+
+服务器上的复现入口如下；run-id须使用新名称。该命令临时占用实验GPU1，controller结束后恢复原服务。实验GPU0上的服务保持运行。
+
+```bash
+source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh
+cd "$INFERX_ROOT/code-pd-baselines"
+"$INFERX_ROOT/repo-venv/bin/python" -m scripts.run_pd_baselines \
+  --config configs/pd-baselines.json \
+  --cases vllm031-int4-c4-b4096-cap2048-eager-mem95 \
+  --run-id reproduce-vllm031-UNIQUE --repeat 3 \
+  --groups short-control cold-low resume-high --short-rate .5
+```
+
+所有controller终止并完成恢复后，使用严格导出；它会拒绝把仍在运行的campaign作为最终数据。
+
+```bash
+"$INFERX_ROOT/repo-venv/bin/python" -m scripts.analyze_pd_baselines \
+  "$INFERX_ROOT/pd-baselines/raw" "$INFERX_ROOT/pd-baselines/derived-final"
+```
 
 功能门槛为冻结代码题及严格工具参数检查，不能替代比赛公开任务集或LongBench等完整质量评估。不同量化的总体质量无损不在本次数据结论中。
 

@@ -39,11 +39,25 @@ def prefix_observations(rows):
     observed=[r for r in good if type(r['summary'].get('cached_tokens')) is int]
     all_known=bool(good) and len(observed)==len(good)
     return dict(status='observed' if all_known else 'partial' if observed else 'unobserved',
+        scope='API prompt minus cached tokens; excludes possible internal preemption replay.',
         successful_requests=len(good),counter_observations=len(observed),
         cached_tokens=sum(r['summary']['cached_tokens'] for r in observed) if all_known else None,
         computed_tokens=sum(r['summary']['prompt_tokens']-r['summary']['cached_tokens']
             for r in observed) if all_known and all(type(r['summary'].get('prompt_tokens')) is int
                                                   for r in observed) else None)
+
+
+def preemption_observations(result):
+    metric='vllm:num_preemptions_total'
+    result=result or {}
+    before=result.get('metrics_before',{}).get(metric)
+    after=result.get('metrics_after',{}).get(metric)
+    if not all(type(v) in (int,float) and math.isfinite(v) and v>=0
+               for v in (before,after)):
+        return dict(status='unobserved',count=None,metric=metric)
+    if after<before:
+        return dict(status='counter_reset',count=None,metric=metric)
+    return dict(status='observed',count=after-before,metric=metric)
 
 
 def _summarize_repeats(groups):
@@ -148,6 +162,7 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             short=[r for r in rows if r.get('prompt_id')=='tool-24576']
             long=[r for r in rows if r.get('prompt_id')!='tool-24576']
             entry['prefix']=dict(short=prefix_observations(short),long=prefix_observations(long))
+            entry['preemptions']=preemption_observations(result)
             coverage_path=directory/'morphx-coverage.json'
             entry['morphx_coverage']=read(coverage_path) if coverage_path.exists() else None
             entry['comparison_eligible']=bool(complete and quality.get('status')=='passed'
@@ -188,6 +203,8 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
             short_p95_s=g['short']['latency_s']['p95'] if g['short'] else None,
             short_5s_goodput_per_s=g['short']['slo']['5']['tool_goodput_per_s'] if g['short'] else None,
             gpu_sampled_peak_mib=g['gpu_memory']['sampled_peak_mib'],
+            preemptions=g['preemptions']['count'],
+            preemptions_status=g['preemptions']['status'],
             full_long_completed=g.get('full_long_completed'),quality=g['quality_status']))
     for name,records in [('groups',group_rows),('requests',requests)]:
         with (destination/f'{name}.csv').open('w') as output:

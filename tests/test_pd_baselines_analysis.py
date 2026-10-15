@@ -99,6 +99,23 @@ def test_runtime_capacity_evidence_is_hashed_without_inventing_missing_files(tmp
     assert str(startup.relative_to(tmp_path)) not in third['source_hashes']
 
 
+def test_preemption_counter_delta_distinguishes_missing_and_reset(tmp_path):
+    from scripts.analyze_pd_baselines import export
+    _,raw=make_group(tmp_path)
+    key='vllm:num_preemptions_total'
+    result={'summary':{'measured_span_s':48},
+            'metrics_before':{key:2},'metrics_after':{key:5}}
+    write(raw/'result.json',result)
+    measured=export(tmp_path,tmp_path/'out')['groups'][0]
+    assert measured['preemptions']==dict(status='observed',count=3,metric=key)
+    result['metrics_after'][key]=1;write(raw/'result.json',result)
+    reset=export(tmp_path,tmp_path/'out')['groups'][0]['preemptions']
+    assert reset['status']=='counter_reset' and reset['count'] is None
+    result['metrics_after']={};write(raw/'result.json',result)
+    missing=export(tmp_path,tmp_path/'out')['groups'][0]['preemptions']
+    assert missing['status']=='unobserved' and missing['count'] is None
+
+
 def test_duplicate_request_identity_is_rejected(tmp_path):
     from scripts.analyze_pd_baselines import export
     _,group=make_group(tmp_path)
