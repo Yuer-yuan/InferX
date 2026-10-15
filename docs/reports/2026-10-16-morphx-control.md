@@ -70,3 +70,5 @@
 本次仍是 MorphX-on-SGLang，实际作者编译器/profiler/动态SM已运行，但 CUDA-copy 与作者 GDRCopy、编排和原生库覆盖仍存在差异。当前证据不能代表作者性能上限。EB+ 的源代码策略候选已通过本地10项测试和真实vLLM的5项CPU合约，包括原生混合缓存/Request、C4、异常、暂停prefill、preemption/resume及完成驱动的crossover；完整CPU快照282项通过、5项专用门槛先跳过后另行全部通过。校准和完整模型/性能门槛尚未运行，这些CPU结果不等于已测效能。
 
 全部构建、缓存和原始结果在 `vlm-server:/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/` HDD。每个 GPU campaign 使用既有归属/空闲保护、GPU0停止状态检查和 finally 原256K/MTP7服务及双manifest恢复；本轮结束后已新核验：原256K/MTP7/C1/rk4v4-e8服务健康空闲、原argv一致、双manifest一致，GPU0继续停止。[服务终态证据](../../results/morphx-control/final-service-verification.json)。
+
+最终只读审查覆盖完整本轮变更，发现准备脚本未拒绝清单外的额外头文件。已补充完整文件集合与符号链接检查，三个回归先失败后通过，完整CPU测试275项通过；使用实际历史输入重新准备的20个源码文件与已测both-v1逐字节一致。[准备检查证据](../../results/morphx-control/review-preparation-verification.json)。修正仅影响未来构建的输入检查，历史库、胶囊和测量未改写。

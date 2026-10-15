@@ -74,7 +74,7 @@ SSE, exact frozen inputs/counts, arrivals, runtime/configuration, independent
 repeats and archive hashes; export twice and compare hashes. Profiled runs
 never supply formal latency or bandwidth/SM occupancy claims.
 
-Full CPU checks (currently272) belong outside timed performance campaigns:
+Full CPU checks (currently275) belong outside timed performance campaigns:
 
 ```sh
 taskset -c 40-43,96-99 "$INFERX_ROOT/repo-venv/bin/python" -m pytest -q
@@ -85,3 +85,11 @@ Final read-only service evidence: ../final-service-verification.json. Original
 Formal and solo campaign metadata are under ../qualification/. Large raw SSE,
 payloads, event logs, IR and binaries remain on the HDD with source hashes in
 the exports; these paths are independent of the later EB+ candidate tree.
+
+The final review corrected only future preparation inventory validation: reject
+unlisted/missing files and symlinks before output creation. Three RED→GREEN
+regressions and275fullCPUtests passed. Preparing actual historical inputs with
+the corrected helper yields20sourcefiles identical to the measured both-v1
+tree (../review-preparation-verification.json). The source capsule retains the
+exact historical helper; use the current guarded helper for future preparation.
+No measured binary or capsule was rewritten for this guard correction.

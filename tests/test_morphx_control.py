@@ -116,6 +116,21 @@ def test_preparation_rejects_changed_sources_before_creating_output(tmp_path):
     assert not destination.exists()
 
 
+@pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+    from inferx.morphx_control import prepare_control_runtime
+    source=source_tree(tmp_path);destination=tmp_path/'fresh'
+    if change=='unlisted-header':
+        (source/'include/cuda.h').write_text('unlisted header can shadow CUDA headers')
+    elif change=='missing-header':
+        (source/'include/common.h').unlink()
+    else:
+        (source/'include/shadow').symlink_to(source/'runtime/src',target_is_directory=True)
+    with pytest.raises(ValueError,match='inventory'):
+        prepare_control_runtime(source,destination,device_fill=True,event_completion=True)
+    assert not destination.exists()
+
+
 def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_path):
     from inferx.morphx_control import prepare_control_runtime
     source=source_tree(tmp_path);destination=tmp_path/'fresh'

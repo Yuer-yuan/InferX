@@ -73,10 +73,26 @@ def prepare_control_runtime(source: Path, destination: Path, *, device_fill: boo
     manifest=json.loads((source/'manifest.json').read_text())
     if manifest['library_sha256']!=BASE_LIBRARY_SHA256:
         raise ValueError('unexpected base library hash')
-    for name,expected in manifest['source_sha256'].items():
+    expected_copied=set()
+    for name in manifest['source_sha256']:
         relative=Path(name)
         if relative.is_absolute() or '..' in relative.parts:
             raise ValueError('unexpected source hash path')
+        if relative.parts and relative.parts[0] in {'runtime','include'}:
+            expected_copied.add(str(relative))
+    actual_copied=set()
+    for folder in ['runtime','include']:
+        directory=source/folder
+        if directory.is_symlink() or not directory.is_dir():
+            raise ValueError('base source inventory directory mismatch')
+        for path in directory.rglob('*'):
+            if path.is_symlink():
+                raise ValueError('base source inventory contains symlink')
+            if path.is_file():actual_copied.add(str(path.relative_to(source)))
+    if actual_copied!=expected_copied:
+        raise ValueError('base source inventory mismatch')
+    for name,expected in manifest['source_sha256'].items():
+        relative=Path(name)
         if hashlib.sha256((source/relative).read_bytes()).hexdigest()!=expected:
             raise ValueError('base source hash mismatch: '+name)
     original=(source/'runtime/src/cuda-llm.cpp').read_bytes()
