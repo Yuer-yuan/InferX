@@ -1,0 +1,48 @@
+{
+  "status": "complete",
+  "pid": 3855505,
+  "started_unix": 1792096325.9657931,
+  "actions": [
+    {
+      "action": "full-cpu-suite-v1",
+      "state": "complete",
+      "started_unix": 1792098511.806745,
+      "command": [
+        "taskset",
+        "-c",
+        "40-43,96-99",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "child_pid": 3872622,
+      "exit_code": 0,
+      "finished_unix": 1792098543.329477
+    },
+    {
+      "action": "native-hybrid-cpu-v1",
+      "state": "complete",
+      "started_unix": 1792098543.3303573,
+      "command": [
+        "taskset",
+        "-c",
+        "40-43,96-99",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ebplus_native.py",
+        "-v"
+      ],
+      "child_pid": 3872986,
+      "exit_code": 0,
+      "finished_unix": 1792098554.5504582
+    }
+  ],
+  "candidate_sha256": "ed6ac4297874c48bb36fa4420fad7898e4870634ea601bd3595f8400b28ddc28",
+  "finished_unix": 1792098554.5966544
+}

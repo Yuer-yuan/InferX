@@ -1,0 +1,96 @@
+{
+  "actual_cpu_contract": "Five tests passed with actual installed vLLM0.31 Scheduler initialization, Request, ModelRunnerOutput and small native FullAttentionSpec+MambaSpec logical cache pool; model config is the actual local27B. No model weights/GPU inference loaded; these are interface/state gates, not full-model numerical correctness.",
+  "adapted_engine_boundaries": [
+    "schedule_pd",
+    "_schedule_default",
+    "_update_after_schedule",
+    "_free_request",
+    "_preempt_request",
+    "_preempt_chunk_prefilling",
+    "_compute_adaptive_N",
+    "schedule throttle guard"
+  ],
+  "author_calibration_sha256": "5628303f69d6fefef94338995c8e9ae2a6d7f0bea5ae0d24030d770bc8472658",
+  "author_commit": "5b6a619b732b8eeaea93c8c726dbe13948920599",
+  "author_scheduler_sha256": "86b6f0fb3e7d4dc5b4cbd468df290d787aa743efb3c29f2b541cc19fa991b9c8",
+  "cpu_regression": "Added exact freed-computed-token check: real native gate RED5000vs2048; capture num_computed_tokens before native preemption GREEN5/5. No policy threshold or allocation decision changed by this reporting correction.",
+  "extracted_author_methods": {
+    "_apply_long_prefill_threshold": "76e015fb48b84fed696a36ead025d8bb567c9042c32dc668be706cf96d371ff0",
+    "_compute_adaptive_N": "d482ceb2e7890b3c4928c59b1df566484c94f09c1cf01f8f79967101631d62db",
+    "_compute_adaptive_kv_threshold": "b4b2b07363c751a2d02d27acc13e0ed71861ec98140218b3a9029ddcb9e0166c",
+    "_compute_diagnostic_delta": "aeff846ed6a4f9bc5bf9db66ae83e5640b08f5b7354378612a0b89509aacd1a6",
+    "_compute_ifr_correction": "f5a6e520042199b57c6cdf1558de2165623e21046cac596a0daef8cdfd068def",
+    "_compute_k_from_ratio": "ff6ad70156d2b5ce871efedafc6d884fdcb6b25734192783b505aff21ecd62bf",
+    "_compute_memory_safe_n": "e36fb1c8fe7456dfdaeca7d99043e1b45318f00f2a0a37cf349d8404134b9f5d",
+    "_compute_midpoint_k": "3a4cf8ac6a0d04725139b1e2f01ebaff67490ca9b41a36453949a37aaf90b68d",
+    "_compute_optimal_k": "7efb59d70b55beac02648bb1f72a2ce520d11d4e33fed883bd042be017874edd",
+    "_compute_optimal_ratio": "c24aa3275af79acdbdcd1e72c77b6f925983dbab12d7a4738912c91145835891",
+    "_compute_optimal_ratio_ifr": "6e6ff2e0ba7099cd1a22274761f701dcdded82f7ab66fcdb98c2ce1368541f25",
+    "_compute_theta_zero_exact": "adfd09fe4563ea215af08d278053a4476b55c4083d8d6df66be9f6bbb348ced6",
+    "_count_n_updates_by_reason": "6b9b44146a2be412898584150cb6bcb3baa2896e045f057587ad2206685fcea1",
+    "_estimate_hazard_params": "24f175cf76002fc611eaa491c0273457f406ea05f04f11df51a3f84291cd8731",
+    "_evaluate_mode_switch": "ce684ec1c36c18a34022566a44023f009291598f603eec1e7c70c869a6f205ba",
+    "_handle_phase_transition": "d998bb9ce788fbccf49030864bbaa84da4e45de6b389add9e854ef7e37e09eff",
+    "_is_prefill": "2d7f4ed8d5bb68f9e15440cbb0e256878e2e12fd7c3a11dd58cad28b44ef2c03",
+    "_preempt_chunk_prefilling": "3b73466e4262aea604b7fe0cb5e87a2d40038b7c88980e36674e30b0676c2705",
+    "_record_n_update": "f6fb4aef5546c5dd22c1cdc4ce231ce0d6ffc54f5434db187fa6232b394b5d53",
+    "_record_schedule_stats": "2f8b88856220529d49d5df2b94d9edf08d9c1f5e813cb3563a38370e7497b7bc",
+    "_reset_pd_to_initial": "bc42385235cf9f50e6c24d3c006191d6a210fe386d9012eebc2f852f1a9ffbce",
+    "_save_stats_on_exit": "92d993dd7ba63f0b59c52cb7c607c57a4e83ac898419023b81b0532cef567d3b",
+    "_transition_to_eb": "2f4a5a50b8b7aa209348731ca8240fb06bc9ca585150ba63925d67bc763b7ba5",
+    "_transition_to_mb": "1853f09db434455ccde51c2fc8e9aa46ef1e82cb82c70782f792bdee69287ab9",
+    "_update_batch_size_n": "bb06384b69e2421d76bc43fa77a60e38fb90a38d56433769b1e442c833aceb4b",
+    "_update_cfr_threshold": "c8eb8ce9901c11cf447655e69fd451909113994d05adf02e5463f550a315d001",
+    "_update_ifr_threshold": "0a37ab8b3ade7de5174dc2bcf2830188708cfcabcd0408c29e75d50ed3250b0e",
+    "_update_k_star": "5d5becb741465781ea07be445b2c407e97904c708a0430e2dce9694438be3c20",
+    "_update_params_online": "853b72d96caaff5ce17b8e967d5f076f055c88355e4cb4e8f32ca8287ab961b5",
+    "get_pd_stats": "8c0a3646b333d7e82193d7a478cb8e3445c9c087a9c27674466c02a959806081",
+    "get_schedule_stats_summary": "66ba6c8f31d177a3a86c4b260d6a768876fe3c2ee770c6433b575122a63248af",
+    "save_schedule_stats": "5da5cc4a1441f4ed6705850cd9eb9e1c491866610d51aa2f536b132e6140eeb3",
+    "schedule": "2cd3cecb45e2d73479e528e33b5121da853010d89717347a67764fd4cb50274c"
+  },
+  "installed_vllm_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+  "limitations": [
+    "Actual full27B/GDN GPU numerical gates and complete128K tools not yet run for EB+.",
+    "Actual per-model/GPU hardware and separate MB-cost calibration still required.",
+    "Qualified candidate is synchronous/singleGPU; asynchronous batches/DPthrottle explicitly rejected.",
+    "Author-recommended IFR mode preserves default100-completion parameter interval and30minimum hazard samples. Unconfigured direct mode may never crossover because ratio remains0, as the author source warns.",
+    "Native hybrid pool protects actual allocations. The author advisory memory-safe-N model is retained, not a new proof of hybrid/GDN OOM probability."
+  ],
+  "mapping": [
+    {
+      "current": "MultiModalBudget and configured encoder manager via unchanged native initialization",
+      "old": "compute_encoder_budget import"
+    },
+    {
+      "current": "native waiting, kv_holding_waiting and deferred_waiting retained; no hidden ownership",
+      "old": "single waiting queue"
+    },
+    {
+      "current": "actual native hybrid alignment, replay, CoW, checkpoints, allocation and SchedulerOutput assembly",
+      "old": "direct allocate_slots/output construction"
+    },
+    {
+      "current": "eligibility gates in native scans; full global running queue and hardC4 remain",
+      "old": "phase0/2 prefill,phase1 decode"
+    },
+    {
+      "current": "native preemption/reset/free bookkeeping with author phase tracking",
+      "old": "preemption reset selected fields directly"
+    },
+    {
+      "current": "boundary clamp to hardC4, explicitly scoped deviation",
+      "old": "adaptive_N floor16"
+    },
+    {
+      "current": "native finished-request hook executes unchanged author update/crossover bodies",
+      "old": "author online completion samples"
+    }
+  ],
+  "prepared_module_files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "inferx_ebplus_policy.py": "1bed98083e11b540fe5b3ea45e3497450f74ead8c6044d9618c38c8920fad16c",
+    "inferx_ebplus_scheduler.py": "ec44e0f04b173354bff9cfb8a262ecd9c03dfdeda3bcc4200a3f29f2b51b215d"
+  },
+  "source_capsule_sha256": "6513e2ddd8616a0bc1685e4f26a1b6d7933422657d204566c03019e257aac898"
+}
