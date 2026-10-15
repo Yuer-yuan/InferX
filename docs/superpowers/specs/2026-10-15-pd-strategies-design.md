@@ -29,6 +29,8 @@ Begin with the minimum useful PD-Multiplexing configuration (three stream groups
 
 Actual GPU tests showed the faithful PD path requires token chunking off and ordinary overlap off; lazy Mamba buffers therefore must use stock eager extra_buffer. Green Context96/32SM works, but whole-input prefill failed C4 warmup even at the minimum131328 pool (240MiB allocation,109.62MiBfree). Keep these failures separate. A separately labeled PD-Multiplexing+token-chunk variant retains the actual SM/layer scheduler while allowing only512-token chunks, stashing unfinished chunks and excluding them from decode using the normal scheduler's transition. Its post-merge metadata handoff waits on the prefill stream. A combined reserve128 variant is permitted, with an admission-only ablation at the same pool/buffer/overlap settings.
 
+The first valid queue-only128 diagnostic admitted15 short requests during long prefill but still had12.48s cold and25.54s resume shortP95. Add conventional responsive128/64 caps triggered by waiting requests or running decode; measure them before claiming simple strategies are insufficient. A PD+responsive variant uses the same trigger for its admission-only ablation. Keep all selection diagnostics and run fresh formal repetitions for the selected policy.
+
 The initial simple implementation exposed a single-active-chunk invariant: original add_one_req can start another partial request when budget is reserved. The corrected policy only admits a candidate that fully fits the remaining round while another chunk is active; otherwise it returns the original OTHER result so the scheduler releases staged state. This is an adaptation correction, not evidence the simple strategy fails. Retain the failed first campaign.
 
 ## Capacity and fairness

@@ -210,3 +210,42 @@ def test_reservation_never_creates_a_second_unfinished_chunk():
     cached=NS(prefix_indices=[0]*23960,full_untruncated_fill_ids=[0]*24000)
     assert a.add_one_req(cached,has_chunked_req=True,truncation_align_size=None)=='accepted'
     assert a.can_run_list==[cached]
+
+
+def test_active_decode_is_protected_after_waiting_queue_drains():
+    m=implementation();a=adder(waiting=0)
+    a.running_batch=NS(is_empty=lambda:False)
+    def original(req):a.rem_chunk_tokens-=min(512,a.rem_chunk_tokens);return req
+    req=object()
+    assert m.cap_chunk_budget(a,req,original,128,protect_decode=True) is req
+    assert a.rem_chunk_tokens==384
+    a.rem_chunk_tokens=512;a.running_batch=NS(is_empty=lambda:True)
+    m.cap_chunk_budget(a,req,original,128,protect_decode=True)
+    assert a.rem_chunk_tokens==0
+
+
+def test_prepared_overlay_actually_applies_decode_protection(tmp_path,monkeypatch):
+    m=implementation();src=tmp_path/'source';target=src/'srt/managers/schedule_policy.py'
+    target.parent.mkdir(parents=True)
+    target.write_text('''class AddReqResult:
+    OTHER = 'OTHER'
+class PrefillAdder:
+    def __init__(self):
+        self.waiting_queue_len=0
+        self.rem_chunk_tokens=512
+        self.rem_total_tokens=10000
+        self.can_run_list=[]
+        self.running_batch=type('Batch',(),{'is_empty':lambda s:False})()
+    def add_chunked_req(self,req):
+        self.rem_chunk_tokens-=min(self.rem_chunk_tokens,10000)
+        return req
+    def add_one_req(self,req,**kwargs):
+        return AddReqResult.OTHER
+''')
+    out=tmp_path/'overlay';manifest=m.prepare_overlay(src,out,'reserve',128,protect_decode=True)
+    assert manifest['protect_decode'] is True
+    monkeypatch.syspath_prepend(str(out));monkeypatch.delitem(__import__('sys').modules,'inferx_pd_runtime',raising=False)
+    scope=__import__('runpy').run_path(str(out/'sglang/srt/managers/schedule_policy.py'))
+    a=scope['PrefillAdder']();req=NS(prefix_indices=[],full_untruncated_fill_ids=[0]*10000)
+    a.add_chunked_req(req)
+    assert a.rem_chunk_tokens==384

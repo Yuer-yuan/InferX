@@ -10,11 +10,13 @@ import tempfile
 import time
 
 
-def cap_chunk_budget(adder, req, original, cap):
+def cap_chunk_budget(adder, req, original, cap, protect_decode=False):
     if type(cap) is not int or cap <= 0:
         raise ValueError('positive integer chunk cap required')
     budget = adder.rem_chunk_tokens
-    if not adder.waiting_queue_len or budget is None or budget <= cap:
+    running=getattr(adder,'running_batch',None)
+    active_decode=protect_decode and running is not None and not running.is_empty()
+    if (not adder.waiting_queue_len and not active_decode) or budget is None or budget <= cap:
         return original(req)
     adder.rem_chunk_tokens = cap
     try:
@@ -37,7 +39,7 @@ def _admission_event(adder, req, method, before, result):
     logging.getLogger('inferx.pd').info('PD_ADMISSION %s', json.dumps(event,sort_keys=True))
 
 
-def install_admission_hooks(cls, cap=None, blocked_result=None):
+def install_admission_hooks(cls, cap=None, blocked_result=None, protect_decode=False):
     if getattr(cls, '_inferx_admission_installed', False):
         raise RuntimeError('admission hooks already installed')
     if cap is not None and (type(cap) is not int or cap <= 0):
@@ -48,7 +50,7 @@ def install_admission_hooks(cls, cap=None, blocked_result=None):
     def add_chunked(self, req):
         before=self.rem_chunk_tokens
         result=(chunk(self,req) if cap is None else
-                cap_chunk_budget(self,req,lambda r:chunk(self,r),cap))
+                cap_chunk_budget(self,req,lambda r:chunk(self,r),cap,protect_decode=protect_decode))
         _admission_event(self,req,'chunk',before,result)
         return result
     @functools.wraps(one)
@@ -174,31 +176,37 @@ def _patch_chunk_transition(text):
     return text.replace(original,modified)+'\nfrom inferx_pd_runtime import finish_pdmux_chunk as _inferx_finish_chunk\n'
 
 
-def prepare_overlay(source: Path, destination: Path, policy: str, cap=None) -> dict:
+def prepare_overlay(source: Path, destination: Path, policy: str, cap=None, protect_decode=False) -> dict:
     source,destination=Path(source).resolve(),Path(destination).resolve()
     if destination.is_relative_to(source) or source.is_relative_to(destination):
         raise ValueError('overlay must be independent of installed source')
     if destination.exists():
         raise FileExistsError(destination)
-    if policy not in {'control','reserve','pdmux','pdmux-chunked'}:
+    if policy not in {'control','reserve','responsive','pdmux','pdmux-chunked'}:
         raise ValueError('unknown overlay policy')
     if policy=='reserve' and (type(cap) is not int or cap not in (128,256)):
         raise ValueError('reserve cap must be128 or256')
-    if policy=='pdmux-chunked' and cap is not None and (type(cap) is not int or cap not in (128,256)):
-        raise ValueError('chunked PDMux cap must be128 or256')
-    if policy not in {'reserve','pdmux-chunked'} and cap is not None:
+    if policy=='responsive' and (type(cap) is not int or cap not in (64,128,256)):
+        raise ValueError('responsive cap must be64,128 or256')
+    if policy=='pdmux-chunked' and cap is not None and (type(cap) is not int or cap not in (64,128,256)):
+        raise ValueError('chunked PDMux cap must be64,128 or256')
+    if policy not in {'reserve','responsive','pdmux-chunked'} and cap is not None:
         raise ValueError('only reserve policy accepts a cap')
+    protect_decode=protect_decode or policy=='responsive'
+    if protect_decode and cap is None:
+        raise ValueError('decode protection requires a cap')
     destination.parent.mkdir(parents=True,exist_ok=True)
     staging=Path(tempfile.mkdtemp(prefix='.prepare-',dir=destination.parent))
     try:
         shutil.copytree(source,staging/'sglang',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-        manifest=dict(policy=policy,cap=cap,source=str(source),files={})
+        manifest=dict(policy=policy,cap=cap,protect_decode=protect_decode,source=str(source),files={})
         target=staging/'sglang/srt/managers/schedule_policy.py'
         original=target.read_bytes()
         if b'class PrefillAdder' not in original:
             raise ValueError('expected PrefillAdder source anchor missing')
         footer=('\nfrom inferx_pd_runtime import install_admission_hooks as _inferx_install\n'
-                f'_inferx_install(PrefillAdder, cap={cap!r}, blocked_result=AddReqResult.OTHER)\n')
+                f'_inferx_install(PrefillAdder, cap={cap!r}, blocked_result=AddReqResult.OTHER, '
+                f'protect_decode={protect_decode!r})\n')
         target.write_bytes(original+footer.encode())
         manifest['files']['srt/managers/schedule_policy.py']=dict(
             before_sha256=_sha(original),after_sha256=_sha(target.read_bytes()))

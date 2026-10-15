@@ -59,7 +59,7 @@ Expected: a correctness/capacity-qualified actual PD path, or reproducible adapt
 
 **Interfaces:** Uses existing `scripts.run_pd_baselines` case schema, per-group independent restart and `scripts.analyze_pd_baselines` strict raw export. Records frozen overlay source hashes in case metadata and raw scheduler event files/server logs.
 
-- [ ] Verify active service identity/idle and frozen hashes; run baseline plus128/256 simple diagnostic groups with full code/tool gates.
+- [ ] Verify active service identity/idle and frozen hashes; run baseline plus128/256 queue-only and128/64 responsive simple diagnostic groups with full code/tool gates.
 - [ ] Complete three repetitions for matched baseline and best simple policy; if PD qualifies, probe at most three SM partitions and complete best configuration's three repetitions. Retain selection diagnostics and failed lanes.
 - [ ] Verify long completion, strict-tool counts, actual capacity, raw arrival counts, restore original service and both manifests, and commit summaries.
 
