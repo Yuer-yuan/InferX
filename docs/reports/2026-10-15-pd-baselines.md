@@ -10,6 +10,8 @@
 
 这是用于隔离长短请求干扰的合成负载；它不能直接估计真实企业或Agent流量中该问题的发生频率。
 
+场景存在生产依据：[Copilot生产追踪论文](https://arxiv.org/html/2608.00101)统计到，包含上下文压缩事件的会话占7.8%，贡献44.2%的token消耗；压缩调用本身包含完整历史预填充，之后的前缀重写会降低缓存复用。这支持研究长会话中的重预填充，但不证明我们的128K/24K输入比例或83秒干扰在生产中有相同频率。
+
 | llama.cpp 配置 | 短到达率 | 纯短请求 P95 | 加冷长请求后的短 P95 | 加续接长请求后的短 P95 |
 |---|---:|---:|---:|---:|
 | chunk2048，诊断各1轮 | 0.5 RPS | 1.972 s | 132.968 s | 未测 |
@@ -102,11 +104,20 @@ V3将显存比例降至0.95后，实际池4.78 GiB、144460 token；代码检查
 
 V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认home缓存，已受控停止并恢复服务；随后只迁移本次生成的0.6.12目录至HDD，保留旧版本目录，显式配置FLASHINFER_WORKSPACE_BASE和TORCH_EXTENSIONS_DIR，并验证解析后的路径位于HDD。该中断不算模型性能或容量失败。
 
+## 新版 CUDA 12.9 路线的实际验证
+
+vLLM0.31.0+cu129与Torch2.13.0+cu129已在隔离环境完成安装、核心CUDA扩展导入和实际GPU模型推理，无需修改服务器驱动。默认TorchCodec0.17媒体包依赖libnvrtc.so.13，曾导致服务入口导入失败；改用官方CPU媒体包后，相同服务入口检查通过，模型文本推理仍在GPU。完整依赖版本、原失败与修复检查的哈希见 [新版vLLM环境](../../results/pd-baselines/vllm031-environment-before-probe.json)。
+
+同一RedHat27B权重、FP8 KV、C4、MTP0、eager/mem95，在三次独立重启后均通过代码检查、4路24K工具预热及完整128K工具请求。三轮长请求耗时83.052、83.066、82.906秒，均未截断且工具参数正确。首轮实际池143001 token、4.73 GiB，模型16.84 GiB，GDN使用Triton/FLA，Attention使用FlashInfer，Mamba对齐块仍为1568 token。这里证明的是当前硬件可部署与完整上下文资格；混合负载正在实测，不将容量探针当作PD改善结果。
+
+SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩展导入及服务入口检查，GPU测量正在队列中。其kernel/DeepEP/DeepGEMM均采用作者发布的cu129 wheel，下载加速传输后逐文件核对官方SHA256。依赖调整依据官方Dockerfile，不修改系统CUDA或驱动。见 [SGLang环境与门槛记录](../../results/pd-baselines/sglang0519-environment-before-probe.json)。
+
 ## 现有方法已经覆盖什么
 
 | 方法 | 已有机制或证据 | 对本课题的含义 |
 |---|---|---|
 | [vLLM AgentX调度](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-09-08-vllm-agentx.md) | 用单请求token上限缓解Agent流量的队头阻塞；另有DP预填充节奏控制 | “给长预填充分块、给短请求留预算”已经有现成实现；本版prefill_schedule_interval仅DP EngineCore使用，不能给单GPU传一个参数就认定生效 |
+| [PackServe](https://arxiv.org/abs/2609.33224) | 以白盒模型预测P/D干扰，在保留前缀复用及token延迟SLO下将Agent请求整合到更少实例；论文包含64张H20评估及生产部署 | 干扰预测、缓存局部性与SLO联合调度已有近期企业工作；集群资源节省不是本机单卡效果，本机尚未部署 |
 | [DuetServe](https://arxiv.org/abs/2511.04791) | 根据迭代延迟预测，在同一GPU内自适应切分SM来隔离P/D，包含Attention感知roofline与提前decode派发 | 单GPU自适应资源隔离及roofline驱动分配已经有前人工作；本机未部署，不能用当前失败或延迟推翻论文效果 |
 | [Hypic](https://arxiv.org/abs/2607.01299) | 面向Hybrid模型缓存分段状态转移，以边界窗口修复完整Attention，并并行处理未命中的段 | “Agent上下文由片段组成，线性状态不能直接按KV方式复用”已有机制；本机未部署，近似质量及多实例收益不能代替本机单卡严格工具测量 |
 | [Marconi](https://arxiv.org/abs/2411.19379) | 面向Hybrid模型，按复用潜力和计算收益/状态空间开销选择checkpoint的准入与淘汰 | Hybrid状态与Attention KV不同、应考虑重算收益，这些本身已不是新意 |

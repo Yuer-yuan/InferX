@@ -116,6 +116,13 @@ def export(root: Path, destination: Path, allow_running=False) -> dict:
                 raise ValueError('invalid raw case path')
             case=configs[state['case']]
             case_dir=run/f'{key[0]}-r{key[1]}-{key[2]}'
+            # Capacity/backend claims come from these files, not requested CLI budgets.
+            for name in ('startup.json','server.log'):
+                path=case_dir/name
+                if path.exists():
+                    data=path.read_bytes()
+                    sources[str(path.relative_to(root))]=dict(
+                        sha256=hashlib.sha256(data).hexdigest(),bytes=len(data))
             directory=case_dir/key[2]
             payloads=read(directory/'specifications.json') if (directory/'specifications.json').exists() else None
             planned=len(payloads) if payloads is not None else None

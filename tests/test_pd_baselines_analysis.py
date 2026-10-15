@@ -81,6 +81,24 @@ def test_partial_and_running_data_cannot_become_final_or_offered_counts(tmp_path
     assert measured['parse_errors'] and measured['offered'] is None
 
 
+def test_runtime_capacity_evidence_is_hashed_without_inventing_missing_files(tmp_path):
+    from scripts.analyze_pd_baselines import export
+    _,raw=make_group(tmp_path)
+    directory=raw.parent
+    startup=directory/'startup.json';write(startup,{'models':[],'observed_pool':143001})
+    log=directory/'server.log';log.write_bytes(b'GPU KV cache size: 143001 tokens\n')
+    first=export(tmp_path,tmp_path/'out')
+    for path in (startup,log):
+        key=str(path.relative_to(tmp_path))
+        assert first['source_hashes'][key]['sha256']==hashlib.sha256(path.read_bytes()).hexdigest()
+    log.write_bytes(b'GPU KV cache size: 140000 tokens\n')
+    second=export(tmp_path,tmp_path/'out')
+    assert first['source_hashes']!=second['source_hashes']
+    startup.unlink();log.unlink()
+    third=export(tmp_path,tmp_path/'out')
+    assert str(startup.relative_to(tmp_path)) not in third['source_hashes']
+
+
 def test_duplicate_request_identity_is_rejected(tmp_path):
     from scripts.analyze_pd_baselines import export
     _,group=make_group(tmp_path)
