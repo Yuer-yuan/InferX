@@ -174,6 +174,22 @@ def test_sglang_idle_wait_observes_running_and_queued_work(monkeypatch):
     assert len(sleeps)==2
 
 
+def test_sglang_runtime_cannot_silently_shrink_context_or_concurrency():
+    c=case('sglang');c['context_window']=131328
+    info={'context_length':131328,'internal_states':[
+        {'effective_max_running_requests_per_dp':4,
+         'memory_usage':{'token_capacity':140000}}]}
+    pd.validate_sglang_runtime(c,info)
+    for changed in [dict(info,context_length=65536),
+                    dict(info,internal_states=[]),
+                    dict(info,internal_states=[{'effective_max_running_requests_per_dp':3,
+                                               'memory_usage':{'token_capacity':140000}}]),
+                    dict(info,internal_states=[{'effective_max_running_requests_per_dp':4,
+                                               'memory_usage':{'token_capacity':100000}}])]:
+        with pytest.raises(RuntimeError,match='SGLang.*capacity'):
+            pd.validate_sglang_runtime(c,changed)
+
+
 def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     c=case();c.update(draft=4,draft_kv_dtype='q4_0')
     args=pd.engine_command(c,tmp_path,tmp_path/'run')

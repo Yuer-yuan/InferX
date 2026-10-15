@@ -14,7 +14,8 @@ from pathlib import Path
 from inferx.concurrency import run_load, summarize_load
 from inferx.pd_baselines import (GPU1, engine_command, parse_metrics, validate_case,
                                 load_frozen_workloads, arrival_requests, run_owned_command,
-                                snapshot_harness, record_morphx_coverage)
+                                snapshot_harness, record_morphx_coverage,
+                                validate_sglang_runtime)
 from inferx.service_ownership import RestorableService, process_identity, stop_matching_process
 
 ENDPOINT = 'http://127.0.0.1:18083'
@@ -86,7 +87,11 @@ class OwnedEngine:
                     self.identity = process_identity(self.proc.pid, Path(self.args[3]))
                     startup = dict(case=self.case, args=self.args, identity=self.identity,
                                    models=get('/v1/models'))
+                    if self.case['engine']=='sglang':
+                        startup['server_info']=get('/server_info')
                     (self.directory/'startup.json').write_text(json.dumps(startup, indent=2))
+                    if self.case['engine']=='sglang':
+                        validate_sglang_runtime(self.case,startup['server_info'])
                     telemetry = (self.directory/'gpu.csv').open('x')
                     self.telemetry = subprocess.Popen(['nvidia-smi', '-i', '1',
                         '--query-gpu=timestamp,memory.used,memory.free,utilization.gpu,utilization.memory,power.draw',

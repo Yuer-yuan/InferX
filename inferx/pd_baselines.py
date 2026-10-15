@@ -127,6 +127,16 @@ def _owned_path(root: Path, relative: str) -> str:
     return str(path)
 
 
+def validate_sglang_runtime(case: dict, info: dict) -> None:
+    """Hybrid state reservations can clamp concurrency despite the CLI request."""
+    workers=info.get('internal_states',[])
+    context=info.get('context_length')
+    if (type(context) is not int or context < case['context_window'] or len(workers)!=1
+            or workers[0].get('effective_max_running_requests_per_dp')!=case['concurrency']
+            or workers[0].get('memory_usage',{}).get('token_capacity',0)<case['context_window']):
+        raise RuntimeError('SGLang resolved capacity does not preserve requested context/concurrency')
+
+
 def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
     validate_case(case)
     binary = _owned_path(root, case['binary'])

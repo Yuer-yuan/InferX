@@ -38,6 +38,12 @@ NInfer原始NVCC构建、混合Q4/Q5权重、rk4v4-e8缓存、C4、MTP0、chunk2
 
 原生计数确认控制组每个短请求输入24558 token，命中24554、重算4。相较之下，下文vLLM0.24每次重算1037 token，不能用跨引擎端到端比值直接归因于调度。完整组级统计、显存采样和原始文件哈希见 [NInfer三轮结果](../../results/pd-baselines/ninfer-main-v2-summary.json)。
 
+## MTP 对当前干扰的作用
+
+NInfer MTP4通过了单独的完整128K工具请求，并完成一轮相同0.5 RPS/C4的三组诊断，74/74工具有效、两次混合长请求完成。纯短请求P95降至0.417秒，混入冷长请求后仍为82.039秒，续接组为81.322秒。该轮显示生成加速没有消除当前长预填充等待；它只有一次重复，而且续接组有两个短请求未复用前缀，不能把它与MTP0三轮的差异全部归因于投机解码。
+
+vLLM0.24的MTP1配置在保持131328窗口时实际启动失败：需要4.73 GiB KV，只有3.96 GiB。没有降低上下文长度或将其计作性能结果。MTP附加模型的内存成本需要和生成加速一起考虑。见 [MTP诊断与失败记录](../../results/pd-baselines/mtp-diagnostic-summary.json)。
+
 ## MorphX 的实际状态
 
 已固定作者源码4404aed4c180ad83c31179e1ce08ae2234390853，完成LLVM18/SM89编译器适配、CUDA Runtime真正拦截和独立数值探针。原GDRCopy路径实际调用gdr_open失败，设备/dev/gdrdrv不存在；当前实验使用显式标注的映射主存控制通道。这改变了控制数据所在位置及访问开销，不能冒充论文原始GDRCopy环境。
@@ -101,6 +107,8 @@ V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认
 | 方法 | 已有机制或证据 | 对本课题的含义 |
 |---|---|---|
 | [vLLM AgentX调度](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-09-08-vllm-agentx.md) | 用单请求token上限缓解Agent流量的队头阻塞；另有DP预填充节奏控制 | “给长预填充分块、给短请求留预算”已经有现成实现；本版prefill_schedule_interval仅DP EngineCore使用，不能给单GPU传一个参数就认定生效 |
+| [DuetServe](https://arxiv.org/abs/2511.04791) | 根据迭代延迟预测，在同一GPU内自适应切分SM来隔离P/D，包含Attention感知roofline与提前decode派发 | 单GPU自适应资源隔离及roofline驱动分配已经有前人工作；本机未部署，不能用当前失败或延迟推翻论文效果 |
+| [Hypic](https://arxiv.org/abs/2607.01299) | 面向Hybrid模型缓存分段状态转移，以边界窗口修复完整Attention，并并行处理未命中的段 | “Agent上下文由片段组成，线性状态不能直接按KV方式复用”已有机制；本机未部署，近似质量及多实例收益不能代替本机单卡严格工具测量 |
 | [Marconi](https://arxiv.org/abs/2411.19379) | 面向Hybrid模型，按复用潜力和计算收益/状态空间开销选择checkpoint的准入与淘汰 | Hybrid状态与Attention KV不同、应考虑重算收益，这些本身已不是新意 |
 | [vLLM内部checkpoint](https://github.com/vllm-project/vllm/pull/60050) | FlashInfer GDN在一次预填充中导出边界状态，减少为缓存边界拆分forward的额外工作 | 必须核对GPU与backend适用性；当前Triton路径没有得到这个改动的实测收益 |
 | [SuffixReplay](https://arxiv.org/html/2609.33477) | 通过有限后缀重放近似重建线性状态，减少对密集checkpoint的依赖；论文在三种Hybrid模型上报告LongBench/RULER平均质量保留91.4–100% | 更细复用边界也已有新方法；其近似质量与代码Agent工具正确性不能等同，需要单独评估，本机尚未部署 |

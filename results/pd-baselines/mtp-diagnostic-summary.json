@@ -1,0 +1,1751 @@
+{
+  "campaigns": [
+    {
+      "cases": [
+        {
+          "case": "ninfer-d4-c4-chunk2048",
+          "group": "probe-128k",
+          "quality": {
+            "elapsed": 0.07141389325261116,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019260160624980927
+          },
+          "repetition": 0,
+          "state": "measured"
+        }
+      ],
+      "controller_pid": 3351654,
+      "finished_unix": 1792039731.9505181,
+      "harness_sha256": {
+        "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+        "inferx/agent_restrictions.py": "5c85f104b4ade61a4d5df9b97b144e3e32a38fc47730690f9d4b9b24f3af5e96",
+        "inferx/agent_trials.py": "db91d8deeda95b3ecab601f81e9473726f7c39c34fc1d482e84835c5a2915a1d",
+        "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+        "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+        "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+        "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+        "inferx/pd_baselines.py": "975bdadb35679538649f1030e1794a6ccc52f69ff0985007d9987c729b825dd6",
+        "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+        "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+        "inferx/repo_verifier.py": "0cf7e27ab5169d360f9fc728874015df0a1f95e62f2b6d09448c6ff21fcf0b11",
+        "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+        "inferx/repository.py": "e384e4766cbb46689b5753da477ad6d405d42606c83c935ca5a32332ccf079af",
+        "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+        "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+        "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea",
+        "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
+        "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+        "scripts/analyze.py": "62b5effc954a2fd3bd97272280a8a0ba2e1df9acab884be097c982bfa5563f42",
+        "scripts/analyze_agent_trials.py": "aa1471be363ac0cac8a83f26313bf0be72efbd567e968049925fe33ad6511402",
+        "scripts/analyze_concurrency.py": "6cab04b2ea1123231e3ca84e3be1cc1b573e03534b32f5b0433dd8488f434f5f",
+        "scripts/analyze_pd_baselines.py": "924c91f382551810b516ce572c080a6a7d73b70d96f45c145a9bf84ce47444e3",
+        "scripts/analyze_repository.py": "eabdb685d23e248ed3ede6183d2f2dcda4957eea429a28f6391cd961b973f7c3",
+        "scripts/bench_tuning.py": "257f9d8c5d2c0e04c66babd3a56ed7c5df4e2d51c1bfbd34925040b86f643ab5",
+        "scripts/bench_tuning_turns.py": "f4add48431c384831b671335bff71ad5e3f2c1717f7bc1a4df4094b2a71e3153",
+        "scripts/calibrate_repositories.py": "4b450337ed20ef2f3ea9e55701c11d9f4d88b41e2142d96e29f6adcaa90edf5c",
+        "scripts/check_server.py": "2e56d9cb2454b0c35078bd52ae0f6cb86c697950991d1a5eea8cff2d01ee8dca",
+        "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba",
+        "scripts/check_tuning_tools.py": "c39d46d7b547d965d999449fcab596bd5928c40c621d0032a2dd48bbb350d6ec",
+        "scripts/download.py": "759443354c0dbc040b7eda3e773ad9278f4e4abcdcd25d93da459793c23b9346",
+        "scripts/export_repository_results.py": "592d68abd93dbc27174cdc8c0ecafa39ebbe710baf24734951af8e8d5d482dd2",
+        "scripts/export_results.py": "6dd656f253f357048b19981ad5a2fb08c3b3fb1d4a66de9ae4a98c99b681d837",
+        "scripts/export_tuning_results.py": "e77f9d7efb3f18168ae81c33ea0480e956ad64f53ddf0a900d7ea4b5c99b0d35",
+        "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+        "scripts/plot_concurrency.py": "9f694cd191405cce2724769fdbcfc1cd0f36c792487b763b0a0df2a7ac396804",
+        "scripts/plot_pd_timeline.py": "f81b2c8d4ddc4abc64f04d004b38b17810d64c2713af9f34aa47ec73ee6e1a58",
+        "scripts/plot_repository.py": "b06d8eaa09f4f30f8e2964a011ac75c8ff3496237e3a5e1b67ac6390b1dd703a",
+        "scripts/plot_results.py": "750ecc5d7ba3222c0d8857e4ba68c8b5abf60e907bd0fe2d355b21d706fa549b",
+        "scripts/prepare_27b.py": "c8e54908e3399d78ddbd309b4e67c6dd2192419f5566867c0af9e6296771b50e",
+        "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+        "scripts/prepare_long_context.py": "84ebe19ea48a583397a9a9ceeb5b02f40341ece2e182052dbf8cdc3f743d8c04",
+        "scripts/prepare_morphx_transport.py": "1c786a66f8799a44bd910b5ecf02326b9566e4cbc6baa706b15ffa52e92b1f61",
+        "scripts/prepare_ninfer_model.py": "ef5a4d971d15c14eb4e62949744428f8bba602a677261497e809650d9accfcb3",
+        "scripts/prepare_ninfer_toolchain.py": "0ad9c01cbde90155f0c054ab846394650c81dcc3304592da4ee8d6e920ce4b8c",
+        "scripts/prepare_pd_baselines.py": "96a66ea13e5d34209f483fdc361626ae92e4d8494c719e4c085e33ab6d3f030e",
+        "scripts/prepare_repositories.py": "45c2187ab29ef2da5dbaa4a2ad006d9d86f397406f605cb1567354bc5878ed9a",
+        "scripts/prepare_tuning_context.py": "b538c9e4d3bd1133d9c195d7fdc481cf8fb4df597c5fbb1e6782fd0ee41ce7b1",
+        "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+        "scripts/restrict_agent.py": "c6db89f5550ee85beb5b3ff4422fdacb20ff5e6d927e5a71fb3c1f35b3c9e1c1",
+        "scripts/run_agent_trials.py": "3c3880d0119c1bf01b74f7110073a0c3d5a6f1aca37c690d7458ebd35b3907dc",
+        "scripts/run_concurrency_campaign.py": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d",
+        "scripts/run_context_probe.py": "8db6f295e99f3a5fcb92b3f6df9f63967a551ca3054e7f173edb5f023e7f72ce",
+        "scripts/run_pd_baselines.py": "e5c8f0ac0b312e7018baa5000cc0744d8646157716481da0a5986af93e4d8f29",
+        "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+        "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+        "scripts/run_tuning_grid.py": "31b7e329a817346d1d57f79899b6761d7b29bf5350b21953136855a0a1cc6981"
+      },
+      "probe_only": true,
+      "repeat": 1,
+      "restored": true,
+      "run": "ninfer-mtp4-128k-probe-v1",
+      "runtime_library": "libcuda_mapped_full.so",
+      "runtime_sha256": {
+        "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+        "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+      },
+      "started_unix": 1792039484.3549833,
+      "status": "restored",
+      "workload_definitions": [
+        {
+          "long_mode": null,
+          "name": "short-control",
+          "rate": 2.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-low",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-high",
+          "rate": 2.5
+        },
+        {
+          "long_mode": "resume",
+          "name": "resume-high",
+          "rate": 2.5
+        }
+      ]
+    },
+    {
+      "cases": [
+        {
+          "case": "ninfer-d4-c4-chunk2048",
+          "group": "short-control",
+          "quality": {
+            "elapsed": 0.07011449709534645,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019733458757400513
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "ninfer-d4-c4-chunk2048",
+          "group": "cold-low",
+          "quality": {
+            "elapsed": 0.07167248800396919,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019704215228557587
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "ninfer-d4-c4-chunk2048",
+          "group": "resume-high",
+          "quality": {
+            "elapsed": 0.07045011967420578,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019488707184791565
+          },
+          "repetition": 0,
+          "state": "measured"
+        }
+      ],
+      "controller_pid": 3353396,
+      "finished_unix": 1792040379.2720048,
+      "harness_sha256": {
+        "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+        "inferx/agent_restrictions.py": "5c85f104b4ade61a4d5df9b97b144e3e32a38fc47730690f9d4b9b24f3af5e96",
+        "inferx/agent_trials.py": "db91d8deeda95b3ecab601f81e9473726f7c39c34fc1d482e84835c5a2915a1d",
+        "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+        "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+        "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+        "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+        "inferx/pd_baselines.py": "975bdadb35679538649f1030e1794a6ccc52f69ff0985007d9987c729b825dd6",
+        "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+        "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+        "inferx/repo_verifier.py": "0cf7e27ab5169d360f9fc728874015df0a1f95e62f2b6d09448c6ff21fcf0b11",
+        "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+        "inferx/repository.py": "e384e4766cbb46689b5753da477ad6d405d42606c83c935ca5a32332ccf079af",
+        "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+        "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+        "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea",
+        "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
+        "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+        "scripts/analyze.py": "62b5effc954a2fd3bd97272280a8a0ba2e1df9acab884be097c982bfa5563f42",
+        "scripts/analyze_agent_trials.py": "aa1471be363ac0cac8a83f26313bf0be72efbd567e968049925fe33ad6511402",
+        "scripts/analyze_concurrency.py": "6cab04b2ea1123231e3ca84e3be1cc1b573e03534b32f5b0433dd8488f434f5f",
+        "scripts/analyze_pd_baselines.py": "924c91f382551810b516ce572c080a6a7d73b70d96f45c145a9bf84ce47444e3",
+        "scripts/analyze_repository.py": "eabdb685d23e248ed3ede6183d2f2dcda4957eea429a28f6391cd961b973f7c3",
+        "scripts/bench_tuning.py": "257f9d8c5d2c0e04c66babd3a56ed7c5df4e2d51c1bfbd34925040b86f643ab5",
+        "scripts/bench_tuning_turns.py": "f4add48431c384831b671335bff71ad5e3f2c1717f7bc1a4df4094b2a71e3153",
+        "scripts/calibrate_repositories.py": "4b450337ed20ef2f3ea9e55701c11d9f4d88b41e2142d96e29f6adcaa90edf5c",
+        "scripts/check_server.py": "2e56d9cb2454b0c35078bd52ae0f6cb86c697950991d1a5eea8cff2d01ee8dca",
+        "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba",
+        "scripts/check_tuning_tools.py": "c39d46d7b547d965d999449fcab596bd5928c40c621d0032a2dd48bbb350d6ec",
+        "scripts/download.py": "759443354c0dbc040b7eda3e773ad9278f4e4abcdcd25d93da459793c23b9346",
+        "scripts/export_repository_results.py": "592d68abd93dbc27174cdc8c0ecafa39ebbe710baf24734951af8e8d5d482dd2",
+        "scripts/export_results.py": "6dd656f253f357048b19981ad5a2fb08c3b3fb1d4a66de9ae4a98c99b681d837",
+        "scripts/export_tuning_results.py": "e77f9d7efb3f18168ae81c33ea0480e956ad64f53ddf0a900d7ea4b5c99b0d35",
+        "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+        "scripts/plot_concurrency.py": "9f694cd191405cce2724769fdbcfc1cd0f36c792487b763b0a0df2a7ac396804",
+        "scripts/plot_pd_timeline.py": "f81b2c8d4ddc4abc64f04d004b38b17810d64c2713af9f34aa47ec73ee6e1a58",
+        "scripts/plot_repository.py": "b06d8eaa09f4f30f8e2964a011ac75c8ff3496237e3a5e1b67ac6390b1dd703a",
+        "scripts/plot_results.py": "750ecc5d7ba3222c0d8857e4ba68c8b5abf60e907bd0fe2d355b21d706fa549b",
+        "scripts/prepare_27b.py": "c8e54908e3399d78ddbd309b4e67c6dd2192419f5566867c0af9e6296771b50e",
+        "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+        "scripts/prepare_long_context.py": "84ebe19ea48a583397a9a9ceeb5b02f40341ece2e182052dbf8cdc3f743d8c04",
+        "scripts/prepare_morphx_transport.py": "1c786a66f8799a44bd910b5ecf02326b9566e4cbc6baa706b15ffa52e92b1f61",
+        "scripts/prepare_ninfer_model.py": "ef5a4d971d15c14eb4e62949744428f8bba602a677261497e809650d9accfcb3",
+        "scripts/prepare_ninfer_toolchain.py": "0ad9c01cbde90155f0c054ab846394650c81dcc3304592da4ee8d6e920ce4b8c",
+        "scripts/prepare_pd_baselines.py": "96a66ea13e5d34209f483fdc361626ae92e4d8494c719e4c085e33ab6d3f030e",
+        "scripts/prepare_repositories.py": "45c2187ab29ef2da5dbaa4a2ad006d9d86f397406f605cb1567354bc5878ed9a",
+        "scripts/prepare_tuning_context.py": "b538c9e4d3bd1133d9c195d7fdc481cf8fb4df597c5fbb1e6782fd0ee41ce7b1",
+        "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+        "scripts/restrict_agent.py": "c6db89f5550ee85beb5b3ff4422fdacb20ff5e6d927e5a71fb3c1f35b3c9e1c1",
+        "scripts/run_agent_trials.py": "3c3880d0119c1bf01b74f7110073a0c3d5a6f1aca37c690d7458ebd35b3907dc",
+        "scripts/run_concurrency_campaign.py": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d",
+        "scripts/run_context_probe.py": "8db6f295e99f3a5fcb92b3f6df9f63967a551ca3054e7f173edb5f023e7f72ce",
+        "scripts/run_pd_baselines.py": "e5c8f0ac0b312e7018baa5000cc0744d8646157716481da0a5986af93e4d8f29",
+        "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+        "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+        "scripts/run_tuning_grid.py": "31b7e329a817346d1d57f79899b6761d7b29bf5350b21953136855a0a1cc6981"
+      },
+      "probe_only": false,
+      "repeat": 1,
+      "restored": true,
+      "run": "ninfer-mtp4-lowrate-diagnostic-v1",
+      "runtime_library": "libcuda_mapped_full.so",
+      "runtime_sha256": {
+        "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+        "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+      },
+      "started_unix": 1792039732.274654,
+      "status": "restored",
+      "workload_definitions": [
+        {
+          "long_mode": null,
+          "name": "short-control",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-low",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "resume",
+          "name": "resume-high",
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "cases": [
+        {
+          "case": "vllm024-int4-c4-b4096-cap2048-eager-mem95-mtp1",
+          "error": "RuntimeError: server startup exit 1",
+          "group": "probe-128k",
+          "repetition": 0,
+          "state": "failed"
+        }
+      ],
+      "controller_pid": 3359129,
+      "finished_unix": 1792040510.1035213,
+      "harness_sha256": {
+        "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+        "inferx/agent_restrictions.py": "5c85f104b4ade61a4d5df9b97b144e3e32a38fc47730690f9d4b9b24f3af5e96",
+        "inferx/agent_trials.py": "db91d8deeda95b3ecab601f81e9473726f7c39c34fc1d482e84835c5a2915a1d",
+        "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+        "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+        "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+        "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+        "inferx/pd_baselines.py": "975bdadb35679538649f1030e1794a6ccc52f69ff0985007d9987c729b825dd6",
+        "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+        "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+        "inferx/repo_verifier.py": "0cf7e27ab5169d360f9fc728874015df0a1f95e62f2b6d09448c6ff21fcf0b11",
+        "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+        "inferx/repository.py": "e384e4766cbb46689b5753da477ad6d405d42606c83c935ca5a32332ccf079af",
+        "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+        "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+        "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea",
+        "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
+        "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+        "scripts/analyze.py": "62b5effc954a2fd3bd97272280a8a0ba2e1df9acab884be097c982bfa5563f42",
+        "scripts/analyze_agent_trials.py": "aa1471be363ac0cac8a83f26313bf0be72efbd567e968049925fe33ad6511402",
+        "scripts/analyze_concurrency.py": "6cab04b2ea1123231e3ca84e3be1cc1b573e03534b32f5b0433dd8488f434f5f",
+        "scripts/analyze_pd_baselines.py": "924c91f382551810b516ce572c080a6a7d73b70d96f45c145a9bf84ce47444e3",
+        "scripts/analyze_repository.py": "eabdb685d23e248ed3ede6183d2f2dcda4957eea429a28f6391cd961b973f7c3",
+        "scripts/bench_tuning.py": "257f9d8c5d2c0e04c66babd3a56ed7c5df4e2d51c1bfbd34925040b86f643ab5",
+        "scripts/bench_tuning_turns.py": "f4add48431c384831b671335bff71ad5e3f2c1717f7bc1a4df4094b2a71e3153",
+        "scripts/calibrate_repositories.py": "4b450337ed20ef2f3ea9e55701c11d9f4d88b41e2142d96e29f6adcaa90edf5c",
+        "scripts/check_server.py": "2e56d9cb2454b0c35078bd52ae0f6cb86c697950991d1a5eea8cff2d01ee8dca",
+        "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba",
+        "scripts/check_tuning_tools.py": "c39d46d7b547d965d999449fcab596bd5928c40c621d0032a2dd48bbb350d6ec",
+        "scripts/download.py": "759443354c0dbc040b7eda3e773ad9278f4e4abcdcd25d93da459793c23b9346",
+        "scripts/export_repository_results.py": "592d68abd93dbc27174cdc8c0ecafa39ebbe710baf24734951af8e8d5d482dd2",
+        "scripts/export_results.py": "6dd656f253f357048b19981ad5a2fb08c3b3fb1d4a66de9ae4a98c99b681d837",
+        "scripts/export_tuning_results.py": "e77f9d7efb3f18168ae81c33ea0480e956ad64f53ddf0a900d7ea4b5c99b0d35",
+        "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+        "scripts/plot_concurrency.py": "9f694cd191405cce2724769fdbcfc1cd0f36c792487b763b0a0df2a7ac396804",
+        "scripts/plot_pd_timeline.py": "f81b2c8d4ddc4abc64f04d004b38b17810d64c2713af9f34aa47ec73ee6e1a58",
+        "scripts/plot_repository.py": "b06d8eaa09f4f30f8e2964a011ac75c8ff3496237e3a5e1b67ac6390b1dd703a",
+        "scripts/plot_results.py": "750ecc5d7ba3222c0d8857e4ba68c8b5abf60e907bd0fe2d355b21d706fa549b",
+        "scripts/prepare_27b.py": "c8e54908e3399d78ddbd309b4e67c6dd2192419f5566867c0af9e6296771b50e",
+        "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+        "scripts/prepare_long_context.py": "84ebe19ea48a583397a9a9ceeb5b02f40341ece2e182052dbf8cdc3f743d8c04",
+        "scripts/prepare_morphx_transport.py": "1c786a66f8799a44bd910b5ecf02326b9566e4cbc6baa706b15ffa52e92b1f61",
+        "scripts/prepare_ninfer_model.py": "ef5a4d971d15c14eb4e62949744428f8bba602a677261497e809650d9accfcb3",
+        "scripts/prepare_ninfer_toolchain.py": "0ad9c01cbde90155f0c054ab846394650c81dcc3304592da4ee8d6e920ce4b8c",
+        "scripts/prepare_pd_baselines.py": "96a66ea13e5d34209f483fdc361626ae92e4d8494c719e4c085e33ab6d3f030e",
+        "scripts/prepare_repositories.py": "45c2187ab29ef2da5dbaa4a2ad006d9d86f397406f605cb1567354bc5878ed9a",
+        "scripts/prepare_tuning_context.py": "b538c9e4d3bd1133d9c195d7fdc481cf8fb4df597c5fbb1e6782fd0ee41ce7b1",
+        "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+        "scripts/restrict_agent.py": "c6db89f5550ee85beb5b3ff4422fdacb20ff5e6d927e5a71fb3c1f35b3c9e1c1",
+        "scripts/run_agent_trials.py": "3c3880d0119c1bf01b74f7110073a0c3d5a6f1aca37c690d7458ebd35b3907dc",
+        "scripts/run_concurrency_campaign.py": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d",
+        "scripts/run_context_probe.py": "8db6f295e99f3a5fcb92b3f6df9f63967a551ca3054e7f173edb5f023e7f72ce",
+        "scripts/run_pd_baselines.py": "e5c8f0ac0b312e7018baa5000cc0744d8646157716481da0a5986af93e4d8f29",
+        "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+        "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+        "scripts/run_tuning_grid.py": "31b7e329a817346d1d57f79899b6761d7b29bf5350b21953136855a0a1cc6981"
+      },
+      "probe_only": true,
+      "repeat": 1,
+      "restored": true,
+      "run": "vllm-mtp1-128k-probe-v1",
+      "runtime_library": "libcuda_mapped_full.so",
+      "runtime_sha256": {
+        "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+        "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+      },
+      "started_unix": 1792040379.589416,
+      "status": "restored",
+      "workload_definitions": [
+        {
+          "long_mode": null,
+          "name": "short-control",
+          "rate": 2.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-low",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-high",
+          "rate": 2.5
+        },
+        {
+          "long_mode": "resume",
+          "name": "resume-high",
+          "rate": 2.5
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "case": "ninfer-d4-c4-chunk2048",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "source/ninfer-build-sm89/apps/ninfer-serve",
+        "capacity_note": "Existing runnable C4/MTP4 source configuration; exploratory full128K/PD checks after formal MTP0 comparison, not pooled with plain results.",
+        "chunk": 2048,
+        "concurrency": 4,
+        "context_window": 212992,
+        "draft": 4,
+        "engine": "ninfer",
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "ninfer-d4-c4-chunk2048",
+        "kv_capacity": 212992,
+        "kv_dtype": "rk4v4-e8",
+        "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "NInfer-v2-mixed-Q4-Q5"
+      },
+      "configuration_sha256": "67fc564f9a687c47a86a7109f97af8b8e31f3f4d9a64f02c2a8c938ba1dd8370",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 1239.0,
+        "sampled_peak_mib": 22869.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 557
+      },
+      "group": "probe-128k",
+      "identity": "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/probe-128k",
+      "long": {
+        "aggregate_tokens_per_s": 0.805182728065544,
+        "attempted_latency_s": {
+          "maximum": 79.47383262217045,
+          "median": 79.47383262217045,
+          "minimum": 79.47383262217045,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 79.47383262217045,
+          "median": 79.47383262217045,
+          "minimum": 79.47383262217045,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 79.48506316542625,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 79.47337074950337,
+          "median": 79.47337074950337,
+          "minimum": 79.47337074950337,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 1,
+      "offered": 1,
+      "parse_errors": [],
+      "planned": 1,
+      "prefix": {
+        "long": {
+          "cached_tokens": 0,
+          "computed_tokens": 131046,
+          "counter_observations": 1,
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "status": "unobserved",
+          "successful_requests": 0
+        }
+      },
+      "quality_status": "passed",
+      "rate": null,
+      "repetition": 0,
+      "run": "ninfer-mtp4-128k-probe-v1",
+      "short": {
+        "aggregate_tokens_per_s": 0.0,
+        "attempted_latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 0,
+        "dispatch_lag_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 79.48506316542625,
+        "offered": 0,
+        "protocol_ok": 0,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 0,
+        "tool_valid": 0,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 0.805182728065544,
+        "attempted_latency_s": {
+          "maximum": 79.47383262217045,
+          "median": 79.47383262217045,
+          "minimum": 79.47383262217045,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 79.47383262217045,
+          "median": 79.47383262217045,
+          "minimum": 79.47383262217045,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 79.48506316542625,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 79.47337074950337,
+          "median": 79.47337074950337,
+          "minimum": 79.47337074950337,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "ninfer-d4-c4-chunk2048",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "source/ninfer-build-sm89/apps/ninfer-serve",
+        "capacity_note": "Existing runnable C4/MTP4 source configuration; exploratory full128K/PD checks after formal MTP0 comparison, not pooled with plain results.",
+        "chunk": 2048,
+        "concurrency": 4,
+        "context_window": 212992,
+        "draft": 4,
+        "engine": "ninfer",
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "ninfer-d4-c4-chunk2048",
+        "kv_capacity": 212992,
+        "kv_dtype": "rk4v4-e8",
+        "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "NInfer-v2-mixed-Q4-Q5"
+      },
+      "configuration_sha256": "67fc564f9a687c47a86a7109f97af8b8e31f3f4d9a64f02c2a8c938ba1dd8370",
+      "error": null,
+      "full_long_completed": 0,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 1239.0,
+        "sampled_peak_mib": 22869.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 405
+      },
+      "group": "short-control",
+      "identity": "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/short-control",
+      "long": {
+        "aggregate_tokens_per_s": 0.0,
+        "attempted_latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 0,
+        "dispatch_lag_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 48.00203101336956,
+        "offered": 0,
+        "protocol_ok": 0,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 0,
+        "tool_valid": 0,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 24,
+      "offered": 24,
+      "parse_errors": [],
+      "planned": 24,
+      "prefix": {
+        "long": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "status": "unobserved",
+          "successful_requests": 0
+        },
+        "short": {
+          "cached_tokens": 589296,
+          "computed_tokens": 96,
+          "counter_observations": 24,
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "ninfer-mtp4-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 25.998899914305838,
+        "attempted_latency_s": {
+          "maximum": 0.4177987016737461,
+          "median": 0.40240426547825336,
+          "minimum": 0.3872559517621994,
+          "n": 24,
+          "p95": 0.4171493537724018,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0028240010142326355,
+          "median": 0.002260873094201088,
+          "minimum": 0.00048217177391052246,
+          "n": 24,
+          "p95": 0.0027751214802265167,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 0.4177987016737461,
+          "median": 0.40240426547825336,
+          "minimum": 0.3872559517621994,
+          "n": 24,
+          "p95": 0.4171493537724018,
+          "p99": null
+        },
+        "measured_span_s": 48.00203101336956,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "1": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 0.4172911196947098,
+          "median": 0.40196605771780014,
+          "minimum": 0.3868093155324459,
+          "n": 24,
+          "p95": 0.416741319000721,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 25.998899914305838,
+        "attempted_latency_s": {
+          "maximum": 0.4177987016737461,
+          "median": 0.40240426547825336,
+          "minimum": 0.3872559517621994,
+          "n": 24,
+          "p95": 0.4171493537724018,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0028240010142326355,
+          "median": 0.002260873094201088,
+          "minimum": 0.00048217177391052246,
+          "n": 24,
+          "p95": 0.0027751214802265167,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 0.4177987016737461,
+          "median": 0.40240426547825336,
+          "minimum": 0.3872559517621994,
+          "n": 24,
+          "p95": 0.4171493537724018,
+          "p99": null
+        },
+        "measured_span_s": 48.00203101336956,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "1": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          },
+          "5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4999788445058815,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4999788445058815,
+            "tool_met": 24
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 0.4172911196947098,
+          "median": 0.40196605771780014,
+          "minimum": 0.3868093155324459,
+          "n": 24,
+          "p95": 0.416741319000721,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "ninfer-d4-c4-chunk2048",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "source/ninfer-build-sm89/apps/ninfer-serve",
+        "capacity_note": "Existing runnable C4/MTP4 source configuration; exploratory full128K/PD checks after formal MTP0 comparison, not pooled with plain results.",
+        "chunk": 2048,
+        "concurrency": 4,
+        "context_window": 212992,
+        "draft": 4,
+        "engine": "ninfer",
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "ninfer-d4-c4-chunk2048",
+        "kv_capacity": 212992,
+        "kv_dtype": "rk4v4-e8",
+        "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "NInfer-v2-mixed-Q4-Q5"
+      },
+      "configuration_sha256": "67fc564f9a687c47a86a7109f97af8b8e31f3f4d9a64f02c2a8c938ba1dd8370",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 1239.0,
+        "sampled_peak_mib": 22869.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 704
+      },
+      "group": "cold-low",
+      "identity": "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/cold-low",
+      "long": {
+        "aggregate_tokens_per_s": 0.5840254181741745,
+        "attempted_latency_s": {
+          "maximum": 80.16139877587557,
+          "median": 80.16139877587557,
+          "minimum": 80.16139877587557,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.002768099308013916,
+          "median": 0.002768099308013916,
+          "minimum": 0.002768099308013916,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 80.16139877587557,
+          "median": 80.16139877587557,
+          "minimum": 80.16139877587557,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 109.5842715203762,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 80.16095022857189,
+          "median": 80.16095022857189,
+          "minimum": 80.16095022857189,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "prefix": {
+        "long": {
+          "cached_tokens": 0,
+          "computed_tokens": 131046,
+          "counter_observations": 1,
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564742,
+          "computed_tokens": 24650,
+          "counter_observations": 24,
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "ninfer-mtp4-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 11.388495654396404,
+        "attempted_latency_s": {
+          "maximum": 82.2697076909244,
+          "median": 68.38909204863012,
+          "minimum": 0.3904199078679085,
+          "n": 24,
+          "p95": 82.03948700428009,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.005417969077825546,
+          "median": 0.002504318952560425,
+          "minimum": 0.0005812384188175201,
+          "n": 24,
+          "p95": 0.003822997212409973,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 82.2697076909244,
+          "median": 68.38909204863012,
+          "minimum": 0.3904199078679085,
+          "n": 24,
+          "p95": 82.03948700428009,
+          "p99": null
+        },
+        "measured_span_s": 109.5842715203762,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "1": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "10": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.0821285744307433,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.0821285744307433,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 82.26929975673556,
+          "median": 68.38854991644621,
+          "minimum": 0.3900965787470341,
+          "n": 24,
+          "p95": 82.03902939334512,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 11.972521072570578,
+        "attempted_latency_s": {
+          "maximum": 82.2697076909244,
+          "median": 69.22471436485648,
+          "minimum": 0.3904199078679085,
+          "n": 25,
+          "p95": 82.03948700428009,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.005417969077825546,
+          "median": 0.0025133714079856873,
+          "minimum": 0.0005812384188175201,
+          "n": 25,
+          "p95": 0.003822997212409973,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 82.2697076909244,
+          "median": 69.22471436485648,
+          "minimum": 0.3904199078679085,
+          "n": 25,
+          "p95": 82.03948700428009,
+          "p99": null
+        },
+        "measured_span_s": 109.5842715203762,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "1": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "10": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.0821285744307433,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.0821285744307433,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          },
+          "5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07300317727177182,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07300317727177182,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 82.26929975673556,
+          "median": 69.22425402328372,
+          "minimum": 0.3900965787470341,
+          "n": 25,
+          "p95": 82.03902939334512,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "ninfer-d4-c4-chunk2048",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "source/ninfer-build-sm89/apps/ninfer-serve",
+        "capacity_note": "Existing runnable C4/MTP4 source configuration; exploratory full128K/PD checks after formal MTP0 comparison, not pooled with plain results.",
+        "chunk": 2048,
+        "concurrency": 4,
+        "context_window": 212992,
+        "draft": 4,
+        "engine": "ninfer",
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "ninfer-d4-c4-chunk2048",
+        "kv_capacity": 212992,
+        "kv_dtype": "rk4v4-e8",
+        "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "NInfer-v2-mixed-Q4-Q5"
+      },
+      "configuration_sha256": "67fc564f9a687c47a86a7109f97af8b8e31f3f4d9a64f02c2a8c938ba1dd8370",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 1239.0,
+        "sampled_peak_mib": 22869.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 700
+      },
+      "group": "resume-high",
+      "identity": "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/resume-high",
+      "long": {
+        "aggregate_tokens_per_s": 0.5848235822469589,
+        "attempted_latency_s": {
+          "maximum": 78.88721061125398,
+          "median": 78.88721061125398,
+          "minimum": 78.88721061125398,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.0026741065084934235,
+          "median": 0.0026741065084934235,
+          "minimum": 0.0026741065084934235,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 78.88721061125398,
+          "median": 78.88721061125398,
+          "minimum": 78.88721061125398,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 109.43471149727702,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 78.88665687665343,
+          "median": 78.88665687665343,
+          "minimum": 78.88665687665343,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "prefix": {
+        "long": {
+          "cached_tokens": 24554,
+          "computed_tokens": 106481,
+          "counter_observations": 1,
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 540188,
+          "computed_tokens": 49204,
+          "counter_observations": 24,
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "ninfer-mtp4-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 11.404059853815697,
+        "attempted_latency_s": {
+          "maximum": 82.34535578265786,
+          "median": 68.11134525388479,
+          "minimum": 0.3861469179391861,
+          "n": 24,
+          "p95": 81.32187320291996,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.005098648369312286,
+          "median": 0.00242045521736145,
+          "minimum": 0.0004604347050189972,
+          "n": 24,
+          "p95": 0.003235168755054474,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 82.34535578265786,
+          "median": 68.11134525388479,
+          "minimum": 0.3861469179391861,
+          "n": 24,
+          "p95": 81.32187320291996,
+          "p99": null
+        },
+        "measured_span_s": 109.43471149727702,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "1": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "10": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 82.34489116445184,
+          "median": 68.11091651022434,
+          "minimum": 0.38570868968963623,
+          "n": 24,
+          "p95": 81.32140048965812,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 11.988883436062656,
+        "attempted_latency_s": {
+          "maximum": 82.34535578265786,
+          "median": 69.09318367764354,
+          "minimum": 0.3861469179391861,
+          "n": 25,
+          "p95": 81.32187320291996,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.005098648369312286,
+          "median": 0.0024283118546009064,
+          "minimum": 0.0004604347050189972,
+          "n": 25,
+          "p95": 0.003235168755054474,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 82.34535578265786,
+          "median": 69.09318367764354,
+          "minimum": 0.3861469179391861,
+          "n": 25,
+          "p95": 81.32187320291996,
+          "p99": null
+        },
+        "measured_span_s": 109.43471149727702,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "1": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "10": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          },
+          "5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.07310294778086986,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.07310294778086986,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 82.34489116445184,
+          "median": 69.09273612499237,
+          "minimum": 0.38570868968963623,
+          "n": 25,
+          "p95": 81.32140048965812,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm024-int4-c4-b4096-cap2048-eager-mem95-mtp1",
+      "comparison_eligible": false,
+      "complete": false,
+      "configuration": {
+        "binary": "pd-baselines/vllm-venv/bin/python",
+        "capacity_note": "Exploratory C4/MTP1 full131328-context capacity and semantic gates; keep speculative model memory cost and failures separate from MTP0.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 1,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm024-int4-c4-b4096-cap2048-eager-mem95-mtp1",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "597949743f2a00c0539d9e2ff0f67b32c608a378e973f99e7529fd6fa9445f70"
+      },
+      "configuration_sha256": "e7ad03e5f77718533dadc21895752d324e30f6ce1a35140122c2f1db6516c24c",
+      "error": "RuntimeError: server startup exit 1",
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": null,
+        "sampled_peak_mib": null,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "unobserved",
+        "valid_samples": 0
+      },
+      "group": "probe-128k",
+      "identity": "vllm-mtp1-128k-probe-v1/vllm024-int4-c4-b4096-cap2048-eager-mem95-mtp1-r0-probe-128k/probe-128k",
+      "long": null,
+      "morphx_coverage": null,
+      "observed_responses": 0,
+      "offered": null,
+      "parse_errors": [],
+      "planned": null,
+      "prefix": {
+        "long": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "status": "unobserved",
+          "successful_requests": 0
+        },
+        "short": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "status": "unobserved",
+          "successful_requests": 0
+        }
+      },
+      "quality_status": null,
+      "rate": null,
+      "repetition": 0,
+      "run": "vllm-mtp1-128k-probe-v1",
+      "short": null,
+      "state": "failed",
+      "summary": null
+    }
+  ],
+  "limitation": "Cross-engine quantization/templating/capacity differences are not isolated scheduler effects.",
+  "scope": "Exploratory MTP qualification and one independent3-group NInfer mixed diagnostic; not pooled with MTP0",
+  "source_hashes": {
+    "ninfer-mtp4-128k-probe-v1/campaign.json": {
+      "bytes": 6907,
+      "sha256": "11aad39edb6a115f150c58d6d2bb51b896c0e4163f4d81b7b9228d66f0952236"
+    },
+    "ninfer-mtp4-128k-probe-v1/config.json": {
+      "bytes": 672,
+      "sha256": "7cc4cd98771f6d2e40196f710e28436482d0bedd9f37503bc0045647465d2d3b"
+    },
+    "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/gpu.csv": {
+      "bytes": 29824,
+      "sha256": "c8a72e396eda21d4b0bff9bea93a25b338151cf5ffbaa981e2962c3f7ae542f3"
+    },
+    "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/probe-128k/requests.jsonl": {
+      "bytes": 204859,
+      "sha256": "c5081ba9e5f069a00737c1ba5f976625a985d11a31850029f306c3b85a38af04"
+    },
+    "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/probe-128k/result.json": {
+      "bytes": 6652,
+      "sha256": "5d487381069b38b02f14d21762759c225a18b771f726b21ca72f68f9f19289f9"
+    },
+    "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/probe-128k/specifications.json": {
+      "bytes": 201854,
+      "sha256": "4a2d28b120bbc9c915941ebffef02f5493736839c6e6ee78b408b44da6366a06"
+    },
+    "ninfer-mtp4-128k-probe-v1/ninfer-d4-c4-chunk2048-r0-probe-128k/quality-result.json": {
+      "bytes": 116,
+      "sha256": "7e3b86308b5bebde6bd66caebc7f2fe48025f1d16a8efc5bbb393d62601cf045"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/campaign.json": {
+      "bytes": 7416,
+      "sha256": "7214e2df5ccca9b03f8e4855d32862281b5dd403b0721307015c770c5928943d"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/config.json": {
+      "bytes": 672,
+      "sha256": "7cc4cd98771f6d2e40196f710e28436482d0bedd9f37503bc0045647465d2d3b"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/cold-low/requests.jsonl": {
+      "bytes": 1241562,
+      "sha256": "fff7fbd0f0226b03d9a60d84335f9729ef0f64d5da24e0a8136c06465691990b"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/cold-low/result.json": {
+      "bytes": 7471,
+      "sha256": "4e26aa9f087b3da60bea4907dca9fc12f825d787ba6111afe8f01203d20ae3b7"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/cold-low/specifications.json": {
+      "bytes": 1167790,
+      "sha256": "43d7d34294452b9c2c5d2e517544de132382a1aba2c5f36e5e991508d299603a"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/gpu.csv": {
+      "bytes": 37579,
+      "sha256": "91d4d9dcc0f404f4de80d0c7fa355bf4b17115fd0bea5a0fa5f376889c41beb3"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-cold-low/quality-result.json": {
+      "bytes": 116,
+      "sha256": "0fe794f33583cb59f5af1246b57641418384c5ae6ff583314e32bbb049e69792"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/gpu.csv": {
+      "bytes": 37376,
+      "sha256": "c5d0d6ccf6b68a1929f05a6a22beb4bdce9570568decd9c6ab58a060d42a2a94"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/quality-result.json": {
+      "bytes": 116,
+      "sha256": "4e5df4b9bdd5156f1000f3cf2493e6a126cb2266ee0cb14d528543ad03776d93"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/resume-high/requests.jsonl": {
+      "bytes": 1241615,
+      "sha256": "739225f42561412c71b7ecb03faf2761a9908162807ccf0507859e2d77f9e618"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/resume-high/result.json": {
+      "bytes": 7500,
+      "sha256": "3416d9d928dcd48165bd8b5f70604b062027ea8267da5235aee5a7fa150bd561"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-resume-high/resume-high/specifications.json": {
+      "bytes": 1167833,
+      "sha256": "ce26021f2bdc26aeeba5132f5ffffc96bcf20e722c67028a14518bb76030484c"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/gpu.csv": {
+      "bytes": 21303,
+      "sha256": "aae5ce0a5c953f7b08e2a9dab8e35fa0b0146330c01929413e54cc5dbe23671c"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/quality-result.json": {
+      "bytes": 116,
+      "sha256": "a3d3667dd9963c6922c20b429b566adac4d1a64438cff724dd49abcaf84e7355"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/short-control/requests.jsonl": {
+      "bytes": 1036966,
+      "sha256": "673f645c15e663ae0d570b6e3bc3a392887d3e751ee9c95d3afea91a15b100b2"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/short-control/result.json": {
+      "bytes": 7262,
+      "sha256": "3d8351c071a6629af2c933712a2175d7a056ec551e1dd82619aae8e3a45f9b44"
+    },
+    "ninfer-mtp4-lowrate-diagnostic-v1/ninfer-d4-c4-chunk2048-r0-short-control/short-control/specifications.json": {
+      "bytes": 966009,
+      "sha256": "204bc977154fe440c893d0db14d2479e088a2209fe0c70f9d4aaedb6d36adca3"
+    },
+    "vllm-mtp1-128k-probe-v1/campaign.json": {
+      "bytes": 6817,
+      "sha256": "3cabb05905692e44d14bf193804a0e0d613be50993c01aa3ed849c0a6cea26e9"
+    },
+    "vllm-mtp1-128k-probe-v1/config.json": {
+      "bytes": 1570,
+      "sha256": "5db5fa1dcffd9095ca96f86180dc1fddf4e35f7680a25c5af121ac099ae2c490"
+    }
+  }
+}
