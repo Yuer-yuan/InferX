@@ -183,14 +183,21 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             '--chunked-prefill-size', str(case['chunk']), '--kv-cache-dtype', case['kv_dtype'],
             '--mem-fraction-static', str(case.get('gpu_memory_utilization', .95)),
             '--enable-metrics', '--tool-call-parser', 'qwen3_coder',
-            '--reasoning-parser', 'qwen3', '--language-model-only',
+            '--reasoning-parser', 'qwen3',
             '--default-chat-template-kwargs', '{"enable_thinking":false}']
+        if case.get('text_only_via_hf_config'):
+            args += ['--json-model-override-args', '{"language_model_only":true}']
+        else:
+            args += ['--language-model-only']
+        if case.get('unified_memory'):
+            args += ['--enable-unified-memory']
         if case.get('mixed_chunk', True):
             args += ['--enable-mixed-chunk']
         if case.get('cuda_graph') is False:
             args += ['--disable-prefill-cuda-graph', '--disable-decode-cuda-graph']
         for field, flag in [('max_mamba_cache_size', '--max-mamba-cache-size'),
                             ('mamba_full_memory_ratio', '--mamba-full-memory-ratio'),
+                            ('mamba_radix_cache_strategy', '--mamba-radix-cache-strategy'),
                             ('attention_backend', '--attention-backend'),
                             ('cuda_graph_max_bs_decode', '--cuda-graph-max-bs-decode')]:
             if field in case:

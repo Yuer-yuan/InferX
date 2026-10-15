@@ -190,6 +190,21 @@ def test_sglang_runtime_cannot_silently_shrink_context_or_concurrency():
             pd.validate_sglang_runtime(c,changed)
 
 
+def test_sglang_hf_text_mode_preserves_model_and_explicit_pool_policy(tmp_path):
+    import json
+    c=case('sglang');c.update(context_window=131328,text_only_via_hf_config=True,
+        unified_memory=True,max_mamba_cache_size=20,
+        mamba_radix_cache_strategy='extra_buffer_lazy')
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert '--language-model-only' not in args and '--language-only' not in args
+    assert json.loads(args[args.index('--json-model-override-args')+1])=={'language_model_only':True}
+    assert '--enable-unified-memory' in args
+    assert args[args.index('--context-length')+1]=='131328'
+    assert args[args.index('--max-running-requests')+1]=='4'
+    assert args[args.index('--max-mamba-cache-size')+1]=='20'
+    assert args[args.index('--mamba-radix-cache-strategy')+1]=='extra_buffer_lazy'
+
+
 def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     c=case();c.update(draft=4,draft_kv_dtype='q4_0')
     args=pd.engine_command(c,tmp_path,tmp_path/'run')

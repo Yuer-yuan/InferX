@@ -639,6 +639,79 @@
       "mixed_chunk": true,
       "max_mamba_cache_size": 16,
       "mamba_full_memory_ratio": 0.1
+    },
+    {
+      "id": "sglang0519-int4-c4-ch512-eager-mem95-hftext-lazy20",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.95,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
+      },
+      "capacity_note": "Use stock HF language_model_only config bit after actual CLI whitelist rejected Qwen; CPU ModelConfig confirms unchanged64layers/5120hidden/131328context and no vision. Float32 SSM retained; actual C4/full128K gates required.",
+      "mixed_chunk": true,
+      "max_mamba_cache_size": 20,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer_lazy"
+    },
+    {
+      "id": "sglang0519-int4-c4-ch512-eager-mem95-hftext-lazy20-unified",
+      "engine": "sglang",
+      "binary": "pd-baselines/sglang0519-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8_e4m3",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 512,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.95,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "fdc65d1235f6861ad3a1116c36c2270e46a95f030200091f8de595c6c3426cd2",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas",
+        "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+        "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions"
+      },
+      "capacity_note": "Same27B/FP8KV/Float32SSM/C4/lazy20 configuration with stock SGLang dynamic unified pool enabled; observe actual backend/context/capacity and tool correctness before PD comparison.",
+      "mixed_chunk": true,
+      "max_mamba_cache_size": 20,
+      "mamba_full_memory_ratio": 0.1,
+      "text_only_via_hf_config": true,
+      "mamba_radix_cache_strategy": "extra_buffer_lazy",
+      "unified_memory": true
     }
   ]
 }
