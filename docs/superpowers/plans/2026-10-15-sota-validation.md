@@ -16,7 +16,7 @@
 - GPU1 only, GPU0 intentionally stopped; HDD /home/guokc/mypro/gnn-mount-sda1/InferX; source env.sh, reuse27B; hf-mirror for any required weights.
 - Owned identity/idle/stopped-GPU0 guard and signal-safe exact256K/MTP7/both-manifest restoration; no global driver/package/permission changes.
 - Full128K/C4/MTP0/eager; exact frozen24Kshort/.5RPS48s/longat16s; per-engine matched weights/precision/capacities. Do not compare different quantizations as isolated scheduler effects.
-- At most3root-backed MorphX compatibility corrections; no full-system rewrite if a candidate lacks hybrid support. Only qualified complete long workloads yield efficacy statistics.
+- Custom compilation and missing integration are explicitly authorized; preserve original mechanism, pursue source-backed corrections, and do not stop merely at absent native hybrid support. Only qualified complete long workloads yield efficacy statistics.
 
 ## Review Focus
 
@@ -47,7 +47,7 @@ Expected: supported candidate selection and audited solo reference, without trea
 **Interfaces:** A source-anchored launch-attribute correction preserves native attributed launches and records native/transformed coverage; preparation rejects unexpected source or overwrite. Reuse run_owned_command/run_with_restoration, original idle guard and existing affectedCTest binaries; add a narrow qualifier launcher if existing flags cannot express an immutable library.
 
 - [ ] Write RED for source-anchor rejection, no old-file overwrite, attribute-preserving dispatch and explicit coverage; implement smallest demonstrated correction, GREEN. Do not rewrite unaffected runtime behavior.
-- [ ] Build fresh named runtime onHDD; run actual independent cooperative integer oracle and original affected GDN/GQA/Graph numerical tests with compiler-matched native/original-port/corrected-port. Inspect outputs and preserve all failures. Investigate at most3root-backed corrections with regressions; no speculative successful-probe claims.
+- [ ] Build fresh named runtime onHDD; run actual independent cooperative integer oracle and original affected GDN/GQA/Graph numerical tests with compiler-matched native/original-port/corrected-port. Inspect outputs and preserve all failures. Investigate root-backed corrections and custom builds with regressions; no speculative successful-probe claims.
 - [ ] If numerical qualification passes, run hook-off and hook-on full27B code/four24Ktools/128K gates with actual coverage. Establish actual author P/D orchestration path before any efficacy claim; otherwise preserve exact unqualified gate and explanatory source/runtime evidence.
 - [ ] Full CPU suite, exact restoration and hashes; commit actual adaptation/probe evidence.
 
@@ -59,9 +59,9 @@ Expected: qualified actual MorphXPD path or demonstrated compatibility boundary 
 
 **Interfaces:** Task1 candidate audit + Task2 qualified execution/coverage. Same-engine control/advanced cases and lane-specific solo baselines use exact frozen requests and observed runtime capacities. No papers-only method receives synthetic measurements.
 
-- [ ] For Bullet source paths found feasible inTask1, perform bounded actual CPU/GPU compatibility/model gates; otherwise record exact unsupported model/state/weight-memory boundary. No stockGPU0script/globalMPS invocation.
+- [ ] For Bullet, perform actual CPU/GPU compatibility/model gates and adapt missing hybrid/state paths where feasible; missing native class alone is not a terminal boundary. No stockGPU0script/globalMPS invocation.
 - [ ] Run one complete diagnostic per qualified advanced setting, at most3settings/mechanism; choose using short/long/throughput jointly. Freeze selection before3fresh mixed repeats and matched isolated diagnostic. Keep oldSGPD/simple references separate byengine/config.
-- [ ] If no new advanced path qualifies, finish all justified bounded qualification work and retain an explicit unknown efficacy result rather than invent another framework; preserve already-qualifiedSGPD evidence as the advanced measured reference.
+- [ ] If no new advanced path qualifies, finish all justified custom-build/adaptation qualification work and retain an explicit unknown efficacy result rather than invent another framework; preserve already-qualifiedSGPD evidence as the advanced measured reference.
 - [ ] Audit complete longs/tools/runtime/source/input hashes; verify exact original service and manifests, run full CPU suite and commit measured/failed evidence.
 
 Expected: actual qualified comparison data where possible and reproducible boundaries elsewhere; no conclusion from truncated, refused or stalled long work.
