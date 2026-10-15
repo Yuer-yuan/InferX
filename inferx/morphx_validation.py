@@ -132,3 +132,29 @@ def remove_debug_kernel_skip(text):
 '''
     if text.count(old)!=1:raise ValueError('unexpected or already patched debug skip')
     return text.replace(old,'    // All kernel names retain execution; no upstream debug-only success return.\n')
+
+
+def patch_proc_address_queries(text):
+    """Honor native version/flag validation before substituting hooked entries."""
+    for name in ['cuGetProcAddress_v2','cuGetProcAddress']:
+        signature=f'CUresult {name}(const char* symbol, void** pfn, int'
+        start=text.find(signature)
+        if start<0:raise ValueError('unexpected query source')
+        point=text.find('    std::string sym_str(symbol);',start)
+        if point<0 or 'inferx_query_validation' in text[start:point]:raise ValueError('unexpected or already patched query source')
+        validation=f'''    // inferx_query_validation: retain native ABI/version/flag errors and status.
+    CUresult validated = real_{name}(symbol, pfn, cudaVersion, flags, symbolStatus);
+    if(validated != CUDA_SUCCESS || pfn == nullptr || *pfn == nullptr) return validated;
+    if(flags == CU_GET_PROC_ADDRESS_PER_THREAD_DEFAULT_STREAM) {{
+        if(strcmp(symbol, "cuLaunchKernel") == 0) {{
+            *pfn = (void*)cuLaunchKernel_ptsz;
+            return CUDA_SUCCESS;
+        }}
+        if(strcmp(symbol, "cuLaunchKernelEx") == 0) {{
+            *pfn = (void*)cuLaunchKernelEx_ptsz;
+            return CUDA_SUCCESS;
+        }}
+    }}
+'''
+        text=text[:point]+validation+text[point:]
+    return text

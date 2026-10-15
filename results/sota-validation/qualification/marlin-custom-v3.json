@@ -1,0 +1,55 @@
+{
+  "status": "restored",
+  "scope": "Numerical correctness qualification only, no full model or PD performance claim.",
+  "controller_pid": 3705681,
+  "started_unix": 1792077788.7039096,
+  "cases": [
+    {
+      "test": "marlin-unhooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/marlin-custom-v3/marlin-unhooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": null,
+      "log": "marlin-unhooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 7.364070039242506
+    },
+    {
+      "test": "marlin-hooked",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/marlin-custom-v3/marlin-hooked-artifacts"
+      ],
+      "profile": "0",
+      "binary_sha256": null,
+      "library_sha256": "412482d481d6a87546a93b8a8951181db4835be2bfe9bcccc409954ca23e4c8d",
+      "log": "marlin-hooked.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 8.045299720019102
+    },
+    {
+      "test": "marlin-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/raw/marlin-custom-v3/marlin-profile-artifacts"
+      ],
+      "profile": "1",
+      "binary_sha256": null,
+      "library_sha256": "412482d481d6a87546a93b8a8951181db4835be2bfe9bcccc409954ca23e4c8d",
+      "log": "marlin-profile.log",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 7.764204330742359
+    }
+  ],
+  "finished_unix": 1792077875.0804665,
+  "restored": true
+}

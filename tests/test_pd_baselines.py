@@ -665,3 +665,13 @@ finally:
             process.wait(timeout=3)
             if (tmp_path/'original.json').exists():
                 kill_fixture(json.loads((tmp_path/'original.json').read_text()))
+
+
+def test_morphx_qualification_can_boot_without_inventing_observed_coverage(tmp_path):
+    from scripts.run_pd_baselines import OwnedEngine
+    c=case('sglang');c['morphx']={'enabled':True,'patched_launches':0}
+    with pytest.raises(ValueError,match='observed'):pd.engine_command(c,tmp_path,tmp_path/'formal')
+    engine=OwnedEngine(c,tmp_path,tmp_path/'qualification',qualify_morphx=True)
+    assert 'sglang.launch_server' in engine.args
+    assert c['morphx']['patched_launches']==0
+    with pytest.raises(ValueError,match='observed'):pd.validate_case(c)

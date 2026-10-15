@@ -29,3 +29,17 @@ def patch_primary_stream_groups(source):
     changed,count=re.subn(pattern,replacement,source,flags=re.DOTALL)
     if count!=1:raise ValueError('unexpected or already patched PDMux stream initializer')
     return changed
+
+
+def patch_marlin_loader(source):
+    pattern=r'(def _jit_gptq_marlin_module\(dtype: torch.dtype\) -> Module:\n)    args = make_cpp_args\(dtype\)\n.*?(?=\ndef _or_empty\()'
+    replacement='''    import os
+    from tvm_ffi import load_module
+    if dtype != torch.bfloat16:
+        raise ValueError('custom MorphX Marlin qualified for BF16 only')
+    return load_module(os.environ['INFERX_MORPHX_MARLIN'])
+
+'''
+    changed,count=re.subn(pattern,lambda m: m.group(1)+replacement,source,flags=re.DOTALL)
+    if count!=1:raise ValueError('unexpected or already patched Marlin JIT loader')
+    return changed

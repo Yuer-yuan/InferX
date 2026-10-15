@@ -44,11 +44,11 @@ def wait_idle(timeout=900):
 
 
 class OwnedEngine:
-    def __init__(self, case, root, directory):
+    def __init__(self, case, root, directory, *, qualify_morphx=False):
         self.case, self.root, self.directory = case, Path(root), Path(directory)
         self.configuration = case  # Existing independently validated code-quality gate interface.
         self.directory.mkdir(parents=True, exist_ok=False)
-        self.args = engine_command(case, self.root, self.directory)
+        self.args = engine_command(case, self.root, self.directory, qualify_morphx=qualify_morphx)
         self.proc = self.identity = self.log = self.telemetry = None
 
     def __enter__(self):

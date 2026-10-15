@@ -132,7 +132,7 @@ def arrival_requests(definition: dict, templates: dict, grid: dict, label: str) 
     return requests
 
 
-def validate_case(case: dict) -> None:
+def validate_case(case: dict, *, qualify_morphx=False) -> None:
     for key in ('id', 'engine', 'binary', 'model', 'quantization', 'gpu_uuid',
                 'context_window', 'kv_capacity', 'concurrency', 'chunk', 'kv_dtype',
                 'draft', 'morphx'):
@@ -159,7 +159,7 @@ def validate_case(case: dict) -> None:
     if (case['engine'] == 'llama' and not case.get('unified_kv')
             and case['kv_capacity']//case['concurrency'] < 131072+256):
         raise ValueError('128K cannot fit the divided per-slot context')
-    if case['morphx'].get('enabled') and case['morphx'].get('patched_launches', 0) <= 0:
+    if case['morphx'].get('enabled') and case['morphx'].get('patched_launches', 0) <= 0 and not qualify_morphx:
         raise ValueError('MorphX needs observed patched kernel launches')
     if (case.get('cuda_graph') is False and
             case.get('compilation_config', {}).get('cudagraph_mode') not in (None, 0, 'NONE')):
@@ -186,8 +186,8 @@ def validate_sglang_runtime(case: dict, info: dict) -> None:
         raise RuntimeError('SGLang actual token pool differs from matched pool limit')
 
 
-def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
-    validate_case(case)
+def engine_command(case: dict, root: Path, run_dir: Path, *, qualify_morphx=False) -> list[str]:
+    validate_case(case, qualify_morphx=qualify_morphx)
     binary = _owned_path(root, case['binary'])
     model = _owned_path(root, case['model'])
     common = ['taskset', '-c', '28-35', binary]

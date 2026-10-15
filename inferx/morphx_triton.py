@@ -31,6 +31,13 @@ def llvm18_compatible_ir(source):
         changes['gep_wrap_promises']+=removed
         return 'getelementptr '+('inbounds ' if 'inbounds' in flags else '')
     source=re.sub(r'\bgetelementptr ((?:inbounds |nuw |nusw )+)',gep,source)
+    changes['trunc_wrap_promises']=0
+    def trunc(match):
+        changes['trunc_wrap_promises']+=len(match.group(1).split())
+        return 'trunc '
+    source=re.sub(r'\btrunc ((?:nuw |nsw )+)',trunc,source)
+    source,changes['icmp_samesign']=re.subn(r'\bicmp samesign ', 'icmp ',source)
+    source,changes['nocreateundeforpoison']=re.subn(r'\bnocreateundeforpoison ', '',source)
     return source,changes
 
 

@@ -112,3 +112,44 @@ def test_float32_named_kernel_is_not_silently_skipped(tmp_path):
     subprocess.run(['g++',str(source),'-o',str(tmp_path/'probe')],check=True,capture_output=True,text=True)
     assert subprocess.run([str(tmp_path/'probe')]).returncode==0
     with pytest.raises(ValueError):remove_debug_kernel_skip(changed)
+
+
+def test_proc_queries_preserve_per_thread_flags_and_native_rejections(tmp_path):
+    import re
+    from inferx.morphx_validation import patch_proc_address_queries
+    original=(FIXTURES/'morphx_proc_address_original.cpp').read_text();changed=patch_proc_address_queries(original)
+    names=set(re.findall(r'\*pfn = \(void\*\)(\w+);',original)) - {'cuGetProcAddress','cuGetProcAddress_v2'}
+    prefix='''#include <string>
+#include <cstring>
+#include <cassert>
+using CUresult=int;using cuuint64_t=unsigned long;using CUdriverProcAddressQueryResult=int;
+const int CUDA_SUCCESS=0, CUDA_ERROR_INVALID_VALUE=1, CU_GET_PROC_ADDRESS_SUCCESS=0;
+const int CU_GET_PROC_ADDRESS_PER_THREAD_DEFAULT_STREAM=2;
+void* shared_lib=(void*)1;void ld_init(){};void native(){};
+CUresult query(const char* s,void** f,int v,cuuint64_t flags,CUdriverProcAddressQueryResult* status){
+ if(!s||!f||v==99999||flags>2)return 1;
+ *f=(std::string(s)=="missing")?nullptr:(void*)native;
+ if(status)*status=(*f)?0:2;return 0;
+}
+auto real_cuGetProcAddress=query;auto real_cuGetProcAddress_v2=query;
+CUresult cuGetProcAddress(const char*,void**,int,cuuint64_t,CUdriverProcAddressQueryResult*);
+CUresult cuGetProcAddress_v2(const char*,void**,int,cuuint64_t,CUdriverProcAddressQueryResult*);
+'''
+    for name in sorted(names):prefix+='void '+name+'(){}\n'
+    main='''int main(){
+ for(auto fn:{cuGetProcAddress,cuGetProcAddress_v2}) {
+  void* f=nullptr;int status=-1;
+  assert(fn("cuLaunchKernel",&f,12080,0,&status)==0 && f==(void*)cuLaunchKernel);
+  assert(fn("cuLaunchKernel",&f,12080,2,&status)==0 && f==(void*)cuLaunchKernel_ptsz);
+  assert(fn("cuLaunchKernelEx",&f,12080,2,&status)==0 && f==(void*)cuLaunchKernelEx_ptsz);
+  assert(fn("cuLaunchKernel",&f,99999,0,&status)==1);
+  assert(fn("cuLaunchKernel",nullptr,12080,0,&status)==1);
+  assert(fn("missing",&f,12080,2,&status)==0 && f==nullptr && status==2);
+  assert(fn("cuLaunchKernel",&f,12080,99,&status)==1);
+ }
+}
+'''
+    source=tmp_path/'query.cpp';source.write_text(prefix+changed+main)
+    subprocess.run(['g++','-std=c++17',str(source),'-o',str(tmp_path/'probe')],check=True,capture_output=True,text=True)
+    assert subprocess.run([str(tmp_path/'probe')]).returncode==0
+    with pytest.raises(ValueError):patch_proc_address_queries(changed)
