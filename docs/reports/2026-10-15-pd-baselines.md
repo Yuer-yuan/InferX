@@ -6,6 +6,8 @@
 
 同一 Qwen3.8-27B GGUF、单张 4090、C4、MTP关闭、共享 KV 池212992 token、q4_0，短请求含约24K历史。固定48秒短请求波次，第16秒加入128K长请求。所有表内混合组均实际完成长请求，没有截断或拒绝它来降低短请求延迟。
 
+这是用于隔离长短请求干扰的合成负载；它不能直接估计真实企业或Agent流量中该问题的发生频率。
+
 | llama.cpp 配置 | 短到达率 | 纯短请求 P95 | 加冷长请求后的短 P95 | 加续接长请求后的短 P95 |
 |---|---:|---:|---:|---:|
 | chunk2048，诊断各1轮 | 0.5 RPS | 1.972 s | 132.968 s | 未测 |
@@ -58,9 +60,22 @@ V3将显存比例降至0.95后，实际池4.78 GiB、144460 token；代码检查
 
 默认编译/Graph配置实际启动失败：KV可用2.39 GiB，而完整131328窗口至少需要4.31 GiB；标准1 GiB CPU权重卸载使模型显存由16.84降到15.76 GiB，KV增至3.46 GiB，仍不足以启动该窗口。两次失败及恢复均保留，未缩短输入换取通过，见 [Graph容量失败记录](../../results/pd-baselines/vllm-graph-capacity-failures.json)。继续验证受支持的mode0/FULL_DECODE_ONLY组合及容量设置，不能据此笼统断言Graph不能用。
 
+后续mode0/FULL_DECODE_ONLY实测：mem95全驻留仅4.20 GiB KV，仍无法启动完整窗口；增加1 GiB权重卸载后，池为160512 token，代码、4并发工具预热和完整128K均通过，但长请求耗时187.866秒、TTFT183.150秒。全驻留mem98、eager mem967，以及总batch减至2048的decode Graph/mem98，均通过代码检查后在并发24K预热OOM；不能将其启动时显示的148838–159052 token池算作可用容量。见 [5个候选的完整结果与失败证据](../../results/pd-baselines/vllm-resident-graph-outcomes.json)。本轮收束参数探索，复测已验证的eager/mem95；卸载路径证明Graph可运行，但它的容量与速度代价需另列。
+
 还有一个明确的分块约束：实际启动日志将attention块设为1568 token以匹配Mamba状态页；本版align调度要求long_prefill_token_threshold不小于该块，不能直接照搬llama.cpp的128分块。[10月14日合入的上游内部checkpoint改动](https://github.com/vllm-project/vllm/pull/60050)面向FlashInfer GDN预填充，明确没有改动Triton/FLA路径；本机当前使用Triton，因此不能直接将该改动的GB200收益当成本机结果。
 
 V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认home缓存，已受控停止并恢复服务；随后只迁移本次生成的0.6.12目录至HDD，保留旧版本目录，显式配置FLASHINFER_WORKSPACE_BASE和TORCH_EXTENSIONS_DIR，并验证解析后的路径位于HDD。该中断不算模型性能或容量失败。
+
+## 现有方法已经覆盖什么
+
+| 方法 | 已有机制或证据 | 对本课题的含义 |
+|---|---|---|
+| [vLLM AgentX调度](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-09-08-vllm-agentx.md) | 用单请求token上限缓解Agent流量的队头阻塞；另有DP预填充节奏控制 | “给长预填充分块、给短请求留预算”已经有现成实现；本版prefill_schedule_interval仅DP EngineCore使用，不能给单GPU传一个参数就认定生效 |
+| [Marconi](https://arxiv.org/abs/2411.19379) | 面向Hybrid模型，按复用潜力和计算收益/状态空间开销选择checkpoint的准入与淘汰 | Hybrid状态与Attention KV不同、应考虑重算收益，这些本身已不是新意 |
+| [vLLM内部checkpoint](https://github.com/vllm-project/vllm/pull/60050) | FlashInfer GDN在一次预填充中导出边界状态，减少为缓存边界拆分forward的额外工作 | 必须核对GPU与backend适用性；当前Triton路径没有得到这个改动的实测收益 |
+| [SuffixReplay](https://arxiv.org/html/2609.33477) | 通过有限后缀重放近似重建线性状态，减少对密集checkpoint的依赖；论文在三种Hybrid模型上报告LongBench/RULER平均质量保留91.4–100% | 更细复用边界也已有新方法；其近似质量与代码Agent工具正确性不能等同，需要单独评估，本机尚未部署 |
+
+因此有依据的下一步是：先看容量可用、质量合格的现成调度在本机能达到的延迟与长请求完成代价，再决定是否值得研究更细的调度机制。上表未在本机测试的方案不归为失败，也不以论文数值替代这里的128K混合负载结果。
 
 ## 可复现性与剩余工作
 

@@ -1,0 +1,1060 @@
+[
+  {
+    "run": "vllm-128k-probe-v6-decodegraphs",
+    "status": "restored",
+    "restored": true,
+    "campaign_sha256": "074e7f6d52d004ca214e1aac5616a0a1a766c6d6df82c6492ead6748b1c77d6c",
+    "config_sha256": "95fb28b9b18b68dbce13ed27fff85d1a7a33ecc78a79cb2e55d7d5f08274706c",
+    "cases": [
+      {
+        "state": {
+          "case": "vllm024-int4-c4-b4096-cap2048-decodegraph-mem95",
+          "repetition": 0,
+          "group": "probe-128k",
+          "state": "failed",
+          "error": "RuntimeError: server startup exit 1"
+        },
+        "memory_and_errors": [
+          "(EngineCore pid=3320567) INFO 10-15 11:41:17 [gpu_model_runner.py:5255] Model loading took 16.84 GiB memory and 3.849535 seconds",
+          "(EngineCore pid=3320567) INFO 10-15 11:41:22 [gpu_model_runner.py:6588] Estimated CUDA graph memory: 0.54 GiB total",
+          "(EngineCore pid=3320567) INFO 10-15 11:41:22 [gpu_worker.py:508] Available KV cache memory: 4.2 GiB",
+          "(EngineCore pid=3320567) ERROR 10-15 11:41:22 [core.py:1231] ValueError: To serve at least one request with the model's max seq len (131328), (4.31 GiB KV cache is needed, which is larger than the available KV cache memory (4.2 GiB). Based on the available memory, the estimated maximum model length is 127008. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.",
+          "(EngineCore pid=3320567) ValueError: To serve at least one request with the model's max seq len (131328), (4.31 GiB KV cache is needed, which is larger than the available KV cache memory (4.2 GiB). Based on the available memory, the estimated maximum model length is 127008. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details."
+        ],
+        "raw_log_sha256": "1b43ae7acd31e839be5efb33c52e116e45cc9f35453334e130616dabcddc1d47",
+        "warmup": [],
+        "requests": []
+      },
+      {
+        "state": {
+          "case": "vllm024-int4-c4-b4096-cap2048-decodegraph-mem95-offload1",
+          "repetition": 0,
+          "group": "probe-128k",
+          "state": "measured",
+          "quality": {
+            "status": "passed",
+            "error": null,
+            "test_elapsed": 0.0019515901803970337,
+            "elapsed": 0.06798209995031357
+          }
+        },
+        "memory_and_errors": [
+          "(EngineCore pid=3321001) INFO 10-15 11:41:58 [gpu_model_runner.py:5255] Model loading took 15.76 GiB memory and 11.733530 seconds",
+          "(EngineCore pid=3321001) INFO 10-15 11:42:06 [gpu_model_runner.py:6588] Estimated CUDA graph memory: 0.54 GiB total",
+          "(EngineCore pid=3321001) INFO 10-15 11:42:06 [gpu_worker.py:508] Available KV cache memory: 5.28 GiB",
+          "(EngineCore pid=3321001) INFO 10-15 11:42:06 [kv_cache_utils.py:2146] GPU KV cache size: 160,512 tokens"
+        ],
+        "raw_log_sha256": "219d6fadb8cf9911eede8f8b0d1ba4c4d2768b629cf520193b50427d2274f083",
+        "warmup": [
+          {
+            "id": "seed-short-0",
+            "functional_ok": true,
+            "latency_s": 38.6041005551815,
+            "summary": {
+              "ok": true,
+              "errors": [],
+              "wall_s": 38.6041005551815,
+              "ttft_s": 34.874941285699606,
+              "completion_tokens": 52,
+              "prompt_tokens": 24557,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": 1.347007163802978,
+              "observed_decode_tps": 13.676004781390196,
+              "usage": {
+                "prompt_tokens": 24557,
+                "total_tokens": 24609,
+                "completion_tokens": 52
+              },
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-b8f9c58be1cf1e97",
+                  "type": "function",
+                  "index": 0,
+                  "function": {
+                    "name": "record_status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "{\"status\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ready"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"task\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "-pro"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "be"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"attempt\": "
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "3}"
+                  }
+                }
+              ],
+              "finish_reason": "stop",
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-1",
+            "functional_ok": true,
+            "latency_s": 38.60597398504615,
+            "summary": {
+              "ok": true,
+              "errors": [],
+              "wall_s": 38.60597398504615,
+              "ttft_s": 34.87416014820337,
+              "completion_tokens": 52,
+              "prompt_tokens": 24557,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": 1.3469417976643192,
+              "observed_decode_tps": 13.666276569451682,
+              "usage": {
+                "prompt_tokens": 24557,
+                "total_tokens": 24609,
+                "completion_tokens": 52
+              },
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-b8e7752ad413a639",
+                  "type": "function",
+                  "index": 0,
+                  "function": {
+                    "name": "record_status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "{\"status\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ready"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"task\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "-pro"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "be"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"attempt\": "
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "3}"
+                  }
+                }
+              ],
+              "finish_reason": "stop",
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-2",
+            "functional_ok": true,
+            "latency_s": 38.6073919609189,
+            "summary": {
+              "ok": true,
+              "errors": [],
+              "wall_s": 38.6073919609189,
+              "ttft_s": 34.873613744974136,
+              "completion_tokens": 52,
+              "prompt_tokens": 24557,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": 1.3468923270610464,
+              "observed_decode_tps": 13.659086600861574,
+              "usage": {
+                "prompt_tokens": 24557,
+                "total_tokens": 24609,
+                "completion_tokens": 52
+              },
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-befa15fc955c929e",
+                  "type": "function",
+                  "index": 0,
+                  "function": {
+                    "name": "record_status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "{\"status\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ready"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"task\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "-pro"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "be"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"attempt\": "
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "3}"
+                  }
+                }
+              ],
+              "finish_reason": "stop",
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-3",
+            "functional_ok": true,
+            "latency_s": 38.60905782133341,
+            "summary": {
+              "ok": true,
+              "errors": [],
+              "wall_s": 38.60905782133341,
+              "ttft_s": 34.956863574683666,
+              "completion_tokens": 52,
+              "prompt_tokens": 24557,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": 1.3468342128583992,
+              "observed_decode_tps": 13.964207968068429,
+              "usage": {
+                "prompt_tokens": 24557,
+                "total_tokens": 24609,
+                "completion_tokens": 52
+              },
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-b1a17ab200a15f67",
+                  "type": "function",
+                  "index": 0,
+                  "function": {
+                    "name": "record_status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "{\"status\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ready"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"task\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "-pro"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "be"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"attempt\": "
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "3}"
+                  }
+                }
+              ],
+              "finish_reason": "stop",
+              "truncated": false
+            }
+          }
+        ],
+        "requests": [
+          {
+            "id": "probe-long",
+            "functional_ok": true,
+            "latency_s": 187.8655547723174,
+            "summary": {
+              "ok": true,
+              "errors": [],
+              "wall_s": 187.8655547723174,
+              "ttft_s": 183.15045972168446,
+              "completion_tokens": 64,
+              "prompt_tokens": 131049,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": 0.3406691560758141,
+              "observed_decode_tps": 13.361342522998108,
+              "usage": {
+                "prompt_tokens": 131049,
+                "total_tokens": 131113,
+                "completion_tokens": 64
+              },
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-b8f218ef409133ca",
+                  "type": "function",
+                  "index": 0,
+                  "function": {
+                    "name": "record_status"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "{\"status\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ready"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"task\": \""
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "7"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "ab"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "9"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "a"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "1"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "5"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "7"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "f"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "2"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "3"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "a"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "5"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "5"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "f"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "9"
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "\", \"attempt\": "
+                  }
+                },
+                {
+                  "index": 0,
+                  "function": {
+                    "arguments": "1}"
+                  }
+                }
+              ],
+              "finish_reason": "stop",
+              "truncated": false
+            }
+          }
+        ],
+        "warmup_sha256": "6ef6e86eba0a693c3451bb96d432ccab418b913eb0706e2fde97ba6349f2f177",
+        "requests_sha256": "79c25cf72f59af999d21a93dfb2975d4c17e844ebde163637f472c4e4170ebc6"
+      }
+    ]
+  },
+  {
+    "run": "vllm-128k-probe-v7-decodegraph-mem98",
+    "status": "restored",
+    "restored": true,
+    "campaign_sha256": "431ebab7d0d55897730f44ed9236d7b1d89f38a9bb06243c492316d673415896",
+    "config_sha256": "5a5dcb4796ff2e024e3dea047d342d8725f8b87fabba139701a09a809213a127",
+    "cases": [
+      {
+        "state": {
+          "case": "vllm024-int4-c4-b4096-cap2048-decodegraph-mem98",
+          "repetition": 0,
+          "group": "probe-128k",
+          "state": "failed",
+          "quality": {
+            "status": "passed",
+            "error": null,
+            "test_elapsed": 0.002048227936029434,
+            "elapsed": 0.07418674975633621
+          },
+          "error": "RuntimeError: warmup protocol/tool gate failed; raw output retained"
+        },
+        "memory_and_errors": [
+          "(EngineCore pid=3324291) INFO 10-15 11:47:55 [gpu_model_runner.py:5255] Model loading took 16.84 GiB memory and 3.879419 seconds",
+          "(EngineCore pid=3324291) INFO 10-15 11:47:59 [gpu_model_runner.py:6588] Estimated CUDA graph memory: 0.54 GiB total",
+          "(EngineCore pid=3324291) INFO 10-15 11:48:00 [gpu_worker.py:508] Available KV cache memory: 4.91 GiB",
+          "(EngineCore pid=3324291) INFO 10-15 11:48:00 [kv_cache_utils.py:2146] GPU KV cache size: 148,838 tokens",
+          "(EngineCore pid=3324291) ERROR 10-15 11:48:21 [core.py:1233] torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 102.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 92.12 MiB is free. Including non-PyTorch memory, this process has 23.43 GiB memory in use. Of the allocated memory 22.80 GiB is allocated by PyTorch, with 22.00 MiB allocated in private pools (e.g., CUDA Graphs), and 94.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+        ],
+        "raw_log_sha256": "96378850360bcbfaaabe200f8aff5728979672b2e4a9266f940ebe525a48db7a",
+        "warmup": [
+          {
+            "id": "seed-short-0",
+            "functional_ok": false,
+            "latency_s": 10.079166922718287,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.079166922718287,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-1",
+            "functional_ok": false,
+            "latency_s": 10.080570388585329,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.080570388585329,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-2",
+            "functional_ok": false,
+            "latency_s": 10.081804946064949,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.081804946064949,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-3",
+            "functional_ok": false,
+            "latency_s": 10.083172734826803,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.083172734826803,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          }
+        ],
+        "requests": [],
+        "warmup_sha256": "48a5cada52266cf6465938c66ec85d117509b2ee3b6a6c9dab528d48cbe8bf15"
+      }
+    ]
+  },
+  {
+    "run": "vllm-128k-probe-v8-resident-budget",
+    "status": "restored",
+    "restored": true,
+    "campaign_sha256": "2a3064a035c196fb299350887519a71c14239ec435204804be6203d5b67f13b2",
+    "config_sha256": "52f58ded92d27f4885fccf734dc2f738ee700247dac29dbc8c4f77a39342d4fb",
+    "cases": [
+      {
+        "state": {
+          "case": "vllm024-int4-c4-b4096-cap2048-eager-mem967",
+          "repetition": 0,
+          "group": "probe-128k",
+          "state": "failed",
+          "quality": {
+            "status": "passed",
+            "error": null,
+            "test_elapsed": 0.0019953325390815735,
+            "elapsed": 0.07064079120755196
+          },
+          "error": "RuntimeError: warmup protocol/tool gate failed; raw output retained"
+        },
+        "memory_and_errors": [
+          "(EngineCore pid=3325664) INFO 10-15 11:50:12 [gpu_model_runner.py:5255] Model loading took 16.84 GiB memory and 3.685175 seconds",
+          "(EngineCore pid=3325664) INFO 10-15 11:50:16 [gpu_worker.py:508] Available KV cache memory: 5.18 GiB",
+          "(EngineCore pid=3325664) INFO 10-15 11:50:16 [kv_cache_utils.py:2146] GPU KV cache size: 157,593 tokens",
+          "(EngineCore pid=3325664) ERROR 10-15 11:50:51 [core.py:1233] torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 14.12 MiB is free. Including non-PyTorch memory, this process has 23.51 GiB memory in use. Of the allocated memory 22.96 GiB is allocated by PyTorch, and 73.20 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+        ],
+        "raw_log_sha256": "3668e293c7a8b7e8f6a6edb4415c8f94f95cb48af03470718d7ac85cada09bd1",
+        "warmup": [
+          {
+            "id": "seed-short-0",
+            "functional_ok": false,
+            "latency_s": 10.186128597706556,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.186128597706556,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-1",
+            "functional_ok": false,
+            "latency_s": 10.187562502920628,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.187562502920628,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-2",
+            "functional_ok": false,
+            "latency_s": 10.18895411491394,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.18895411491394,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-3",
+            "functional_ok": false,
+            "latency_s": 10.190823011100292,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.190823011100292,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          }
+        ],
+        "requests": [],
+        "warmup_sha256": "d5e6269042920710d67af1b124078ba545990d7c46acca71688785a02e205257"
+      },
+      {
+        "state": {
+          "case": "vllm024-int4-c4-b2048-cap2048-decodegraph-mem98",
+          "repetition": 0,
+          "group": "probe-128k",
+          "state": "failed",
+          "quality": {
+            "status": "passed",
+            "error": null,
+            "test_elapsed": 0.0019801482558250427,
+            "elapsed": 0.07141010090708733
+          },
+          "error": "RuntimeError: warmup protocol/tool gate failed; raw output retained"
+        },
+        "memory_and_errors": [
+          "(EngineCore pid=3326292) INFO 10-15 11:51:17 [gpu_model_runner.py:5255] Model loading took 16.84 GiB memory and 3.674903 seconds",
+          "(EngineCore pid=3326292) INFO 10-15 11:51:21 [gpu_model_runner.py:6588] Estimated CUDA graph memory: 0.54 GiB total",
+          "(EngineCore pid=3326292) INFO 10-15 11:51:21 [gpu_worker.py:508] Available KV cache memory: 5.23 GiB",
+          "(EngineCore pid=3326292) INFO 10-15 11:51:21 [kv_cache_utils.py:2146] GPU KV cache size: 159,052 tokens",
+          "(EngineCore pid=3326292) ERROR 10-15 11:51:43 [core.py:1233] torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 4.12 MiB is free. Including non-PyTorch memory, this process has 23.52 GiB memory in use. Of the allocated memory 22.92 GiB is allocated by PyTorch, with 22.00 MiB allocated in private pools (e.g., CUDA Graphs), and 56.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+        ],
+        "raw_log_sha256": "de4b33a5fea69bccdcaf54281d55e8077548f7645f5f319622d975f4dacf896e",
+        "warmup": [
+          {
+            "id": "seed-short-0",
+            "functional_ok": false,
+            "latency_s": 10.154115684330463,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.154115684330463,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-1",
+            "functional_ok": false,
+            "latency_s": 10.155613712966442,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.155613712966442,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-2",
+            "functional_ok": false,
+            "latency_s": 10.156920462846756,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.156920462846756,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          },
+          {
+            "id": "seed-short-3",
+            "functional_ok": false,
+            "latency_s": 10.158622413873672,
+            "summary": {
+              "ok": false,
+              "errors": [
+                {
+                  "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+                  "type": "InternalServerError",
+                  "param": null,
+                  "code": 500
+                },
+                "missing terminal completion",
+                "missing or non-positive completion_tokens",
+                "empty output"
+              ],
+              "wall_s": 10.158622413873672,
+              "ttft_s": null,
+              "completion_tokens": null,
+              "prompt_tokens": null,
+              "cached_tokens": null,
+              "cache_mode": "natural",
+              "e2e_tps": null,
+              "observed_decode_tps": null,
+              "usage": {},
+              "engine_timings": {},
+              "text": "",
+              "reasoning": "",
+              "tool_calls": [],
+              "finish_reason": null,
+              "truncated": false
+            }
+          }
+        ],
+        "requests": [],
+        "warmup_sha256": "03735edd5ff29c49b27689502577ba6a2c33e94a9738cae0925ade83c8abdabb"
+      }
+    ]
+  }
+]
