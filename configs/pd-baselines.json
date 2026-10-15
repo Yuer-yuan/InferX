@@ -8,7 +8,7 @@
       "quantization": "NInfer-v2-mixed-Q4-Q5",
       "kv_dtype": "rk4v4-e8",
       "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
-      "context_window": 262144,
+      "context_window": 212992,
       "kv_capacity": 212992,
       "concurrency": 4,
       "chunk": 2048,
@@ -133,6 +133,89 @@
         "patched_launches": 0
       },
       "draft_kv_dtype": "q4_0"
+    },
+    {
+      "id": "ninfer-clang-d0-c4-chunk2048-eager",
+      "engine": "ninfer",
+      "binary": "pd-baselines/builds/ninfer-morphx/apps/ninfer-serve",
+      "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "quantization": "NInfer-v2-mixed-Q4-Q5",
+      "kv_dtype": "rk4v4-e8",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 212992,
+      "kv_capacity": 212992,
+      "concurrency": 4,
+      "chunk": 2048,
+      "draft": 0,
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "cuda_graph": false,
+      "source_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+      "compiler": "Clang18/CUDA12.8/SM89; MorphX pass linked, hook off"
+    },
+    {
+      "id": "ninfer-clang-d0-c4-chunk2048-morphx-threadsafe",
+      "engine": "ninfer",
+      "binary": "pd-baselines/builds/ninfer-morphx/apps/ninfer-serve",
+      "model": "models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "quantization": "NInfer-v2-mixed-Q4-Q5",
+      "kv_dtype": "rk4v4-e8",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 212992,
+      "kv_capacity": 212992,
+      "concurrency": 4,
+      "chunk": 2048,
+      "draft": 0,
+      "morphx": {
+        "enabled": true,
+        "patched_launches": 1,
+        "coverage_scope": "independent CUDART atomic probe; full-model coverage must be checked from this run",
+        "profile_enabled": false,
+        "transport": "cudaHostAllocMapped; upstream GDRCopy unavailable",
+        "limitation": "kernel-transform diagnostic; unchanged single-prefill admission is not MorphX PD scheduling"
+      },
+      "cuda_graph": false,
+      "source_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+      "compiler": "Clang18/CUDA12.8/SM89; mapped-host MorphX port",
+      "environment": {
+        "LD_PRELOAD": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/libcuda_mapped_threadsafe.so:/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/libpreload.so",
+        "NEUTRINO_HOOK_DRIVER": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/builds/libcuda_mapped_threadsafe.so",
+        "SMSCHED_PROFILE": "0",
+        "SMSCHED_LLM_TRACE_LIMIT": "8192",
+        "LD_LIBRARY_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/gdrcopy/src:/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/lib:/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/ninfer-deps/usr/lib/x86_64-linux-gnu"
+      }
+    },
+    {
+      "id": "vllm024-int4-c4-b4096-cap2048-eager",
+      "engine": "vllm",
+      "binary": "pd-baselines/vllm-venv/bin/python",
+      "model": "models/qwen38-int4-redhat",
+      "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+      "kv_dtype": "fp8",
+      "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+      "context_window": 131328,
+      "kv_capacity": 212992,
+      "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+      "concurrency": 4,
+      "chunk": 4096,
+      "draft": 0,
+      "cuda_graph": false,
+      "gpu_memory_utilization": 0.98,
+      "mamba_cache_mode": "align",
+      "long_prefill_token_threshold": 2048,
+      "startup_timeout_s": 1200,
+      "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "wheel_sha256": "597949743f2a00c0539d9e2ff0f67b32c608a378e973f99e7529fd6fa9445f70",
+      "morphx": {
+        "enabled": false,
+        "patched_launches": 0
+      },
+      "environment": {
+        "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+        "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+      }
     }
   ]
 }

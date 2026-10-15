@@ -4,6 +4,13 @@ set -euo pipefail
 source /home/guokc/mypro/gnn-mount-sda1/InferX/env.sh
 inferx_morphx="$INFERX_ROOT/source/pd-baselines/MorphX"
 inferx_build="$INFERX_ROOT/pd-baselines/builds/morphx-pass"
+inferx_finish_barrier=${INFERX_MORPHX_FINISH_BARRIER:-0}
+[[ "$inferx_finish_barrier" == 0 || "$inferx_finish_barrier" == 1 ]]
+inferx_cmake_flags=()
+if [[ "$inferx_finish_barrier" == 1 ]]; then
+  inferx_build+="-finish-barrier"
+  inferx_cmake_flags+=(-DCMAKE_CXX_FLAGS=-DSMSCHED_VIRTUAL_CTA_FINISH_BARRIER)
+fi
 [[ $(git -C "$inferx_morphx" rev-parse HEAD) == 4404aed4c180ad83c31179e1ce08ae2234390853 ]]
 python3 - "$inferx_morphx" <<'PY'
 import subprocess,sys
@@ -35,15 +42,27 @@ normalization='''\tif (auto *annotations = M.getNamedMetadata("nvvm.annotations"
 '''
 assert needle in ported
 ported=ported.replace(needle,normalization+needle,1)
-if path.read_text() not in (original,legacy,ported):
+normalized=ported
+needle='\t\tBuilder.SetInsertPoint(blockFin);\n'
+assert ported.count(needle)==1
+ported=ported.replace(needle,needle+'''#ifdef SMSCHED_VIRTUAL_CTA_FINISH_BARRIER
+        // A native CTA's shared storage remains live until all threads finish.
+        // Do not let the leader overwrite it while another warp still uses it.
+        Builder.CreateCall(barrier0);
+#endif
+''',1)
+if path.read_text() not in (original,legacy,normalized,ported):
     raise RuntimeError('unexpected source edits; refusing to replace')
 path.write_text(ported)
 PY
 cmake -S "$inferx_morphx/smsched-pass" -B "$inferx_build" -G Ninja \
-  -DLLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm -DCMAKE_BUILD_TYPE=Release
+  -DLLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm -DCMAKE_BUILD_TYPE=Release "${inferx_cmake_flags[@]}"
 taskset -c 0-3,56-59 cmake --build "$inferx_build" --parallel 2
-git -C "$inferx_morphx" diff > "$INFERX_ROOT/pd-baselines/builds/morphx-llvm18.patch"
+git -C "$inferx_morphx" diff > "$inferx_build/source.patch"
 sha256sum "$inferx_build/libsmsched.so"
+if [[ "$inferx_finish_barrier" == 1 ]]; then
+  exit 0
+fi
 inferx_cuda="$INFERX_ROOT/toolchains/cuda-12.8.1"
 PATH="$inferx_cuda/bin:$PATH" /usr/bin/clang++-18 \
   --gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/13 --cuda-device-only \

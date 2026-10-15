@@ -4,9 +4,47 @@ import hashlib
 import copy
 import math
 import re
+import os
+import signal
+import subprocess
 from pathlib import Path
 
 GPU1 = 'GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189'
+
+
+def snapshot_harness(source, destination, files):
+    """Archive source bytes, so later workspace edits cannot erase provenance."""
+    relatives=[Path(name) for name in files]
+    if any(p.is_absolute() or '..' in p.parts for p in relatives):
+        raise ValueError('harness source names must be relative without traversal')
+    destination=Path(destination)
+    destination.mkdir(parents=True,exist_ok=False)
+    hashes={}
+    for relative in relatives:
+        data=Path(_owned_path(Path(source),str(relative))).read_bytes()
+        target=destination/relative
+        target.parent.mkdir(parents=True,exist_ok=True)
+        with target.open('xb') as out:out.write(data)
+        hashes[str(relative)]=hashlib.sha256(data).hexdigest()
+    return hashes
+
+
+def run_owned_command(command, env, output, timeout=None):
+    """Run an external suite in an owned group, cleaning descendants on failure."""
+    process=subprocess.Popen(command,env=env,stdout=output,stderr=subprocess.STDOUT,
+                             stdin=subprocess.DEVNULL,start_new_session=True)
+    try:
+        return process.wait(timeout=timeout)
+    except BaseException:
+        # A still-unreaped Popen anchors this group, including while shutting down.
+        if process.returncode is None:
+            try:os.killpg(process.pid,signal.SIGTERM)
+            except ProcessLookupError:pass
+            try:process.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid,signal.SIGKILL)
+                process.wait(timeout=10)
+        raise
 
 
 def load_frozen_workloads(directory: Path) -> tuple[dict, dict]:
@@ -51,6 +89,8 @@ def validate_case(case: dict) -> None:
         raise ValueError('nonnegative draft required')
     if min(case['context_window'], case['kv_capacity']) < 131072 + 256:
         raise ValueError('128K input plus output must fit')
+    if case['engine']=='ninfer' and case['context_window']>case['kv_capacity']:
+        raise ValueError('NInfer context cannot exceed explicit KV capacity')
     if (case['engine'] == 'llama' and not case.get('unified_kv')
             and case['kv_capacity']//case['concurrency'] < 131072+256):
         raise ValueError('128K cannot fit the divided per-slot context')
@@ -81,6 +121,8 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
             '--request-log-jsonl', str(run_dir/'native.jsonl')]
         if case['draft']:
             args += ['--spec', 'mtp', '--draft-tokens', str(case['draft']), '--lm-head-draft']
+        if case.get('cuda_graph') is False:
+            args += ['--no-cuda-graph']
         return args
     if case['engine'] == 'llama':
         args = common + ['--model', model, '--alias', 'qwen38-27b', '--host', '127.0.0.1',
@@ -108,8 +150,17 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
         str(case['chunk']), '--enable-chunked-prefill', '--enable-prefix-caching',
         '--kv-cache-dtype', case['kv_dtype'], '--gpu-memory-utilization',
         str(case.get('gpu_memory_utilization', .95)), '--enable-auto-tool-choice',
-        '--tool-call-parser', 'qwen3_xml', '--reasoning-parser', 'qwen3',
-        '--limit-mm-per-prompt', '{"image":0,"video":0}']
+        '--tool-call-parser', 'qwen3_coder', '--reasoning-parser', 'qwen3',
+        '--language-model-only', '--default-chat-template-kwargs',
+        '{"enable_thinking":false}']
+    if case.get('cuda_graph') is False:
+        args += ['--enforce-eager']
+    for field, flag in [('long_prefill_token_threshold','--long-prefill-token-threshold'),
+                        ('mamba_cache_mode','--mamba-cache-mode'),
+                        ('mamba_block_size','--mamba-block-size'),
+                        ('cpu_offload_gb','--cpu-offload-gb')]:
+        if field in case:
+            args += [flag,str(case[field])]
     if case['draft']:
         args += ['--speculative-config', json.dumps(
             {'method':'mtp', 'num_speculative_tokens':case['draft']})]

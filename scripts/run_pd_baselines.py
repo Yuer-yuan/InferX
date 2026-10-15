@@ -13,7 +13,8 @@ from pathlib import Path
 
 from inferx.concurrency import run_load, summarize_load
 from inferx.pd_baselines import (GPU1, engine_command, parse_metrics, validate_case,
-                                load_frozen_workloads, arrival_requests)
+                                load_frozen_workloads, arrival_requests, run_owned_command,
+                                snapshot_harness)
 from inferx.service_ownership import RestorableService, process_identity, stop_matching_process
 
 ENDPOINT = 'http://127.0.0.1:18083'
@@ -74,8 +75,10 @@ class OwnedEngine:
             stdout=self.log, stderr=subprocess.STDOUT, start_new_session=True)
         deadline = time.monotonic()+self.case.get('startup_timeout_s', 600)
         while time.monotonic() < deadline:
-            code = self.proc.poll()
-            if code is not None:
+            # Keep an exited leader unreaped until stop() has cleaned its group.
+            exited = os.waitid(os.P_PID,self.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT)
+            if exited is not None:
+                code=exited.si_status if exited.si_code==os.CLD_EXITED else -exited.si_status
                 raise RuntimeError(f'server startup exit {code}')
             try:
                 if get('/health').get('status', 'ok') == 'ok':
@@ -102,9 +105,11 @@ class OwnedEngine:
         if self.proc is not None:
             if self.identity is not None:
                 stop_matching_process(self.identity, timeout=30)
-            elif self.proc.poll() is None:
-                # An unreaped live Popen anchors our own process group even during startup.
-                os.killpg(self.proc.pid, signal.SIGTERM)
+            if self.proc.returncode is None:
+                # The unreaped Popen leader anchors the group, including workers
+                # that outlive the HTTP frontend. Startup checks use WNOWAIT.
+                try:os.killpg(self.proc.pid, signal.SIGTERM)
+                except ProcessLookupError:pass
             try:
                 self.proc.wait(timeout=30)
             except subprocess.TimeoutExpired:
@@ -134,6 +139,7 @@ def observe(server, name, specifications, warmups=()):
     metrics_before = get('/metrics')
     with (directory/'specifications.json').open('x') as f:
         json.dump(specifications, f)
+    started_unix_ms = time.time()*1000
     start = time.monotonic()
     with (directory/'requests.jsonl').open('x') as out:
         records = asyncio.run(run_load(ENDPOINT, specifications, out,
@@ -144,6 +150,7 @@ def observe(server, name, specifications, warmups=()):
     wait_idle()
     span = time.monotonic()-start
     result = dict(group=name, case=server.case['id'], summary=summarize_load(records, span),
+        started_unix_ms=started_unix_ms,ended_unix_ms=time.time()*1000,
         metrics_before=metrics_before, metrics_after=get('/metrics'),
         raw_records='requests.jsonl')
     for kind, subset in [('short', [r for r in records if r.get('prompt_id') == 'tool-24576']),
@@ -165,6 +172,10 @@ def main():
     parser.add_argument('--probe-only', action='store_true')
     parser.add_argument('--kernel-probe', action='store_true')
     parser.add_argument('--atomic-probe', action='store_true')
+    parser.add_argument('--ctest', choices=['unhooked','mapped-full'])
+    parser.add_argument('--runtime-library',default='libcuda_mapped_full.so',
+        choices=['libcuda_mapped_full.so','libcuda_mapped_default.so',
+                 'libcuda_mapped_threadsafe.so','libcuda_mapped_capture.so'])
     parser.add_argument('--groups', nargs='+')
     parser.add_argument('--short-rate', type=float)
     parser.add_argument('--run-id', required=True)
@@ -204,13 +215,36 @@ def main():
     metadata = dict(status='running', started_unix=time.time(), cases=[],
         repeat=args.repeat, probe_only=args.probe_only, controller_pid=os.getpid(),
         workload_definitions=definitions,
-        harness_sha256={str(p):hashlib.sha256((root/'code-pd-baselines'/p).read_bytes()).hexdigest()
-            for p in ['scripts/run_pd_baselines.py', 'inferx/pd_baselines.py',
-                      'inferx/concurrency.py', 'inferx/service_ownership.py']})
+        runtime_library=args.runtime_library,
+        runtime_sha256={name:hashlib.sha256((root/'pd-baselines/builds'/name).read_bytes()).hexdigest()
+            for name in [args.runtime_library,'libpreload.so'] if (root/'pd-baselines/builds'/name).exists()},
+        harness_sha256=snapshot_harness(root/'code-pd-baselines',output/'harness',
+            [str(p.relative_to(root/'code-pd-baselines'))
+                for folder in ['scripts','inferx']
+                for p in sorted((root/'code-pd-baselines'/folder).rglob('*.py'))]))
     status = output/'campaign.json'
     def flush():
         status.write_text(json.dumps(metadata, indent=2))
     def measurement():
+        if args.ctest:
+            previous.gpu_free()
+            env=dict(previous.ENV,SMSCHED_LLM_TRACE_LIMIT='8',SMSCHED_PROFILE='0')
+            env['LD_LIBRARY_PATH']=str(root/'source/pd-baselines/gdrcopy/src')+':'+env['LD_LIBRARY_PATH']
+            if args.ctest=='mapped-full':
+                hook=root/'pd-baselines/builds'/args.runtime_library
+                env.update(LD_PRELOAD=str(hook)+':'+str(root/'pd-baselines/builds/libpreload.so'),
+                           NEUTRINO_HOOK_DRIVER=str(hook))
+            command=[str(root/'ninfer-build-venv/bin/ctest'),'--test-dir',
+                str(root/'pd-baselines/builds/ninfer-morphx'),'--parallel','1',
+                '--output-on-failure','--output-junit',str(output/'ctest.xml'),'--no-tests=error']
+            with (output/'ctest.log').open('x') as log:
+                code=run_owned_command(command,env,log,timeout=7200)
+            last=root/'pd-baselines/builds/ninfer-morphx/Testing/Temporary/LastTest.log'
+            if last.exists():
+                (output/'LastTest.log').write_bytes(last.read_bytes())
+            metadata['cases'].append(dict(case='ctest-'+args.ctest,returncode=code))
+            flush()
+            return
         if args.kernel_probe or args.atomic_probe:
             previous.gpu_free()
             env = dict(previous.ENV, SMSCHED_LLM_TRACE_LIMIT='32', SMSCHED_PROFILE='0')
@@ -221,6 +255,8 @@ def main():
                 else [('unhooked',None),('upstream-gdr','libcuda_hook.so'),
                       ('mapped-host','libcuda_hook_mapped.so')])
             for mode, hook in probes:
+                if mode=='mapped-full':
+                    hook=args.runtime_library
                 if hook and not (root/'pd-baselines/builds'/hook).exists():
                     continue
                 probe_env = dict(env)

@@ -35,7 +35,7 @@ def test_timeout_kills_owned_descendants_and_preserves_logs(tmp_path):
         for _ in range(50):
             try:
                 state = path.read_text().rsplit(')',1)[1].split()[0]
-            except FileNotFoundError:
+            except (FileNotFoundError, ProcessLookupError):
                 break
             if state == 'Z':
                 break

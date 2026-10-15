@@ -1,0 +1,135 @@
+{
+  "status": "in_progress_not_ready_for_MorphX_PD_comparison",
+  "tests": [
+    {
+      "run": "ninfer-clang-ctest-unhooked-v1",
+      "invoked": 84,
+      "failed": 0,
+      "skipped": 5,
+      "executed": 79,
+      "passed": 79,
+      "failed_names": [],
+      "source_sha256": "166b3611bdf5d455b7c2bebaa6dcf5e8dc605ed8dfe86fab8b446c01d01faa16"
+    },
+    {
+      "run": "ninfer-clang-ctest-morphx-default-v2",
+      "invoked": 84,
+      "failed": 29,
+      "skipped": 5,
+      "executed": 79,
+      "passed": 50,
+      "failed_names": [
+        "ninfer_gated_rmsnorm_test",
+        "ninfer_causal_conv1d_silu_test",
+        "ninfer_layer_norm_test",
+        "ninfer_embedding_test",
+        "ninfer_gdn_gating_test",
+        "ninfer_gdn_gating_proj_test",
+        "ninfer_vision_pos_embed_test",
+        "ninfer_vision_attention_test",
+        "ninfer_sampling_test",
+        "ninfer_cast_test",
+        "ninfer_scatter_test",
+        "ninfer_position_test",
+        "ninfer_gqa_attention_test",
+        "ninfer_bidirectional_gqa_attention_test",
+        "ninfer_swa_test",
+        "ninfer_kv_cache_append_prefix_test",
+        "ninfer_prepare_masked_block_test",
+        "ninfer_sparse_moe_test",
+        "ninfer_mtp_pack_test",
+        "ninfer_linear_q4_a16_test",
+        "ninfer_linear_q5_a16_test",
+        "ninfer_linear_q6_a16_test",
+        "ninfer_gdn_input_proj_conv_snapshot_test",
+        "ninfer_linear_add_q5_a16_test",
+        "ninfer_linear_add_bf16_a16_test",
+        "ninfer_linear_add_w8_a16_test",
+        "ninfer_linear_pair_w8_a16_test",
+        "ninfer_linear_swiglu_w8_a16_test",
+        "ninfer_test_e8_codec"
+      ],
+      "source_sha256": "076a92e3d63e05fe15a08b6907dd349d35c0c1a1ad9888bb4d70245e22f2abbc"
+    },
+    {
+      "run": "ninfer-clang-ctest-morphx-threadsafe-v3",
+      "invoked": 84,
+      "failed": 5,
+      "skipped": 5,
+      "executed": 79,
+      "passed": 74,
+      "failed_names": [
+        "ninfer_gdn_gating_proj_test",
+        "ninfer_gqa_attention_test",
+        "ninfer_bidirectional_gqa_attention_test",
+        "ninfer_kv_cache_append_prefix_test",
+        "ninfer_sparse_moe_test"
+      ],
+      "source_sha256": "7e53e8d3b928d1970464107d2b93568d61e1c55dbaca1e55d4b9d3f2c03e6d4e"
+    }
+  ],
+  "full27b_diagnostic": {
+    "status": "restored",
+    "started_unix": 1792029086.7137392,
+    "cases": [
+      {
+        "case": "ninfer-clang-d0-c4-chunk2048-eager",
+        "repetition": 0,
+        "group": "probe-128k",
+        "state": "failed",
+        "quality": {
+          "status": "failed",
+          "error": "IndentationError: expected an indented block after 'if' statement on line 49 (<candidate>, line 53)",
+          "test_elapsed": 0.0017717070877552032,
+          "elapsed": 0.07000710442662239
+        },
+        "error": "RuntimeError: complete code quality gate failed"
+      },
+      {
+        "case": "ninfer-clang-d0-c4-chunk2048-morphx-threadsafe",
+        "repetition": 0,
+        "group": "probe-128k",
+        "state": "failed",
+        "error": "RuntimeError: server startup exit -6"
+      }
+    ],
+    "repeat": 1,
+    "probe_only": true,
+    "controller_pid": 3255672,
+    "workload_definitions": [
+      {
+        "name": "short-control",
+        "rate": 2.5,
+        "long_mode": null
+      },
+      {
+        "name": "cold-low",
+        "rate": 0.5,
+        "long_mode": "cold"
+      },
+      {
+        "name": "cold-high",
+        "rate": 2.5,
+        "long_mode": "cold"
+      },
+      {
+        "name": "resume-high",
+        "rate": 2.5,
+        "long_mode": "resume"
+      }
+    ],
+    "runtime_library": "libcuda_mapped_full.so",
+    "runtime_sha256": {
+      "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+      "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+    },
+    "harness_sha256": {
+      "scripts/run_pd_baselines.py": "edd24747325981d522bf6cb1f3c291099877248ae3ca8d6a65010f790eaee58e",
+      "inferx/pd_baselines.py": "54ee4c5b8e6a7fe57637268a12e3bf6caba734a612c25d94aa3328ee4426a6ed",
+      "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+      "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea"
+    },
+    "finished_unix": 1792029315.8702006,
+    "restored": true
+  }
+}

@@ -11,7 +11,8 @@ def case(engine='llama'):
     return dict(id='llama-c4', engine=engine, binary='source/llama/bin/llama-server',
                 model='models/qwen38/model.gguf', quantization='UD-Q4_K_M',
                 gpu_uuid='GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189',
-                context_window=262144, kv_capacity=212992, concurrency=4,
+                context_window=212992 if engine=='ninfer' else 262144,
+                kv_capacity=212992, concurrency=4,
                 chunk=2048, kv_dtype='q4_0', draft=0, unified_kv=True,
                 morphx={'enabled': False, 'patched_launches': 0})
 
@@ -63,6 +64,18 @@ def test_models_and_commands_are_owned_and_context_is_real(tmp_path):
         pd.validate_case(c)
 
 
+def test_morphx_ninfer_uses_eager_launches_for_actual_kernel_interception(tmp_path):
+    c=case('ninfer');c.update(cuda_graph=False,kv_dtype='rk4v4-e8')
+    assert '--no-cuda-graph' in pd.engine_command(c,tmp_path,tmp_path/'run')
+
+
+def test_ninfer_context_cannot_exceed_its_explicit_kv_pool():
+    c=case('ninfer')
+    c['context_window']=262144
+    with pytest.raises(ValueError,match='NInfer.*context'):
+        pd.validate_case(c)
+
+
 def test_prometheus_labels_are_not_split_as_plain_two_column_text():
     metrics = pd.parse_metrics('''# HELP requests requests in flight
 vllm:num_requests_running{model_name="qwen38-27b",engine="0"} 2
@@ -94,10 +107,13 @@ def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     assert args[args.index('--spec-draft-type-v')+1]=='q4_0'
 
 
-def test_owned_engine_start_failure_stops_child_and_leaves_other_process(tmp_path):
+def test_owned_engine_start_failure_stops_child_and_leaves_other_process(tmp_path,monkeypatch):
     import subprocess
     import sys
     from scripts.run_pd_baselines import OwnedEngine
+    def unavailable(*_):
+        raise ConnectionError('fixture has no HTTP server')
+    monkeypatch.setattr('scripts.run_pd_baselines.get',unavailable)
     c = case()
     other = subprocess.Popen([sys.executable, '-c', 'import time;time.sleep(60)'])
     engine = OwnedEngine(c, tmp_path, tmp_path/'run')
@@ -190,3 +206,75 @@ def test_vllm_empty_health_response_is_healthy():
         server.shutdown()
         server.server_close()
         thread.join(timeout=2)
+
+
+def test_timed_out_external_suite_cleans_its_group_and_preserves_unrelated_process(tmp_path):
+    import os,subprocess,sys,time
+    from inferx.pd_baselines import run_owned_command
+    other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)'])
+    script=tmp_path/'parent.py'
+    script.write_text('import subprocess,sys,time\nfrom pathlib import Path\n'
+        f'child=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"])\n'
+        f'Path({str(tmp_path/"child.pid")!r}).write_text(str(child.pid))\n'
+        'time.sleep(30)\n')
+    try:
+        with (tmp_path/'output').open('w') as output:
+            with pytest.raises(subprocess.TimeoutExpired):
+                run_owned_command([sys.executable,str(script)],os.environ.copy(),output,timeout=1)
+        child=int((tmp_path/'child.pid').read_text())
+        for _ in range(100):
+            path=Path(f'/proc/{child}/stat')
+            try:alive=path.read_text().split(') ',1)[1][0]!='Z'
+            except FileNotFoundError:alive=False
+            if not alive:break
+            time.sleep(.01)
+        assert not alive and other.poll() is None
+    finally:
+        other.terminate();other.wait(timeout=3)
+
+
+def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path):
+    import os,signal,subprocess,sys,time
+    from scripts.run_pd_baselines import OwnedEngine
+    from inferx.service_ownership import process_identity
+    engine=OwnedEngine(case(),tmp_path,tmp_path/'run')
+    program=('import subprocess,sys,time;from pathlib import Path;'
+        'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"]);'
+        f'Path({str(tmp_path/"worker.pid")!r}).write_text(str(p.pid));time.sleep(30)')
+    engine.proc=subprocess.Popen([sys.executable,'-c',program],start_new_session=True)
+    other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)'])
+    worker_fd=None
+    try:
+        for _ in range(100):
+            if (tmp_path/'worker.pid').exists():break
+            time.sleep(.01)
+        worker=int((tmp_path/'worker.pid').read_text());worker_fd=os.pidfd_open(worker)
+        engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
+        engine.stop()
+        for _ in range(100):
+            try:alive=Path(f'/proc/{worker}/stat').read_text().rsplit(')',1)[1].split()[0]!='Z'
+            except (FileNotFoundError,ProcessLookupError):alive=False
+            if not alive:break
+            time.sleep(.01)
+        assert not alive and other.poll() is None
+    finally:
+        if worker_fd is not None:
+            try:signal.pidfd_send_signal(worker_fd,signal.SIGKILL)
+            except ProcessLookupError:pass
+            os.close(worker_fd)
+        if engine.proc.poll() is None:
+            engine.proc.terminate();engine.proc.wait(timeout=3)
+        other.terminate();other.wait(timeout=3)
+
+
+def test_campaign_preserves_harness_bytes_when_workspace_changes(tmp_path):
+    import hashlib
+    source=tmp_path/'code';(source/'inferx').mkdir(parents=True)
+    module=source/'inferx'/'example.py';module.write_bytes(b'original = True\n')
+    snapshot=tmp_path/'raw'/'harness'
+    hashes=pd.snapshot_harness(source,snapshot,['inferx/example.py'])
+    module.write_bytes(b'original = False\n')
+    assert (snapshot/'inferx/example.py').read_bytes()==b'original = True\n'
+    assert hashes['inferx/example.py']==hashlib.sha256(b'original = True\n').hexdigest()
+    with pytest.raises(ValueError,match='relative'):
+        pd.snapshot_harness(source, tmp_path/'invalid', ['../private.py'])

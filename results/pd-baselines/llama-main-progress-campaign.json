@@ -1,0 +1,79 @@
+{
+  "status": "running",
+  "started_unix": 1792029587.03579,
+  "cases": [
+    {
+      "case": "llama-d0-c4-chunk128",
+      "repetition": 0,
+      "group": "short-control",
+      "state": "measured",
+      "quality": {
+        "status": "passed",
+        "error": null,
+        "test_elapsed": 0.0019378401339054108,
+        "elapsed": 0.07138759270310402
+      }
+    },
+    {
+      "case": "llama-d0-c4-chunk128",
+      "repetition": 0,
+      "group": "cold-low",
+      "state": "measured",
+      "quality": {
+        "status": "passed",
+        "error": null,
+        "test_elapsed": 0.0021744072437286377,
+        "elapsed": 0.07062297314405441
+      }
+    },
+    {
+      "case": "llama-d0-c4-chunk128",
+      "repetition": 0,
+      "group": "resume-high",
+      "state": "measured",
+      "quality": {
+        "status": "passed",
+        "error": null,
+        "test_elapsed": 0.001920744776725769,
+        "elapsed": 0.07043711841106415
+      }
+    },
+    {
+      "case": "llama-d0-c4-chunk128",
+      "repetition": 1,
+      "group": "short-control",
+      "state": "starting"
+    }
+  ],
+  "repeat": 3,
+  "probe_only": false,
+  "controller_pid": 3271238,
+  "workload_definitions": [
+    {
+      "name": "short-control",
+      "rate": 0.5,
+      "long_mode": null
+    },
+    {
+      "name": "cold-low",
+      "rate": 0.5,
+      "long_mode": "cold"
+    },
+    {
+      "name": "resume-high",
+      "rate": 0.5,
+      "long_mode": "resume"
+    }
+  ],
+  "runtime_library": "libcuda_mapped_full.so",
+  "runtime_sha256": {
+    "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+    "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+  },
+  "harness_sha256": {
+    "scripts/run_pd_baselines.py": "edd24747325981d522bf6cb1f3c291099877248ae3ca8d6a65010f790eaee58e",
+    "inferx/pd_baselines.py": "54ee4c5b8e6a7fe57637268a12e3bf6caba734a612c25d94aa3328ee4426a6ed",
+    "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+    "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea"
+  }
+}

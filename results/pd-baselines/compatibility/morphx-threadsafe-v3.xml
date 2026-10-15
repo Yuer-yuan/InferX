@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="(empty)"
+	tests="84"
+	failures="5"
+	disabled="0"
+	skipped="5"
+	hostname=""
+	time="257"
+	timestamp="2026-10-15T09:42:48"
+	>
+	<testcase name="ninfer_public_api_test" classname="ninfer_public_api_test" time="0.0060367" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_artifact_reader_test" classname="ninfer_artifact_reader_test" time="0.0084516" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_artifact_materialization_test" classname="ninfer_artifact_materialization_test" time="0.648164" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_device_test" classname="ninfer_device_test" time="0.559684" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_decode_graph_test" classname="ninfer_decode_graph_test" time="0.595844" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_tensor_test" classname="ninfer_tensor_test" time="0.00723661" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_arena_test" classname="ninfer_arena_test" time="0.687268" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_request_memory_test" classname="ninfer_request_memory_test" time="0.584205" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_admission_policy_test" classname="ninfer_admission_policy_test" time="0.00705293" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_capacity_test" classname="ninfer_kv_capacity_test" time="0.00647477" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sampling_defaults_test" classname="ninfer_sampling_defaults_test" time="0.0394212" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_cache_test" classname="ninfer_kv_cache_test" time="0.627374" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_state_store_test" classname="ninfer_state_store_test" time="0.591496" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_replay_records_test" classname="ninfer_gdn_replay_records_test" time="0.00750208" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_disk_state_cache_test" classname="ninfer_disk_state_cache_test" time="3.58998" status="run">
+		<properties/>
+		<system-out>Starting Comprehensive DiskStateCache &amp; DirectStorage test suite...
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=256 (new pages=1, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] removed 3 invalid/incomplete manifest(s) on startup
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=512 (new pages=4, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=512 (new pages=4, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 11ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 10ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 9ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 11ms
+[info] ninfer: [prompt-cache] incoming request arrived: prioritized execution (cleared 1 queued snapshot save(s))
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=128 (new pages=2, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=192 (...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_chunked_kv_snapshot_restore_test" classname="ninfer_chunked_kv_snapshot_restore_test" time="2.56768" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=512 block=(256,1,1) shared=0 stream=0x567023c8ff50 name=_ZN6ninfer3ops22gather_paged_kv_kernelEPKNS0_22PagedKVPlaneDescriptorEjPKijP5uint4
+[MorphX-llm] phase=patched grid=512 block=(256,1,1) shared=0 stream=0x567023c8ff50 name=_ZN6ninfer3ops23scatter_paged_kv_kernelEPKNS0_22PagedKVPlaneDescriptorEjPKijPK5uint4
+Starting Chunked KV Snapshot Restore &amp; MTP Parity test suite...
+Running test_multi_batch_chunked_gather_save...
+Running test_multi_batch_chunked_scatter_restore...
+Running test_mtp_kv_partial_restore_stride_bug...
+Running test_streamed_chunked_save_no_sync_in_loop...
+All Chunked KV Snapshot Restore &amp; MTP Parity tests PASSED.
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_frontend_test" classname="ninfer_qwen3_6_frontend_test" time="24.9141" status="run">
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_27B_HF_DIR is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_runtime_mechanisms_test" classname="ninfer_qwen3_6_runtime_mechanisms_test" time="0.00646466" status="run">
+		<properties/>
+		<system-out>Qwen3.6 runtime mechanism checks passed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_prefix_real_test" classname="ninfer_qwen3_6_27b_prefix_real_test" time="0.0445294" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_27B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_load_plan_test" classname="ninfer_qwen3_6_27b_load_plan_test" time="0.612291" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: real 27B artifact is required: groupwise="/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/out/qwen3_6_27b.ninfer"
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_real_test" classname="ninfer_qwen3_6_35b_a3b_real_test" time="0.0467934" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_35B_A3B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_dflash_real_test" classname="ninfer_qwen3_6_35b_a3b_dflash_real_test" time="0.0562772" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_35B_A3B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_dflash_load_plan_test" classname="ninfer_qwen3_6_35b_a3b_dflash_load_plan_test" time="0.00607882" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: real 35B artifact is unavailable at "/home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/ninfer-morphx/out/qwen3_6_35b_a3b.ninfer"
+</system-out>
+	</testcase>
+	<testcase name="ninfer_openai_schema_test" classname="ninfer_openai_schema_test" time="0.0481534" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_responses_schema_test" classname="ninfer_responses_schema_test" time="0.00996522" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_metrics_test" classname="ninfer_serve_metrics_test" time="0.00630327" status="run">
+		<properties/>
+		<system-out>OK serve metrics
+</system-out>
+	</testcase>
+	<testcase name="ninfer_response_store_test" classname="ninfer_response_store_test" time="0.0065182" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_anthropic_schema_test" classname="ninfer_anthropic_schema_test" time="0.00808324" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_tool_call_parser_test" classname="ninfer_tool_call_parser_test" time="0.00635778" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_options_test" classname="ninfer_serve_options_test" time="0.00496073" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_request_log_test" classname="ninfer_request_log_test" time="0.0588255" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_ui_test" classname="ninfer_serve_ui_test" time="0.0586085" status="run">
+		<properties/>
+		<system-out>INFO: Built without embedded WebUI assets (stub mode)
+</system-out>
+	</testcase>
+	<testcase name="ninfer_bench_support_test" classname="ninfer_bench_support_test" time="0.00770336" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_add_bias_test" classname="ninfer_add_bias_test" time="2.32962" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops22add_bias_bf16x8_kernelILi256ELi1EEEvPKNS0_12Bf16PairPackILi4EEEPS3_ii
+OK add_bias
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gelu_test" classname="ninfer_gelu_test" time="1.56817" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=135 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops18gelu_bf16x8_kernelILb1ELi256EEEvPNS0_12Bf16PairPackILi4EEEl
+[MorphX-llm] phase=patched grid=36 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops18gelu_bf16x8_kernelILb0ELi256EEEvPNS0_12Bf16PairPackILi4EEEl
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops18gelu_bf16x2_kernelILb1ELi256EEEvP14__nv_bfloat162lP13__nv_bfloat16b
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops18gelu_bf16x2_kernelILb0ELi256EEEvP14__nv_bfloat162lP13__nv_bfloat16b
+OK gelu
+</system-out>
+	</testcase>
+	<testcase name="ninfer_silu_mul_test" classname="ninfer_silu_mul_test" time="2.15043" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=17 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops19silu_and_mul_kernelEPK13__nv_bfloat16S3_PS1_l
+[MorphX-llm] phase=patched grid=289 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops30silu_and_mul_dim0_split_kernelEPK13__nv_bfloat16S3_PS1_ill
+OK silu_mul
+</system-out>
+	</testcase>
+	<testcase name="ninfer_residual_add_test" classname="ninfer_residual_add_test" time="2.23466" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26residual_add_bf16x8_kernelEPKNS0_12Bf16PairPackILi4EEEPS2_l
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26residual_add_bf16x2_kernelEPK13__nv_bfloat16PS1_l
+OK residual_add
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sigmoid_mul_test" classname="ninfer_sigmoid_mul_test" time="2.23331" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops30sigmoid_gate_mul_bf16x8_kernelEPKNS0_12Bf16PairPackILi4EEEPS2_l
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops30sigmoid_gate_mul_bf16x2_kernelEPK13__nv_bfloat16PS1_l
+OK sigmoid_mul
+</system-out>
+	</testcase>
+	<testcase name="ninfer_rmsnorm_test" classname="ninfer_rmsnorm_test" time="1.69613" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25rmsnorm_cta_bf16x2_kernelILNS0_11RmsEpilogueE0ELi512ELi8EEEvPK14__nv_bfloat162S5_S5_PS3_ilf
+[MorphX-llm] phase=patched grid=7 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25rmsnorm_cta_bf16x2_kernelILNS0_11RmsEpilogueE0ELi256ELi6EEEvPK14__nv_bfloat162S5_S5_PS3_ilf
+[MorphX-llm] phase=patched grid=11 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE0ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf
+[MorphX-llm] phase=patched grid=1 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops27rmsnorm_d2048_bf16x2_kernelILNS0_11RmsEpilogueE1EEEvPK14__nv_bfloat162S5_S5_PS3_lf
+[MorphX-llm] phase=patched grid=56 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26rmsnorm_d128_bf16x2_kernelILNS0_11RmsEpilogueE1ELi128EEEvPK14__nv_bfloat162S5_S5_PS3_lf
+[MorphX-llm] phase=patched grid=32 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops22rmsnorm_generic_ker...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_rmsnorm_test" classname="ninfer_gated_rmsnorm_test" time="2.31292" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf
+[MorphX-llm] phase=patched grid=48 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops22rmsnorm_generic_kernelILNS0_11RmsEpilogueE2EEEvPK13__nv_bfloat16S5_S5_PS3_ilf
+OK gated_rmsnorm
+</system-out>
+	</testcase>
+	<testcase name="ninfer_l2norm_test" classname="ninfer_l2norm_test" time="2.23866" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25l2norm_warp_bf16x2_kernelILi512EEEvPK14__nv_bfloat162PS2_ilf
+[MorphX-llm] phase=patched grid=7 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops21l2norm_generic_kernelEPK13__nv_bfloat16PS1_ilf
+OK l2norm correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_delta_net_test" classname="ninfer_gated_delta_net_test" time="4.1121" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=384 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net28recurrent_bf16_direct_kernelILb1EEEvPK13__nv_bfloat16S6_S6_PKfS8_S8_PfPS4_iNS2_8head_mapEf
+[MorphX-llm] phase=patched grid=384 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net28recurrent_bf16_direct_kernelILb0EEEvPK13__nv_bfloat16S6_S6_PKfS8_S8_PfPS4_iNS2_8head_mapEf
+[MorphX-llm] phase=patched grid=64 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25l2norm_warp_bf16x2_kernelILi512EEEvPK14__nv_bfloat162PS2_ilf
+[MorphX-llm] phase=patched grid=48 block=(256,1,1) shared=29440 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net7chunked13prepare_wy_wu20prepare_wy_wu_kernelILi64ELi32ELi8EEEvPK13__nv_bfloat16S8_PKfSA_PS6_SB_PfNS2_8head_mapE
+[MorphX-llm] phase=patched grid=384 block=(256,1,1) shared=45312 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net7chunked13state_passing20state_passing_kernelILi16EEEvPK13__nv_bfloat16S8_S8_PKfSA_PS6_SB_PfNS2_8...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_causal_conv1d_silu_test" classname="ninfer_causal_conv1d_silu_test" time="2.51157" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops33causal_conv1d_decode_pairs_kernelEPK13__nv_bfloat16S3_PS1_S4_i
+[MorphX-llm] phase=patched grid=320 block=(32,2,1) shared=0 stream=(nil) name=_ZN6ninfer3ops27causal_conv1d_smallt_kernelEPK13__nv_bfloat16S3_S3_PS1_S4_ii
+[MorphX-llm] phase=patched grid=340 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops34causal_conv1d_prefill_pairs_kernelEPK13__nv_bfloat16S3_S3_PS1_ii
+[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops40causal_conv1d_prefill_state_pairs_kernelEPK13__nv_bfloat16S3_PS1_ii
+[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops42causal_conv1d_decode_distinct_pairs_kernelEPK13__nv_bfloat16S3_S3_PS1_S4_i
+[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops42causal_conv1d_snapshot_decode_pairs_kernelEPK13__nv_bfloat16S3_PS1_PKiS6_S4_il
+[MorphX-llm] phase=patched grid=320 block=(32,2,...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_layer_norm_test" classname="ninfer_layer_norm_test" time="1.60247" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops28layer_norm_d1152_warp_kernelILi128EEEvPK14__nv_bfloat162S4_S4_PS2_lf
+[MorphX-llm] phase=patched grid=7 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17layer_norm_kernelILi256EEEvPK13__nv_bfloat16S4_S4_PS2_ilf
+OK layer_norm correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_embedding_test" classname="ninfer_embedding_test" time="1.97109" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=63 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25embed_gather_dense_kernelEPKiPK13__nv_bfloat16PS3_ii
+[MorphX-llm] phase=patched grid=40 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops30embed_gather_q6_grouped_kernelEPKiPKhS4_S4_P13__nv_bfloat16ii
+[MorphX-llm] phase=patched grid=64 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops35embed_gather_w8_grouped_2048_kernelEPKiPKhS4_P13__nv_bfloat16
+[MorphX-llm] phase=patched grid=16 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops31embed_gather_w8_row_2048_kernelEPKiPKhS4_P13__nv_bfloat16
+[MorphX-llm] phase=patched grid=40 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops22embed_gather_w8_kernelEPKiPKhS4_P13__nv_bfloat16iii
+OK embedding correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_argmax_test" classname="ninfer_argmax_test" time="2.962" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=485 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26argmax_tiled_atomic_kernelEPK13__nv_bfloat16Piii
+OK argmax
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_gating_test" classname="ninfer_gdn_gating_test" time="1.48183" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17gdn_gating_kernelEPK13__nv_bfloat16S3_PKfS5_PfS6_l
+OK gdn_gating correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_gating_proj_test" classname="ninfer_gdn_gating_proj_test" time="3.49555" status="fail">
+		<failure message="Subprocess aborted"/>
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=96 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_132bf16_gdn_gating_proj_gemv_kernelEPK13__nv_bfloat16S5_S5_PKfS7_PfS8_
+[MorphX-llm] phase=patched grid=240 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_143bf16_gdn_gating_proj_small_t_partial_kernelILi8ELi512ELi4EEEvPK13__nv_bfloat16S6_S6_Pfi
+[MorphX-llm] phase=patched grid=3 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_142bf16_gdn_gating_proj_small_t_reduce_kernelEPKfS4_S4_PfS5_i
+[MorphX-llm] phase=patched grid=24 block=(256,1,1) shared=40960 stream=(nil) name=_ZN6ninfer3ops6detail36bf16_gdn_gating_proj_gemm_mma_kernelINS1_17Bf16Gdn27GeometryELi8ELb0ELi8ELb0ELi0EEEvPK13__nv_bfloat16S6_PS4_fS6_S6_PKfS9_PfSA_SA_i
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  cudaDeviceSynchronize: unspecified launch failure
+</system-out>
+	</testcase>
+	<testcase name="ninfer_rope_test" classname="ninfer_rope_test" time="2.0294" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(896,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE0ELi24ELi4EEEvPKiP13__nv_bfloat16S6_ill
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE2ELi24ELi4EEEvPKiP13__nv_bfloat16S6_ill
+[MorphX-llm] phase=patched grid=7 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE0ELi16ELi2EEEvPKiP13__nv_bfloat16S6_ill
+[MorphX-llm] phase=patched grid=7 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE2ELi16ELi2EEEvPKiP13__nv_bfloat16S6_ill
+[MorphX-llm] phase=patched grid=128 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE2ELi4ELi0EEEvPKiP13__nv_bfloat16S6_ill
+[MorphX-llm] phase=patched grid=5 block=(64,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17rope_fixed_kernelILNS0_14RopeKernelModeE0ELi2ELi0EEEvPKiP13__nv_...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_vision_pos_embed_test" classname="ninfer_vision_pos_embed_test" time="2.01285" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=306 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops38vision_pos_embed_add_d1152_warp_kernelEPK14__nv_bfloat162PKiPKfPS1_ii
+[MorphX-llm] phase=patched grid=1024 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops33vision_pos_embed_add_d1152_kernelILi128EEEvPK14__nv_bfloat162PKiPKfPS2_i
+OK vision_pos_embed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_vision_attention_test" classname="ninfer_vision_attention_test" time="2.38947" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=16 block=(128,1,1) shared=49152 stream=(nil) name=_ZN6ninfer3ops29vision_attention_flash_kernelILi64ELi64EEEvPK13__nv_bfloat16S4_S4_PKNS0_19VisionAttentionTileEiiPS2_lllllllll
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops37vision_attention_prepare_tiles_kernelEPKiiPNS0_19VisionAttentionTileEii
+[MorphX-llm] phase=patched grid=96 block=(64,1,1) shared=24576 stream=(nil) name=_ZN6ninfer3ops29vision_attention_flash_kernelILi32ELi32EEEvPK13__nv_bfloat16S4_S4_PKNS0_19VisionAttentionTileEiiPS2_lllllllll
+vision_attention: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sampling_test" classname="ninfer_sampling_test" time="11.6578" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3880 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops28sampling_partial_topk_kernelEPK13__nv_bfloat16PKNS0_14SamplingConfigEiiNS0_17SamplingWorkspaceE
+[MorphX-llm] phase=patched grid=160 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops37sampling_group_finalize_sample_kernelEPiPKNS0_14SamplingConfigEPKiiiiiNS0_17SamplingWorkspaceE
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17sample_row_kernelEPK13__nv_bfloat16PiPKNS0_14SamplingConfigEPKiiii
+    sample top-k/top-p/min-p FP64 distribution match (max z=1.42365)
+    sample top-k public cap FP64 distribution match (max z=1.77583)
+    sample real token-domain B=8 FP64 distribution match (max z=0.863831)
+OK sample public contract
+</system-out>
+	</testcase>
+	<testcase name="ninfer_scalar_test" classname="ninfer_scalar_test" time="1.93662" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(1,1,1) shared=0 stream=0x63e47267a0d0 name=_ZN6ninfer3ops21set_i32_scalar_kernelEPii
+[MorphX-llm] phase=patched grid=1 block=(1,1,1) shared=0 stream=0x63e47267a0d0 name=_ZN6ninfer3ops27increment_i32_scalar_kernelEPi
+[MorphX-llm] phase=patched grid=1 block=(1,1,1) shared=0 stream=0x63e47267a0d0 name=_ZN6ninfer3ops22add_i32_scalars_kernelEPKiS2_Pi
+[MorphX-llm] phase=patched grid=1 block=(1,1,1) shared=0 stream=0x63e47267a0d0 name=_ZN6ninfer3ops27increment_i64_scalar_kernelEPl
+OK scalar public contract
+</system-out>
+	</testcase>
+	<testcase name="ninfer_cast_test" classname="ninfer_cast_test" time="2.02043" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=2 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops27cast_fp32_to_bf16_x4_kernelEPK6float4PNS0_6Bf16x4El
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops31cast_fp32_to_bf16_scalar_kernelEPKfP13__nv_bfloat16l
+OK cast_fp32_to_bf16
+</system-out>
+	</testcase>
+	<testcase name="ninfer_scatter_test" classname="ninfer_scatter_test" time="1.54075" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=4 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops21scatter_bf16x8_kernelEPK5uint4PKiPS1_i
+[MorphX-llm] phase=patched grid=6 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25scatter_bf16_batch_kernelEPK5uint4PKiS5_PS1_iill
+[MorphX-llm] phase=patched grid=6 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops28prepare_ragged_prefix_kernelEPK5uint4PKiS5_S5_PS1_PiS7_iill
+OK scatter and extract_bf16_columns
+</system-out>
+	</testcase>
+	<testcase name="ninfer_position_test" classname="ninfer_position_test" time="2.01904" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops25fill_i32_positions_kernelEPiii
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops27offset_i32_positions_kernelEPKiS2_Pii
+OK position
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gqa_attention_test" classname="ninfer_gqa_attention_test" time="31.1077" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops38gqa_attention_prefill_fill_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEENS0_24GqaPrefillDirectMetadataEEEvPK13__nv_bfloat16S7_PKiT0_PS5_SB_i
+[MorphX-llm] phase=patched grid=16 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops44gqa_attention_small_t_tc_partial_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEELi6ELi4ELb0ELb0ENS0_14GqaAppendInputEEEvPK13__nv_bfloat16T4_PKiPS5_SB_SA_SA_SA_iiiiifSB_PfSC_
+[MorphX-llm] phase=patched grid=576 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops42gqa_attention_small_t_reduce_output_kernelINS0_11GqaGeometryILi24ELi4ELi1EEELi64ELb0ELb0ELb0ELb0EEEvPK13__nv_bfloat16PKfS8_PKiSA_iiiiiPS4_
+[MorphX-llm] phase=patched grid=16 block=(64,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops44gqa_attention_small_t_tc_partial_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEELi1ELi2ELb0ELb0ENS0_14GqaCachedInputEEEvPK13__nv_bfloat16T4_PKiPS5_SB_SA_SA_SA_iiiiifSB_PfSC_
+[MorphX-llm] phase=patched grid=16 block=(64,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops44gqa_attention_small_t_tc_partial_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEELi1ELi2ELb0ELb0ENS0_14GqaAppendInputEEEvPK13__nv_bfloat16T4_PKiPS5_SB_SA_SA_SA_iiiiifSB_PfSC_
+[MorphX-llm] phase=patched grid=32 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops44gqa_attention_small_t_tc_partial_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEELi7ELi4ELb0ELb0ENS0_14GqaAppendInputEEEvPK13__nv_bfloat16T4_PKiPS5_SB_SA_SA_SA_iiiiifSB_PfSC_
+[MorphX-llm] phase=patched grid=17 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops38gqa_attention_prefill_fill_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEENS0_23GqaPrefillBatchMetadataILb0EEEEEvPK13__nv_bfloat16S8_PKiT0_PS6_SC_i
+[MorphX-llm] phase=patched grid=24 block=(128,1,1) shared=98304 stream=(nil) name=_ZN6ninfer3ops33gqa_attention_prefill_bf16_kernelINS0_11GqaGeometryILi24ELi4ELi1EEENS0_23GqaPrefillBatchMetadataILb0EEEEEvPK13__nv_bfloat16S8_S8_T0_PKifPS6_i
+gqa_attention batch qwen3_6_35b_a3b int8-g64 mapping=identity B=8 W=1: reduction criterion failed at index 11687 actual=-0.0294189 reference=0.000378042
+gqa_attention batch qwen3_6_35b_a3b int8-g64 mapping=identity B=8 W=1 cache-k-code: exact mismatch at index 2670336
+gqa_attention batch qwen3_6_35b_a3b int8-g64 mapping=identity B=8 W=1 cache-v-code: exact mismatch at index 2670336
+gqa_attention batch qwen3_6_35b_a3b int8-g64 mapping=identity B=8 W=1 cache-k-scale: exact mismatch at index 41724
+gqa_attention batch qwen3_6_35b_a3b int8-g64 mapping=identity B=8 W=1 cache-v-scale: exact mismatch at index 41724
+FAIL gqa_attention public-contract correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_bidirectional_gqa_attention_test" classname="ninfer_bidirectional_gqa_attention_test" time="3.95285" status="fail">
+		<failure message="Subprocess aborted"/>
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=8 block=(32,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops38bidirectional_gqa_split_partial_kernelILi1ELi1ELi32ELb1EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_S6_iiiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=8 block=(32,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops38bidirectional_gqa_split_partial_kernelILi2ELi1ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_S6_iiiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=64 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops31bidirectional_gqa_reduce_kernelILi2ELi32EEEvPK13__nv_bfloat16PKfS6_PKiS8_iiPS2_
+[MorphX-llm] phase=patched grid=16 block=(32,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops38bidirectional_gqa_split_partial_kernelILi1ELi1ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_S6_iiiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=32 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops31bidirectional_gqa_reduce_kernelILi1ELi32EEEvPK13__nv_bfloat16PKfS6_PKiS8_iiPS2_
+[MorphX-llm] phase=patched grid=24 block=(32,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops38bidirectional_gqa_split_partial_kernelILi4ELi1ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_S6_iiiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=128 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops31bidirectional_gqa_reduce_kernelILi4ELi32EEEvPK13__nv_bfloat16PKfS6_PKiS8_iiPS2_
+[MorphX-llm] phase=patched grid=256 block=(64,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops38bidirectional_gqa_split_partial_kernelILi8ELi2ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_S6_iiiifPS2_PfS8_S7_
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  launch bidirectional GQA graph: invalid argument
+</system-out>
+	</testcase>
+	<testcase name="ninfer_swa_test" classname="ninfer_swa_test" time="4.42422" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=8 block=(32,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops24swa_split_partial_kernelILi1ELi1ELi32ELb1EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_iiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=8 block=(128,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops24swa_split_partial_kernelILi16ELi4ELi32ELb1EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_iiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=256 block=(64,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops24swa_split_partial_kernelILi8ELi2ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_iiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=256 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops17swa_reduce_kernelILi8ELi32ELi1EEEvPK13__nv_bfloat16PKfS6_PKiS8_iiPS2_
+[MorphX-llm] phase=patched grid=256 block=(128,1,1) shared=16384 stream=(nil) name=_ZN6ninfer3ops24swa_split_partial_kernelILi16ELi4ELi32ELb0EEEvPK13__nv_bfloat16S4_S4_PKiS6_S6_S4_S4_iiifPS2_PfS8_S7_
+[MorphX-llm] phase=patched grid=512 block=(32,1,1) shared=0 stream=(...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_cache_append_prefix_test" classname="ninfer_kv_cache_append_prefix_test" time="3.39537" status="fail">
+		<failure message="Subprocess aborted"/>
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops35kv_cache_append_prefix_paged_kernelEPK13__nv_bfloat16S3_PKiS5_S5_PS1_S6_S5_iiiii
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops36kv_cache_append_prefix_cyclic_kernelEPK13__nv_bfloat16S3_PKiS5_S5_PS1_S6_iiii
+kv_cache_append_prefix cyclic graph C=7 cache k: exact mismatch at index 0
+kv_cache_append_prefix cyclic graph C=7 cache v: exact mismatch at index 0
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  launch kv append graph: invalid argument
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prepare_masked_block_test" classname="ninfer_prepare_masked_block_test" time="1.98108" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops27prepare_masked_block_kernelEPKiS2_S2_iPiS3_i
+prepare_masked_block: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sparse_moe_test" classname="ninfer_sparse_moe_test" time="3.73935" status="fail">
+		<failure message="Subprocess aborted"/>
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=257 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_120sparse_moe_d1_kernelEPK13__nv_bfloat16S5_Pf
+[MorphX-llm] phase=patched grid=1 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_125sparse_moe_d2_warp_kernelEPKfPiPfS6_
+[MorphX-llm] phase=patched grid=512 block=(288,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_130sparse_moe_d3_nine_warp_kernelINS2_7Q4CodecEEEvPK13__nv_bfloat16PKiPKhSB_SB_SB_SB_Pf
+[MorphX-llm] phase=patched grid=2048 block=(288,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_130sparse_moe_d4_nine_warp_kernelINS2_7Q5CodecELi1EEEvPKiPKfS8_S8_PKhSA_SA_SA_SA_P13__nv_bfloat16
+[MorphX-llm] phase=patched grid=1028 block=(128,1,1) shared=0 stream=0x62b163f67290 name=_ZN6ninfer3ops6detail12_GLOBAL__N_128sparse_moe_small_t_s1_kernelILi2EEEvPK13__nv_bfloat16S6_Pf
+[MorphX-llm] phase=patched grid=1 block=(64,1,1) shared=0 stream=0x62b163f67290 name=_ZN6ninfer3ops6detail12_GLOBAL__N_128sparse_moe_small_t_s2_kernelILi2EEEvPKfPiPfS7_
+[MorphX-llm] phase=patched grid=3072 block=(96,1,1) shared=0 stream=0x62b163f67290 name=_ZN6ninfer3ops6detail12_GLOBAL__N_131sparse_moe_d3_path_tiled_kernelINS2_7Q4CodecELi3ELb0EEEvPK13__nv_bfloat16PKiPKhSB_SB_SB_SB_PfiS9_
+[MorphX-llm] phase=patched grid=4096 block=(288,1,1) shared=0 stream=0x62b163f67290 name=_ZN6ninfer3ops6detail12_GLOBAL__N_126sparse_moe_d4_token_kernelINS2_7Q5CodecELi1ELb0EEEvPKiPKfS8_S8_PKhSA_SA_SA_SA_P13__nv_bfloat16iS6_
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  replay SparseMoe graph: invalid argument
+</system-out>
+	</testcase>
+	<testcase name="ninfer_mtp_pack_test" classname="ninfer_mtp_pack_test" time="2.0531" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops24mtp_pack_fc_input_kernelEPK13__nv_bfloat16S3_PS1_i
+[MorphX-llm] phase=patched grid=56 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops24mtp_split_attn_in_kernelEPK13__nv_bfloat16PS1_S4_S4_S4_i
+OK mtp_pack
+</system-out>
+	</testcase>
+	<testcase name="ninfer_mtp_round_test" classname="ninfer_mtp_round_test" time="1.51109" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops29mtp_prepare_next_round_kernelEPKiS2_S2_S2_S2_S2_S2_PiS3_S3_S3_S3_iii
+mtp_round: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_speculative_round_test" classname="ninfer_speculative_round_test" time="2.05473" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1 block=(32,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops40speculative_prepare_verify_inputs_kernelEPKiS2_S2_S2_PiS3_i
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops39speculative_accept_greedy_drafts_kernelEPKiPK13__nv_bfloat16S2_S2_PiS6_S6_S6_S6_PKNS0_14SamplingConfigEiii
+[MorphX-llm] phase=patched grid=16 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops40speculative_sampling_partial_topk_kernelEPK13__nv_bfloat16PKiS5_PKNS0_14SamplingConfigEiiiiNS0_17SamplingWorkspaceEm
+[MorphX-llm] phase=patched grid=16 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops42speculative_sampling_group_finalize_kernelEPKiPK13__nv_bfloat16S2_S2_PiS6_S6_S6_S6_PKNS0_14SamplingConfigEiiiiiNS0_17SamplingWorkspaceEm
+[MorphX-llm] phase=patched grid=20 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops41speculative_select_accepted_hidden_kernelEPK13__nv_bfloat16PKiPS1_ii
+[MorphX-llm] phase=patched grid=1 block=(256,1,1) shared=0 stream=(...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q4_a16_test" classname="ninfer_linear_q4_a16_test" time="5.90489" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=1024 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q4_rowsplit_gemv_kernelINS1_22Q4RowSplitGemvScheduleILi1ELi8ELi16ELi1ELNS1_22Q4GemvActivationAccessE0ELNS1_17Q4GemvLaneMappingE0ELNS1_16Q4GemvDecodeModeE0ELNS1_18Q4GemvCodeTransferE0ELNS1_17Q4GemvScaleAccessE0ELNS0_5CacheE0ELi80ELi1EEELb0ELi0ENS1_19Q4GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhSG_PSC_SH_iiT2_
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q4_rowsplit_gemm_simt_kernelINS1_26Q4RowSplitSimtGemmScheduleILi8ELi4ELi16ELi2ELNS0_5CacheE0ELi1EEELb0ELb0ELi0ENS1_19Q4SimtStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhSB_PS7_SC_iiiiiiT3_
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q4_rowsplit_gemm_simt_kernelINS1_26Q4RowSplitSimtGemmScheduleILi8ELi4ELi16ELi2ELNS0_5CacheE0ELi1EEELb1ELb0ELi0ENS1_19Q4SimtStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhSB_PS7_SC_iiiiiiT3_
+[MorphX-llm] phase=patche...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q5_a16_test" classname="ninfer_linear_q5_a16_test" time="5.51492" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=64 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi1024ELi5120EEELi8ELi1ENS1_24Q5SmallTMmaStoreEpilogueENS1_23Q5SmallTMmaIdentityRowsELi1EEEvPK13__nv_bfloat16PKhSB_SB_PS7_iiT2_T3_
+[MorphX-llm] phase=patched grid=64 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi1024ELi5120EEELi8ELi2ENS1_24Q5SmallTMmaStoreEpilogueENS1_23Q5SmallTMmaIdentityRowsELi1EEEvPK13__nv_bfloat16PKhSB_SB_PS7_iiT2_T3_
+[MorphX-llm] phase=patched grid=64 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi1024ELi5120EEELi8ELi3ENS1_24Q5SmallTMmaStoreEpilogueENS1_23Q5SmallTMmaIdentityRowsELi1EEEvPK13__nv_bfloat16PKhSB_SB_PS7_iiT2_T3_
+[MorphX-llm] phase=patched grid=64 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi1024ELi5120EEELi8ELi4ENS1_24Q5SmallTMmaStoreE...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q6_a16_test" classname="ninfer_linear_q6_a16_test" time="6.44389" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=31040 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q6_rowsplit_gemm_simt_kernelINS1_26Q6RowSplitSimtGemmScheduleILi8ELi4ELi16ELi2ELNS0_5CacheE0ELi1EEEEEvPK13__nv_bfloat16PKhSA_SA_PS6_iiii
+[MorphX-llm] phase=patched grid=31040 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q6_rowsplit_gemm_simt_kernelINS1_26Q6RowSplitSimtGemmScheduleILi8ELi5ELi16ELi2ELNS0_5CacheE0ELi1EEEEEvPK13__nv_bfloat16PKhSA_SA_PS6_iiii
+[MorphX-llm] phase=patched grid=31040 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q6_rowsplit_gemm_simt_kernelINS1_26Q6RowSplitSimtGemmScheduleILi8ELi6ELi16ELi2ELNS0_5CacheE0ELi1EEEEEvPK13__nv_bfloat16PKhSA_SA_PS6_iiii
+[MorphX-llm] phase=patched grid=31040 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28q6_rowsplit_gemm_simt_kernelINS1_26Q6RowSplitSimtGemmScheduleILi8ELi7ELi16ELi2ELNS0_5CacheE0ELi1EEEEEvPK13__nv_bfloat16PKhSA_SA_PS6_iiii
+[MorphX-llm] phase=patched grid=3880 block=(256,1,1) shared=...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_w8_a16_test" classname="ninfer_linear_w8_a16_test" time="8.39981" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=15520 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi248320ELi5120EEELi1ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_24W8SmallTMmaStoreEpilogueENS1_23W8SmallTMmaIdentityRowsELb0ELi1EEEvPK13__nv_bfloat16PKhSH_T2_T3_T4_
+[MorphX-llm] phase=patched grid=15520 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi248320ELi5120EEELi6ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_24W8SmallTMmaStoreEpilogueENS1_23W8SmallTMmaIdentityRowsELb0ELi1EEEvPK13__nv_bfloat16PKhSH_T2_T3_T4_
+[MorphX-llm] phase=patched grid=15520 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi248320ELi5120EE...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_bf16_a16_test" classname="ninfer_linear_bf16_a16_test" time="5.26642" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=448 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail16bf16_gemv_kernelINS1_16Bf16GemvGeometryILi14336ELi5120EEENS1_16Bf16GemvScheduleILi4ELi1ELi8ELi8ELi4ELNS1_20Bf16ActivationAccessE0ELNS1_15Bf16WeightCacheE0ELNS1_14Bf16PhaseOrderE1ELi1ELi1ELi1ELi2EEENS1_20Bf16ContiguousOutputENS1_17Bf16StoreEpilogueEEEvPK13__nv_bfloat16SE_T1_T2_
+[MorphX-llm] phase=patched grid=448 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail25bf16_small_t_inner_kernelINS1_16Bf16GemvGeometryILi14336ELi5120EEELi2ENS1_23Bf16SmallTInnerScheduleILi4ELi1ELi8ELi8ELi1ELi4ELNS1_26Bf16SmallTActivationAccessE1ELNS1_15Bf16WeightCacheE0ELNS1_14Bf16PhaseOrderE0ELi1ELi1ELi1ELi2EEENS1_26Bf16SmallTContiguousOutputEEEvPK13__nv_bfloat16SD_T2_
+[MorphX-llm] phase=patched grid=448 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail25bf16_small_t_inner_kernelINS1_16Bf16GemvGeometryILi14336ELi5120EEELi4ENS1_23Bf16SmallTInnerScheduleILi4ELi1ELi8ELi8ELi1ELi4ELNS1_26Bf16SmallTActivationAc...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_attn_input_proj_test" classname="ninfer_attn_input_proj_test" time="5.84528" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=7168 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q4_rowsplit_gemv_kernelINS1_22Q4RowSplitGemvScheduleILi1ELi8ELi16ELi1ELNS1_22Q4GemvActivationAccessE0ELNS1_17Q4GemvLaneMappingE0ELNS1_16Q4GemvDecodeModeE0ELNS1_18Q4GemvCodeTransferE0ELNS1_17Q4GemvScaleAccessE0ELNS0_5CacheE0ELi80ELi1EEELb1ELi6144ENS1_19Q4GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhSG_PSC_SH_iiT2_
+[MorphX-llm] phase=patched grid=448 block=(512,1,1) shared=0 stream=0x6189ebd3ab50 name=_ZN6ninfer3ops6detail23q5_rowsplit_gemv_kernelILi7168ELi5120ELi16ELi2ELb1ELb0ELb1ELi6144ENS1_19Q5GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhS8_S8_PS4_S9_T7_
+[MorphX-llm] phase=patched grid=448 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_16Q4SmallTGeometryILi7168ELi5120EEELi8ELi2ENS1_21Q4SmallTSplitEpilogueILi6144EEENS1_23Q4SmallTMmaIdentityRowsEEEvPK13__nv_bfloat16PKhSC_PS8_T2_T3_
+[MorphX-llm] phase=patched grid=448 block=(256,1,1) shared=0 stream=0x6189eb...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_test" classname="ninfer_gdn_input_proj_test" time="2.57516" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=4096 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q4_rowsplit_gemv_kernelINS1_22Q4RowSplitGemvScheduleILi1ELi8ELi16ELi1ELNS1_22Q4GemvActivationAccessE0ELNS1_17Q4GemvLaneMappingE0ELNS1_16Q4GemvDecodeModeE0ELNS1_18Q4GemvCodeTransferE0ELNS1_17Q4GemvScaleAccessE0ELNS0_5CacheE0ELi80ELi1EEELb0ELi0ENS1_19Q4GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhSG_PSC_SH_iiT2_
+[MorphX-llm] phase=patched grid=768 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q5_rowsplit_gemv_kernelILi12288ELi5120ELi16ELi2ELb1ELb0ELb1ELi6144ENS1_19Q5GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhS8_S8_PS4_S9_T7_
+[MorphX-llm] phase=patched grid=256 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_16Q4SmallTGeometryILi4096ELi5120EEELi8ELi2ENS1_22Q4SmallTStrideEpilogueENS1_23Q4SmallTMmaIdentityRowsEEEvPK13__nv_bfloat16PKhSB_PS7_T2_T3_
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6d...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_conv_snapshot_test" classname="ninfer_gdn_input_proj_conv_snapshot_test" time="2.79199" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=768 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q5_rowsplit_gemv_kernelILi12288ELi5120ELi16ELi2ELb1ELb0ELb1ELi6144ENS1_12_GLOBAL__N_119Q5GdnDecodeEpilogueINS1_22SnapshotHistoryPublishEEELb1ELb0EEEvPK13__nv_bfloat16PKhSB_SB_PS7_SC_T7_
+[MorphX-llm] phase=patched grid=4096 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q4_rowsplit_gemv_kernelINS1_22Q4RowSplitGemvScheduleILi1ELi8ELi16ELi1ELNS1_22Q4GemvActivationAccessE0ELNS1_17Q4GemvLaneMappingE0ELNS1_16Q4GemvDecodeModeE0ELNS1_18Q4GemvCodeTransferE0ELNS1_17Q4GemvScaleAccessE0ELNS0_5CacheE0ELi80ELi1EEELb0ELi0ENS1_12_GLOBAL__N_119Q4GdnDecodeEpilogueINS1_22SnapshotHistoryPublishEEELb0ELb1EEEvPK13__nv_bfloat16PKhSJ_PSF_SK_iiT2_
+[MorphX-llm] phase=patched grid=256 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_16Q4SmallTGeometryILi4096ELi5120EEELi8ELi2ENS1_12_GLOBAL__N_120Q4GdnMmaConvEpilogueILi2ENS1_22SnapshotHistoryPublishEEENS1_23Q4SmallTMmaIdentity...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_conv_record_test" classname="ninfer_gdn_input_proj_conv_record_test" time="2.45768" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=256 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_16Q4SmallTGeometryILi4096ELi5120EEELi8ELi2ENS1_12_GLOBAL__N_120Q4GdnMmaConvEpilogueILi2ENS1_22SnapshotHistoryPublishEEENS1_23Q4SmallTMmaIdentityRowsEEEvPK13__nv_bfloat16PKhSE_PSA_T2_T3_
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi12288ELi5120EEELi8ELi2ENS1_12_GLOBAL__N_120Q5GdnMmaConvEpilogueILi2ENS1_22SnapshotHistoryPublishEEENS1_23Q5SmallTMmaIdentityRowsELi1EEEvPK13__nv_bfloat16PKhSE_SE_PSA_iiT2_T3_
+[MorphX-llm] phase=patched grid=256 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_16Q4SmallTGeometryILi4096ELi5120EEELi8ELi2ENS1_12_GLOBAL__N_120Q4GdnMmaConvEpilogueILi2ENS1_19RecordColumnPublishEEENS1_23Q4SmallTMmaIdentityRowsEEEvPK13__nv_bfloat16PKhSE_PSA_T2_T3_
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) n...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_delta_net_replay_record_test" classname="ninfer_gated_delta_net_replay_record_test" time="3.12882" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=256 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net25recurrent_snapshot_kernelILb1ELb0ELb0EEEvNS2_14SnapshotAccessIXT0_EXT1_EEE
+[MorphX-llm] phase=patched grid=256 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net23recurrent_record_kernelILb0EEEvNS2_12RecordAccessIXT_EEE
+[MorphX-llm] phase=patched grid=256 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net25recurrent_snapshot_kernelILb1ELb1ELb1EEEvNS2_14SnapshotAccessIXT0_EXT1_EEE
+[MorphX-llm] phase=patched grid=256 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net23recurrent_record_kernelILb1EEEvNS2_12RecordAccessIXT_EEE
+OK gated_delta_net_replay_record
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_replay_fold_test" classname="ninfer_gdn_replay_fold_test" time="11.736" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=384 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net25recurrent_snapshot_kernelILb1ELb1ELb1EEEvNS2_14SnapshotAccessIXT0_EXT1_EEE
+[MorphX-llm] phase=patched grid=18432 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net21recurrent_fold_kernelINS2_12FoldGeometryILi48ELi16ELi48ELi10240EEEEEvNS2_10FoldAccessIT_EE
+[MorphX-llm] phase=patched grid=7680 block=(32,4,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail15gated_delta_net21recurrent_fold_kernelINS2_12FoldGeometryILi30ELi16ELi32ELi8192EEEEEvNS2_10FoldAccessIT_EE
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi12288ELi2048EEELi2ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_14W8SplitOutput2ILi8192ELi4096EEENS1_12_GLOBAL__N_123W8GdnSplitKConvEpilogueINS1_22SnapshotHistoryPublishEEENS1...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_q5_a16_test" classname="ninfer_linear_add_q5_a16_test" time="2.32089" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=320 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail23q5_rowsplit_gemv_kernelILi5120ELi6144ELi16ELi2ELb1ELb1ELb0ELi0ENS1_19Q5GemvStoreEpilogueELb0ELb0EEEvPK13__nv_bfloat16PKhS8_S8_PS4_S9_T7_
+[MorphX-llm] phase=patched grid=640 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi5120ELi6144EEELi8ELi2ENS1_33Q5SmallTMmaResidualAtomicEpilogueENS1_23Q5SmallTMmaIdentityRowsELi2EEEvPK13__nv_bfloat16PKhSB_SB_PS7_iiT2_T3_
+[MorphX-llm] phase=patched grid=640 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi5120ELi6144EEELi8ELi3ENS1_33Q5SmallTMmaResidualAtomicEpilogueENS1_23Q5SmallTMmaIdentityRowsELi2EEEvPK13__nv_bfloat16PKhSB_SB_PS7_iiT2_T3_
+[MorphX-llm] phase=patched grid=640 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q5_small_t_mma_kernelINS1_16Q5SmallTGeometryILi5120ELi6144EEELi8ELi4ENS1_33Q5SmallTMmaResidualAtomicEpilogueE...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_bf16_a16_test" classname="ninfer_linear_add_bf16_a16_test" time="2.23736" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=640 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail16bf16_gemv_kernelINS1_16Bf16GemvGeometryILi5120ELi6144EEENS1_16Bf16GemvScheduleILi8ELi2ELi2ELi8ELi4ELNS1_20Bf16ActivationAccessE0ELNS1_15Bf16WeightCacheE0ELNS1_14Bf16PhaseOrderE1ELi1ELi2ELi1ELi1EEENS1_12_GLOBAL__N_125Bf16LinearAddDecodeOutputENSA_27Bf16LinearAddDecodeEpilogueEEEvPK13__nv_bfloat16SF_T1_T2_
+[MorphX-llm] phase=patched grid=320 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail25bf16_small_t_inner_kernelINS1_16Bf16GemvGeometryILi5120ELi6144EEELi2ENS1_23Bf16SmallTInnerScheduleILi4ELi1ELi4ELi8ELi1ELi4ELNS1_26Bf16SmallTActivationAccessE1ELNS1_15Bf16WeightCacheE0ELNS1_14Bf16PhaseOrderE0ELi1ELi2ELi1ELi2EEENS1_12_GLOBAL__N_125Bf16LinearAddSmallTOutputEEEvPK13__nv_bfloat16SE_T2_
+[MorphX-llm] phase=patched grid=320 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail25bf16_small_t_inner_kernelINS1_16Bf16GemvGeometryILi5120ELi6144EEELi3ENS1_23Bf16SmallTInnerScheduleILi4ELi1ELi4ELi...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_w8_a16_test" classname="ninfer_linear_add_w8_a16_test" time="3.17659" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=256 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28w8_rowsplit_gemm_simt_kernelINS1_22W8RowSplitSimtScheduleELi4ELi8ELi2ELb0ELNS1_10W8EpilogueE1ENS1_18W8ContiguousOutputEEEvPK13__nv_bfloat16PKhSA_T5_iiiii
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi2048ELi4096EEELi2ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_27W8SmallTMmaResidualEpilogueENS1_23W8SmallTMmaIdentityRowsELb0ELi1EEEvPK13__nv_bfloat16PKhSH_T2_T3_T4_
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi2048ELi4096EEELi3ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_27W8SmallTMmaRes...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_pair_w8_a16_test" classname="ninfer_linear_pair_w8_a16_test" time="2.67051" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28w8_rowsplit_gemm_simt_kernelINS1_22W8RowSplitSimtScheduleELi4ELi8ELi2ELb0ELNS1_10W8EpilogueE0ENS1_18W8ContiguousOutputEEEvPK13__nv_bfloat16PKhSA_T5_iiiii
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28w8_rowsplit_gemm_simt_kernelINS1_22W8RowSplitSimtScheduleELi4ELi8ELi2ELb1ELNS1_10W8EpilogueE0ENS1_18W8ContiguousOutputEEEvPK13__nv_bfloat16PKhSA_T5_iiiii
+[MorphX-llm] phase=patched grid=128 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28w8_rowsplit_gemm_simt_kernelINS1_22W8RowSplitSimtScheduleELi8ELi8ELi2ELb0ELNS1_10W8EpilogueE0ENS1_18W8ContiguousOutputEEEvPK13__nv_bfloat16PKhSA_T5_iiiii
+[MorphX-llm] phase=patched grid=384 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail28w8_rowsplit_gemm_simt_kernelINS1_22W8RowSplitSimtScheduleELi8ELi8ELi2ELb1ELNS1_10W8EpilogueE0ENS1_18W8ContiguousOutputEEEvPK13__nv_bfloat16PKhSA_T5_iiiii
+...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_swiglu_q4_a16_test" classname="ninfer_linear_swiglu_q4_a16_test" time="3.54176" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=4352 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_133q4_linear_swiglu_gemv_pair_kernelEPK13__nv_bfloat16PKhS7_PS3_
+[MorphX-llm] phase=patched grid=2176 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_12_GLOBAL__N_122Q4SwiGluSmallTGeometryELi8ELi2ENS3_22Q4SwiGluSmallTEpilogueENS3_18Q4SwiGluSmallTRowsEEEvPK13__nv_bfloat16PKhSB_PS7_T2_T3_
+[MorphX-llm] phase=patched grid=2176 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21q4_small_t_mma_kernelINS1_12_GLOBAL__N_122Q4SwiGluSmallTGeometryELi32ELi32ENS3_22Q4SwiGluSmallTEpilogueENS3_18Q4SwiGluSmallTRowsEEEvPK13__nv_bfloat16PKhSB_PS7_T2_T3_
+[MorphX-llm] phase=patched grid=544 block=(160,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail43q4_linear_swiglu_mma_split_half_pair_kernelINS1_7GemmCfgILi64ELi40ELi64ELi64ELi8ELi2ELi1ELb0ELb1ELb1EEELb0EEEvPK13__nv_bfloat16PKhS9_PS5_iiii
+[MorphX-llm] phase=patched grid=544 block=(160,1,1) shared=0 stre...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_swiglu_w8_a16_test" classname="ninfer_linear_swiglu_w8_a16_test" time="2.54018" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=384 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail12_GLOBAL__N_135w8_linear_swiglu_decode_pair_kernelILi16EEEvPK13__nv_bfloat16PKhS8_PS4_
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi12288ELi2048EEELi2ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_12_GLOBAL__N_122W8SwiGluExactTEpilogueENSB_18W8SwiGluExactTRowsELb1ELi1EEEvPK13__nv_bfloat16PKhSI_T2_T3_T4_
+[MorphX-llm] phase=patched grid=768 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops6detail21w8_small_t_mma_kernelINS1_16W8LinearGeometryILi12288ELi2048EEELi6ENS1_19W8SmallTMmaScheduleILi8ELi8ELi2ELNS1_22W8SmallTMmaScaleAccessE1ELNS0_5CacheE0ELS7_1ELNS1_26W8SmallTMmaActivationStageE0EEENS1_18W8ContiguousOutputENS1_12_GLOBAL__N_122W8SwiGluExactTEpilogueENSB_18W8SwiGluExactTRowsELb1ELi1EEEvPK1...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_visual_scatter_test" classname="ninfer_qwen3_6_27b_visual_scatter_test" time="1.48196" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=2 block=(128,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops21scatter_bf16x8_kernelEPK5uint4PKiPS1_i
+OK shifted visual composition
+</system-out>
+	</testcase>
+	<testcase name="ninfer_test_e8_codec" classname="ninfer_test_e8_codec" time="27.9016" status="run">
+		<properties/>
+		<system-out>[MorphX-llm] phase=patched grid=3907 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer7test_kv21e8_encode_tile_kernelEPKfPNS0_16E8Packed2BitTileEi
+[MorphX-llm] phase=patched grid=15625 block=(64,1,1) shared=8192 stream=(nil) name=_ZN6ninfer7test_kv26e8_decode_attention_kernelEPKfPKNS0_16E8Packed2BitTileEPfii
+[MorphX-llm] phase=patched grid=3907 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer7test_kv29e8_general_encode_tile_kernelEPKfPNS0_16E8Packed4BitTileEi
+[MorphX-llm] phase=patched grid=15625 block=(64,1,1) shared=8704 stream=(nil) name=_ZN6ninfer7test_kv34e8_general_decode_attention_kernelEPKfPKNS0_16E8Packed4BitTileEPfii
+[MorphX-llm] phase=patched grid=3907 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer7test_kv31fp32_reference_attention_kernelEPKfS2_Pfi
+=================================================================
+   NInfer: True E8 Conway-Sloane Lattice Microbenchmark
+   Target: NVIDIA GeForce RTX 4090 (sm_89, 24 GB VRAM)
+=============================================================...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

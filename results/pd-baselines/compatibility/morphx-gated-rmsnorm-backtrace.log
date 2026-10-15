@@ -1,0 +1,60 @@
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[MorphX-llm] phase=patched grid=3 block=(512,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf
+[MorphX-llm] phase=patched grid=48 block=(256,1,1) shared=0 stream=(nil) name=_ZN6ninfer3ops22rmsnorm_generic_kernelILNS0_11RmsEpilogueE2EEEvPK13__nv_bfloat16S5_S5_PS3_ilf
+
+Thread 5 "ninfer_gated_rm" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fffe4a00000 (LWP 3225940)]
+std::_Hashtable<char const*, std::pair<char const* const, std::atomic<float> >, std::allocator<std::pair<char const* const, std::atomic<float> > >, std::__detail::_Select1st, std::equal_to<char const*>, std::hash<char const*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_find_before_node (this=0x7ffff7fbc5c0 <gCI>, __k=@0x55555612a1c0: 0x555555f1b8b7 "_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf", __code=93825002485943, __bkt=0) at /usr/include/c++/13/bits/hashtable.h:1961
+1961		  if (this->_M_equals(__k, __code, *__p))
+
+Thread 5 (Thread 0x7fffe4a00000 (LWP 3225940) "ninfer_gated_rm"):
+#0  std::_Hashtable<char const*, std::pair<char const* const, std::atomic<float> >, std::allocator<std::pair<char const* const, std::atomic<float> > >, std::__detail::_Select1st, std::equal_to<char const*>, std::hash<char const*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_find_before_node (this=0x7ffff7fbc5c0 <gCI>, __k=@0x55555612a1c0: 0x555555f1b8b7 "_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf", __code=93825002485943, __bkt=0) at /usr/include/c++/13/bits/hashtable.h:1961
+#1  std::_Hashtable<char const*, std::pair<char const* const, std::atomic<float> >, std::allocator<std::pair<char const* const, std::atomic<float> > >, std::__detail::_Select1st, std::equal_to<char const*>, std::hash<char const*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_find_node (__c=93825002485943, __key=@0x55555612a1c0: 0x555555f1b8b7 "_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf", __bkt=0, this=0x7ffff7fbc5c0 <gCI>) at /usr/include/c++/13/bits/hashtable.h:815
+#2  std::__detail::_Map_base<char const*, std::pair<char const* const, std::atomic<float> >, std::allocator<std::pair<char const* const, std::atomic<float> > >, std::__detail::_Select1st, std::equal_to<char const*>, std::hash<char const*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[] (this=this@entry=0x7ffff7fbc5c0 <gCI>, __k=@0x55555612a1c0: 0x555555f1b8b7 "_ZN6ninfer3ops26rmsnorm_warp_bf16x2_kernelILNS0_11RmsEpilogueE2ELi512EEEvPK14__nv_bfloat162S5_S5_PS3_ilf") at /usr/include/c++/13/bits/hashtable_policy.h:815
+#3  0x00007ffff7f9ea68 in std::unordered_map<char const*, std::atomic<float>, std::hash<char const*>, std::equal_to<char const*>, std::allocator<std::pair<char const* const, std::atomic<float> > > >::operator[] (__k=<optimized out>, this=0x7ffff7fbc5c0 <gCI>) at /usr/include/c++/13/bits/unordered_map.h:987
+#4  isCI (info=<optimized out>) at /home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/MorphX/runtime/src/cuda-llm.cpp:402
+#5  0x00007ffff7f9eae3 in schedule_2 (kernels=kernels@entry=0x7fffe49fd3a0, nexts=nexts@entry=0x7fffe49fd420, nStreams=1, nrSM=nrSM@entry=128) at /home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/MorphX/runtime/src/cuda-llm.cpp:490
+#6  0x00007ffff7f9f145 in agentThread () at /home/guokc/mypro/gnn-mount-sda1/InferX/source/pd-baselines/MorphX/runtime/src/cuda-llm.cpp:565
+#7  0x00007ffff76ecdb4 in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#8  0x00007ffff729cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#9  0x00007ffff7329ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 4 (Thread 0x7ffff1400000 (LWP 3225939) "cuda-EvtHandlr"):
+#0  0x00007ffff731b79d in __GI___poll (fds=0x7fffe0000c20, nfds=10, timeout=100) at ../sysdeps/unix/sysv/linux/poll.c:29
+#1  0x00007ffff44cc37f in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#2  0x00007ffff458527f in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#3  0x00007ffff44bdae3 in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#4  0x00007ffff729cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#5  0x00007ffff7329ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 3 (Thread 0x7ffff1e00000 (LWP 3225938) "ninfer_gated_rm"):
+#0  0x00007ffff7298e51 in __futex_abstimed_wait_common64 (private=-1077952517, cancel=true, abstime=0x7ffff1dfd800, op=393, expected=0, futex_word=0x555555652e60) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=-1077952517, abstime=0x7ffff1dfd800, clockid=-1088342990, expected=0, futex_word=0x555555652e60) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555652e60, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x7ffff1dfd800, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff729bd6e in __pthread_cond_wait_common (abstime=0x7ffff1dfd800, clockid=0, mutex=0x5555555fa428, cond=0x555555652e38) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_timedwait64 (cond=0x555555652e38, mutex=0x5555555fa428, abstime=0x7ffff1dfd800) at ./nptl/pthread_cond_wait.c:652
+#5  0x00007ffff44226ca in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#6  0x00007ffff44bdae3 in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#7  0x00007ffff729cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7329ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 2 (Thread 0x7ffff4000000 (LWP 3225934) "cuda00001400006"):
+#0  0x00007ffff731b79d in __GI___poll (fds=0x555555620e40, nfds=3, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+#1  0x00007ffff44cc37f in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#2  0x00007ffff458527f in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#3  0x00007ffff44bdae3 in ?? () from /usr/lib/x86_64-linux-gnu/libcuda.so
+#4  0x00007ffff729cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#5  0x00007ffff7329ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 1 (Thread 0x7ffff7e0e000 (LWP 3225926) "ninfer_gated_rm"):
+#0  0x00007ffff7298e51 in __futex_abstimed_wait_common64 (private=128, cancel=true, abstime=0x0, op=265, expected=3225940, futex_word=0x7fffe4a002d0) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=128, abstime=0x0, clockid=0, expected=3225940, futex_word=0x7fffe4a002d0) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x7fffe4a002d0, expected=3225940, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=128) at ./nptl/futex-internal.c:139
+#3  0x00007ffff729e883 in __pthread_clockjoin_ex (threadid=140737029079040, thread_return=0x0, clockid=0, abstime=0x0, block=<optimized out>) at ./nptl/pthread_join_common.c:102
+#4  0x00007ffff76ece33 in std::thread::join() () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#5  0x00007ffff7247a76 in __run_exit_handlers (status=0, listp=<optimized out>, run_list_atexit=run_list_atexit@entry=true, run_dtors=run_dtors@entry=true) at ./stdlib/exit.c:108
+#6  0x00007ffff7247bbe in __GI_exit (status=<optimized out>) at ./stdlib/exit.c:138
+#7  0x00007ffff722a1d1 in __libc_start_call_main (main=main@entry=0x5555555583e0 <main>, argc=argc@entry=1, argv=argv@entry=0x7fffffffe168) at ../sysdeps/nptl/libc_start_call_main.h:74
+#8  0x00007ffff722a28b in __libc_start_main_impl (main=0x5555555583e0 <main>, argc=1, argv=0x7fffffffe168, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffe158) at ../csu/libc-start.c:360
+#9  0x00005555555585c5 in _start ()

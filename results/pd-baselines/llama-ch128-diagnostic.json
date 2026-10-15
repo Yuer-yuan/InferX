@@ -1,0 +1,560 @@
+{
+  "status": "diagnostic_single_repetition",
+  "run": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/raw/llama-ch128-long-diagnostic-v1",
+  "groups": [
+    {
+      "group": "cold-low",
+      "span_s": 180.77347591891885,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 180.77347591891885,
+        "aggregate_tokens_per_s": 6.90366766283654,
+        "latency_s": {
+          "n": 24,
+          "median": 17.821468990296125,
+          "minimum": 1.3306844159960747,
+          "maximum": 134.26741790771484,
+          "p95": 58.55711515247822,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.821468990296125,
+          "minimum": 1.3306844159960747,
+          "maximum": 134.26741790771484,
+          "p95": 58.55711515247822,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.099971605464816,
+          "minimum": 0.3792431876063347,
+          "maximum": 132.5302721373737,
+          "p95": 51.64058788865805,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0010234564542770386,
+          "minimum": 0.00040733441710472107,
+          "maximum": 0.0022289641201496124,
+          "p95": 0.0020278356969356537,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.038722494903730593,
+            "tool_goodput_per_s": 0.038722494903730593,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04425427988997782,
+            "tool_goodput_per_s": 0.04425427988997782,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.055317849862472276,
+            "tool_goodput_per_s": 0.055317849862472276,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long_requests": [
+        {
+          "id": "llama-d0-c4-chunk128-r0-cold-low-long-0",
+          "latency_s": 164.76164861768484,
+          "arrival_ttft_s": 162.61078469455242,
+          "functional_ok": true,
+          "summary": {
+            "ok": true,
+            "errors": [],
+            "wall_s": 164.75939514487982,
+            "ttft_s": 162.6085312217474,
+            "completion_tokens": 64,
+            "prompt_tokens": 131049,
+            "cached_tokens": 0,
+            "cache_mode": "natural",
+            "e2e_tps": 0.38844522307041807,
+            "observed_decode_tps": 29.290555912179553,
+            "usage": {
+              "completion_tokens": 64,
+              "prompt_tokens": 131049,
+              "total_tokens": 131113,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            },
+            "engine_timings": {
+              "cache_n": 0,
+              "prompt_n": 131049,
+              "prompt_ms": 161998.463,
+              "prompt_per_token_ms": 1.2361671054338452,
+              "prompt_per_second": 808.9521195025167,
+              "predicted_n": 64,
+              "predicted_ms": 2483.398,
+              "predicted_per_token_ms": 39.41901587301587,
+              "predicted_per_second": 25.368466915089726
+            },
+            "text": "",
+            "reasoning": "",
+            "tool_calls": [
+              {
+                "index": 0,
+                "id": "RSUmUWgjlUNJXZN9fbOEWgYH40hTvJeh",
+                "type": "function",
+                "function": {
+                  "name": "record_status",
+                  "arguments": "{"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\"status\":\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "ready"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": ",\"task\":\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "7"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "ab"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "9"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "a"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "1"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "7"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "f"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "2"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "3"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "a"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "f"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "9"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": ",\"attempt\":"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "1"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "}"
+                }
+              }
+            ],
+            "finish_reason": "tool_calls",
+            "truncated": false
+          }
+        }
+      ],
+      "result_sha256": "b5edb1efb9e19797d3edd39d402b910887cf50d9d549254db9365d3b2257cd90"
+    },
+    {
+      "group": "resume-high",
+      "span_s": 184.4468871317804,
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 184.4468871317804,
+        "aggregate_tokens_per_s": 6.766175452494087,
+        "latency_s": {
+          "n": 24,
+          "median": 17.79186464101076,
+          "minimum": 1.3243184052407742,
+          "maximum": 166.44148580357432,
+          "p95": 42.319725908339024,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 17.79186464101076,
+          "minimum": 1.3243184052407742,
+          "maximum": 166.44148580357432,
+          "p95": 42.319725908339024,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 12.080279318615794,
+          "minimum": 0.37298833951354027,
+          "maximum": 164.97698931396008,
+          "p95": 35.96065387502313,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.0010967608541250229,
+          "minimum": 0.0004139840602874756,
+          "maximum": 0.0032538585364818573,
+          "p95": 0.002020701766014099,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.037951304621361065,
+            "tool_goodput_per_s": 0.037951304621361065,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04337291956726979,
+            "tool_goodput_per_s": 0.04337291956726979,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 10,
+            "tool_met": 10,
+            "protocol_goodput_per_s": 0.05421614945908724,
+            "tool_goodput_per_s": 0.05421614945908724,
+            "offered_fraction": 0.4166666666666667
+          }
+        }
+      },
+      "long_requests": [
+        {
+          "id": "llama-d0-c4-chunk128-r0-resume-high-long-0",
+          "latency_s": 147.80936931073666,
+          "arrival_ttft_s": 137.7556865848601,
+          "functional_ok": true,
+          "summary": {
+            "ok": true,
+            "errors": [],
+            "wall_s": 147.80634655803442,
+            "ttft_s": 137.75266383215785,
+            "completion_tokens": 64,
+            "prompt_tokens": 131038,
+            "cached_tokens": 24608,
+            "cache_mode": "natural",
+            "e2e_tps": 0.4329989982863906,
+            "observed_decode_tps": 6.266360468870585,
+            "usage": {
+              "completion_tokens": 64,
+              "prompt_tokens": 131038,
+              "total_tokens": 131102,
+              "prompt_tokens_details": {
+                "cached_tokens": 24608
+              }
+            },
+            "engine_timings": {
+              "cache_n": 24608,
+              "prompt_n": 106430,
+              "prompt_ms": 135934.211,
+              "prompt_per_token_ms": 1.2772170534623697,
+              "prompt_per_second": 782.9522768186737,
+              "predicted_n": 64,
+              "predicted_ms": 11574.241,
+              "predicted_per_token_ms": 183.7181111111111,
+              "predicted_per_second": 5.44312149712452
+            },
+            "text": "",
+            "reasoning": "",
+            "tool_calls": [
+              {
+                "index": 0,
+                "id": "bhfEJ8ku57SlnvSE55ngLGEaV2iPnjpx",
+                "type": "function",
+                "function": {
+                  "name": "record_status",
+                  "arguments": "{"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\"status\":\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "ready"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": ",\"task\":\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "7"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "ab"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "9"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "a"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "1"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "7"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "f"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "2"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "3"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "a"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "5"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "f"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "9"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "\""
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": ",\"attempt\":"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "1"
+                }
+              },
+              {
+                "index": 0,
+                "function": {
+                  "arguments": "}"
+                }
+              }
+            ],
+            "finish_reason": "tool_calls",
+            "truncated": false
+          }
+        }
+      ],
+      "result_sha256": "ca3ed0c4726f8b6600913a68d0af23321a86cf897caecd8d1b770c016c205f38"
+    }
+  ]
+}
