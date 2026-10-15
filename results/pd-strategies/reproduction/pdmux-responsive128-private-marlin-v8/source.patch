@@ -1,0 +1,184 @@
+--- a/sglang/srt/managers/schedule_policy.py
++++ b/sglang/srt/managers/schedule_policy.py
+@@ -1474,3 +1474,6 @@
+         self.running_batch.filter_batch(keep_indices=keep_indices)
+         self.preempt_list.extend(preemptible_reqs)
+         return True
++
++from inferx_pd_runtime import install_admission_hooks as _inferx_install
++_inferx_install(PrefillAdder, cap=128, blocked_result=AddReqResult.OTHER, protect_decode=True)
+--- a/sglang/srt/managers/scheduler.py
++++ b/sglang/srt/managers/scheduler.py
+@@ -3653,10 +3653,12 @@
+             candidate_beam_width = (
+                 req.beam_group.beam_width if req.beam_group is not None else None
+             )
+-            if len(adder.can_run_list) >= self.get_num_allocatable_reqs(
+-                running_bs,
+-                candidate_beam_width,
+-                running_batch=running_batch,
++            if len(adder.can_run_list) >= _inferx_owned_limit(
++                self.get_num_allocatable_reqs(
++                    running_bs, candidate_beam_width, running_batch=running_batch),
++                adder.can_run_list,
++                min(self.max_running_requests, get_parallel().pp_max_micro_batch_size)-running_bs,
++                credit_existing=(candidate_beam_width is None),
+             ):
+                 running_batch.batch_is_full = True
+             if self.disaggregation_mode == DisaggregationMode.PREFILL:
+@@ -5633,3 +5635,5 @@
+             num_output_tokens=len(req.output_ids),
+         ),
+     )
++
++from inferx_pd_runtime import owned_admission_limit as _inferx_owned_limit
+--- a/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py
++++ b/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py
+@@ -331,10 +331,12 @@
+             weight_zp=w_zp,  # type: ignore
+             g_idx=w_gidx,  # type: ignore
+             g_idx_sort_indices=layer.g_idx_sort_indices,
+-            workspace=self.workspace,
++            workspace=_inferx_marlin_workspace(self),
+             wtype=c.weight_type,
+             input_size_per_partition=c.partition_weight_shape[0],
+             output_size_per_partition=c.partition_weight_shape[1],
+             is_k_full=self.is_k_full,
+             bias=bias,
+         )
++
++from inferx_pd_runtime import marlin_workspace as _inferx_marlin_workspace
+--- a/sglang/srt/models/qwen3_5.py
++++ b/sglang/srt/models/qwen3_5.py
+@@ -2688,3 +2688,6 @@
+ 
+ 
+ EntryClass = [Qwen3_5MoeForConditionalGeneration, Qwen3_5ForConditionalGeneration]
++
++from inferx_pd_runtime import install_qwen_split as _inferx_split
++_inferx_split(Qwen3_5ForConditionalGeneration, lambda: get_parallel().tp_size)
+--- a/sglang/srt/multiplex/multiplexing_mixin.py
++++ b/sglang/srt/multiplex/multiplexing_mixin.py
+@@ -38,7 +38,7 @@
+ 
+         # for pd_multiplexing, Init stream_groups, exclude normal stream for prefill only and decode only
+         self.pdmux_config = load_pdmux_config(get_disagg().pdmux_config_path)
+-        initialize_stream_groups(self.gpu_id, self.pdmux_config)
++        initialize_stream_groups(self.ps.gpu_id, self.pdmux_config)
+         self.stream_groups = get_stream_groups()
+         self.sm_counts = get_sm_counts()
+         self.real_sm_group_num = len(self.stream_groups)
+@@ -113,13 +113,13 @@
+         logger.debug("Starting event loop for pd multiplexing...")
+ 
+         while True:
+-            with torch.cuda.stream(decode_stream):
++            with _inferx_green_stream(decode_stream):
+                 set_pdmux_status(False)
+                 recv_reqs = self.request_receiver.recv_requests()
+                 self.process_input_requests(recv_reqs)
+                 running_batch = self.running_batch
+ 
+-            with torch.cuda.stream(prefill_stream):
++            with _inferx_green_stream(prefill_stream):
+                 set_pdmux_status(True)
+                 sm_count = self.sm_counts[stream_idx][0]
+                 if not wait_prefill_kernel_done:
+@@ -129,7 +129,7 @@
+                     self.running_batch = running_batch
+                     adjust_stream_group = created or adjust_stream_group
+ 
+-            with torch.cuda.stream(decode_stream):
++            with _inferx_green_stream(decode_stream):
+                 set_pdmux_status(False)
+                 running_batch = self.update_running_batch(running_batch)
+                 self.running_batch = running_batch
+@@ -140,8 +140,8 @@
+                     self.on_idle()
+ 
+             if adjust_stream_group:
+-                prefill_stream.synchronize()
+-                decode_stream.synchronize()
++                _inferx_green_sync(prefill_stream)
++                _inferx_green_sync(decode_stream)
+                 stream_idx, stream_group = self.adjust_stream_groups(
+                     running_batch=running_batch
+                 )
+@@ -152,7 +152,7 @@
+                     f"Adjusting stream groups: {stream_idx}, prefill sm: {self.sm_counts[stream_idx][0]}, decode sm: {self.sm_counts[stream_idx][1]}"
+                 )
+ 
+-            with torch.cuda.stream(decode_stream):
++            with _inferx_green_stream(decode_stream):
+                 set_pdmux_status(False)
+                 # process decode batch
+                 if running_batch and not running_batch.is_empty():
+@@ -160,7 +160,7 @@
+                     decode_done = True
+                 else:
+                     decode_done = False
+-            with torch.cuda.stream(prefill_stream):
++            with _inferx_green_stream(prefill_stream):
+                 set_pdmux_status(True)
+                 if (
+                     self.split_prefill_batch
+@@ -197,13 +197,13 @@
+                 else:
+                     prefill_done = False
+ 
+-            with torch.cuda.stream(decode_stream):
+-                set_pdmux_status(False)
+-                decode_stream.synchronize()
++            with _inferx_green_stream(decode_stream):
++                set_pdmux_status(False)
++                _inferx_green_sync(decode_stream)
+                 if decode_done:
+                     self.process_batch_result(running_batch, decode_result)
+ 
+-            with torch.cuda.stream(prefill_stream):
++            with _inferx_green_stream(prefill_stream):
+                 set_pdmux_status(True)
+                 if prefill_done and self.split_prefill_batch.split_prefill_finished:
+                     wait_prefill_kernel_done = True
+@@ -215,16 +215,25 @@
+                     )
+ 
+                     self.tp_cpu_group.allreduce(flags, dist.ReduceOp.SUM).wait()
+-                    if flags.item() == self.tp_size:
++                    if flags.item() == self.ps.tp_size:
+                         self.process_batch_result(
+                             self.split_prefill_batch, prefill_result
+                         )
+-                        if running_batch and not running_batch.is_empty():
+-                            running_batch.merge_batch(self.split_prefill_batch)
+-                        else:
+-                            running_batch = self.split_prefill_batch
++                        ready = _inferx_finish_chunk(self, self.split_prefill_batch)
++                        if not ready.is_empty():
++                            if running_batch and not running_batch.is_empty():
++                                running_batch.merge_batch(ready)
++                            else:
++                                running_batch = ready
+                         self.running_batch = running_batch
++                        # Stash/filter/merge enqueue metadata on the prefill
++                        # stream; make it visible before next decode preparation.
++                        _inferx_green_wait(decode_stream, prefill_stream)
+ 
+                         self.split_prefill_batch = None
+                         wait_prefill_kernel_done = False
+                         adjust_stream_group = True
++
++from inferx_pd_runtime import finish_pdmux_chunk as _inferx_finish_chunk
++
++from inferx_pd_runtime import green_stream as _inferx_green_stream, green_sync as _inferx_green_sync, green_wait as _inferx_green_wait
+--- a/sglang/srt/arg_groups/validation_hook.py
++++ b/sglang/srt/arg_groups/validation_hook.py
+@@ -112,7 +112,7 @@
+             cfg.pp_size == 1
+         ), "PD-Multiplexing is only supported with pipeline parallelism disabled (pp_size=1)."
+         assert (
+-            cfg.chunked_prefill_size == -1
++            cfg.chunked_prefill_size in (-1, 512)
+         ), "PD-Multiplexing is not compatible with chunked prefill."
+         assert (
+             cfg.disaggregation_mode == "null"

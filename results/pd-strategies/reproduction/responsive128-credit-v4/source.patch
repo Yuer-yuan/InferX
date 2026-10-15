@@ -1,0 +1,34 @@
+--- a/sglang/srt/managers/schedule_policy.py
++++ b/sglang/srt/managers/schedule_policy.py
+@@ -1474,3 +1474,6 @@
+         self.running_batch.filter_batch(keep_indices=keep_indices)
+         self.preempt_list.extend(preemptible_reqs)
+         return True
++
++from inferx_pd_runtime import install_admission_hooks as _inferx_install
++_inferx_install(PrefillAdder, cap=128, blocked_result=AddReqResult.OTHER, protect_decode=True)
+--- a/sglang/srt/managers/scheduler.py
++++ b/sglang/srt/managers/scheduler.py
+@@ -3653,10 +3653,12 @@
+             candidate_beam_width = (
+                 req.beam_group.beam_width if req.beam_group is not None else None
+             )
+-            if len(adder.can_run_list) >= self.get_num_allocatable_reqs(
+-                running_bs,
+-                candidate_beam_width,
+-                running_batch=running_batch,
++            if len(adder.can_run_list) >= _inferx_owned_limit(
++                self.get_num_allocatable_reqs(
++                    running_bs, candidate_beam_width, running_batch=running_batch),
++                adder.can_run_list,
++                min(self.max_running_requests, get_parallel().pp_max_micro_batch_size)-running_bs,
++                credit_existing=(candidate_beam_width is None),
+             ):
+                 running_batch.batch_is_full = True
+             if self.disaggregation_mode == DisaggregationMode.PREFILL:
+@@ -5633,3 +5635,5 @@
+             num_output_tokens=len(req.output_ids),
+         ),
+     )
++
++from inferx_pd_runtime import owned_admission_limit as _inferx_owned_limit

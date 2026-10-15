@@ -1,0 +1,9 @@
+--- a/sglang/srt/managers/schedule_policy.py
++++ b/sglang/srt/managers/schedule_policy.py
+@@ -1474,3 +1474,6 @@
+         self.running_batch.filter_batch(keep_indices=keep_indices)
+         self.preempt_list.extend(preemptible_reqs)
+         return True
++
++from inferx_pd_runtime import install_admission_hooks as _inferx_install
++_inferx_install(PrefillAdder, cap=None, blocked_result=AddReqResult.OTHER)

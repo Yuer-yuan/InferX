@@ -1,0 +1,76 @@
+{
+  "finding": "One persistent Marlin workspace per quantization scheme is passed unchanged to both P/D streams; underlying kernel uses it as mutable inter-CTA barrier locks. Independent per-stream scratch is required for overlapping calls.",
+  "causal_limit": "Static concurrency hazard. Not a controlled reproduction of the original8192 mixed stall; cleanl16 already completed one cold wave without isolation. No root-cause or numerical-equivalence claim from this audit.",
+  "physical_sm_count_limit": "Kernel also queries physical multiprocessor count. Whether its grid/barrier scheduling is safe under every Green Context partition is not established by this source audit.",
+  "files": [
+    {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py",
+      "sha256": "a78990db02e703847316fa71f2b8891d034c6fbb6fcaafb104f5e1002a7f396c",
+      "snippets": [
+        {
+          "needle": "self.workspace = marlin_make_workspace",
+          "line": 232,
+          "context": "\n        # Allocate marlin workspace.\n        self.workspace = marlin_make_workspace(device)\n\n        def _transform_param(\n            layer: torch.nn.Module, name: Optional[str], fn: Callable\n        ) -> None:\n            if name is not None and getattr(layer, name, None) is not None:\n\n                old_param = getattr(layer, name)\n                new_param = fn(old_param)"
+        },
+        {
+          "needle": "workspace=self.workspace,",
+          "line": 334,
+          "context": "            g_idx=w_gidx,  # type: ignore\n            g_idx_sort_indices=layer.g_idx_sort_indices,\n            workspace=self.workspace,\n            wtype=c.weight_type,\n            input_size_per_partition=c.partition_weight_shape[0],\n            output_size_per_partition=c.partition_weight_shape[1],\n            is_k_full=self.is_k_full,\n            bias=bias,\n        )"
+        }
+      ]
+    },
+    {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/marlin_utils.py",
+      "sha256": "1f0529ca2b24e2af804eaaf51fe72d76484cf5c7ff91a768612c5c9ddfba0bf3",
+      "snippets": [
+        {
+          "needle": "def marlin_make_workspace",
+          "line": 284,
+          "context": "\n\ndef marlin_make_workspace(\n    device: torch.device, max_blocks_per_sm: int = 1\n) -> torch.Tensor:\n    # In the new marlin kernel, we use the num of threadblocks as workspace\n    # size. The num of threadblocks is sms_count * max_blocks_per_sm.\n    sms = torch.cuda.get_device_properties(device).multi_processor_count\n    return torch.zeros(\n        sms * max_blocks_per_sm, dtype=torch.int, device=device, requires_grad=False\n    )"
+        },
+        {
+          "needle": "def apply_gptq_marlin_linear",
+          "line": 488,
+          "context": "\n\ndef apply_gptq_marlin_linear(\n    input: torch.Tensor,\n    weight: torch.Tensor,\n    weight_scale: torch.Tensor,\n    weight_zp: torch.Tensor,\n    g_idx: torch.Tensor,\n    g_idx_sort_indices: torch.Tensor,\n    workspace: torch.Tensor,\n    wtype: ScalarType,"
+        }
+      ]
+    },
+    {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/kernels/jit/csrc/gemm/marlin/gptq_marlin.cuh",
+      "sha256": "00fb263e7308b2d2cf2ec180ec53b3ea18c66ce5fef993efcafe0872b8950247",
+      "snippets": [
+        {
+          "needle": "int* locks = (int*)workspace",
+          "line": 592,
+          "context": "  int4* a_tmp_ptr = (int4*)a_tmp;\n\n  int* locks = (int*)workspace;\n\n  if (has_act_order) {\n    // Permute A columns\n    int block_rows = div_ceil(prob_m, sms);\n    host::LaunchKernel(sms, default_threads, stream)(\n        permute_cols_kernel, A_ptr, perm_ptr, a_tmp_ptr, prob_m, prob_k, lda, block_rows);\n    A_ptr = a_tmp_ptr;\n    lda = prob_k;"
+        },
+        {
+          "needle": "cudaDevAttrMultiProcessorCount",
+          "line": 961,
+          "context": "\n  int sms = -1;\n  RuntimeDeviceCheck(cudaDeviceGetAttribute(&sms, cudaDevAttrMultiProcessorCount, dev));\n\n  RuntimeCheck(\n      workspace.size(0) >= sms, \"workspace.size(0) = \", workspace.size(0), \" is below min_workspace_size = \", sms);\n\n  // Hardcoded defaults (auto config)\n  int thread_k_init = -1;\n  int thread_n_init = -1;\n"
+        }
+      ]
+    },
+    {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/kernels/jit/csrc/gemm/marlin/marlin_template.h",
+      "sha256": "c314a899e797b788dc3b0cf7e79d2ba2bd839a8338181e4c6c06942d15e8797b",
+      "snippets": [
+        {
+          "needle": "inline void barrier_acquire",
+          "line": 227,
+          "context": "\n// Wait until barrier reaches `count`, then lock for current threadblock.\n__device__ inline void barrier_acquire(int* lock, int count) {\n  if (threadIdx.x == 0) {\n    int state = -1;\n    do\n      // Guarantee that subsequent writes by this threadblock will be visible\n      // globally.\n      asm volatile(\"ld.global.acquire.gpu.b32 %0, [%1];\\n\" : \"=r\"(state) : \"l\"(lock));\n    while (state != count);\n  }"
+        },
+        {
+          "needle": "barrier_acquire(&locks[locks_off]",
+          "line": 1573,
+          "context": "      if (slice_count > 1 && !use_atomic_add) {\n        // only globally reduce if there is more than one block in a slice\n        barrier_acquire(&locks[locks_off], slice_idx);\n        if (use_fp32_reduce) {\n          global_reduce_fp32(slice_idx == 0, last);\n        } else {\n          global_reduce_fp16(slice_idx == 0, last);\n        }\n        barrier_release(&locks[locks_off], last);\n      }\n      if (use_atomic_add && slice_count > 1 && slice_idx != 0) wait_negative_and_add(&locks[locks_off]);"
+        },
+        {
+          "needle": "barrier_release(&locks[locks_off]",
+          "line": 1579,
+          "context": "          global_reduce_fp16(slice_idx == 0, last);\n        }\n        barrier_release(&locks[locks_off], last);\n      }\n      if (use_atomic_add && slice_count > 1 && slice_idx != 0) wait_negative_and_add(&locks[locks_off]);\n      if (last || use_atomic_add)\n        // only the last block in a slice actually writes the result\n        write_result();\n      slice_row = 0;\n      slice_col_par++;\n      slice_col++;"
+        }
+      ]
+    }
+  ]
+}
