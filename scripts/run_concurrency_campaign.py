@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import signal
+import socket
 import subprocess
 import sys
 import time
@@ -58,13 +59,31 @@ def gpu_processes():
             for row in text.splitlines() if row.strip()}
 
 
-def final_shutdown_check(saved):
+def final_shutdown_check(saved, gpu0_state='original'):
+    if gpu0_state not in {'original', 'stopped'}:
+        raise ValueError('GPU0 state must be original or stopped')
     processes = gpu_processes()
-    if ((saved['pid'], GPU) not in processes or
-            (2504785, 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03') not in processes):
+    if {pair for pair in processes if pair[1] == GPU} != {(saved['pid'], GPU)}:
         raise RuntimeError('GPU process ownership changed; refusing shutdown')
-    if get('/health', 'http://127.0.0.1:18080')['status'] != 'ok':
-        raise RuntimeError('GPU0 service health changed; refusing shutdown')
+    gpu0 = {pair for pair in processes
+            if pair[1] == 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03'}
+    if gpu0_state == 'original':
+        if gpu0 != {(2504785, 'GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03')}:
+            raise RuntimeError('GPU process ownership changed; refusing shutdown')
+        if get('/health', 'http://127.0.0.1:18080')['status'] != 'ok':
+            raise RuntimeError('GPU0 service health changed; refusing shutdown')
+    else:
+        if gpu0:
+            raise RuntimeError('GPU0 is no longer stopped; refusing shutdown')
+        try:
+            connection = socket.create_connection(('127.0.0.1', 18080), timeout=2)
+        except ConnectionRefusedError:
+            pass
+        except OSError as exc:
+            raise RuntimeError('GPU0 endpoint state unknown; refusing shutdown') from exc
+        else:
+            connection.close()
+            raise RuntimeError('GPU0 endpoint is listening; refusing shutdown')
     metrics = get('/metrics', 'http://127.0.0.1:18081')
     if (float(metrics['llamacpp:requests_processing']) != 0 or
             float(metrics['llamacpp:requests_deferred']) != 0):

@@ -1,0 +1,51 @@
+{
+  "observed_unix": 1792072383.114572,
+  "read_only": true,
+  "interpretation": "A separately launched solo campaign now holds GPU1. Do not interfere with its process or restore over it; earlier restoration verification remains a historical observation, not current endpoint availability.",
+  "manifest_equal": true,
+  "manifest_pid": 3604352,
+  "manifest_process_exists": false,
+  "external_campaigns": [
+    {
+      "run": "pd-strategies-solo-baseline-20261015-1792072041",
+      "status": "running",
+      "controller_pid": 3622529,
+      "controller_exists": true,
+      "controller_argv": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+        "-u",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-strategies/run_solo_comparison.py",
+        "pd-strategies-solo-baseline-20261015-1792072041"
+      ],
+      "original_service_pid": 3604352,
+      "completed_groups": 2,
+      "current_groups": [
+        {
+          "case": "sglang-ctx-control",
+          "group": "cold-low",
+          "state": "measured"
+        },
+        {
+          "case": "sglang-ctx-control",
+          "group": "resume-high",
+          "state": "starting"
+        }
+      ]
+    }
+  ],
+  "ports": {
+    "18080": {
+      "status": "unavailable",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    "18081": {
+      "status": "unavailable",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    "18083": {
+      "status": "unavailable",
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    }
+  },
+  "gpu_processes": "3626310, GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189, sglang::scheduler\n"
+}

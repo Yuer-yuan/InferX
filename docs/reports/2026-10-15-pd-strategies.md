@@ -98,6 +98,21 @@ export PYTHONPATH="$INFERX_ROOT/code-pd-baselines"
   "$INFERX_ROOT/pd-strategies/selected-reexport-doc-check-v1.json" sglang-pdmux-private-best
 ```
 
-正式 GPU 重跑使用 `scripts.run_pd_baselines`、全新 run-id 和 `--repeat 3`，选中三个 case 为 `sglang-ctx-control`、`sglang-ctx-responsive128`、`sglang-pdmux-private-best`，需要原有服务空闲及控制器完整所有权检查。Graph 资格检查使用已捕获的辅助 `scripts.run_pd_debug`，由它追加 `diagnostic_extra_flags`；普通主入口不解释这些诊断字段。源码重建先按 reproduction README 校验 inventory。绘图用独立 HDD analysis-venv，依赖见[绘图环境](../../results/pd-strategies/final-export/analysis-environment.txt)，没有修改 SGLang 环境。
+正式 GPU 重跑需要原服务空闲，先按上述命令设置环境和目录，再使用完整参数（将 `NEW-ID` 换为尚不存在的 run-id）。这条命令会临时替换 GPU1 服务并在结束时恢复；本轮收尾只测试参数解析和只读准入检查，没有执行 GPU 重跑：
 
-最终 GPU1 恢复为原 NInfer 256K/MTP7/C1/rk4v4-e8 服务；双 manifest、实际 PID/UID/executable/start ticks、完整 argv 一致，OpenAI 与 Anthropic 工具往返均通过，见[服务验证](../../results/pd-strategies/service/final-service-verification.json)。该记录 PID 为 3604352，今后读取当前 manifest，不能把此 PID 当作永久值。GPU0 由用户主动停止，未重启。
+```sh
+"$INFERX_ROOT/repo-venv/bin/python" -m scripts.run_pd_baselines \
+  --config "$INFERX_ROOT/code-pd-baselines/configs/pd-strategies.json" \
+  --cases sglang-ctx-control sglang-ctx-responsive128 sglang-pdmux-private-best \
+  --groups short-control cold-low resume-high \
+  --short-rate .5 --repeat 3 --gpu0-state stopped \
+  --run-id pd-strategies-reproduce-NEW-ID
+```
+
+`--groups` 和 `--short-rate .5` 必须显式保留；冻结 grid 的默认组数和到达率不同。`--gpu0-state stopped` 明确匹配用户主动停掉 GPU0 的当前状态：要求 GPU0 没有计算进程、18080 没有监听，拒绝重启/替换进程、监听或无法确认的端口状态；GPU1 身份和最终空闲检查仍保留。默认 `original` 仍要求原 GPU0 PID 和健康端点。检查在 pidfd 发送停止信号前执行，选定的 GPU0 状态写入新 campaign 元数据。该检查的状态分支已通过 CPU 回归；不会因 GPU0 已停止而重启它。
+
+Graph 资格检查使用已捕获的辅助 `scripts.run_pd_debug`，由它追加 `diagnostic_extra_flags`；普通主入口不解释这些诊断字段。源码重建先按 reproduction README 校验 inventory。绘图用独立 HDD analysis-venv，依赖见[绘图环境](../../results/pd-strategies/final-export/analysis-environment.txt)，没有修改 SGLang 环境。
+
+本轮实验结束后的已记录恢复检查确认，GPU1 恢复为原 NInfer 256K/MTP7/C1/rk4v4-e8 服务；双 manifest、实际 PID/UID/executable/start ticks、完整 argv 一致，OpenAI 与 Anthropic 工具往返均通过，见[服务验证](../../results/pd-strategies/service/final-service-verification.json)。该记录 PID 为 3604352，今后读取当前 manifest，不能把此 PID 当作永久值。GPU0 由用户主动停止，未重启。
+
+终审收尾时，另一项独立 `pd-strategies-solo-baseline-20261015-1792072041` campaign 已接管 GPU1，原 PID3604352 暂停、18081 不可用、18083 提供其 SGLang 服务。其控制器持有相同原服务的恢复责任；本轮未发送信号或覆盖它的状态。见[后续外部占用记录](../../results/pd-strategies/service/final-external-service-state.json)。上述恢复/工具往返记录是该独立实验启动前的实测证据，不能解读为当前 18081 仍在线。新停止状态分支通过 CPU 回归；真实预检查因原服务已被接管而拒绝继续，未生成“现场预检查通过”记录。

@@ -208,6 +208,8 @@ def main():
                  'libcuda_mapped_threadsafe.so','libcuda_mapped_capture.so'])
     parser.add_argument('--groups', nargs='+')
     parser.add_argument('--short-rate', type=float)
+    parser.add_argument('--gpu0-state', choices=['original', 'stopped'], default='original',
+        help='Expected GPU0 state; stopped explicitly requires no GPU0 process or port18080 listener.')
     parser.add_argument('--run-id', required=True)
     args = parser.parse_args()
     root = Path(os.environ['INFERX_ROOT'])
@@ -246,6 +248,7 @@ def main():
         repeat=args.repeat, probe_only=args.probe_only, controller_pid=os.getpid(),
         workload_definitions=definitions,
         runtime_library=args.runtime_library,
+        gpu0_state=args.gpu0_state,
         runtime_sha256={name:hashlib.sha256((root/'pd-baselines/builds'/name).read_bytes()).hexdigest()
             for name in [args.runtime_library,'libpreload.so'] if (root/'pd-baselines/builds'/name).exists()},
         harness_sha256=snapshot_harness(root/'code-pd-baselines',output/'harness',
@@ -346,7 +349,7 @@ def main():
     try:
         run_with_restoration(saved, previous.restore,
             [root/'context-agents/runtime.json', root/'tuning/best-service.json'],
-            lambda: previous.final_shutdown_check(saved), measurement)
+            lambda: previous.final_shutdown_check(saved, gpu0_state=args.gpu0_state), measurement)
         metadata['status'] = 'restored'
     except BaseException as exc:
         metadata.update(status='interrupted_or_failed', error=f'{type(exc).__name__}: {exc}')
