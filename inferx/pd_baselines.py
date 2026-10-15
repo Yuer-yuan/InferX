@@ -198,6 +198,7 @@ def engine_command(case: dict, root: Path, run_dir: Path) -> list[str]:
         for field, flag in [('max_mamba_cache_size', '--max-mamba-cache-size'),
                             ('mamba_full_memory_ratio', '--mamba-full-memory-ratio'),
                             ('mamba_radix_cache_strategy', '--mamba-radix-cache-strategy'),
+                            ('mamba_ssm_dtype', '--mamba-ssm-dtype'),
                             ('attention_backend', '--attention-backend'),
                             ('cuda_graph_max_bs_decode', '--cuda-graph-max-bs-decode')]:
             if field in case:

@@ -205,6 +205,15 @@ def test_sglang_hf_text_mode_preserves_model_and_explicit_pool_policy(tmp_path):
     assert args[args.index('--mamba-radix-cache-strategy')+1]=='extra_buffer_lazy'
 
 
+def test_sglang_state_precision_change_is_explicit_and_optional(tmp_path):
+    c=case('sglang');c.update(mamba_ssm_dtype='bfloat16',attention_backend='triton')
+    args=pd.engine_command(c,tmp_path,tmp_path/'run')
+    assert args[args.index('--mamba-ssm-dtype')+1]=='bfloat16'
+    assert args[args.index('--attention-backend')+1]=='triton'
+    del c['mamba_ssm_dtype']
+    assert '--mamba-ssm-dtype' not in pd.engine_command(c,tmp_path,tmp_path/'run')
+
+
 def test_llama_mtp_has_explicit_draft_cache_precision(tmp_path):
     c=case();c.update(draft=4,draft_kv_dtype='q4_0')
     args=pd.engine_command(c,tmp_path,tmp_path/'run')
@@ -338,8 +347,8 @@ def test_timed_out_external_suite_cleans_its_group_and_preserves_unrelated_proce
         other.terminate();other.wait(timeout=3)
 
 
-@pytest.mark.parametrize('crashed',[False,True])
-def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path,crashed):
+@pytest.mark.parametrize('crashed',[False,True,'during_stop','live_mismatch'])
+def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path,crashed,monkeypatch):
     import os,signal,subprocess,sys,time
     from scripts.run_pd_baselines import OwnedEngine
     from inferx.service_ownership import process_identity
@@ -348,6 +357,7 @@ def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path,crashed):
         'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"]);'
         f'Path({str(tmp_path/"worker.pid")!r}).write_text(str(p.pid))\n')
     program+=(f'while not Path({str(tmp_path/"exit")!r}).exists(): time.sleep(.01)\n'
+              'time.sleep(.1)\n'
               if crashed else 'time.sleep(30)\n')
     engine.proc=subprocess.Popen([sys.executable,'-c',program],start_new_session=True)
     other=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)'])
@@ -358,12 +368,22 @@ def test_healthy_engine_shutdown_also_stops_owned_worker(tmp_path,crashed):
             time.sleep(.01)
         worker=int((tmp_path/'worker.pid').read_text());worker_fd=os.pidfd_open(worker)
         engine.identity=process_identity(engine.proc.pid,Path(sys.executable))
-        if crashed:
+        if crashed is True:
             (tmp_path/'exit').touch()
             for _ in range(100):
                 if os.waitid(os.P_PID,engine.proc.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT):break
                 time.sleep(.01)
             else:pytest.fail('fixture frontend did not exit')
+        elif crashed in ('during_stop','live_mismatch'):
+            def mismatch(*_,**__):
+                if crashed=='during_stop':(tmp_path/'exit').touch()
+                raise RuntimeError('process identity mismatch; refusing signal')
+            monkeypatch.setattr('scripts.run_pd_baselines.stop_matching_process',mismatch)
+        if crashed=='live_mismatch':
+            with pytest.raises(RuntimeError,match='refusing signal'):engine.stop()
+            assert engine.proc.poll() is None and other.poll() is None
+            assert Path(f'/proc/{worker}/stat').read_text().rsplit(')',1)[1].split()[0]!='Z'
+            return
         engine.stop()
         for _ in range(100):
             try:alive=Path(f'/proc/{worker}/stat').read_text().rsplit(')',1)[1].split()[0]!='Z'

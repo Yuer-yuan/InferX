@@ -66,7 +66,7 @@ vLLM0.24的MTP1配置在保持131328窗口时实际启动失败：需要4.73 GiB
 
 另已实际运行共享内存生命周期整数探针，原生、原MorphX改写、增加虚拟CTA结束屏障三条路径均通过32768项独立整数校验，后两者均观察到改写kernel启动。因此这个探针未复现候选问题，不能证明结束屏障是GDN/GQA故障的修复。屏障变体尚未做完整模型算子验证，不替代原始失败记录。见 [探针原始诊断](../../results/pd-baselines/compatibility/morphx-shared-lifetime.json)。
 
-## vLLM 的实际状态与下一项验证
+## vLLM 0.24：旧版本对照与容量调优
 
 同源27B INT4模型已从hf-mirror下载，revision为91bd022d5b49442a868bc35008f6c21e1860edfa，9个文件完成校验。vLLM固定0.24.0：默认wheel实际导入时缺libcudart.so.13；换用官方CUDA12.9 wheel后，Torch2.11.0+cu128与vLLM核心stable扩展导入通过，实际CLI解析也通过。wheel哈希及包版本见 [安装阶段环境清单](../../results/pd-baselines/vllm-environment.json)。
 
@@ -108,7 +108,17 @@ V1探针在测量前发现FlashInfer将约17 MB新生成编译缓存写入默认
 
 vLLM0.31.0+cu129与Torch2.13.0+cu129已在隔离环境完成安装、核心CUDA扩展导入和实际GPU模型推理，无需修改服务器驱动。默认TorchCodec0.17媒体包依赖libnvrtc.so.13，曾导致服务入口导入失败；改用官方CPU媒体包后，相同服务入口检查通过，模型文本推理仍在GPU。完整依赖版本、原失败与修复检查的哈希见 [新版vLLM环境](../../results/pd-baselines/vllm031-environment-before-probe.json)。
 
-同一RedHat27B权重、FP8 KV、C4、MTP0、eager/mem95，在三次独立重启后均通过代码检查、4路24K工具预热及完整128K工具请求。三轮长请求耗时83.052、83.066、82.906秒，均未截断且工具参数正确。首轮实际池143001 token、4.73 GiB，模型16.84 GiB，GDN使用Triton/FLA，Attention使用FlashInfer，Mamba对齐块仍为1568 token。[新版128K三轮记录及原始数据哈希](../../results/pd-baselines/vllm031-128k-probes.json)证明当前硬件可部署与完整上下文资格；混合负载正在实测，不将容量探针当作PD改善结果。
+同一RedHat27B权重、FP8 KV、C4、MTP0、eager/mem95，在三次独立重启后均通过代码检查、4路24K工具预热及完整128K工具请求。三轮长请求耗时83.052、83.066、82.906秒，均未截断且工具参数正确。首轮实际池143001 token、4.73 GiB，模型16.84 GiB，GDN使用Triton/FLA，Attention使用FlashInfer，Mamba对齐块仍为1568 token。[新版128K三轮记录及原始数据哈希](../../results/pd-baselines/vllm031-128k-probes.json)证明当前硬件可部署与完整上下文资格；混合负载结果另列如下，不将容量探针当作PD改善结果。
+
+同一新版固定配置现已完成三轮同到达率混合实验：9组、222/222工具有效、6次完整长请求完成、0错误。三轮结果均保留，见 [vLLM0.31三轮统计与原始数据哈希](../../results/pd-baselines/vllm031-main-v1-summary.json)。
+
+| 独立重复 | 纯短请求 P95 | 冷长请求混合的短 P95 | 续接模板混合的短 P95 |
+|---|---:|---:|---:|
+| 第1轮 | 4.973 s | 101.971 s | 91.047 s |
+| 第2轮 | 5.893 s | 101.787 s | 91.313 s |
+| 第3轮 | 5.041 s | 101.811 s | 90.933 s |
+
+本轮冷长组各发生3次原生抢占，续接组各2次；所有组200 ms采样的最小空闲显存约83 MiB，范围仍只覆盖服务健康后的质量检查、预热和测量。控制组自身也有超过5秒目标的重复，不能把全部SLO不达标都归因于长请求。混合组则稳定退化到约91–102秒。新版改善了旧版已测配置的混合延迟，尚未解决该配置下的尾延迟；这不是所有vLLM调优方案的性能上限。
 
 SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩展导入及服务入口检查，GPU测量正在队列中。其kernel/DeepEP/DeepGEMM均采用作者发布的cu129 wheel，下载加速传输后逐文件核对官方SHA256。依赖调整依据官方Dockerfile，不修改系统CUDA或驱动。见 [SGLang环境与门槛记录](../../results/pd-baselines/sglang0519-environment-before-probe.json)。
 

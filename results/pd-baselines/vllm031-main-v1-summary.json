@@ -1,0 +1,3593 @@
+{
+  "campaigns": [
+    {
+      "cases": [
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "short-control",
+          "quality": {
+            "elapsed": 0.07101187482476234,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.001989055424928665
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "cold-low",
+          "quality": {
+            "elapsed": 0.06947869062423706,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019636861979961395
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "resume-high",
+          "quality": {
+            "elapsed": 0.0684385858476162,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.001977253705263138
+          },
+          "repetition": 0,
+          "state": "measured"
+        }
+      ],
+      "controller_pid": 3381774,
+      "finished_unix": 1792043645.4476907,
+      "harness_sha256": {
+        "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+        "inferx/agent_restrictions.py": "5c85f104b4ade61a4d5df9b97b144e3e32a38fc47730690f9d4b9b24f3af5e96",
+        "inferx/agent_trials.py": "db91d8deeda95b3ecab601f81e9473726f7c39c34fc1d482e84835c5a2915a1d",
+        "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+        "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+        "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+        "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+        "inferx/pd_baselines.py": "8f1b0783743dc277c1930f921e359af4211daa76359f2376deb521667ff6b622",
+        "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+        "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+        "inferx/repo_verifier.py": "0cf7e27ab5169d360f9fc728874015df0a1f95e62f2b6d09448c6ff21fcf0b11",
+        "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+        "inferx/repository.py": "e384e4766cbb46689b5753da477ad6d405d42606c83c935ca5a32332ccf079af",
+        "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+        "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+        "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea",
+        "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
+        "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+        "scripts/analyze.py": "62b5effc954a2fd3bd97272280a8a0ba2e1df9acab884be097c982bfa5563f42",
+        "scripts/analyze_agent_trials.py": "aa1471be363ac0cac8a83f26313bf0be72efbd567e968049925fe33ad6511402",
+        "scripts/analyze_concurrency.py": "6cab04b2ea1123231e3ca84e3be1cc1b573e03534b32f5b0433dd8488f434f5f",
+        "scripts/analyze_pd_baselines.py": "924c91f382551810b516ce572c080a6a7d73b70d96f45c145a9bf84ce47444e3",
+        "scripts/analyze_repository.py": "eabdb685d23e248ed3ede6183d2f2dcda4957eea429a28f6391cd961b973f7c3",
+        "scripts/bench_tuning.py": "257f9d8c5d2c0e04c66babd3a56ed7c5df4e2d51c1bfbd34925040b86f643ab5",
+        "scripts/bench_tuning_turns.py": "f4add48431c384831b671335bff71ad5e3f2c1717f7bc1a4df4094b2a71e3153",
+        "scripts/calibrate_repositories.py": "4b450337ed20ef2f3ea9e55701c11d9f4d88b41e2142d96e29f6adcaa90edf5c",
+        "scripts/check_server.py": "2e56d9cb2454b0c35078bd52ae0f6cb86c697950991d1a5eea8cff2d01ee8dca",
+        "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba",
+        "scripts/check_tuning_tools.py": "c39d46d7b547d965d999449fcab596bd5928c40c621d0032a2dd48bbb350d6ec",
+        "scripts/download.py": "759443354c0dbc040b7eda3e773ad9278f4e4abcdcd25d93da459793c23b9346",
+        "scripts/export_repository_results.py": "592d68abd93dbc27174cdc8c0ecafa39ebbe710baf24734951af8e8d5d482dd2",
+        "scripts/export_results.py": "6dd656f253f357048b19981ad5a2fb08c3b3fb1d4a66de9ae4a98c99b681d837",
+        "scripts/export_tuning_results.py": "e77f9d7efb3f18168ae81c33ea0480e956ad64f53ddf0a900d7ea4b5c99b0d35",
+        "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+        "scripts/plot_concurrency.py": "9f694cd191405cce2724769fdbcfc1cd0f36c792487b763b0a0df2a7ac396804",
+        "scripts/plot_pd_timeline.py": "f81b2c8d4ddc4abc64f04d004b38b17810d64c2713af9f34aa47ec73ee6e1a58",
+        "scripts/plot_repository.py": "b06d8eaa09f4f30f8e2964a011ac75c8ff3496237e3a5e1b67ac6390b1dd703a",
+        "scripts/plot_results.py": "750ecc5d7ba3222c0d8857e4ba68c8b5abf60e907bd0fe2d355b21d706fa549b",
+        "scripts/prepare_27b.py": "c8e54908e3399d78ddbd309b4e67c6dd2192419f5566867c0af9e6296771b50e",
+        "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+        "scripts/prepare_long_context.py": "84ebe19ea48a583397a9a9ceeb5b02f40341ece2e182052dbf8cdc3f743d8c04",
+        "scripts/prepare_morphx_transport.py": "1c786a66f8799a44bd910b5ecf02326b9566e4cbc6baa706b15ffa52e92b1f61",
+        "scripts/prepare_ninfer_model.py": "ef5a4d971d15c14eb4e62949744428f8bba602a677261497e809650d9accfcb3",
+        "scripts/prepare_ninfer_toolchain.py": "0ad9c01cbde90155f0c054ab846394650c81dcc3304592da4ee8d6e920ce4b8c",
+        "scripts/prepare_pd_baselines.py": "96a66ea13e5d34209f483fdc361626ae92e4d8494c719e4c085e33ab6d3f030e",
+        "scripts/prepare_repositories.py": "45c2187ab29ef2da5dbaa4a2ad006d9d86f397406f605cb1567354bc5878ed9a",
+        "scripts/prepare_tuning_context.py": "b538c9e4d3bd1133d9c195d7fdc481cf8fb4df597c5fbb1e6782fd0ee41ce7b1",
+        "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+        "scripts/restrict_agent.py": "c6db89f5550ee85beb5b3ff4422fdacb20ff5e6d927e5a71fb3c1f35b3c9e1c1",
+        "scripts/run_agent_trials.py": "3c3880d0119c1bf01b74f7110073a0c3d5a6f1aca37c690d7458ebd35b3907dc",
+        "scripts/run_concurrency_campaign.py": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d",
+        "scripts/run_context_probe.py": "8db6f295e99f3a5fcb92b3f6df9f63967a551ca3054e7f173edb5f023e7f72ce",
+        "scripts/run_pd_baselines.py": "26db67de11acaf181c6fa842b439d77f8e24cc926486d495201a5e63c260a7d1",
+        "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+        "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+        "scripts/run_tuning_grid.py": "31b7e329a817346d1d57f79899b6761d7b29bf5350b21953136855a0a1cc6981"
+      },
+      "probe_only": false,
+      "repeat": 1,
+      "restored": true,
+      "run": "vllm031-codecfix-lowrate-diagnostic-v1",
+      "runtime_library": "libcuda_mapped_full.so",
+      "runtime_sha256": {
+        "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+        "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+      },
+      "started_unix": 1792042963.2474298,
+      "status": "restored",
+      "workload_definitions": [
+        {
+          "long_mode": null,
+          "name": "short-control",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-low",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "resume",
+          "name": "resume-high",
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "cases": [
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "short-control",
+          "quality": {
+            "elapsed": 0.06776798889040947,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019604600965976715
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "cold-low",
+          "quality": {
+            "elapsed": 0.06908078119158745,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019599199295043945
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "resume-high",
+          "quality": {
+            "elapsed": 0.07044055685400963,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.0019634775817394257
+          },
+          "repetition": 0,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "short-control",
+          "quality": {
+            "elapsed": 0.06982028111815453,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.002004571259021759
+          },
+          "repetition": 1,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "cold-low",
+          "quality": {
+            "elapsed": 0.06935290992259979,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.001972343772649765
+          },
+          "repetition": 1,
+          "state": "measured"
+        },
+        {
+          "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+          "group": "resume-high",
+          "quality": {
+            "elapsed": 0.06799231842160225,
+            "error": null,
+            "status": "passed",
+            "test_elapsed": 0.001940220594406128
+          },
+          "repetition": 1,
+          "state": "measured"
+        }
+      ],
+      "controller_pid": 3388208,
+      "finished_unix": 1792045038.472476,
+      "harness_sha256": {
+        "inferx/__init__.py": "588f864500585e22f549800ff6691fb83b2251490ac9f4a04da901225df43b5a",
+        "inferx/agent_restrictions.py": "5c85f104b4ade61a4d5df9b97b144e3e32a38fc47730690f9d4b9b24f3af5e96",
+        "inferx/agent_trials.py": "db91d8deeda95b3ecab601f81e9473726f7c39c34fc1d482e84835c5a2915a1d",
+        "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+        "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+        "inferx/episodes.py": "f026b0ec10141f4149ae9280eae8ace48bad58a59b62a2cf4090caf85224da01",
+        "inferx/llama_client.py": "fa3c7196081b48096947bf3242065803b89c1cf8193965562680847451fb0509",
+        "inferx/pd_baselines.py": "8f1b0783743dc277c1930f921e359af4211daa76359f2376deb521667ff6b622",
+        "inferx/repo_prompt.py": "62bdbdf158af18ed4322d63efc0ed493137701ee66460a0a81a794c67124bf47",
+        "inferx/repo_restrictions.py": "9e0ab26752afbfc42ec60e575c0a6d3ffdcb222f6b9abde90ad851065d669db8",
+        "inferx/repo_verifier.py": "0cf7e27ab5169d360f9fc728874015df0a1f95e62f2b6d09448c6ff21fcf0b11",
+        "inferx/repo_worker.py": "00e036a3152d7da8bf9d8d9d552b0443061828c46ec47f4da8e8675a92c47789",
+        "inferx/repository.py": "e384e4766cbb46689b5753da477ad6d405d42606c83c935ca5a32332ccf079af",
+        "inferx/sandbox_worker.py": "cfab344490a33da3455a035b6c7d69703cc239321cdbf259f2f4c37fed8f5786",
+        "inferx/scheduler.py": "fdc31f71ebc0e40458b8f0ee0d11921981d9a864e7689c12f1d594f450d79971",
+        "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea",
+        "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
+        "inferx/verifier.py": "5a4bc48c7c2075906972aaaa25787d0837c018ef923ee6b7fe532dbbb97e9b18",
+        "scripts/analyze.py": "62b5effc954a2fd3bd97272280a8a0ba2e1df9acab884be097c982bfa5563f42",
+        "scripts/analyze_agent_trials.py": "aa1471be363ac0cac8a83f26313bf0be72efbd567e968049925fe33ad6511402",
+        "scripts/analyze_concurrency.py": "6cab04b2ea1123231e3ca84e3be1cc1b573e03534b32f5b0433dd8488f434f5f",
+        "scripts/analyze_pd_baselines.py": "cde606d47895d3c8d7b7da66a04e0fbebc82704754e35614df93a3b3394c6ac1",
+        "scripts/analyze_repository.py": "eabdb685d23e248ed3ede6183d2f2dcda4957eea429a28f6391cd961b973f7c3",
+        "scripts/bench_tuning.py": "257f9d8c5d2c0e04c66babd3a56ed7c5df4e2d51c1bfbd34925040b86f643ab5",
+        "scripts/bench_tuning_turns.py": "f4add48431c384831b671335bff71ad5e3f2c1717f7bc1a4df4094b2a71e3153",
+        "scripts/calibrate_repositories.py": "4b450337ed20ef2f3ea9e55701c11d9f4d88b41e2142d96e29f6adcaa90edf5c",
+        "scripts/check_server.py": "2e56d9cb2454b0c35078bd52ae0f6cb86c697950991d1a5eea8cff2d01ee8dca",
+        "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba",
+        "scripts/check_tuning_tools.py": "c39d46d7b547d965d999449fcab596bd5928c40c621d0032a2dd48bbb350d6ec",
+        "scripts/download.py": "759443354c0dbc040b7eda3e773ad9278f4e4abcdcd25d93da459793c23b9346",
+        "scripts/export_repository_results.py": "592d68abd93dbc27174cdc8c0ecafa39ebbe710baf24734951af8e8d5d482dd2",
+        "scripts/export_results.py": "6dd656f253f357048b19981ad5a2fb08c3b3fb1d4a66de9ae4a98c99b681d837",
+        "scripts/export_tuning_results.py": "e77f9d7efb3f18168ae81c33ea0480e956ad64f53ddf0a900d7ea4b5c99b0d35",
+        "scripts/measure_device_bandwidth.py": "dfc71ba1c33acef4c939b12623976830c2d1acb38daca1cdd74311a0e3c1f95c",
+        "scripts/plot_concurrency.py": "9f694cd191405cce2724769fdbcfc1cd0f36c792487b763b0a0df2a7ac396804",
+        "scripts/plot_pd_timeline.py": "f81b2c8d4ddc4abc64f04d004b38b17810d64c2713af9f34aa47ec73ee6e1a58",
+        "scripts/plot_repository.py": "b06d8eaa09f4f30f8e2964a011ac75c8ff3496237e3a5e1b67ac6390b1dd703a",
+        "scripts/plot_results.py": "750ecc5d7ba3222c0d8857e4ba68c8b5abf60e907bd0fe2d355b21d706fa549b",
+        "scripts/prepare_27b.py": "c8e54908e3399d78ddbd309b4e67c6dd2192419f5566867c0af9e6296771b50e",
+        "scripts/prepare_concurrency_workloads.py": "16d13e2c35954f4d1716f8fd3f0b3621da03ddf504986f0635f1731ddb2463a2",
+        "scripts/prepare_long_context.py": "84ebe19ea48a583397a9a9ceeb5b02f40341ece2e182052dbf8cdc3f743d8c04",
+        "scripts/prepare_morphx_transport.py": "1c786a66f8799a44bd910b5ecf02326b9566e4cbc6baa706b15ffa52e92b1f61",
+        "scripts/prepare_ninfer_model.py": "ef5a4d971d15c14eb4e62949744428f8bba602a677261497e809650d9accfcb3",
+        "scripts/prepare_ninfer_toolchain.py": "0ad9c01cbde90155f0c054ab846394650c81dcc3304592da4ee8d6e920ce4b8c",
+        "scripts/prepare_pd_baselines.py": "96a66ea13e5d34209f483fdc361626ae92e4d8494c719e4c085e33ab6d3f030e",
+        "scripts/prepare_repositories.py": "45c2187ab29ef2da5dbaa4a2ad006d9d86f397406f605cb1567354bc5878ed9a",
+        "scripts/prepare_tuning_context.py": "b538c9e4d3bd1133d9c195d7fdc481cf8fb4df597c5fbb1e6782fd0ee41ce7b1",
+        "scripts/profile_concurrency.py": "af61effcba7b7bb117698a54220338e86b05bfee810f441b536015bb974b01aa",
+        "scripts/restrict_agent.py": "c6db89f5550ee85beb5b3ff4422fdacb20ff5e6d927e5a71fb3c1f35b3c9e1c1",
+        "scripts/run_agent_trials.py": "3c3880d0119c1bf01b74f7110073a0c3d5a6f1aca37c690d7458ebd35b3907dc",
+        "scripts/run_concurrency_campaign.py": "92810c644332219fcee4147c50f04158f7dc515bdd3137024ad4b28a9424c70d",
+        "scripts/run_context_probe.py": "8db6f295e99f3a5fcb92b3f6df9f63967a551ca3054e7f173edb5f023e7f72ce",
+        "scripts/run_pd_baselines.py": "26db67de11acaf181c6fa842b439d77f8e24cc926486d495201a5e63c260a7d1",
+        "scripts/run_pilot.py": "e33d5bf0345c96678943cfdfd282a6c2d9b35f0a7c060813e475669b8135205e",
+        "scripts/run_repository_pilot.py": "da0333f244db31a4cdd3ca2f8cf3a599b56425d18924a4cf0c980c4908f6b6cb",
+        "scripts/run_tuning_grid.py": "31b7e329a817346d1d57f79899b6761d7b29bf5350b21953136855a0a1cc6981"
+      },
+      "probe_only": false,
+      "repeat": 2,
+      "restored": true,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "runtime_library": "libcuda_mapped_full.so",
+      "runtime_sha256": {
+        "libcuda_mapped_full.so": "a16f478b78ab340abfb2849000cbb9a11be05bf62cc69af39b60e3685c8bd768",
+        "libpreload.so": "70935ec76be57d25f7edce728768cac901f152c3e2e2c4633f52e0d1b992d78b"
+      },
+      "started_unix": 1792043740.6739762,
+      "status": "restored",
+      "workload_definitions": [
+        {
+          "long_mode": null,
+          "name": "short-control",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "cold",
+          "name": "cold-low",
+          "rate": 0.5
+        },
+        {
+          "long_mode": "resume",
+          "name": "resume-high",
+          "rate": 0.5
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 0,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 545
+      },
+      "group": "short-control",
+      "identity": "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+      "long": {
+        "aggregate_tokens_per_s": 0.0,
+        "attempted_latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 0,
+        "dispatch_lag_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 50.19811908900738,
+        "offered": 0,
+        "protocol_ok": 0,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 0,
+        "tool_valid": 0,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 24,
+      "offered": 24,
+      "parse_errors": [],
+      "planned": 24,
+      "preemptions": {
+        "count": 0.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 0
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 24.861489287818614,
+        "attempted_latency_s": {
+          "maximum": 4.977486751973629,
+          "median": 4.938526798039675,
+          "minimum": 4.171136151999235,
+          "n": 24,
+          "p95": 4.9730706587433815,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0022284872829914093,
+          "median": 0.0011493321508169174,
+          "minimum": 0.0005448535084724426,
+          "n": 24,
+          "p95": 0.00187595933675766,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 4.977486751973629,
+          "median": 4.938526798039675,
+          "minimum": 4.171136151999235,
+          "n": 24,
+          "p95": 4.9730706587433815,
+          "p99": null
+        },
+        "measured_span_s": 50.19811908900738,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47810556322728104,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47810556322728104,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47810556322728104,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47810556322728104,
+            "tool_met": 24
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.2160858623683453,
+          "median": 1.1807857770472765,
+          "minimum": 1.146409124135971,
+          "n": 24,
+          "p95": 1.215487364679575,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 24.861489287818614,
+        "attempted_latency_s": {
+          "maximum": 4.977486751973629,
+          "median": 4.938526798039675,
+          "minimum": 4.171136151999235,
+          "n": 24,
+          "p95": 4.9730706587433815,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0022284872829914093,
+          "median": 0.0011493321508169174,
+          "minimum": 0.0005448535084724426,
+          "n": 24,
+          "p95": 0.00187595933675766,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 4.977486751973629,
+          "median": 4.938526798039675,
+          "minimum": 4.171136151999235,
+          "n": 24,
+          "p95": 4.9730706587433815,
+          "p99": null
+        },
+        "measured_span_s": 50.19811908900738,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47810556322728104,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47810556322728104,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47810556322728104,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47810556322728104,
+            "tool_met": 24
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.2160858623683453,
+          "median": 1.1807857770472765,
+          "minimum": 1.146409124135971,
+          "n": 24,
+          "p95": 1.215487364679575,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 968
+      },
+      "group": "cold-low",
+      "identity": "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+      "long": {
+        "aggregate_tokens_per_s": 0.46041040886053114,
+        "attempted_latency_s": {
+          "maximum": 87.78296440839767,
+          "median": 87.78296440839767,
+          "minimum": 87.78296440839767,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.0011731572449207306,
+          "median": 0.0011731572449207306,
+          "minimum": 0.0011731572449207306,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 87.78296440839767,
+          "median": 87.78296440839767,
+          "minimum": 87.78296440839767,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 139.00641420856118,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 84.01501473411918,
+          "median": 84.01501473411918,
+          "minimum": 84.01501473411918,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 3.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 0,
+          "computed_tokens": 131049,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 8.978002972780358,
+        "attempted_latency_s": {
+          "maximum": 103.31162923946977,
+          "median": 68.90188960917294,
+          "minimum": 4.192970372736454,
+          "n": 24,
+          "p95": 101.97051666304469,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.003865811973810196,
+          "median": 0.0010451339185237885,
+          "minimum": 0.0006125867366790771,
+          "n": 24,
+          "p95": 0.0029846765100955963,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.31162923946977,
+          "median": 68.90188960917294,
+          "minimum": 4.192970372736454,
+          "n": 24,
+          "p95": 101.97051666304469,
+          "p99": null
+        },
+        "measured_span_s": 139.00641420856118,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.06474521374601219,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06474521374601219,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.06474521374601219,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06474521374601219,
+            "tool_met": 9
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.96292690560222,
+          "median": 29.210483375936747,
+          "minimum": 1.153806485235691,
+          "n": 24,
+          "p95": 96.76740042492747,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 9.438413381640888,
+        "attempted_latency_s": {
+          "maximum": 103.31162923946977,
+          "median": 87.78296440839767,
+          "minimum": 4.192970372736454,
+          "n": 25,
+          "p95": 101.97051666304469,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.003865811973810196,
+          "median": 0.001104738563299179,
+          "minimum": 0.0006125867366790771,
+          "n": 25,
+          "p95": 0.0029846765100955963,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.31162923946977,
+          "median": 87.78296440839767,
+          "minimum": 4.192970372736454,
+          "n": 25,
+          "p95": 101.97051666304469,
+          "p99": null
+        },
+        "measured_span_s": 139.00641420856118,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.06474521374601219,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06474521374601219,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.06474521374601219,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06474521374601219,
+            "tool_met": 9
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.96292690560222,
+          "median": 48.8319786041975,
+          "minimum": 1.153806485235691,
+          "n": 25,
+          "p95": 96.76740042492747,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 913
+      },
+      "group": "resume-high",
+      "identity": "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+      "long": {
+        "aggregate_tokens_per_s": 0.5011478432882408,
+        "attempted_latency_s": {
+          "maximum": 76.43726394698024,
+          "median": 76.43726394698024,
+          "minimum": 76.43726394698024,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.0014031119644641876,
+          "median": 0.0014031119644641876,
+          "minimum": 0.0014031119644641876,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 76.43726394698024,
+          "median": 76.43726394698024,
+          "minimum": 76.43726394698024,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 127.70682515576482,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 72.69589733332396,
+          "median": 72.69589733332396,
+          "minimum": 72.69589733332396,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 2.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 23520,
+          "computed_tokens": 107518,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-diagnostic-v1",
+      "short": {
+        "aggregate_tokens_per_s": 9.772382944120697,
+        "attempted_latency_s": {
+          "maximum": 92.24731336906552,
+          "median": 74.10823384299874,
+          "minimum": 4.599239833652973,
+          "n": 24,
+          "p95": 91.04676205664873,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.004108663648366928,
+          "median": 0.0015612095594406128,
+          "minimum": 0.0004208870232105255,
+          "n": 24,
+          "p95": 0.0033249184489250183,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.24731336906552,
+          "median": 74.10823384299874,
+          "minimum": 4.599239833652973,
+          "n": 24,
+          "p95": 91.04676205664873,
+          "p99": null
+        },
+        "measured_span_s": 127.70682515576482,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.0626434804110301,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.0626434804110301,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.0626434804110301,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.0626434804110301,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.623853944242,
+          "median": 40.876253109425306,
+          "minimum": 1.1497728638350964,
+          "n": 24,
+          "p95": 86.0479704476893,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 10.273530787408937,
+        "attempted_latency_s": {
+          "maximum": 92.24731336906552,
+          "median": 76.43726394698024,
+          "minimum": 4.599239833652973,
+          "n": 25,
+          "p95": 91.04676205664873,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.004108663648366928,
+          "median": 0.0015073269605636597,
+          "minimum": 0.0004208870232105255,
+          "n": 25,
+          "p95": 0.0033249184489250183,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.24731336906552,
+          "median": 76.43726394698024,
+          "minimum": 4.599239833652973,
+          "n": 25,
+          "p95": 91.04676205664873,
+          "p99": null
+        },
+        "measured_span_s": 127.70682515576482,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.0626434804110301,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.0626434804110301,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.0626434804110301,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.0626434804110301,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.623853944242,
+          "median": 56.80605971068144,
+          "minimum": 1.1497728638350964,
+          "n": 25,
+          "p95": 86.0479704476893,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 0,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 545
+      },
+      "group": "short-control",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+      "long": {
+        "aggregate_tokens_per_s": 0.0,
+        "attempted_latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 0,
+        "dispatch_lag_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 50.18250232934952,
+        "offered": 0,
+        "protocol_ok": 0,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 0,
+        "tool_valid": 0,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 24,
+      "offered": 24,
+      "parse_errors": [],
+      "planned": 24,
+      "preemptions": {
+        "count": 0.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 0
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 24.86922616591202,
+        "attempted_latency_s": {
+          "maximum": 5.895834270864725,
+          "median": 4.961194057017565,
+          "minimum": 4.1567382253706455,
+          "n": 24,
+          "p95": 5.892550192773342,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0023374073207378387,
+          "median": 0.001009201630949974,
+          "minimum": 0.0004980228841304779,
+          "n": 24,
+          "p95": 0.002154119312763214,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 5.895834270864725,
+          "median": 4.961194057017565,
+          "minimum": 4.1567382253706455,
+          "n": 24,
+          "p95": 5.892550192773342,
+          "p99": null
+        },
+        "measured_span_s": 50.18250232934952,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4782543493444619,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4782543493444619,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.7916666666666666,
+            "protocol_goodput_per_s": 0.3786180265643657,
+            "protocol_met": 19,
+            "tool_goodput_per_s": 0.3786180265643657,
+            "tool_met": 19
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.5602204948663712,
+          "median": 1.1833664383739233,
+          "minimum": 1.1493344493210316,
+          "n": 24,
+          "p95": 1.34671625867486,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 24.86922616591202,
+        "attempted_latency_s": {
+          "maximum": 5.895834270864725,
+          "median": 4.961194057017565,
+          "minimum": 4.1567382253706455,
+          "n": 24,
+          "p95": 5.892550192773342,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0023374073207378387,
+          "median": 0.001009201630949974,
+          "minimum": 0.0004980228841304779,
+          "n": 24,
+          "p95": 0.002154119312763214,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 5.895834270864725,
+          "median": 4.961194057017565,
+          "minimum": 4.1567382253706455,
+          "n": 24,
+          "p95": 5.892550192773342,
+          "p99": null
+        },
+        "measured_span_s": 50.18250232934952,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.4782543493444619,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.4782543493444619,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.7916666666666666,
+            "protocol_goodput_per_s": 0.3786180265643657,
+            "protocol_met": 19,
+            "tool_goodput_per_s": 0.3786180265643657,
+            "tool_met": 19
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.5602204948663712,
+          "median": 1.1833664383739233,
+          "minimum": 1.1493344493210316,
+          "n": 24,
+          "p95": 1.34671625867486,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 967
+      },
+      "group": "cold-low",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+      "long": {
+        "aggregate_tokens_per_s": 0.4610767220644351,
+        "attempted_latency_s": {
+          "maximum": 87.59509022161365,
+          "median": 87.59509022161365,
+          "minimum": 87.59509022161365,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.001455198973417282,
+          "median": 0.001455198973417282,
+          "minimum": 0.001455198973417282,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 87.59509022161365,
+          "median": 87.59509022161365,
+          "minimum": 87.59509022161365,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 138.80553265288472,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 83.84861039742827,
+          "median": 83.84861039742827,
+          "minimum": 83.84861039742827,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 3.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 0,
+          "computed_tokens": 131049,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 8.990996080256485,
+        "attempted_latency_s": {
+          "maximum": 103.128717135638,
+          "median": 68.72034742496908,
+          "minimum": 4.132716156542301,
+          "n": 24,
+          "p95": 101.78723181039095,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0039022527635097504,
+          "median": 0.0014080442488193512,
+          "minimum": 0.000359266996383667,
+          "n": 24,
+          "p95": 0.00298265740275383,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.128717135638,
+          "median": 68.72034742496908,
+          "minimum": 4.132716156542301,
+          "n": 24,
+          "p95": 101.78723181039095,
+          "p99": null
+        },
+        "measured_span_s": 138.80553265288472,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.06483891404031118,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06483891404031118,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.06483891404031118,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06483891404031118,
+            "tool_met": 9
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.79434372112155,
+          "median": 29.03864977322519,
+          "minimum": 1.144337646663189,
+          "n": 24,
+          "p95": 96.58424044772983,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 9.45207280232092,
+        "attempted_latency_s": {
+          "maximum": 103.128717135638,
+          "median": 87.59509022161365,
+          "minimum": 4.132716156542301,
+          "n": 25,
+          "p95": 101.78723181039095,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.0039022527635097504,
+          "median": 0.001455198973417282,
+          "minimum": 0.000359266996383667,
+          "n": 25,
+          "p95": 0.00298265740275383,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.128717135638,
+          "median": 87.59509022161365,
+          "minimum": 4.132716156542301,
+          "n": 25,
+          "p95": 101.78723181039095,
+          "p99": null
+        },
+        "measured_span_s": 138.80553265288472,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.06483891404031118,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06483891404031118,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.06483891404031118,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06483891404031118,
+            "tool_met": 9
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.79434372112155,
+          "median": 48.67139716073871,
+          "minimum": 1.144337646663189,
+          "n": 25,
+          "p95": 96.58424044772983,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 927
+      },
+      "group": "resume-high",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+      "long": {
+        "aggregate_tokens_per_s": 0.4994896334952291,
+        "attempted_latency_s": {
+          "maximum": 76.63466654345393,
+          "median": 76.63466654345393,
+          "minimum": 76.63466654345393,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.0019351132214069366,
+          "median": 0.0019351132214069366,
+          "minimum": 0.0019351132214069366,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 76.63466654345393,
+          "median": 76.63466654345393,
+          "minimum": 76.63466654345393,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 128.13078732416034,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 72.80101511254907,
+          "median": 72.80101511254907,
+          "minimum": 72.80101511254907,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 2.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 23520,
+          "computed_tokens": 107518,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 0,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 9.740047853156968,
+        "attempted_latency_s": {
+          "maximum": 92.50355535745621,
+          "median": 74.38517497479916,
+          "minimum": 4.667484268546104,
+          "n": 24,
+          "p95": 91.31320814415812,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.004388842731714249,
+          "median": 0.0012803822755813599,
+          "minimum": 0.0003792420029640198,
+          "n": 24,
+          "p95": 0.0030357129871845245,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.50355535745621,
+          "median": 74.38517497479916,
+          "minimum": 4.667484268546104,
+          "n": 24,
+          "p95": 91.31320814415812,
+          "p99": null
+        },
+        "measured_span_s": 128.13078732416034,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.06243620418690364,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.06243620418690364,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.125,
+            "protocol_goodput_per_s": 0.023413576570088867,
+            "protocol_met": 3,
+            "tool_goodput_per_s": 0.023413576570088867,
+            "tool_met": 3
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.82335637137294,
+          "median": 40.966803232207894,
+          "minimum": 1.1583499684929848,
+          "n": 24,
+          "p95": 86.25746824592352,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 10.239537486652198,
+        "attempted_latency_s": {
+          "maximum": 92.50355535745621,
+          "median": 76.63466654345393,
+          "minimum": 4.667484268546104,
+          "n": 25,
+          "p95": 91.31320814415812,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.004388842731714249,
+          "median": 0.001289650797843933,
+          "minimum": 0.0003792420029640198,
+          "n": 25,
+          "p95": 0.0030357129871845245,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.50355535745621,
+          "median": 76.63466654345393,
+          "minimum": 4.667484268546104,
+          "n": 25,
+          "p95": 91.31320814415812,
+          "p99": null
+        },
+        "measured_span_s": 128.13078732416034,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.06243620418690364,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.06243620418690364,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.12,
+            "protocol_goodput_per_s": 0.023413576570088867,
+            "protocol_met": 3,
+            "tool_goodput_per_s": 0.023413576570088867,
+            "tool_met": 3
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.82335637137294,
+          "median": 56.89664984866977,
+          "minimum": 1.1583499684929848,
+          "n": 25,
+          "p95": 86.25746824592352,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 0,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 546
+      },
+      "group": "short-control",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control",
+      "long": {
+        "aggregate_tokens_per_s": 0.0,
+        "attempted_latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 0,
+        "dispatch_lag_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 50.19006473198533,
+        "offered": 0,
+        "protocol_ok": 0,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 0,
+        "tool_valid": 0,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": null,
+          "median": null,
+          "minimum": null,
+          "n": 0,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 24,
+      "offered": 24,
+      "parse_errors": [],
+      "planned": 24,
+      "preemptions": {
+        "count": 0.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 0
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 1,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 24.865478988009144,
+        "attempted_latency_s": {
+          "maximum": 5.048555839806795,
+          "median": 5.005330776795745,
+          "minimum": 4.175205830484629,
+          "n": 24,
+          "p95": 5.0410060323774815,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.002371951937675476,
+          "median": 0.0011702179908752441,
+          "minimum": 0.00046003982424736023,
+          "n": 24,
+          "p95": 0.0022556371986865997,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 5.048555839806795,
+          "median": 5.005330776795745,
+          "minimum": 4.175205830484629,
+          "n": 24,
+          "p95": 5.0410060323774815,
+          "p99": null
+        },
+        "measured_span_s": 50.19006473198533,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47818228823094505,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47818228823094505,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.4166666666666667,
+            "protocol_goodput_per_s": 0.19924262009622712,
+            "protocol_met": 10,
+            "tool_goodput_per_s": 0.19924262009622712,
+            "tool_met": 10
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.2276218049228191,
+          "median": 1.1983928121626377,
+          "minimum": 1.163209993392229,
+          "n": 24,
+          "p95": 1.2250191867351532,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 24.865478988009144,
+        "attempted_latency_s": {
+          "maximum": 5.048555839806795,
+          "median": 5.005330776795745,
+          "minimum": 4.175205830484629,
+          "n": 24,
+          "p95": 5.0410060323774815,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.002371951937675476,
+          "median": 0.0011702179908752441,
+          "minimum": 0.00046003982424736023,
+          "n": 24,
+          "p95": 0.0022556371986865997,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 5.048555839806795,
+          "median": 5.005330776795745,
+          "minimum": 4.175205830484629,
+          "n": 24,
+          "p95": 5.0410060323774815,
+          "p99": null
+        },
+        "measured_span_s": 50.19006473198533,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 1.0,
+            "protocol_goodput_per_s": 0.47818228823094505,
+            "protocol_met": 24,
+            "tool_goodput_per_s": 0.47818228823094505,
+            "tool_met": 24
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.4166666666666667,
+            "protocol_goodput_per_s": 0.19924262009622712,
+            "protocol_met": 10,
+            "tool_goodput_per_s": 0.19924262009622712,
+            "tool_met": 10
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 1.2276218049228191,
+          "median": 1.1983928121626377,
+          "minimum": 1.163209993392229,
+          "n": 24,
+          "p95": 1.2250191867351532,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 964
+      },
+      "group": "cold-low",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low",
+      "long": {
+        "aggregate_tokens_per_s": 0.4611128822668724,
+        "attempted_latency_s": {
+          "maximum": 87.62256629765034,
+          "median": 87.62256629765034,
+          "minimum": 87.62256629765034,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.002229493111371994,
+          "median": 0.002229493111371994,
+          "minimum": 0.002229493111371994,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 87.62256629765034,
+          "median": 87.62256629765034,
+          "minimum": 87.62256629765034,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 138.79464760422707,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 83.89117860794067,
+          "median": 83.89117860794067,
+          "minimum": 83.89117860794067,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 3.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 0,
+          "computed_tokens": 131049,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 1,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 8.991701204204013,
+        "attempted_latency_s": {
+          "maximum": 103.14917064830661,
+          "median": 68.7337332777679,
+          "minimum": 4.199907660484314,
+          "n": 24,
+          "p95": 101.81071399524808,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.0029299668967723846,
+          "median": 0.0013000909239053726,
+          "minimum": 0.0005155019462108612,
+          "n": 24,
+          "p95": 0.002901911735534668,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.14917064830661,
+          "median": 68.7337332777679,
+          "minimum": 4.199907660484314,
+          "n": 24,
+          "p95": 101.81071399524808,
+          "p99": null
+        },
+        "measured_span_s": 138.79464760422707,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.375,
+            "protocol_goodput_per_s": 0.06484399906877893,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06484399906877893,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.05763911028335905,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.05763911028335905,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.82129550725222,
+          "median": 29.084977064281702,
+          "minimum": 1.1668399684131145,
+          "n": 24,
+          "p95": 96.60644117370248,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 9.452814086470884,
+        "attempted_latency_s": {
+          "maximum": 103.14917064830661,
+          "median": 87.62256629765034,
+          "minimum": 4.199907660484314,
+          "n": 25,
+          "p95": 101.81071399524808,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.0029299668967723846,
+          "median": 0.0014453940093517303,
+          "minimum": 0.0005155019462108612,
+          "n": 25,
+          "p95": 0.002901911735534668,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 103.14917064830661,
+          "median": 87.62256629765034,
+          "minimum": 4.199907660484314,
+          "n": 25,
+          "p95": 101.81071399524808,
+          "p99": null
+        },
+        "measured_span_s": 138.79464760422707,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.36,
+            "protocol_goodput_per_s": 0.06484399906877893,
+            "protocol_met": 9,
+            "tool_goodput_per_s": 0.06484399906877893,
+            "tool_met": 9
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.05763911028335905,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.05763911028335905,
+            "tool_met": 8
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 96.82129550725222,
+          "median": 48.71055305376649,
+          "minimum": 1.1668399684131145,
+          "n": 25,
+          "p95": 96.60644117370248,
+          "p99": null
+        }
+      }
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "comparison_eligible": true,
+      "complete": true,
+      "configuration": {
+        "binary": "pd-baselines/vllm031-venv/bin/python",
+        "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+        "chunk": 4096,
+        "concurrency": 4,
+        "context_window": 131328,
+        "cuda_graph": false,
+        "draft": 0,
+        "engine": "vllm",
+        "environment": {
+          "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+          "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+          "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+          "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+        },
+        "gpu_memory_utilization": 0.95,
+        "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+        "id": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+        "kv_capacity": 212992,
+        "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+        "kv_dtype": "fp8",
+        "long_prefill_token_threshold": 2048,
+        "mamba_cache_mode": "align",
+        "model": "models/qwen38-int4-redhat",
+        "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+        "morphx": {
+          "enabled": false,
+          "patched_launches": 0
+        },
+        "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+        "startup_timeout_s": 1200,
+        "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+      },
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "error": null,
+      "full_long_completed": 1,
+      "gpu_memory": {
+        "invalid_rows": 0,
+        "sampled_min_free_mib": 83.0,
+        "sampled_peak_mib": 24025.0,
+        "sampling_interval_ms": 200,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device.",
+        "status": "observed",
+        "valid_samples": 909
+      },
+      "group": "resume-high",
+      "identity": "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high",
+      "long": {
+        "aggregate_tokens_per_s": 0.5018832194970801,
+        "attempted_latency_s": {
+          "maximum": 76.35388042777777,
+          "median": 76.35388042777777,
+          "minimum": 76.35388042777777,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "completion_tokens": 64,
+        "dispatch_lag_s": {
+          "maximum": 0.0014168508350849152,
+          "median": 0.0014168508350849152,
+          "minimum": 0.0014168508350849152,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 76.35388042777777,
+          "median": 76.35388042777777,
+          "minimum": 76.35388042777777,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        },
+        "measured_span_s": 127.519704811275,
+        "offered": 1,
+        "protocol_ok": 1,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          }
+        },
+        "tool_checked": 1,
+        "tool_valid": 1,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 72.6357843093574,
+          "median": 72.6357843093574,
+          "minimum": 72.6357843093574,
+          "n": 1,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "morphx_coverage": null,
+      "observed_responses": 25,
+      "offered": 25,
+      "parse_errors": [],
+      "planned": 25,
+      "preemptions": {
+        "count": 2.0,
+        "metric": "vllm:num_preemptions_total",
+        "status": "observed"
+      },
+      "prefix": {
+        "long": {
+          "cached_tokens": 23520,
+          "computed_tokens": 107518,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        "short": {
+          "cached_tokens": 564480,
+          "computed_tokens": 24888,
+          "counter_observations": 24,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 24
+        }
+      },
+      "quality_status": "passed",
+      "rate": 0.5,
+      "repetition": 1,
+      "run": "vllm031-codecfix-lowrate-repeat-v1",
+      "short": {
+        "aggregate_tokens_per_s": 9.786722780193063,
+        "attempted_latency_s": {
+          "maximum": 92.13850788027048,
+          "median": 73.99958542920649,
+          "minimum": 4.558897465467453,
+          "n": 24,
+          "p95": 90.93257423490286,
+          "p99": null
+        },
+        "completion_tokens": 1248,
+        "dispatch_lag_s": {
+          "maximum": 0.004319354891777039,
+          "median": 0.001547839492559433,
+          "minimum": 0.0005075149238109589,
+          "n": 24,
+          "p95": 0.0031987614929676056,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.13850788027048,
+          "median": 73.99958542920649,
+          "minimum": 4.558897465467453,
+          "n": 24,
+          "p95": 90.93257423490286,
+          "p99": null
+        },
+        "measured_span_s": 127.519704811275,
+        "offered": 24,
+        "protocol_ok": 24,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.3333333333333333,
+            "protocol_goodput_per_s": 0.06273540243713502,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.06273540243713502,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.20833333333333334,
+            "protocol_goodput_per_s": 0.03920962652320938,
+            "protocol_met": 5,
+            "tool_goodput_per_s": 0.03920962652320938,
+            "tool_met": 5
+          }
+        },
+        "tool_checked": 24,
+        "tool_valid": 24,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.53808579966426,
+          "median": 40.82222238741815,
+          "minimum": 1.1542352885007858,
+          "n": 24,
+          "p95": 85.9573045745492,
+          "p99": null
+        }
+      },
+      "state": "measured",
+      "summary": {
+        "aggregate_tokens_per_s": 10.288605999690143,
+        "attempted_latency_s": {
+          "maximum": 92.13850788027048,
+          "median": 76.35388042777777,
+          "minimum": 4.558897465467453,
+          "n": 25,
+          "p95": 90.93257423490286,
+          "p99": null
+        },
+        "completion_tokens": 1312,
+        "dispatch_lag_s": {
+          "maximum": 0.004319354891777039,
+          "median": 0.0014168508350849152,
+          "minimum": 0.0005075149238109589,
+          "n": 25,
+          "p95": 0.0031987614929676056,
+          "p99": null
+        },
+        "errors": 0,
+        "latency_s": {
+          "maximum": 92.13850788027048,
+          "median": 76.35388042777777,
+          "minimum": 4.558897465467453,
+          "n": 25,
+          "p95": 90.93257423490286,
+          "p99": null
+        },
+        "measured_span_s": 127.519704811275,
+        "offered": 25,
+        "protocol_ok": 25,
+        "slo": {
+          "0.5": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "1": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "10": {
+            "offered_fraction": 0.32,
+            "protocol_goodput_per_s": 0.06273540243713502,
+            "protocol_met": 8,
+            "tool_goodput_per_s": 0.06273540243713502,
+            "tool_met": 8
+          },
+          "2": {
+            "offered_fraction": 0.0,
+            "protocol_goodput_per_s": 0.0,
+            "protocol_met": 0,
+            "tool_goodput_per_s": 0.0,
+            "tool_met": 0
+          },
+          "5": {
+            "offered_fraction": 0.2,
+            "protocol_goodput_per_s": 0.03920962652320938,
+            "protocol_met": 5,
+            "tool_goodput_per_s": 0.03920962652320938,
+            "tool_met": 5
+          }
+        },
+        "tool_checked": 25,
+        "tool_valid": 25,
+        "truncated": 0,
+        "ttft_s": {
+          "maximum": 87.53808579966426,
+          "median": 56.75333270430565,
+          "minimum": 1.1542352885007858,
+          "n": 25,
+          "p95": 85.9573045745492,
+          "p99": null
+        }
+      }
+    }
+  ],
+  "limitation": "Cross-engine quantization/templating/capacity differences are not isolated scheduler effects.",
+  "repeats": [
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "group": "cold-low",
+      "independent_repetitions": 3,
+      "limitation": "Per-wave statistics; request samples within a wave are correlated.",
+      "long_completed": 3,
+      "long_offered": 3,
+      "rate": 0.5,
+      "short_5s_goodput_per_s": {
+        "maximum": 0.06483891404031118,
+        "median": 0.06474521374601219,
+        "minimum": 0.05763911028335905,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "short_errors": 0,
+      "short_p95_s": {
+        "maximum": 101.97051666304469,
+        "median": 101.81071399524808,
+        "minimum": 101.78723181039095,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "wave_ids": [
+        "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low"
+      ]
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "group": "resume-high",
+      "independent_repetitions": 3,
+      "limitation": "Per-wave statistics; request samples within a wave are correlated.",
+      "long_completed": 3,
+      "long_offered": 3,
+      "rate": 0.5,
+      "short_5s_goodput_per_s": {
+        "maximum": 0.0626434804110301,
+        "median": 0.03920962652320938,
+        "minimum": 0.023413576570088867,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "short_errors": 0,
+      "short_p95_s": {
+        "maximum": 91.31320814415812,
+        "median": 91.04676205664873,
+        "minimum": 90.93257423490286,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "wave_ids": [
+        "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high"
+      ]
+    },
+    {
+      "case": "vllm031-int4-c4-b4096-cap2048-eager-mem95",
+      "configuration_sha256": "540b1b9d56702a29b5e2d233e88b85b966786370fbba325968e41bf9eda2468a",
+      "group": "short-control",
+      "independent_repetitions": 3,
+      "limitation": "Per-wave statistics; request samples within a wave are correlated.",
+      "long_completed": 0,
+      "long_offered": 0,
+      "rate": 0.5,
+      "short_5s_goodput_per_s": {
+        "maximum": 0.47810556322728104,
+        "median": 0.3786180265643657,
+        "minimum": 0.19924262009622712,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "short_errors": 0,
+      "short_p95_s": {
+        "maximum": 5.892550192773342,
+        "median": 5.0410060323774815,
+        "minimum": 4.9730706587433815,
+        "n": 3,
+        "p95": null,
+        "p99": null
+      },
+      "wave_ids": [
+        "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control",
+        "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control"
+      ]
+    }
+  ],
+  "scope": "Complete vLLM0.31 MTP0/C4/full128K matched0.5RPS,3independentrestartspergroup",
+  "source_hashes": {
+    "vllm031-codecfix-lowrate-diagnostic-v1/campaign.json": {
+      "bytes": 7471,
+      "sha256": "ed36e036438aec89dae7db6fe0da4d59f4b6db9017befd37109431bbb81987e4"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/config.json": {
+      "bytes": 1567,
+      "sha256": "e7b77f74c0ad6d9bc8f3e26882873c62e226a5ca6e7063ec9a1ff48029f03815"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/requests.jsonl": {
+      "bytes": 1302978,
+      "sha256": "a1047dc72150d22400140b5cbd1b42b01793c240db670873e9dd0bfade4fbf77"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/result.json": {
+      "bytes": 20150,
+      "sha256": "2d43b2908471ff664b300dcafeac7eebfb9d15e91e11e378603a203b0bfda683"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/specifications.json": {
+      "bytes": 1168265,
+      "sha256": "c5eea2ca2fad9e93d9b95825d5c439da478469180fb5c7d96ee99ac22b41628f"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/gpu.csv": {
+      "bytes": 50704,
+      "sha256": "46d8ce748972b1bb2afe8ec6ae43020aee4b127b54cea146eb6ebc9efaf6363c"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/quality-result.json": {
+      "bytes": 116,
+      "sha256": "d2ee33634b5cb7e5eb2cd928882259c8e61781b5a59810227823cde849a90d0f"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/server.log": {
+      "bytes": 28176,
+      "sha256": "229d36d50165fd9e09af8a6b06c78201db06b96e754c4f0afad208f91763200f"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/startup.json": {
+      "bytes": 3649,
+      "sha256": "2edc02fa231016a87f9568bd699bffb3f022365f6adca578f00d16f6072beb4c"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/gpu.csv": {
+      "bytes": 47294,
+      "sha256": "53c80a5504a8a66d115ccd8fe8f05d06dc6f69cf3280fdc37d61c49ce1bf45ba"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/quality-result.json": {
+      "bytes": 114,
+      "sha256": "6bafafdd52de29ebf1b8b1367996b8367e0b2eb3fee65966c8d7cd7a913ebbef"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/requests.jsonl": {
+      "bytes": 1303011,
+      "sha256": "b7f8d34d31477b87eed185a4d9c3b96df04b478f8b22d1c97f4ac5ce7227b7a8"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/result.json": {
+      "bytes": 20148,
+      "sha256": "2a47b294c01b07688c9527200cb4482d981631322224c5abdf329c3d3cf17777"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/specifications.json": {
+      "bytes": 1168308,
+      "sha256": "46636a02b7a2795686d0406b3779d3330f02551b8cdca9b56499cd4594d807d4"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/server.log": {
+      "bytes": 27976,
+      "sha256": "5c76c9e8a786679e78c79d573a3a8d4658fcec8b978473b55e7d2234e8ed8162"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/startup.json": {
+      "bytes": 3649,
+      "sha256": "4da89e7854c90decbb298ecc22c1fd96eb11ae7947d78b473ec373f324b293a6"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/gpu.csv": {
+      "bytes": 28103,
+      "sha256": "345abf243d9b37a95fadb9d24dd3230d90393890162b2c74aced89786bff9981"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/quality-result.json": {
+      "bytes": 115,
+      "sha256": "9a3768c9051c2b3cd1f6a7063477e4a3f69ce70d0c76ed9e79a30fd9b7cf99f2"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/server.log": {
+      "bytes": 25532,
+      "sha256": "aeb8d94d0a1df7c683820fa319931cb41bd3bc63f48ddfc9e8bdf8bfd1c7a45c"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/requests.jsonl": {
+      "bytes": 1092085,
+      "sha256": "d7adad55f911aa58888dc0b028dc0f6c22b83c0fba73421c48c8b3f565a4d7a7"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/result.json": {
+      "bytes": 19958,
+      "sha256": "bcb8f8f979fd14e3c8eebf4baf5cad48efa1732196827cace38a9e81e4e08c6c"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/specifications.json": {
+      "bytes": 966465,
+      "sha256": "004164439f3313189db64798e5b4b9ba5e2a9abbb129af1226328184515d9727"
+    },
+    "vllm031-codecfix-lowrate-diagnostic-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/startup.json": {
+      "bytes": 3649,
+      "sha256": "8b0843333c93ea7d357c6fc17019fcc58c734fc72649a90ecb8d844dd3ca2c97"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/campaign.json": {
+      "bytes": 8417,
+      "sha256": "6b13930e299b034dca1fc782cd79df1273ce3926f7685b1e5f29d6f2b172029d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/config.json": {
+      "bytes": 1567,
+      "sha256": "e7b77f74c0ad6d9bc8f3e26882873c62e226a5ca6e7063ec9a1ff48029f03815"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/requests.jsonl": {
+      "bytes": 1302979,
+      "sha256": "15bbe9be4009e93656b8a7653d3d098e8b5550be445ec851ae40e7b29a57a0fd"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/result.json": {
+      "bytes": 20128,
+      "sha256": "a83cb7b891996e0899f60b1861668a554220b22bcd867ece3440e31758117a8d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/cold-low/specifications.json": {
+      "bytes": 1168265,
+      "sha256": "c5eea2ca2fad9e93d9b95825d5c439da478469180fb5c7d96ee99ac22b41628f"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/gpu.csv": {
+      "bytes": 50658,
+      "sha256": "8e4f8e47883c8aabfc359d09c1cedf5f9a93064931d7b76d0e6141172513efbb"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/quality-result.json": {
+      "bytes": 116,
+      "sha256": "99cc9b9a51d208de585ed334c5749d7d2371a73ceed141a88e6adc23f675df45"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/server.log": {
+      "bytes": 28179,
+      "sha256": "de278c8f2be9a1dd6a9e71e94396151c35a14a2a124e01f14cd34f8a6c29ee9d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-cold-low/startup.json": {
+      "bytes": 3649,
+      "sha256": "2bf21a15189a14a08059ecbe9050c506256b520d2d3f8687994270ad69e4f53d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/gpu.csv": {
+      "bytes": 48017,
+      "sha256": "bf11eaaa030cbdabd6f61d963139131a0eb5aaab4dc8c2d28561dceed5afeb9d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/quality-result.json": {
+      "bytes": 116,
+      "sha256": "f0d5a1916a471202c639d59ca8c82940c859dc574d522d05b3e8fec7719a32b2"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/requests.jsonl": {
+      "bytes": 1303022,
+      "sha256": "d5a26d596d83794a72f584442e5cac414e499bf5d4b63635c934c7cdc25c7b12"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/result.json": {
+      "bytes": 20167,
+      "sha256": "9124fdb96d7aa884c7ed5e78a18d4f0d89074ae1d7c5ef7e74be136e4fcccede"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/resume-high/specifications.json": {
+      "bytes": 1168308,
+      "sha256": "46636a02b7a2795686d0406b3779d3330f02551b8cdca9b56499cd4594d807d4"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/server.log": {
+      "bytes": 27993,
+      "sha256": "38170ec3f31e36ea6dd78b01e861bc83d3b5653a96605e0092f8695cc0147dfa"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-resume-high/startup.json": {
+      "bytes": 3649,
+      "sha256": "ec615bfaab0d1b2fbaeb3ff65907fa65cc09ef594b8d153f7931f56fd2dc5b02"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/gpu.csv": {
+      "bytes": 28102,
+      "sha256": "ffaf5a3ce5d8e9b41cbb605bf83353bcd386d9e77e03bafe786ceea9cfda9a05"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/quality-result.json": {
+      "bytes": 116,
+      "sha256": "db29d1e205abc49289b546b960500227f35f274097b584db35c78f0e0fa3b31d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/server.log": {
+      "bytes": 25532,
+      "sha256": "002886d11d2d87446b047c805284adde28bfbbf4a1defe28467ff8641a5b6d05"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/requests.jsonl": {
+      "bytes": 1092076,
+      "sha256": "10e442b326431e7458a2a516f3142d3233e6234e9669f5e105afdd257e7bf444"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/result.json": {
+      "bytes": 19969,
+      "sha256": "0b6cb5c0ef777981b917faf89742b354c913e10b65592e11a0ee493cc45ccb94"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/short-control/specifications.json": {
+      "bytes": 966465,
+      "sha256": "004164439f3313189db64798e5b4b9ba5e2a9abbb129af1226328184515d9727"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r0-short-control/startup.json": {
+      "bytes": 3649,
+      "sha256": "10ddf28a4a984f766ab577755bb35d741b24bf7c2c0cf3ea1db90de0d6989656"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low/requests.jsonl": {
+      "bytes": 1302978,
+      "sha256": "0736ef119a04a2b56a4dcbe9843def52bd068b91ba5caac9adc69cf7289ef10a"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low/result.json": {
+      "bytes": 20156,
+      "sha256": "979ca2aa7a7e7530db9110e5a00bd0ec79e3ef20ccac206307b8c8eaf69d73eb"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/cold-low/specifications.json": {
+      "bytes": 1168265,
+      "sha256": "70be1e87ffa1da04cbda827b0a4e11c57a061df65b86113ce5c1e1b7441a5206"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/gpu.csv": {
+      "bytes": 50505,
+      "sha256": "3ad5776d53455856d0cf00a58ee2a5e1e92dd5792d6dca1a64afc7f739aa3d6e"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/quality-result.json": {
+      "bytes": 115,
+      "sha256": "d0d3f087d608e3b09354c7f06161e00ef0b117d2db23b09ac25aa364730a699d"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/server.log": {
+      "bytes": 28441,
+      "sha256": "654d17167c3eed5fa71dd3ee376806a44ff8f9e25bcae76c31166060fb5a8c58"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-cold-low/startup.json": {
+      "bytes": 3649,
+      "sha256": "be9af8519c674a21be5a2bacd887c6601b099a80eb16980afc73947b5577e54e"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/gpu.csv": {
+      "bytes": 47081,
+      "sha256": "85e5945c1644a216061909da38518e22f192772093ef5f34f1c2537fb03be2ba"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/quality-result.json": {
+      "bytes": 115,
+      "sha256": "6dec9de6dd1d3887b37e343b04808709bd2d47b6a4d7d66587e10b93e8697816"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high/requests.jsonl": {
+      "bytes": 1303014,
+      "sha256": "e4a0a6b8a377b901a350210dcb1d5c91245836ff2864550ca2fdcfb3b8155f92"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high/result.json": {
+      "bytes": 20167,
+      "sha256": "2cc819a8147f3dfd825b38dd8d869c9ea5ec6f1e369821c7e4af28e4787fdf2b"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/resume-high/specifications.json": {
+      "bytes": 1168308,
+      "sha256": "6d4d823721fb6e2ade5206a0c34f4b316352040de0b50ddac8795e5b1fb2a1c6"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/server.log": {
+      "bytes": 27994,
+      "sha256": "85f0ac4f0af7bf4865c2413b047b198faa1ccf55dbce6baf9e451eb9fa78b23f"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-resume-high/startup.json": {
+      "bytes": 3649,
+      "sha256": "5fa2393856e5df74471aed59aff123f50d5b7a2a0bbb80142ab8c536f97517e2"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/gpu.csv": {
+      "bytes": 28150,
+      "sha256": "a4fcbd3c2acf7c64dae0b64d8a4805ad737095adc349c36cc6bfd3b05224e613"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/quality-result.json": {
+      "bytes": 115,
+      "sha256": "9caef93aa2b88a5a76864c8c71750276fc68738aca58eca158dead109e6e4d44"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/server.log": {
+      "bytes": 25532,
+      "sha256": "94a720b930699246bc9719d2fc463f4a69c04e9c9e3e2fd03eb44a7c86c62e0c"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control/requests.jsonl": {
+      "bytes": 1092084,
+      "sha256": "b145691044f33d696323d999846f2c824e9e0638e6b714c9e345e9e37838c670"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control/result.json": {
+      "bytes": 20013,
+      "sha256": "a6fc844eaf255dbbb58aa3f835b0e1fe42e53873090f0ad7b72a878b9239dbf6"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/short-control/specifications.json": {
+      "bytes": 966465,
+      "sha256": "1288969c9b306b00a49b301f04a0593d5636057c5a3cad23fb220309d1c22312"
+    },
+    "vllm031-codecfix-lowrate-repeat-v1/vllm031-int4-c4-b4096-cap2048-eager-mem95-r1-short-control/startup.json": {
+      "bytes": 3649,
+      "sha256": "4e79d8e04e6b67d204d2030434b31c04ec7e9841c75c0c42d623892c43ae5ea7"
+    }
+  }
+}
