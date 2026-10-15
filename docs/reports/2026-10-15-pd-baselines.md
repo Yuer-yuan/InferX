@@ -2,7 +2,7 @@
 
 目前不能把已发现的长短请求干扰称为现有系统尚未解决的研究空白。llama.cpp 分块调优后三轮独立重复仍有明显尾延迟；MorphX 移植尚未通过正确性门槛；NInfer、llama.cpp及旧版vLLM均已完成三轮完整27B/128K对照，当前配置仍有明显延迟，正在验证新版引擎。以下数据不构成最终跨引擎排名。
 
-更新：已核实官方提供PyTorch 2.13/cu129及vLLM 0.31/cu129，SGLang官方也保留0.5.19的CUDA 12路线。此前仅cu128依赖解析失败不能证明新版本不可用；下面vLLM 0.24结果只作为旧版本实测，正在隔离验证更新版本，不能称为当前最强基线。
+更新：vLLM 0.31/cu129已完成完整128K资格验证和三轮混合实验；SGLang 0.5.19/cu129正在进行完整模型资格验证。此前仅cu128依赖解析失败不能证明新版本不可用；下面vLLM 0.24结果只作为旧版本实测，不能称为当前最强基线。
 
 ## 已得到的结果
 
@@ -120,7 +120,15 @@ vLLM0.31.0+cu129与Torch2.13.0+cu129已在隔离环境完成安装、核心CUDA�
 
 本轮冷长组各发生3次原生抢占，续接组各2次；所有组200 ms采样的最小空闲显存约83 MiB，范围仍只覆盖服务健康后的质量检查、预热和测量。控制组自身也有超过5秒目标的重复，不能把全部SLO不达标都归因于长请求。混合组则稳定退化到约91–102秒。新版改善了旧版已测配置的混合延迟，尚未解决该配置下的尾延迟；这不是所有vLLM调优方案的性能上限。
 
-SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩展导入及服务入口检查，GPU测量正在队列中。其kernel/DeepEP/DeepGEMM均采用作者发布的cu129 wheel，下载加速传输后逐文件核对官方SHA256。依赖调整依据官方Dockerfile，不修改系统CUDA或驱动。见 [SGLang环境与门槛记录](../../results/pd-baselines/sglang0519-environment-before-probe.json)。
+SGLang0.5.19的官方CUDA12依赖路线已实际安装并运行完整27B模型。其kernel/DeepEP/DeepGEMM均采用作者发布的cu129 wheel，下载加速传输后逐文件核对官方SHA256。依赖调整依据官方Dockerfile，不修改系统CUDA或驱动。见 [初始环境](../../results/pd-baselines/sglang0519-environment-before-probe.json)。
+
+当前资格验证暴露了三类实际问题，均保留失败记录：
+
+- 该版本的language-model-only命令行白名单不包含Qwen；改用其已有的HF配置覆盖位后，完整64层语言模型能启动，未修改共享权重或配置文件。
+- FP32 SSM、lazy20状态池下，实际KV容量仅69976 token，不能用131328的命令行窗口宣称支持128K。已有unified GPU池在FlashInfer与Triton路径分别出现FP8视图/编译兼容错误。BF16状态和较小状态池能扩大容量，但mem98/mem975在实际质量检查中OOM，尚未获得性能资格。BF16状态的窄功能门槛也不能证明整体质量无损。
+- mem97/96/95均通过代码生成检查，却在强制工具调用时触发单rank NCCL communicator的512 MiB临时分配。调用栈与[上游已知问题35826](https://github.com/sgl-project/sglang/issues/35826)吻合。现在只在所选通信组world_size≤1时跳过恒等归约，保留多rank的MIN操作；修复前CPU回归复现错误，修复后单rank检查和真实双rank Gloo数值检查均通过，项目146项测试通过。
+
+这个补丁是明确标注的兼容修复，没有增加PD调度机制。补丁及源码前后SHA、失败和通过日志见 [修复记录](../../results/pd-baselines/compatibility/sglang-singleton-guard/provenance.json)，依赖及实际源码清单见 [修复后环境](../../results/pd-baselines/sglang0519-environment-singleton-guard.json)。完整128K、四路工具调用和混合负载的GPU验证仍在执行；目前没有合格的SGLang混合性能结果。
 
 ## 现有方法已经覆盖什么
 
@@ -140,7 +148,7 @@ SGLang0.5.19的官方CUDA12依赖路线也已实际安装并通过CPU侧CUDA扩�
 
 完整原始数据、源码、编译日志和模型均在服务器HDD的InferX/pd-baselines目录。当前正式llama实验的启动时4个关键Python文件已按其启动时SHA256精确重建并留档，明确标为事后重建；见 [重建清单](../../results/pd-baselines/harness-llama-main-v2/provenance.json)。后续controller会在启动时保存完整脚本及inferx模块字节，避免工作目录更新覆盖实验实现。
 
-旧版三引擎的128K混合负载与三轮重复已经完成。剩余为MTP探索、新版vLLM/SGLang实际资格与比较、确定性导出、独立复审，以及最终原256K/MTP7服务和两份manifest、OpenAI/Anthropic工具接口的恢复检查。MorphX本轮移植未通过正确性门槛，保留兼容性失败，不宣称取得PD性能收益。当前目标继续执行。
+NInfer、llama.cpp、vLLM0.24与0.31的128K混合负载三轮重复已经完成，MTP诊断也已完成。剩余为SGLang实际资格与比较、确定性导出、独立复审，以及最终原256K/MTP7服务和两份manifest、OpenAI/Anthropic工具接口的恢复检查。MorphX本轮移植未通过正确性门槛，保留兼容性失败，不宣称取得PD性能收益。当前目标继续执行。
 
 服务器上的复现入口如下；run-id须使用新名称。该命令临时占用实验GPU1，controller结束后恢复原服务。实验GPU0上的服务保持运行。
 

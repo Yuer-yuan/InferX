@@ -1,0 +1,12 @@
+--- a/sglang/srt/layers/sampler.py
++++ b/sglang/srt/layers/sampler.py
+@@ -528,6 +528,9 @@
+         self, batch_next_token_ids: torch.Tensor, sampling_info: SamplingBatchInfo
+     ):
+         if SYNC_TOKEN_IDS_ACROSS_TP or sampling_info.grammars:
++            # A singleton collective is an identity; avoid lazy NCCL allocation.
++            if torch.distributed.get_world_size(self.tp_sync_group) <= 1:
++                return
+             # For performance reasons, SGLang does not sync the final token IDs across TP ranks by default.
+             # This saves one all-reduce, but the correctness of this approach depends on the determinism of several operators:
+             # the last all-reduce, the last lm_head matmul, and all sampling kernels.

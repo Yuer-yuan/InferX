@@ -1,0 +1,37 @@
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+  warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+test_singleton_grammar_never_initializes_collective (__main__.SamplerSyncRegression.test_singleton_grammar_never_initializes_collective) ... ERROR
+test_two_ranks_still_compute_tokenwise_min (__main__.SamplerSyncRegression.test_two_ranks_still_compute_tokenwise_min) ... /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+  warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+  warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+ok
+
+======================================================================
+ERROR: test_singleton_grammar_never_initializes_collective (__main__.SamplerSyncRegression.test_singleton_grammar_never_initializes_collective)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/guokc/mypro/gnn-mount-sda1/InferX/code-pd-baselines/scripts/check_sglang_singleton_sync.py", line 46, in test_singleton_grammar_never_initializes_collective
+    sampler.Sampler._sync_token_ids_across_tp(
+  File "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/lib/python3.12/site-packages/sglang/srt/layers/sampler.py", line 538, in _sync_token_ids_across_tp
+    torch.distributed.all_reduce(
+  File "/usr/lib/python3.12/unittest/mock.py", line 1134, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/mock.py", line 1138, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/mock.py", line 1193, in _execute_mock_call
+    raise effect
+RuntimeError: lazy NCCL allocation
+
+----------------------------------------------------------------------
+Ran 2 tests in 9.097s
+
+FAILED (errors=1)
