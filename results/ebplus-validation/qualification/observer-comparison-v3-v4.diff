@@ -1,0 +1,31 @@
+--- adapter-v3
++++ adapter-v4
+@@ -78,12 +78,17 @@
+             raise ValueError('EB+ validation requires explicit auto or eb mode')
+         self._ebplus_execution_counts = {'mb': 0, 'prefill': 0, 'decode': 0}
+         self._ebplus_evaluations = 0
++        self._last_evaluation_inputs = None
+ 
+     def _evaluate_mode_switch(self):
+         eligible = self.pd_param_initialized and self._avg_prompt_len + self.pd_avg_output_tokens > 0 and (0 < self.pd_k_ratio < 1)
++        inputs = None
++        if eligible:
++            inputs = dict(mu_L=self._avg_prompt_len, mu_o=self.pd_avg_output_tokens, N_obs=max(1.0, self._n_obs), theta0=self.pd_k_ratio, alpha_mb=self._alpha_mb, alpha_p=self.pd_alpha_p, beta_p=self.pd_beta_p, alpha_d=self.pd_alpha_d, beta_d=self.pd_beta_d, mb_cost_a=self._mb_cost_a, mb_cost_b=self._mb_cost_b, mb_cost_c=self._mb_cost_c, delta=self._mode_switch_delta, cooldown_before=self._mode_cooldown, active_before=self._active_scheduler)
+         result = AuthorPolicy._evaluate_mode_switch(self)
+         if eligible:
+             self._ebplus_evaluations += 1
++            self._last_evaluation_inputs = inputs
+             self._ebplus_dump_evidence()
+         return result
+ 
+@@ -91,7 +96,9 @@
+         path = os.environ.get('INFERX_EBPLUS_EVIDENCE')
+         if not path:
+             return
+-        state = dict(mode=self.scheduler_mode, active_scheduler=getattr(self, '_active_scheduler', self.scheduler_mode), evaluations=self._ebplus_evaluations, parameters_initialized=self.pd_param_initialized, mb_cost_profiled=getattr(self, '_mb_cost_profiled', False), execution_counts=self._ebplus_execution_counts, mode_switch_history=getattr(self, '_mode_switch_history', []), completed=self.pd_total_completed + self.pd_batch_completed_count, max_num_running_reqs=self.max_num_running_reqs, block_size=self.block_size, num_gpu_blocks=self.kv_cache_config.num_blocks, kv_groups=[dict(type=type(g.kv_cache_spec).__name__, spec=str(g.kv_cache_spec), layers=g.layer_names) for g in self.kv_cache_config.kv_cache_groups])
++        pending = self.pd_batch_completed_count
++        completed = self.pd_total_completed + (pending if pending < self.pd_param_update_interval else 0)
++        state = dict(mode=self.scheduler_mode, active_scheduler=getattr(self, '_active_scheduler', self.scheduler_mode), evaluations=self._ebplus_evaluations, parameters_initialized=self.pd_param_initialized, mb_cost_profiled=getattr(self, '_mb_cost_profiled', False), execution_counts=self._ebplus_execution_counts, mode_switch_history=getattr(self, '_mode_switch_history', []), completed=completed, last_evaluation_inputs=self._last_evaluation_inputs, max_num_running_reqs=self.max_num_running_reqs, block_size=self.block_size, num_gpu_blocks=self.kv_cache_config.num_blocks, kv_groups=[dict(type=type(g.kv_cache_spec).__name__, spec=str(g.kv_cache_spec), layers=g.layer_names) for g in self.kv_cache_config.kv_cache_groups])
+         target = Path(path)
+         temporary = target.with_suffix('.tmp')
+         temporary.write_text(json.dumps(state, indent=2) + '\n')

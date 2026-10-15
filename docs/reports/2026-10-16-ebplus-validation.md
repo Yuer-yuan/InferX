@@ -1,6 +1,6 @@
-# EB+ 适配：两项校准已完成，完整模型验证进行中
+# EB+ 适配：校准与完整模型验证完成，联合性能待比较
 
-目标是保留公开实现的 EB/MB crossover、CFR/IFR 阈值和三阶段调度，接到已通过完整 27B/128K 验证的 vLLM 0.31 引擎。当前已完成源码适配、本机分离代价与独立MB代价校准；原生对照通过代码、4条24K工具预热及完整冷长／续接长工具检查，强制EB和自动EB+继续验证。正式混合性能结论仍待完成。
+目标是保留公开实现的 EB/MB crossover、CFR/IFR 阈值和三阶段调度，接到已通过完整 27B/128K 验证的 vLLM 0.31 引擎。当前已完成源码适配、本机分离代价与独立MB代价校准，原生／强制EB／自动EB+三种模式均通过完整模型检查：118条严格工具请求、3次代码检查，含每组4条24K预热与完整冷长／续接长输入。正式混合性能结论仍待完成。
 
 源码固定为 `weifang231/eb-vllm@5b6a619b732b8eeaea93c8c726dbe13948920599`。作者调度器、校准器和实际安装的现代调度器已逐字节固定到 [源码胶囊](../../results/ebplus-validation/source-capsule-v1.tar.gz)，包含作者许可证。服务器原件、后续环境、构建、校准和原始数据均放 HDD。
 
@@ -61,3 +61,11 @@ v3保留作者`SamplingParams`默认的随机采样，而当前部署与MB网格
 MB测量结束后，控制输出管道断开暴露了恢复日志处理缺陷：服务已健康并写出新身份，但打印异常被当作健康检查失败，双manifest留下旧PID。独立核对新PID、完整原argv、256K上下文、空闲队列和GPU0停止后，只修复登记，未重启服务；原failed campaign和54点结果均保留。[修复登记证据](../../results/ebplus-validation/recovery/mb-registration-v1/verification.json)。真实关闭管道回归先失败，再通过；状态事件改为非致命的无缓冲输出，后续任务改为HDD文件接收日志。
 
 第一版模型检查另因当前引擎不公开`/server_info`诊断接口而在推理检查前停止，原服务已自动恢复。候选已在原生Scheduler初始化时独立记录真实配置和混合缓存布局；新版本对404保留该实测证据，其他HTTP错误仍中止。未启用额外管理接口，也未将诊断路由缺失作为SOTA效能失败。新版本远端完整CPU检查299项通过、9项专用检查跳过；相同核心的9项真实原生合约已另行通过。
+
+最新完整模型验证已完成并独立复核原始SSE：原生、强制EB、自动EB+三组均通过代码、4条24K预热、冷长131049和续接131038 token工具检查；自动组额外完成100条真实工具请求。总计118条工具请求、3次代码门槛全部有效。实际相同的C4／98块混合池／1568块大小／FP8 KV／BF16卷积+FP32 GDN／MTP0／eager布局逐字段一致。[完整审计](../../results/ebplus-validation/qualification/model-audit-v3.json)、[原始数据包](../../results/ebplus-validation/qualification/model-gates-v3.tar.gz)、[逐文件哈希](../../results/ebplus-validation/qualification/model-gates-v3-inventory.json)。
+
+实测强制EB执行245次prefill与727次decode调度；自动模式在100次完成时初始化并实际评估crossover，选择保留MB，最终107次完成、1次评估。该结果证明机制执行过，尚不证明保留MB对长短混合负载最优。零等待关停曾在写出策略证据前强杀EngineCore；统一使用30秒等待后，证据成功写出，原256K/MTP7服务和双manifest恢复并再次核对。关停设置不改变推理算法。
+
+另修复中途观测计数：作者更新事务先把100加进总量、再评估、最后清空批次，旧快照在评估中会暂记200，最终关停记录107原本正确。真实当前引擎回归先观察200≠100失败，再通过；新增决策输入记录便于复核成本判据。该修正仅涉及3个观测方法，33个作者方法逐字节相同，11个调度／分配／状态边界方法AST相同。[变更范围核对](../../results/ebplus-validation/qualification/observer-comparison-v3-v4.json)、[精确差异](../../results/ebplus-validation/qualification/observer-comparison-v3-v4.diff)。新诊断仍逐组重做完整输入语义门槛，不把源码等价当作混合效能证据。
+
+当前完整CPU检查299项通过、10项专用检查跳过；真实vLLM环境10项专用合约已另行全部通过。[完整CPU](../../results/ebplus-validation/qualification/task2-final-cpu.log)。原服务PID3989983、原argv、262144窗口、空闲及GPU0停止均已独立核对；恢复原件与审计包含于上述数据包。

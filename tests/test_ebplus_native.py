@@ -210,6 +210,24 @@ class NativeHybridContractTests(unittest.TestCase):
         self.assertGreater(state['execution_counts']['prefill'],0)
         self.assertGreater(state['execution_counts']['decode'],0)
 
+    def test_online_snapshot_counts_the_100th_completion_once_and_keeps_decision_inputs(self):
+        import json
+        scheduler=self.scheduler(mode='auto')
+        path=Path(self.tmp.name)/'online-evidence.json'
+        with patch.dict(os.environ,INFERX_EBPLUS_EVIDENCE=str(path)):
+            for i in range(100):
+                if i==99:prompt_before=scheduler._avg_prompt_len
+                self.add(scheduler,f'online-{i}',output=1)
+                self.step(scheduler)
+        state=json.loads(path.read_text())
+        self.assertEqual(state['completed'],100)
+        inputs=state['last_evaluation_inputs']
+        self.assertEqual(inputs['mu_L'],prompt_before)
+        self.assertEqual(inputs['mu_o'],1.)
+        self.assertEqual(inputs['alpha_p'],scheduler.pd_alpha_p)
+        self.assertEqual(inputs['mb_cost_a'],scheduler._mb_cost_a)
+        self.assertEqual(state['evaluations'],1)
+
     def test_policy_preemption_uses_native_hybrid_free_and_resumes(self):
         from vllm.v1.request import RequestStatus
         scheduler = self.scheduler()

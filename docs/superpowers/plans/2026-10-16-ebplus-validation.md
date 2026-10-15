@@ -49,10 +49,10 @@ Expected: executable author policy bound to current APIs with correctness eviden
 
 **Interfaces:** Adapter fromTask1, existing RestorableService/OwnedEngine and frozen requests. Calibration fits produce actual per-model/GPU coefficients with raw durations/fit diagnostics; qualification produces complete code/four24K/128K gates and observed active policy transitions.
 
-- [ ] Write RED for mismatched calibration/model/GPU, infeasible batch counts, stale restoration prerequisite and falsely declared policy execution; preserve existing cleanup contracts.
-- [ ] Predeclare memory-feasible calibration geometries, counts1/2/4, full128K-capable engine configuration and correct GPU completion timing; adapt original calibration config APIs. Retain failed/poor fits. Do not fit formal outcomes.
-- [ ] After preceding GPU campaign terminal restoration, run owned calibration and matching control/EB+ model gates. Reuse INT4 weights; preserve modern GDN/Mamba checkpoint/state operations. Fix demonstrated compatibility problems with TDD rather than stop at missing model/API names.
-- [ ] Keep actual mode/crossover/phase traces, native capacities, correctness and source/binary hashes. Full CPU suite and fresh restoration verification, then commit.
+- [x] Write RED for mismatched calibration/model/GPU, infeasible batch counts, stale restoration prerequisite and falsely declared policy execution; preserve existing cleanup contracts.
+- [x] Predeclare memory-feasible calibration geometries, counts1/2/4, full128K-capable engine configuration and correct GPU completion timing; adapt original calibration config APIs. Retain failed/poor fits. Do not fit formal outcomes.
+- [x] After preceding GPU campaign terminal restoration, run owned calibration and matching control/EB+ model gates. Reuse INT4 weights; preserve modern GDN/Mamba checkpoint/state operations. Fix demonstrated compatibility problems with TDD rather than stop at missing model/API names.
+- [x] Keep actual mode/crossover/phase traces, native capacities, correctness and source/binary hashes. Full CPU suite and fresh restoration verification, then commit.
 
 Expected: calibrated and model-qualified actual EB+, or demonstrated unresolved boundary after substantive adaptation; no negative efficacy from import failure.
 
