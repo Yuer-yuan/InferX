@@ -1,0 +1,290 @@
+{
+  "status": "restored",
+  "scope": "Actual numerical/lifetime qualification only; no full-model or performance claim.",
+  "controller_pid": 3802439,
+  "started_unix": 1792089233.8470445,
+  "cases": [
+    {
+      "variant": "abi-only",
+      "test": "vector-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/abi-only-vector-off-artifacts"
+      ],
+      "library_sha256": "63b4fc93a0378e66aec666449632091232bf495fef146964e68684c708cee3a1",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.154725860804319
+    },
+    {
+      "variant": "abi-only",
+      "test": "vector-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/abi-only-vector-profile-artifacts"
+      ],
+      "library_sha256": "63b4fc93a0378e66aec666449632091232bf495fef146964e68684c708cee3a1",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 6.155437633395195
+    },
+    {
+      "variant": "abi-only",
+      "test": "marlin-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/abi-only-marlin-off-artifacts"
+      ],
+      "library_sha256": "63b4fc93a0378e66aec666449632091232bf495fef146964e68684c708cee3a1",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 8.401889715343714
+    },
+    {
+      "variant": "abi-only",
+      "test": "marlin-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/abi-only-marlin-profile-artifacts"
+      ],
+      "library_sha256": "63b4fc93a0378e66aec666449632091232bf495fef146964e68684c708cee3a1",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 7.575321275740862
+    },
+    {
+      "variant": "abi-only",
+      "test": "concurrent-marlin",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/concurrent_marlin_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/abi-only-concurrent-marlin-artifacts"
+      ],
+      "library_sha256": "63b4fc93a0378e66aec666449632091232bf495fef146964e68684c708cee3a1",
+      "script_sha256": "249084d354ff57ffd0f5518446f42bbcbcebaf4cf11997db3985690a7a7757d9",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 12.413108088076115
+    },
+    {
+      "variant": "fill",
+      "test": "vector-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/fill-vector-off-artifacts"
+      ],
+      "library_sha256": "fae9b52b9e2da881d2267b8ce36c433dbec50c771f36a47bd745a9f181f7c2bf",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.442224066704512
+    },
+    {
+      "variant": "fill",
+      "test": "vector-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/fill-vector-profile-artifacts"
+      ],
+      "library_sha256": "fae9b52b9e2da881d2267b8ce36c433dbec50c771f36a47bd745a9f181f7c2bf",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 5.730946511030197
+    },
+    {
+      "variant": "fill",
+      "test": "marlin-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/fill-marlin-off-artifacts"
+      ],
+      "library_sha256": "fae9b52b9e2da881d2267b8ce36c433dbec50c771f36a47bd745a9f181f7c2bf",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 8.202101923525333
+    },
+    {
+      "variant": "fill",
+      "test": "marlin-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/fill-marlin-profile-artifacts"
+      ],
+      "library_sha256": "fae9b52b9e2da881d2267b8ce36c433dbec50c771f36a47bd745a9f181f7c2bf",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 7.619461111724377
+    },
+    {
+      "variant": "fill",
+      "test": "concurrent-marlin",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/concurrent_marlin_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/fill-concurrent-marlin-artifacts"
+      ],
+      "library_sha256": "fae9b52b9e2da881d2267b8ce36c433dbec50c771f36a47bd745a9f181f7c2bf",
+      "script_sha256": "249084d354ff57ffd0f5518446f42bbcbcebaf4cf11997db3985690a7a7757d9",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 13.654273264110088
+    },
+    {
+      "variant": "event",
+      "test": "vector-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/event-vector-off-artifacts"
+      ],
+      "library_sha256": "399bd6818b4c450dcca22666538a923258d8c7502b2757858e3f17259cc8b3b0",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.886392969638109
+    },
+    {
+      "variant": "event",
+      "test": "vector-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/event-vector-profile-artifacts"
+      ],
+      "library_sha256": "399bd6818b4c450dcca22666538a923258d8c7502b2757858e3f17259cc8b3b0",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.6232967264950275
+    },
+    {
+      "variant": "event",
+      "test": "marlin-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/event-marlin-off-artifacts"
+      ],
+      "library_sha256": "399bd6818b4c450dcca22666538a923258d8c7502b2757858e3f17259cc8b3b0",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 9.427378255873919
+    },
+    {
+      "variant": "event",
+      "test": "marlin-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/event-marlin-profile-artifacts"
+      ],
+      "library_sha256": "399bd6818b4c450dcca22666538a923258d8c7502b2757858e3f17259cc8b3b0",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 8.123020213097334
+    },
+    {
+      "variant": "event",
+      "test": "concurrent-marlin",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/concurrent_marlin_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/event-concurrent-marlin-artifacts"
+      ],
+      "library_sha256": "399bd6818b4c450dcca22666538a923258d8c7502b2757858e3f17259cc8b3b0",
+      "script_sha256": "249084d354ff57ffd0f5518446f42bbcbcebaf4cf11997db3985690a7a7757d9",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 12.857761919498444
+    },
+    {
+      "variant": "both",
+      "test": "vector-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/both-vector-off-artifacts"
+      ],
+      "library_sha256": "af453d38cb52c69d1b543707e0ae213f1ea0ff5f773341b73ea6cd97926ae83f",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.543578568845987
+    },
+    {
+      "variant": "both",
+      "test": "vector-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/triton_vector_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/both-vector-profile-artifacts"
+      ],
+      "library_sha256": "af453d38cb52c69d1b543707e0ae213f1ea0ff5f773341b73ea6cd97926ae83f",
+      "script_sha256": "7308e795688b05f80856f64405fa2628690392166beacbe21c3e2e5333464474",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 4.563108321279287
+    },
+    {
+      "variant": "both",
+      "test": "marlin-off",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/both-marlin-off-artifacts"
+      ],
+      "library_sha256": "af453d38cb52c69d1b543707e0ae213f1ea0ff5f773341b73ea6cd97926ae83f",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 10.051122639328241
+    },
+    {
+      "variant": "both",
+      "test": "marlin-profile",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/marlin_probe_v3.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/both-marlin-profile-artifacts"
+      ],
+      "library_sha256": "af453d38cb52c69d1b543707e0ae213f1ea0ff5f773341b73ea6cd97926ae83f",
+      "script_sha256": "e57d8e65ced48ccc77a13a5d50860cd28c229233385fce10ab7d796709e3d8fa",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 9.029474291950464
+    },
+    {
+      "variant": "both",
+      "test": "concurrent-marlin",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/sglang0519-venv/bin/python",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/concurrent_marlin_probe.py",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/morphx-control/raw/kernels-v1/both-concurrent-marlin-artifacts"
+      ],
+      "library_sha256": "af453d38cb52c69d1b543707e0ae213f1ea0ff5f773341b73ea6cd97926ae83f",
+      "script_sha256": "249084d354ff57ffd0f5518446f42bbcbcebaf4cf11997db3985690a7a7757d9",
+      "status": "passed",
+      "returncode": 0,
+      "elapsed_s": 12.411340210586786
+    }
+  ],
+  "finished_unix": 1792089459.7197673,
+  "restored": true
+}
