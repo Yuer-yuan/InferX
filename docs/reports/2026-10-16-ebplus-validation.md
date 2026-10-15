@@ -24,3 +24,5 @@
 MorphX正式测量与单独基准已终态恢复后，才在HDD隔离代码树运行CPU检查。没有并行GPU controller，原256K/MTP7服务和双manifest保持恢复、GPU0停止。实际preemption的已计算token统计另加精确回归，先观察5000≠2048失败，再保存重置前计数修正，5项真实原生合约全部通过。
 
 [兼容性审计](../../results/ebplus-validation/compatibility-audit.json)记录边界、33个作者方法哈希、生成模块哈希及限定；[准备清单](../../results/ebplus-validation/qualification/preparation-v2.json)对应HDD `ebplus-validation/overlays/adapter-v2`。下一步必须使用本模型/GPU测量硬件与MB代价，才可通过完整代码/24K/128K门槛并比较效能。
+
+Task1最终全量CPU检查285项通过、5项专用检查在通用环境跳过后已单独5/5通过；[日志](../../results/ebplus-validation/qualification/full-cpu-suite-v2.log)。当前原服务再次核验健康空闲、原argv及双manifest一致、GPU0停止；[终态](../../results/ebplus-validation/qualification/after-v2-service.json)。

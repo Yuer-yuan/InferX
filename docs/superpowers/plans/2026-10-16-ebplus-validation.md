@@ -36,10 +36,10 @@
 
 **Interfaces:** Consume pinned author scheduler/calibration and installed current scheduler. Produce an explicit importable scheduler class plus manifest recording extracted method hashes and adapted engine boundary. Choice of subclass/overlay is implementer-owned after complete relevant-source read.
 
-- [ ] Rehash source audit, read complete author initializer/controller/phase machine and relevant current scheduler interfaces. Record every API/state mismatch concretely.
-- [ ] Write failing behavior regressions for source mismatch/overwrite, original crossover and thresholds, phase starvation/empty queues, hard C4 with hidden active requests, exception-safe queue/state ownership. Prefer actual author method execution and current CPU Request objects over implementation-mirroring strings.
-- [ ] Implement minimal source-faithful policy/interface adapter; run RED→GREEN and actual current-stack CPU import/initialization contract. Missing fields require concrete semantic mapping, not dummy cache/state APIs.
-- [ ] Full CPU suite, manifest/hash verification and commit; no GPU load while MorphX campaigns are active.
+- [x] Rehash source audit, read complete author initializer/controller/phase machine and relevant current scheduler interfaces. Record every API/state mismatch concretely.
+- [x] Write failing behavior regressions for source mismatch/overwrite, original crossover and thresholds, phase starvation/empty queues, hard C4 with hidden active requests, exception-safe queue/state ownership. Prefer actual author method execution and current CPU Request objects over implementation-mirroring strings.
+- [x] Implement minimal source-faithful policy/interface adapter; run RED→GREEN and actual current-stack CPU import/initialization contract. Missing fields require concrete semantic mapping, not dummy cache/state APIs.
+- [x] Full CPU suite, manifest/hash verification and commit; no GPU load while MorphX campaigns are active.
 
 Expected: executable author policy bound to current APIs with correctness evidence, not an efficacy result.
 
