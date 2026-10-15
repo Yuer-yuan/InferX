@@ -54,3 +54,5 @@ Expected: actual mechanism-preserving, model-qualified transport variants or sub
 - [ ] One fresh whole-change reviewer with Review Focus verbatim; re-grade, one Important/Critical RED→GREEN fix pass, no rereview. Archive ledger/helpers/review/tests, delete only own scratch, retain branch/no merge/push.
 
 Expected: fairer adapted-MorphX comparison and evidence-based next baseline, not a universal novelty claim.
+
+Execution clarification: include the freshly built ABI-only libcuda_query_abi_v4.so as a qualification/diagnostic control for all three transport variants. The three-variant limit refers to the treatments, not this causal control. No old ABI/library/source is overwritten.

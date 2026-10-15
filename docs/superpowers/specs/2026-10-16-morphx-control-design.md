@@ -31,3 +31,5 @@ A separate profile may test whether control DMA counts change and actual P/D lif
 - CUDA12.8.1 synchronization behavior: https://docs.nvidia.com/cuda/archive/12.8.1/cuda-runtime-api/api-sync-behavior.html (pageable async copies may stage/synchronize).
 - CUDA12.8.1 device memory API: https://docs.nvidia.com/cuda/archive/12.8.1/cuda-driver-api/group__CUDA__MEM.html (cuMemsetD32Async exact32-bit value).
 - CUDA12.8.1 event API: https://docs.nvidia.com/cuda/archive/12.8.1/cuda-driver-api/group__CUDA__EVENT.html (query recorded completion; unrecorded event not a pending-completion test).
+
+Execution clarification: include the freshly built ABI-only libcuda_query_abi_v4.so as a qualification/diagnostic control for all three transport variants. The three-variant limit refers to the treatments, not this causal control. No old ABI/library/source is overwritten.
