@@ -1,0 +1,82 @@
+{
+  "run": "llama-main-v1",
+  "classification": "diagnostic",
+  "reason": "2.5RPSshort-onlycontrolalreadyoverloaded;optimizeandadd0.5RPScontrolbeforeindependentmainrepeats",
+  "terminal": {
+    "status": "interrupted_or_failed",
+    "started_unix": 1792024399.510667,
+    "cases": [
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "short-control",
+        "state": "measured",
+        "quality": {
+          "status": "passed",
+          "error": null,
+          "test_elapsed": 0.0019560493528842926,
+          "elapsed": 0.0720987357199192
+        }
+      },
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "cold-low",
+        "state": "measured",
+        "quality": {
+          "status": "passed",
+          "error": null,
+          "test_elapsed": 0.0019276179373264313,
+          "elapsed": 0.07832076027989388
+        }
+      },
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "cold-high",
+        "state": "starting",
+        "quality": {
+          "status": "passed",
+          "error": null,
+          "test_elapsed": 0.00192275270819664,
+          "elapsed": 0.06950031965970993
+        }
+      }
+    ],
+    "repeat": 3,
+    "probe_only": false,
+    "controller_pid": 3139424,
+    "harness_sha256": {
+      "scripts/run_pd_baselines.py": "cc49eed7cacbcc4ce49f3f0333fec52c50500be78c0218e939272d99878f2802",
+      "inferx/pd_baselines.py": "dcb1dbc69b71491b4d0ee36bb3a2ab7ae977c8c7f8557d5968a6e9b27635410c",
+      "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+      "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea"
+    },
+    "error": "KeyboardInterrupt: ",
+    "finished_unix": 1792025108.355215,
+    "restored": true
+  },
+  "groups": [
+    {
+      "path": "llama-d0-c4-chunk2048-r0-cold-high/cold-high",
+      "planned": 121,
+      "observed_responses": 40,
+      "result_exists": false,
+      "incomplete": true
+    },
+    {
+      "path": "llama-d0-c4-chunk2048-r0-cold-low/cold-low",
+      "planned": 25,
+      "observed_responses": 25,
+      "result_exists": true,
+      "incomplete": false
+    },
+    {
+      "path": "llama-d0-c4-chunk2048-r0-short-control/short-control",
+      "planned": 120,
+      "observed_responses": 120,
+      "result_exists": true,
+      "incomplete": false
+    }
+  ]
+}
