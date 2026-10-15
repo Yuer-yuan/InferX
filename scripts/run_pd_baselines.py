@@ -22,6 +22,8 @@ ENDPOINT = 'http://127.0.0.1:18083'
 def get(path, endpoint=ENDPOINT):
     with urllib.request.urlopen(endpoint+path, timeout=5) as response:
         value = response.read().decode()
+    if path == '/health' and not value.strip():
+        return {'status':'ok'}
     return parse_metrics(value) if path == '/metrics' else json.loads(value)
 
 
@@ -41,6 +43,7 @@ def wait_idle(timeout=900):
 class OwnedEngine:
     def __init__(self, case, root, directory):
         self.case, self.root, self.directory = case, Path(root), Path(directory)
+        self.configuration = case  # Existing independently validated code-quality gate interface.
         self.directory.mkdir(parents=True, exist_ok=False)
         self.args = engine_command(case, self.root, self.directory)
         self.proc = self.identity = self.log = self.telemetry = None
@@ -160,6 +163,7 @@ def main():
     parser.add_argument('--cases', nargs='+')
     parser.add_argument('--repeat', type=int, default=3)
     parser.add_argument('--probe-only', action='store_true')
+    parser.add_argument('--kernel-probe', action='store_true')
     parser.add_argument('--run-id', required=True)
     args = parser.parse_args()
     root = Path(os.environ['INFERX_ROOT'])
@@ -185,11 +189,33 @@ def main():
     (output/'original-service.json').write_text(json.dumps(saved, indent=2))
     templates, grid = load_frozen_workloads(root/'concurrency-roofline')
     metadata = dict(status='running', started_unix=time.time(), cases=[],
-                    repeat=args.repeat, probe_only=args.probe_only)
+        repeat=args.repeat, probe_only=args.probe_only, controller_pid=os.getpid(),
+        harness_sha256={str(p):hashlib.sha256((root/'code-pd-baselines'/p).read_bytes()).hexdigest()
+            for p in ['scripts/run_pd_baselines.py', 'inferx/pd_baselines.py',
+                      'inferx/concurrency.py', 'inferx/service_ownership.py']})
     status = output/'campaign.json'
     def flush():
         status.write_text(json.dumps(metadata, indent=2))
     def measurement():
+        if args.kernel_probe:
+            previous.gpu_free()
+            env = dict(previous.ENV, SMSCHED_LLM_TRACE_LIMIT='32', SMSCHED_PROFILE='0')
+            env['LD_LIBRARY_PATH'] = (str(root/'source/pd-baselines/gdrcopy/src')+':'
+                                      +env['LD_LIBRARY_PATH'])
+            for mode, hook in [('unhooked', None), ('upstream-gdr', 'libcuda_hook.so'),
+                               ('mapped-host', 'libcuda_hook_mapped.so')]:
+                if hook and not (root/'pd-baselines/builds'/hook).exists():
+                    continue
+                probe_env = dict(env)
+                if hook:
+                    probe_env['LD_PRELOAD'] = str(root/'pd-baselines/builds'/hook)
+                with (output/f'{mode}.log').open('x') as log:
+                    result = subprocess.run([str(root/'pd-baselines/builds/morphx_probe'),
+                        str(root/'pd-baselines/builds/morphx_probe.ptx')], env=probe_env,
+                        stdout=log, stderr=subprocess.STDOUT, timeout=60)
+                metadata['cases'].append(dict(case=mode, returncode=result.returncode))
+                flush()
+            return
         for case in cases:
             for repetition in range(args.repeat):
                 definitions = [dict(name='probe-128k')] if args.probe_only else grid['mixed_cases']
@@ -202,6 +228,11 @@ def main():
                     try:
                         previous.gpu_free()
                         with OwnedEngine(case, root, output/label) as server:
+                            previous.quality_gate(server, templates)
+                            quality = json.loads((server.directory/'quality-result.json').read_text())
+                            state['quality'] = quality
+                            if quality.get('status') != 'passed':
+                                raise RuntimeError('complete code quality gate failed')
                             short = templates['tool-24576']
                             seeds = [dict(id=f'seed-short-{i}', prompt_id='tool-24576',
                                 payload=short['payload'], expected_tool=short['expected_tool'])
@@ -225,6 +256,9 @@ def main():
             [root/'context-agents/runtime.json', root/'tuning/best-service.json'],
             lambda: previous.final_shutdown_check(saved), measurement)
         metadata['status'] = 'restored'
+    except BaseException as exc:
+        metadata.update(status='interrupted_or_failed', error=f'{type(exc).__name__}: {exc}')
+        raise
     finally:
         metadata['finished_unix'] = time.time()
         metadata['restored'] = (output/'restored-service.json').exists()

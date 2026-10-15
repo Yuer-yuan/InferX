@@ -162,3 +162,24 @@ def test_arrival_stream_contains_full_long_request_and_all_short_attempts():
     assert rows[-1]['payload']['messages'] == ['128K']
     assert rows[119]['offset_s'] == 47.6
     assert len({r['id'] for r in rows}) == 121
+
+
+def test_vllm_empty_health_response_is_healthy():
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    from threading import Thread
+    from scripts.run_pd_baselines import get
+    class Handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.end_headers()
+        def log_message(self, *_):
+            pass
+    server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        assert get('/health', f'http://127.0.0.1:{server.server_port}') == {'status':'ok'}
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=2)
