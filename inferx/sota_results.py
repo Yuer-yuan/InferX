@@ -8,6 +8,33 @@ from inferx.concurrency import distribution, reconstruct_tool_calls
 from inferx.tuning import summarize_response
 
 
+# Qualified with the frozen tools and this checkpoint/tokenizer, not generic
+# lengths for other models. The campaign exporter verifies the model identity.
+PROMPT_COUNT_CONTRACT = dict(
+    repository='RedHatAI/Qwen3.8-27B-INT4',
+    revision='91bd022d5b49442a868bc35008f6c21e1860edfa',
+    model='models/qwen38-int4-redhat',
+    prompt_tokens={'tool-24576':24568,'cold-131072':131060,'resume-131072':131049},
+    tokenizer_files={
+        'tokenizer.json':'06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523',
+        'tokenizer_config.json':'5f7aa0d810000c4a0940b35c8f16e56c3439260fccc13a321826ebc3ccf2501f',
+        'chat_template.jinja':'c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041',
+        'config.json':'5498b42f9ea96d2669709c177e29122997ce14786a7530fe1ea1b340e535776c'})
+
+
+def verify_prompt_count_contract(model_root):
+    """Bind exact counts to pinned checkpoint metadata and actual tokenizer bytes."""
+    from pathlib import Path
+    model_root=Path(model_root);contract=PROMPT_COUNT_CONTRACT
+    manifest=json.loads((model_root/'manifest.json').read_text())
+    if manifest.get('repo')!=contract['repository'] or manifest.get('revision')!=contract['revision']:
+        raise ValueError('prompt-count checkpoint identity differs from qualification')
+    actual={name:hashlib.sha256((model_root/name).read_bytes()).hexdigest() for name in contract['tokenizer_files']}
+    if actual!=contract['tokenizer_files']:
+        raise ValueError('prompt-count tokenizer/config bytes differ from qualification')
+    return dict(contract,tokenizer_files=actual)
+
+
 def audit_wave(specifications, records, span_s, *, kind):
     if kind not in {'mixed','isolated-serial-C4'}:
         raise ValueError('unknown measurement kind')
@@ -60,8 +87,9 @@ def audit_wave(specifications, records, span_s, *, kind):
         if abs(row['arrival_ttft_s']-(lag+actual['ttft_s']))>1e-6:
             raise ValueError('inconsistent TTFT')
         is_short=spec['prompt_id']=='tool-24576'
-        if type(actual['prompt_tokens']) is not int or actual['prompt_tokens']<(24000 if is_short else 130000):
-            raise ValueError('shortened input or missing actual prompt count')
+        expected_tokens=PROMPT_COUNT_CONTRACT['prompt_tokens'].get(spec['prompt_id'])
+        if expected_tokens is None or type(actual['prompt_tokens']) is not int or actual['prompt_tokens']!=expected_tokens:
+            raise ValueError('actual prompt count differs from qualified frozen prompt/tokenizer')
         (short if is_short else long).append(row)
         verified.append(actual)
     if ((kind=='mixed' and (len(short),len(long))!=(24,1)) or

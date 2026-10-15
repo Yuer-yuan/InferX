@@ -6,12 +6,12 @@ import json
 from pathlib import Path
 
 from inferx.pd_baselines import load_frozen_workloads, validate_sglang_runtime
-from inferx.sota_results import audit_wave, compare_lanes
+from inferx.sota_results import audit_wave, compare_lanes, PROMPT_COUNT_CONTRACT, verify_prompt_count_contract
 from inferx.concurrency import reconstruct_tool_calls
 from scripts.analyze_pd_baselines import sampled_gpu_memory
 
 
-def export_campaign(root,templates):
+def export_campaign(root,templates,*,model_root=None):
     root=Path(root);sources={}
     def data(relative):
         path=root/relative;raw=path.read_bytes()
@@ -45,6 +45,12 @@ def export_campaign(root,templates):
         if 'INFERX_MORPHX_IR' in expected['environment']:
             expected['environment']['INFERX_MORPHX_IR']=startup['case']['environment']['INFERX_MORPHX_IR']
         if expected!=startup['case']:raise ValueError('startup configuration mismatch')
+        model_path=Path(startup['server_info'].get('model_path',''))
+        if (case.get('model')!=PROMPT_COUNT_CONTRACT['model'] or not model_path.is_absolute() or
+            model_path.parts[-2:]!=Path(PROMPT_COUNT_CONTRACT['model']).parts or
+            startup['server_info'].get('tokenizer_path')!=str(model_path) or
+            (model_root is not None and model_path!=Path(model_root))):
+            raise ValueError('model/tokenizer identity differs from prompt-count qualification')
         validate_sglang_runtime(case,startup['server_info']);runtime=startup['server_info']['internal_states'][0]
         graph=runtime.get('memory_usage',{}).get('graph')
         if not isinstance(graph,dict) or not graph or any(value!=0 for value in graph.values()):
@@ -97,7 +103,9 @@ def main():
     parser.add_argument('--mixed',required=True,type=Path);parser.add_argument('--solo',required=True,type=Path)
     parser.add_argument('--diagnostic',type=Path);parser.add_argument('--output',required=True,type=Path)
     args=parser.parse_args();templates,_=load_frozen_workloads(args.frozen)
-    mixed=export_campaign(args.mixed,templates);solo=export_campaign(args.solo,templates)
+    model_root=args.frozen.parent/PROMPT_COUNT_CONTRACT['model']
+    contract=verify_prompt_count_contract(model_root)
+    mixed=export_campaign(args.mixed,templates,model_root=model_root);solo=export_campaign(args.solo,templates,model_root=model_root)
     if mixed['kind']!='mixed' or solo['kind']!='isolated-serial-C4':raise ValueError('mixed and serial-C4 campaigns required')
     configs={}
     for run in [mixed,solo]:
@@ -105,7 +113,8 @@ def main():
             previous=configs.setdefault(group['case'],group['configuration_sha256'])
             if previous!=group['configuration_sha256']:raise ValueError('solo/mixed configuration mismatch')
     output=dict(comparison=compare_lanes(mixed['groups'],solo['groups']),mixed=mixed,solo=solo,
-                diagnostic=export_campaign(args.diagnostic,templates) if args.diagnostic else None,
+                prompt_count_contract=contract,
+                diagnostic=export_campaign(args.diagnostic,templates,model_root=model_root) if args.diagnostic else None,
                 frozen_source_sha256={name:hashlib.sha256((args.frozen/name).read_bytes()).hexdigest()
                                       for name in ['workloads.json','grid.json','workload-manifest.json']})
     code=Path(__file__).resolve().parents[1]

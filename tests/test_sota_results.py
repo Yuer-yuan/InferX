@@ -96,7 +96,7 @@ def test_repeat_median_uses_wave_identity_and_lane_specific_solo():
 
 def test_campaign_export_audits_frozen_input_runtime_and_source_hashes(tmp_path):
     from scripts.analyze_sota_validation import export_campaign
-    specs,rows=fixture();case=dict(id='method',concurrency=4,context_window=131328,
+    specs,rows=fixture();case=dict(id='method',model='models/qwen38-int4-redhat',concurrency=4,context_window=131328,
         max_total_tokens=131328,morphx={'enabled':False},environment={})
     def write(path,data):
         path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(data))
@@ -104,7 +104,7 @@ def test_campaign_export_audits_frozen_input_runtime_and_source_hashes(tmp_path)
         harness_sha256={},cases=[dict(case='method',repeat=0,group='cold-high',state='measured')]))
     write(tmp_path/'config.json',[case]);write(tmp_path/'restored-service.json',{'pid':123})
     folder=tmp_path/'method-r0-cold-high';wave=folder/'cold-high'
-    write(folder/'startup.json',dict(case=case,server_info=dict(context_length=131328,internal_states=[dict(
+    write(folder/'startup.json',dict(case=case,server_info=dict(model_path='/pinned/models/qwen38-int4-redhat',tokenizer_path='/pinned/models/qwen38-int4-redhat',context_length=131328,internal_states=[dict(
         effective_max_running_requests_per_dp=4,memory_usage={'token_capacity':131328,'graph':{'decode':0,'prefill':0}},
         mamba_ssm_dtype='bfloat16',max_mamba_cache_size=16,kv_cache_dtype='fp8_e4m3',
         disable_overlap_schedule=True,memory_placeholder=None)])))
@@ -118,7 +118,8 @@ def test_campaign_export_audits_frozen_input_runtime_and_source_hashes(tmp_path)
     assert output['groups'][0]['strict_requests']==25
     assert output['groups'][0]['gpu_memory']['sampled_min_free_mib']==1100
     assert output['source_sha256']['method-r0-cold-high/cold-high/requests.jsonl']==hashlib.sha256((wave/'requests.jsonl').read_bytes()).hexdigest()
-    assert export_campaign(tmp_path,templates)==output
+    assert export_campaign(tmp_path,templates,model_root='/pinned/models/qwen38-int4-redhat')==output
+    with pytest.raises(ValueError,match='tokenizer'):export_campaign(tmp_path,templates,model_root='/different/models/qwen38-int4-redhat')
     startup=json.loads((folder/'startup.json').read_text())
     startup['server_info']['internal_states'][0]['memory_usage']['graph']['decode']=.1
     write(folder/'startup.json',startup)
@@ -129,5 +130,43 @@ def test_campaign_export_audits_frozen_input_runtime_and_source_hashes(tmp_path)
     with pytest.raises(ValueError,match='MTP0'):export_campaign(tmp_path,templates)
     startup['server_info']['internal_states'][0]['speculative_algorithm']=None
     write(folder/'startup.json',startup)
+    startup['server_info']['tokenizer_path']='/other/tokenizer';write(folder/'startup.json',startup)
+    with pytest.raises(ValueError,match='tokenizer'):export_campaign(tmp_path,templates)
+    startup['server_info']['tokenizer_path']=startup['server_info']['model_path'];write(folder/'startup.json',startup)
     templates['cold-131072']['payload']={'messages':[]}
     with pytest.raises(ValueError,match='frozen'):export_campaign(tmp_path,templates)
+
+
+@pytest.mark.parametrize('prompt,count',[
+    ('tool-24576',24567),('tool-24576',24000),('cold-131072',131059),
+    ('cold-131072',130000),('cold-131072',131061),('resume-131072',131048),
+    ('resume-131072',131060)])
+def test_exact_qualified_prompt_count_rejects_near_boundary_and_tokenizer_drift(prompt,count):
+    specs,rows=fixture();index=0 if prompt=='tool-24576' else -1
+    specs[index]['prompt_id']=rows[index]['prompt_id']=prompt
+    rows[index]['summary']['prompt_tokens']=count
+    rows[index]['events'][0]['usage']['prompt_tokens']=count
+    with pytest.raises(ValueError,match='prompt count'):
+        results.audit_wave(specs,rows,48.,kind='mixed')
+
+
+def test_exact_resume_count_remains_qualified():
+    specs,rows=fixture();specs[-1]['prompt_id']=rows[-1]['prompt_id']='resume-131072'
+    rows[-1]['summary']['prompt_tokens']=rows[-1]['events'][0]['usage']['prompt_tokens']=131049
+    assert results.audit_wave(specs,rows,48.,kind='mixed')['actual_prompt_tokens'][-1]==131049
+
+
+def test_model_tokenizer_contract_is_bound_to_pinned_checkpoint_and_file_bytes(tmp_path,monkeypatch):
+    contract=copy.deepcopy(results.PROMPT_COUNT_CONTRACT)
+    contract['tokenizer_files']={name:hashlib.sha256(name.encode()).hexdigest() for name in contract['tokenizer_files']}
+    monkeypatch.setattr(results,'PROMPT_COUNT_CONTRACT',contract)
+    for name in contract['tokenizer_files']:(tmp_path/name).write_text(name)
+    manifest={'repo':contract['repository'],'revision':contract['revision']}
+    (tmp_path/'manifest.json').write_text(json.dumps(manifest))
+    verified=results.verify_prompt_count_contract(tmp_path)
+    assert verified['tokenizer_files']==contract['tokenizer_files']
+    (tmp_path/'tokenizer.json').write_text('different tokenizer')
+    with pytest.raises(ValueError,match='tokenizer'):results.verify_prompt_count_contract(tmp_path)
+    (tmp_path/'tokenizer.json').write_text('tokenizer.json')
+    manifest['revision']='other';(tmp_path/'manifest.json').write_text(json.dumps(manifest))
+    with pytest.raises(ValueError,match='checkpoint'):results.verify_prompt_count_contract(tmp_path)

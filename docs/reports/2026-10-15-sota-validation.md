@@ -47,7 +47,7 @@
 | 编译器 primary P/D 对照 | 2.959 | 1.530× / 1.537× | 88.471 → 120.000（1.356×） | 81.089 → 110.475（1.362×） |
 | MorphX 移植消融 | 3.711 | 1.846× / 1.810× | 92.001 → 124.577（1.354×） | 83.090 → 115.557（1.391×） |
 
-移植版的单独短延迟已经增加约 25.4%，混合后也没有改善短请求慢化；冷长的相对慢化接近，但绝对耗时仍更高。不能只用一个慢化比值掩盖基准成本。总计 452 条诊断/正式/单独请求全部从 SSE 重建严格工具并检查冻结输入。两个独立导出的 SHA256 相等，并记录分析脚本源码指纹。[完整对照](../../results/sota-validation/comparison.json) / [确定性核验](../../results/sota-validation/comparison-determinism.json)。
+移植版的单独短延迟已经增加约 25.4%，混合后也没有改善短请求慢化；冷长的相对慢化接近，但绝对耗时仍更高。不能只用一个慢化比值掩盖基准成本。总计 452 条诊断/正式/单独请求全部从 SSE 重建严格工具并检查冻结输入。复核后审计要求精确 token 数（24568/131060/131049），并绑定实际 checkpoint/tokenizer/config 字节；全部旧数据再次通过，两次新导出 SHA256 相等，所有指标和原始波次审计均未变化。原导出另存为 v1，当前导出保留分析脚本源码指纹。[完整对照](../../results/sota-validation/comparison.json) / [确定性核验](../../results/sota-validation/comparison-determinism.json)。
 
 API TTFT 为首个非空流式块的到达时间，可能包含工具解析器缓冲，不能直接当作 GPU prefill 结束或纯排队时间。本次没有精确逐 token ITL，也没有推理实际 DRAM 字节计数。
 
@@ -85,6 +85,8 @@ Bullet 探针特意保留 Attention K/V，只丢弃 GDN 卷积/循环状态，�
 EB+ 值得继续补入：作者方法根据校准的硬件代价在线选择 exclusive batching 或 mixed batching，直接研究带宽受限 GPU。它已覆盖“按带宽压力切换执行方式”的思路。作者当前 fork 与本机已验证 vLLM0.31 的 Python API 存在差异，后续应保留作者 crossover、阈值与阶段机，将底层状态/分配接口接到当前引擎，而不是用不同算法挂同一名称。[源码审计](../../results/sota-validation/eb-source-audit.json)。
 
 对课题价值的判断应保持在证据范围内：原来约 100 秒的阻塞已有简单修正；修正后保护短请求与长请求代价之间的权衡可重复，但尚未证明超出现有方法或不可避免的资源竞争。当前 MorphX 移植版没有推进联合前沿；只有排除控制传输成本、补上忠实校准的 EB+，并用持续/后期到达负载确认缺口，才有依据选择研究机制。已有工作已覆盖动态 SM、动态 chunk、混合/独占切换，不能把这些操作本身当作创新。
+
+独立复核还发现 CUDA 旧/新 proc-address 自查询 ABI 的兼容边界。源码生成器已修正，按真实四/五参数指针调用的 CPU 回归通过，修正库也在原工具链编译成功；**该新库尚待 GPU/模型重新资格验证，不能直接替换成新性能点**。实测 v2 库、源码 capsule 和旧结果均原样保留，这一未覆盖的调用边界不等于存档模型运行失败。[修正库构建及资格范围](../../results/sota-validation/qualification/query-abi-v4-build.json)。
 
 原始数据、模型、工具链和构建均留在 `vlm-server:/home/guokc/mypro/gnn-mount-sda1/InferX/` HDD。[复现命令、固定源码和二进制清单](../../results/sota-validation/reproduction/README.md) 可核对实验路径；分析代码的 6 个 SHA 与本地源码逐一相符。452 条性能比较请求以外，时间线另有 25 条严格通过请求。
 

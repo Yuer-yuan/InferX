@@ -135,16 +135,37 @@ def remove_debug_kernel_skip(text):
 
 
 def patch_proc_address_queries(text):
-    """Honor native version/flag validation before substituting hooked entries."""
+    """Preserve native validation and the ABI selected for self-query results."""
+    legacy='CUresult cuGetProcAddress(const char* symbol, void** pfn, int  cudaVersion, cuuint64_t flags, CUdriverProcAddressQueryResult* symbolStatus)'
+    corrected='CUresult cuGetProcAddress(const char* symbol, void** pfn, int cudaVersion, cuuint64_t flags)'
+    if text.count(legacy)!=1 or 'inferx_query_validation' in text:
+        raise ValueError('unexpected or already patched query source')
+    text=text.replace(legacy,corrected)
+    typedef='typedef CUresult (*cuGetProcAddress_func_t)(const char*, void**, int, cuuint64_t, CUdriverProcAddressQueryResult*);'
+    if 'cuGetProcAddress_func_t' in text:
+        if text.count(typedef)!=1:raise ValueError('unexpected legacy query typedef')
+        text=text.replace(typedef,'typedef CUresult (*cuGetProcAddress_func_t)(const char*, void**, int, cuuint64_t);')
+    text=text.replace('CUresult cuGetProcAddress_v2(',
+        'CUresult cuGetProcAddress(const char*, void**, int, cuuint64_t);\n\nCUresult cuGetProcAddress_v2(',1)
+    old_call='real_cuGetProcAddress(symbol, pfn, cudaVersion, flags, symbolStatus)'
+    if text.count(old_call)!=1:raise ValueError('unexpected legacy query call')
+    text=text.replace(old_call,'real_cuGetProcAddress(symbol, pfn, cudaVersion, flags)')
     for name in ['cuGetProcAddress_v2','cuGetProcAddress']:
         signature=f'CUresult {name}(const char* symbol, void** pfn, int'
         start=text.find(signature)
         if start<0:raise ValueError('unexpected query source')
         point=text.find('    std::string sym_str(symbol);',start)
         if point<0 or 'inferx_query_validation' in text[start:point]:raise ValueError('unexpected or already patched query source')
-        validation=f'''    // inferx_query_validation: retain native ABI/version/flag errors and status.
-    CUresult validated = real_{name}(symbol, pfn, cudaVersion, flags, symbolStatus);
+        arguments='symbol, pfn, cudaVersion, flags'+(', symbolStatus' if name.endswith('_v2') else '')
+        validation=f'''    // inferx_query_validation: retain native errors and driver-selected self-query ABI.
+    CUresult validated = real_{name}({arguments});
     if(validated != CUDA_SUCCESS || pfn == nullptr || *pfn == nullptr) return validated;
+    if(strcmp(symbol, "cuGetProcAddress") == 0) {{
+        if(*pfn == (void*)real_cuGetProcAddress) *pfn = (void*)cuGetProcAddress;
+        else if(*pfn == (void*)real_cuGetProcAddress_v2) *pfn = (void*)cuGetProcAddress_v2;
+        // An unknown future ABI keeps the native pointer, never a guessed wrapper.
+        return validated;
+    }}
     if(flags == CU_GET_PROC_ADDRESS_PER_THREAD_DEFAULT_STREAM) {{
         if(strcmp(symbol, "cuLaunchKernel") == 0) {{
             *pfn = (void*)cuLaunchKernel_ptsz;
@@ -158,3 +179,14 @@ def patch_proc_address_queries(text):
 '''
         text=text[:point]+validation+text[point:]
     return text
+
+
+def upgrade_proc_address_queries(text):
+    """Migrate historical validated-v3/v2 bytes into a NEW runtime tree only."""
+    import re
+    marker='    // inferx_query_validation: retain native ABI/version/flag errors and status.'
+    if text.count(marker)!=2:
+        raise ValueError('unexpected historical query validation source')
+    text,count=re.subn(re.escape(marker)+r'.*?(?=    std::string sym_str\(symbol\);)','',text,flags=re.S)
+    if count!=2:raise ValueError('unexpected historical query validation blocks')
+    return patch_proc_address_queries(text)

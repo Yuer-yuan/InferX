@@ -19,7 +19,7 @@ log=(p/'engine/server.log').read_text();coefficients=[]
 for name,ci,waves in re.findall(r'\[MorphX-profile\] name=(\S+) CI=(\S+) waves=(\d+)',log):coefficients.append(dict(name=name,ci=float(ci),waves=int(waves)))
 control_writes=re.findall(r'\[MorphX-control\] stream=(\S+) name=(\S+) old=(\d+):(\d+) new=(\d+):(\d+)',log)
 overlay=r/'sota-validation/overlays/morphx-pd-profile-v3'
-files=[traces[0],maps[0],p/'campaign.json',p/'controller.py',p/'engine/startup.json',p/'engine/server.log',folder/'requests.jsonl',folder/'specifications.json',r/'code-pd-baselines/inferx/sota_trace.py',Path(__file__)]
+files=[traces[0],maps[0],p/'campaign.json',p/'controller.py',p/'engine/startup.json',p/'engine/server.log',folder/'requests.jsonl',folder/'specifications.json',r/'code-pd-baselines/inferx/sota_trace.py',r/'code-pd-baselines/inferx/sota_results.py',r/'code-pd-baselines/inferx/concurrency.py',r/'code-pd-baselines/inferx/tuning.py',Path(__file__)]
 files += [overlay/n for n in ['overlay-manifest.json','source-hashes.json','inferx_morphx_runtime.py','inferx_pd_runtime.py','sitecustomize.py']]
 flow_warning=re.search(r'Warning: Profiler observed (\d+) duplicate flow start ID',log)
 report=dict(scope='Separate profiled8-second mixed diagnostic, not normal latency/throughput or whole-wave coverage. Kernel gaps are not proof of GPU idle. CPU API duration sums overlap across threads/nesting and are not a critical-path decomposition.',

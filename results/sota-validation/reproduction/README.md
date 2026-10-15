@@ -104,6 +104,17 @@ repository. The separate25-response profile is excluded from those metrics;
 `../profile-evidence.json` records trace, stream mapping, diagnostic overlay,
 profiler warnings and analysis hashes. Large traces remain on the server HDD.
 
+Final review strengthened the input gate to exact24568/131060/131049 counts,
+bound to checkpoint metadata and the actual tokenizer/config bytes. Both
+strengthened exports are identical, and all metrics/raw-wave audits match the
+historical `../comparison-v1.json`; the determinism record stores both hashes.
+The query-wrapper generator now preserves the real four/five-argument ABI in
+both self-query directions. A fresh `libcuda_query_abi_v4.so` compiled on the
+same toolchain (see `../qualification/query-abi-v4-build.json`) but has NOT yet
+passed GPU/model requalification. The measured v2 binary and249-file source
+capsule above remain historical unchanged artifacts; do not treat the newly
+compiled correction as a measured/qualified replacement.
+
 Exact campaign/build/analysis helpers are preserved in `../execution/`.
 They are historical scripts with fixed server paths, including failed and
 superseded qualification attempts. For the final qualified reproduction use

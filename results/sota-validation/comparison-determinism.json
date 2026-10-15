@@ -1,17 +1,35 @@
 {
-  "sha256": "2be261924a21f47a824380b049efab3e70ea780958757b8f30204f40ed5cb53f",
+  "sha256": "29ed825bb87a0b0506fadf284c95582c1b2639f10d2010e63d5006f7d6ae2ff5",
   "identical": true,
   "outputs": [
-    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/comparison-1.json",
-    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/comparison-2.json"
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/comparison-audited-1.json",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/sota-validation/comparison-audited-2.json"
   ],
   "strict_requests": 452,
   "analysis_source_sha256": {
     "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
     "inferx/pd_baselines.py": "aa74abf3e603037cd41f9e88489935c1660286ba15fc8fe0b1dd85d8b0831161",
-    "inferx/sota_results.py": "23798605fe5517b337915a30f059ff9b4434ae04bb5639ace9088e5fe6da222a",
+    "inferx/sota_results.py": "c644025b4478113367294a74d959357ecefde90c3024bfe39f1e5c596601bac6",
     "inferx/tuning.py": "7698fe7469841b559256859cb974773e593330f4d5fa08c76ff4c2c44bce58cb",
     "scripts/analyze_pd_baselines.py": "f0739da4ee247fe7bc363a4426c71fc2b1f963609d80cbdb3ca3c6d872a17f55",
-    "scripts/analyze_sota_validation.py": "6d933397040c9486c9b17068639f7f53f53a384fb075896ccdc8c814989c8f65"
-  }
+    "scripts/analyze_sota_validation.py": "f39b714157afd882511bc138c4e639ea48f8ded8fac4ac739c6f6849a4da4d9b"
+  },
+  "prompt_count_contract": {
+    "model": "models/qwen38-int4-redhat",
+    "prompt_tokens": {
+      "cold-131072": 131060,
+      "resume-131072": 131049,
+      "tool-24576": 24568
+    },
+    "repository": "RedHatAI/Qwen3.8-27B-INT4",
+    "revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "tokenizer_files": {
+      "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+      "config.json": "5498b42f9ea96d2669709c177e29122997ce14786a7530fe1ea1b340e535776c",
+      "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+      "tokenizer_config.json": "5f7aa0d810000c4a0940b35c8f16e56c3439260fccc13a321826ebc3ccf2501f"
+    }
+  },
+  "historical_sha256": "2be261924a21f47a824380b049efab3e70ea780958757b8f30204f40ed5cb53f",
+  "historical_metrics_and_all_raw_campaign_audits_unchanged": true
 }
