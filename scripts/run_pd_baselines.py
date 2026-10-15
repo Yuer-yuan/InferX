@@ -164,6 +164,8 @@ def main():
     parser.add_argument('--repeat', type=int, default=3)
     parser.add_argument('--probe-only', action='store_true')
     parser.add_argument('--kernel-probe', action='store_true')
+    parser.add_argument('--groups', nargs='+')
+    parser.add_argument('--short-rate', type=float)
     parser.add_argument('--run-id', required=True)
     args = parser.parse_args()
     root = Path(os.environ['INFERX_ROOT'])
@@ -188,8 +190,19 @@ def main():
     saved['original_argv'] = Path(f'/proc/{saved["pid"]}/cmdline').read_bytes().decode().rstrip('\0').split('\0')
     (output/'original-service.json').write_text(json.dumps(saved, indent=2))
     templates, grid = load_frozen_workloads(root/'concurrency-roofline')
+    definitions = copy.deepcopy(grid['mixed_cases'])
+    if args.groups is not None:
+        if set(args.groups)-{d['name'] for d in definitions}:
+            parser.error('unknown workload group')
+        definitions = [d for d in definitions if d['name'] in args.groups]
+    if args.short_rate is not None:
+        if not 0 < args.short_rate <= 20:
+            parser.error('short-rate must be positive and at most20RPS')
+        for definition in definitions:
+            definition['rate'] = args.short_rate
     metadata = dict(status='running', started_unix=time.time(), cases=[],
         repeat=args.repeat, probe_only=args.probe_only, controller_pid=os.getpid(),
+        workload_definitions=definitions,
         harness_sha256={str(p):hashlib.sha256((root/'code-pd-baselines'/p).read_bytes()).hexdigest()
             for p in ['scripts/run_pd_baselines.py', 'inferx/pd_baselines.py',
                       'inferx/concurrency.py', 'inferx/service_ownership.py']})
@@ -218,8 +231,8 @@ def main():
             return
         for case in cases:
             for repetition in range(args.repeat):
-                definitions = [dict(name='probe-128k')] if args.probe_only else grid['mixed_cases']
-                for definition in definitions:
+                selected = [dict(name='probe-128k')] if args.probe_only else definitions
+                for definition in selected:
                     label = f'{case["id"]}-r{repetition}-{definition["name"]}'
                     state = dict(case=case['id'], repetition=repetition,
                                  group=definition['name'], state='starting')

@@ -1,0 +1,823 @@
+{
+  "captured_unix": 1792024963.8228571,
+  "status": "in_progress",
+  "morphx_kernel": {
+    "status": "restored",
+    "started_unix": 1792024217.024691,
+    "cases": [
+      {
+        "case": "unhooked",
+        "returncode": 0
+      },
+      {
+        "case": "upstream-gdr",
+        "returncode": -6
+      },
+      {
+        "case": "mapped-host",
+        "returncode": 0
+      }
+    ],
+    "repeat": 1,
+    "probe_only": false,
+    "finished_unix": 1792024297.6731505,
+    "restored": true
+  },
+  "morphx_mapped_kernel_log": "[MorphX-llm] phase=patched grid=2048 block=(256,1,1) shared=0 stream=0x5ad752a24bc0 name=morphx_probe\n{\"correct\":true,\"elements\":524288}\n",
+  "llama_128k": {
+    "summary": {
+      "ok": true,
+      "errors": [],
+      "wall_s": 71.51870195567608,
+      "ttft_s": 69.90050327405334,
+      "completion_tokens": 64,
+      "prompt_tokens": 131049,
+      "cached_tokens": 0,
+      "cache_mode": "natural",
+      "e2e_tps": 0.8948708274887901,
+      "observed_decode_tps": 38.93217854857171,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 131049,
+        "total_tokens": 131113,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "engine_timings": {
+        "cache_n": 0,
+        "prompt_n": 131049,
+        "prompt_ms": 68631.914,
+        "prompt_per_token_ms": 0.5237118482399713,
+        "prompt_per_second": 1909.4469666108976,
+        "predicted_n": 64,
+        "predicted_ms": 1864.162,
+        "predicted_per_token_ms": 29.589873015873017,
+        "predicted_per_second": 33.79534611262326
+      },
+      "text": "",
+      "reasoning": "",
+      "tool_calls": [
+        {
+          "index": 0,
+          "id": "VG3vpcAHOsr481I5pUjZZ08CPbh6EeEV",
+          "type": "function",
+          "function": {
+            "name": "record_status",
+            "arguments": "{"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "\"status\":\""
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "ready"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "\""
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": ",\"task\":\""
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "7"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "ab"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "9"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "a"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "1"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "5"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "7"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "f"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "2"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "3"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "a"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "5"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "5"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "f"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "9"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "\""
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": ",\"attempt\":"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "1"
+          }
+        },
+        {
+          "index": 0,
+          "function": {
+            "arguments": "}"
+          }
+        }
+      ],
+      "finish_reason": "tool_calls",
+      "truncated": false
+    },
+    "functional_ok": true,
+    "latency_s": 71.51870195567608
+  },
+  "llama_main_snapshot": {
+    "status": "running",
+    "started_unix": 1792024399.510667,
+    "cases": [
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "short-control",
+        "state": "measured",
+        "quality": {
+          "status": "passed",
+          "error": null,
+          "test_elapsed": 0.0019560493528842926,
+          "elapsed": 0.0720987357199192
+        }
+      },
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "cold-low",
+        "state": "measured",
+        "quality": {
+          "status": "passed",
+          "error": null,
+          "test_elapsed": 0.0019276179373264313,
+          "elapsed": 0.07832076027989388
+        }
+      },
+      {
+        "case": "llama-d0-c4-chunk2048",
+        "repetition": 0,
+        "group": "cold-high",
+        "state": "starting"
+      }
+    ],
+    "repeat": 3,
+    "probe_only": false,
+    "controller_pid": 3139424,
+    "harness_sha256": {
+      "scripts/run_pd_baselines.py": "cc49eed7cacbcc4ce49f3f0333fec52c50500be78c0218e939272d99878f2802",
+      "inferx/pd_baselines.py": "dcb1dbc69b71491b4d0ee36bb3a2ab7ae977c8c7f8557d5968a6e9b27635410c",
+      "inferx/concurrency.py": "bbded52e89426fdf83f08a90dfa8413da7c294fe95304d2452ed2698b2032bc6",
+      "inferx/service_ownership.py": "940ef672efdb115ede852f8d7a06b175c10d864a5132676e5827c4568f3603ea"
+    }
+  },
+  "groups": [
+    {
+      "group": "cold-low",
+      "case": "llama-d0-c4-chunk2048",
+      "summary": {
+        "offered": 25,
+        "protocol_ok": 25,
+        "errors": 0,
+        "tool_valid": 25,
+        "tool_checked": 25,
+        "truncated": 0,
+        "completion_tokens": 1312,
+        "measured_span_s": 169.54250345751643,
+        "aggregate_tokens_per_s": 7.738472496536882,
+        "latency_s": {
+          "n": 25,
+          "median": 110.65667722001672,
+          "minimum": 1.336660459637642,
+          "maximum": 134.48718220740557,
+          "p95": 132.9676563926041,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 25,
+          "median": 110.65667722001672,
+          "minimum": 1.336660459637642,
+          "maximum": 134.48718220740557,
+          "p95": 132.9676563926041,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 25,
+          "median": 103.93657671287656,
+          "minimum": 0.3775414600968361,
+          "maximum": 129.93983943387866,
+          "p95": 127.75679321959615,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 25,
+          "median": 0.0018402747809886932,
+          "minimum": 0.0005792751908302307,
+          "maximum": 0.004582051187753677,
+          "p95": 0.0031430013477802277,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.0412875819174986,
+            "tool_goodput_per_s": 0.0412875819174986,
+            "offered_fraction": 0.28
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04718580790571269,
+            "tool_goodput_per_s": 0.04718580790571269,
+            "offered_fraction": 0.32
+          },
+          "10": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04718580790571269,
+            "tool_goodput_per_s": 0.04718580790571269,
+            "offered_fraction": 0.32
+          }
+        }
+      },
+      "metrics_before": {
+        "llamacpp:prompt_tokens_total": 98733.0,
+        "llamacpp:prompt_tokens_cached_total": 0.0,
+        "llamacpp:prompt_seconds_total": 48.6874,
+        "llamacpp:tokens_predicted_total": 684.0,
+        "llamacpp:tokens_predicted_seconds_total": 88.3215,
+        "llamacpp:n_decode_total": 582.0,
+        "llamacpp:n_tokens_max": 24608.0,
+        "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_drafts_total": 0.0,
+        "llamacpp:prompt_tokens_seconds": 0.0,
+        "llamacpp:predicted_tokens_seconds": 0.0,
+        "llamacpp:requests_processing": 0.0,
+        "llamacpp:requests_deferred": 0.0,
+        "llamacpp:n_busy_slots_per_decode": 1.40722
+      },
+      "metrics_after": {
+        "llamacpp:prompt_tokens_total": 278984.0,
+        "llamacpp:prompt_tokens_cached_total": 540166.0,
+        "llamacpp:prompt_seconds_total": 188.75,
+        "llamacpp:tokens_predicted_total": 1996.0,
+        "llamacpp:tokens_predicted_seconds_total": 503.133,
+        "llamacpp:n_decode_total": 1268.0,
+        "llamacpp:n_tokens_max": 131112.0,
+        "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_drafts_total": 0.0,
+        "llamacpp:prompt_tokens_seconds": 0.0,
+        "llamacpp:predicted_tokens_seconds": 0.0,
+        "llamacpp:requests_processing": 0.0,
+        "llamacpp:requests_deferred": 0.0,
+        "llamacpp:n_busy_slots_per_decode": 1.78391
+      },
+      "raw_records": "requests.jsonl",
+      "short": {
+        "offered": 24,
+        "protocol_ok": 24,
+        "errors": 0,
+        "tool_valid": 24,
+        "tool_checked": 24,
+        "truncated": 0,
+        "completion_tokens": 1248,
+        "measured_span_s": 169.54250345751643,
+        "aggregate_tokens_per_s": 7.36098603329118,
+        "latency_s": {
+          "n": 24,
+          "median": 109.91482712700963,
+          "minimum": 1.336660459637642,
+          "maximum": 134.48718220740557,
+          "p95": 132.9676563926041,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 24,
+          "median": 109.91482712700963,
+          "minimum": 1.336660459637642,
+          "maximum": 134.48718220740557,
+          "p95": 132.9676563926041,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 24,
+          "median": 89.58105232194066,
+          "minimum": 0.3775414600968361,
+          "maximum": 129.93983943387866,
+          "p95": 127.75679321959615,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 24,
+          "median": 0.001897767186164856,
+          "minimum": 0.0005792751908302307,
+          "maximum": 0.004582051187753677,
+          "p95": 0.0031430013477802277,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 7,
+            "tool_met": 7,
+            "protocol_goodput_per_s": 0.0412875819174986,
+            "tool_goodput_per_s": 0.0412875819174986,
+            "offered_fraction": 0.2916666666666667
+          },
+          "5": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04718580790571269,
+            "tool_goodput_per_s": 0.04718580790571269,
+            "offered_fraction": 0.3333333333333333
+          },
+          "10": {
+            "protocol_met": 8,
+            "tool_met": 8,
+            "protocol_goodput_per_s": 0.04718580790571269,
+            "tool_goodput_per_s": 0.04718580790571269,
+            "offered_fraction": 0.3333333333333333
+          }
+        }
+      },
+      "long": {
+        "offered": 1,
+        "protocol_ok": 1,
+        "errors": 0,
+        "tool_valid": 1,
+        "tool_checked": 1,
+        "truncated": 0,
+        "completion_tokens": 64,
+        "measured_span_s": 169.54250345751643,
+        "aggregate_tokens_per_s": 0.3774864632457015,
+        "latency_s": {
+          "n": 1,
+          "median": 120.25135646387935,
+          "minimum": 120.25135646387935,
+          "maximum": 120.25135646387935,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 1,
+          "median": 120.25135646387935,
+          "minimum": 120.25135646387935,
+          "maximum": 120.25135646387935,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 1,
+          "median": 116.2470733858645,
+          "minimum": 116.2470733858645,
+          "maximum": 116.2470733858645,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 1,
+          "median": 0.0018402747809886932,
+          "minimum": 0.0018402747809886932,
+          "maximum": 0.0018402747809886932,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "completed_within_48s": 8
+    },
+    {
+      "group": "short-control",
+      "case": "llama-d0-c4-chunk2048",
+      "summary": {
+        "offered": 120,
+        "protocol_ok": 120,
+        "errors": 0,
+        "tool_valid": 120,
+        "tool_checked": 120,
+        "truncated": 0,
+        "completion_tokens": 6240,
+        "measured_span_s": 152.14414163678885,
+        "aggregate_tokens_per_s": 41.01373824104675,
+        "latency_s": {
+          "n": 120,
+          "median": 69.67068011686206,
+          "minimum": 30.932525826990606,
+          "maximum": 104.92948655635118,
+          "p95": 102.09791654795409,
+          "p99": 104.60463396385312
+        },
+        "attempted_latency_s": {
+          "n": 120,
+          "median": 69.67068011686206,
+          "minimum": 30.932525826990606,
+          "maximum": 104.92948655635118,
+          "p95": 102.09791654795409,
+          "p99": 104.60463396385312
+        },
+        "ttft_s": {
+          "n": 120,
+          "median": 66.55213423445821,
+          "minimum": 9.622166170179844,
+          "maximum": 103.04227030426264,
+          "p95": 99.89489477947355,
+          "p99": 102.76920886263251
+        },
+        "dispatch_lag_s": {
+          "n": 120,
+          "median": 0.0010183595120896172,
+          "minimum": 0.00027901530265950214,
+          "maximum": 0.0028680332004995535,
+          "p95": 0.001807771623134613,
+          "p99": 0.002485142648218641
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "metrics_before": {
+        "llamacpp:prompt_tokens_total": 98733.0,
+        "llamacpp:prompt_tokens_cached_total": 0.0,
+        "llamacpp:prompt_seconds_total": 48.2648,
+        "llamacpp:tokens_predicted_total": 684.0,
+        "llamacpp:tokens_predicted_seconds_total": 88.058,
+        "llamacpp:n_decode_total": 582.0,
+        "llamacpp:n_tokens_max": 24608.0,
+        "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_drafts_total": 0.0,
+        "llamacpp:prompt_tokens_seconds": 0.0,
+        "llamacpp:predicted_tokens_seconds": 0.0,
+        "llamacpp:requests_processing": 0.0,
+        "llamacpp:requests_deferred": 0.0,
+        "llamacpp:n_busy_slots_per_decode": 1.40722
+      },
+      "metrics_after": {
+        "llamacpp:prompt_tokens_total": 148319.0,
+        "llamacpp:prompt_tokens_cached_total": 2897250.0,
+        "llamacpp:prompt_seconds_total": 83.8498,
+        "llamacpp:tokens_predicted_total": 6924.0,
+        "llamacpp:tokens_predicted_seconds_total": 541.768,
+        "llamacpp:n_decode_total": 2169.0,
+        "llamacpp:n_tokens_max": 24608.0,
+        "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+        "llamacpp:spec_decode_num_drafts_total": 0.0,
+        "llamacpp:prompt_tokens_seconds": 0.0,
+        "llamacpp:predicted_tokens_seconds": 0.0,
+        "llamacpp:requests_processing": 0.0,
+        "llamacpp:requests_deferred": 0.0,
+        "llamacpp:n_busy_slots_per_decode": 3.2734
+      },
+      "raw_records": "requests.jsonl",
+      "short": {
+        "offered": 120,
+        "protocol_ok": 120,
+        "errors": 0,
+        "tool_valid": 120,
+        "tool_checked": 120,
+        "truncated": 0,
+        "completion_tokens": 6240,
+        "measured_span_s": 152.14414163678885,
+        "aggregate_tokens_per_s": 41.01373824104675,
+        "latency_s": {
+          "n": 120,
+          "median": 69.67068011686206,
+          "minimum": 30.932525826990606,
+          "maximum": 104.92948655635118,
+          "p95": 102.09791654795409,
+          "p99": 104.60463396385312
+        },
+        "attempted_latency_s": {
+          "n": 120,
+          "median": 69.67068011686206,
+          "minimum": 30.932525826990606,
+          "maximum": 104.92948655635118,
+          "p95": 102.09791654795409,
+          "p99": 104.60463396385312
+        },
+        "ttft_s": {
+          "n": 120,
+          "median": 66.55213423445821,
+          "minimum": 9.622166170179844,
+          "maximum": 103.04227030426264,
+          "p95": 99.89489477947355,
+          "p99": 102.76920886263251
+        },
+        "dispatch_lag_s": {
+          "n": 120,
+          "median": 0.0010183595120896172,
+          "minimum": 0.00027901530265950214,
+          "maximum": 0.0028680332004995535,
+          "p95": 0.001807771623134613,
+          "p99": 0.002485142648218641
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "long": {
+        "offered": 0,
+        "protocol_ok": 0,
+        "errors": 0,
+        "tool_valid": 0,
+        "tool_checked": 0,
+        "truncated": 0,
+        "completion_tokens": 0,
+        "measured_span_s": 152.14414163678885,
+        "aggregate_tokens_per_s": 0.0,
+        "latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "attempted_latency_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "ttft_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "dispatch_lag_s": {
+          "n": 0,
+          "median": null,
+          "minimum": null,
+          "maximum": null,
+          "p95": null,
+          "p99": null
+        },
+        "slo": {
+          "0.5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "1": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "2": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "5": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          },
+          "10": {
+            "protocol_met": 0,
+            "tool_met": 0,
+            "protocol_goodput_per_s": 0.0,
+            "tool_goodput_per_s": 0.0,
+            "offered_fraction": 0.0
+          }
+        }
+      },
+      "completed_within_48s": 16
+    }
+  ],
+  "warning": "Partial progress evidence. Kernel probe is not full27B PD validation. Current llama2.5RPS control is overloaded; low-rate matched controls remain required."
+}
