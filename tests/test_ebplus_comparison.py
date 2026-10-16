@@ -13,7 +13,8 @@ class ComparisonContracts(unittest.TestCase):
     def test_catalog_preserves_capacity_and_exercises_both_author_policies(self):
         plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
         cases=self.api().comparison_cases(plan)
-        self.assertEqual([c['id'] for c in cases],['native','auto-default','forced-eb','auto-tuned'])
+        self.assertEqual([c['id'] for c in cases],['native','auto-default','forced-eb','auto-tuned',
+                                                 'native-chunk-admit','auto-tuned-chunk-admit'])
         for c in cases:
             self.assertEqual((c['concurrency'],c['chunk'],c['long_prefill_token_threshold'],c['draft']), (4,4096,2048,0))
             self.assertEqual(c['num_gpu_blocks_override'],98)
@@ -112,3 +113,59 @@ class ExclusiveAutoExecutionContracts(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+
+class FullInputAdmissionContracts(unittest.TestCase):
+    def test_existing_admission_flag_variants_preserve_every_other_runtime_setting(self):
+        from inferx.ebplus_comparison import comparison_cases,is_native_case
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        cases={c['id']:c for c in comparison_cases(plan)}
+        for name,base in [('native-chunk-admit','native'),('auto-tuned-chunk-admit','auto-tuned')]:
+            actual=copy.deepcopy(cases[name]);actual['id']=base
+            self.assertIs(actual.pop('scheduler_reserve_full_isl'),False)
+            self.assertEqual(actual,cases[base])
+        self.assertTrue(is_native_case(cases['native-chunk-admit']))
+        self.assertFalse(is_native_case(cases['auto-tuned-chunk-admit']))
+
+    def test_official_boolean_cli_can_disable_full_input_fit_without_changing_chunk(self):
+        from inferx.pd_baselines import engine_command
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        case=copy.deepcopy(plan['base_case']);case['scheduler_reserve_full_isl']=False
+        command=engine_command(case,Path('/hdd'),Path('/hdd/run'))
+        self.assertIn('--no-scheduler-reserve-full-isl',command)
+        self.assertEqual(command[command.index('--max-num-batched-tokens')+1],'4096')
+        for wrong in [0,'false',None]:
+            case['scheduler_reserve_full_isl']=wrong
+            with self.assertRaises(ValueError):engine_command(case,Path('/hdd'),Path('/hdd/run'))
+
+class AdmissionRuntimeEvidenceContracts(unittest.TestCase):
+    def test_new_runtime_schema_requires_actual_admission_flag_and_rejects_opposite_value(self):
+        from inferx import ebplus_comparison as api
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        hardware=dict(native_runtime=dict(block_size=1568,num_gpu_blocks=98,kv_groups=[]))
+        runtime=dict(model='/hdd/models/qwen38-int4-redhat',context_window=131328,concurrency=4,max_active=4,
+            chunk=4096,long_prefill_token_threshold=2048,async_scheduling=False,enforce_eager=True,
+            cudagraph_mode='NONE',speculative=False,quantization='compressed-tensors',kv_dtype='fp8',
+            mamba_cache_mode='align',block_size=1568,num_gpu_blocks=98,kv_groups=[],scheduler_reserve_full_isl=False)
+        case=dict(plan['base_case'],scheduler_reserve_full_isl=False)
+        api.audit_native_runtime(runtime,plan,hardware,root=Path('/hdd'),case=case,runtime_evidence_version=2)
+        runtime['scheduler_reserve_full_isl']=True
+        with self.assertRaisesRegex(ValueError,'runtime'):
+            api.audit_native_runtime(runtime,plan,hardware,root=Path('/hdd'),case=case,runtime_evidence_version=2)
+        runtime.pop('scheduler_reserve_full_isl')
+        with self.assertRaisesRegex(ValueError,'runtime'):
+            api.audit_native_runtime(runtime,plan,hardware,root=Path('/hdd'),case=case,runtime_evidence_version=2)
+
+class AdmissionCalibrationContracts(unittest.TestCase):
+    def test_policy_requires_mb_profile_measured_under_its_admission_flag(self):
+        from inferx.ebplus_comparison import validate_admission_profile
+        case=dict(scheduler_reserve_full_isl=False)
+        with self.assertRaisesRegex(ValueError,'admission'):validate_admission_profile(case,{})
+        profile=dict(scheduler_reserve_full_isl=False,native_runtimes={})
+        with self.assertRaisesRegex(ValueError,'runtime'):validate_admission_profile(case,profile)
+        profile['native_runtimes']={f'mb-b{b}-cap{c}':dict(scheduler_reserve_full_isl=False,
+            chunk=b,long_prefill_token_threshold=c,num_gpu_blocks=98,concurrency=4)
+            for b in [1024,2048,4096] for c in [0,2048]}
+        validate_admission_profile(case,profile)
+        profile['native_runtimes']['mb-b1024-cap0']['scheduler_reserve_full_isl']=True
+        with self.assertRaisesRegex(ValueError,'runtime'):validate_admission_profile(case,profile)
+        validate_admission_profile({}, {})  # Historical pinned default-True cohort remains readable.

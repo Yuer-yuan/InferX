@@ -1,6 +1,20 @@
-# EB+ 适配：单独场景合格，混合准入修正验证中
+# EB+ 修正版混合诊断：当前配置未改善联合表现
 
-目标是保留公开实现的 EB/MB crossover、CFR/IFR 阈值和三阶段调度，接到已通过完整 27B/128K 验证的 vLLM 0.31 引擎。当前已完成源码适配、本机分离代价与独立MB代价校准，原生／强制EB／自动EB+三种模式均通过完整模型检查：118条严格工具请求、3次代码检查，含每组4条24K预热与完整冷长／续接长输入。这些门槛对应此前适配版本；随后混合诊断暴露了原生准入与阶段退让的兼容边界，当前修正版仍在重新验证，正式混合性能结论待完成。
+在同一张4090、27B INT4、C4、98块混合缓存池、MTP0、eager、4096 token预算及2048 prefill cap下，修正版原生／强制EB／作者推荐滞回1e-6的自动EB+均已完整完成冷长与续接长混合诊断。每组包含24条24557-token短请求和1条约131K-token长请求，150条计时工具请求全部通过；各组另有独立代码检查、4条预热和100条真实策略预热。自动组实际选择EB，并执行独占prefill和decode。
+
+| 策略 | 冷长：短P95 / 长耗时（秒） | 续接：短P95 / 长耗时（秒） |
+|---|---:|---:|
+| 同配置原生 | 103.94 / 89.58 | 93.54 / 78.99 |
+| 强制EB | 190.15 / 253.68 | 221.14 / 274.60 |
+| 自动EB+，滞回1e-6 | 191.51 / 254.97 | 221.35 / 274.82 |
+
+这些是每组一轮的诊断绝对值，尚无正式三轮或匹配单独基准，结论限定于这一适配与配置。不能据此宣称作者实现上限、所有SOTA的能力或已达到带宽下限。原生冷长／续接组分别发生3／2次抢占，强制EB为5／7次；现有token指标不累计重放GPU工作量，额外计算代价仍待核对。原始181文件完整留存，[原始包](../../results/ebplus-validation/comparison/diagnostic-v2/raw.tar.gz)、[严格导出](../../results/ebplus-validation/comparison/diagnostic-v2/export.json)、[逐文件哈希](../../results/ebplus-validation/comparison/diagnostic-v2/inventory.json)。两次独立导出完全相同，新增导出器也能逐字节重现旧结果。
+
+下一步已预先声明关闭vLLM官方完整输入容量检查的原生／自动EB+对照，模型、池、分块与其他设置一致。该开关只改变准入检查，不表示在准入时物理预留整个请求。先在新设置下重新运行作者完整54点MB标定，再做4个完整混合诊断；相同模型与GPU kernel的200条分离事件标定保留。两个对照必须记录实际初始化后的开关值，并拒绝与其不一致的MB代价文件。[标定配置](../../configs/ebplus-admission-calibration.json)、[诊断配置](../../configs/ebplus-admission-diagnostic.json)。这是现成策略验证，尚未证明需要新机制。
+
+新增观测回归在真实vLLM中先因缺失开关字段失败，再修复；14项真实原生合约全部通过，完整CPU测试322项通过、14项专用检查另行执行。[真实原生日志](../../results/ebplus-validation/comparison/admission-flag-v1/native-admission-green.log)、[完整CPU](../../results/ebplus-validation/comparison/admission-flag-v1/full-cpu-green.log)。33个作者方法和策略文件字节相同，全部调度类AST相同；仅运行时观测函数增加字段。[差异核对](../../results/ebplus-validation/comparison/admission-flag-v1/overlay-v5-v6-comparison.json)。上一轮结束后已独立核验原256K/MTP7服务、原argv、双manifest、空闲与GPU0停止；后续拥有者仍负责每次退出恢复。
+
+另已确认更贴近延迟目标的QoServe/Niyama公开作者分支：[microsoft/sarathi-serve，niyama_asplos2026](https://github.com/microsoft/sarathi-serve/tree/niyama_asplos2026)，对应[正式公开工件](https://zenodo.org/records/18218177)。源码固定72339db5b120614033b317880ad3a05a5e4c9415并落于8876 HDD，已读调度、期限／优先级和分层预测器；其预测系数需要针对本机重新标定，当前尚无QoServe适配效能数据。最终研究判断仍须认真处理这类直接面向SLO的基线。
 
 源码固定为 `weifang231/eb-vllm@5b6a619b732b8eeaea93c8c726dbe13948920599`。作者调度器、校准器和实际安装的现代调度器已逐字节固定到 [源码胶囊](../../results/ebplus-validation/source-capsule-v1.tar.gz)，包含作者许可证。服务器原件、后续环境、构建、校准和原始数据均放 HDD。
 

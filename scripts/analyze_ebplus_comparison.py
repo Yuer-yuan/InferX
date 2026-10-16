@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 
 from inferx.ebplus_calibration import validate_hardware_result,fit_mb_cost,qualify_tool_rows
-from inferx.ebplus_comparison import comparison_cases,comparison_specs,audit_native_runtime,audit_policy,crossover_decision
+from inferx.ebplus_comparison import (comparison_cases,comparison_specs,audit_native_runtime,audit_policy,crossover_decision,
+                                      is_native_case,validate_admission_profile)
 from inferx.ebplus_validation import AUTHOR_SHA256,NATIVE_SHA256,CALIBRATION_SHA256
 from inferx.pd_baselines import engine_command,load_frozen_workloads
 from inferx.sota_results import audit_wave,compare_lanes,verify_prompt_count_contract
@@ -38,6 +39,7 @@ def export_campaign(root,templates):
     if mb['identity']!=plan['identity'] or mb['status']!='complete' or fit_mb_cost(mb['rows'],plan)!=mb['fit']:
         raise ValueError('MB calibration mismatch')
     manifest=read('overlay/manifest.json')
+    runtime_version=manifest.get('runtime_evidence_version',1)
     overlay_name=manifest.get('overlay_directory_name','adapter-v4')
     if not isinstance(overlay_name,str) or Path(overlay_name).name!=overlay_name or overlay_name in {'.','..',''}:
         raise ValueError('invalid overlay source directory')
@@ -52,7 +54,8 @@ def export_campaign(root,templates):
         raise ValueError('comparison configuration identity mismatch')
     for case in cases:
         target=copy.deepcopy(expected[case['id']])
-        if case['id']!='native':target['environment'].update(mb['fit']['env_vars'])
+        validate_admission_profile(case,mb)
+        if not is_native_case(case):target['environment'].update(mb['fit']['env_vars'])
         if target!=case:raise ValueError('comparison configuration differs from frozen calibrated case')
     kind=definition['kind'];phase=definition['phase'];repeat_count=definition['repeats']
     if phase not in {'diagnostic','formal','solo'} or kind!=('isolated-serial-C4' if phase=='solo' else 'mixed') or repeat_count!=(3 if phase=='formal' else 1):
@@ -68,14 +71,14 @@ def export_campaign(root,templates):
         if state['identity']!=identity:raise ValueError('wave identity mismatch')
         folder=Path(identity);wave=folder/group;startup=read(folder/'startup.json');runtime=read(folder/'native-runtime.json')
         model_path=Path(runtime['model']);artifact=model_path.parents[1]
-        audit_native_runtime(runtime,plan,hardware,root=artifact)
+        audit_native_runtime(runtime,plan,hardware,root=artifact,case=case,runtime_evidence_version=runtime_version)
         actual_case=startup['case'];wanted=copy.deepcopy(case);environment=wanted['environment']
         run_dir=artifact/'ebplus-validation/raw'/root.name/identity
         pythonpath=actual_case['environment'].get('PYTHONPATH','').split(':')
         if len(pythonpath)!=2 or pythonpath[0]!=str(artifact/'ebplus-validation/overlays'/overlay_name) or not pythonpath[1].startswith(str(artifact/'ebplus-validation/code-task3-v')):
             raise ValueError('runtime source path mismatch')
         environment.update(PYTHONPATH=':'.join(pythonpath),INFERX_VLLM_RUNTIME=str(run_dir/'native-runtime.json'))
-        if case['id']!='native':
+        if not is_native_case(case):
             environment.update(VLLM_PD_CALIBRATION_FILE=str(artifact/'ebplus-validation/raw/hardware-v4/pd-hardware-parameters.json'),
                 INFERX_EBPLUS_EVIDENCE=str(run_dir/'policy-evidence.json'),VLLM_COLLECT_SCHEDULE_STATS='0')
         if actual_case!=wanted or startup['args']!=engine_command(wanted,artifact,run_dir):
@@ -88,7 +91,7 @@ def export_campaign(root,templates):
         records=rows(wave/'requests.jsonl');result=read(wave/'result.json')
         metrics=audit_wave(specs,records,result['span_s'],kind=kind,backend='vllm031')
         policy=None;before=None;sensitivity=None
-        if case['id']!='native':
+        if not is_native_case(case):
             evidence=read(folder/'policy-evidence.json');policy=audit_policy(evidence,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')),require_exclusive_execution=True)
             if case['id'].startswith('auto-'):
                 before_evidence=read(folder/'policy-before.json');before=audit_policy(before_evidence,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')))

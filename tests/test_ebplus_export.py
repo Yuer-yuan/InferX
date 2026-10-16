@@ -8,7 +8,7 @@ import shutil
 import pytest
 
 from test_sota_results import fixture
-from inferx.ebplus_comparison import comparison_cases,comparison_specs
+from inferx.ebplus_comparison import comparison_cases,comparison_specs,is_native_case
 from inferx.pd_baselines import engine_command
 
 
@@ -18,7 +18,7 @@ def comparison_fixture(root,lane=0):
     hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
     case=comparison_cases(plan)[lane]
     mb=json.loads((repo/'results/ebplus-validation/calibration/mb-grid-v1/mb-grid-result.json').read_text())
-    if lane:case['environment'].update(mb['fit']['env_vars'])
+    if not is_native_case(case):case['environment'].update(mb['fit']['env_vars'])
     def write(path,value):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(value))
     write(root/'plan.json',plan)
     write(root/'comparison-definition.json',dict(phase='diagnostic',kind='mixed',repeats=1,case_ids=[case['id']]))
@@ -40,14 +40,14 @@ def comparison_fixture(root,lane=0):
         identity=f'{case["id"]}-r0-{group}';directory=root/identity;wave=directory/group
         native=copy.deepcopy(case);native['environment'].update(PYTHONPATH='/pinned/ebplus-validation/overlays/adapter-v4:/pinned/ebplus-validation/code-task3-v3',
             INFERX_VLLM_RUNTIME=str(artifact/'ebplus-validation/raw'/root.name/identity/'native-runtime.json'))
-        if lane:
+        if not is_native_case(case):
             native['environment'].update(VLLM_PD_CALIBRATION_FILE='/pinned/ebplus-validation/raw/hardware-v4/pd-hardware-parameters.json',
                 INFERX_EBPLUS_EVIDENCE=str(artifact/'ebplus-validation/raw'/root.name/identity/'policy-evidence.json'),VLLM_COLLECT_SCHEDULE_STATS='0')
             inputs=dict(hardware['parameters'],**{'mb_cost_'+k:v for k,v in mb['fit']['coefficients'].items()},
                 mu_L=24557.,mu_o=64.,N_obs=2.,theta0=.5,alpha_mb=0.,delta=.0001,cooldown_before=0,active_before='mb')
             evidence=dict(mode='auto',active_scheduler='mb',evaluations=1,parameters_initialized=True,mb_cost_profiled=True,
                 execution_counts=dict(mb=100,prefill=0,decode=0),completed=100,max_num_running_reqs=4,num_gpu_blocks=98,last_evaluation_inputs=inputs)
-            if lane==3:
+            if case['id'].startswith('auto-tuned'):
                 # Actual diagnostic inputs yield margin6.69e-6: above the author's1e-6 knob.
                 inputs.update(mu_L=24399.259061176508,mu_o=56.95,N_obs=3.9699999961217456,theta0=.01,delta=.000001)
                 evidence['active_scheduler']='eb'
@@ -137,3 +137,27 @@ def test_export_binds_overlay_directory_to_its_archived_manifest(tmp_path):
     assert len(api.export_campaign(tmp_path,templates)['groups'])==2
     manifest['overlay_directory_name']='../../unbound';(tmp_path/'overlay/manifest.json').write_text(json.dumps(manifest))
     with pytest.raises(ValueError,match='overlay|source'):api.export_campaign(tmp_path,templates)
+
+
+@pytest.mark.parametrize('lane',[4,5])
+def test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration(tmp_path,lane):
+    from scripts import analyze_ebplus_comparison as api
+    templates=comparison_fixture(tmp_path,lane=lane)
+    p=tmp_path/'overlay/manifest.json';d=json.loads(p.read_text());d['runtime_evidence_version']=2
+    p.write_text(json.dumps(d))
+    p=tmp_path/'mb/mb-grid-result.json';d=json.loads(p.read_text())
+    d.update(scheduler_reserve_full_isl=False,native_runtimes={
+        f'mb-b{b}-cap{c}':dict(scheduler_reserve_full_isl=False,chunk=b,
+            long_prefill_token_threshold=c,num_gpu_blocks=98,concurrency=4)
+        for b in [1024,2048,4096] for c in [0,2048]})
+    p.write_text(json.dumps(d))
+    case=comparison_cases(json.loads((tmp_path/'plan.json').read_text()))[lane]['id']
+    for group in ['cold-low','resume-high']:
+        p=tmp_path/(case+'-r0-'+group)/'native-runtime.json';d=json.loads(p.read_text())
+        d['scheduler_reserve_full_isl']=False;p.write_text(json.dumps(d))
+    out=api.export_campaign(tmp_path,templates)
+    assert all(r['runtime']['scheduler_reserve_full_isl'] is False for r in out['groups'])
+    assert (out['groups'][0]['policy'] is None)==(lane==4)
+    p=tmp_path/(case+'-r0-cold-low')/'native-runtime.json';d=json.loads(p.read_text())
+    d['scheduler_reserve_full_isl']=True;p.write_text(json.dumps(d))
+    with pytest.raises(ValueError,match='runtime'):api.export_campaign(tmp_path,templates)

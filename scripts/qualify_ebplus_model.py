@@ -10,6 +10,7 @@ from inferx.concurrency import run_load
 from inferx.ebplus_calibration import (validate_hardware_result,fit_mb_cost,
                                       qualify_tool_rows,validate_policy_evidence)
 from inferx.ebplus_validation import AUTHOR_SHA256,NATIVE_SHA256,CALIBRATION_SHA256
+from inferx.ebplus_comparison import audit_native_runtime,validate_admission_profile
 from inferx.pd_baselines import load_frozen_workloads
 from inferx.sota_results import verify_prompt_count_contract
 from scripts.run_pd_baselines import OwnedEngine,wait_idle,get,ENDPOINT
@@ -36,6 +37,8 @@ def verify_inputs(plan,hardware_run,mb_run,overlay):
     if mb['identity']!=plan['identity'] or mb['status']!='complete':raise ValueError('MB calibration identity/incomplete')
     if fit_mb_cost(mb['rows'],plan)!=mb['fit']:raise ValueError('MB fit differs from raw independent grid')
     manifest=json.loads((overlay/'manifest.json').read_text())
+    if manifest.get('runtime_evidence_version',1) not in {1,2}:
+        raise ValueError('unsupported native runtime evidence version')
     if manifest.get('overlay_directory_name',overlay.name)!=overlay.name:
         raise ValueError('overlay directory differs from prepared source manifest')
     if (manifest['author_sha256']!=AUTHOR_SHA256 or manifest['native_sha256']!=NATIVE_SHA256
@@ -48,6 +51,8 @@ def verify_inputs(plan,hardware_run,mb_run,overlay):
 
 def run_model_gates(plan,root,out,progress,hardware_run,mb_run,overlay):
     hardware,mb=verify_inputs(plan,hardware_run,mb_run,overlay)
+    runtime_version=json.loads((overlay/'manifest.json').read_text()).get('runtime_evidence_version',1)
+    validate_admission_profile(plan['base_case'],mb)
     templates,_=load_frozen_workloads(root/'concurrency-roofline')
     contract=verify_prompt_count_contract(root/plan['base_case']['model'],backend='vllm031')
     code=Path(__file__).resolve().parents[1]
@@ -84,13 +89,7 @@ def run_model_gates(plan,root,out,progress,hardware_run,mb_run,overlay):
                 runtime=json.loads((directory/'native-runtime.json').read_text())
                 info=configuration_snapshot(runtime,get)
                 (directory/'configuration-evidence.json').write_text(json.dumps(info,indent=2)+'\n')
-                expected=dict(context_window=131328,concurrency=4,max_active=4,chunk=case['chunk'],
-                    long_prefill_token_threshold=case['long_prefill_token_threshold'],async_scheduling=False,
-                    enforce_eager=True,cudagraph_mode='NONE',speculative=False,quantization='compressed-tensors',
-                    kv_dtype=case['kv_dtype'],mamba_cache_mode=case['mamba_cache_mode'],
-                    num_gpu_blocks=case['num_gpu_blocks_override'],block_size=hardware['native_runtime']['block_size'])
-                if any(runtime.get(k)!=v for k,v in expected.items()):
-                    raise ValueError('actual engine configuration differs from qualification')
+                audit_native_runtime(runtime,plan,hardware,root=root,case=case,runtime_evidence_version=runtime_version)
                 item['native_runtime']=runtime
                 previous.quality_gate(server,templates)
                 if json.loads((directory/'quality-result.json').read_text())['status']!='passed':

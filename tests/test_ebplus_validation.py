@@ -143,6 +143,7 @@ class AuthorPolicyTests(unittest.TestCase):
         manifest = self.api().prepare_adapter(
             self.root / 'author_scheduler.py', self.root / 'author_calibration.py',
             self.root / 'current_scheduler.py', destination)
+        self.assertEqual(manifest.get('runtime_evidence_version'),2)
         for name in ('inferx_ebplus_policy.py', 'inferx_ebplus_scheduler.py'):
             raw = (destination / name).read_bytes()
             compile(raw, name, 'exec')

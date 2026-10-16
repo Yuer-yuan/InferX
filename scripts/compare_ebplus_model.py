@@ -8,7 +8,8 @@ import time
 
 from inferx.concurrency import run_load
 from inferx.ebplus_calibration import qualify_tool_rows
-from inferx.ebplus_comparison import comparison_cases,comparison_specs,audit_policy,audit_native_runtime
+from inferx.ebplus_comparison import (comparison_cases,comparison_specs,audit_policy,audit_native_runtime,
+                                      is_native_case,validate_admission_profile)
 from inferx.pd_baselines import load_frozen_workloads
 from inferx.sota_results import audit_wave,verify_prompt_count_contract
 from scripts.qualify_ebplus_model import verify_inputs,configuration_snapshot
@@ -18,11 +19,12 @@ from scripts import run_concurrency_campaign as previous
 
 def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition):
     hardware,mb=verify_inputs(plan,hardware_run,mb_run,overlay)
+    runtime_version=json.loads((overlay/'manifest.json').read_text()).get('runtime_evidence_version',1)
     phase=definition['phase'];kind=definition['kind'];repeats=definition['repeats'];selected=definition['case_ids']
     if (phase not in {'diagnostic','formal','solo'} or
         kind!=('isolated-serial-C4' if phase=='solo' else 'mixed') or
         repeats!=(3 if phase=='formal' else 1) or len(set(selected))!=len(selected) or
-        not selected or len(selected)>3 or not set(selected)<={'native','auto-default','forced-eb','auto-tuned'}):
+        not selected or len(selected)>3 or not set(selected)<={c['id'] for c in comparison_cases(plan)}):
         raise ValueError('unfrozen comparison definition')
     templates,_=load_frozen_workloads(root/'concurrency-roofline')
     verify_prompt_count_contract(root/plan['base_case']['model'],backend='vllm031')
@@ -30,7 +32,8 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
     cases=[c for c in comparison_cases(plan) if c['id'] in selected]
     if hardware['native_runtime']['num_gpu_blocks']!=98:raise ValueError('qualified pool changed')
     for c in cases:
-        if c['id']!='native':c['environment'].update(mb['fit']['env_vars'])
+        validate_admission_profile(c,mb)
+        if not is_native_case(c):c['environment'].update(mb['fit']['env_vars'])
     def write(path,value):path.write_text(json.dumps(value,indent=2)+'\n')
     write(out/'comparison-definition.json',definition);write(out/'config.json',cases)
     for label,source in [('hardware',hardware_run),('mb',mb_run),('overlay',overlay)]:
@@ -57,7 +60,7 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
                 case=copy.deepcopy(static)
                 case['environment'].update(PYTHONPATH=str(overlay)+':'+str(code),
                     INFERX_VLLM_RUNTIME=str(directory/'native-runtime.json'))
-                if case['id']!='native':
+                if not is_native_case(case):
                     case['environment'].update(VLLM_PD_CALIBRATION_FILE=str(hardware_run/'pd-hardware-parameters.json'),
                         INFERX_EBPLUS_EVIDENCE=str(directory/'policy-evidence.json'),
                         VLLM_COLLECT_SCHEDULE_STATS='0')
@@ -65,7 +68,7 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
                 progress(entry)
                 with OwnedEngine(case,root,directory) as server:
                     runtime=json.loads((directory/'native-runtime.json').read_text())
-                    audit_native_runtime(runtime,plan,hardware,root=root)
+                    audit_native_runtime(runtime,plan,hardware,root=root,case=case,runtime_evidence_version=runtime_version)
                     write(directory/'configuration-evidence.json',configuration_snapshot(runtime,get))
                     previous.quality_gate(server,templates)
                     if json.loads((directory/'quality-result.json').read_text())['status']!='passed':
@@ -91,7 +94,7 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
                     result.update(started_unix_ms=started,ended_unix_ms=time.time()*1000,
                                   metrics_before=metrics_before,metrics_after=get('/metrics'))
                     write(wave/'result.json',result)
-                if case['id']!='native':
+                if not is_native_case(case):
                     state=json.loads(policy.read_text())
                     decision=audit_policy(state,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')),require_exclusive_execution=True)
                     write(directory/'policy-audit.json',decision)

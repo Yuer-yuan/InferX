@@ -5,6 +5,27 @@ import math
 from inferx.ebplus_calibration import validate_plan
 
 
+def is_native_case(case):
+    return case['scheduler_class']=='inferx_ebplus_scheduler.ObservedNativeScheduler'
+
+
+def validate_admission_profile(case,mb):
+    """Never feed a policy an MB envelope calibrated under another admission rule."""
+    desired=case.get('scheduler_reserve_full_isl',True)
+    if type(desired) is not bool or mb.get('scheduler_reserve_full_isl',True) is not desired:
+        raise ValueError('MB admission profile differs from policy case')
+    if desired is False:
+        expected={f'mb-b{b}-cap{c}':(b,c) for b in [1024,2048,4096] for c in [0,2048]}
+        actual=mb.get('native_runtimes',{})
+        if set(actual)!=set(expected):raise ValueError('MB admission runtime coverage incomplete')
+        for name,(budget,cap) in expected.items():
+            runtime=actual[name]
+            if (runtime.get('scheduler_reserve_full_isl') is not False or
+                any(runtime.get(k)!=v for k,v in dict(chunk=budget,long_prefill_token_threshold=cap,
+                                                     num_gpu_blocks=98,concurrency=4).items())):
+                raise ValueError('MB admission runtime mismatch')
+
+
 def comparison_cases(plan):
     validate_plan(plan)
     cases=[]
@@ -16,6 +37,10 @@ def comparison_cases(plan):
         if name!='native':case['environment'].update(VLLM_PD_SCHEDULER_MODE='auto',VLLM_PD_K_MODE='ifr')
         if name=='forced-eb':case['environment']['VLLM_PD_SCHEDULER_MODE']='eb'
         if name=='auto-tuned':case['environment']['VLLM_PD_MODE_SWITCH_DELTA']='0.000001'
+        cases.append(case)
+    for name,base in [('native-chunk-admit','native'),('auto-tuned-chunk-admit','auto-tuned')]:
+        case=copy.deepcopy(next(c for c in cases if c['id']==base))
+        case.update(id=name,scheduler_reserve_full_isl=False)
         cases.append(case)
     return cases
 
@@ -74,11 +99,15 @@ def audit_policy(state,hardware,mb,*,delta,require_exclusive_execution=False):
     return decision
 
 
-def audit_native_runtime(runtime,plan,hardware,*,root):
-    native=hardware['native_runtime'];case=plan['base_case']
+def audit_native_runtime(runtime,plan,hardware,*,root,case=None,runtime_evidence_version=1):
+    native=hardware['native_runtime'];case=case if case is not None else plan['base_case']
     expected=dict(model=str(root/case['model']),context_window=131328,concurrency=4,max_active=4,
         chunk=case['chunk'],long_prefill_token_threshold=case['long_prefill_token_threshold'],
         async_scheduling=False,enforce_eager=True,cudagraph_mode='NONE',speculative=False,
         quantization='compressed-tensors',kv_dtype=case['kv_dtype'],mamba_cache_mode=case['mamba_cache_mode'],
         block_size=native['block_size'],num_gpu_blocks=native['num_gpu_blocks'],kv_groups=native['kv_groups'])
+    if runtime_evidence_version==2:
+        expected['scheduler_reserve_full_isl']=case.get('scheduler_reserve_full_isl',True)
+    elif runtime_evidence_version!=1 or 'scheduler_reserve_full_isl' in case:
+        raise ValueError('actual native runtime admission evidence schema missing or unsupported')
     if runtime!=expected:raise ValueError('actual native runtime differs from calibrated model/precision/capacity')

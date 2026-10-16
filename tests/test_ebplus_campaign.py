@@ -111,6 +111,19 @@ class CalibrationContracts(unittest.TestCase):
         self.assertEqual(command[command.index('--num-gpu-blocks-override')+1],'98')
         self.assertEqual(command[command.index('--shutdown-timeout')+1],'30')
 
+    def test_disabled_admission_calibration_writes_actual_runtime_before_warming(self):
+        from scripts.calibrate_ebplus_mb import mb_grid_case
+        from inferx.pd_baselines import engine_command
+        plan=self.plan();plan['base_case'].update(scheduler_reserve_full_isl=False,num_gpu_blocks_override=98,
+            scheduler_class='inferx_ebplus_scheduler.ObservedNativeScheduler',shutdown_timeout=30)
+        case=mb_grid_case(plan,Path('/hdd/run'),1024,0)
+        self.assertEqual(case['environment']['INFERX_VLLM_RUNTIME'],
+                         '/hdd/run/mb-b1024-cap0/native-runtime.json')
+        self.assertIn('--no-scheduler-reserve-full-isl',engine_command(case,Path('/hdd'),Path('/hdd/run')))
+        self.assertEqual(case['num_gpu_blocks_override'],98)
+        bad=copy.deepcopy(plan);bad['base_case'].pop('scheduler_class')
+        with self.assertRaisesRegex(ValueError,'observer'):mb_grid_case(bad,Path('/hdd/run'),1024,0)
+
     def test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points(self):
         plan=self.plan();rows=[]
         for scene in plan['mb_grid']['scenarios']:

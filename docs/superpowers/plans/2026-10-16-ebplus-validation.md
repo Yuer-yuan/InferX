@@ -17,7 +17,7 @@
 - All downloads/source/builds/env/cache/raw on HDD /home/guokc/mypro/gnn-mount-sda1/InferX; source env.sh; reuse27B, hf-mirror for any required model downloads. No global driver/module/permission changes.
 - Pinned EB+5b6a619b732b8eeaea93c8c726dbe13948920599. Preserve crossover, CFR/IFR threshold, memory-safe N and phase transitions; author defaults/update behavior and deviations explicit.
 - Full128K/MTP0/eager/C4 hard limit; model/quantization/KV/SSM/runtime capacity matched within engine. Existing frozen24Kshort/.5RPS48s/longat16s; strict complete tools and four24K warmups per fresh group.
-- One diagnostic per at most three justified settings; freeze before three independent cold/resume mixed repetitions and lane-specific serial-client C4 solos. No failed/truncated/refused long efficacy samples.
+- Initial diagnostic cap3 extended by ledgered Ruling8 to include author-guided hysteresis1e-6, then Ruling10 adds only native/auto-tuned official disabled-full-input-fit variants (six unique settings total). Reprofile full54-point MB envelope for the changed admission flag before4freshdiagnostics; no formal outcome fitting. Freeze after qualified joint diagnostics before three independent cold/resume mixed repetitions and lane-specific serial-client C4 solos. No failed/truncated/refused long efficacy samples.
 - Exact256K/MTP7 original service and both manifests restored on every exit. Keep failures, hashes, exclusions and raw/profile provenance. No merge/push or unrelated cleanup.
 
 ## Review Focus

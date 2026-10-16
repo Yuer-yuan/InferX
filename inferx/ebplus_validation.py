@@ -53,6 +53,7 @@ def record_native_runtime(scheduler):
               concurrency=scheduler.max_num_running_reqs,max_active=scheduler.max_num_active_reqs,
               chunk=scheduler.max_num_scheduled_tokens,
               long_prefill_token_threshold=scheduler.scheduler_config.long_prefill_token_threshold,
+              scheduler_reserve_full_isl=scheduler.scheduler_reserve_full_isl,
               async_scheduling=scheduler.scheduler_config.async_scheduling,
               enforce_eager=cfg.model_config.enforce_eager,
               cudagraph_mode=cfg.compilation_config.cudagraph_mode.name,
@@ -441,6 +442,7 @@ def prepare_adapter(scheduler, calibration, native_scheduler, destination):
     (destination / 'LICENSE').write_bytes(license_bytes)
     manifest = {'author_commit': AUTHOR_COMMIT,
                 'overlay_directory_name': destination.name,
+                'runtime_evidence_version': 2,
                 'author_sha256': AUTHOR_SHA256,
                 'calibration_sha256': CALIBRATION_SHA256,
                 'native_sha256': NATIVE_SHA256,

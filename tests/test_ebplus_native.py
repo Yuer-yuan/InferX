@@ -49,12 +49,13 @@ class NativeHybridContractTests(unittest.TestCase):
         sys.path.remove(str(cls.overlay))
         cls.tmp.cleanup()
 
-    def scheduler(self, mode='eb', cls=None, blocks=256):
+    def scheduler(self, mode='eb', cls=None, blocks=256, reserve_full=None):
         from vllm.v1.kv_cache_interface import (
             FullAttentionSpec, MambaSpec, KVCacheConfig, KVCacheGroupSpec)
         from vllm.v1.structured_output import StructuredOutputManager
         import copy
         config = copy.deepcopy(self.config)
+        if reserve_full is not None:config.scheduler_config.scheduler_reserve_full_isl=reserve_full
         config.cache_config.num_gpu_blocks = blocks
         attn = FullAttentionSpec(block_size=256, num_kv_heads=1, head_size=16,
                                  dtype=self.torch.bfloat16)
@@ -88,6 +89,16 @@ class NativeHybridContractTests(unittest.TestCase):
         self.assertEqual(state['num_gpu_blocks'],256)
         self.assertEqual({g['type'] for g in state['kv_groups']},{'MambaSpec','FullAttentionSpec'})
         self.assertFalse(hasattr(scheduler,'pd_phase'))
+
+    def test_native_observer_records_actual_disabled_full_input_fit(self):
+        import json
+        module=importlib.import_module('inferx_ebplus_scheduler')
+        path=Path(self.tmp.name)/'native-admission-runtime.json'
+        for cls in [module.ObservedNativeScheduler,self.scheduler_cls]:
+            with patch.dict(os.environ,INFERX_VLLM_RUNTIME=str(path)):
+                scheduler=self.scheduler(cls=cls,reserve_full=False)
+            self.assertFalse(scheduler.scheduler_reserve_full_isl)
+            self.assertIs(json.loads(path.read_text()).get('scheduler_reserve_full_isl'),False)
 
     def test_calibration_request_uses_current_interface_and_no_cross_request_hits(self):
         from scripts.calibrate_ebplus_hardware import calibration_request

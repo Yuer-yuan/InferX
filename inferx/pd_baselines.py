@@ -279,6 +279,11 @@ def engine_command(case: dict, root: Path, run_dir: Path, *, qualify_morphx=Fals
         args += ['--enforce-eager']
     if case.get('async_scheduling') is False:
         args += ['--no-async-scheduling']
+    if 'scheduler_reserve_full_isl' in case:
+        if type(case['scheduler_reserve_full_isl']) is not bool:
+            raise ValueError('scheduler_reserve_full_isl must be a boolean')
+        args += ['--scheduler-reserve-full-isl' if case['scheduler_reserve_full_isl']
+                 else '--no-scheduler-reserve-full-isl']
     if case.get('scheduler_class'):
         args += ['--scheduler-cls',case['scheduler_class']]
     if 'shutdown_timeout' in case:
