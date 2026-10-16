@@ -10,7 +10,9 @@
 - 源码历史：检查 1,793 个可达 blob 的常见密钥/私钥/明文 SSH 密码/带凭据 URL 模式，无候选命中；这是模式扫描，不保证覆盖所有秘密类型。新增材料另行检查。
 - 空白检查：两份原始规则文件保留其 CRLF、尾空格和末尾空行，未经规范化；对其余新增/修改文件执行 `git diff --cached --check`。原始输入的真实性由 SHA256 检查保证。
 - 独立合入前审阅：无 Critical / Important；已按建议精确说明“API 公布数值上下文上限”才触发精度预检查，未知上限由实际请求暴露超限。
-- 开发内容集成 main 与 origin 同步：待完成。
-- 固定版本源码快照和 SHA256：待导出。
+- 开发内容已快进集成到 `main`，首次集成提交 `be5e2535fbe0523577c32f6857362ff252a2e13a`；全部 4 个本地分支的提交均被 main 包含，研究分支保留。已正常推送 `origin/main`（首次同步从 `e1764f9` 到 `be5e253`），未强推；本检查记录的提交也同步至同一分支。
+- 合入 main 后复测：同一 CPU 测试命令，**366 passed, 44 skipped，42.01 秒**。
+- 固定版本源码快照已导出，Git bundle 验证通过，归档校验和通过。文件在 `artifacts/InferX-source.tar.gz`、`artifacts/InferX-main.bundle`、`artifacts/SHA256SUMS`；最终整理提交后重新导出，实际对应 SHA 以 `artifacts/release-manifest.json` 为准。
+- 首次同步前另检查 2,440 个跟踪路径，含 41 个解压检查的归档；未命中常见凭据模式，记录见 [提交文件检查](evidence/pre-push-source-checks.json)。
 
 UCloud 当前仅完成只读盘点，未安装、下载、启动或评测；正式提交的剩余条件维护在 TODO.md。

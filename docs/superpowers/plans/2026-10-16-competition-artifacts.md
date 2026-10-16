@@ -48,9 +48,9 @@
 **Files:** README.md、submission/VALIDATION.md；保留既有 PD 补测原文与数据。
 
 - [x] 检查相对链接、归档哈希、runner dry-run、HTML 页数；执行全量 CPU 测试。
-- [ ] 审查将要同步的文件，不输出秘密值；提交材料及既有补测记录。
-- [ ] 将所有研究分支的已提交内容快进到 main，验证合入结果并正常推送 origin/main。
-- [ ] 导出固定提交的完整源码 tar.gz、SHA256 和 Git bundle；记录正式提交前仍需完成的 TODO。
+- [x] 审查将要同步的文件，不输出秘密值；提交材料及既有补测记录。
+- [x] 将所有研究分支的已提交内容快进到 main，验证合入结果并正常推送 origin/main。
+- [x] 导出固定提交的完整源码 tar.gz、SHA256 和 Git bundle；记录正式提交前仍需完成的 TODO。
 
 ## 执行约定
 
