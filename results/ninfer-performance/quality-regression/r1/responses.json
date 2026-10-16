@@ -1,0 +1,56 @@
+[
+  {
+    "id": "lookup_1000_records",
+    "request_sha256": "dc3b3d23384cfc9e836f4551fc9b6ca151d43450c2bcd2007811e308ff837b94",
+    "started_at": "2026-10-16T10:51:28.411907+00:00",
+    "http_status": 200,
+    "usage": {
+      "completion_tokens": 71,
+      "prompt_tokens": 46867,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46938
+    },
+    "finish_reason": "stop",
+    "content": "{\n  \"early\": \"dc1618dcb95446f1\",\n  \"middle\": \"133f729b285d6545\",\n  \"late\": \"b209c12d067115c5\"\n}",
+    "transport_complete": true,
+    "wall_s": 22.430645952001214
+  },
+  {
+    "id": "reason_schedule",
+    "request_sha256": "00a789d4da87a3a7c4e0da85e56e37837eb602a432423320d0610e43056efadd",
+    "started_at": "2026-10-16T10:51:50.842983+00:00",
+    "http_status": 200,
+    "usage": {
+      "completion_tokens": 384,
+      "prompt_tokens": 133,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 517
+    },
+    "finish_reason": "length",
+    "content": "To find the earliest finish time, we must analyze the dependencies and resource constraints (CPU and GPU) to construct a valid schedule.\n\n### 1. Dependency Graph and Resource Requirements\n\nLet's list the tasks with their resources, durations, and dependencies:\n\n*   **A**: CPU, 3 min, No dependencies.\n*   **B**: GPU, 5 min, Depends on A.\n*   **C**: CPU, 4 min, Depends on A.\n*   **D**: GPU, 2 min, Depends on C.\n*   **E**: CPU, 2 min, Depends on B and D.\n\n**Critical Path Analysis (Ignoring Resource Conflicts):**\n*   Path 1: A (3) -> B (5) -> E (2) = 10 min\n*   Path 2: A (3) -> C (4) -> D (2) -> E (2) = 11 min\n\nThe longest path in terms of pure dependency is **11 minutes**. This serves as a theoretical lower bound if resources were unlimited or perfectly aligned. However, since we have only one CPU and one GPU, resource contention may delay tasks.\n\n### 2. Step-by-Step Scheduling\n\nWe will simulate the timeline minute by minute, respecting that a task can only start when:\n1.  All its dependencies are finished.\n2.  Its required resource (CPU or GPU) is free.\n\n**Time 0:**\n*   **CPU**: Free. **GPU**: Free.\n*   **Task A** is ready (no deps). It requires CPU.\n*   **Action**: Start **A** on CPU.\n*   *Status*: A running (CPU) until t=3.\n\n**Time 3:**\n*   **Task A** finishes.\n",
+    "transport_complete": true,
+    "wall_s": 2.9103063250076957
+  },
+  {
+    "id": "code_merge",
+    "request_sha256": "ebebd08439946d207d5bbae43bbda6f572dc76659e8282ac17936022e19e67f5",
+    "started_at": "2026-10-16T10:51:53.753921+00:00",
+    "http_status": 200,
+    "usage": {
+      "completion_tokens": 466,
+      "prompt_tokens": 86,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 552
+    },
+    "finish_reason": "stop",
+    "content": "```python\nfrom typing import List, Tuple\n\n\ndef merge_intervals(intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:\n    \"\"\"\n    Merge overlapping closed integer intervals.\n\n    Algorithm:\n    1. If the input list is empty, return an empty list.\n    2. Create a new list of normalized intervals where each interval has its\n       endpoints sorted (min, max) to handle reversed endpoints.\n    3. Sort the normalized intervals by their start endpoint.\n    4. Iterate through the sorted intervals, maintaining a result list:\n       - If the result list is empty, append the first interval.\n       - Otherwise, compare the current interval's start with the last interval's\n         end in the result list.\n       - If they overlap (current_start <= last_end), merge by updating the last\n         interval's end to be the maximum of the two ends.\n       - If they do not overlap, append the current interval to the result.\n    5. Return the merged list of intervals.\n\n    The original input list is not mutated.\n\n    Args:\n        intervals: A list of tuples representing closed integer intervals.\n                   Each tuple contains two integers (start, end).\n\n    Returns:\n        A list of merged non-overlapping intervals, sorted by start endpoint.\n    \"\"\"\n    if not intervals:\n        return []\n\n    # Normalize intervals to handle reversed endpoints\n    normalized = [(min(start, end), max(start, end)) for start, end in intervals]\n\n    # Sort by start endpoint\n    normalized.sort(key=lambda x: x[0])\n\n    merged: List[Tuple[int, int]] = []\n    for start, end in normalized:\n        if not merged:\n            merged.append((start, end))\n        else:\n            last_start, last_end = merged[-1]\n            if start <= last_end:\n                # Overlapping: merge by extending the end\n                merged[-1] = (last_start, max(last_end, end))\n            else:\n                # Non-overlapping: add new interval\n                merged.append((start, end))\n\n    return merged\n```",
+    "transport_complete": true,
+    "wall_s": 3.0960577779915184
+  }
+]

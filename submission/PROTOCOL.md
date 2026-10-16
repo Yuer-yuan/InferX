@@ -24,3 +24,5 @@ IFBench 不继承性能阶段的温度、ignore_eos、512 输出长度、并发�
 原生输出必须保留：report.md、summary.json、configuration.json、environment.json、model_info.json；performance/ 下的数据、元数据和 c1/c2/c4/c8 全部原生导出；accuracy/ 下传入/展开配置、native 预测、review 和 report。GPU 采样、服务日志与环境锁另存为配套证据。
 
 退出码：0=完整或 dry-run 成功，1=评测异常，2=参数/环境/启动错误，130=中断。必须同时核对实际请求、生成长度、错误和 SLO；进程退出 0 本身不是比赛达标证明。
+
+本轮实际执行：2026-10-16，原版ZIP四档各100+8预热，显式使用权重内嵌tokenizer并逐条核验8192/512，seed42，同机回环。raw completions关闭全部前缀复用以实现冷请求隔离，chat保留上游缓存。IFBench前100/batch2/max_tokens32768完整；展开配置与服务实际采样另存。GPU目标1Hz，有两处6.682/8.402秒间隔，覆盖状态partial并保留诊断；不因请求完整而把采样覆盖也标为完整。主办方尚未确认的规则差异继续列入TODO。

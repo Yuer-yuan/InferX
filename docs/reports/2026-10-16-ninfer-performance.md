@@ -1,12 +1,45 @@
 # 单卡 NInfer/MTP 性能与瓶颈验证
 
-状态：两机环境与备用服务已就绪，8种配置、19个档位的小样本筛选完成；第一台正在固定配置下运行原版100请求/档和IFBench100。本文当前数字只属于PILOT，不能替代尚未完成的正式结果。
+状态：两机相同基线已就绪；8种配置、19档PILOT筛选，以及第一台原版四档各100请求和IFBench100均完成。第二台只做功能核验。最高正式吞吐103.31 tok/s，满足两项延迟SLO的最高吞吐92.09 tok/s；IFBench prompt strict/loose均55%。GPU采样有两处缺口，见下文。
 
 ## 范围与可迁移性
 
 公共工具、配置模板和结果总目录以功能命名，参见[复现说明](../../submission/REPRODUCE.md)。ucloud1/2仅为本轮机器名称。两台都为单卡49,140MiB RTX4090、450W功率上限、同驱动，CPU分别为EPYC7A23和7B13；第一台测量，第二台做功能与重启验证。后续机制必须相对各自同机基线比较，不把两个CPU平台的差异算作优化。
 
 固定NInfer v2权重revision3526913、引擎5c60b7c和本仓completions补丁，完整SHA见[模型清单](../../submission/model-manifest.json)。CUDA13.2.51/GCC13.4原生构建，第二台使用同一构建并核验SHA。严格输入使用权重内嵌tokenizer，真实8192/512、ignore_eos、usage与缓存隔离已验证；chat保留上游缓存。源代码修改只适配API，不改GPU内核或MTP接受规则。
+
+## 原版正式结果
+
+2026-10-16 18:02:45–18:48:47（Asia/Shanghai），同机回环、一张GPU，固定MTP4/活动8/分块2048、64K上下文、int8 KV、greedy/no-thinking和零presence/frequency penalty。源代码快照8e974a9，后续仅追加文档、配置模板、离线分析与证据；引擎、API补丁和二进制身份未变。
+
+原版runner以`main(argv)`在operator进程内调用，AIPerf/EvalScope子进程、配置生成和统计逻辑保持原样；[实际调用与等价CLI](../../results/ninfer-performance/official-r1/runs/official-r1-service/judge-command.json)已记录。四档各8预热+100正式，seed42，模型内嵌tokenizer，109条确定输入、各档不同salt。400条正式、32条预热全部8192/512，零请求错误、零prefix命中，另有1条原版接口探针；不将预热算进成绩。单轮结果，不提供跨轮置信区间。
+
+| 并发 | 成功 | ISL/OSL | TTFT P95(s) | TPOT P95(ms) | E2E P95(s) | 输出tok/s | 两项延迟SLO |
+|---:|---|---|---:|---:|---:|---:|---|
+| 1 | 100/100 | 8192/512 | 3.45 | 9.01 | 8.05 | 73.59 | 是 |
+| 2 | 100/100 | 8192/512 | 3.56 | 22.51 | 15.05 | 92.09 | 是 |
+| 4 | 100/100 | 8192/512 | 7.00 | 45.93 | 27.42 | 94.61 | 否 |
+| 8 | 100/100 | 8192/512 | 13.86 | 90.66 | 53.28 | 103.31 | 否 |
+
+正式最高吞吐为C8的103.31 tok/s；满足TTFT P95≤10s和TPOT P95≤40ms的最高吞吐为C2的92.09 tok/s。C2→C4吞吐仅增加2.7%，TPOT已超标；C8比C2吞吐增加12.2%，TPOT P95增至4.03倍。这里“满足SLO”只指两项延迟，不代表质量合格或提交验收完成。[原版报告](../../results/ninfer-performance/official-r1/runs/official-r1/report.md)、[原始目录](../../results/ninfer-performance/official-r1/)、[独立重算](../../results/ninfer-performance/official-r1/analysis.json)均保留。
+
+IFBench为原版前100、batch2，只显式覆盖max_tokens32768；100个预测、review、prompt-level有效评分完整，指令数111。四项原生分数分别为prompt strict **55.00%**、instruction strict **58.56%**、prompt loose **55.00%**、instruction loose **59.46%**。100条均stop_token，输出4–2362 tokens，共40829；没有触及32768上限。展开generation_config的temperature/top_p/seed均为null，保留EvalScope默认retries5等设置；服务实际为greedy、temperature0、top_p约0.8、seed42、presence/frequency penalty0。不能把性能阶段的ignore_eos/512输出配置写成精度配置。
+
+质量是当前另一项限制。三个可直接核验的原生失败例：index16要求第二和倒数第二个词为despite，却把它放在首尾；index20要求恰好三个数字，答案只有一个；index60要求复述并改变首词，实际首词未变。详细prompt、输出、评分与行号见[失败样例](../../results/ninfer-performance/official-r1/quality-failures.json)。它们不是HTTP/超时失败；尚无同条件MTP0或更高精度对照，不能归因于MTP或量化。评分参考表的80%/76%两列口径仍待主办方确认。
+
+## 正式负载下的等待与资源
+
+正式C1/C2/C4/C8的`total-ttft-decode`逐请求中位数分别约0.0012/3.456/10.342/20.630s，持续100请求负载同样有并发等待。MTP加权draft接受率分别约67.95%/69.23%/68.45%/68.39%，因此本轮并发退化不能单独归结为接受率下降。C8所有请求自己的prefill计时之和约占测量时长69.2%；这是串行worker中host计时、包含同步的prefill调度单元耗时，不是kernel-only GPU占用率。下面PILOT的源码与短批次分析提供更细的归因，不能把短批次求和直接套用到连续补充请求。
+
+GPU采样目标1Hz，共2747点，约为目标点数99.46%。严格覆盖校验发现C1内10:15:04–10:15:12 UTC间隔8.402s、C8内10:41:31–10:41:38间隔6.682s；全程及C1/C8标为partial，C2/C4覆盖通过。原始记录、首次拒绝诊断和缺口均保留，未放宽5s阈值以通过。以下仅是已记录点的统计，不当作完整时间平均或连续峰值。
+
+正式profiling时间窗内，C1/C2/C4/C8分别有688/556/541/490个采样点，功率样本均值约444.9/447.2/429.4/433.9W；所有已记录点中的显存最大值24836MiB（约24.25GiB），温度最大85°C。全程1957/2747点power-cap标志Active，软/硬thermal标志均Not Active；保持450W设定，不根据温度峰值宣称热降频，也不据GPU利用率宣称带宽roofline。48GB卡上的此配置不能直接作为普通24GB卡的部署预算。结束时服务进程RSS快照约1.26GiB（测量机）/1.24GiB（备用机），各48线程；这是单点进程资源记录，不当作每阶段RAM峰值，见交接快照。
+
+## 补充功能回归
+
+在正式快照冻结之后单独执行，原始请求/响应与评定见[功能结果](../../results/ninfer-performance/quality-regression/)。一个1000条registry样例实际输入46867 tokens，首/中/尾三个secret精确匹配；一个merge_intervals样例通过已有空输入、反序、重叠、重复、不修改输入等seccomp隔离测试。它们是有限功能案例，不能代替IFBench或一般长文本/代码准确率。
+
+同一调度逻辑题在384-token预算下截断；只增加预算到2048的独立补测仍以length结束。补测中给出了12分钟可行时间表，但最优性解释未完整结束，故不计作完整质量通过。原失败与补测同时保留，不继续加预算挑选通过结果。这提示实际应用还需约束解释长度并评估输出预算，不能只看生成tok/s。
 
 ## 首轮消融
 
@@ -77,9 +110,8 @@
 
 启动包装脚本也发生过一次引号语法错误，未进入模型压测，原始失败日志保留。模型镜像429、NLTK代理下载限制、编译缺少zlib.pc均为部署问题，已经分别通过完整SHA核验的节点间复制、核验上游资源归档、隔离安装开发依赖解决；不把这些算作推理瓶颈。
 
-## 尚待完成
+## 当前边界
 
-- 在第一台以原版runner运行C1/C2/C4/C8各100正式+8预热，以及IFBench前100/batch2/max_tokens32768；保留原生逐请求、质量评分及独立1秒GPU采样。
-- 报告正式结果与真实质量案例，更新提交TODO；第二台维持备用，后续优化先与其自身基线比较。
+本轮只给出已测配置中的吞吐与延迟边界，不声称全局最优、跨轮稳定胜出或已经消除并发干扰。两台保持同一配置可用，后续改动分别与各自同机基线比较。主办方口径、存储持久性、完整干净重建和展示/录屏仍按提交TODO验收。
 
 本次工程工作没有自动恢复暂停的MorphX/EB+/QoServe对照，也不等于已经提出或验证新的调度机制。

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "selection_status": "Pinned NInfer v2 candidate deployed on both benchmark nodes; performance selection in progress",
+  "selection_status": "Frozen baseline measured: MTP4/slots8/prefill2048/context65536/int8KV, full original400performance+100IFBench on one node; other node readiness only",
   "models": {
     "ninfer_candidate": {
       "repo": "neroued/Qwen3.8-27B-NInfer",
@@ -96,5 +96,13 @@
       }
     ]
   },
-  "warning": "These are pinned historical candidates, not a claim of official benchmark completion. Reuse the exact NInfer v2 artifact; latest may be incompatible."
+  "warning": "These are pinned historical candidates, not a claim of official benchmark completion. Reuse the exact NInfer v2 artifact; latest may be incompatible.",
+  "frozen_baseline": {
+    "template": "configs/ninfer/qwen38-27b-baseline.template.json",
+    "runtime_source_commit": "8e974a9",
+    "binary_sha256": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+    "full_results": "results/ninfer-performance/official-r1/",
+    "gpu_telemetry_coverage": "partial; two sampling gaps disclosed",
+    "accuracy_configuration": "Same frozen serving configuration; native IFBench prompt strict55%, no quality ablation claim"
+  }
 }

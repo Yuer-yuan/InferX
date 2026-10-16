@@ -1,0 +1,25 @@
+{
+  "fields": [
+    "timestamp",
+    "uuid",
+    "utilization.gpu",
+    "utilization.memory",
+    "memory.used",
+    "memory.total",
+    "power.draw",
+    "temperature.gpu",
+    "clocks.sm",
+    "clocks.mem",
+    "pcie.link.gen.current",
+    "pcie.link.width.current",
+    "clocks_event_reasons.active",
+    "clocks_event_reasons.sw_power_cap",
+    "clocks_event_reasons.sw_thermal_slowdown",
+    "clocks_event_reasons.hw_thermal_slowdown"
+  ],
+  "header": false,
+  "units": "nvidia-smi csv,nounits: utilization%, memoryMiB, powerW, tempC, clocksMHz",
+  "timestamp_timezone": "UTC, independently checked against operator first timestamp in analysis",
+  "target_period_ms": 1000,
+  "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+}

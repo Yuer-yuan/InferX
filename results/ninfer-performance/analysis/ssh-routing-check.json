@@ -1,0 +1,10 @@
+{
+  "checked_at_utc": "2026-10-16T10:35:33.832512+00:00",
+  "host": "ucloud2",
+  "hostname": "cpod-1wjk44m2ji94",
+  "gpu_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+  "new_control_connection_verified": true,
+  "standby_plot_present": true,
+  "note": "Original node2 source/archive/readiness identities verified directly and intact; CPU plotting confirmed on standby. Formal measurement service unchanged.",
+  "root_cause": "Supplementary read/probe command mistakenly supplied measurement alias ucloud with expired/nonexistent node2-ctl socket; SSH fell back to the supplied alias. No API request occurred because missing ready-baseline directory aborted first. Correct explicit alias ucloud2 plus fresh unique master and expected hostname/GPU assertions now used."
+}

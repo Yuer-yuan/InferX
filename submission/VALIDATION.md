@@ -1,4 +1,27 @@
-# 材料整理检查记录
+# 材料与部署检查记录
+
+本轮已完成两机NInfer/MTP基线与第一台原版完整评测；正式数字见[BENCHMARK.md](BENCHMARK.md)，原始记录见[official-r1](../results/ninfer-performance/official-r1/)。此处区分请求完整性、GPU采样覆盖和最终提交验收。
+
+- 原版性能C1/C2/C4/C8各100正式+8预热，全部8192/512、零请求错误；原版runner退出0，独立解析复核通过。C1/C2满足两项延迟SLO，C4/C8未满足。
+- IFBench100预测、100review、100个prompt评分完整；strict/loose prompt55%，指令65/111与66/111。原生100chat均stop_token，无32768截断，输出4–2362 tokens。保留参数展开、原生报告和全部失败输出。
+- 目标1Hz采样2747点：两处8.402/6.682秒间隔使全程及C1/C8覆盖partial，C2/C4通过。保留严格阈值及首次拒绝诊断；分析程序完成不代表GPU覆盖完整。GPU数值只作为已记录点统计。
+- 远端冻结归档SHA256为`2639defbd36ae0ddd1fc7c925335bb87d118524533657b8cd5565e1c02df877f`；113个原始文件逐字节哈希验证通过，41个原生文本/数据文件无损gzip，原始/存储SHA分别保留。原版解析器使用的JSON/JSONL保留明文格式。
+- 两机模型SHA与二进制SHA一致，精确内嵌tokenizer核验；原生构建、真实raw/chat/流式/ignore_eos/usage/缓存隔离和工具调用已验证。第二台仅做功能与重启检查，没有重复正式压测。当前进程/健康与构建核验见[交接快照](../results/ninfer-performance/handoff/)。
+- 通用命名与路径参数化已落实：scripts/configs以NInfer/功能命名，机器名仅用于清单和运行归属。隔离依赖锁保存；第二台复制已核验构建，explicit锁只做了重放dry-run，不宣称完成全新环境二次重建。
+- 本轮最终运行代码的CPU测试为**384 passed,44 skipped，124.54秒**，见[日志及核验](../results/ninfer-performance/analysis/verification-pilot.json)；之后只有材料、配置模板及离线分析追加。44个skip不作为原生外部环境通过。API原生契约/GPU实测另有证据，不能用CPU测试替代。
+- 19个PILOT档共152正式+38预热，独立原版解析及输入哈希核验通过；PILOT不混入100请求正式结果。计时与prefill归因的解释边界见性能报告。
+- 功能回归：46867-token三处精确检索通过；生成merge_intervals通过已有seccomp隔离测试。逻辑题384/2048预算均截断，2048中出现12分钟可行时间表但证明未完成，保留为未完整通过。
+- 一次备用检查误用测量机SSH别名，连接复用失效后回退到该机；在发API请求前因目录不匹配中止。核对两机实际hostname/GPU后改用正确别名并加身份断言；正式冻结日志仍为433completions+100chat，没有额外请求，诊断保留。
+- 独立审阅：原生API、driver的信号/端口修正、可迁移配置、PILOT/计时解释及正式结果均APPROVE。正式结果审阅复核400性能、100精度、113快照SHA；部分GPU覆盖被明确保留。
+- 空白检查保留原生EvalScope HTML模板的尾空格，排除该原始报告；其真实性由113个快照SHA保证。源码/文档/其他新增文件按git diff --check验证，不为风格检查改写原生证据。
+- 原始评分MD/eval.zip/提取runner的6个SHA，以及用户PD补测8个SHA保持一致。最新相对链接、8页结构、压缩和输入检查见[材料检查](evidence/material-checks.json)。本轮新增文件另做常见秘密模式扫描，不将模式扫描当作安全性保证。
+
+最终main源码同步和归档以`artifacts/release-manifest.json`的实际版本/校验和为准；正式测量时运行主仓快照为8e974a9，引擎/API补丁未在正式运行中切换。主办方差异口径、持久存储、干净重建、成员分工、投屏/录屏和提交回执仍依[TODO](TODO.md)验收，不能将本轮测量完成当作最终比赛提交完成。
+
+## 此前材料整理记录
+
+以下为部署前、截至2026-10-16T08:10Z的历史检查；当前状态以上文和最新成绩表为准。
+
 
 本文件记录本次材料整理和代码集成的检查，不是 UCloud 模型评测成绩。
 
@@ -15,6 +38,6 @@
 - 固定版本源码快照已导出，Git bundle 验证通过，归档校验和通过。文件在 `artifacts/InferX-source.tar.gz`、`artifacts/InferX-main.bundle`、`artifacts/SHA256SUMS`；最终整理提交后重新导出，实际对应 SHA 以 `artifacts/release-manifest.json` 为准。
 - 首次同步前另检查 2,440 个跟踪路径，含 41 个解压检查的归档；未命中常见凭据模式，记录见 [提交文件检查](evidence/pre-push-source-checks.json)。
 
-UCloud 当前仅完成只读盘点，未安装、下载、启动或评测；正式提交的剩余条件维护在 TODO.md。
+当时UCloud仅完成只读盘点，未安装、下载、启动或评测；正式提交的剩余条件维护在 TODO.md。
 
 按用户要求清理版本控制：`.agents/` 及本地 agent 状态、缓存、构建/运行目录、导出包、编辑器文件纳入 `.gitignore`；39 份已跟踪的 skill 文件取消跟踪，本地 SHA256 全部保持不变。26 个应忽略路径与 12 个应保留路径的检查通过，官方 eval、评分规则、项目配置与实验数据仍可跟踪。源码包按清理后的 main 重新导出；Git bundle 作为历史备份保留既有提交，不改写历史。

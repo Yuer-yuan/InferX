@@ -1,0 +1,77 @@
+{
+  "label": "FORMAL_ORIGINAL_JUDGE",
+  "model": "qwen38-27b",
+  "base_url": "http://127.0.0.1:8088/v1",
+  "server_command": [
+    "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8088",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "131072",
+    "--max-concurrency",
+    "8",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "int8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "4",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/official-r1-service/requests.jsonl"
+  ],
+  "binary_sha256": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+  "model_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+  "engine_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+  "patch_sha256": "d5534f0189f1e05c91dc32d5ca6d19541d52ca94f7f95209eb009193b2fe87d1",
+  "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+  "source_main_commit": "8e974a9",
+  "selected_from": "runs/pilot-final-selection/manifest.json",
+  "selection_note": "Highest tested C8 output throughput, <1% difference from chunk1024 not a significant ranking; chunk2048 retains baseline choice and lower observed C8 TTFT/TPOT. One frozen configuration for all tiers and accuracy.",
+  "pilot_config_sha256": "6ac82ac418a6fdcfca2363778cdac63ad75c79b88edb93ae08fd7557d518b046",
+  "protocol": {
+    "performance": {
+      "isl": 8192,
+      "osl": 512,
+      "concurrencies": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "requests_per_tier": 100,
+      "warmup_per_tier": 8,
+      "seed": 42,
+      "strict_model_tokenizer": true
+    },
+    "accuracy": {
+      "limit": 100,
+      "batch": 2,
+      "explicit_generation_config": {
+        "max_tokens": 32768
+      }
+    }
+  }
+}

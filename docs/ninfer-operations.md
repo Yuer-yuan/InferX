@@ -9,6 +9,8 @@
 | 完整性能与 IFBench 测量 | ucloud1 | `ucloud` | EPYC 7A23 | `http://127.0.0.1:8088/v1` |
 | 相同基线备用，短功能核验 | ucloud2 | `ucloud2` | EPYC 7B13 | `http://127.0.0.1:8088/v1` |
 
+实时状态以各节点`config/active-service.json`为准；本轮结束时的[身份/健康快照](../results/ninfer-performance/handoff/)另存，PID不作为长期常量。
+
 均为单卡49,140MiB RTX4090，工作前缀为`/workspace/InferX`。该路径是可写overlay，实例释放后是否保留尚未确认；关键结果回传仓库。两机权重和二进制SHA一致，CPU不同。表中端口都是各节点自身的回环地址。
 
 从本机访问其中一台：

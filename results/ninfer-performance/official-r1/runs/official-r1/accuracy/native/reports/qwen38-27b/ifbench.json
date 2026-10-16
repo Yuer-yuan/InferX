@@ -1,0 +1,367 @@
+{
+    "schema_version": 2,
+    "name": "qwen38-27b@ifbench",
+    "dataset_name": "ifbench",
+    "dataset_pretty_name": "IFBench",
+    "dataset_description": "\n## Overview\n\nIFBench is a benchmark designed to evaluate how reliably AI models follow novel, challenging, and diverse verifiable instructions, with a strong focus on out-of-domain generalization. Developed by AllenAI, it addresses overfitting and data contamination issues in existing benchmarks.\n\n## Task Description\n\n- **Task Type**: Instruction Following Evaluation\n- **Input**: Prompts with verifiable constraints\n- **Output**: Responses that must satisfy specific constraints\n- **Focus**: Precise instruction-following capabilities\n\n## Key Features\n\n- 58 manually curated verifiable constraints\n- Categories: counting, formatting, word usage, etc.\n- Focus on out-of-domain generalization\n- Programmatic verification of constraint satisfaction\n- Addresses data contamination concerns\n\n## Evaluation Notes\n\n- Default configuration uses **0-shot** evaluation\n- Metrics: prompt_level_strict, inst_level_strict, prompt_level_loose, inst_level_loose\n- `inst_level_*` pools every instruction in the dataset, matching the official micro-average\n- Requires emoji, syllapy packages\n- Evaluates both strict and loose constraint satisfaction\n",
+    "model_name": "qwen38-27b",
+    "metrics": [
+        {
+            "identity": {
+                "name": "prompt_level_strict",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 100,
+            "score": 0.55,
+            "macro_score": 0.55,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 100,
+                    "score": 0.55,
+                    "macro_score": 0.55,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.55,
+                            "num": 100,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "quality.accuracy.ratio",
+                "metric_name": "Accuracy",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "inst_level_strict",
+                "aggregation": "weighted_mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 111,
+            "score": 0.5856,
+            "macro_score": 0.5856,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 111,
+                    "score": 0.5856,
+                    "macro_score": 0.5856,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.5856,
+                            "num": 111,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "quality.accuracy.ratio",
+                "metric_name": "Accuracy",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "prompt_level_loose",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 100,
+            "score": 0.55,
+            "macro_score": 0.55,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 100,
+                    "score": 0.55,
+                    "macro_score": 0.55,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.55,
+                            "num": 100,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "quality.accuracy.ratio",
+                "metric_name": "Accuracy",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "inst_level_loose",
+                "aggregation": "weighted_mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 111,
+            "score": 0.5946,
+            "macro_score": 0.5946,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 111,
+                    "score": 0.5946,
+                    "macro_score": 0.5946,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.5946,
+                            "num": 111,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "quality.accuracy.ratio",
+                "metric_name": "Accuracy",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        }
+    ],
+    "analysis": "N/A",
+    "perf_metrics": {
+        "summary": {
+            "n_samples": 100,
+            "latency": {
+                "mean": 4.207308,
+                "std": 4.539733,
+                "min": 0.210894,
+                "25%": 0.874566,
+                "50%": 2.501271,
+                "75%": 5.836488,
+                "90%": 11.42502,
+                "99%": 17.556974,
+                "max": 17.977061
+            },
+            "throughput": {
+                "avg_output_tps": 97.04,
+                "avg_req_ps": 0.2377
+            },
+            "usage": {
+                "input_tokens": {
+                    "mean": 93.36,
+                    "std": 46.958722,
+                    "min": 28.0,
+                    "25%": 55.0,
+                    "50%": 87.0,
+                    "75%": 124.75,
+                    "90%": 150.1,
+                    "99%": 206.37,
+                    "max": 243.0
+                },
+                "output_tokens": {
+                    "mean": 408.29,
+                    "std": 500.614255,
+                    "min": 4.0,
+                    "25%": 73.75,
+                    "50%": 217.0,
+                    "75%": 484.75,
+                    "90%": 1082.5,
+                    "99%": 1977.88,
+                    "max": 2362.0
+                },
+                "total_tokens": {
+                    "mean": 501.65,
+                    "std": 514.78591,
+                    "min": 44.0,
+                    "25%": 159.25,
+                    "50%": 300.5,
+                    "75%": 612.25,
+                    "90%": 1230.4,
+                    "99%": 2128.8,
+                    "max": 2505.0
+                },
+                "total_input_tokens": 9336,
+                "total_output_tokens": 40829,
+                "total_tokens_count": 50165
+            }
+        },
+        "coverage": {
+            "requests_with_metrics": 100,
+            "total_requests": 100
+        },
+        "metric_semantics": {
+            "n_samples": {
+                "semantic_id": "diagnostic.count.items",
+                "metric_name": "Samples",
+                "display_name": null,
+                "kind": "diagnostic",
+                "direction": "none",
+                "raw_unit": null,
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": null,
+                "display_precision": 0
+            },
+            "latency": {
+                "semantic_id": "perf.latency.seconds",
+                "metric_name": "Latency",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "lower_is_better",
+                "raw_unit": "s",
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": "s",
+                "display_precision": 3
+            },
+            "throughput.avg_output_tps": {
+                "semantic_id": "perf.throughput.tokens_per_second",
+                "metric_name": "Output Throughput",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": "tok/s",
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": "tok/s",
+                "display_precision": 2
+            },
+            "throughput.avg_req_ps": {
+                "semantic_id": "perf.throughput.requests_per_second",
+                "metric_name": "Request Throughput",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": "req/s",
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": "req/s",
+                "display_precision": 2
+            },
+            "usage.input_tokens": {
+                "semantic_id": "diagnostic.count.items",
+                "metric_name": "Input Tokens",
+                "display_name": null,
+                "kind": "diagnostic",
+                "direction": "none",
+                "raw_unit": null,
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": null,
+                "display_precision": 0
+            },
+            "usage.output_tokens": {
+                "semantic_id": "diagnostic.count.items",
+                "metric_name": "Output Tokens",
+                "display_name": null,
+                "kind": "diagnostic",
+                "direction": "none",
+                "raw_unit": null,
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": null,
+                "display_precision": 0
+            },
+            "usage.total_tokens": {
+                "semantic_id": "diagnostic.count.items",
+                "metric_name": "Total Tokens",
+                "display_name": null,
+                "kind": "diagnostic",
+                "direction": "none",
+                "raw_unit": null,
+                "value_range": null,
+                "display_kind": "number",
+                "display_multiplier": null,
+                "display_unit": null,
+                "display_precision": 0
+            }
+        }
+    },
+    "primary_metric_identity": {
+        "name": "prompt_level_strict",
+        "aggregation": "mean",
+        "dimensions": {}
+    },
+    "primary_metric_unavailable_reason": null,
+    "judge_summary": null,
+    "execution_summary": {
+        "requested": 100,
+        "succeeded": 100,
+        "errored": 0,
+        "incomplete": false,
+        "subsets": {
+            "default": {
+                "requested": 100,
+                "succeeded": 100,
+                "errored": 0
+            }
+        }
+    },
+    "num": 100
+}

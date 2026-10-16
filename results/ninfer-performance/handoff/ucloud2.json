@@ -1,0 +1,99 @@
+{
+  "checked_at_utc": "2026-10-16T11:01:19.945623+00:00",
+  "hostname": "cpod-1wjk44m2ji94",
+  "service_identity_verified": true,
+  "binary_sha256_freshly_verified": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+  "active_service": {
+    "pid": 1466,
+    "start_ticks": "36725351",
+    "uid": 0,
+    "command": [
+      "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+      "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8088",
+      "--model-id",
+      "qwen38-27b",
+      "--max-context",
+      "65536",
+      "--kv-capacity",
+      "131072",
+      "--max-concurrency",
+      "8",
+      "--max-pending-requests",
+      "32",
+      "--pending-timeout-ms",
+      "600000",
+      "--prefill-chunk",
+      "2048",
+      "--kv-dtype",
+      "int8",
+      "--no-thinking",
+      "--greedy",
+      "--presence-penalty",
+      "0",
+      "--frequency-penalty",
+      "0",
+      "--seed",
+      "42",
+      "--no-ui",
+      "--spec",
+      "mtp",
+      "--draft-tokens",
+      "4",
+      "--lm-head-draft",
+      "--request-log-jsonl",
+      "/workspace/InferX/runs/ready-baseline/requests.jsonl"
+    ],
+    "started": 1792145257.0819373,
+    "source_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+    "source_main_commit": "8e974a9",
+    "patch_sha256": "d5534f0189f1e05c91dc32d5ca6d19541d52ca94f7f95209eb009193b2fe87d1",
+    "binary_sha256": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+    "model_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+    "gpu_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+    "base_url": "http://127.0.0.1:8088/v1",
+    "logical_host": "ucloud2",
+    "purpose": "readiness only; no formal duplicate evaluation"
+  },
+  "health": {
+    "status": "ok"
+  },
+  "models": {
+    "data": [
+      {
+        "context_length": 65536,
+        "context_window": 65536,
+        "created": 1792148479,
+        "id": "qwen38-27b",
+        "max_model_len": 65536,
+        "max_output_tokens": 65536,
+        "modalities": {
+          "vision": false
+        },
+        "name": "qwen38-27b",
+        "object": "model",
+        "owned_by": "ninfer"
+      }
+    ],
+    "object": "list"
+  },
+  "process_resource_snapshot": {
+    "State": "S (sleeping)",
+    "VmHWM": "1299432 kB",
+    "VmRSS": "1299432 kB",
+    "Threads": "48",
+    "Cpus_allowed_list": "64-73,192-201"
+  },
+  "resource_scope": "Single end-of-run process snapshot; VmHWM is lifetime RSS high-water mark, not isolated per-stage RAM use.",
+  "code_source": {
+    "main_commit": "8e974a9",
+    "archive_sha256": "21395274f7dd06d64a91b35dec89ba836d68c1155c7ccc9094db8ea91007cbb3",
+    "installed_at": 1792144897.5291975,
+    "source": "local git archive main; no Git history or ignored skills/cache",
+    "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0"
+  },
+  "gpu_processes": "1466, /workspace/InferX/build/ninfer-sm89/apps/ninfer-serve, 24826 MiB"
+}

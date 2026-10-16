@@ -1,0 +1,242 @@
+{
+  "started_at": "2026-10-16T10:03:00.292950+00:00",
+  "configuration": {
+    "mode": "all",
+    "base_url": "http://127.0.0.1:8088/v1",
+    "model": "qwen38-27b",
+    "tokenizer": "/workspace/InferX/models/tokenizer",
+    "tokenizer_revision": null,
+    "api_key_env": "INFERX_LOCAL_EVAL_KEY",
+    "output_dir": "/workspace/InferX/runs/official-r1",
+    "env_dir": "/workspace/InferX/eval-envs",
+    "perf_requests": 100,
+    "eval_batch_size": 2,
+    "request_timeout": 600.0,
+    "seed": 42,
+    "dry_run": false,
+    "isl": 8192,
+    "osl": 512,
+    "concurrencies": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "warmup_requests": 8,
+    "accuracy_limit": 100,
+    "accuracy_generation_config": {
+      "max_tokens": 32768
+    }
+  },
+  "status": "完整",
+  "issues": [],
+  "performance": [
+    {
+      "status": "完整",
+      "issues": [],
+      "concurrency": 1,
+      "expected_requests": 100,
+      "records": 100,
+      "valid_records": 100,
+      "successful_requests": 100.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 3445.3453450099996,
+          "p50": 3446.6126514999996,
+          "p95": 3454.51128885,
+          "p99": 3455.54365293
+        },
+        "inter_token_latency": {
+          "mean": 6.866900823248532,
+          "p50": 6.809700857142857,
+          "p95": 9.00900106594912,
+          "p99": 9.329018162172217
+        },
+        "request_latency": {
+          "mean": 6954.33166569,
+          "p50": 6934.196798999999,
+          "p95": 8054.2150286,
+          "p99": 8220.853131190002
+        }
+      },
+      "benchmark_duration": 695.713225984,
+      "request_throughput": 0.14373625417027042,
+      "output_token_throughput": 73.59296213517845,
+      "artifacts": "/workspace/InferX/runs/official-r1/performance/c1"
+    },
+    {
+      "status": "完整",
+      "issues": [],
+      "concurrency": 2,
+      "expected_requests": 100,
+      "records": 100,
+      "valid_records": 100,
+      "successful_requests": 100.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 3627.7213513999995,
+          "p50": 3551.1707639999995,
+          "p95": 3562.2561655,
+          "p99": 5315.244069580008
+        },
+        "inter_token_latency": {
+          "mean": 14.639580321643834,
+          "p50": 14.787648313111545,
+          "p95": 22.506397312426614,
+          "p99": 23.546604253170262
+        },
+        "request_latency": {
+          "mean": 11108.54689576,
+          "p50": 11110.098892999998,
+          "p95": 15047.7129266,
+          "p99": 15582.011530050004
+        }
+      },
+      "benchmark_duration": 555.977452288,
+      "request_throughput": 0.17986228203918456,
+      "output_token_throughput": 92.0894884040625,
+      "artifacts": "/workspace/InferX/runs/official-r1/performance/c2"
+    },
+    {
+      "status": "完整",
+      "issues": [],
+      "concurrency": 4,
+      "expected_requests": 100,
+      "records": 100,
+      "valid_records": 100,
+      "successful_requests": 100.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 3989.93523303,
+          "p50": 3588.565993,
+          "p95": 6998.1417710999995,
+          "p99": 10598.378072050018
+        },
+        "inter_token_latency": {
+          "mean": 34.390594856634046,
+          "p50": 34.9391237407045,
+          "p95": 45.92975632348337,
+          "p99": 53.709387885048926
+        },
+        "request_latency": {
+          "mean": 21563.529204770002,
+          "p50": 21443.7332865,
+          "p95": 27421.892328899998,
+          "p99": 31031.76828793
+        }
+      },
+      "benchmark_duration": 541.1530542080001,
+      "request_throughput": 0.18478941945574448,
+      "output_token_throughput": 94.61218276134117,
+      "artifacts": "/workspace/InferX/runs/official-r1/performance/c4"
+    },
+    {
+      "status": "完整",
+      "issues": [],
+      "concurrency": 8,
+      "expected_requests": 100,
+      "records": 100,
+      "valid_records": 100,
+      "successful_requests": 100.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 5683.94528097,
+          "p50": 3771.464645,
+          "p95": 13860.561318099999,
+          "p99": 25177.69222420002
+        },
+        "inter_token_latency": {
+          "mean": 66.05741190502935,
+          "p50": 65.11267959686887,
+          "p95": 90.65970908228962,
+          "p99": 96.6663906269472
+        },
+        "request_latency": {
+          "mean": 39439.282764439995,
+          "p50": 39434.981612999996,
+          "p95": 53279.95598149999,
+          "p99": 62899.53183555002
+        }
+      },
+      "benchmark_duration": 495.59761152000004,
+      "request_throughput": 0.20177546627566678,
+      "output_token_throughput": 103.30903873314139,
+      "artifacts": "/workspace/InferX/runs/official-r1/performance/c8"
+    }
+  ],
+  "accuracy": {
+    "status": "完整",
+    "issues": [],
+    "metrics": {
+      "prompt_level_strict": {
+        "score": 0.55,
+        "num": 100
+      },
+      "inst_level_strict": {
+        "score": 0.5856,
+        "num": 111
+      },
+      "prompt_level_loose": {
+        "score": 0.55,
+        "num": 100
+      },
+      "inst_level_loose": {
+        "score": 0.5946,
+        "num": 111
+      }
+    },
+    "generated_samples": 100,
+    "execution_summary": {
+      "requested": 100,
+      "succeeded": 100,
+      "errored": 0,
+      "incomplete": false,
+      "subsets": {
+        "default": {
+          "requested": 100,
+          "succeeded": 100,
+          "errored": 0
+        }
+      }
+    },
+    "native_report": "/workspace/InferX/runs/official-r1/accuracy/native/reports/qwen38-27b/ifbench.json",
+    "artifacts": "/workspace/InferX/runs/official-r1/accuracy"
+  },
+  "ended_at": "2026-10-16T10:48:46.636204+00:00"
+}

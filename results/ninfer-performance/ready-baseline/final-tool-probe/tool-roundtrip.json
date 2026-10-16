@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "first": {
+    "content": [
+      {
+        "id": "call_3cfb40af8d1d9a66",
+        "input": {
+          "a": 2,
+          "b": 3
+        },
+        "name": "add_numbers",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_52e5826acb3e204d",
+    "model": "qwen38-27b",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "input_tokens": 311,
+      "output_tokens": 36
+    }
+  },
+  "second": {
+    "content": [
+      {
+        "text": "5",
+        "type": "text"
+      }
+    ],
+    "id": "msg_bb73f3cbc33c85b9",
+    "model": "qwen38-27b",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "input_tokens": 365,
+      "output_tokens": 2
+    }
+  },
+  "first_wall_s": 0.42823421698994935,
+  "second_wall_s": 0.08319575298810378
+}

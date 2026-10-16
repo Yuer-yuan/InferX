@@ -1,0 +1,28 @@
+{
+  "scope": "Three supplementary functionality checks, one request each after formal eval, not a benchmark score or general accuracy estimate.",
+  "sources": {
+    "results/tuning/dev.json": "cf16c09dd53cb0ea504adbc59ba409bae67256dd89cc339674a2f3eb2db526ec",
+    "inferx/context_agents.py": "c6ca6bc32e52df858181f64d9ab9726df2affbc3a944dc8e54dc0d437067aca1",
+    "scripts/check_tuning_quality.py": "36a251f7705cbdc5088b413994b44dc7e011261b32412dfd7ba2b4b71ade43ba"
+  },
+  "checks": {
+    "reason_schedule": {
+      "kind": "manual schedule and lower-bound review",
+      "expected": "12 minutes; A CPU0-3, B GPU3-8, C CPU3-7, D GPU8-10, E CPU10-12. GPU B+D needs7 after A earliest3, then E2, giving lower bound12."
+    },
+    "code_merge": {
+      "kind": "execution under existing seccomp verifier",
+      "entry_point": "merge_intervals",
+      "test_source": "scripts/check_tuning_quality.py"
+    },
+    "lookup_1000_records": {
+      "kind": "exact JSON equality",
+      "expected": {
+        "early": "dc1618dcb95446f1",
+        "middle": "133f729b285d6545",
+        "late": "b209c12d067115c5"
+      },
+      "limit": "One synthetic registry/three positions, not general long-context understanding or a quality benchmark. Actual prompt tokens reported from server usage."
+    }
+  }
+}

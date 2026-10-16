@@ -1,0 +1,643 @@
+{
+  "scope": "One original full run, no selection among repetitions; warmups excluded from performance metrics.",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "operator": {
+    "status": "judge-exited-zero",
+    "started_at": "2026-10-16T10:02:45.775815+00:00",
+    "ready_at": "2026-10-16T10:02:58.010897+00:00",
+    "ended_at": "2026-10-16T10:48:47.603341+00:00",
+    "operator_exit_code": 0,
+    "sampler_exit_code": 0
+  },
+  "gpu_sampling_limit": "Target1Hz, actual coverage reported and may be partial. Observed point means/peaks, not continuous-time averages/peaks. Memory utilization is not achieved bandwidth. Clock flags are observations, not causal experiments.",
+  "native_timing_limit": "Decode counter includes complete shared-batch duration per request plus MTP tails. Residual is elapsed post-first wall outside these blocks; never sum decode counters as exclusive GPU time.",
+  "performance": [
+    {
+      "concurrency": 1,
+      "valid_requests": 100,
+      "warmup_requests": 8,
+      "output_tok_s": 73.59296213517845,
+      "benchmark_duration_s": 695.713225984,
+      "ttft_p95_s": 3.4545112888499996,
+      "tpot_p95_ms": 9.00900106594912,
+      "e2e_p95_s": 8.0542150286,
+      "meets_slo": true,
+      "profiling_window_unix_ms": [
+        1792145046081.907,
+        1792145741795.5264
+      ],
+      "median_native_prefill_s": 3.4450009809999997,
+      "median_native_decode_counter_s": 3.4781658229999994,
+      "median_native_residual_s": 0.0012046795000009158,
+      "sum_own_prefill_s": 344.354139547,
+      "sum_own_prefill_over_benchmark_duration": 0.49496563625041595,
+      "prefill_fraction_limit": "Host-timed synchronized prefill scheduling units on the serial worker, not kernel-only GPU occupancy or a bandwidth measurement.",
+      "gpu_coverage": {
+        "status": "partial",
+        "samples": 688,
+        "span_s": 694.602,
+        "leading_gap_s": 0.875093017578125,
+        "trailing_gap_s": 0.2365263671875,
+        "period_min_s": 1.0,
+        "period_mean_s": 1.011065502183406,
+        "period_max_s": 8.402,
+        "count_over_target_1hz": 0.9889126514562315,
+        "gaps_over_5s_unix_ms": [
+          [
+            1792145704144.0,
+            1792145712546.0
+          ]
+        ],
+        "validation_limits": "Strictly increasing; max gap5s; leading/trailing<=2.5s; count/target1Hz between0.85 and1.15.",
+        "limitation": "Failed strict target1Hz coverage validation; interpret GPU values only as statistics of recorded points."
+      },
+      "gpu": {
+        "samples": 688,
+        "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+        "utilization.gpu": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 77.0,
+          "mean": 99.87790697674419,
+          "max": 100.0
+        },
+        "utilization.memory": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 12.0,
+          "mean": 56.76017441860465,
+          "max": 100.0
+        },
+        "memory.used": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 24836.0,
+          "mean": 24836.0,
+          "max": 24836.0
+        },
+        "power.draw": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 435.04,
+          "mean": 444.8659011627907,
+          "max": 450.89
+        },
+        "temperature.gpu": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 72.0,
+          "mean": 78.99854651162791,
+          "max": 84.0
+        },
+        "clocks.sm": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 2415.0,
+          "mean": 2548.4738372093025,
+          "max": 2640.0
+        },
+        "clocks.mem": {
+          "available_samples": 688,
+          "missing_samples": 0,
+          "min": 10251.0,
+          "mean": 10251.0,
+          "max": 10251.0
+        },
+        "clocks_event_reasons.sw_power_cap": {
+          "Active": 353,
+          "Not Active": 335
+        },
+        "clocks_event_reasons.sw_thermal_slowdown": {
+          "Not Active": 688
+        },
+        "clocks_event_reasons.hw_thermal_slowdown": {
+          "Not Active": 688
+        }
+      },
+      "weighted_draft_acceptance": 0.6795257089776515
+    },
+    {
+      "concurrency": 2,
+      "valid_requests": 100,
+      "warmup_requests": 8,
+      "output_tok_s": 92.0894884040625,
+      "benchmark_duration_s": 555.977452288,
+      "ttft_p95_s": 3.5622561655,
+      "tpot_p95_ms": 22.506397312426614,
+      "e2e_p95_s": 15.0477129266,
+      "meets_slo": true,
+      "profiling_window_unix_ms": [
+        1792145795244.7876,
+        1792146351222.48
+      ],
+      "median_native_prefill_s": 3.4509979685000003,
+      "median_native_decode_counter_s": 4.110590003500001,
+      "median_native_residual_s": 3.455638410500001,
+      "sum_own_prefill_s": 345.129602647,
+      "sum_own_prefill_over_benchmark_duration": 0.6207618694367854,
+      "prefill_fraction_limit": "Host-timed synchronized prefill scheduling units on the serial worker, not kernel-only GPU occupancy or a bandwidth measurement.",
+      "gpu_coverage": {
+        "status": "complete",
+        "samples": 556,
+        "span_s": 555.303,
+        "leading_gap_s": 0.37821240234375,
+        "trailing_gap_s": 0.29647998046875,
+        "period_min_s": 1.0,
+        "period_mean_s": 1.000545945945946,
+        "period_max_s": 1.005,
+        "count_over_target_1hz": 1.000040123223455,
+        "gaps_over_5s_unix_ms": [],
+        "validation_limits": "Strictly increasing; max gap5s; leading/trailing<=2.5s; count/target1Hz between0.85 and1.15."
+      },
+      "gpu": {
+        "samples": 556,
+        "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+        "utilization.gpu": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 92.0,
+          "mean": 99.91546762589928,
+          "max": 100.0
+        },
+        "utilization.memory": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 12.0,
+          "mean": 42.56115107913669,
+          "max": 100.0
+        },
+        "memory.used": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 24836.0,
+          "mean": 24836.0,
+          "max": 24836.0
+        },
+        "power.draw": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 437.17,
+          "mean": 447.1703956834532,
+          "max": 449.75
+        },
+        "temperature.gpu": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 76.0,
+          "mean": 81.49460431654676,
+          "max": 85.0
+        },
+        "clocks.sm": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 2415.0,
+          "mean": 2514.793165467626,
+          "max": 2640.0
+        },
+        "clocks.mem": {
+          "available_samples": 556,
+          "missing_samples": 0,
+          "min": 10251.0,
+          "mean": 10251.0,
+          "max": 10251.0
+        },
+        "clocks_event_reasons.sw_power_cap": {
+          "Active": 553,
+          "Not Active": 3
+        },
+        "clocks_event_reasons.sw_thermal_slowdown": {
+          "Not Active": 556
+        },
+        "clocks_event_reasons.hw_thermal_slowdown": {
+          "Not Active": 556
+        }
+      },
+      "weighted_draft_acceptance": 0.6922522988293511
+    },
+    {
+      "concurrency": 4,
+      "valid_requests": 100,
+      "warmup_requests": 8,
+      "output_tok_s": 94.61218276134117,
+      "benchmark_duration_s": 541.1530542080001,
+      "ttft_p95_s": 6.998141771099999,
+      "tpot_p95_ms": 45.92975632348337,
+      "e2e_p95_s": 27.421892328899997,
+      "meets_slo": false,
+      "profiling_window_unix_ms": [
+        1792146403407.0354,
+        1792146944560.2993
+      ],
+      "median_native_prefill_s": 3.4456664365,
+      "median_native_decode_counter_s": 7.594401705499997,
+      "median_native_residual_s": 10.341532196499998,
+      "sum_own_prefill_s": 344.449224483,
+      "sum_own_prefill_over_benchmark_duration": 0.6365098040278379,
+      "prefill_fraction_limit": "Host-timed synchronized prefill scheduling units on the serial worker, not kernel-only GPU occupancy or a bandwidth measurement.",
+      "gpu_coverage": {
+        "status": "complete",
+        "samples": 541,
+        "span_s": 540.171,
+        "leading_gap_s": 0.024964599609375,
+        "trailing_gap_s": 0.95729931640625,
+        "period_min_s": 1.0,
+        "period_mean_s": 1.0003166666666667,
+        "period_max_s": 1.003,
+        "count_over_target_1hz": 0.999716782792907,
+        "gaps_over_5s_unix_ms": [],
+        "validation_limits": "Strictly increasing; max gap5s; leading/trailing<=2.5s; count/target1Hz between0.85 and1.15."
+      },
+      "gpu": {
+        "samples": 541,
+        "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+        "utilization.gpu": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 97.0,
+          "mean": 99.99445471349352,
+          "max": 100.0
+        },
+        "utilization.memory": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 12.0,
+          "mean": 27.11645101663586,
+          "max": 100.0
+        },
+        "memory.used": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 24836.0,
+          "mean": 24836.0,
+          "max": 24836.0
+        },
+        "power.draw": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 385.97,
+          "mean": 429.3882624768946,
+          "max": 452.47
+        },
+        "temperature.gpu": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 73.0,
+          "mean": 79.92051756007393,
+          "max": 84.0
+        },
+        "clocks.sm": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 2385.0,
+          "mean": 2525.988909426987,
+          "max": 2640.0
+        },
+        "clocks.mem": {
+          "available_samples": 541,
+          "missing_samples": 0,
+          "min": 10251.0,
+          "mean": 10251.0,
+          "max": 10251.0
+        },
+        "clocks_event_reasons.sw_power_cap": {
+          "Not Active": 170,
+          "Active": 371
+        },
+        "clocks_event_reasons.sw_thermal_slowdown": {
+          "Not Active": 541
+        },
+        "clocks_event_reasons.hw_thermal_slowdown": {
+          "Not Active": 541
+        }
+      },
+      "weighted_draft_acceptance": 0.6844629975465963
+    },
+    {
+      "concurrency": 8,
+      "valid_requests": 100,
+      "warmup_requests": 8,
+      "output_tok_s": 103.30903873314139,
+      "benchmark_duration_s": 495.59761152000004,
+      "ttft_p95_s": 13.860561318099998,
+      "tpot_p95_ms": 90.65970908228962,
+      "e2e_p95_s": 53.27995598149999,
+      "meets_slo": false,
+      "profiling_window_unix_ms": [
+        1792146992566.939,
+        1792147488164.7476
+      ],
+      "median_native_prefill_s": 3.4310529715,
+      "median_native_decode_counter_s": 11.637536743499997,
+      "median_native_residual_s": 20.6303826525,
+      "sum_own_prefill_s": 343.142543818,
+      "sum_own_prefill_over_benchmark_duration": 0.6923813510028434,
+      "prefill_fraction_limit": "Host-timed synchronized prefill scheduling units on the serial worker, not kernel-only GPU occupancy or a bandwidth measurement.",
+      "gpu_coverage": {
+        "status": "partial",
+        "samples": 490,
+        "span_s": 494.856,
+        "leading_gap_s": 0.05506103515625,
+        "trailing_gap_s": 0.68674755859375,
+        "period_min_s": 1.0,
+        "period_mean_s": 1.0119754601226993,
+        "period_max_s": 6.682,
+        "count_over_target_1hz": 0.9887049367517712,
+        "gaps_over_5s_unix_ms": [
+          [
+            1792147291728.0,
+            1792147298410.0
+          ]
+        ],
+        "validation_limits": "Strictly increasing; max gap5s; leading/trailing<=2.5s; count/target1Hz between0.85 and1.15.",
+        "limitation": "Failed strict target1Hz coverage validation; interpret GPU values only as statistics of recorded points."
+      },
+      "gpu": {
+        "samples": 490,
+        "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+        "utilization.gpu": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 96.0,
+          "mean": 99.98775510204082,
+          "max": 100.0
+        },
+        "utilization.memory": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 12.0,
+          "mean": 21.357142857142858,
+          "max": 89.0
+        },
+        "memory.used": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 24836.0,
+          "mean": 24836.0,
+          "max": 24836.0
+        },
+        "power.draw": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 386.8,
+          "mean": 433.8962857142857,
+          "max": 451.59
+        },
+        "temperature.gpu": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 75.0,
+          "mean": 80.98979591836735,
+          "max": 84.0
+        },
+        "clocks.sm": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 2400.0,
+          "mean": 2526.3673469387754,
+          "max": 2640.0
+        },
+        "clocks.mem": {
+          "available_samples": 490,
+          "missing_samples": 0,
+          "min": 10251.0,
+          "mean": 10251.0,
+          "max": 10251.0
+        },
+        "clocks_event_reasons.sw_power_cap": {
+          "Active": 365,
+          "Not Active": 125
+        },
+        "clocks_event_reasons.sw_thermal_slowdown": {
+          "Not Active": 490
+        },
+        "clocks_event_reasons.hw_thermal_slowdown": {
+          "Not Active": 490
+        }
+      },
+      "weighted_draft_acceptance": 0.6839139344262295
+    }
+  ],
+  "gpu_recorded_overall_samples": {
+    "samples": 2747,
+    "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+    "utilization.gpu": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 0.0,
+      "mean": 97.84200946487077,
+      "max": 100.0
+    },
+    "utilization.memory": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 0.0,
+      "mean": 41.80815435020022,
+      "max": 100.0
+    },
+    "memory.used": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 4.0,
+      "mean": 24802.80524208227,
+      "max": 24836.0
+    },
+    "power.draw": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 32.24,
+      "mean": 432.1459119038952,
+      "max": 454.78
+    },
+    "temperature.gpu": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 34.0,
+      "mean": 79.0076447033127,
+      "max": 85.0
+    },
+    "clocks.sm": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 210.0,
+      "mean": 2537.6538041499816,
+      "max": 2685.0
+    },
+    "clocks.mem": {
+      "available_samples": 2747,
+      "missing_samples": 0,
+      "min": 405.0,
+      "mean": 10247.415726246814,
+      "max": 10251.0
+    },
+    "clocks_event_reasons.sw_power_cap": {
+      "Not Active": 790,
+      "Active": 1957
+    },
+    "clocks_event_reasons.sw_thermal_slowdown": {
+      "Not Active": 2747
+    },
+    "clocks_event_reasons.hw_thermal_slowdown": {
+      "Not Active": 2747
+    }
+  },
+  "gpu_whole_run_coverage": {
+    "status": "partial",
+    "samples": 2747,
+    "span_s": 2760.627,
+    "leading_gap_s": 0.14418505859375,
+    "trailing_gap_s": 1.056341064453125,
+    "period_min_s": 1.0,
+    "period_mean_s": 1.0053266569555717,
+    "period_max_s": 8.402,
+    "count_over_target_1hz": 0.9946312628204335,
+    "gaps_over_5s_unix_ms": [
+      [
+        1792145704144.0,
+        1792145712546.0
+      ],
+      [
+        1792147291728.0,
+        1792147298410.0
+      ]
+    ],
+    "validation_limits": "Strictly increasing; max gap5s; leading/trailing<=2.5s; count/target1Hz between0.85 and1.15.",
+    "limitation": "Failed strict target1Hz coverage validation; interpret GPU values only as statistics of recorded points."
+  },
+  "gpu_performance_profiling_union": {
+    "samples": 2275,
+    "selection": "All recorded samples in the specified interval, no utilization filter. Means weight recorded points equally; coverage is reported separately.",
+    "utilization.gpu": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 77.0,
+      "mean": 99.93846153846154,
+      "max": 100.0
+    },
+    "utilization.memory": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 12.0,
+      "mean": 38.61538461538461,
+      "max": 100.0
+    },
+    "memory.used": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 24836.0,
+      "mean": 24836.0,
+      "max": 24836.0
+    },
+    "power.draw": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 385.97,
+      "mean": 439.3858065934066,
+      "max": 452.47
+    },
+    "temperature.gpu": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 72.0,
+      "mean": 80.2567032967033,
+      "max": 85.0
+    },
+    "clocks.sm": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 2385.0,
+      "mean": 2530.134065934066,
+      "max": 2640.0
+    },
+    "clocks.mem": {
+      "available_samples": 2275,
+      "missing_samples": 0,
+      "min": 10251.0,
+      "mean": 10251.0,
+      "max": 10251.0
+    },
+    "clocks_event_reasons.sw_power_cap": {
+      "Active": 1642,
+      "Not Active": 633
+    },
+    "clocks_event_reasons.sw_thermal_slowdown": {
+      "Not Active": 2275
+    },
+    "clocks_event_reasons.hw_thermal_slowdown": {
+      "Not Active": 2275
+    }
+  },
+  "accuracy": {
+    "status": "完整",
+    "issues": [],
+    "metrics": {
+      "prompt_level_strict": {
+        "score": 0.55,
+        "num": 100
+      },
+      "inst_level_strict": {
+        "score": 0.5856,
+        "num": 111
+      },
+      "prompt_level_loose": {
+        "score": 0.55,
+        "num": 100
+      },
+      "inst_level_loose": {
+        "score": 0.5946,
+        "num": 111
+      }
+    },
+    "generated_samples": 100,
+    "execution_summary": {
+      "requested": 100,
+      "succeeded": 100,
+      "errored": 0,
+      "incomplete": false,
+      "subsets": {
+        "default": {
+          "requested": 100,
+          "succeeded": 100,
+          "errored": 0
+        }
+      }
+    },
+    "native_report": "runs/official-r1/accuracy/native/reports/qwen38-27b/ifbench.json",
+    "artifacts": "runs/official-r1/accuracy"
+  },
+  "accuracy_native": {
+    "requests": 100,
+    "finish_reasons": {
+      "stop_token": 100
+    },
+    "completion_token_min": 4,
+    "completion_token_max": 2362,
+    "completion_token_sum": 40829
+  },
+  "validation": {
+    "original_benchmark_complete": true,
+    "gpu_coverage_complete": false,
+    "scope": "Benchmark integrity and GPU sampling coverage are separate findings; analysis exit0 does not mean coverage is complete."
+  },
+  "source_sha256": {
+    "gpu-schema.json": "18784ea65170a443fe3f4663b54d319a850108058a056edc57a00c17c750ee0f",
+    "runs/official-r1-service/gpu.csv.gz": "db4546bf878062eb3336a787f5e04c6afe2bbc3a30ad26b1d1a3c583ae6fbaec",
+    "runs/official-r1-service/operator-process.json": "61bd6271c652ba0a020b15ff2d28d32858145ba640893ed2fa174f53fc50c6fa",
+    "runs/official-r1-service/operator-status.json": "522ac43b55d509f8953c0c52c56481ac8395564e057f65a49da2cb114a8f6300",
+    "runs/official-r1-service/requests.jsonl": "cb7bbad1e713a03f2985726ee593d6a89c2012f66dd53fa2a71101631d2c2ce1",
+    "runs/official-r1/accuracy/command.json": "4e6323bf52353f9ca3f21337bbb6d045a8fbebae575cab90e037d1a2c0d16823",
+    "runs/official-r1/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl": "9cdd76859d768adeab4b880f30a574b756e3bc508d88c0ea62f4e6a4a8181e5a",
+    "runs/official-r1/accuracy/native/reports/qwen38-27b/ifbench.json": "ead6f2b9f648f64256c9de55dc934c3e0f5562bb7c7b3c69e9c747106966652e",
+    "runs/official-r1/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl": "1f84ca04dc7b2fa29e6f07b098041a2b4e835827ee9d2fa6ed0b0a8fc7037d20",
+    "runs/official-r1/accuracy/resolved_config.json": "dbe721043d3a8490352b8039e6a4c339e0894b74755e3652fefc9dc9c2398716",
+    "runs/official-r1/accuracy/summary.json": "720e4fa680132dc157b4c0bdc8f4778753db3411e9d3ac7ed1a903a023325014",
+    "runs/official-r1/accuracy/task_config.json": "44b23ddb13e2abe69c28c5154c08391fa05a610d23e0e968861d13a5d740b532",
+    "runs/official-r1/performance/c1/profile_export.jsonl": "fadcdbe9d757f6e224c9b85e59704bf0cd305cd69c6b5c4f78187f27fadcf7ed",
+    "runs/official-r1/performance/c1/profile_export_aiperf.json": "e911589f57ec098b40f2eafe5a88f4533af1cd5dd197dfd766e0a3df8f9d6a4a",
+    "runs/official-r1/performance/c2/profile_export.jsonl": "3720b315d051686056a240b76f90afbe25d8202dd9f4e4904884bb9bcbf76d61",
+    "runs/official-r1/performance/c2/profile_export_aiperf.json": "587707228b99c892ba013dcc1648604e8383161cab2886e91ab412253e73d251",
+    "runs/official-r1/performance/c4/profile_export.jsonl": "c06eeeb6a237fddebfd5d06054e18554c828dcceeb7876885674604fe04b7591",
+    "runs/official-r1/performance/c4/profile_export_aiperf.json": "e3157e8011b03a95e8c27c75d15df0a6d48bc6eccb76002c5855a4e00d2669c6",
+    "runs/official-r1/performance/c8/profile_export.jsonl": "6d2722209c969d8e7195db3d0eecc1697adc21f2f681fd9fe18e14e9072c2b2c",
+    "runs/official-r1/performance/c8/profile_export_aiperf.json": "f37d0f80cf05eabc8d1abe6ce4c11431ec30b954228f5ec5ba8c5ebde9aa4037"
+  }
+}

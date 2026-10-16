@@ -1,0 +1,16 @@
+{
+  "model": "qwen38-27b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a helpful coding assistant. Answer directly without hidden reasoning. Follow the requested output format."
+    },
+    {
+      "role": "user",
+      "content": "A build machine has one CPU and one GPU. Tasks: A needs CPU for 3 min; B needs GPU for 5 min and depends on A; C needs CPU for 4 min and depends on A; D needs GPU for 2 min and depends on C; E needs CPU for 2 min and depends on B and D. Tasks cannot be interrupted and each resource handles one task at a time. Find the earliest finish time and explain a schedule and lower bound."
+    }
+  ],
+  "max_tokens": 384,
+  "temperature": 0,
+  "stream": false
+}
