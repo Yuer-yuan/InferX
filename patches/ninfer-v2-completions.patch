@@ -1,0 +1,527 @@
+--- a/include/ninfer/engine.h
++++ b/include/ninfer/engine.h
+@@ -70,6 +70,9 @@
+     [[nodiscard]] PreparedPrompt prepare_tokens(std::vector<TokenId> token_ids,
+                                                 bool allow_prefix_identity = true) const;
+ 
++    // Exact embedded tokenizer, with no chat template, BOS, or generation prompt.
++    [[nodiscard]] std::vector<TokenId> tokenize(std::string_view text) const;
++
+     [[nodiscard]] std::uint32_t count_tokens(PromptInput input) const;
+     [[nodiscard]] PromptCapabilities prompt_capabilities() const;
+     [[nodiscard]] ModelSamplingDefaults sampling_defaults() const;
+--- a/src/runtime/engine/engine.cpp
++++ b/src/runtime/engine/engine.cpp
+@@ -205,6 +205,15 @@
+         impl_->active);
+ }
+ 
++std::vector<TokenId> Engine::tokenize(std::string_view text) const {
++    if (impl_ == nullptr) { throw std::logic_error("Engine is moved from"); }
++    return std::visit(
++        [&](const auto& target_ptr) {
++            if (target_ptr == nullptr) { throw std::logic_error("Engine target is not active"); }
++            return target_ptr->loaded->frontend.tokenize(text);
++        }, impl_->active);
++}
++
+ std::uint32_t Engine::count_tokens(PromptInput input) const {
+     if (impl_ == nullptr) { throw std::logic_error("Engine is moved from"); }
+     return std::visit(
+--- a/src/serve/generation_service.cpp
++++ b/src/serve/generation_service.cpp
+@@ -236,12 +236,12 @@
+ 
+ class ServiceOutputSink final : public ninfer::OutputSink {
+ public:
+-    ServiceOutputSink(const StreamSink& sink, bool filter_tool_calls)
+-        : sink_(&sink), filter_tool_calls_(filter_tool_calls) {}
++    ServiceOutputSink(const StreamSink& sink, bool filter_tool_calls, bool raw_completion)
++        : sink_(&sink), filter_tool_calls_(filter_tool_calls), raw_completion_(raw_completion) {}
+ 
+     void publish(ninfer::OutputDelta delta) override {
+-        if (delta.text.empty()) { return; }
+-        const std::uint32_t tokens = std::max(1U, delta.tokens);
++        if (delta.text.empty() && (!raw_completion_ || delta.tokens == 0)) { return; }
++        const std::uint32_t tokens = raw_completion_ ? delta.tokens : std::max(1U, delta.tokens);
+         if (delta.channel == ninfer::OutputChannel::Reasoning) {
+             if (sink_->on_reasoning) { sink_->on_reasoning(delta.text, tokens); }
+         } else {
+@@ -258,13 +258,14 @@
+ 
+ private:
+     void publish_content(const std::string& text, std::uint32_t tokens) {
+-        if (text.empty() || !sink_->on_content) { return; }
++        if ((!raw_completion_ && text.empty()) || !sink_->on_content) { return; }
+         sink_->on_content(text, tokens);
+         content_bytes_ += text.size();
+     }
+ 
+     const StreamSink* sink_ = nullptr;
+     bool filter_tool_calls_ = false;
++    bool raw_completion_ = false;
+     ToolCallStreamFilter tool_filter_;
+     std::size_t content_bytes_ = 0;
+ };
+@@ -362,6 +363,7 @@
+     PreparedRequest prepared;
+     ninfer::RequestOptions request_options = to_request_options(request, options_);
+     prepared.include_usage                 = request.include_usage;
++    prepared.raw_completion                = request.raw_completion;
+     prepared.tool_capable                  = request.uses_tools() || request.has_tool_history();
+     prepared.timings_per_token             = request.timings_per_token;
+     prepared.tool_name_max_length          = request.tool_name_max_length;
+@@ -389,13 +391,23 @@
+ 
+     try {
+         std::size_t remaining_media_bytes = options_.max_request_bytes;
+-        ninfer::PromptInput input =
+-            to_prompt_input(request, semantics, [&](const ContentPart& part) {
+-                return acquire_media(part, prepared.lifetime->deadline, is_cancelled,
+-                                     remaining_media_bytes);
+-            });
+         check_preparation_control(prepared.lifetime->deadline, is_cancelled);
+-        ninfer::PreparedPrompt prompt = engine_->prepare(std::move(input));
++        ninfer::PreparedPrompt prompt;
++        if (request.raw_completion) {
++            // Both string and token-ID completions use raw tokens, with no chat
++            // template or prefix identity. Disabling reuse conservatively isolates
++            // every request regardless of cache_salt, without adding a new cache.
++            auto ids = request.prompt_token_ids.empty() ? engine_->tokenize(request.prompt_text)
++                                                       : request.prompt_token_ids;
++            prompt = engine_->prepare_tokens(std::move(ids), false);
++        } else {
++            ninfer::PromptInput input =
++                to_prompt_input(request, semantics, [&](const ContentPart& part) {
++                    return acquire_media(part, prepared.lifetime->deadline, is_cancelled,
++                                         remaining_media_bytes);
++                });
++            prompt = engine_->prepare(std::move(input));
++        }
+         check_preparation_control(prepared.lifetime->deadline, is_cancelled);
+         prepared.prompt_tokens = static_cast<int>(prompt.summary().prompt_tokens);
+         prepared.prepare_seconds =
+@@ -405,7 +417,19 @@
+         prepared.sampling   = prepared.generation.resolved_sampling();
+     } catch (const ApiException&) { throw; } catch (const ninfer::RequestError& exception) {
+         throw_request_error(exception);
+-    } catch (const std::invalid_argument& exception) { throw_invalid_input(exception); }
++    } catch (const std::invalid_argument& exception) {
++        if (request.raw_completion) {
++            throw ApiException(ApiError{.status = 400, .type = "invalid_request_error",
++                                         .message = exception.what(), .param = "prompt",
++                                         .code = "invalid_prompt"});
++        }
++        throw_invalid_input(exception);
++    } catch (const std::out_of_range& exception) {
++        if (!request.raw_completion) { throw; }
++        throw ApiException(ApiError{.status = 400, .type = "invalid_request_error",
++                                     .message = exception.what(), .param = "prompt",
++                                     .code = "invalid_prompt"});
++    }
+     return prepared;
+ }
+ 
+@@ -446,7 +470,7 @@
+                                          std::function<bool()> is_cancelled) {
+     std::unique_ptr<ServiceOutputSink> output_sink;
+     if (sink != nullptr) {
+-        output_sink = std::make_unique<ServiceOutputSink>(*sink, prepared.tool_capable);
++        output_sink = std::make_unique<ServiceOutputSink>(*sink, prepared.tool_capable, prepared.raw_completion);
+     }
+     ninfer::OutputSink* public_sink = output_sink.get();
+     ninfer::CancellationView cancellation;
+--- a/src/serve/generation_service.h
++++ b/src/serve/generation_service.h
+@@ -71,6 +71,7 @@
+     double prepare_seconds                 = 0.0;
+     int prompt_tokens                      = 0;
+     bool include_usage                     = false;
++    bool raw_completion                    = false;
+     bool tool_capable                      = false;
+     bool timings_per_token                 = false;
+     std::size_t tool_name_max_length       = 64;
+--- a/src/serve/http_server.cpp
++++ b/src/serve/http_server.cpp
+@@ -353,6 +353,9 @@
+     });
+     register_get(R"(/models/(.+))", [this](const httplib::Request& req, httplib::Response& res) {
+         handle_model(req, res);
++    });
++    register_post("/completions", [this](const httplib::Request& req, httplib::Response& res) {
++        handle_chat_completions(req, res, true);
+     });
+     register_post("/chat/completions",
+                   [this](const httplib::Request& req, httplib::Response& res) {
+@@ -452,7 +455,8 @@
+                     "application/json");
+ }
+ 
+-void HttpServer::handle_chat_completions(const httplib::Request& req, httplib::Response& res) {
++void HttpServer::handle_chat_completions(const httplib::Request& req, httplib::Response& res,
++                                          bool raw_completion) {
+     nlohmann::json body;
+     try {
+         body = nlohmann::json::parse(req.body);
+@@ -469,7 +473,8 @@
+     try {
+         RequestLimits limits;
+         limits.default_max_tokens = options_.default_max_tokens;
+-        request = parse_chat_completion_request(body, limits);
++        request = raw_completion ? parse_completion_request(body, limits, public_model_id_)
++                                 : parse_chat_completion_request(body, limits);
+         if (request.model.empty()) {
+             request.model = public_model_id_;
+         }
+@@ -480,13 +485,14 @@
+         return;
+     }
+ 
+-    const std::string id       = new_chat_completion_id();
++    const std::string id       = (raw_completion ? "cmpl-" : "") + new_chat_completion_id();
+     const std::int64_t created = unix_time_now();
+     const std::string model    = request.model;
+ 
+     const std::uint64_t req_id = ++request_seq_;
+     const RequestLogContext log_context =
+-        make_request_log_context(req_id, "openai_chat_completions", request, prepared);
++        make_request_log_context(req_id, raw_completion ? "openai_completions" : "openai_chat_completions",
++                                 request, prepared);
+     log_request_start(log_context);
+ 
+     if (!request.stream) {
+@@ -498,7 +504,10 @@
+             const CompletionUsage usage     = make_completion_usage(outcome);
+             const CompletionTimings timings = make_completion_timings(outcome);
+             std::string response_body;
+-            if (!outcome.tool_calls.empty()) {
++            if (raw_completion) {
++                response_body = make_completion_response(id, model, created, outcome.text,
++                    finish_reason_wire(outcome.finish_reason), usage);
++            } else if (!outcome.tool_calls.empty()) {
+                 response_body = make_chat_completion_tool_response(
+                     id, model, created, outcome.text, outcome.reasoning, outcome.tool_calls, usage,
+                     timings);
+@@ -526,7 +535,7 @@
+ 
+     res.set_chunked_content_provider(
+         "text/event-stream",
+-        [this, stream, id, created, model, include_usage, tool_capable,
++        [this, stream, id, created, model, include_usage, tool_capable, raw_completion,
+          log_context](std::size_t, httplib::DataSink& sink) -> bool {
+             if (stream->started) {
+                 sink.done();
+@@ -534,8 +543,10 @@
+             }
+             stream->started = true;
+             try {
+-                write_stream_item(sink, *stream,
+-                                  make_chat_chunk_role(id, model, created, include_usage));
++                if (!raw_completion) {
++                    write_stream_item(sink, *stream,
++                                      make_chat_chunk_role(id, model, created, include_usage));
++                }
+                 const bool timings_per_token = stream->prepared.timings_per_token;
+                 const int prompt_tokens      = stream->prepared.prompt_tokens;
+                 std::size_t streamed_tokens  = 0;
+@@ -568,8 +579,9 @@
+                     last_activity = std::chrono::steady_clock::now();
+                     write_stream_item(
+                         sink, *stream,
+-                        make_chat_chunk_content(id, model, created, text, include_usage,
+-                                                get_chunk_timings(tokens)));
++                        raw_completion ? make_completion_chunk(id, model, created, text, nullptr, include_usage)
++                                       : make_chat_chunk_content(id, model, created, text, include_usage,
++                                                                 get_chunk_timings(tokens)));
+                 };
+                 output.on_reasoning = [&](const std::string& text, std::uint32_t tokens) {
+                     last_activity = std::chrono::steady_clock::now();
+@@ -578,6 +590,7 @@
+                         make_chat_chunk_reasoning(id, model, created, text, include_usage,
+                                                   get_chunk_timings(tokens)));
+                 };
++                if (raw_completion) { output.on_reasoning = output.on_content; }
+                 output.is_cancelled = [&] {
+                     if (stream->cancelled.load(std::memory_order_acquire)) {
+                         return true;
+@@ -601,7 +614,14 @@
+                 log_request_done(log_context, outcome);
+                 const CompletionTimings timings = make_completion_timings(outcome);
+                 const std::string_view remaining = unstreamed_content(outcome);
+-                if (!outcome.tool_calls.empty()) {
++                if (raw_completion) {
++                    if (!remaining.empty()) {
++                        write_stream_item(sink, *stream, make_completion_chunk(
++                            id, model, created, std::string(remaining), nullptr, include_usage));
++                    }
++                    write_stream_item(sink, *stream, make_completion_chunk(
++                        id, model, created, "", finish_reason_wire(outcome.finish_reason), include_usage));
++                } else if (!outcome.tool_calls.empty()) {
+                     if (!remaining.empty()) {
+                         write_stream_item(sink, *stream,
+                                           make_chat_chunk_content(id, model, created,
+@@ -631,7 +651,8 @@
+                 if (include_usage) {
+                     const CompletionUsage usage = make_completion_usage(outcome);
+                     write_stream_item(sink, *stream,
+-                                      make_chat_chunk_usage(id, model, created, usage, timings));
++                                      raw_completion ? make_completion_usage_chunk(id, model, created, usage)
++                                                     : make_chat_chunk_usage(id, model, created, usage, timings));
+                 }
+                 write_stream_item(sink, *stream, sse_done());
+                 sink.done();
+--- a/src/serve/http_server.h
++++ b/src/serve/http_server.h
+@@ -33,7 +33,9 @@
+ 
+ private:
+     void register_routes();
+-    void handle_chat_completions(const httplib::Request& req, httplib::Response& res);
++    // Shared handler preserves identical lifetime, cancellation, logging and ingress behavior.
++    void handle_chat_completions(const httplib::Request& req, httplib::Response& res,
++                                 bool raw_completion = false);
+     void handle_messages(const httplib::Request& req, httplib::Response& res);
+     void handle_count_tokens(const httplib::Request& req, httplib::Response& res);
+     void handle_responses(const httplib::Request& req, httplib::Response& res);
+--- a/src/serve/openai_schema.cpp
++++ b/src/serve/openai_schema.cpp
+@@ -531,6 +531,109 @@
+ std::string sse_event(const Json& payload) { return "data: " + payload.dump() + "\n\n"; }
+ 
+ } // namespace
++
++GenerationRequest parse_completion_request(const Json& body, const RequestLimits& limits,
++                                           const std::string& served_model) {
++    require_object(body);
++    GenerationRequest out;
++    out.raw_completion = true;
++    out.model = served_model;
++    if (body.contains("model")) {
++        if (!body.at("model").is_string() || body.at("model").get<std::string>() != served_model) {
++            bad_request("model must match the served model id", "model");
++        }
++    }
++    if (!body.contains("prompt")) { bad_request("prompt is required", "prompt"); }
++    const Json& prompt = body.at("prompt");
++    if (prompt.is_string()) {
++        out.prompt_text = prompt.get<std::string>();
++        if (out.prompt_text.empty()) { bad_request("prompt must not be empty", "prompt"); }
++    } else if (prompt.is_array() && !prompt.empty()) {
++        out.prompt_token_ids.reserve(prompt.size());
++        for (const Json& token : prompt) {
++            if (!token.is_number_integer() ||
++                (token.is_number_unsigned() && token.get<std::uint64_t>() >
++                    static_cast<std::uint64_t>(std::numeric_limits<std::int32_t>::max())) ||
++                (!token.is_number_unsigned() && (token.get<std::int64_t>() < 0 ||
++                    token.get<std::int64_t>() > std::numeric_limits<std::int32_t>::max()))) {
++                bad_request("prompt must be a flat array of nonnegative integer token IDs", "prompt");
++            }
++            out.prompt_token_ids.push_back(token.get<std::int32_t>());
++        }
++        // Vocabulary membership is checked by Engine::prepare_tokens against the artifact.
++    } else {
++        bad_request("prompt must be a nonempty string or flat integer token-ID array", "prompt");
++    }
++    for (const char* key : {"echo", "logprobs", "suffix", "best_of", "tools", "tool_choice",
++                            "functions", "function_call", "messages", "response_format",
++                            "logit_bias", "chat_template_kwargs", "enable_thinking",
++                            "reasoning_effort", "preserve_thinking"}) {
++        if (body.contains(key)) { bad_request(std::string(key) + " is not supported", key); }
++    }
++    for (const char* key : {"stream", "ignore_eos"}) {
++        if (body.contains(key) && !body.at(key).is_boolean()) {
++            bad_request(std::string(key) + " must be a boolean", key);
++        }
++    }
++    if (body.contains("cache_salt") && !body.at("cache_salt").is_string()) {
++        bad_request("cache_salt must be a string", "cache_salt");
++    }
++    // All raw completions disable prefix identity/reuse. Salt is type-checked only;
++    // this conservative isolation does not promise salt-specific cache reuse.
++    out.stream = get_bool(body, "stream", false);
++    out.ignore_eos = get_bool(body, "ignore_eos", false);
++    if (body.contains("stream_options")) {
++        if (!body.at("stream_options").is_object()) {
++            bad_request("stream_options must be an object", "stream_options");
++        }
++        const Json& options = body.at("stream_options");
++        if (options.contains("include_usage") && !options.at("include_usage").is_boolean()) {
++            bad_request("include_usage must be a boolean", "include_usage");
++        }
++        out.include_usage = get_bool(options, "include_usage", false);
++    }
++    for (const char* key : {"n", "max_tokens", "temperature", "top_p", "top_k",
++                            "presence_penalty", "frequency_penalty", "seed"}) {
++        if (body.contains(key) && body.at(key).is_null()) {
++            bad_request(std::string(key) + " must not be null", key);
++        }
++    }
++    parse_sampling(body, out);
++    parse_stop(body, out);
++    out.max_tokens = limits.default_max_tokens;
++    if (const auto budget = get_int(body, "max_tokens")) {
++        if (*budget <= 0) { bad_request("max_tokens must be positive", "max_tokens"); }
++        out.max_tokens = *budget;
++        out.max_tokens_set = true;
++    }
++    return out;
++}
++
++std::string make_completion_response(const std::string& id, const std::string& model,
++                                     std::int64_t created, const std::string& text,
++                                     const char* finish_reason, const CompletionUsage& usage) {
++    return Json{{"id", id}, {"object", "text_completion"}, {"created", created}, {"model", model},
++                {"choices", Json::array({Json{{"index", 0}, {"text", text}, {"logprobs", nullptr},
++                                            {"finish_reason", finish_reason}}})},
++                {"usage", completion_usage_json(usage)}}.dump();
++}
++
++std::string make_completion_chunk(const std::string& id, const std::string& model,
++                                  std::int64_t created, const std::string& text,
++                                  const char* finish_reason, bool include_usage) {
++    Json payload{{"id", id}, {"object", "text_completion"}, {"created", created}, {"model", model},
++                 {"choices", Json::array({Json{{"index", 0}, {"text", text}, {"logprobs", nullptr},
++                                             {"finish_reason", finish_reason ? Json(finish_reason) : Json(nullptr)}}})}};
++    if (include_usage) { payload["usage"] = nullptr; }
++    return sse_event(payload);
++}
++
++std::string make_completion_usage_chunk(const std::string& id, const std::string& model,
++                                        std::int64_t created, const CompletionUsage& usage) {
++    return sse_event(Json{{"id", id}, {"object", "text_completion"}, {"created", created},
++                          {"model", model}, {"choices", Json::array()},
++                          {"usage", completion_usage_json(usage)}});
++}
+ 
+ std::optional<bool> parse_openai_preserve_thinking(const Json& body) {
+     std::optional<bool> top_level;
+@@ -763,6 +866,7 @@
+                                                      {"created", created},
+                                                      {"owned_by", "ninfer"},
+                                                      {"context_window", context_window},
++                          {"context_length", context_window},
+                                                      {"max_model_len", context_window},
+                                                      {"max_output_tokens", context_window},
+                                                      {"modalities", Json{{"vision", vision}}}}})}};
+@@ -777,6 +881,7 @@
+                           {"created", created},
+                           {"owned_by", "ninfer"},
+                           {"context_window", context_window},
++                          {"context_length", context_window},
+                           {"max_model_len", context_window},
+                           {"max_output_tokens", context_window},
+                           {"modalities", Json{{"vision", vision}}}};
+--- a/src/serve/openai_schema.h
++++ b/src/serve/openai_schema.h
+@@ -22,6 +22,18 @@
+ // on malformed or unsupported requests (n>1, tools, non-text response_format, ...).
+ GenerationRequest parse_chat_completion_request(const nlohmann::json& body,
+                                                 const RequestLimits& limits);
++
++GenerationRequest parse_completion_request(const nlohmann::json& body,
++                                           const RequestLimits& limits,
++                                           const std::string& served_model);
++std::string make_completion_response(const std::string& id, const std::string& model,
++                                     std::int64_t created, const std::string& text,
++                                     const char* finish_reason, const CompletionUsage& usage);
++std::string make_completion_chunk(const std::string& id, const std::string& model,
++                                  std::int64_t created, const std::string& text,
++                                  const char* finish_reason, bool include_usage);
++std::string make_completion_usage_chunk(const std::string& id, const std::string& model,
++                                        std::int64_t created, const CompletionUsage& usage);
+ 
+ std::optional<bool> parse_openai_preserve_thinking(const nlohmann::json& body);
+ 
+--- a/src/serve/request.h
++++ b/src/serve/request.h
+@@ -194,6 +194,10 @@
+ 
+ struct GenerationRequest {
+     std::string model;
++    bool raw_completion = false;
++    bool ignore_eos = false;
++    std::string prompt_text;
++    std::vector<std::int32_t> prompt_token_ids;
+     std::vector<ChatTurn> messages;
+     std::vector<ToolDefinition> tools;
+     std::size_t tool_name_max_length = 64;
+--- a/src/serve/translate.cpp
++++ b/src/serve/translate.cpp
+@@ -116,6 +116,10 @@
+ ResolvedPromptSemantics resolve_prompt_semantics(const GenerationRequest& request,
+                                                  const ServeOptions& server,
+                                                  const ninfer::PromptCapabilities& capabilities) {
++    if (request.raw_completion) {
++        return ResolvedPromptSemantics{.enable_thinking = false, .reasoning_effort = std::nullopt,
++                                        .preserve_thinking = false};
++    }
+     ResolvedPromptSemantics result{
+         .enable_thinking   = request.enable_thinking.value_or(server.enable_thinking),
+         .reasoning_effort  = std::nullopt,
+@@ -234,9 +238,10 @@
+                                           const ServeOptions& server) {
+     ninfer::RequestOptions options;
+     options.execution.requested_output_tokens = static_cast<std::uint32_t>(request.max_tokens);
+-    options.execution.allow_prefix_reuse      = server.allow_prefix_reuse;
++    options.execution.allow_prefix_reuse      = !request.raw_completion && server.allow_prefix_reuse;
+     options.execution.sampling             = resolve_sampling_overrides(request.sampling, server);
+-    options.output.raw                     = false;
++    options.output.raw                     = request.raw_completion;
++    options.stop.include_model_defaults    = !request.raw_completion || !request.ignore_eos;
+     options.output.preserve_special_tokens = request.uses_tools() || request.has_tool_history();
+     switch (request.response_format.mode) {
+     case ResponseFormatMode::Text:
+--- a/src/targets/qwen3_6/export/ninfer/targets/qwen3_6/frontend.h
++++ b/src/targets/qwen3_6/export/ninfer/targets/qwen3_6/frontend.h
+@@ -118,6 +118,7 @@
+     ~Frontend();
+ 
+     [[nodiscard]] PreparedPrompt prepare(PromptInput input) const;
++    [[nodiscard]] std::vector<TokenId> tokenize(std::string_view text) const;
+     [[nodiscard]] std::uint32_t count_tokens(PromptInput input) const;
+     [[nodiscard]] PreparedPrompt prepare_tokens(std::vector<TokenId> token_ids,
+                                                 bool allow_prefix_identity = true) const;
+--- a/src/targets/qwen3_6/impl/frontend/frontend.cpp
++++ b/src/targets/qwen3_6/impl/frontend/frontend.cpp
+@@ -665,7 +665,7 @@
+          const StructuredOutputOptions& structured, bool starts_in_reasoning,
+          const std::shared_ptr<xgrammar::GrammarCompiler>& compiler, int vocab_size)
+         : tokenizer(std::move(tokenizer_)), policy(std::move(policy_)),
+-          preserve_special(output.raw || output.preserve_special_tokens) {
++          preserve_special(output.raw || output.preserve_special_tokens), raw(output.raw) {
+         // A structured response starts at the grammar root and is published as content even when
+         // the model's normal mode would begin in a hidden reasoning channel.
+         state.in_reasoning = starts_in_reasoning && !output.raw && !structured.enabled();
+@@ -685,6 +685,7 @@
+     std::shared_ptr<const fi::Tokenizer> tokenizer;
+     StopPolicy policy;
+     bool preserve_special = false;
++    bool raw = false;
+     DecoderState state;
+     DecoderState preview_state;
+     PublishedOutput preview_output;
+@@ -779,6 +780,12 @@
+     const auto complete = [&](std::uint32_t count, FinishReason reason) {
+         if (impl_->preview_matcher && grammar_tokens > count) {
+             impl_->preview_matcher->Rollback(static_cast<int>(grammar_tokens - count));
++        }
++        // Raw completion clients must observe committed tokens even when UTF-8
++        // or an explicit stop-string prefix has temporarily withheld all bytes.
++        if (impl_->raw && count != 0 && impl_->preview_output.empty()) {
++            impl_->preview_output.push_back(OutputDelta{.channel = OutputChannel::Content,
++                                                        .text = "", .tokens = count});
+         }
+         if (impl_->preview_output.size() == 1) {
+             impl_->preview_output[0].tokens = count;
+@@ -991,6 +998,11 @@
+     return PreparedPrompt(std::move(prepared));
+ }
+ 
++std::vector<TokenId> Frontend::tokenize(std::string_view text) const {
++    const auto ids = impl_->tokenizer->encode(text);
++    return {ids.begin(), ids.end()};
++}
++
+ std::uint32_t Frontend::count_tokens(PromptInput input) const {
+     const PromptOptions options           = input.options;
+     std::vector<fi::ChatMessage> messages = convert_messages(std::move(input.messages));
