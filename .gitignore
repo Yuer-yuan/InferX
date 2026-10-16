@@ -1,6 +1,48 @@
+# Local agent skills, state and execution workspaces
+/.agents/
+/.codex/
+/.claude/
+/.opencode/
+/.pi/
+/.superpowers/
+/.worktrees/
+
+# Python environments and generated caches
 __pycache__/
 *.pyc
 .venv/
-.superpowers/
-.worktrees/
-artifacts/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+*.egg-info/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local downloads, runtime files and submission exports
+/artifacts/
+/cache/
+/tmp/
+/models/
+/data/
+/runs/
+/logs/
+/build/
+/dist/
+
+# Local credentials; example configuration remains trackable
+/.env
+/.env.*
+!/.env.example
+!/.env.*.example
+
+# Editor and operating-system files
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

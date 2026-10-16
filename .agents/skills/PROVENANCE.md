@@ -1,3 +1,0 @@
-# Local skills
-
-Installed from https://github.com/obra/superpowers/tree/main/skills on 2026-10-14 using the system skill-installer. Requested skills: brainstorming and writing-plans. The remaining directories are workflow dependencies for execution, tests and review. The upstream MIT license is included in LICENSE.superpowers. These files are workflow guidance, not experiment dependencies.

@@ -28,5 +28,3 @@ python3 -m unittest discover -s tests -v
 完整测试需要 `aiohttp` 和 `pytest`；未安装时对应集成测试会跳过，远端 HDD 独立 venv 运行完整套件，依赖见 `requirements-repository.txt`。原验证器需要 Linux、系统 Python 3 和 libseccomp；仓库验证器还要求 x86_64 Linux Landlock ABI ≥3，隔离不可用时拒绝执行。
 
 仓库实验使用 `inferx/episodes.py` 管理多个任务的共享生成许可，`inferx/repo_verifier.py` 在私有源码副本中执行完整测试，`scripts/analyze_repository.py` 检查开发/评估网格并保留失败与取消成本。分析与绘图独立于冻结的推理运行代码。
-
-技能安装于 `.agents/skills`，来源和许可见该目录的 `PROVENANCE.md`。
