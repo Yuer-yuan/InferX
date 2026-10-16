@@ -7,6 +7,8 @@
 单 RTX 4090 上的 Qwen3.8-27B 部署及代码生成—CPU 验证反馈实验。HumanEval 阶段用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于 GPU 1 的同一服务会话，每个试验只使用一张卡。
 
 - [可迁移 NInfer 部署、配置模板和原版评测](submission/REPRODUCE.md)
+- [NInfer 基线节点使用与后续实验](docs/ninfer-operations.md)
+- [本轮 NInfer/MTP 消融、正式评测进展与瓶颈](docs/reports/2026-10-16-ninfer-performance.md)
 - [OpenCode、Pi、Claude Code 直接接入 Qwen](docs/agent-quickstart.md)（已配置，GPU1 的 18081 服务，256K 后端）
 - [256K 上下文与三个 Agent 的验证结果](docs/reports/2026-10-14-context-agents.md)
 - [长上下文、并发与 Roofline 验证](docs/reports/2026-10-14-concurrency-roofline.md)（48K–248K 输入；长预填充准入阻塞与 MTP 对照）
