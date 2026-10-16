@@ -1,0 +1,248 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "started_at": "2026-10-16T09:37:55.498927+00:00",
+  "run_id": "e7bfcf27903c4193bb16953629f45a90",
+  "runner": "/workspace/InferX/code/submission/organizer/runner.py",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "config_sha256": "d1f6e947d361c094bc246c3ddb5a8b4681e84daa481757d4b8538c350bc8b11e",
+  "selected_cases": [
+    "mtp7-slots4"
+  ],
+  "cases": [
+    {
+      "label": "PILOT",
+      "name": "mtp7-slots4",
+      "command": [
+        "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8089",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "131072",
+        "--max-concurrency",
+        "4",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--no-thinking",
+        "--greedy",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "7",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/pilot-mtp7/mtp7-slots4/requests.jsonl"
+      ],
+      "concurrencies": [
+        1,
+        4,
+        8
+      ],
+      "started_at": "2026-10-16T09:37:58.929674+00:00",
+      "status": "complete",
+      "tiers": [
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 1,
+          "artifacts": "/workspace/InferX/runs/pilot-mtp7/mtp7-slots4/c1",
+          "started_at": "2026-10-16T09:38:14.531750+00:00",
+          "meets_slo": true,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 3418.192298125,
+              "p50": 3420.0996625,
+              "p95": 3433.9879005,
+              "p99": 3434.0221137
+            },
+            "inter_token_latency": {
+              "mean": 6.193889662426614,
+              "p50": 5.359993807240704,
+              "p95": 9.880714679060667,
+              "p99": 10.334710120156556
+            },
+            "request_latency": {
+              "mean": 6583.269915625,
+              "p50": 6161.057447499999,
+              "p95": 8468.21232655,
+              "p99": 8707.514597309999
+            }
+          },
+          "benchmark_duration": 52.68468480000001,
+          "request_throughput": 0.15183676846572147,
+          "output_token_throughput": 77.7404254544494,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:39:25.637938+00:00",
+          "elapsed_seconds": 71.10620967397699
+        },
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 4,
+          "artifacts": "/workspace/InferX/runs/pilot-mtp7/mtp7-slots4/c4",
+          "started_at": "2026-10-16T09:39:25.638964+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 6892.837585,
+              "p50": 6308.9991235,
+              "p95": 12956.400882200001,
+              "p99": 13986.13220524
+            },
+            "inter_token_latency": {
+              "mean": 26.260225919520547,
+              "p50": 22.755987854207437,
+              "p95": 49.96899037407046,
+              "p99": 57.379501054070445
+            },
+            "request_latency": {
+              "mean": 20311.813029875,
+              "p50": 18231.2024435,
+              "p95": 31460.093219200004,
+              "p99": 33248.08890224
+            }
+          },
+          "benchmark_duration": 44.691256064,
+          "request_throughput": 0.17899094898799608,
+          "output_token_throughput": 91.643365881854,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:40:29.531112+00:00",
+          "elapsed_seconds": 63.89216517301975
+        },
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 8,
+          "artifacts": "/workspace/InferX/runs/pilot-mtp7/mtp7-slots4/c8",
+          "started_at": "2026-10-16T09:40:29.532144+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 19730.745331375,
+              "p50": 17873.7228025,
+              "p95": 36499.258419800004,
+              "p99": 37827.24525116
+            },
+            "inter_token_latency": {
+              "mean": 29.29361335469667,
+              "p50": 28.02340237475538,
+              "p95": 56.64362809677103,
+              "p99": 57.81752757786692
+            },
+            "request_latency": {
+              "mean": 34699.781755624994,
+              "p50": 37404.54567199999,
+              "p95": 43742.374211199996,
+              "p99": 43749.86052864
+            }
+          },
+          "benchmark_duration": 43.754917632,
+          "request_throughput": 0.18282495771222218,
+          "output_token_throughput": 93.60637834865776,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:41:32.133754+00:00",
+          "elapsed_seconds": 62.601624142960645
+        }
+      ],
+      "server_log": "/workspace/InferX/runs/pilot-mtp7/mtp7-slots4/server.log",
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      },
+      "pid": 36024,
+      "start_ticks": 36468421,
+      "ready_at": "2026-10-16T09:38:11.175752+00:00",
+      "probe": {
+        "cache_salt": "e7bfcf27903c4193bb16953629f45a90:mtp7-slots4:probe",
+        "status": "complete",
+        "excluded_from_metrics": true
+      },
+      "finished_at": "2026-10-16T09:41:32.548805+00:00",
+      "elapsed_seconds": 213.61916787101654
+    }
+  ],
+  "any_slo_met": true,
+  "slo": {
+    "ttft_p95_max_ms": 10000,
+    "tpot_p95_max_ms": 40
+  },
+  "note": "PILOT only; no official score. Probe and warmup excluded; cache isolation not verified by telemetry.",
+  "dataset": {
+    "path": "/workspace/InferX/runs/pilot-mtp7/dataset.jsonl",
+    "metadata": "/workspace/InferX/runs/pilot-mtp7/dataset.meta.json",
+    "sha256": "8d8bbd9d95f718b9e0fec6e58079a30b2887a73f204811d5ea3409e2aaf45ae3"
+  },
+  "finished_at": "2026-10-16T09:41:32.549919+00:00",
+  "elapsed_seconds": 217.05069668398937
+}

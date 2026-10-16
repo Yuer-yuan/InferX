@@ -1,0 +1,365 @@
+{
+  "label": "PILOT",
+  "status": "failed",
+  "started_at": "2026-10-16T09:23:56.847766+00:00",
+  "run_id": "e0a8cae3d5654b1284668a4aa90fada4",
+  "runner": "/workspace/InferX/code/submission/organizer/runner.py",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "config_sha256": "71c327bef2ffa693a8e69cf6e732fb70d0766af0b932371783f4dc6871053f71",
+  "selected_cases": [
+    "mtp0-slots4",
+    "mtp4-slots4",
+    "mtp7-slots4"
+  ],
+  "cases": [
+    {
+      "label": "PILOT",
+      "name": "mtp0-slots4",
+      "command": [
+        "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8088",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "131072",
+        "--max-concurrency",
+        "4",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--no-thinking",
+        "--greedy",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/pilot-r1/mtp0-slots4/requests.jsonl"
+      ],
+      "concurrencies": [
+        1,
+        4,
+        8
+      ],
+      "started_at": "2026-10-16T09:24:00.160129+00:00",
+      "status": "complete",
+      "tiers": [
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 1,
+          "artifacts": "/workspace/InferX/runs/pilot-r1/mtp0-slots4/c1",
+          "started_at": "2026-10-16T09:24:17.936279+00:00",
+          "meets_slo": true,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 3413.5901575,
+              "p50": 3417.038815,
+              "p95": 3424.6198636999998,
+              "p99": 3425.00681754
+            },
+            "inter_token_latency": {
+              "mean": 20.274367380381605,
+              "p50": 20.267628849315066,
+              "p95": 20.30158860146771,
+              "p99": 20.3106116365362
+            },
+            "request_latency": {
+              "mean": 13773.791888875,
+              "p50": 13777.6163595,
+              "p95": 13783.7199605,
+              "p99": 13784.2282809
+            }
+          },
+          "benchmark_duration": 110.22631756800001,
+          "request_throughput": 0.07257234208237824,
+          "output_token_throughput": 37.15703914617766,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:26:43.768631+00:00",
+          "elapsed_seconds": 145.83237246400677
+        },
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 4,
+          "artifacts": "/workspace/InferX/runs/pilot-r1/mtp0-slots4/c4",
+          "started_at": "2026-10-16T09:26:43.769576+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 6414.58168025,
+              "p50": 4381.4738225,
+              "p95": 12697.340753250002,
+              "p99": 13679.74733785
+            },
+            "inter_token_latency": {
+              "mean": 37.98723037720156,
+              "p50": 41.93486146086106,
+              "p95": 43.647372697162425,
+              "p99": 43.65743318209393
+            },
+            "request_latency": {
+              "mean": 25826.056403,
+              "p50": 25760.105162,
+              "p95": 34130.510247850005,
+              "p99": 35112.936903969996
+            }
+          },
+          "benchmark_duration": 51.786310144000005,
+          "request_throughput": 0.15446183262460522,
+          "output_token_throughput": 79.08445830379787,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:28:00.839066+00:00",
+          "elapsed_seconds": 77.06950485904235
+        },
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 8,
+          "artifacts": "/workspace/InferX/runs/pilot-r1/mtp0-slots4/c8",
+          "started_at": "2026-10-16T09:28:00.840086+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 8,
+          "records": 8,
+          "valid_records": 8,
+          "successful_requests": 8.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 21570.748091999998,
+              "p50": 21562.9434615,
+              "p95": 38509.78897605,
+              "p99": 39493.54809281
+            },
+            "inter_token_latency": {
+              "mean": 38.640309143591,
+              "p50": 43.63200181017612,
+              "p95": 43.682602133170256,
+              "p99": 43.6852066137182
+            },
+            "request_latency": {
+              "mean": 41315.946064375,
+              "p50": 43884.040175,
+              "p95": 51752.953998,
+              "p99": 51775.9443892
+            }
+          },
+          "benchmark_duration": 51.784849920000006,
+          "request_throughput": 0.15447087662199852,
+          "output_token_throughput": 79.08908883046324,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-16T09:29:17.890510+00:00",
+          "elapsed_seconds": 77.05043930001557
+        }
+      ],
+      "server_log": "/workspace/InferX/runs/pilot-r1/mtp0-slots4/server.log",
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      },
+      "pid": 35465,
+      "start_ticks": 36384543,
+      "ready_at": "2026-10-16T09:24:14.600151+00:00",
+      "probe": {
+        "cache_salt": "e0a8cae3d5654b1284668a4aa90fada4:mtp0-slots4:probe",
+        "status": "complete",
+        "excluded_from_metrics": true
+      },
+      "finished_at": "2026-10-16T09:29:18.305704+00:00",
+      "elapsed_seconds": 318.1456149179721
+    },
+    {
+      "label": "PILOT",
+      "name": "mtp4-slots4",
+      "command": [
+        "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8088",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "131072",
+        "--max-concurrency",
+        "4",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--no-thinking",
+        "--greedy",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "4",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/pilot-r1/mtp4-slots4/requests.jsonl"
+      ],
+      "concurrencies": [
+        1,
+        4,
+        8
+      ],
+      "started_at": "2026-10-16T09:29:18.307044+00:00",
+      "status": "failed",
+      "tiers": [],
+      "server_log": "/workspace/InferX/runs/pilot-r1/mtp4-slots4/server.log",
+      "cleanup": {
+        "reaped": true,
+        "note": "no server started"
+      },
+      "error": "destination port 8088 is occupied or unavailable: [Errno 98] Address already in use",
+      "finished_at": "2026-10-16T09:29:18.308368+00:00",
+      "elapsed_seconds": 0.0013377779978327453
+    },
+    {
+      "label": "PILOT",
+      "name": "mtp7-slots4",
+      "command": [
+        "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8088",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "131072",
+        "--max-concurrency",
+        "4",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--no-thinking",
+        "--greedy",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "7",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/pilot-r1/mtp7-slots4/requests.jsonl"
+      ],
+      "concurrencies": [
+        1,
+        4,
+        8
+      ],
+      "started_at": "2026-10-16T09:29:18.310027+00:00",
+      "status": "failed",
+      "tiers": [],
+      "server_log": "/workspace/InferX/runs/pilot-r1/mtp7-slots4/server.log",
+      "cleanup": {
+        "reaped": true,
+        "note": "no server started"
+      },
+      "error": "destination port 8088 is occupied or unavailable: [Errno 98] Address already in use",
+      "finished_at": "2026-10-16T09:29:18.311112+00:00",
+      "elapsed_seconds": 0.0011001190287061036
+    }
+  ],
+  "any_slo_met": true,
+  "slo": {
+    "ttft_p95_max_ms": 10000,
+    "tpot_p95_max_ms": 40
+  },
+  "note": "PILOT only; no official score. Probe and warmup excluded; cache isolation not verified by telemetry.",
+  "dataset": {
+    "path": "/workspace/InferX/runs/pilot-r1/dataset.jsonl",
+    "metadata": "/workspace/InferX/runs/pilot-r1/dataset.meta.json",
+    "sha256": "8d8bbd9d95f718b9e0fec6e58079a30b2887a73f204811d5ea3409e2aaf45ae3"
+  },
+  "finished_at": "2026-10-16T09:29:18.312414+00:00",
+  "elapsed_seconds": 321.4643755319994
+}
