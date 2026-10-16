@@ -37,3 +37,7 @@ fig.suptitle('PILOT: 8192 input / 512 output tokens, 4 active slots, prefill chu
 fig.supxlabel('One run, 8 measured requests per point; warmup excluded. Both latency SLOs must pass. No confidence intervals.', fontsize=8)
 fig.savefig(root / 'pilot.png', dpi=180)
 fig.savefig(root / 'pilot.svg', metadata={'Date': None})
+# Matplotlib emits trailing spaces in SVG path data. Normalize this derived
+# visualization only; preserve every native measurement file byte-for-byte.
+svg = root / 'pilot.svg'
+svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines()) + '\n')
