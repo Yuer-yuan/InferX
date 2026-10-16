@@ -30,7 +30,7 @@
 
 ---
 
-### Task1: Pinned author policy and source contracts
+### Task 1: Pinned author policy and source contracts
 
 **Files:** Create `inferx/qoserve_policy.py`, `tests/test_qoserve_policy.py`; source evidence `results/qoserve-validation/author-source-v1.*`, supplemental author timing file/hash and compatibility notes.
 
@@ -41,7 +41,7 @@
 - [ ] Test eager-relegation-once/requeue and throughput EMA against hand-derived source traces; record bridge mappings rather than claim whole old dispatcher unchanged.
 - [ ] Run full local CPU suite (dedicated native checks remain separately gated); verify source manifest and user SHA contract; commit. No timed-server changes.
 
-### Task2: Native dispatcher and capacity commitments
+### Task 2: Native dispatcher and capacity commitments
 
 **Files:** Create `inferx/qoserve_validation.py`, `scripts/prepare_qoserve_validation.py`, `tests/test_qoserve_native.py`; extend native engine configuration only where required by a failing launch contract.
 
@@ -52,7 +52,7 @@
 - [ ] Observe actual RED in the pinned environment; implement ordering/eligibility/token-quota/full-commitment boundaries around native allocator/state handling. Compare native schedule AST modifications and extracted author hashes.
 - [ ] Run all native contracts and full generic suite; prepare immutable HDD overlay, preserve source bytes and commit. No GPU efficacy from CPU contracts.
 
-### Task3: Independent real-model calibration and qualification
+### Task 3: Independent real-model calibration and qualification
 
 **Files:** Create `inferx/qoserve_profile.py`, `scripts/calibrate_qoserve_model.py`, `scripts/run_qoserve_validation.py`, `configs/qoserve-validation.json`, `tests/test_qoserve_profile.py`; calibration/runtime evidence under HDD `qoserve-validation`.
 
@@ -64,7 +64,7 @@
 - [ ] Obtain independent native24short serial +3cold +3resume calibration solos; freeze1.5×shortTTFT/modelTBT,1.25×longTTLT and4×noninteractiveTBT budgets. Only numeric QoS tags change payload; exact model inputs unchanged.
 - [ ] Qualify code/24K/128K tools, actual policy ordering/chunk/relegation, native runtime/capacity and original restoration. Full suites, source/provenance inventory, commit. Do not fit formal outcomes.
 
-### Task4: Strong controls, formal comparisons and research judgment
+### Task 4: Strong controls, formal comparisons and research judgment
 
 **Files:** Create `scripts/compare_qoserve_model.py`, `scripts/analyze_qoserve_comparison.py`, `tests/test_qoserve_results.py`, `docs/reports/2026-10-16-qoserve-validation.md`; immutable configs/raw/exports/reproduction evidence.
 
