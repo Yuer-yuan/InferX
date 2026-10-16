@@ -1,0 +1,23 @@
+......F                                                                  [100%]
+=================================== FAILURES ===================================
+_ ExclusiveAutoExecutionContracts.test_final_auto_eb_claim_requires_both_exclusive_phases_after_real_crossover _
+
+self = <test_ebplus_comparison.ExclusiveAutoExecutionContracts testMethod=test_final_auto_eb_claim_requires_both_exclusive_phases_after_real_crossover>
+
+    def test_final_auto_eb_claim_requires_both_exclusive_phases_after_real_crossover(self):
+        from inferx.ebplus_comparison import audit_policy
+        hardware=dict(parameters=dict(alpha_p=0.,beta_p=.0001,alpha_d=.0001,beta_d=.0001))
+        mb=dict(fit=dict(coefficients=dict(a=.00015,b=0.,c=0.)))
+        state=dict(mode='auto',active_scheduler='eb',evaluations=1,parameters_initialized=True,mb_cost_profiled=True,
+            execution_counts=dict(mb=100,prefill=0,decode=0),completed=130,max_num_running_reqs=4,num_gpu_blocks=98,
+            last_evaluation_inputs=dict(hardware['parameters'],mb_cost_a=.00015,mb_cost_b=0.,mb_cost_c=0.,
+                mu_L=100.,mu_o=100.,N_obs=2.,theta0=.5,alpha_mb=0.,delta=.000001,cooldown_before=0,active_before='mb'))
+        audit_policy(state,hardware,mb,delta=.000001)  # Transition snapshot can precede execution.
+        with self.assertRaisesRegex(ValueError,'exclusive'):
+>           audit_policy(state,hardware,mb,delta=.000001,require_exclusive_execution=True)
+E           TypeError: audit_policy() got an unexpected keyword argument 'require_exclusive_execution'
+
+tests/test_ebplus_comparison.py:110: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::ExclusiveAutoExecutionContracts::test_final_auto_eb_claim_requires_both_exclusive_phases_after_real_crossover
+1 failed, 6 passed in 0.09s

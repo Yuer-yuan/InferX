@@ -47,6 +47,11 @@ def comparison_fixture(root,lane=0):
                 mu_L=24557.,mu_o=64.,N_obs=2.,theta0=.5,alpha_mb=0.,delta=.0001,cooldown_before=0,active_before='mb')
             evidence=dict(mode='auto',active_scheduler='mb',evaluations=1,parameters_initialized=True,mb_cost_profiled=True,
                 execution_counts=dict(mb=100,prefill=0,decode=0),completed=100,max_num_running_reqs=4,num_gpu_blocks=98,last_evaluation_inputs=inputs)
+            if lane==3:
+                # Actual diagnostic inputs yield margin6.69e-6: above the author's1e-6 knob.
+                inputs.update(mu_L=24399.259061176508,mu_o=56.95,N_obs=3.9699999961217456,theta0=.01,delta=.000001)
+                evidence['active_scheduler']='eb'
+                evidence['execution_counts'].update(prefill=200,decode=100)
             write(directory/'policy-before.json',evidence);write(directory/'policy-evidence.json',evidence)
         write(directory/'startup.json',dict(case=native,args=engine_command(native,artifact,artifact/'ebplus-validation/raw'/root.name/identity)))
         runtime=dict(model='/pinned/models/qwen38-int4-redhat',context_window=131328,concurrency=4,max_active=4,
@@ -108,3 +113,13 @@ def test_automatic_export_binds_policy_to_measured_coefficients(tmp_path):
     p=tmp_path/'auto-default-r0-cold-low/policy-evidence.json';d=json.loads(p.read_text())
     d['last_evaluation_inputs']['beta_p']=0.;p.write_text(json.dumps(d))
     with pytest.raises(ValueError,match='calibration'):api.export_campaign(tmp_path,templates)
+
+
+def test_author_tuned_automatic_export_uses_its_actual_hysteresis_and_phase_evidence(tmp_path):
+    from scripts import analyze_ebplus_comparison as api
+    templates=comparison_fixture(tmp_path,lane=3)
+    out=api.export_campaign(tmp_path,templates)
+    assert out['groups'][0]['policy']['decision']['expected_active']=='eb'
+    p=tmp_path/'auto-tuned-r0-cold-low/policy-evidence.json';d=json.loads(p.read_text())
+    d['execution_counts'].update(prefill=0,decode=0);p.write_text(json.dumps(d))
+    with pytest.raises(ValueError,match='exclusive'):api.export_campaign(tmp_path,templates)

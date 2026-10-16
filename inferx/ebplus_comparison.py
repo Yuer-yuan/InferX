@@ -8,13 +8,14 @@ from inferx.ebplus_calibration import validate_plan
 def comparison_cases(plan):
     validate_plan(plan)
     cases=[]
-    for name in ['native','auto-default','forced-eb']:
+    for name in ['native','auto-default','forced-eb','auto-tuned']:
         case=copy.deepcopy(plan['base_case'])
         case.update(id=name,async_scheduling=False,shutdown_timeout=30,num_gpu_blocks_override=98,
                     scheduler_class='inferx_ebplus_scheduler.'+
                     ('ObservedNativeScheduler' if name=='native' else 'EBPlusScheduler'))
         if name!='native':case['environment'].update(VLLM_PD_SCHEDULER_MODE='auto',VLLM_PD_K_MODE='ifr')
         if name=='forced-eb':case['environment']['VLLM_PD_SCHEDULER_MODE']='eb'
+        if name=='auto-tuned':case['environment']['VLLM_PD_MODE_SWITCH_DELTA']='0.000001'
         cases.append(case)
     return cases
 
@@ -54,7 +55,7 @@ def crossover_decision(x):
                 delta=x['delta'],expected_active=active)
 
 
-def audit_policy(state,hardware,mb,*,delta):
+def audit_policy(state,hardware,mb,*,delta,require_exclusive_execution=False):
     from inferx.ebplus_calibration import validate_policy_evidence
     validate_policy_evidence(state)
     if state.get('max_num_running_reqs')!=4 or state.get('num_gpu_blocks')!=98 or state.get('completed',0)<100:
@@ -67,6 +68,9 @@ def audit_policy(state,hardware,mb,*,delta):
     if any(x.get(k)!=v for k,v in expected.items()):raise ValueError('policy calibration/knob mismatch')
     decision=crossover_decision(x)
     if decision['expected_active']!=state['active_scheduler']:raise ValueError('observed policy decision mismatch')
+    if require_exclusive_execution and decision['expected_active']=='eb':
+        if state['execution_counts'].get('prefill',0)<1 or state['execution_counts'].get('decode',0)<1:
+            raise ValueError('automatic exclusive phase execution not observed')
     return decision
 
 

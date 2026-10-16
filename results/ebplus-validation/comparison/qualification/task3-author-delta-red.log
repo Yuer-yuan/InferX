@@ -1,0 +1,24 @@
+F.....                                                                   [100%]
+=================================== FAILURES ===================================
+_ ComparisonContracts.test_catalog_preserves_capacity_and_exercises_both_author_policies _
+
+self = <test_ebplus_comparison.ComparisonContracts testMethod=test_catalog_preserves_capacity_and_exercises_both_author_policies>
+
+    def test_catalog_preserves_capacity_and_exercises_both_author_policies(self):
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        cases=self.api().comparison_cases(plan)
+>       self.assertEqual([c['id'] for c in cases],['native','auto-default','forced-eb','auto-tuned'])
+E       AssertionError: Lists differ: ['native', 'auto-default', 'forced-eb'] != ['native', 'auto-default', 'forced-eb', 'auto-tuned']
+E       
+E       Second list contains 1 additional elements.
+E       First extra element 3:
+E       'auto-tuned'
+E       
+E       - ['native', 'auto-default', 'forced-eb']
+E       + ['native', 'auto-default', 'forced-eb', 'auto-tuned']
+E       ?                                       ++++++++++++++
+
+tests/test_ebplus_comparison.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::ComparisonContracts::test_catalog_preserves_capacity_and_exercises_both_author_policies
+1 failed, 5 passed in 0.08s

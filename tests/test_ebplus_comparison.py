@@ -10,10 +10,10 @@ class ComparisonContracts(unittest.TestCase):
     def api(self):
         return importlib.import_module('inferx.ebplus_comparison')
 
-    def test_bounded_cases_preserve_native_capacity_and_exercise_both_author_policies(self):
+    def test_catalog_preserves_capacity_and_exercises_both_author_policies(self):
         plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
         cases=self.api().comparison_cases(plan)
-        self.assertEqual([c['id'] for c in cases],['native','auto-default','forced-eb'])
+        self.assertEqual([c['id'] for c in cases],['native','auto-default','forced-eb','auto-tuned'])
         for c in cases:
             self.assertEqual((c['concurrency'],c['chunk'],c['long_prefill_token_threshold'],c['draft']), (4,4096,2048,0))
             self.assertEqual(c['num_gpu_blocks_override'],98)
@@ -21,6 +21,9 @@ class ComparisonContracts(unittest.TestCase):
         forced=copy.deepcopy(cases[2]);forced['id']='auto-default'
         forced['environment']['VLLM_PD_SCHEDULER_MODE']='auto'
         self.assertEqual(forced,cases[1])
+        tuned=copy.deepcopy(cases[3]);tuned['id']='auto-default'
+        self.assertEqual(tuned['environment'].pop('VLLM_PD_MODE_SWITCH_DELTA'),'0.000001')
+        self.assertEqual(tuned,cases[1])
 
     def test_frozen_specs_use_full_long_and_serial_solos_keep_server_C4(self):
         templates={name:dict(payload={'messages':[name]},expected_tool={'name':'record','arguments':{}})
@@ -81,7 +84,6 @@ class RuntimeEvidenceContracts(unittest.TestCase):
             api.audit_native_runtime(runtime,plan,hardware,root=Path('/hdd'))
 
 
-if __name__=='__main__':unittest.main()
 
 class ForcedEvidenceContracts(unittest.TestCase):
     def test_forced_policy_requires_actual_phase_work_and_matched_pool(self):
@@ -92,3 +94,21 @@ class ForcedEvidenceContracts(unittest.TestCase):
         state['num_gpu_blocks']=120
         with self.assertRaisesRegex(ValueError,'capacity'):
             audit_policy(state,{}, {},delta=.0001)
+
+class ExclusiveAutoExecutionContracts(unittest.TestCase):
+    def test_final_auto_eb_claim_requires_both_exclusive_phases_after_real_crossover(self):
+        from inferx.ebplus_comparison import audit_policy
+        hardware=dict(parameters=dict(alpha_p=0.,beta_p=.0001,alpha_d=.0001,beta_d=.0001))
+        mb=dict(fit=dict(coefficients=dict(a=.00015,b=0.,c=0.)))
+        state=dict(mode='auto',active_scheduler='eb',evaluations=1,parameters_initialized=True,mb_cost_profiled=True,
+            execution_counts=dict(mb=100,prefill=0,decode=0),completed=130,max_num_running_reqs=4,num_gpu_blocks=98,
+            last_evaluation_inputs=dict(hardware['parameters'],mb_cost_a=.00015,mb_cost_b=0.,mb_cost_c=0.,
+                mu_L=100.,mu_o=100.,N_obs=2.,theta0=.5,alpha_mb=0.,delta=.000001,cooldown_before=0,active_before='mb'))
+        audit_policy(state,hardware,mb,delta=.000001)  # Transition snapshot can precede execution.
+        with self.assertRaisesRegex(ValueError,'exclusive'):
+            audit_policy(state,hardware,mb,delta=.000001,require_exclusive_execution=True)
+        state['execution_counts'].update(prefill=1,decode=1)
+        self.assertEqual(audit_policy(state,hardware,mb,delta=.000001,require_exclusive_execution=True)['expected_active'],'eb')
+
+
+if __name__=='__main__':unittest.main()

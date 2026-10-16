@@ -86,9 +86,9 @@ def export_campaign(root,templates):
         metrics=audit_wave(specs,records,result['span_s'],kind=kind,backend='vllm031')
         policy=None;before=None;sensitivity=None
         if case['id']!='native':
-            evidence=read(folder/'policy-evidence.json');policy=audit_policy(evidence,hardware,mb,delta=.0001)
-            if case['id']=='auto-default':
-                before_evidence=read(folder/'policy-before.json');before=audit_policy(before_evidence,hardware,mb,delta=.0001)
+            evidence=read(folder/'policy-evidence.json');policy=audit_policy(evidence,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')),require_exclusive_execution=True)
+            if case['id'].startswith('auto-'):
+                before_evidence=read(folder/'policy-before.json');before=audit_policy(before_evidence,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')))
                 x=copy.deepcopy(evidence['last_evaluation_inputs']);x['delta']=0.;sensitivity=crossover_decision(x)
             policy=dict(decision=policy,evidence=evidence,before=before,zero_hysteresis_counterfactual=sensitivity,
                 scope='Counters include unscored conditioning; they are not exact measured-wave physical work.')

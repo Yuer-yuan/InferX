@@ -1,0 +1,159 @@
+{
+  "actual_evidence_sha256": "71c2a8702a722b6eb3f9a149c1e3a1946509b9cf138fccc7e2bfe029edc8384c",
+  "actual_state": {
+    "mode": "auto",
+    "active_scheduler": "mb",
+    "evaluations": 1,
+    "parameters_initialized": true,
+    "mb_cost_profiled": true,
+    "execution_counts": {
+      "mb": 1984,
+      "prefill": 0,
+      "decode": 0
+    },
+    "mode_switch_history": [],
+    "completed": 100,
+    "last_evaluation_inputs": {
+      "mu_L": 24399.259061176508,
+      "mu_o": 56.95,
+      "N_obs": 3.9699999961217456,
+      "theta0": 0.01,
+      "alpha_mb": 0,
+      "alpha_p": 0,
+      "beta_p": 0.0003704522968991135,
+      "alpha_d": 0.09489181709289551,
+      "beta_d": 0.0012813445499965125,
+      "mb_cost_a": 0.0003943935360959075,
+      "mb_cost_b": 0.01752476613806461,
+      "mb_cost_c": 0.00028762045154248454,
+      "delta": 0.0001,
+      "cooldown_before": 0,
+      "active_before": "mb"
+    },
+    "max_num_running_reqs": 4,
+    "block_size": 1568,
+    "num_gpu_blocks": 98,
+    "kv_groups": [
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.0.linear_attn",
+          "language_model.model.layers.4.linear_attn",
+          "language_model.model.layers.8.linear_attn",
+          "language_model.model.layers.12.linear_attn",
+          "language_model.model.layers.16.linear_attn",
+          "language_model.model.layers.20.linear_attn",
+          "language_model.model.layers.24.linear_attn",
+          "language_model.model.layers.28.linear_attn",
+          "language_model.model.layers.32.linear_attn",
+          "language_model.model.layers.36.linear_attn",
+          "language_model.model.layers.40.linear_attn",
+          "language_model.model.layers.44.linear_attn",
+          "language_model.model.layers.48.linear_attn",
+          "language_model.model.layers.52.linear_attn",
+          "language_model.model.layers.56.linear_attn",
+          "language_model.model.layers.60.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.1.linear_attn",
+          "language_model.model.layers.5.linear_attn",
+          "language_model.model.layers.9.linear_attn",
+          "language_model.model.layers.13.linear_attn",
+          "language_model.model.layers.17.linear_attn",
+          "language_model.model.layers.21.linear_attn",
+          "language_model.model.layers.25.linear_attn",
+          "language_model.model.layers.29.linear_attn",
+          "language_model.model.layers.33.linear_attn",
+          "language_model.model.layers.37.linear_attn",
+          "language_model.model.layers.41.linear_attn",
+          "language_model.model.layers.45.linear_attn",
+          "language_model.model.layers.49.linear_attn",
+          "language_model.model.layers.53.linear_attn",
+          "language_model.model.layers.57.linear_attn",
+          "language_model.model.layers.61.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.2.linear_attn",
+          "language_model.model.layers.6.linear_attn",
+          "language_model.model.layers.10.linear_attn",
+          "language_model.model.layers.14.linear_attn",
+          "language_model.model.layers.18.linear_attn",
+          "language_model.model.layers.22.linear_attn",
+          "language_model.model.layers.26.linear_attn",
+          "language_model.model.layers.30.linear_attn",
+          "language_model.model.layers.34.linear_attn",
+          "language_model.model.layers.38.linear_attn",
+          "language_model.model.layers.42.linear_attn",
+          "language_model.model.layers.46.linear_attn",
+          "language_model.model.layers.50.linear_attn",
+          "language_model.model.layers.54.linear_attn",
+          "language_model.model.layers.58.linear_attn",
+          "language_model.model.layers.62.linear_attn"
+        ]
+      },
+      {
+        "type": "FullAttentionSpec",
+        "spec": "FullAttentionSpec(block_size=1568, dcp_sharded=True, block_stride_alignment=None, max_tp_shards=None, num_kv_heads=4, head_size=256, dtype=torch.uint8, head_size_v=256, kv_quant_mode=<KVQuantMode.FP8_PER_TENSOR: 1>, page_size_padded=None, num_head_slots=None, state_content_bytes=None, tokens_per_state=1, sliding_window=None, attention_chunk_size=None, non_causal=False)",
+        "layers": [
+          "language_model.model.layers.3.self_attn.attn",
+          "language_model.model.layers.7.self_attn.attn",
+          "language_model.model.layers.11.self_attn.attn",
+          "language_model.model.layers.15.self_attn.attn",
+          "language_model.model.layers.19.self_attn.attn",
+          "language_model.model.layers.23.self_attn.attn",
+          "language_model.model.layers.27.self_attn.attn",
+          "language_model.model.layers.31.self_attn.attn",
+          "language_model.model.layers.35.self_attn.attn",
+          "language_model.model.layers.39.self_attn.attn",
+          "language_model.model.layers.43.self_attn.attn",
+          "language_model.model.layers.47.self_attn.attn",
+          "language_model.model.layers.51.self_attn.attn",
+          "language_model.model.layers.55.self_attn.attn",
+          "language_model.model.layers.59.self_attn.attn",
+          "language_model.model.layers.63.self_attn.attn"
+        ]
+      }
+    ]
+  },
+  "default_decision": {
+    "r": 0.0023286519941639852,
+    "beta_mb": 0.0004352041773670137,
+    "beta_eb": 0.00037257344796075726,
+    "lhs": 6.263072940625647e-05,
+    "rhs": 5.594012361993565e-05,
+    "margin": 6.6906057863208175e-06,
+    "delta": 0.0001,
+    "expected_active": "mb"
+  },
+  "counterfactuals": [
+    {
+      "r": 0.0023286519941639852,
+      "beta_mb": 0.0004352041773670137,
+      "beta_eb": 0.00037257344796075726,
+      "lhs": 6.263072940625647e-05,
+      "rhs": 5.594012361993565e-05,
+      "margin": 6.6906057863208175e-06,
+      "delta": 1e-06,
+      "expected_active": "eb"
+    },
+    {
+      "r": 0.0023286519941639852,
+      "beta_mb": 0.0004352041773670137,
+      "beta_eb": 0.00037257344796075726,
+      "lhs": 6.263072940625647e-05,
+      "rhs": 5.594012361993565e-05,
+      "margin": 6.6906057863208175e-06,
+      "delta": 0.0,
+      "expected_active": "eb"
+    }
+  ]
+}

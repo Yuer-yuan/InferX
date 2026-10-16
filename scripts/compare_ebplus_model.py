@@ -22,7 +22,7 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
     if (phase not in {'diagnostic','formal','solo'} or
         kind!=('isolated-serial-C4' if phase=='solo' else 'mixed') or
         repeats!=(3 if phase=='formal' else 1) or len(set(selected))!=len(selected) or
-        not selected or not set(selected)<={'native','auto-default','forced-eb'}):
+        not selected or len(selected)>3 or not set(selected)<={'native','auto-default','forced-eb','auto-tuned'}):
         raise ValueError('unfrozen comparison definition')
     templates,_=load_frozen_workloads(root/'concurrency-roofline')
     verify_prompt_count_contract(root/plan['base_case']['model'],backend='vllm031')
@@ -75,9 +75,9 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
                     write(directory/'conditioning.json',condition)
                     wait_idle()
                     policy=directory/'policy-evidence.json'
-                    if case['id']=='auto-default':
+                    if case['id'].startswith('auto-'):
                         state=json.loads(policy.read_text())
-                        audit_policy(state,hardware,mb,delta=.0001)
+                        audit_policy(state,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')))
                         (directory/'policy-before.json').write_bytes(policy.read_bytes())
                     specs=comparison_specs(templates,group,identity,kind=kind)
                     wave=directory/group;wave.mkdir();write(wave/'specifications.json',specs)
@@ -93,7 +93,7 @@ def run_comparison(plan,root,out,progress,hardware_run,mb_run,overlay,definition
                     write(wave/'result.json',result)
                 if case['id']!='native':
                     state=json.loads(policy.read_text())
-                    decision=audit_policy(state,hardware,mb,delta=.0001)
+                    decision=audit_policy(state,hardware,mb,delta=float(case['environment'].get('VLLM_PD_MODE_SWITCH_DELTA','.0001')),require_exclusive_execution=True)
                     write(directory/'policy-audit.json',decision)
                 entry.update(state='measured',metrics=result);progress(None)
                 print(json.dumps(dict(event='ebplus_wave_done',**entry)),flush=True)
