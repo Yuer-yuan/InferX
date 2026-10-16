@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "commit": "72339db5b120614033b317880ad3a05a5e4c9415",
+    "capsule_sha256": "dfadf6fde36bf3671f4f2dbe4c354f595d9d4ad1f851bac9e9d29a7e10ae02c0",
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "license_spdx_id": "Apache-2.0",
+    "source_files": {
+      "README.md": "c039fb71672ff70dc8e7b75301947e60d4db99835fd2f04e3a3d88634bc89ec5",
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "sarathi/config/config.py": "313e4935cebbfed4df4e08862c8a41f74c290ea5bc99968de9f1afbfc47a4862",
+      "sarathi/core/scheduler/deadline_scheduler.py": "1556628ef751977d889724ab7155e533870c36f825c91c914558b0eaa7b76f52",
+      "sarathi/core/scheduler/base_scheduler.py": "c067638f423aec90d9d53e52533df5bcbb0cb55d7b86345c6483c446093584d7",
+      "sarathi/core/datatypes/sequence.py": "89d7f98cd878bb0bd05f1d2bbb321903398790837c5b241536f34286acfb04bd",
+      "sarathi/core/datatypes/scheduler_output.py": "a0d063744c5a1db53542def6d72b60839d1b27b5bba1f8e83687a45268cc8a9c",
+      "sarathi/core/block_space_manager/base_block_space_manager.py": "6d54250ecf36e07ea3b811de5ad668f23336a8a112d7e959ab8bb1860e01056a",
+      "sarathi/core/block_space_manager/vllm_block_space_manager.py": "34b7f9e2474be259d114bbc5e3589238a8d3de1237f3bd7870d32eac144aface",
+      "sarathi/core/block_space_manager/deadline_block_space_manager.py": "0eab1740e1079ce038b5b20acde77cd4db8a4b76e73fba347b7655f6bae81029",
+      "sarathi/worker/base_worker.py": "a95885c3caa374e8e2492e60a7b01dacc1cefebbe5fe9070bfc5e412d74ad6ac",
+      "sarathi/model_executor/model_runner.py": "11b2cbce50aeae41fac35e88b77b8e3d04fb31f3215d5ce1d125a5ddf1dbc593",
+      "sarathi/metrics/metrics_store.py": "6cb613de798151d3533db2e773bbc973a7283d8c2c9fe0aad0565a224b9831c8",
+      "chunk_size_predictor/predictor.py": "9ee6781a3e8fb6576f400a31f22ea5e52df76385a6a7a2bf0e06d4e1a7db1698"
+    },
+    "source_defaults": {
+      "chunk_size": 512,
+      "execution_threshold": 0.1,
+      "execution_threshold_batched": 0.4,
+      "scheduler_type": "deadline",
+      "output_len_pred": 15,
+      "hybrid_prioritization_param": 0.008,
+      "expected_prefill_throughput": 8500.0,
+      "prefill_throughput_weight_decay": 0.995,
+      "count": 0,
+      "max_time": 0,
+      "min_time": 1e+18,
+      "pred_thres": 1.2,
+      "prev_call_time": -1,
+      "last_prefill_size": 0
+    },
+    "reference_coefficients": {
+      "tokens_0_512": {
+        "coefficients": {
+          "batch_num_tokens": 5.882475e-05,
+          "batch_num_prefill_tokens": 2.247956e-05,
+          "batch_num_decode_tokens": 3.634519e-05,
+          "batch_decode_context": 1.111258e-07,
+          "batch_prefill_context": 7.554773e-07
+        },
+        "intercept": 0.014936
+      },
+      "tokens_513_plus": {
+        "coefficients": {
+          "batch_num_tokens": 2.71905e-05,
+          "batch_num_prefill_tokens": 6.863043e-05,
+          "batch_num_decode_tokens": -4.143993e-05,
+          "batch_decode_context": 1.663409e-07,
+          "batch_prefill_context": 2.727223e-06
+        },
+        "intercept": 0.005004
+      }
+    },
+    "coefficients": {
+      "tokens_0_512": {
+        "coefficients": {
+          "batch_num_tokens": 5.882475e-05,
+          "batch_num_prefill_tokens": 2.247956e-05,
+          "batch_num_decode_tokens": 3.634519e-05,
+          "batch_decode_context": 1.111258e-07,
+          "batch_prefill_context": 7.554773e-07
+        },
+        "intercept": 0.014936
+      },
+      "tokens_513_plus": {
+        "coefficients": {
+          "batch_num_tokens": 2.71905e-05,
+          "batch_num_prefill_tokens": 6.863043e-05,
+          "batch_num_decode_tokens": -4.143993e-05,
+          "batch_decode_context": 1.663409e-07,
+          "batch_prefill_context": 2.727223e-06
+        },
+        "intercept": 0.005004
+      }
+    },
+    "coefficient_source": "author-reference",
+    "deployment_coefficients_supplied": false,
+    "generated_module_sha256": "dc63a5c0f9e2f8a234cad8592dc71231edae1e62d698d00fc3dfe8b9e0be8e8e",
+    "methods": {
+      "_predict_batch_time": {
+        "source_sha256": "ea2fea1cb662529b742e01fb5e91c6bb0416a066f57f15e524744d5f99cb7218",
+        "generated_sha256": "a9c844a731aa8c54db5e3b2236b48e21bf4723204a7a040289faaa3171dd85dc"
+      },
+      "_get_prefill_size_by_slack": {
+        "source_sha256": "ac952639ee32bbe6dd39cf017ead855e784b4d79a64cd92da142604546453f1a",
+        "generated_sha256": "3853fe39ed7e90832491c091eaab7f8841ab587658a3bd9b66c86c96cccfdd45"
+      },
+      "_sorting_key": {
+        "source_sha256": "4a4ba8a343c09385d132aa4fa79e2b55e587854176e8808a22b7e62c34269cb0",
+        "generated_sha256": "e4d7ddbd6c831038827e671754153f01a3092c5551f5951748cac77d43e8b0e7"
+      },
+      "__lt__": {
+        "source_sha256": "114a2418a70586d8abbde8e9099bcde5cbef94454bbe7cab9d06d25034f4dac9",
+        "generated_sha256": "8110132a70a441c6b0ee0ff2f5c67fe44dc09be65335fadbce2a32b2ebe17251"
+      },
+      "_get_TBT_deadline": {
+        "source_sha256": "21dd0dd451256e1c3978dc822a1a708a7674e6a5f683103fd2d56953adabbc20",
+        "generated_sha256": "da3cad07d38926416ea442ed3656d5882a6d4bc1a1530e4980c9b9a7001c51ec"
+      },
+      "_qoserve_ttft_budget": {
+        "source_sha256": "6264d583d9bd5e41d0f5845c28abfb8b45176b617be91d173377498549c0a204",
+        "generated_sha256": "a0990374fe9eefbe0f330128883fc839f365acb122d6393db71379e8330bd118"
+      },
+      "_qoserve_relegate_once": {
+        "source_sha256": "e8da93bcdb6d606199de5aaea5e313c169d43d1c3616ef5eb87a0a1a7354fc9e",
+        "generated_sha256": "4621b8a0b17597ad11c2197c24266aad2d09828f417dd2bf54a81f516cf6b552"
+      },
+      "_qoserve_update_prefill_throughput": {
+        "source_sha256": "5888d27152883480d7483edbd9d97459fd34876dde7063be8e259f8c8f9cd020",
+        "generated_sha256": "336d21342b5dde24a5e7f22e91f31c9b8143e6f18fd98fd10d7108503f086184"
+      }
+    },
+    "mappings": [
+      "Only predictor coefficient table assignments are injected; numerical formula/bin edge unchanged.",
+      "Old free-block/block-size reads map to native effective capacity and block_size.",
+      "Original Sequence comparison and cumulative TBT methods are extracted unchanged.",
+      "Tier budget and EMA statements are extracted into callable helpers.",
+      "Eager-relegation requeue is unchanged; its inner continue maps to helper return True.",
+      "Native dispatcher/whole-input commitments are separate compatibility code, not unchanged upstream.",
+      "Supplied coefficients alone do not qualify predictor identity/coverage/holdout accuracy."
+    ],
+    "timing_source_sha256": "0ea48ab80e4236feb1d5944a30bb5acf2b165bd6b27843c881027daf9ff5e9e1",
+    "timing_boundary": "schedule entry through native output/scheduler update exit",
+    "author_timing_source": "sarathi/engine/base_llm_engine.py"
+  },
+  "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+  "native_reference_capsule_sha256": "3dd377a94ef72661647dd8af5278f96adb44efdc961debf587befd4eaa577df3",
+  "native_source_files": {
+    "vllm/v1/core/sched/scheduler.py": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "vllm/v1/core/sched/request_queue.py": "db8d25daf9580d581f18c6b631a6576dfaa7d1474398cd8dc4db1d29745c214d",
+    "vllm/v1/core/kv_cache_manager.py": "bd9bf46a2101f9368d4941867415a239d18d95e0b956f82f885ce25e10e69f3b",
+    "vllm/v1/core/kv_cache_coordinator.py": "6a1e00227b981a7bb6108a42db0e446c716f789274f40c63eb9a6ce4d699ddcb",
+    "vllm/v1/core/single_type_kv_cache_manager.py": "3a3cb20bd6aa1e0ad46471fc9e5e01ee5797ab4bb759e00ef5fb309d2830db13",
+    "vllm/v1/core/block_pool.py": "05c73052934a9d4664ccd5df562ce71011278d9a511932da102ef2efff00e934",
+    "vllm/v1/core/kv_cache_utils.py": "1b20c836aece4982dd87f7e06e14f5ae07a1fc2636101074cfad11584b1a0dcf",
+    "vllm/v1/request.py": "dd7c30bf8b0894dc123a739c299c0133566f8cc075b081e45905f1c29506e69d",
+    "vllm/v1/outputs.py": "a4c73e7125781c339d42bdb7f8fdd3324a489742a4588d8c1b1638aa335fd138",
+    "vllm/v1/core/sched/output.py": "972e0bc8e7af1f4262ac73f660f6b8f798ba780f86c031a9c8a7f10cbfaad3a8",
+    "vllm/v1/engine/core.py": "f116962c35d9d312b20b0b76c34a8cdaa6d3f1d31f2036db4e123957d2d1555b",
+    "vllm/config/scheduler.py": "82bc6805ecf30a9b3d1b678d3270dad919abed011782ad16f1e805a78aa6c241"
+  },
+  "native_boundary_census": {
+    "running_gate": 1,
+    "waiting_gate": 1,
+    "running_allocation": 1,
+    "waiting_allocation": 1,
+    "running_quota": 1,
+    "waiting_quota": 1,
+    "no_preempt": 1
+  },
+  "files": {
+    "inferx_qoserve_author_policy.py": "dc63a5c0f9e2f8a234cad8592dc71231edae1e62d698d00fc3dfe8b9e0be8e8e",
+    "inferx_qoserve_scheduler.py": "6c77da144a95a8958b0af999f9f64978cd532fcf46495eb4c117d58e59301ccb",
+    "LICENSE.author": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSE.native": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "mappings": [
+    "Native reserved_blocks protects other full-input commitments; actual allocator owns all blocks.",
+    "Native readiness, prefix adoption, checkpoint/CoW and output ownership remain native.",
+    "QoServe per-step total budget and per-request quotas bound native allocation; no decoder eviction.",
+    "Pure preliminary native prefix/whole-input queries select eligible policy views; native admission rechecks.",
+    "Restore only new empty native defaultdict lookup entries after pure capacity forecasts.",
+    "Begin the pinned idempotent Mamba step-cache clear before policy forecasts; native call clears it again before allocation.",
+    "Caller TBT enters original deadline helpers per request; source tier1 output prediction remains15.",
+    "Hardware coefficient/initial-throughput presence is required; qualification is a separate real-model gate."
+  ]
+}

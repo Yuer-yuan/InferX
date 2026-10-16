@@ -1,0 +1,123 @@
+test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) ... 
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='formal') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='strategy') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='short-count') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='long-count') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='id') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='strict') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='time') ... ERROR
+  test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='identity') ... ERROR
+test_quantiles_and_common_tier_budgets_have_literal_independent_values (test_qoserve_budgets.CommonBudgetContracts.test_quantiles_and_common_tier_budgets_have_literal_independent_values) ... ERROR
+test_tags_preserve_the_entire_payload_and_use_no_output_length_oracle (test_qoserve_budgets.CommonBudgetContracts.test_tags_preserve_the_entire_payload_and_use_no_output_length_oracle) ... ERROR
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='formal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='strategy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='short-count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='long-count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='strict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='time')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos (test_qoserve_budgets.CommonBudgetContracts.test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos) (mutation='identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 45, in test_formal_strategy_or_incomplete_solo_records_cannot_define_common_slos
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.freeze(data)
+                                                                       ^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_quantiles_and_common_tier_budgets_have_literal_independent_values (test_qoserve_budgets.CommonBudgetContracts.test_quantiles_and_common_tier_budgets_have_literal_independent_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 25, in test_quantiles_and_common_tier_budgets_have_literal_independent_values
+    contract=self.freeze()
+             ^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 20, in freeze
+    from inferx.qoserve_profile import freeze_common_budgets
+ImportError: cannot import name 'freeze_common_budgets' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_tags_preserve_the_entire_payload_and_use_no_output_length_oracle (test_qoserve_budgets.CommonBudgetContracts.test_tags_preserve_the_entire_payload_and_use_no_output_length_oracle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_budgets.py", line 48, in test_tags_preserve_the_entire_payload_and_use_no_output_length_oracle
+    from inferx.qoserve_profile import attach_common_contract
+ImportError: cannot import name 'attach_common_contract' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.018s
+
+FAILED (errors=10)

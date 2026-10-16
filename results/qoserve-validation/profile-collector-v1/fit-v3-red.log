@@ -1,0 +1,138 @@
+test_exact_513_training_edge_is_excluded_but_holdout_uses_upper (test_qoserve_fit.StatisticalProfileContracts.test_exact_513_training_edge_is_excluded_but_holdout_uses_upper) ... ERROR
+test_five_second_fallback_requires_actual_context_or_geometry_censoring (test_qoserve_fit.StatisticalProfileContracts.test_five_second_fallback_requires_actual_context_or_geometry_censoring) ... ERROR
+test_guard_is_separate_for_every_bin_and_candidate_without_holdout_refitting (test_qoserve_fit.StatisticalProfileContracts.test_guard_is_separate_for_every_bin_and_candidate_without_holdout_refitting) ... ERROR
+test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) ... 
+  test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='salt') ... ERROR
+  test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='rollout') ... ERROR
+  test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='row') ... ERROR
+  test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='identity') ... ERROR
+  test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='formal') ... ERROR
+test_original_ols_split_and_two_bin_formula_are_reproducible (test_qoserve_fit.StatisticalProfileContracts.test_original_ols_split_and_two_bin_formula_are_reproducible) ... ERROR
+test_positive_training_times_do_not_certify_nonpositive_tail_predictions (test_qoserve_fit.StatisticalProfileContracts.test_positive_training_times_do_not_certify_nonpositive_tail_predictions) ... ERROR
+test_small_bin_candidate_or_context_coverage_cannot_hide_in_pooled_accuracy (test_qoserve_fit.StatisticalProfileContracts.test_small_bin_candidate_or_context_coverage_cannot_hide_in_pooled_accuracy) ... ERROR
+
+======================================================================
+ERROR: test_exact_513_training_edge_is_excluded_but_holdout_uses_upper (test_qoserve_fit.StatisticalProfileContracts.test_exact_513_training_edge_is_excluded_but_holdout_uses_upper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 61, in test_exact_513_training_edge_is_excluded_but_holdout_uses_upper
+    result=self.fit(rows,holdout)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_five_second_fallback_requires_actual_context_or_geometry_censoring (test_qoserve_fit.StatisticalProfileContracts.test_five_second_fallback_requires_actual_context_or_geometry_censoring)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 85, in test_five_second_fallback_requires_actual_context_or_geometry_censoring
+    ordinary=self.fit();self.assertEqual(ordinary['cutoff_s'],1.)
+             ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_guard_is_separate_for_every_bin_and_candidate_without_holdout_refitting (test_qoserve_fit.StatisticalProfileContracts.test_guard_is_separate_for_every_bin_and_candidate_without_holdout_refitting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 98, in test_guard_is_separate_for_every_bin_and_candidate_without_holdout_refitting
+    rows,holdout=self.data();baseline=self.fit(rows,holdout)
+                                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='salt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 82, in test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='rollout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 82, in test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='row')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 82, in test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 82, in test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit (test_qoserve_fit.StatisticalProfileContracts.test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit) (mutation='formal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 82, in test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_original_ols_split_and_two_bin_formula_are_reproducible (test_qoserve_fit.StatisticalProfileContracts.test_original_ols_split_and_two_bin_formula_are_reproducible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 47, in test_original_ols_split_and_two_bin_formula_are_reproducible
+    first=self.fit();second=self.fit()
+          ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_positive_training_times_do_not_certify_nonpositive_tail_predictions (test_qoserve_fit.StatisticalProfileContracts.test_positive_training_times_do_not_certify_nonpositive_tail_predictions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 117, in test_positive_training_times_do_not_certify_nonpositive_tail_predictions
+    result=self.fit(rows,holdout)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+======================================================================
+ERROR: test_small_bin_candidate_or_context_coverage_cannot_hide_in_pooled_accuracy (test_qoserve_fit.StatisticalProfileContracts.test_small_bin_candidate_or_context_coverage_cannot_hide_in_pooled_accuracy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 67, in test_small_bin_candidate_or_context_coverage_cannot_hide_in_pooled_accuracy
+    result=self.fit(rows[:30],holdout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 42, in fit
+    from inferx.qoserve_profile import fit_profile
+ImportError: cannot import name 'fit_profile' from 'inferx.qoserve_profile' (/home/yuer/mypro/InferX/inferx/qoserve_profile.py)
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.160s
+
+FAILED (errors=11)

@@ -202,6 +202,7 @@ for _name,_sha in {references!r}.items():
 globals().update({{k:v for k,v in vars(_native).items() if not k.startswith('__')}})
 from vllm.v1.core.sched.request_queue import FCFSRequestQueue
 from inferx_qoserve_author_policy import AuthorPolicy
+from inferx.qoserve_profile import snapshot_step_geometry,validate_step_row,TIMING_BOUNDARY
 '''
     from inferx.ebplus_validation import record_native_runtime
     source=(header+'\n'+inspect.getsource(parse_contract)+'\n'+inspect.getsource(sequence_view_type)
@@ -285,6 +286,7 @@ class ObservedNativeScheduler(_NativeScheduler):
         before={rid:self._qoserve_views[rid] for rid in scheduler_output.num_scheduled_tokens
                 if rid in self._qoserve_views}
         result=_NativeScheduler.update_from_output(self,scheduler_output,model_runner_output)
+        native_update_end=time.perf_counter()
         now=time.monotonic()
         for batch in result.values():
             for output in batch.outputs:
@@ -296,6 +298,8 @@ class ObservedNativeScheduler(_NativeScheduler):
                 if not record['model_token_times_s']:
                     view.state.e2e_prefill_time=now-view.arrival_time
                 record['model_token_times_s'].append(now-view.arrival_time)
+        profile_callback=getattr(self,'_qoserve_after_native_update',None)
+        if profile_callback is not None:profile_callback(scheduler_output,native_update_end)
         return result
 
     def _free_request(self,request,*args,**kwargs):
@@ -314,6 +318,90 @@ class ObservedNativeScheduler(_NativeScheduler):
                 remaining_views=sorted(self._qoserve_views)),indent=2)+'\\n')
             tmp.replace(target)
         return _NativeScheduler.shutdown(self)
+
+
+class ProfilingNativeScheduler(ObservedNativeScheduler):
+    def __init__(self,*args,**kwargs):
+        self._qoserve_profiling_mode='off'
+        self._profile_config=None
+        self._profile_pending=None
+        self._profile_rows=[]
+        self._profile_events=[]
+        super().__init__(*args,**kwargs)
+        if self.scheduler_reserve_full_isl:
+            raise ValueError('calibration profile requires official admission checkFalse')
+        if self.scheduler_config.long_prefill_token_threshold!=0:
+            raise ValueError('calibration controls total budget with native long-prefill cap0')
+
+    def begin_profile(self,config):
+        if self._profile_config is not None or self._profile_pending is not None:
+            raise ValueError('finish the previous profiling rollout first')
+        cfg=json.loads(json.dumps(config,allow_nan=False))
+        if cfg['phase'] not in ('train','holdout'):
+            raise ValueError('invalid profiling phase')
+        for key in ('engine_id','rollout_id','cache_salt','long_request_id'):
+            if not isinstance(cfg.get(key),str) or not cfg[key]:raise ValueError('missing profiling identity')
+        if cfg['long_request_id'] not in self.requests or self.requests[cfg['long_request_id']].cache_salt!=cfg['cache_salt']:
+            raise ValueError('profile must bind an actual salted native request')
+        if type(cfg.get('prefill_target')) is not int or not 1<=cfg['prefill_target']<=4096:
+            raise ValueError('invalid profiling prefill target')
+        if type(cfg.get('warmup_steps')) is not int or cfg['warmup_steps']<0:
+            raise ValueError('invalid profiling warmup count')
+        if not cfg.get('candidates') or any(type(n) is not int or not 1<=n<=4096 for n in cfg['candidates']):
+            raise ValueError('invalid profiling candidate list')
+        self._profile_config=cfg;self._profile_rows=[];self._profile_events=[]
+        self._qoserve_profiling_mode=cfg['phase'];_record_qoserve_runtime(self)
+
+    def end_profile(self):
+        if self._profile_pending is not None:raise ValueError('model step has no matching native update')
+        result=dict(rows=self._profile_rows,events=self._profile_events)
+        self._profile_config=None;self._qoserve_profiling_mode='off'
+        self._profile_rows=[];self._profile_events=[]
+        _record_qoserve_runtime(self)
+        return result
+
+    def schedule(self,throttle_prefills=False):
+        started=time.perf_counter()
+        cfg=self._profile_config
+        if cfg is None:return _NativeScheduler.schedule(self,throttle_prefills)
+        if self._profile_pending is not None:raise ValueError('overlapping profiling steps are unqualified')
+        if throttle_prefills:raise ValueError('DP profiling is outside this single GPU protocol')
+        metadata={rid:dict(num_prompt_tokens=r.num_prompt_tokens,num_tokens=r.num_tokens,
+                          output_tokens_before=len(r.output_token_ids)) for rid,r in self.requests.items()}
+        is_decode=lambda r:r.num_computed_tokens>=max(r.num_prompt_tokens,r.num_tokens-1)
+        decoders=sum(is_decode(r) for r in self.running)
+        self.running.sort(key=lambda r:not is_decode(r))
+        proposed=(cfg['prefill_target']+decoders if cfg['phase']=='train'
+                  else cfg['candidates'][len(self._profile_rows)%len(cfg['candidates'])])
+        ceiling=self.max_num_scheduled_tokens
+        try:
+            self.max_num_scheduled_tokens=min(ceiling,proposed)
+            output=_NativeScheduler.schedule(self)
+        finally:self.max_num_scheduled_tokens=ceiling
+        if output.total_num_scheduled_tokens==0:
+            self._profile_events.append(dict(step=self.current_step,reason='empty-native-step'))
+        else:
+            self._profile_pending=dict(output=output,metadata=metadata,started=started,
+                proposed=proposed,step=self.current_step)
+        return output
+
+    def _qoserve_after_native_update(self,output,ended):
+        pending=self._profile_pending
+        if pending is None:return
+        if pending['output'] is not output:raise ValueError('profiling update paired with different schedule')
+        cfg=self._profile_config
+        requests,features=snapshot_step_geometry(output,pending['metadata'])
+        row=dict(row_id=cfg['engine_id']+'/'+cfg['rollout_id']+'/'+str(pending['step']),
+            phase=cfg['phase'],engine_id=cfg['engine_id'],rollout_id=cfg['rollout_id'],
+            cache_salt=cfg['cache_salt'],step_index=pending['step'],
+            warmup=len(self._profile_rows)<cfg['warmup_steps'],identity=cfg['identity'],
+            proposed_total_tokens=pending['proposed'],requests=requests,features=features,
+            preempted_request_ids=sorted(output.preempted_req_ids),
+            timing=dict(start_s=pending['started'],end_s=ended,
+                        batch_execution_time=ended-pending['started'],boundary=TIMING_BOUNDARY,
+                        completed_model_step=True))
+        validate_step_row(row,cfg['identity'])
+        self._profile_rows.append(row);self._profile_pending=None
 
 
 class CompatibleNativeScheduler(ObservedNativeScheduler):

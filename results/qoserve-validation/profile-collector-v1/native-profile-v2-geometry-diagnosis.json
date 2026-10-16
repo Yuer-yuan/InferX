@@ -1,0 +1,64 @@
+{
+  "cache_block_size": 16,
+  "scheduler_block_size": 256,
+  "hash_block_size": 256,
+  "checkpoint_alignment": 256,
+  "rows": [
+    {
+      "features": {
+        "batch_num_tokens": 113,
+        "batch_num_prefill_tokens": 112,
+        "batch_num_decode_tokens": 1,
+        "batch_decode_context": 33,
+        "batch_prefill_context": 0
+      },
+      "requests": [
+        {
+          "request_id": "d",
+          "computed_before": 32,
+          "prefill_end": 32,
+          "scheduled_tokens": 1,
+          "stage": "decode",
+          "output_tokens_before": 1
+        },
+        {
+          "request_id": "l",
+          "computed_before": 0,
+          "prefill_end": 5000,
+          "scheduled_tokens": 112,
+          "stage": "prefill",
+          "output_tokens_before": 0
+        }
+      ],
+      "proposal": 128
+    },
+    {
+      "features": {
+        "batch_num_tokens": 241,
+        "batch_num_prefill_tokens": 240,
+        "batch_num_decode_tokens": 1,
+        "batch_decode_context": 34,
+        "batch_prefill_context": 112
+      },
+      "requests": [
+        {
+          "request_id": "d",
+          "computed_before": 33,
+          "prefill_end": 33,
+          "scheduled_tokens": 1,
+          "stage": "decode",
+          "output_tokens_before": 2
+        },
+        {
+          "request_id": "l",
+          "computed_before": 112,
+          "prefill_end": 5000,
+          "scheduled_tokens": 240,
+          "stage": "prefill",
+          "output_tokens_before": 0
+        }
+      ],
+      "proposal": 256
+    }
+  ]
+}

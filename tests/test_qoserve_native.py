@@ -60,8 +60,11 @@ class QoServeNativeContracts(unittest.TestCase):
         from vllm.v1.structured_output import StructuredOutputManager
         config = copy.deepcopy(self.config)
         config.cache_config.num_gpu_blocks = blocks
+        # EngineCore normally reconciles this with the hybrid logical spec.
+        # This CPU fixture constructs that spec directly, so reconcile it here.
+        config.cache_config.block_size = 256
         config.scheduler_config.long_prefill_token_threshold = cap
-        config.scheduler_config.scheduler_reserve_full_isl = True
+        config.scheduler_config.scheduler_reserve_full_isl = name!='ProfilingNativeScheduler'
         attention = FullAttentionSpec(block_size=256, num_kv_heads=1,
                                       head_size=16, dtype=torch.bfloat16)
         state = MambaSpec(block_size=256, shapes=((4, 4), (4, 4)),
@@ -74,7 +77,7 @@ class QoServeNativeContracts(unittest.TestCase):
         with patch.dict(os.environ,INFERX_QOSERVE_INITIAL_PPS='8500'):
             return getattr(self.module, name)(config, cache, StructuredOutputManager(config), block_size=256)
 
-    def add(self, scheduler, name, length=32, output=4, token=42, tags=None, arrival=None):
+    def add(self, scheduler, name, length=32, output=4, token=42, tags=None, arrival=None, salt=None):
         from vllm import SamplingParams
         from vllm.v1.request import Request
         from vllm.v1.core.kv_cache_utils import get_request_block_hasher, init_none_hash
@@ -83,7 +86,7 @@ class QoServeNativeContracts(unittest.TestCase):
         init_none_hash(hasher)
         request = Request(request_id=name, prompt_token_ids=[token] * length,
             sampling_params=SamplingParams(max_tokens=output, ignore_eos=True, extra_args=tags),
-            pooling_params=None, block_hasher=get_request_block_hasher(256, hasher), arrival_time=arrival)
+            pooling_params=None, block_hasher=get_request_block_hasher(256, hasher), arrival_time=arrival,cache_salt=salt)
         scheduler.add_request(request)
         return request
 
@@ -319,6 +322,97 @@ class QoServeNativeContracts(unittest.TestCase):
                 self.assertEqual((state['num_gpu_blocks'],state['chunk'],state['long_prefill_token_threshold']),
                                  (256,4096,0))
                 self.assertAlmostEqual(state['wall_to_monotonic_offset'],scheduler._qoserve_clock_offset)
+
+    def profile_config(self,request,phase='train',target=128):
+        identity=json.loads((self.evidence.parents[1]/'configs/ebplus-validation.json').read_text())['identity']
+        return dict(phase=phase,identity=identity,engine_id='cpu-native-contract',
+            rollout_id='cpu-rollout',cache_salt=request.cache_salt,long_request_id=request.request_id,
+            prefill_target=target,candidates=[128,256,384,512,768,1024,1280,1536,1792,2048,2552],warmup_steps=5)
+
+    def test_collector_builds_actual_native_engine_config_and_salted_requests(self):
+        from scripts.calibrate_qoserve_model import calibration_engine_args,calibration_request,rollout_specs
+        plan=json.loads((self.evidence.parents[1]/'configs/qoserve-validation.json').read_text())
+        args=calibration_engine_args(plan,Path(os.environ['INFERX_ROOT']))
+        config=args.create_engine_config()
+        self.assertEqual(config.scheduler_config.scheduler_cls,
+                         'inferx_qoserve_scheduler.ProfilingNativeScheduler')
+        self.assertFalse(config.scheduler_config.scheduler_reserve_full_isl)
+        self.assertEqual(config.scheduler_config.long_prefill_token_threshold,0)
+        self.assertEqual(config.cache_config.num_gpu_blocks_override,98)
+        self.assertIsNone(config.speculative_config)
+        self.assertEqual(config.max_concurrent_batches,1)
+        spec=next(s for s in rollout_specs(plan,'native-abi') if s['kind']=='train' and s['decoders']==3)
+        long=calibration_request(spec,'long',0,plan)
+        seeds=[calibration_request(spec,'decoder',i,plan) for i in range(3)]
+        self.assertEqual((len(long.prompt_token_ids),long.sampling_params.max_tokens),(131072,1))
+        self.assertEqual((len(seeds[0].prompt_token_ids),seeds[0].sampling_params.max_tokens),(24557,1024))
+        self.assertEqual([s.prompt_token_ids for s in seeds],[seeds[0].prompt_token_ids]*3)
+        self.assertEqual({s.cache_salt for s in seeds},{spec['decoder_salt']})
+        self.assertNotEqual(long.cache_salt,seeds[0].cache_salt)
+
+    def test_profiler_reads_actual_start_positions_before_optimistic_native_update(self):
+        from inferx.qoserve_profile import validate_step_row
+        scheduler=self.scheduler('ProfilingNativeScheduler')
+        long=self.add(scheduler,'profile-long',length=2000,output=1,salt='profile-1')
+        cfg=self.profile_config(long);scheduler.begin_profile(cfg)
+        self.step(scheduler)
+        self.assertEqual(long.num_computed_tokens,128)
+        records=scheduler.end_profile()['rows'];self.assertEqual(len(records),1)
+        row=records[0]
+        self.assertEqual(row['requests'][0]['computed_before'],0)
+        self.assertEqual(validate_step_row(row,cfg['identity']),dict(batch_num_tokens=128,
+            batch_num_prefill_tokens=128,batch_num_decode_tokens=0,batch_decode_context=0,batch_prefill_context=0))
+        self.assertTrue(row['warmup'])
+        self.assertEqual(scheduler.max_num_scheduled_tokens,4096)
+
+    def test_profiler_cycles_proposals_but_records_aligned_actual_mixed_work(self):
+        scheduler=self.scheduler('ProfilingNativeScheduler')
+        self.add(scheduler,'profile-decoder',length=32,output=64,token=40)
+        self.step(scheduler)
+        long=self.add(scheduler,'profile-long',length=5000,output=1,token=41,salt='profile-2')
+        scheduler.begin_profile(self.profile_config(long,phase='holdout'))
+        self.step(scheduler);self.step(scheduler)
+        rows=scheduler.end_profile()['rows']
+        self.assertEqual([row['proposed_total_tokens'] for row in rows],[128,256])
+        self.assertEqual(rows[0]['features'],dict(batch_num_tokens=128,batch_num_prefill_tokens=127,
+            batch_num_decode_tokens=1,batch_decode_context=33,batch_prefill_context=0))
+        self.assertEqual(rows[1]['features']['batch_num_tokens'],130)
+        self.assertEqual(rows[1]['features']['batch_prefill_context'],127)
+        self.assertEqual(long.num_computed_tokens,256)
+
+    def test_profiler_closes_timing_before_readonly_token_observer_logging(self):
+        from vllm.v1.outputs import ModelRunnerOutput
+        scheduler=self.scheduler('ProfilingNativeScheduler')
+        long=self.add(scheduler,'profile-clock',length=32,output=2,salt='profile-clock')
+        scheduler.begin_profile(self.profile_config(long))
+        clock=[10.]
+        class LoggingList(list):
+            def append(self,value):
+                clock[0]+=10.
+                super().append(value)
+        scheduler._qoserve_records[long.request_id]['model_token_times_s']=LoggingList()
+        with patch.object(self.module.time,'perf_counter',side_effect=lambda:clock[0]):
+            output=scheduler.schedule();clock[0]=10.125
+            runner=ModelRunnerOutput(req_ids=[long.request_id],req_id_to_index={long.request_id:0},sampled_token_ids=[[7]])
+            scheduler.update_from_output(output,runner)
+        row=scheduler.end_profile()['rows'][0]
+        self.assertEqual(clock[0],20.125)
+        self.assertEqual(row['timing']['batch_execution_time'],.125)
+
+    def test_profiler_does_not_train_on_finished_notification_or_leak_warmup_steps(self):
+        scheduler=self.scheduler('ProfilingNativeScheduler')
+        long=self.add(scheduler,'profile-warm',length=1000,output=1,salt='profile-3')
+        scheduler.begin_profile(self.profile_config(long))
+        for _ in range(6):self.step(scheduler)
+        result=scheduler.end_profile()
+        self.assertEqual([r['warmup'] for r in result['rows']],[True]*5+[False])
+        self.finish(scheduler)
+        next_request=self.add(scheduler,'profile-final',length=32,output=1,salt='profile-final')
+        scheduler.begin_profile(self.profile_config(next_request));self.step(scheduler)
+        self.step(scheduler)  #finished-ID notification has no model tokens.
+        result=scheduler.end_profile()
+        self.assertEqual(len(result['rows']),1)
+        self.assertEqual(result['events'][-1]['reason'],'empty-native-step')
 
 
 if __name__ == '__main__':

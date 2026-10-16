@@ -1,0 +1,168 @@
+test_engine_token_timestamps_are_joined_without_using_sse_chunk_gaps (test_qoserve_solos.SoloJoinContracts.test_engine_token_timestamps_are_joined_without_using_sse_chunk_gaps) ... FAIL
+test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) ... 
+  test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='missing') ... FAIL
+  test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='duplicate') ... FAIL
+  test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='abort') ... FAIL
+  test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='strict') ... FAIL
+  test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='client-duplicate') ... FAIL
+
+======================================================================
+FAIL: test_engine_token_timestamps_are_joined_without_using_sse_chunk_gaps (test_qoserve_solos.SoloJoinContracts.test_engine_token_timestamps_are_joined_without_using_sse_chunk_gaps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 20, in test_engine_token_timestamps_are_joined_without_using_sse_chunk_gaps
+    self.assertEqual(self.api().join_solo_records(client,observer),[
+                     ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+======================================================================
+FAIL: test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 31, in test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.api().join_solo_records(clients,observer)
+                                                                       ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+======================================================================
+FAIL: test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='duplicate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 31, in test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.api().join_solo_records(clients,observer)
+                                                                       ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+======================================================================
+FAIL: test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='abort')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 31, in test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.api().join_solo_records(clients,observer)
+                                                                       ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+======================================================================
+FAIL: test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='strict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 31, in test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.api().join_solo_records(clients,observer)
+                                                                       ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+======================================================================
+FAIL: test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration (test_qoserve_solos.SoloJoinContracts.test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration) (mutation='client-duplicate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 9, in api
+    try:return importlib.import_module('scripts.calibrate_qoserve_budgets')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.calibrate_qoserve_budgets'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 31, in test_missing_duplicate_or_aborted_engine_trace_is_not_successful_calibration
+    with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.api().join_solo_records(clients,observer)
+                                                                       ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_solos.py", line 10, in api
+    except ModuleNotFoundError as exc:self.fail(f'missing matched solo collector: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: missing matched solo collector: No module named 'scripts.calibrate_qoserve_budgets'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+FAILED (failures=6)
