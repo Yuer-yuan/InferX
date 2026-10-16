@@ -36,10 +36,10 @@
 
 **Interfaces:** Consume verified source capsule/manifest and timing source. Produce `load_author_policy(capsule:Path, manifest:dict, coefficients:dict|None=None)->type`, importable stdlib-only author methods; `policy_manifest(capsule:Path,manifest:dict,coefficients:dict|None=None,*,timing_source:Path)->dict` retains exact method/body SHA and explicit coefficient/native mappings. Read and hash the supplemental timing file explicitly. Missing deployment coefficients must not default to A100 silently.
 
-- [ ] Write failing contracts for changed source bytes, source license, the original <=512 predictor boundary, exact normal/low-memory chunk searches, nonpositive slack, hybrid priority/drop ordering and cumulative TBT deadline with literal expected results.
-- [ ] Observe correct RED, then extract original methods and inject only coefficient tables/native capacity access explicitly. Preserve original A100 tables for source-reference tests, reject unqualified deployment use.
-- [ ] Test eager-relegation-once/requeue and throughput EMA against hand-derived source traces; record bridge mappings rather than claim whole old dispatcher unchanged.
-- [ ] Run full local CPU suite (dedicated native checks remain separately gated); verify source manifest and user SHA contract; commit. No timed-server changes.
+- [x] Write failing contracts for changed source bytes, source license, the original <=512 predictor boundary, exact normal/low-memory chunk searches, nonpositive slack, hybrid priority/drop ordering and cumulative TBT deadline with literal expected results.
+- [x] Observe correct RED, then extract original methods and inject only coefficient tables/native capacity access explicitly. Preserve original A100 tables for source-reference tests, reject unqualified deployment use.
+- [x] Test eager-relegation-once/requeue and throughput EMA against hand-derived source traces; record bridge mappings rather than claim whole old dispatcher unchanged.
+- [x] Run full local CPU suite (dedicated native checks remain separately gated); verify source manifest and user SHA contract; commit. No timed-server changes.
 
 ### Task 2: Native dispatcher and capacity commitments
 
