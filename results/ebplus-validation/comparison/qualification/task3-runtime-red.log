@@ -1,0 +1,22 @@
+....F                                                                    [100%]
+=================================== FAILURES ===================================
+_ RuntimeEvidenceContracts.test_actual_native_runtime_maps_calibrator_names_and_rejects_precision_changes _
+
+self = <test_ebplus_comparison.RuntimeEvidenceContracts testMethod=test_actual_native_runtime_maps_calibrator_names_and_rejects_precision_changes>
+
+    def test_actual_native_runtime_maps_calibrator_names_and_rejects_precision_changes(self):
+        from inferx import ebplus_comparison as api
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+        hardware=dict(native_runtime=dict(block_size=1568,num_gpu_blocks=98,kv_groups=[{'type':'MambaSpec','spec':'BF16conv FP32GDN','layers':['gdn']}]))
+        runtime=dict(model='/hdd/models/qwen38-int4-redhat',context_window=131328,concurrency=4,max_active=4,
+                     chunk=4096,long_prefill_token_threshold=2048,async_scheduling=False,enforce_eager=True,
+                     cudagraph_mode='NONE',speculative=False,quantization='compressed-tensors',kv_dtype='fp8',
+                     mamba_cache_mode='align',block_size=1568,num_gpu_blocks=98,kv_groups=hardware['native_runtime']['kv_groups'])
+>       api.audit_native_runtime(runtime,plan,hardware,root=Path('/hdd'))
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'inferx.ebplus_comparison' has no attribute 'audit_native_runtime'
+
+tests/test_ebplus_comparison.py:79: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::RuntimeEvidenceContracts::test_actual_native_runtime_maps_calibrator_names_and_rejects_precision_changes
+1 failed, 4 passed in 0.08s

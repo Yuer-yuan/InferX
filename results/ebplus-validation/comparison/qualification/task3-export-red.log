@@ -1,0 +1,74 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+___ test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime ____
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_reconstructs_0')
+
+    def test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime(tmp_path):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:65: ImportError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[priming] __
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_rejects_incom0')
+change = 'priming'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:78: ImportError
+__ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[source] __
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_rejects_incom1')
+change = 'source'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:78: ImportError
+__ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[frozen] __
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_rejects_incom2')
+change = 'frozen'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:78: ImportError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[input-count] _
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_rejects_incom3')
+change = 'input-count'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:78: ImportError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[missing-wave] _
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-357/test_vllm_export_rejects_incom4')
+change = 'missing-wave'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+>       from scripts import analyze_ebplus_comparison as api
+E       ImportError: cannot import name 'analyze_ebplus_comparison' from 'scripts' (unknown location)
+
+tests/test_ebplus_export.py:78: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_export.py::test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[priming]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[source]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[frozen]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[input-count]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[missing-wave]
+6 failed in 0.41s

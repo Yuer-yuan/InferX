@@ -20,7 +20,8 @@ from scripts import run_concurrency_campaign as previous
 def main():
     p=argparse.ArgumentParser();p.add_argument('--run-id',required=True);p.add_argument('--plan',required=True,type=Path)
     p.add_argument('--prerequisite',type=Path)
-    p.add_argument('--stage',choices=['hardware','mb-grid','qualify'],default='hardware')
+    p.add_argument('--stage',choices=['hardware','mb-grid','qualify','compare'],default='hardware')
+    p.add_argument('--comparison',type=Path)
     p.add_argument('--hardware-run',type=Path);p.add_argument('--mb-run',type=Path);p.add_argument('--overlay',type=Path)
     a=p.parse_args();assert Path(a.run_id).name==a.run_id and a.run_id not in {'.','..'}
     root=Path(os.environ['INFERX_ROOT']);plan=json.loads(a.plan.read_text());validate_plan(plan)
@@ -42,10 +43,13 @@ def main():
     assert plan['identity']['model_revision']==contract['revision'] and plan['identity']['model']==contract['model']
     source=root/'sota-validation/sources/eb-vllm-repo/vllm/v1/core/sched/calibration.py'
     assert hashlib.sha256(source.read_bytes()).hexdigest()==CALIBRATION_SHA256
-    if a.stage=='qualify':
+    if a.stage in {'qualify','compare'}:
         from scripts.qualify_ebplus_model import verify_inputs
         assert all(p and p.resolve().is_relative_to(root.resolve()) for p in [a.hardware_run,a.mb_run,a.overlay])
         verify_inputs(plan,a.hardware_run,a.mb_run,a.overlay)
+    if a.stage=='compare':
+        assert a.comparison and a.comparison.resolve().is_relative_to(root.resolve())
+        comparison=json.loads(a.comparison.read_text())
     out=root/'ebplus-validation/raw'/a.run_id;out.mkdir(parents=True,exist_ok=False);previous.DIRECTORY=out
     (out/'plan.json').write_bytes(a.plan.read_bytes());(out/'controller.py').write_bytes(Path(__file__).read_bytes())
     (out/'original-service.json').write_text(json.dumps(saved,indent=2)+'\n')
@@ -90,6 +94,9 @@ def main():
         if a.stage=='qualify':
             from scripts.qualify_ebplus_model import run_model_gates
             return run_model_gates(plan,root,out,progress,a.hardware_run,a.mb_run,a.overlay)
+        if a.stage=='compare':
+            from scripts.compare_ebplus_model import run_comparison
+            return run_comparison(plan,root,out,progress,a.hardware_run,a.mb_run,a.overlay,comparison)
         from scripts.calibrate_ebplus_mb import run_mb_grid
         run_mb_grid(plan,root,out,progress)
     flush()

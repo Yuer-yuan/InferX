@@ -1,0 +1,32 @@
+{
+  "pid": 4002745,
+  "args": [
+    "taskset",
+    "-c",
+    "40-43,96-99",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+    "-u",
+    "scripts/run_ebplus_validation.py",
+    "--run-id",
+    "diagnostic-v1",
+    "--stage",
+    "compare",
+    "--plan",
+    "configs/ebplus-validation.json",
+    "--prerequisite",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/model-gates-v3",
+    "--hardware-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v4",
+    "--mb-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-grid-v1",
+    "--overlay",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v4",
+    "--comparison",
+    "configs/ebplus-diagnostic.json"
+  ],
+  "code": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v3",
+  "stdout": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/task3-diagnostic-v1.log",
+  "detached": true,
+  "started_unix": 1792108480.1191862,
+  "source_capsule_sha256": "dfeeab37831bfb8882c283cbae1e98eebf04ccefb7ddc1f4cecd9ed39b421603"
+}

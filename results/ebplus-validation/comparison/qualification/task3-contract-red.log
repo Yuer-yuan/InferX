@@ -1,0 +1,100 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ ComparisonContracts.test_bounded_cases_preserve_native_capacity_and_only_ablate_author_delta _
+
+self = <test_ebplus_comparison.ComparisonContracts testMethod=test_bounded_cases_preserve_native_capacity_and_only_ablate_author_delta>
+
+    def test_bounded_cases_preserve_native_capacity_and_only_ablate_author_delta(self):
+        plan=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+>       cases=self.api().comparison_cases(plan)
+              ^^^^^^^^^^
+
+tests/test_ebplus_comparison.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_comparison.py:11: in api
+    return importlib.import_module('inferx.ebplus_comparison')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'inferx.ebplus_comparison'
+import_ = <function _gcd_import at 0x79d955ba40e0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'inferx.ebplus_comparison'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_ ComparisonContracts.test_frozen_specs_use_full_long_and_serial_solos_keep_server_C4 _
+
+self = <test_ebplus_comparison.ComparisonContracts testMethod=test_frozen_specs_use_full_long_and_serial_solos_keep_server_C4>
+
+    def test_frozen_specs_use_full_long_and_serial_solos_keep_server_C4(self):
+        templates={name:dict(payload={'messages':[name]},expected_tool={'name':'record','arguments':{}})
+                   for name in ['tool-24576','cold-131072','resume-131072']}
+>       mixed=self.api().comparison_specs(templates,'cold-low','x',kind='mixed')
+              ^^^^^^^^^^
+
+tests/test_ebplus_comparison.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_comparison.py:11: in api
+    return importlib.import_module('inferx.ebplus_comparison')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'inferx.ebplus_comparison'
+import_ = <function _gcd_import at 0x79d955ba40e0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'inferx.ebplus_comparison'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_ ComparisonContracts.test_independent_crossover_reconstruction_respects_hysteresis_and_cooldown _
+
+self = <test_ebplus_comparison.ComparisonContracts testMethod=test_independent_crossover_reconstruction_respects_hysteresis_and_cooldown>
+
+    def test_independent_crossover_reconstruction_respects_hysteresis_and_cooldown(self):
+        x=dict(mu_L=100.,mu_o=100.,N_obs=2.,theta0=.5,alpha_mb=0.,alpha_p=0.,alpha_d=.01,
+               beta_p=.0001,beta_d=.0001,mb_cost_a=.00015,mb_cost_b=0.,mb_cost_c=0.,
+               delta=.0001,cooldown_before=0,active_before='mb')
+>       self.assertEqual(self.api().crossover_decision(x)['expected_active'],'mb')
+                         ^^^^^^^^^^
+
+tests/test_ebplus_comparison.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_comparison.py:11: in api
+    return importlib.import_module('inferx.ebplus_comparison')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'inferx.ebplus_comparison'
+import_ = <function _gcd_import at 0x79d955ba40e0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'inferx.ebplus_comparison'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::ComparisonContracts::test_bounded_cases_preserve_native_capacity_and_only_ablate_author_delta
+FAILED tests/test_ebplus_comparison.py::ComparisonContracts::test_frozen_specs_use_full_long_and_serial_solos_keep_server_C4
+FAILED tests/test_ebplus_comparison.py::ComparisonContracts::test_independent_crossover_reconstruction_respects_hysteresis_and_cooldown
+3 failed in 0.09s

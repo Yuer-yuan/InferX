@@ -1,0 +1,13 @@
+{
+  "phase": "diagnostic",
+  "kind": "mixed",
+  "repeats": 1,
+  "case_ids": [
+    "native",
+    "auto-default",
+    "forced-eb"
+  ],
+  "conditioning": "Fresh engine per group; code, four strict 24K warmups, 100 actual short tool completions in every lane, then measurement",
+  "selection_rule": "Record joint short P95, long latency, throughput and actual policy. Freeze all three qualified lanes for independent formal comparison; retain both absolute and own-solo-relative costs. Zero-hysteresis crossover is reconstructed from actual inputs, not another performance run.",
+  "scope": "Two frozen full128K cold/resume mixed groups, 24 short at .5RPS over48s and one long at16s; no SOTA ceiling claim"
+}

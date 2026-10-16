@@ -1,0 +1,25 @@
+...F                                                                     [100%]
+=================================== FAILURES ===================================
+_ PolicyEvidenceContracts.test_claimed_mode_and_calibration_must_match_observed_original_decision _
+
+self = <test_ebplus_comparison.PolicyEvidenceContracts testMethod=test_claimed_mode_and_calibration_must_match_observed_original_decision>
+
+    def test_claimed_mode_and_calibration_must_match_observed_original_decision(self):
+        from inferx import ebplus_comparison as api
+        hardware=dict(parameters=dict(alpha_p=0.,beta_p=.0001,alpha_d=.0001,beta_d=.0001))
+        mb=dict(fit=dict(coefficients=dict(a=.00015,b=0.,c=0.)))
+        x=dict(mu_L=100.,mu_o=100.,N_obs=2.,theta0=.5,alpha_mb=0.,alpha_p=0.,alpha_d=.0001,
+               beta_p=.0001,beta_d=.0001,mb_cost_a=.00015,mb_cost_b=0.,mb_cost_c=0.,
+               delta=0.,cooldown_before=0,active_before='mb')
+        state=dict(mode='auto',active_scheduler='mb',evaluations=1,parameters_initialized=True,
+                   mb_cost_profiled=True,execution_counts=dict(mb=20,prefill=0,decode=0),
+                   last_evaluation_inputs=x,completed=100,max_num_running_reqs=4,num_gpu_blocks=98)
+        with self.assertRaisesRegex(ValueError,'decision'):
+>           api.audit_policy(state,hardware,mb,delta=0.)
+            ^^^^^^^^^^^^^^^^
+E           AttributeError: module 'inferx.ebplus_comparison' has no attribute 'audit_policy'
+
+tests/test_ebplus_comparison.py:63: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::PolicyEvidenceContracts::test_claimed_mode_and_calibration_must_match_observed_original_decision
+1 failed, 3 passed in 0.07s

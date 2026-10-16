@@ -1,0 +1,1416 @@
+........................................................ssssssssssEEEEEE [ 22%]
+EEEE............FFFFFFFF.F..................F........................... [ 45%]
+......................................F................................. [ 68%]
+........................................................................ [ 91%]
+..........................                                               [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of AuthorPolicyTests.test_actual_crossover_runs_after_author_completion_threshold _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_calibration_mutation_is_rejected_independently _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_changed_native_source_cannot_publish_a_partially_prepared_adapter _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_default_cold_start_does_not_pretend_to_switch_on_25_requests _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_exact_cfr_threshold_and_small_batch_midpoint_execute_author_math _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_pending_native_prefill_completions_count_toward_refill_target _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_phase_gates_keep_decode_out_of_prefill_and_prefill_out_of_decode _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_prepare_refuses_existing_destination_without_overwriting _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_prepared_overlay_is_compilable_and_binds_all_input_bytes _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ ERROR at setup of AuthorPolicyTests.test_source_mismatch_is_rejected_before_extraction _
+
+cls = <class 'test_ebplus_validation.AuthorPolicyTests'>
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        capsule = Path(__file__).parents[1] / 'results/ebplus-validation/source-capsule-v1.tar.gz'
+>       with tarfile.open(capsule) as archive:
+
+tests/test_ebplus_validation.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b89c5b0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/ebplus-validation/source-capsule-v1.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+=================================== FAILURES ===================================
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False] _
+
+fill = True, event = False
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b6f1ed0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True] _
+
+fill = False, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b6f3760>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True] _
+
+fill = True, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b6f3490>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_______ test_preparation_rejects_changed_sources_before_creating_output ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_preparation_rejects_chang0')
+
+    def test_preparation_rejects_changed_sources_before_creating_output(tmp_path):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b648850>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_preparation_rejects_incom0')
+change = 'unlisted-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b64ac50>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[missing-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_preparation_rejects_incom1')
+change = 'missing-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b64bfd0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_preparation_rejects_incom2')
+change = 'symlink-directory'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b6f2740>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+____ test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_preparation_preserves_old0')
+
+    def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_path):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b649150>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_____ test_cpu_hint_changes_only_binding_and_preserves_default_and_policy ______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-208/test_cpu_hint_changes_only_bin0')
+
+    def test_cpu_hint_changes_only_binding_and_preserves_default_and_policy(tmp_path):
+        from inferx.morphx_control import patch_agent_cpu_hint
+        import os
+>       source=corrected_source();changed=patch_agent_cpu_hint(source)
+
+tests/test_morphx_control.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b64a500>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_historical_query_upgrade_preserves_source_and_correct_legacy_signature __
+
+    def test_historical_query_upgrade_preserves_source_and_correct_legacy_signature():
+        from inferx.morphx_validation import upgrade_proc_address_queries
+        # The exact historical validation block is frozen in the measured capsule.
+        import tarfile
+        archive=Path(__file__).parents[1]/'results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+>       with tarfile.open(archive) as t:
+
+tests/test_morphx_validation.py:191: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x7f016b5c55a0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects __
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f016b5d9130>
+
+    def test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects(monkeypatch):
+        from scripts import run_pd_baselines as runner
+>       report = (Path(__file__).parents[1]/'docs/reports/2026-10-15-pd-strategies.md').read_text()
+
+tests/test_pd_reproduction.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/docs/reports/2026-10-15-pd-strategies.md')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v1/docs/reports/2026-10-15-pd-strategies.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_changed_sources_before_creating_output
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[missing-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory]
+FAILED tests/test_morphx_control.py::test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap
+FAILED tests/test_morphx_control.py::test_cpu_hint_changes_only_binding_and_preserves_default_and_policy
+FAILED tests/test_morphx_validation.py::test_historical_query_upgrade_preserves_source_and_correct_legacy_signature
+FAILED tests/test_pd_reproduction.py::test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_actual_crossover_runs_after_author_completion_threshold
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_calibration_mutation_is_rejected_independently
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_changed_native_source_cannot_publish_a_partially_prepared_adapter
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_default_cold_start_does_not_pretend_to_switch_on_25_requests
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_exact_cfr_threshold_and_small_batch_midpoint_execute_author_math
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_pending_native_prefill_completions_count_toward_refill_target
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_phase_gates_keep_decode_out_of_prefill_and_prefill_out_of_decode
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_prepare_refuses_existing_destination_without_overwriting
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_prepared_overlay_is_compilable_and_binds_all_input_bytes
+ERROR tests/test_ebplus_validation.py::AuthorPolicyTests::test_source_mismatch_is_rejected_before_extraction
+11 failed, 283 passed, 10 skipped, 10 errors in 27.93s

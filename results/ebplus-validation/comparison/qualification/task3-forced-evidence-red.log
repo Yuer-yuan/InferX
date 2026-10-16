@@ -1,0 +1,19 @@
+.....F                                                                   [100%]
+=================================== FAILURES ===================================
+_ ForcedEvidenceContracts.test_forced_policy_requires_actual_phase_work_and_matched_pool _
+
+self = <test_ebplus_comparison.ForcedEvidenceContracts testMethod=test_forced_policy_requires_actual_phase_work_and_matched_pool>
+
+    def test_forced_policy_requires_actual_phase_work_and_matched_pool(self):
+        from inferx.ebplus_comparison import audit_policy
+        state=dict(mode='eb',active_scheduler='eb',execution_counts=dict(mb=0,prefill=200,decode=80),
+                   completed=130,max_num_running_reqs=4,num_gpu_blocks=98)
+        self.assertEqual(audit_policy(state,{}, {},delta=.0001)['expected_active'],'eb')
+        state['num_gpu_blocks']=120
+>       with self.assertRaisesRegex(ValueError,'capacity'):
+E       AssertionError: ValueError not raised
+
+tests/test_ebplus_comparison.py:93: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_comparison.py::ForcedEvidenceContracts::test_forced_policy_requires_actual_phase_work_and_matched_pool
+1 failed, 5 passed in 0.08s
