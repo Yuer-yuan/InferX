@@ -71,7 +71,8 @@ class QoServeNativeContracts(unittest.TestCase):
         cache = KVCacheConfig(num_blocks=blocks, kv_cache_tensors=[], kv_cache_groups=[
             KVCacheGroupSpec(layer_names=['attention'], kv_cache_spec=attention),
             KVCacheGroupSpec(layer_names=['gdn'], kv_cache_spec=state)])
-        return getattr(self.module, name)(config, cache, StructuredOutputManager(config), block_size=256)
+        with patch.dict(os.environ,INFERX_QOSERVE_INITIAL_PPS='8500'):
+            return getattr(self.module, name)(config, cache, StructuredOutputManager(config), block_size=256)
 
     def add(self, scheduler, name, length=32, output=4, token=42, tags=None, arrival=None):
         from vllm import SamplingParams
@@ -97,7 +98,8 @@ class QoServeNativeContracts(unittest.TestCase):
 
     def finish(self, scheduler, bound=500):
         for _ in range(bound):
-            if not scheduler.has_requests():
+            # Finished-ID notifications are not remaining request work.
+            if not scheduler.requests:
                 return
             output, _ = self.step(scheduler)
             self.assertGreater(output.total_num_scheduled_tokens, 0, 'owned work starved without a model step')
@@ -107,6 +109,11 @@ class QoServeNativeContracts(unittest.TestCase):
         pool = scheduler.kv_cache_manager.block_pool
         return dict(free=pool.get_num_free_blocks(),
             refs=[block.ref_cnt for block in pool.blocks],
+            manager_tables=[dict(request_blocks={rid:tuple(block.block_id for block in blocks)
+                for rid,blocks in manager.req_to_blocks.items()},
+                cached=dict(manager.num_cached_block),
+                checkpoints=dict(getattr(manager,'_checkpoints',{})))
+                for manager in scheduler.kv_cache_manager.coordinator.single_type_managers],
             queues=[[r.request_id for r in queue] for queue in
                     (scheduler.running,scheduler.waiting,scheduler.kv_holding_waiting)],
             blocks={rid:scheduler.kv_cache_manager.get_blocks(rid).get_block_ids()
@@ -134,7 +141,6 @@ class QoServeNativeContracts(unittest.TestCase):
         scheduler = self.scheduler()
         request = self.add(scheduler,'partial',length=8000)
         self.step(scheduler)
-        before = self.ownership(scheduler)
         waiting = self.add(scheduler,'candidate',length=8000,token=43)
         before = self.ownership(scheduler)
         for _ in range(20):
@@ -160,10 +166,10 @@ class QoServeNativeContracts(unittest.TestCase):
         scheduler = self.scheduler()
         short = self.add(scheduler,'decoder',output=8,tags={
             'qoserve_tier':0,'qoserve_deadline_s':1e-9,'qoserve_tbt_s':1e-9,'qoserve_trace_id':'short'})
-        long = self.add(scheduler,'long',length=8000,token=43,tags={
-            'qoserve_tier':1,'qoserve_deadline_s':600.,'qoserve_tbt_s':.4,'qoserve_trace_id':'long'})
         self.step(scheduler)
         self.assertEqual(len(short.output_token_ids),1)
+        long = self.add(scheduler,'long',length=8000,token=43,tags={
+            'qoserve_tier':1,'qoserve_deadline_s':600.,'qoserve_tbt_s':.4,'qoserve_trace_id':'long'})
         before = long.num_computed_tokens
         output,_ = self.step(scheduler)
         self.assertEqual(list(output.num_scheduled_tokens)[0],short.request_id)
@@ -223,6 +229,9 @@ class QoServeNativeContracts(unittest.TestCase):
         second = self.add(scheduler,'shared-b',length=8192,output=8,token=45)
         self.step(scheduler)
         self.assertGreater(first.num_computed_tokens,4096)
+        # Mamba refuses reuse of a newly published same-step checkpoint. It is
+        # available after that real CPU/model step has completed, on the next step.
+        if second.num_computed_tokens==0:self.step(scheduler)
         self.assertGreater(second.num_computed_tokens,4096)
         a=scheduler.kv_cache_manager.get_blocks(first.request_id).get_block_ids()
         b=scheduler.kv_cache_manager.get_blocks(second.request_id).get_block_ids()
@@ -294,6 +303,22 @@ class QoServeNativeContracts(unittest.TestCase):
         self.assertIs(scheduler.requests[request.request_id],request)
         self.assertIn(request,scheduler.waiting)
         self.finish(scheduler)
+
+    def test_runtime_records_actual_scheduler_capacity_boundary_and_profile_mode(self):
+        path=self.root/'runtime-observed.json'
+        for name,committed,policy in [('ObservedNativeScheduler',False,False),
+                                       ('CompatibleNativeScheduler',True,False),
+                                       ('QoServeScheduler',True,True)]:
+            with self.subTest(name=name),patch.dict(os.environ,INFERX_VLLM_RUNTIME=str(path)):
+                scheduler=self.scheduler(name)
+                state=json.loads(path.read_text())
+                self.assertEqual(state.get('scheduler_class'),name)
+                self.assertIs(state.get('full_input_commitments'),committed)
+                self.assertIs(state.get('qoserve_policy_enabled'),policy)
+                self.assertEqual(state.get('profiling_mode'),'off')
+                self.assertEqual((state['num_gpu_blocks'],state['chunk'],state['long_prefill_token_threshold']),
+                                 (256,4096,0))
+                self.assertAlmostEqual(state['wall_to_monotonic_offset'],scheduler._qoserve_clock_offset)
 
 
 if __name__ == '__main__':

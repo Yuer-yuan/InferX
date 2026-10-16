@@ -1,9 +1,14 @@
 """Caller contracts and source policy views, independent of CUDA imports."""
 import importlib
 import json
+import hashlib
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
+import tempfile
+import tarfile
+import subprocess
+import sys
 
 
 class QoServeViewContracts(unittest.TestCase):
@@ -93,6 +98,48 @@ class QoServeViewContracts(unittest.TestCase):
         self.assertEqual(request.num_computed_tokens,0)
         view.cached_prefix_tokens=0
         self.assertEqual(view.get_num_prompt_tokens_processed(),0)
+
+    def test_builder_refuses_existing_overlay_without_overwriting(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'keep').write_text('original')
+            with self.assertRaises(FileExistsError):
+                self.api().prepare_adapter(root/'absent',root/'absent.py',root)
+            self.assertEqual((root/'keep').read_text(),'original')
+
+    def test_builder_rejects_changed_native_source_before_writing_overlay(self):
+        evidence=Path(__file__).resolve().parents[1]/'results/qoserve-validation'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);native=root/'scheduler.py';native.write_text('changed')
+            with self.assertRaisesRegex(ValueError,'native.*hash'):
+                self.api().prepare_adapter(evidence,native,root/'overlay')
+            self.assertFalse((root/'overlay').exists())
+
+    def test_reference_overlay_is_reproducible_but_marked_unqualified_for_deployment(self):
+        evidence=Path(__file__).resolve().parents[1]/'results/qoserve-validation'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);native=root/'scheduler.py'
+            with tarfile.open(evidence/'native-source-v1.tar.gz') as archive:
+                native.write_bytes(archive.extractfile('vllm/v1/core/sched/scheduler.py').read())
+            manifest=self.api().prepare_adapter(evidence,native,root/'overlay')
+            self.assertFalse(manifest['policy']['deployment_coefficients_supplied'])
+            self.assertEqual(manifest['native_scheduler_sha256'],'f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a')
+            for name,want in manifest['files'].items():
+                self.assertEqual(hashlib.sha256((root/'overlay'/name).read_bytes()).hexdigest(),want)
+            compile((root/'overlay/inferx_qoserve_scheduler.py').read_text(),'<native-overlay>','exec')
+
+    def test_cli_prepares_a_source_reference_overlay_without_importing_cuda(self):
+        repo=Path(__file__).resolve().parents[1];evidence=repo/'results/qoserve-validation'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);native=root/'scheduler.py'
+            with tarfile.open(evidence/'native-source-v1.tar.gz') as archive:
+                native.write_bytes(archive.extractfile('vllm/v1/core/sched/scheduler.py').read())
+            result=subprocess.run([sys.executable,str(repo/'scripts/prepare_qoserve_validation.py'),
+                '--author-root',str(evidence),'--native-scheduler',str(native),'--output',str(root/'overlay')],
+                cwd=repo,capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            manifest=json.loads((root/'overlay/manifest.json').read_text())
+            self.assertFalse(manifest['policy']['deployment_coefficients_supplied'])
+            self.assertEqual(json.loads(result.stdout)['destination'],str(root/'overlay'))
 
 
 if __name__=='__main__':unittest.main()

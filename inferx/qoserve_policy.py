@@ -1,6 +1,6 @@
 """Extract the public QoServe policy without its legacy CUDA/runtime imports.
 
-This is a compatibility port, not a new policy. The generated MIT module
+This is a compatibility port, not a new policy. The generated Apache-2.0 module
 retains the pinned author's numerical branches; native request/cache ownership
 belongs to the later adapter. Reference A100 coefficients are never deployment
 defaults. Supplying coefficients here does not certify a calibrated profile.
@@ -202,11 +202,12 @@ def require_deployment_coefficients(cls):
     policy_body.extend(node for name, node in methods.items() if name not in ('__lt__', '_get_TBT_deadline'))
     policy_cls = ast.ClassDef(name='AuthorPolicy', bases=[], keywords=[], decorator_list=[], body=policy_body)
     module = ast.fix_missing_locations(ast.Module(body=candidates + [sequence_cls, policy_cls], type_ignores=[]))
-    generated = ('# SPDX-License-Identifier: MIT\n# Copyright (c) Microsoft Corporation.\n'
+    generated = ('# SPDX-License-Identifier: Apache-2.0\n'
                  f'# QoServe source commit {AUTHOR_COMMIT}; see bundled author LICENSE.\n'
                  'import heapq\n\n' + ast.unparse(module) + '\n')
     return generated, dict(
         commit=AUTHOR_COMMIT, capsule_sha256=CAPSULE_SHA256, license_sha256=LICENSE_SHA256,
+        license_spdx_id='Apache-2.0',
         source_files=copy.deepcopy(manifest['files']),
         source_defaults=defaults, reference_coefficients=reference, coefficients=selected,
         coefficient_source='hardware-supplied' if coefficients is not None else 'author-reference',

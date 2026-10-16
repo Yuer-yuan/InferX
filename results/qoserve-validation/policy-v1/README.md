@@ -3,8 +3,13 @@
 This is source/CPU evidence, not a model performance result. The author is
 `microsoft/sarathi-serve`, branch `niyama_asplos2026`, commit
 `72339db5b120614033b317880ad3a05a5e4c9415`. The parent source capsule contains the
-MIT license and all fourteen pinned files; the separate timing file is bound
+Apache-2.0 license and all fourteen pinned files; the separate timing file is bound
 by its actual bytes in `manifest.json`.
+
+Correction: this historical generated snapshot mistakenly labels its header
+MIT. The pinned license bytes are Apache-2.0. `../policy-v2` corrects that
+header and metadata, retaining identical executable policy AST and method
+hashes. This snapshot remains unchanged as historical evidence.
 
 `author-policy.py` is reproducible with `inferx.qoserve_policy.load_author_policy`.
 It contains the original predictor formula, chunk search, sequence ordering,

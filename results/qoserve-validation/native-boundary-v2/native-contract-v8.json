@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "command": [
+    "taskset",
+    "-c",
+    "40-43,96-99",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_qoserve_native.py"
+  ],
+  "code_sha256": "2364d36bab1690b7ff5363e753ba32d4660d98d4e86e9c75e4169a9654a5842c",
+  "finished_unix": 1792121449.054632,
+  "gpu_campaign_started": false
+}

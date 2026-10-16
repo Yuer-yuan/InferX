@@ -1,0 +1,32 @@
+.EE...E...
+======================================================================
+ERROR: test_builder_refuses_existing_overlay_without_overwriting (test_qoserve_validation.QoServeViewContracts.test_builder_refuses_existing_overlay_without_overwriting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_validation.py", line 104, in test_builder_refuses_existing_overlay_without_overwriting
+    self.api().prepare_adapter(root/'absent',root/'absent.py',root)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'inferx.qoserve_validation' has no attribute 'prepare_adapter'
+
+======================================================================
+ERROR: test_builder_rejects_changed_native_source_before_writing_overlay (test_qoserve_validation.QoServeViewContracts.test_builder_rejects_changed_native_source_before_writing_overlay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_validation.py", line 112, in test_builder_rejects_changed_native_source_before_writing_overlay
+    self.api().prepare_adapter(evidence,native,root/'overlay')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'inferx.qoserve_validation' has no attribute 'prepare_adapter'
+
+======================================================================
+ERROR: test_reference_overlay_is_reproducible_but_marked_unqualified_for_deployment (test_qoserve_validation.QoServeViewContracts.test_reference_overlay_is_reproducible_but_marked_unqualified_for_deployment)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_validation.py", line 121, in test_reference_overlay_is_reproducible_but_marked_unqualified_for_deployment
+    manifest=self.api().prepare_adapter(evidence,native,root/'overlay')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'inferx.qoserve_validation' has no attribute 'prepare_adapter'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.248s
+
+FAILED (errors=3)
