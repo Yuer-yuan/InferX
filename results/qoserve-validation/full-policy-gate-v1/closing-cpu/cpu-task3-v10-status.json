@@ -1,0 +1,41 @@
+{
+  "source_sha256": "53356aab35f7a476cc94af87e95b0d27be839c3e695b3353c44e2df86446dd6d",
+  "tests": [
+    {
+      "name": "native",
+      "returncode": 0,
+      "command": [
+        "taskset",
+        "-c",
+        "40-43,96-99",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_qoserve_native.py"
+      ]
+    },
+    {
+      "name": "fit",
+      "returncode": 0,
+      "command": [
+        "taskset",
+        "-c",
+        "40-43,96-99",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/fit-venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_qoserve_fit.py"
+      ]
+    }
+  ],
+  "started_unix": 1792135377.1873991,
+  "finished_unix": 1792135391.3583536
+}
