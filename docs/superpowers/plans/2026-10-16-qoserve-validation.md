@@ -47,10 +47,10 @@
 
 **Interfaces:** Consume Task1 policy and pinned native scheduler/allocator source. Produce `prepare_adapter(author_root:Path,native_scheduler:Path,destination:Path)->dict` and importable `QoServeScheduler`, `CompatibleNativeScheduler`, `ObservedNativeScheduler`, with source-bound runtime/policy/token evidence. Adapter API records actual classes, cap, pool, precisions and profiling mode.
 
-- [ ] Write real-native CPU contracts for full-input joint commitments, pure capacity queries, shared prefix/CoW, paused ownership/C4, abort/release, small128token progress and no-starvation/no silent decoder preemption. These run only after remote timed work ends.
-- [ ] Write metadata/clock regressions: unknown-output prediction15, original arrival retained after resume, one wall/monotonic mapping, exact TBT deadline, late request requeues once and still completes. Do not derive model-token intervals from SSE.
-- [ ] Observe actual RED in the pinned environment; implement ordering/eligibility/token-quota/full-commitment boundaries around native allocator/state handling. Compare native schedule AST modifications and extracted author hashes.
-- [ ] Run all native contracts and full generic suite; prepare immutable HDD overlay, preserve source bytes and commit. No GPU efficacy from CPU contracts.
+- [x] Write real-native CPU contracts for full-input joint commitments, pure capacity queries, shared prefix/CoW, paused ownership/C4, abort/release, small128token progress and no-starvation/no silent decoder preemption. These run only after remote timed work ends.
+- [x] Write metadata/clock regressions: unknown-output prediction15, original arrival retained after resume, one wall/monotonic mapping, exact TBT deadline, late request requeues once and still completes. Do not derive model-token intervals from SSE.
+- [x] Observe actual RED in the pinned environment; implement ordering/eligibility/token-quota/full-commitment boundaries around native allocator/state handling. Compare native schedule AST modifications and extracted author hashes.
+- [x] Run all native contracts and full generic suite; prepare immutable HDD overlay, preserve source bytes and commit. No GPU efficacy from CPU contracts.
 
 ### Task 3: Independent real-model calibration and qualification
 

@@ -1,0 +1,1644 @@
+........................................F.FFF.FFF.F............FFFFFFFFF [ 19%]
+FFssssssssssssss.....................FFFFFFFFFFFF..........FFFFF.FF..... [ 38%]
+............................................................Fsssssssssss [ 57%]
+sss..................................................................... [ 76%]
+........................................................................ [ 95%]
+................                                                         [100%]
+=================================== FAILURES ===================================
+_ CalibrationContracts.test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously>
+
+    def test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously(self):
+        from inferx.pd_baselines import engine_command
+>       case=copy.deepcopy(self.plan()['base_case'])
+
+tests/test_ebplus_campaign.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step>
+
+    def test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step(self):
+>       plan=self.plan();plan['decomposed']['decode_counts']=[1,2,8]
+
+tests/test_ebplus_campaign.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_calibration_cannot_be_reused_on_different_model_gpu_or_precision _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_calibration_cannot_be_reused_on_different_model_gpu_or_precision>
+
+    def test_calibration_cannot_be_reused_on_different_model_gpu_or_precision(self):
+        for field in ('model_revision','gpu_uuid','kv_dtype','native_scheduler_sha256'):
+>           result=self.result();result['identity'][field]='different'
+
+tests/test_ebplus_campaign.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:21: in result
+    sizes=self.plan()['decomposed']['prefill_sizes']
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_disabled_admission_calibration_writes_actual_runtime_before_warming _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_disabled_admission_calibration_writes_actual_runtime_before_warming>
+
+    def test_disabled_admission_calibration_writes_actual_runtime_before_warming(self):
+        from scripts.calibrate_ebplus_mb import mb_grid_case
+        from inferx.pd_baselines import engine_command
+>       plan=self.plan();plan['base_case'].update(scheduler_reserve_full_isl=False,num_gpu_blocks_override=98,
+            scheduler_class='inferx_ebplus_scheduler.ObservedNativeScheduler',shutdown_timeout=30)
+
+tests/test_ebplus_campaign.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_generated_plan_matches_qualified_hybrid_geometries _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_generated_plan_matches_qualified_hybrid_geometries>
+
+    def test_generated_plan_matches_qualified_hybrid_geometries(self):
+        frozen=json.loads((Path(__file__).parents[1]/'configs/ebplus-validation.json').read_text())
+>       self.assertEqual(self.plan()['decomposed']['prefill_sizes'],frozen['decomposed']['prefill_sizes'])
+
+tests/test_ebplus_campaign.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points>
+
+    def test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points(self):
+>       plan=self.plan();rows=[]
+
+tests/test_ebplus_campaign.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected>
+
+    def test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected(self):
+        mutations=[lambda r:r.update(decode_counts=[1,2]),
+                   lambda r:r['parameters'].update(alpha_d=float('nan')),
+                   lambda r:r.update(measurement_type='scheduler_call_interval'),
+                   lambda r:r.update(raw_steps=[]),
+                   lambda r:r.update(sampling_temperature=1.0)]
+        for mutate in mutations:
+>           result=self.result();mutate(result)
+
+tests/test_ebplus_campaign.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:21: in result
+    sizes=self.plan()['decomposed']['prefill_sizes']
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ CalibrationContracts.test_plan_cannot_label_a_different_runtime_as_the_calibrated_identity _
+
+self = <test_ebplus_campaign.CalibrationContracts testMethod=test_plan_cannot_label_a_different_runtime_as_the_calibrated_identity>
+
+    def test_plan_cannot_label_a_different_runtime_as_the_calibrated_identity(self):
+        for field,value in [('gpu_uuid','other'),('kv_dtype','bfloat16'),('concurrency',8),
+                            ('model_revision','other')]:
+>           plan=self.plan();plan['base_case'][field]=value
+
+tests/test_ebplus_campaign.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_campaign.py:16: in plan
+    case = next(c for c in json.loads((Path(__file__).parents[1] / 'configs/pd-baselines.json').read_text())['cases']
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/pd-baselines.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+___ test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_reconstructs_0')
+
+    def test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime(tmp_path):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path)
+
+tests/test_ebplus_export.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[priming] __
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_rejects_incom0')
+change = 'priming'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path);folder=tmp_path/'native-r0-cold-low'
+
+tests/test_ebplus_export.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+__ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[source] __
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_rejects_incom1')
+change = 'source'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path);folder=tmp_path/'native-r0-cold-low'
+
+tests/test_ebplus_export.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+__ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[frozen] __
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_rejects_incom2')
+change = 'frozen'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path);folder=tmp_path/'native-r0-cold-low'
+
+tests/test_ebplus_export.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[input-count] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_rejects_incom3')
+change = 'input-count'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path);folder=tmp_path/'native-r0-cold-low'
+
+tests/test_ebplus_export.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[missing-wave] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_vllm_export_rejects_incom4')
+change = 'missing-wave'
+
+    @pytest.mark.parametrize('change',['priming','source','frozen','input-count','missing-wave'])
+    def test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs(tmp_path,change):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path);folder=tmp_path/'native-r0-cold-low'
+
+tests/test_ebplus_export.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_automatic_export_binds_policy_to_measured_coefficients __________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_automatic_export_binds_po0')
+
+    def test_automatic_export_binds_policy_to_measured_coefficients(tmp_path):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path,lane=1)
+
+tests/test_ebplus_export.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_author_tuned_automatic_export_uses_its_actual_hysteresis_and_phase_evidence _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_author_tuned_automatic_ex0')
+
+    def test_author_tuned_automatic_export_uses_its_actual_hysteresis_and_phase_evidence(tmp_path):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path,lane=3)
+
+tests/test_ebplus_export.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_export_binds_overlay_directory_to_its_archived_manifest _________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_export_binds_overlay_dire0')
+
+    def test_export_binds_overlay_directory_to_its_archived_manifest(tmp_path):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path)
+
+tests/test_ebplus_export.py:130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration[4] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_disabled_full_input_fit_e0')
+lane = 4
+
+    @pytest.mark.parametrize('lane',[4,5])
+    def test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration(tmp_path,lane):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path,lane=lane)
+
+tests/test_ebplus_export.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration[5] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_disabled_full_input_fit_e1')
+lane = 5
+
+    @pytest.mark.parametrize('lane',[4,5])
+    def test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration(tmp_path,lane):
+        from scripts import analyze_ebplus_comparison as api
+>       templates=comparison_fixture(tmp_path,lane=lane)
+
+tests/test_ebplus_export.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_ebplus_export.py:18: in comparison_fixture
+    hardware=json.loads((repo/'results/ebplus-validation/calibration/hardware-v4/hardware-result.json').read_text())
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/ebplus-validation/calibration/hardware-v4/hardware-result.json'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_______ test_native_async_fill_and_event_lifetime_against_driver_oracle ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_native_async_fill_and_eve0')
+
+    def test_native_async_fill_and_event_lifetime_against_driver_oracle(tmp_path):
+        header=ROOT/'scripts/morphx_control_ops.hpp'
+>       assert header.exists(),'transport helper missing'
+E       AssertionError: transport helper missing
+E       assert False
+E        +  where False = <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_control_ops.hpp')>()
+E        +    where <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_control_ops.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_control_ops.hpp').exists
+
+tests/test_morphx_control.py:25: AssertionError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False] _
+
+fill = True, event = False
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553ca5ab0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True] _
+
+fill = False, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c582e0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True] _
+
+fill = True, event = True
+
+    @pytest.mark.parametrize('fill,event',[(True,False),(False,True),(True,True)])
+    def test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler(fill,event):
+        from inferx.morphx_control import patch_control_runtime
+>       source=corrected_source();changed=patch_control_runtime(source,device_fill=fill,event_completion=event)
+
+tests/test_morphx_control.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c58910>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_______ test_preparation_rejects_changed_sources_before_creating_output ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_rejects_chang0')
+
+    def test_preparation_rejects_changed_sources_before_creating_output(tmp_path):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d554276e60>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_rejects_incom0')
+change = 'unlisted-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c5b100>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[missing-header] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_rejects_incom1')
+change = 'missing-header'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c58e80>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory] _
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_rejects_incom2')
+change = 'symlink-directory'
+
+    @pytest.mark.parametrize('change',['unlisted-header','missing-header','symlink-directory'])
+    def test_preparation_rejects_incomplete_source_inventory_before_output(tmp_path,change):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c76e60>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+____ test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_preserves_old0')
+
+    def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_path):
+        from inferx.morphx_control import prepare_control_runtime
+>       source=source_tree(tmp_path);destination=tmp_path/'fresh'
+
+tests/test_morphx_control.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:105: in source_tree
+    (source/'runtime/src/cuda-llm.cpp').write_text(historical_source());(source/'include/common.h').write_text('other pinned source')
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c5aec0>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+___ test_model_qualification_reads_exact_hdd_config_before_service_mutation ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_model_qualification_reads0')
+
+    def test_model_qualification_reads_exact_hdd_config_before_service_mutation(tmp_path):
+        from inferx.morphx_control import load_qualified_base_case
+        import shutil
+        folder=tmp_path/'sota-validation/configs';folder.mkdir(parents=True)
+>       shutil.copy2(ROOT/'configs/sota-validation.json',folder/'sota-validation.json')
+
+tests/test_morphx_control.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/shutil.py:475: in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/sota-validation.json')
+dst = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_model_qualification_reads0/sota-validation/configs/sota-validation.json')
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/configs/sota-validation.json'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+_____ test_cpu_hint_changes_only_binding_and_preserves_default_and_policy ______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_cpu_hint_changes_only_bin0')
+
+    def test_cpu_hint_changes_only_binding_and_preserves_default_and_policy(tmp_path):
+        from inferx.morphx_control import patch_agent_cpu_hint
+        import os
+>       source=corrected_source();changed=patch_agent_cpu_hint(source)
+
+tests/test_morphx_control.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_control.py:20: in corrected_source
+    return upgrade_proc_address_queries(historical_source())
+tests/test_morphx_control.py:14: in historical_source
+    with tarfile.open(ROOT/'results/sota-validation/reproduction/source-capsule-v2.tar.gz') as t:
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553c5a440>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+___ test_control_pool_keeps_counters_on_device_and_copies_on_private_stream ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_control_pool_keeps_counte0')
+
+    def test_control_pool_keeps_counters_on_device_and_copies_on_private_stream(tmp_path):
+        header=Path(__file__).parents[1]/'scripts/morphx_cuda_copy_pool.hpp'
+>       assert header.is_file(),'copy-backed CUDA pool not implemented'
+E       AssertionError: copy-backed CUDA pool not implemented
+E       assert False
+E        +  where False = <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_cuda_copy_pool.hpp')>()
+E        +    where <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_cuda_copy_pool.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/scripts/morphx_cuda_copy_pool.hpp').is_file
+
+tests/test_morphx_cuda_copy_pool.py:8: AssertionError
+_____ test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_extended_and_ptsz_dispatc0')
+
+    def test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics(tmp_path):
+        from inferx.morphx_validation import patch_extended_launch
+>       changed = patch_extended_launch(original())
+
+tests/test_morphx_validation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+____________ test_patch_rejects_unknown_or_already_patched_dispatch ____________
+
+    def test_patch_rejects_unknown_or_already_patched_dispatch():
+        from inferx.morphx_validation import patch_extended_launch
+        with pytest.raises(ValueError,match='launch source'):
+            patch_extended_launch('unrelated source')
+        with pytest.raises(ValueError,match='launch source'):
+>           patch_extended_launch(patch_extended_launch(original()))
+
+tests/test_morphx_validation.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+________ test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_is_fresh_hash0')
+
+    def test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged(tmp_path):
+        from inferx.morphx_validation import prepare_runtime
+>       src=source_tree(tmp_path);before=(src/'runtime/src/cuda-llm.cpp').read_bytes();sha=hashlib.sha256(before).hexdigest()
+
+tests/test_morphx_validation.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:39: in source_tree
+    (root/'runtime/src/cuda-llm.cpp').write_text(original())
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_____ test_preparation_refuses_unpinned_source_before_creating_destination _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_preparation_refuses_unpin0')
+
+    def test_preparation_refuses_unpinned_source_before_creating_destination(tmp_path):
+        from inferx.morphx_validation import prepare_runtime
+>       src=source_tree(tmp_path);dest=tmp_path/'isolated'
+
+tests/test_morphx_validation.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:39: in source_tree
+    (root/'runtime/src/cuda-llm.cpp').write_text(original())
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_profile_waves_cover_4090_nondivisible_sm_counts_exactly _________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_profile_waves_cover_4090_0')
+
+    def test_profile_waves_cover_4090_nondivisible_sm_counts_exactly(tmp_path):
+        from inferx.morphx_validation import patch_profile_wave_accounting
+>       original=(FIXTURES/'morphx_profile_waves_original.cpp').read_text()
+
+tests/test_morphx_validation.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_profile_waves_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_profile_waves_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+______ test_proc_queries_preserve_per_thread_flags_and_native_rejections _______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-213/test_proc_queries_preserve_per0')
+
+    def test_proc_queries_preserve_per_thread_flags_and_native_rejections(tmp_path):
+        import re
+        from inferx.morphx_validation import patch_proc_address_queries
+>       original=(FIXTURES/'morphx_proc_address_original.cpp').read_text();changed=patch_proc_address_queries(original)
+
+tests/test_morphx_validation.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_proc_address_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/tests/fixtures/morphx_proc_address_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_historical_query_upgrade_preserves_source_and_correct_legacy_signature __
+
+    def test_historical_query_upgrade_preserves_source_and_correct_legacy_signature():
+        from inferx.morphx_validation import upgrade_proc_address_queries
+        # The exact historical validation block is frozen in the measured capsule.
+        import tarfile
+        archive=Path(__file__).parents[1]/'results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+>       with tarfile.open(archive) as t:
+
+tests/test_morphx_validation.py:191: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/tarfile.py:1882: in open
+    return func(name, "r", fileobj, **kwargs)
+/usr/lib/python3.12/tarfile.py:1950: in gzopen
+    fileobj = GzipFile(name, mode + "b", compresslevel, fileobj)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x71d553e84760>
+filename = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz')
+mode = 'rb', compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/results/sota-validation/reproduction/source-capsule-v2.tar.gz'
+
+/usr/lib/python3.12/gzip.py:192: FileNotFoundError
+_ test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects __
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x71d553b1f050>
+
+    def test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects(monkeypatch):
+        from scripts import run_pd_baselines as runner
+>       report = (Path(__file__).parents[1]/'docs/reports/2026-10-15-pd-strategies.md').read_text()
+
+tests/test_pd_reproduction.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/docs/reports/2026-10-15-pd-strategies.md')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v8/docs/reports/2026-10-15-pd-strategies.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_actual_vllm_launch_can_select_calibrated_scheduler_synchronously
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_calibration_batch_must_fit_hard_C4_and_complete_prefill_step
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_calibration_cannot_be_reused_on_different_model_gpu_or_precision
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_disabled_admission_calibration_writes_actual_runtime_before_warming
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_generated_plan_matches_qualified_hybrid_geometries
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_mb_fit_uses_best_independent_total_tps_and_requires_all_grid_points
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_missing_counts_nonfinite_cost_and_cpu_timing_are_rejected
+FAILED tests/test_ebplus_campaign.py::CalibrationContracts::test_plan_cannot_label_a_different_runtime_as_the_calibrated_identity
+FAILED tests/test_ebplus_export.py::test_vllm_export_reconstructs_full_counts_and_rejects_unmatched_runtime
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[priming]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[source]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[frozen]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[input-count]
+FAILED tests/test_ebplus_export.py::test_vllm_export_rejects_incomplete_history_or_rehashed_bad_inputs[missing-wave]
+FAILED tests/test_ebplus_export.py::test_automatic_export_binds_policy_to_measured_coefficients
+FAILED tests/test_ebplus_export.py::test_author_tuned_automatic_export_uses_its_actual_hysteresis_and_phase_evidence
+FAILED tests/test_ebplus_export.py::test_export_binds_overlay_directory_to_its_archived_manifest
+FAILED tests/test_ebplus_export.py::test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration[4]
+FAILED tests/test_ebplus_export.py::test_disabled_full_input_fit_export_requires_runtime_and_matched_calibration[5]
+FAILED tests/test_morphx_control.py::test_native_async_fill_and_event_lifetime_against_driver_oracle
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-False]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[False-True]
+FAILED tests/test_morphx_control.py::test_pinned_patch_keeps_profiler_native_dispatch_and_dynamic_scheduler[True-True]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_changed_sources_before_creating_output
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[unlisted-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[missing-header]
+FAILED tests/test_morphx_control.py::test_preparation_rejects_incomplete_source_inventory_before_output[symlink-directory]
+FAILED tests/test_morphx_control.py::test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap
+FAILED tests/test_morphx_control.py::test_model_qualification_reads_exact_hdd_config_before_service_mutation
+FAILED tests/test_morphx_control.py::test_cpu_hint_changes_only_binding_and_preserves_default_and_policy
+FAILED tests/test_morphx_cuda_copy_pool.py::test_control_pool_keeps_counters_on_device_and_copies_on_private_stream
+FAILED tests/test_morphx_validation.py::test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics
+FAILED tests/test_morphx_validation.py::test_patch_rejects_unknown_or_already_patched_dispatch
+FAILED tests/test_morphx_validation.py::test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged
+FAILED tests/test_morphx_validation.py::test_preparation_refuses_unpinned_source_before_creating_destination
+FAILED tests/test_morphx_validation.py::test_profile_waves_cover_4090_nondivisible_sm_counts_exactly
+FAILED tests/test_morphx_validation.py::test_proc_queries_preserve_per_thread_flags_and_native_rejections
+FAILED tests/test_morphx_validation.py::test_historical_query_upgrade_preserves_source_and_correct_legacy_signature
+FAILED tests/test_pd_reproduction.py::test_report_gpu_invocation_parses_exact_formal_workload_before_side_effects
+39 failed, 309 passed, 28 skipped in 28.21s

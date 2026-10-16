@@ -1,0 +1,285 @@
+........................................................................ [ 19%]
+..ssssssssssssss.....................F.......F..F..........FFFFF.F...... [ 38%]
+.............................................................sssssssssss [ 57%]
+sss..................................................................... [ 76%]
+........................................................................ [ 95%]
+................                                                         [100%]
+=================================== FAILURES ===================================
+_______ test_native_async_fill_and_event_lifetime_against_driver_oracle ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_native_async_fill_and_eve0')
+
+    def test_native_async_fill_and_event_lifetime_against_driver_oracle(tmp_path):
+        header=ROOT/'scripts/morphx_control_ops.hpp'
+>       assert header.exists(),'transport helper missing'
+E       AssertionError: transport helper missing
+E       assert False
+E        +  where False = <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_control_ops.hpp')>()
+E        +    where <bound method Path.exists of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_control_ops.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_control_ops.hpp').exists
+
+tests/test_morphx_control.py:25: AssertionError
+____ test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_preparation_preserves_old0')
+
+    def test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap(tmp_path):
+        from inferx.morphx_control import prepare_control_runtime
+        source=source_tree(tmp_path);destination=tmp_path/'fresh'
+        before=(source/'runtime/src/cuda-llm.cpp').read_bytes()
+>       result=prepare_control_runtime(source,destination,device_fill=True,event_completion=True)
+
+tests/test_morphx_control.py:138: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+inferx/morphx_control.py:106: in prepare_control_runtime
+    shutil.copyfile(Path(__file__).parents[1]/'scripts/morphx_control_ops.hpp',destination/'include/morphx_control_ops.hpp')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_control_ops.hpp')
+dst = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_preparation_preserves_old0/fresh/include/morphx_control_ops.hpp')
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+E           FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_control_ops.hpp'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+___ test_control_pool_keeps_counters_on_device_and_copies_on_private_stream ____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_control_pool_keeps_counte0')
+
+    def test_control_pool_keeps_counters_on_device_and_copies_on_private_stream(tmp_path):
+        header=Path(__file__).parents[1]/'scripts/morphx_cuda_copy_pool.hpp'
+>       assert header.is_file(),'copy-backed CUDA pool not implemented'
+E       AssertionError: copy-backed CUDA pool not implemented
+E       assert False
+E        +  where False = <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_cuda_copy_pool.hpp')>()
+E        +    where <bound method Path.is_file of PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_cuda_copy_pool.hpp')> = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/scripts/morphx_cuda_copy_pool.hpp').is_file
+
+tests/test_morphx_cuda_copy_pool.py:8: AssertionError
+_____ test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_extended_and_ptsz_dispatc0')
+
+    def test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics(tmp_path):
+        from inferx.morphx_validation import patch_extended_launch
+>       changed = patch_extended_launch(original())
+
+tests/test_morphx_validation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+____________ test_patch_rejects_unknown_or_already_patched_dispatch ____________
+
+    def test_patch_rejects_unknown_or_already_patched_dispatch():
+        from inferx.morphx_validation import patch_extended_launch
+        with pytest.raises(ValueError,match='launch source'):
+            patch_extended_launch('unrelated source')
+        with pytest.raises(ValueError,match='launch source'):
+>           patch_extended_launch(patch_extended_launch(original()))
+
+tests/test_morphx_validation.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+________ test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged ________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_preparation_is_fresh_hash0')
+
+    def test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged(tmp_path):
+        from inferx.morphx_validation import prepare_runtime
+>       src=source_tree(tmp_path);before=(src/'runtime/src/cuda-llm.cpp').read_bytes();sha=hashlib.sha256(before).hexdigest()
+
+tests/test_morphx_validation.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:39: in source_tree
+    (root/'runtime/src/cuda-llm.cpp').write_text(original())
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_____ test_preparation_refuses_unpinned_source_before_creating_destination _____
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_preparation_refuses_unpin0')
+
+    def test_preparation_refuses_unpinned_source_before_creating_destination(tmp_path):
+        from inferx.morphx_validation import prepare_runtime
+>       src=source_tree(tmp_path);dest=tmp_path/'isolated'
+
+tests/test_morphx_validation.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_morphx_validation.py:39: in source_tree
+    (root/'runtime/src/cuda-llm.cpp').write_text(original())
+tests/test_morphx_validation.py:13: in original
+    return (FIXTURES/'morphx_launch_original.cpp').read_text()
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_launch_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_profile_waves_cover_4090_nondivisible_sm_counts_exactly _________
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_profile_waves_cover_4090_0')
+
+    def test_profile_waves_cover_4090_nondivisible_sm_counts_exactly(tmp_path):
+        from inferx.morphx_validation import patch_profile_wave_accounting
+>       original=(FIXTURES/'morphx_profile_waves_original.cpp').read_text()
+
+tests/test_morphx_validation.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_profile_waves_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_profile_waves_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+______ test_proc_queries_preserve_per_thread_flags_and_native_rejections _______
+
+tmp_path = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/tmp/pytest-of-guokc/pytest-214/test_proc_queries_preserve_per0')
+
+    def test_proc_queries_preserve_per_thread_flags_and_native_rejections(tmp_path):
+        import re
+        from inferx.morphx_validation import patch_proc_address_queries
+>       original=(FIXTURES/'morphx_proc_address_original.cpp').read_text();changed=patch_proc_address_queries(original)
+
+tests/test_morphx_validation.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_proc_address_original.cpp')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/guokc/mypro/gnn-mount-sda1/InferX/qoserve-validation/code-task2-v9/tests/fixtures/morphx_proc_address_original.cpp'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_morphx_control.py::test_native_async_fill_and_event_lifetime_against_driver_oracle
+FAILED tests/test_morphx_control.py::test_preparation_preserves_old_files_and_rejects_overwrite_and_overlap
+FAILED tests/test_morphx_cuda_copy_pool.py::test_control_pool_keeps_counters_on_device_and_copies_on_private_stream
+FAILED tests/test_morphx_validation.py::test_extended_and_ptsz_dispatch_preserve_config_and_native_semantics
+FAILED tests/test_morphx_validation.py::test_patch_rejects_unknown_or_already_patched_dispatch
+FAILED tests/test_morphx_validation.py::test_preparation_is_fresh_hashed_and_leaves_upstream_unchanged
+FAILED tests/test_morphx_validation.py::test_preparation_refuses_unpinned_source_before_creating_destination
+FAILED tests/test_morphx_validation.py::test_profile_waves_cover_4090_nondivisible_sm_counts_exactly
+FAILED tests/test_morphx_validation.py::test_proc_queries_preserve_per_thread_flags_and_native_rejections
+9 failed, 339 passed, 28 skipped in 31.64s

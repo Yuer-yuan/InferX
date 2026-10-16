@@ -38,3 +38,12 @@ Supplying these values alone does not qualify a profile. Real-model timing,
 disjoint holdouts, tool/code checks and complete mixed/solo measurements remain
 the next phases. The original256K/MTP7/C1 service, both runtime manifests,
 exact argv and GPU0 stopped state were verified after these CPU tests.
+
+The final full generic suite passed348tests, with28dedicated native tests
+separately gated, on the HDD in33.59seconds. The same full suite passed locally
+in40.28seconds. Two earlier remote full-suite attempts used incomplete fixture
+envelopes: v8 omitted legacy config/docs/source data, and v9 still omitted C++
+headers/fixtures. Their39/9failures and every test name remain in the failed
+logs. Snapshotv10 adds those existing immutable fixtures; all129core Python
+files are byte-identical to the actual native-testedv8. No test was deselected
+or weakened to obtain the final generic pass.
