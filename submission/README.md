@@ -2,19 +2,19 @@
 
 **当前状态：材料已整理，UCloud 正式评测和最终发布验收待完成。不能将本目录当作已经取得比赛成绩的成品。**
 
-参赛方案：单卡 Qwen3.8-27B 推理部署、NInfer/MTP 调优及长上下文并发瓶颈分析。正式评测机为 UCloud 的单张 48GB RTX 4090；此前 vlm-server 的单卡 24GB 实验用于解释方案选择。仓库：https://github.com/Yuer-yuan/InferX ，统一开发分支为 `main`。
+参赛方案：单卡 Qwen3.8-27B 推理部署、NInfer/MTP 调优及长上下文并发瓶颈分析。公共工具可用于类似 Linux/CUDA 机器；本轮节点名为 ucloud1/2，各单张 48GB RTX 4090，一台测评、一台备用。此前 vlm-server 的单卡 24GB 实验用于解释方案选择。仓库：https://github.com/Yuer-yuan/InferX ，统一开发分支为 `main`。
 
 | 交付物 | 位置 | 当前状态 |
 |---|---|---|
 | 原始评分规则、参考基准、评测包 | 仓库根目录两份 MD、eval.zip；[输入校验清单](input-manifest.json) | 已归档，原文保留 |
 | 官方评测工具 | [原版说明](organizer/README.md)、[入口](organizer/run.sh)、[runner](organizer/runner.py) | 从 ZIP 原样提取，不修改 |
-| 模型选型与部署说明 | [复现说明](REPRODUCE.md)、[模型版本清单](model-manifest.json) | 旧机器来源已固定，UCloud 最终配置待定 |
+| 模型选型与部署说明 | [复现说明](REPRODUCE.md)、[模型版本清单](model-manifest.json) | 两机候选部署和接口核验完成，最终参数待消融 |
 | Benchmark 与性能分析 | [证据及成绩表](BENCHMARK.md)、[评测口径](PROTOCOL.md) | 历史证据已有，官方成绩待补 |
 | 优化方案、消融、失败案例 | [NInfer/MTP 报告](../docs/reports/2026-10-14-ninfer-mtp.md)、[长上下文](../docs/reports/2026-10-14-concurrency-roofline.md)、[长短混合策略](../docs/reports/2026-10-15-pd-strategies.md) | 已有研究数据，适用范围见报告 |
 | 约 8 页答辩展示 | [离线 HTML 草稿](slides.html) | 页面已备；正式数据、队员分工待填 |
 | 现场 Demo、备用录屏 | [3 分钟演示步骤](REPRODUCE.md#现场-demo) | 步骤已备；UCloud 彩排、录屏待做 |
 | 全部源码、配置及必要原始结果 | 本仓库固定提交；发布时生成 `artifacts/` 下源码快照与 Git bundle | 生成方法见复现说明；模型权重用精确下载方式交付 |
-| UCloud 环境证据 | [只读机器盘点](evidence/ucloud-inventory.json) | 已采集，不代表已部署 |
+| 节点与部署证据 | [两机盘点](../results/ninfer-performance/inventory/)、[构建及接口核验](../results/ninfer-performance/preparation/) | 相同权重/构建、完整客户端环境已就绪 |
 | 待办和提交验收 | [TODO](TODO.md)、[本轮检查记录](VALIDATION.md) | TODO 是提交前唯一验收清单 |
 
 按评分维度安排材料：

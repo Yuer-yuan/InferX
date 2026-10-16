@@ -1,15 +1,15 @@
 # Benchmark 报告与证据索引
 
-## UCloud 正式比赛结果
+## 单卡正式比赛结果（本轮节点 ucloud1）
 
 **尚未执行。** 不用旧服务器短提示速度、参考基准数字或 Agent 体验填入正式表。
 
 | 正式条件 | 状态 |
 |---|---|
 | GPU | UCloud 单张 RTX 4090，49,140 MiB；[盘点](evidence/ucloud-inventory.json) |
-| 最终代码/引擎/模型 revision、量化、tokenizer | 待部署冻结；候选来源见 model-manifest.json |
+| 最终代码/引擎/模型 revision、量化、tokenizer | 固定 NInfer v2 + completions 补丁，权重及嵌入 tokenizer 已核验；参数筛选中 |
 | 上下文、MTP、并发上限、模板、思考/采样 | 待同机消融与质量验证后冻结 |
-| 评测端位置/网络、CPU/RAM、依赖锁、功率、显存 | 盘点已有；完整运行环境待补 |
+| 评测端位置/网络、CPU/RAM、依赖锁、功率、显存 | 同机回环；两机环境与依赖记录见 results/ninfer-performance/，正式运行采样待补 |
 | 正式协议 | 待确认 PROTOCOL.md 中差异；按原版 runner 组织目录 |
 
 | 并发 | 成功/100 | 实际 ISL/OSL | TTFT P95(s) | TPOT P95(ms) | E2E P95(s) | 输出 tok/s | 两项 SLO 均通过 |

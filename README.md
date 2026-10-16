@@ -2,10 +2,11 @@
 
 **比赛材料入口：[submission/README.md](submission/README.md) · [提交 TODO](submission/TODO.md) · [部署与官方评测](submission/REPRODUCE.md) · [8 页答辩草稿](submission/slides.html)。**
 
-比赛正式评测使用 UCloud 的单张 **48GB RTX 4090**。已有 vlm-server 单卡 24GB 数据用于调优与工程佐证；UCloud 正式性能与 IFBench 尚未运行，不能用历史 token/s 替代正式成绩。开发内容统一集成到 `main`，提交时以固定 commit 和源码快照为准。
+公共部署和评测工具面向类似的单卡 Linux/CUDA 机器；数据目录、CUDA 和下载源可配置。本轮使用两台命名为 `ucloud1/2` 的单张 **48GB RTX 4090** 节点，一台测评、一台备用。正式成绩见提交报告，旧服务器数据用于工程佐证。开发统一在 `main`，交付以固定提交和源码快照为准。
 
 单 RTX 4090 上的 Qwen3.8-27B 部署及代码生成—CPU 验证反馈实验。HumanEval 阶段用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于 GPU 1 的同一服务会话，每个试验只使用一张卡。
 
+- [可迁移 NInfer 部署、配置模板和原版评测](submission/REPRODUCE.md)
 - [OpenCode、Pi、Claude Code 直接接入 Qwen](docs/agent-quickstart.md)（已配置，GPU1 的 18081 服务，256K 后端）
 - [256K 上下文与三个 Agent 的验证结果](docs/reports/2026-10-14-context-agents.md)
 - [长上下文、并发与 Roofline 验证](docs/reports/2026-10-14-concurrency-roofline.md)（48K–248K 输入；长预填充准入阻塞与 MTP 对照）

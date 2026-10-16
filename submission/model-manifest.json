@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "selection_status": "UCloud competition selection and tokenizer are not frozen",
+  "selection_status": "Pinned NInfer v2 candidate deployed on both benchmark nodes; performance selection in progress",
   "models": {
     "ninfer_candidate": {
       "repo": "neroued/Qwen3.8-27B-NInfer",
@@ -28,7 +28,7 @@
       "quantization": "compressed-tensors W4A16, group 128; attention/GDN hybrid; see research configs",
       "sha256_manifest": "Not a single-file artifact; freeze per-file hashes if selected for submission"
     },
-    "ucloud_mounted_fp8_candidate": {
+    "mounted_fp8_reference": {
       "local_path": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
       "status": "Directory observed only; source revision, completeness and weight hashes unverified",
       "config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc",
@@ -48,7 +48,9 @@
     "ninfer": {
       "repo": "https://github.com/UDPSendToFailed/ninfer-4090",
       "commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
-      "xgrammar_commit": "4546988d1cf51670a10eafb8795d37e4a2f0d833"
+      "xgrammar_commit": "4546988d1cf51670a10eafb8795d37e4a2f0d833",
+      "patch": "patches/ninfer-v2-completions.patch",
+      "patch_sha256": "d5534f0189f1e05c91dc32d5ca6d19541d52ca94f7f95209eb009193b2fe87d1"
     },
     "llama_cpp": {
       "repo": "https://github.com/ggml-org/llama.cpp",
@@ -56,9 +58,43 @@
     }
   },
   "final_tokenizer": {
-    "status": "pending verified model match",
-    "repo": null,
-    "revision": null
+    "status": "Verified exact embedded tokenizer, live token-ID/string input probe passed",
+    "source_artifact_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+    "revision": "3526913004b1cf552cb57b88d6a5c6f5e4a89a70",
+    "repo": "neroued/Qwen3.8-27B-NInfer",
+    "runtime_path": "${INFERX_ROOT}/models/tokenizer",
+    "files": [
+      {
+        "resource": "frontend/tokenizer.json",
+        "bytes": 12809320,
+        "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+      },
+      {
+        "resource": "frontend/tokenizer_config.json",
+        "bytes": 17928,
+        "sha256": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27"
+      },
+      {
+        "resource": "frontend/chat_template.jinja",
+        "bytes": 8952,
+        "sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041"
+      },
+      {
+        "resource": "frontend/generation_config.json",
+        "bytes": 202,
+        "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e"
+      },
+      {
+        "resource": "frontend/preprocessor_config.json",
+        "bytes": 390,
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+      },
+      {
+        "resource": "frontend/video_preprocessor_config.json",
+        "bytes": 385,
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+      }
+    ]
   },
   "warning": "These are pinned historical candidates, not a claim of official benchmark completion. Reuse the exact NInfer v2 artifact; latest may be incompatible."
 }
