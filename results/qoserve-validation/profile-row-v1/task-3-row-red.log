@@ -1,0 +1,629 @@
+FFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_completed_step_uses_real_prefill_and_latest_decode_input_contexts (test_qoserve_profile.ProfileRowContracts.test_completed_step_uses_real_prefill_and_latest_decode_input_contexts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 31, in test_completed_step_uses_real_prefill_and_latest_decode_input_contexts
+    self.assertEqual(self.api().validate_step_row(self.row(),self.identity()),
+                     ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_replayed_old_outputs_remain_prefill_until_the_native_boundary (test_qoserve_profile.ProfileRowContracts.test_replayed_old_outputs_remain_prefill_until_the_native_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 40, in test_replayed_old_outputs_remain_prefill_until_the_native_boundary
+    self.assertEqual(self.api().validate_step_row(row,self.identity())['batch_num_prefill_tokens'],128)
+                     ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_targets_and_prompt_lengths_cannot_replace_executed_geometry (test_qoserve_profile.ProfileRowContracts.test_targets_and_prompt_lengths_cannot_replace_executed_geometry) (field='batch_num_tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 47, in test_targets_and_prompt_lengths_cannot_replace_executed_geometry
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_targets_and_prompt_lengths_cannot_replace_executed_geometry (test_qoserve_profile.ProfileRowContracts.test_targets_and_prompt_lengths_cannot_replace_executed_geometry) (field='batch_num_prefill_tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 47, in test_targets_and_prompt_lengths_cannot_replace_executed_geometry
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_targets_and_prompt_lengths_cannot_replace_executed_geometry (test_qoserve_profile.ProfileRowContracts.test_targets_and_prompt_lengths_cannot_replace_executed_geometry) (field='batch_prefill_context')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 47, in test_targets_and_prompt_lengths_cannot_replace_executed_geometry
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_targets_and_prompt_lengths_cannot_replace_executed_geometry (test_qoserve_profile.ProfileRowContracts.test_targets_and_prompt_lengths_cannot_replace_executed_geometry) (field='batch_decode_context')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 47, in test_targets_and_prompt_lengths_cannot_replace_executed_geometry
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='completed_model_step', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='boundary', value='worker-cuda-event')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='end_s', value=99.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='batch_execution_time', value=125.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='batch_execution_time', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_timing_must_span_the_same_completed_model_step (test_qoserve_profile.ProfileRowContracts.test_timing_must_span_the_same_completed_model_step) (key='start_s', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 56, in test_timing_must_span_the_same_completed_model_step
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row (test_qoserve_profile.ProfileRowContracts.test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row) (mutation='zero')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 88, in test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row (test_qoserve_profile.ProfileRowContracts.test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row) (mutation='negative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 88, in test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row (test_qoserve_profile.ProfileRowContracts.test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row) (mutation='future')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 88, in test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row (test_qoserve_profile.ProfileRowContracts.test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row) (mutation='missing-id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 88, in test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row (test_qoserve_profile.ProfileRowContracts.test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row) (mutation='warmup-string')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 88, in test_uncached_zero_work_or_nonpositive_clock_is_not_a_training_row
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='formal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='duplicate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='c4')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='budget')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='bool-tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+======================================================================
+FAIL: test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected (test_qoserve_profile.ProfileRowContracts.test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected) (mutation='wrong-stage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 10, in api
+    try:return importlib.import_module('inferx.qoserve_profile')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'inferx.qoserve_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 75, in test_wrong_hardware_formal_samples_and_unjoined_request_ids_are_rejected
+    self.api().validate_step_row(row,self.identity())
+    ^^^^^^^^^^
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_profile.py", line 11, in api
+    except ModuleNotFoundError as exc:self.fail(f'QoServe completed-step validation is missing: {exc}')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: QoServe completed-step validation is missing: No module named 'inferx.qoserve_profile'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.028s
+
+FAILED (failures=24)
