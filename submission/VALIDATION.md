@@ -16,6 +16,8 @@
 - 空白检查保留原生EvalScope HTML模板的尾空格，排除该原始报告；其真实性由113个快照SHA保证。源码/文档/其他新增文件按git diff --check验证，不为风格检查改写原生证据。
 - 原始评分MD/eval.zip/提取runner的6个SHA，以及用户PD补测8个SHA保持一致。最新相对链接、8页结构、压缩和输入检查见[材料检查](evidence/material-checks.json)。本轮新增文件另做常见秘密模式扫描，不将模式扫描当作安全性保证。
 
+两机已实际同步main `2d8dc2c7aad0d87bbb352455aae654669723a089`，各3067个跟踪文件完整SHA核验，原版runner哈希一致；[两机同步记录](../results/ninfer-performance/handoff/)已保留。该版本源码归档的6个输入SHA和Git bundle验证通过，忽略的本地skills/状态不在源码包中。最终记录补充也同步到两机，实际最终提交由外部release-manifest记录，避免在版本内自引用。
+
 最终main源码同步和归档以`artifacts/release-manifest.json`的实际版本/校验和为准；正式测量时运行主仓快照为8e974a9，引擎/API补丁未在正式运行中切换。主办方差异口径、持久存储、干净重建、成员分工、投屏/录屏和提交回执仍依[TODO](TODO.md)验收，不能将本轮测量完成当作最终比赛提交完成。
 
 ## 此前材料整理记录

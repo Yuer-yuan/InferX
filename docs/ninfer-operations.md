@@ -30,7 +30,7 @@ ssh -N -L 8088:127.0.0.1:8088 MACHINE_ALIAS
 | `source/`、`build/ninfer-sm89/` | 固定上游源码及本机编译目录 |
 | `models/qwen38-ninfer/`、`models/tokenizer/` | 固定v2权重及六份内嵌资源 |
 | `envs/build/`、`eval-envs/` | 隔离工具链及两个官方客户端环境 |
-| `config/active-service.json` | 当前服务PID、启动tick、UID、argv及版本身份 |
+| `config/active-service.json` | 当前服务PID、启动tick、UID、argv及启动时版本身份 |
 | `runs/`、`logs/` | 分次实验输出；每次使用新目录 |
 
 节点内加载环境：
@@ -56,6 +56,8 @@ identity = {'pid': m['pid'], 'proc_start_ticks': m['start_ticks'],
 stop_matching_process(identity, timeout=30)
 PY
 ```
+
+`active-service.json`中的source_main_commit是服务启动时快照，`code-source.json`是当前源码快照；追加报告/结果后两者可能不同，运行二进制身份仍用SHA核验。
 
 身份不匹配或进程已不存在时，保留异常并重新盘点，不向其他PID发信号。本轮使用系统Python提供pidfd；工具链Python没有该接口。新服务的前台启动见复现说明；原生HTTP keepalive可能使旧端口暂留TIME_WAIT。通用sweep只在自身已回收服务后有界等待端口释放，外来监听者会直接报错。
 
