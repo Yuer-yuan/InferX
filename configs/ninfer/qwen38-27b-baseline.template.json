@@ -1,0 +1,76 @@
+{
+  "label": "BASELINE",
+  "description": "Frozen MTP4/8-slots/chunk2048 baseline measured on one 48GiB RTX4090. Retune memory budgets for other GPUs; no cross-machine speed guarantee.",
+  "base_url": "http://127.0.0.1:8088/v1",
+  "model": "qwen38-27b",
+  "command": [
+    "${INFERX_ROOT}/build/ninfer-sm89/apps/ninfer-serve",
+    "${INFERX_ROOT}/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8088",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "131072",
+    "--max-concurrency",
+    "8",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "int8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "4",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "${INFERX_RUN_DIR}/requests.jsonl"
+  ],
+  "engine_commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+  "patch_sha256": "d5534f0189f1e05c91dc32d5ca6d19541d52ca94f7f95209eb009193b2fe87d1",
+  "model_repository": "neroued/Qwen3.8-27B-NInfer",
+  "model_revision": "3526913004b1cf552cb57b88d6a5c6f5e4a89a70",
+  "model_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+  "tokenizer": "${INFERX_ROOT}/models/tokenizer",
+  "env_dir": "${INFERX_ROOT}/eval-envs",
+  "protocol": {
+    "performance": {
+      "isl": 8192,
+      "osl": 512,
+      "concurrencies": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "requests_per_tier": 100,
+      "warmup_per_tier": 8,
+      "seed": 42,
+      "strict_model_tokenizer": true
+    },
+    "accuracy": {
+      "limit": 100,
+      "batch": 2,
+      "explicit_generation_config": {
+        "max_tokens": 32768
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "label": "PILOT",
+  "name": "mtp7-slots8-chunk8192",
+  "command": [
+    "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8090",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "131072",
+    "--max-concurrency",
+    "8",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "8192",
+    "--kv-dtype",
+    "int8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "7",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/pilot-prefill-slots/mtp7-slots8-chunk8192/requests.jsonl"
+  ],
+  "concurrencies": [
+    1,
+    8
+  ],
+  "started_at": "2026-10-16T09:45:44.424729+00:00",
+  "status": "complete",
+  "tiers": [
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 1,
+      "artifacts": "/workspace/InferX/runs/pilot-prefill-slots/mtp7-slots8-chunk8192/c1",
+      "started_at": "2026-10-16T09:46:57.204224+00:00",
+      "meets_slo": true,
+      "issues": [],
+      "expected_requests": 8,
+      "records": 8,
+      "valid_records": 8,
+      "successful_requests": 8.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 3844.2839405,
+          "p50": 3845.7135384999997,
+          "p95": 3855.50230705,
+          "p99": 3855.6755310099998
+        },
+        "inter_token_latency": {
+          "mean": 6.100484032289628,
+          "p50": 5.110165973581212,
+          "p95": 10.034510242857142,
+          "p99": 10.55013066696673
+        },
+        "request_latency": {
+          "mean": 6961.631281,
+          "p50": 6463.1772,
+          "p95": 8973.63961795,
+          "p99": 9243.17914359
+        }
+      },
+      "benchmark_duration": 55.710633984000005,
+      "request_throughput": 0.14359061016570318,
+      "output_token_throughput": 73.51839240484003,
+      "native_status": "完整",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-16T09:48:14.927976+00:00",
+      "elapsed_seconds": 77.7237933879951
+    },
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 8,
+      "artifacts": "/workspace/InferX/runs/pilot-prefill-slots/mtp7-slots8-chunk8192/c8",
+      "started_at": "2026-10-16T09:48:14.929330+00:00",
+      "meets_slo": false,
+      "issues": [],
+      "expected_requests": 8,
+      "records": 8,
+      "valid_records": 8,
+      "successful_requests": 8.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 17514.34867,
+          "p50": 17480.959448,
+          "p95": 29892.0978192,
+          "p99": 30998.344131839996
+        },
+        "inter_token_latency": {
+          "mean": 42.11047272822896,
+          "p50": 41.94619327495107,
+          "p95": 66.33768562886497,
+          "p99": 66.85404890502936
+        },
+        "request_latency": {
+          "mean": 39032.800234124996,
+          "p50": 38360.262266,
+          "p95": 41692.77347635,
+          "p99": 41898.18055207
+        }
+      },
+      "benchmark_duration": 41.950071808000004,
+      "request_throughput": 0.19068384917414155,
+      "output_token_throughput": 97.63013077716047,
+      "native_status": "完整",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-16T09:49:16.660814+00:00",
+      "elapsed_seconds": 61.73150714696385
+    }
+  ],
+  "server_log": "/workspace/InferX/runs/pilot-prefill-slots/mtp7-slots8-chunk8192/server.log",
+  "cleanup": {
+    "reaped": true,
+    "exit_code": 0
+  },
+  "port_preflight": {
+    "status": "released",
+    "started_at": "2026-10-16T09:45:44.425094+00:00",
+    "timeout_seconds": 65,
+    "previous_owned_server": {
+      "case": "mtp7-slots4-chunk8192",
+      "pid": 36296,
+      "start_ticks": 36499518,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    "attempts": 567,
+    "waited_seconds": 56.76885513798334,
+    "first_error": "destination port 8090 is occupied or unavailable: [Errno 98] Address already in use",
+    "last_error": "destination port 8090 is occupied or unavailable: [Errno 98] Address already in use"
+  },
+  "pid": 36480,
+  "start_ticks": 36520647,
+  "ready_at": "2026-10-16T09:46:53.425842+00:00",
+  "probe": {
+    "cache_salt": "62434ff2cc154de6b50a59b3cb304263:mtp7-slots8-chunk8192:probe",
+    "status": "complete",
+    "excluded_from_metrics": true
+  },
+  "finished_at": "2026-10-16T09:49:17.226655+00:00",
+  "elapsed_seconds": 212.80197413702263
+}

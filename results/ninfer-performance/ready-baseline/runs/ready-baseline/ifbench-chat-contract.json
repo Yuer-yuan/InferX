@@ -1,0 +1,58 @@
+{
+  "request": {
+    "model": "qwen38-27b",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with the five letters READY, without punctuation."
+      }
+    ],
+    "max_tokens": 32768,
+    "temperature": 0.0
+  },
+  "response": {
+    "id": "chatcmpl-162df4fcc4fdfef4",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "READY",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": 1792145393,
+    "model": "qwen38-27b",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 22,
+      "total_tokens": 24,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      }
+    },
+    "timings": {
+      "cache_n": 0,
+      "predicted_ms": 24.872895,
+      "predicted_n": 2,
+      "predicted_per_second": 80.40881449465373,
+      "prompt_ms": 84.588747,
+      "prompt_n": 22,
+      "prompt_per_second": 260.0818759024767
+    }
+  }
+}

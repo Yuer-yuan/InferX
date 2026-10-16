@@ -2,7 +2,7 @@
 
 公共工具按引擎和功能命名，适用于类似 Linux/CUDA 机器。`ucloud1/2` 仅为本轮节点名称；第一台执行测量，第二台只部署和功能核验。结果按节点保存，不能把跨机差异当成优化收益。
 
-本轮已验证 Ubuntu 22.04、单张 49,140 MiB RTX 4090、CUDA 13.2.51、GCC 13.4、Python 3.12.15。两台 CPU 不同，见 [原始盘点](../results/ninfer-performance/inventory/)。24GB 卡需要重新调整 KV/并发预算，本轮配置不能直接当作它的测量结论。正式性能和 IFBench 完成状态见 [BENCHMARK.md](BENCHMARK.md)。
+上游构建范围为 Linux x86_64、SM86/SM89 与 CUDA≥12.8；其他平台按上游支持单独验证。本轮已验证 Ubuntu 22.04、单张 49,140 MiB RTX 4090、CUDA 13.2.51、GCC 13.4、Python 3.12.15。两台 CPU 不同，见 [原始盘点](../results/ninfer-performance/inventory/)。24GB 卡需要重新调整 KV/并发预算，本轮配置不能直接当作它的测量结论。正式性能和 IFBench 完成状态见 [BENCHMARK.md](BENCHMARK.md)。
 
 ## 数据目录与隔离环境
 
@@ -133,7 +133,19 @@ python "$INFERX_CODE_ROOT/scripts/run_ninfer_sweep.py" \
 
 每次使用新 RUN_ID 和新配置文件名。driver 拒绝已有结果目录/占用端口，完整保存原生 AIPerf 记录、配置哈希和失败；它是小样本 PILOT，不替代正式结果。模型输入使用相同嵌入 tokenizer，精确8192/512；MTP 启用时同时使用 `--lm-head-draft`。配置只允许单卡，第二台不重复运行这个筛选。
 
-直接部署时使用最终冻结配置中的 `command` argv 在前台启动，环境 `CUDA_VISIBLE_DEVICES=0`；终端 Ctrl-C 停止该进程。本轮后台服务保存于各节点 `config/active-service.json`，记录 PID、start_ticks、UID、完整 argv 和构建哈希；停止必须先用现有 `inferx.service_ownership` 核对身份，再通过 pidfd 发信号，不用批量 `pkill`。本轮 Conda Python 未提供 `os.pidfd_open`，控制操作使用提供该能力的系统 `/usr/bin/python3`；推理客户端仍使用隔离 Python3.12。
+正式冻结配置为MTP4、活动上限8、分块2048、64K上下文、int8 KV。[通用基线模板](../configs/ninfer/qwen38-27b-baseline.template.json)保存完整`command`及版本身份，不含节点别名、GPU UUID或PID；实际运行记录另存。按前述递归JSON方法展开该模板，设`INFERX_RUN_DIR`为新的服务日志目录并创建该目录，保存为`config/baseline.json`。它是服务配置，不作为pilot driver的配置输入。直接部署时执行其中的`command` argv，在前台运行：
+
+```bash
+export CUDA_VISIBLE_DEVICES=0
+python - <<'PY'
+import json, os
+from pathlib import Path
+argv = json.loads((Path(os.environ['INFERX_ROOT']) / 'config/baseline.json').read_text())['command']
+os.execv(argv[0], argv)
+PY
+```
+
+终端Ctrl-C停止该进程。已有服务占用端口时先核对归属，不直接覆盖。本轮后台服务保存于各节点`config/active-service.json`，记录PID、start_ticks、UID、完整argv和构建哈希；停止必须先用现有`inferx.service_ownership`核对身份，再通过pidfd发信号，不用批量`pkill`。本轮Conda Python未提供`os.pidfd_open`，控制操作使用提供该能力的系统`/usr/bin/python3`；推理客户端仍使用隔离Python3.12。
 
 服务核验入口（实际请求，不是性能测量）：
 

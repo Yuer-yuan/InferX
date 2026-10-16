@@ -1,0 +1,177 @@
+{
+  "label": "PILOT",
+  "name": "mtp4-slots8-chunk1024",
+  "command": [
+    "/workspace/InferX/build/ninfer-sm89/apps/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8091",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "131072",
+    "--max-concurrency",
+    "8",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "1024",
+    "--kv-dtype",
+    "int8",
+    "--no-thinking",
+    "--greedy",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "4",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/pilot-final-selection/mtp4-slots8-chunk1024/requests.jsonl"
+  ],
+  "concurrencies": [
+    1,
+    8
+  ],
+  "started_at": "2026-10-16T09:52:58.495358+00:00",
+  "status": "complete",
+  "tiers": [
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 1,
+      "artifacts": "/workspace/InferX/runs/pilot-final-selection/mtp4-slots8-chunk1024/c1",
+      "started_at": "2026-10-16T09:53:14.156881+00:00",
+      "meets_slo": true,
+      "issues": [],
+      "expected_requests": 8,
+      "records": 8,
+      "valid_records": 8,
+      "successful_requests": 8.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 3446.1701704999996,
+          "p50": 3447.089374,
+          "p95": 3457.10412835,
+          "p99": 3458.89163127
+        },
+        "inter_token_latency": {
+          "mean": 6.218294078033268,
+          "p50": 6.012075956947163,
+          "p95": 7.864156965264188,
+          "p99": 8.253984178962817
+        },
+        "request_latency": {
+          "mean": 6623.718444374999,
+          "p50": 6519.260188,
+          "p95": 7461.7378643,
+          "p99": 7657.06041606
+        }
+      },
+      "benchmark_duration": 53.010001664,
+      "request_throughput": 0.15090176607926822,
+      "output_token_throughput": 77.26170423258533,
+      "native_status": "完整",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-16T09:54:27.727400+00:00",
+      "elapsed_seconds": 73.5705467609805
+    },
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 8,
+      "artifacts": "/workspace/InferX/runs/pilot-final-selection/mtp4-slots8-chunk1024/c8",
+      "started_at": "2026-10-16T09:54:27.728561+00:00",
+      "meets_slo": false,
+      "issues": [],
+      "expected_requests": 8,
+      "records": 8,
+      "valid_records": 8,
+      "successful_requests": 8.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 16684.966363749998,
+          "p50": 16485.966371,
+          "p95": 29018.76326365,
+          "p99": 30175.19829193
+        },
+        "inter_token_latency": {
+          "mean": 42.1773950905088,
+          "p50": 41.700755555772986,
+          "p95": 65.45516295724072,
+          "p99": 68.46023679340509
+        },
+        "request_latency": {
+          "mean": 38237.615255,
+          "p50": 38709.4874605,
+          "p95": 40031.39067075,
+          "p99": 40543.80242935
+        }
+      },
+      "benchmark_duration": 40.674881024,
+      "request_throughput": 0.19666298883507424,
+      "output_token_throughput": 100.69145028355801,
+      "native_status": "完整",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-16T09:55:26.593616+00:00",
+      "elapsed_seconds": 58.86508074699668
+    }
+  ],
+  "server_log": "/workspace/InferX/runs/pilot-final-selection/mtp4-slots8-chunk1024/server.log",
+  "cleanup": {
+    "reaped": true,
+    "exit_code": 0
+  },
+  "port_preflight": {
+    "status": "unused",
+    "started_at": "2026-10-16T09:52:58.495804+00:00",
+    "timeout_seconds": 0,
+    "previous_owned_server": null,
+    "attempts": 1,
+    "waited_seconds": 0.002322052954696119
+  },
+  "pid": 36860,
+  "start_ticks": 36558377,
+  "ready_at": "2026-10-16T09:53:10.733036+00:00",
+  "probe": {
+    "cache_salt": "02961e476b394a32b7cacbd107ae97fb:mtp4-slots8-chunk1024:probe",
+    "status": "complete",
+    "excluded_from_metrics": true
+  },
+  "finished_at": "2026-10-16T09:55:27.209407+00:00",
+  "elapsed_seconds": 148.7141512390226
+}
