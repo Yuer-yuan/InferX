@@ -1,0 +1,45 @@
+{
+  "uv": "/home/yuer/.local/bin/uv",
+  "bootstrap_python": "/usr/bin/python3.12",
+  "python312": "/usr/bin/python3.12",
+  "tools": {
+    "perf": {
+      "ready": false,
+      "missing": [
+        "独立虚拟环境"
+      ],
+      "python": "/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/aiperf-0.13.0/bin/python"
+    },
+    "accuracy": {
+      "ready": false,
+      "missing": [
+        "独立虚拟环境"
+      ],
+      "python": "/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/evalscope-1.13.0/bin/python"
+    }
+  },
+  "global_commands": {
+    "aiperf": null,
+    "evalscope": null
+  }
+}
+/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/aiperf-0.13.0/bin/aiperf profile --model DRY_RUN_NO_MODEL --url http://127.0.0.1:1 --endpoint /v1/completions --endpoint-type completions --streaming --tokenizer builtin --use-server-token-count --use-legacy-max-tokens --input-file '<OUTPUT>/performance/dataset.jsonl' --custom-dataset-type single-turn --dataset-sampling-strategy sequential --random-seed 42 --extra-inputs '{"ignore_eos": true, "temperature": 0, "cache_salt": "<RUN_ID>:c1"}' --concurrency 1 --request-count 100 --warmup-request-count 8 --workers-max 2 --request-timeout-seconds 600 --export-level records --artifact-dir '<OUTPUT>/performance/c1' --ui none --no-gpu-telemetry --api-key '<API_KEY_FROM_ENV>'
+/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/aiperf-0.13.0/bin/aiperf profile --model DRY_RUN_NO_MODEL --url http://127.0.0.1:1 --endpoint /v1/completions --endpoint-type completions --streaming --tokenizer builtin --use-server-token-count --use-legacy-max-tokens --input-file '<OUTPUT>/performance/dataset.jsonl' --custom-dataset-type single-turn --dataset-sampling-strategy sequential --random-seed 42 --extra-inputs '{"ignore_eos": true, "temperature": 0, "cache_salt": "<RUN_ID>:c2"}' --concurrency 2 --request-count 100 --warmup-request-count 8 --workers-max 2 --request-timeout-seconds 600 --export-level records --artifact-dir '<OUTPUT>/performance/c2' --ui none --no-gpu-telemetry --api-key '<API_KEY_FROM_ENV>'
+/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/aiperf-0.13.0/bin/aiperf profile --model DRY_RUN_NO_MODEL --url http://127.0.0.1:1 --endpoint /v1/completions --endpoint-type completions --streaming --tokenizer builtin --use-server-token-count --use-legacy-max-tokens --input-file '<OUTPUT>/performance/dataset.jsonl' --custom-dataset-type single-turn --dataset-sampling-strategy sequential --random-seed 42 --extra-inputs '{"ignore_eos": true, "temperature": 0, "cache_salt": "<RUN_ID>:c4"}' --concurrency 4 --request-count 100 --warmup-request-count 8 --workers-max 2 --request-timeout-seconds 600 --export-level records --artifact-dir '<OUTPUT>/performance/c4' --ui none --no-gpu-telemetry --api-key '<API_KEY_FROM_ENV>'
+/home/yuer/mypro/InferX/artifacts/dry-run-unused-envs/aiperf-0.13.0/bin/aiperf profile --model DRY_RUN_NO_MODEL --url http://127.0.0.1:1 --endpoint /v1/completions --endpoint-type completions --streaming --tokenizer builtin --use-server-token-count --use-legacy-max-tokens --input-file '<OUTPUT>/performance/dataset.jsonl' --custom-dataset-type single-turn --dataset-sampling-strategy sequential --random-seed 42 --extra-inputs '{"ignore_eos": true, "temperature": 0, "cache_salt": "<RUN_ID>:c8"}' --concurrency 8 --request-count 100 --warmup-request-count 8 --workers-max 2 --request-timeout-seconds 600 --export-level records --artifact-dir '<OUTPUT>/performance/c8' --ui none --no-gpu-telemetry --api-key '<API_KEY_FROM_ENV>'
+{
+  "model": "DRY_RUN_NO_MODEL",
+  "api_url": "http://127.0.0.1:1/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "eval_type": "openai_api",
+  "datasets": [
+    "ifbench"
+  ],
+  "limit": 100,
+  "eval_batch_size": 2,
+  "generation_config": {
+    "max_tokens": 32768
+  },
+  "work_dir": "<OUTPUT>/accuracy/native",
+  "no_timestamp": true
+}

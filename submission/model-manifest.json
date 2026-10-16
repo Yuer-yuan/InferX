@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "selection_status": "UCloud competition selection and tokenizer are not frozen",
+  "models": {
+    "ninfer_candidate": {
+      "repo": "neroued/Qwen3.8-27B-NInfer",
+      "revision": "3526913004b1cf552cb57b88d6a5c6f5e4a89a70",
+      "filename": "qwen3_8_27b.ninfer",
+      "size": 18210531328,
+      "expected_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e",
+      "endpoint": "https://hf-mirror.com",
+      "verified": true,
+      "actual_sha256": "eec39564993d6e9c7d5e383382a760f093465c9d163ec9a1bd6b80199514bf3e"
+    },
+    "llama_cpp_reference": {
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "filename": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+      "size": 16464440224,
+      "expected_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482",
+      "endpoint": "https://hf-mirror.com",
+      "verified": true,
+      "actual_sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482"
+    },
+    "sglang_research_reference": {
+      "repo": "RedHatAI/Qwen3.8-27B-INT4",
+      "revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "quantization": "compressed-tensors W4A16, group 128; attention/GDN hybrid; see research configs",
+      "sha256_manifest": "Not a single-file artifact; freeze per-file hashes if selected for submission"
+    },
+    "ucloud_mounted_fp8_candidate": {
+      "local_path": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "status": "Directory observed only; source revision, completeness and weight hashes unverified",
+      "config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc",
+      "architectures": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5",
+      "regular_file_bytes": 30890053333,
+      "tokenizer_files_present": [
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "provenance": "submission/evidence/ucloud-inventory.json"
+    }
+  },
+  "engines": {
+    "ninfer": {
+      "repo": "https://github.com/UDPSendToFailed/ninfer-4090",
+      "commit": "5c60b7c9b455231795c09da21a9fbb6aa53f08e5",
+      "xgrammar_commit": "4546988d1cf51670a10eafb8795d37e4a2f0d833"
+    },
+    "llama_cpp": {
+      "repo": "https://github.com/ggml-org/llama.cpp",
+      "commit": "d81235049384534c167caea52b85a694f6103d14"
+    }
+  },
+  "final_tokenizer": {
+    "status": "pending verified model match",
+    "repo": null,
+    "revision": null
+  },
+  "warning": "These are pinned historical candidates, not a claim of official benchmark completion. Reuse the exact NInfer v2 artifact; latest may be incompatible."
+}

@@ -1,0 +1,409 @@
+{
+  "scope": "Actual strict single-request client execution, retaining each formal C4 server configuration.",
+  "limitation": "One diagnostic solo repetition per case/workload versus three earlier independent mixed waves; 24 correlated short samples per solo wave. Ratios are descriptive, not confidence intervals.",
+  "formula": "slowdown = mixed seconds / isolated seconds; 2 means twice the latency (+100%).",
+  "requests_verified": 78,
+  "rows": [
+    {
+      "case": "sglang-ctx-control",
+      "group": "cold-low",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 2.955134630203247,
+      "short_mixed_p95_median_s": 99.21942138671875,
+      "short_slowdown": 33.575262653903074,
+      "long_solo_latency_s": 87.51526179537177,
+      "long_mixed_latency_median_s": 90.63796258345246,
+      "long_slowdown": 1.0356817853711298,
+      "short_solo_median_s": 2.9380723107606173,
+      "short_mixed_medians_s": [
+        85.58021162264049,
+        85.5548534989357,
+        86.04898590780795
+      ],
+      "long_solo_ttft_s": 84.41377113759518,
+      "long_mixed_ttft_s": [
+        87.62099764123559,
+        87.55027712509036,
+        87.54417776316404
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": null,
+        "computed_tokens": null,
+        "counter_observations": 0,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "unobserved",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-cold-low/cold-low"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-control-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-control-r0-cold-low/cold-low"
+    },
+    {
+      "case": "sglang-ctx-control",
+      "group": "resume-high",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 2.955134630203247,
+      "short_mixed_p95_median_s": 76.83458268269897,
+      "short_slowdown": 26.00036624301427,
+      "long_solo_latency_s": 78.01517207548022,
+      "long_mixed_latency_median_s": 79.49017403274775,
+      "long_slowdown": 1.0189066039082815,
+      "short_solo_median_s": 2.9380723107606173,
+      "short_mixed_medians_s": [
+        63.0308936573565,
+        63.96179153956473,
+        63.73478297330439
+      ],
+      "long_solo_ttft_s": 74.92557495459914,
+      "long_mixed_ttft_s": [
+        75.96699647977948,
+        76.48762818425894,
+        76.3548354357481
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": 24576,
+        "computed_tokens": 106473,
+        "counter_observations": 1,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "observed",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-control-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-control-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-r2/sglang-ctx-control-r0-resume-high/resume-high"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-control-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-control-r0-resume-high/resume-high"
+    },
+    {
+      "case": "sglang-ctx-responsive128",
+      "group": "cold-low",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 2.9728963300585747,
+      "short_mixed_p95_median_s": 5.288413882255554,
+      "short_slowdown": 1.7788759832574979,
+      "long_solo_latency_s": 87.94749329984188,
+      "long_mixed_latency_median_s": 106.36404176428914,
+      "long_slowdown": 1.2094039042324856,
+      "short_solo_median_s": 2.951581321656704,
+      "short_mixed_medians_s": [
+        4.880555650219321,
+        4.84628614410758,
+        4.855547614395618
+      ],
+      "long_solo_ttft_s": 84.81296323612332,
+      "long_mixed_ttft_s": [
+        103.31646256148815,
+        103.24506075680256,
+        103.25691201165318
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": null,
+        "computed_tokens": null,
+        "counter_observations": 0,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "unobserved",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-cold-low/cold-low",
+        "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-cold-low/cold-low"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-responsive128-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-responsive128-r0-cold-low/cold-low"
+    },
+    {
+      "case": "sglang-ctx-responsive128",
+      "group": "resume-high",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 2.9728963300585747,
+      "short_mixed_p95_median_s": 5.946676257997751,
+      "short_slowdown": 2.000297217858446,
+      "long_solo_latency_s": 80.43154156208038,
+      "long_mixed_latency_median_s": 92.81066080182791,
+      "long_slowdown": 1.1539087651352897,
+      "short_solo_median_s": 2.951581321656704,
+      "short_mixed_medians_s": [
+        5.150800429284573,
+        5.135813221335411,
+        5.096352031454444
+      ],
+      "long_solo_ttft_s": 77.23086221143603,
+      "long_mixed_ttft_s": [
+        89.9202245362103,
+        89.7911307066679,
+        89.66981631144881
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": 24576,
+        "computed_tokens": 106473,
+        "counter_observations": 1,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "observed",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-matched-formal-r1/sglang-ctx-responsive128-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-final-r3/sglang-ctx-responsive128-r0-resume-high/resume-high",
+        "pd-strategies-simple-formal-r2/sglang-ctx-responsive128-r0-resume-high/resume-high"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-responsive128-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-ctx-responsive128-r0-resume-high/resume-high"
+    },
+    {
+      "case": "sglang-pdmux-private-best",
+      "group": "cold-low",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 3.036445863544941,
+      "short_mixed_p95_median_s": 4.559434819966555,
+      "short_slowdown": 1.501569606330336,
+      "long_solo_latency_s": 88.14961781725287,
+      "long_mixed_latency_median_s": 119.72973795980215,
+      "long_slowdown": 1.3582558940643341,
+      "short_solo_median_s": 3.0002741180360317,
+      "short_mixed_medians_s": [
+        4.318119518458843,
+        4.307311080396175,
+        4.226262582466006
+      ],
+      "long_solo_ttft_s": 85.0417561493814,
+      "long_mixed_ttft_s": [
+        116.78978507965803,
+        116.56343016028404,
+        116.35927825048566
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": null,
+        "computed_tokens": null,
+        "counter_observations": 0,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "unobserved",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": null,
+          "computed_tokens": null,
+          "counter_observations": 0,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "unobserved",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r0-cold-low/cold-low",
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r1-cold-low/cold-low",
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r2-cold-low/cold-low"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-pdmux-private-best-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-pdmux-private-best-r0-cold-low/cold-low"
+    },
+    {
+      "case": "sglang-pdmux-private-best",
+      "group": "resume-high",
+      "solo_short_n": 24,
+      "solo_long_n": 1,
+      "independent_mixed_waves": 3,
+      "short_solo_p95_s": 3.036445863544941,
+      "short_mixed_p95_median_s": 4.620994344353676,
+      "short_slowdown": 1.5218431521643636,
+      "long_solo_latency_s": 81.97060425207019,
+      "long_mixed_latency_median_s": 110.54408255964518,
+      "long_slowdown": 1.3485820138608209,
+      "short_solo_median_s": 3.0002741180360317,
+      "short_mixed_medians_s": [
+        4.3857689797878265,
+        4.364562921226025,
+        4.37343162484467
+      ],
+      "long_solo_ttft_s": 78.28445469215512,
+      "long_mixed_ttft_s": [
+        107.32690485566854,
+        107.43689792603254,
+        107.50326041504741
+      ],
+      "solo_long_prefix": {
+        "cached_tokens": 24576,
+        "computed_tokens": 106473,
+        "counter_observations": 1,
+        "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+        "status": "observed",
+        "successful_requests": 1
+      },
+      "mixed_long_prefix": [
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        },
+        {
+          "cached_tokens": 24576,
+          "computed_tokens": 106473,
+          "counter_observations": 1,
+          "scope": "API prompt minus cached tokens; excludes possible internal preemption replay.",
+          "status": "observed",
+          "successful_requests": 1
+        }
+      ],
+      "mixed_waves": [
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r0-resume-high/resume-high",
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r1-resume-high/resume-high",
+        "pd-strategies-pdmux-private-main-v1/sglang-pdmux-private-best-r2-resume-high/resume-high"
+      ],
+      "solo_short_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-pdmux-private-best-r0-short-control/short-control",
+      "solo_long_identity": "pd-strategies-solo-baseline-20261015-1792072041/sglang-pdmux-private-best-r0-resume-high/resume-high"
+    }
+  ],
+  "source_sha256": {
+    "results/pd-strategies/solo-comparison/solo-summary.json.gz": "f7beb04b85d53e9c636ed39bc198e186962a3a3cadad694d29a6a514d03da4ac",
+    "results/pd-strategies/final-export/formal-summary.json.gz": "f097f5078c1f08d1f7c5292a61f01f9ea86567fbc1f1560282c2e334cee3156f",
+    "results/pd-strategies/final-export/selected-comparison.json": "ad6a8618483c87c05993b87e45cd9e76d10d6f9acb0118614b2be4d409e045b0"
+  }
+}

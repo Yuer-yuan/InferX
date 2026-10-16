@@ -1,5 +1,9 @@
 # InferX
 
+**比赛材料入口：[submission/README.md](submission/README.md) · [提交 TODO](submission/TODO.md) · [部署与官方评测](submission/REPRODUCE.md) · [8 页答辩草稿](submission/slides.html)。**
+
+比赛正式评测使用 UCloud 的单张 **48GB RTX 4090**。已有 vlm-server 单卡 24GB 数据用于调优与工程佐证；UCloud 正式性能与 IFBench 尚未运行，不能用历史 token/s 替代正式成绩。开发内容统一集成到 `main`，提交时以固定 commit 和源码快照为准。
+
 单 RTX 4090 上的 Qwen3.8-27B 部署及代码生成—CPU 验证反馈实验。HumanEval 阶段用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于 GPU 1 的同一服务会话，每个试验只使用一张卡。
 
 - [OpenCode、Pi、Claude Code 直接接入 Qwen](docs/agent-quickstart.md)（已配置，GPU1 的 18081 服务，256K 后端）

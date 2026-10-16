@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InferX · 单卡 Qwen 推理优化 · 答辩草稿</title>
+<style>
+:root{color-scheme:light;--ink:#18263d;--muted:#50627d;--accent:#075985;--line:#d7e2ee;--paper:#fff;--bg:#edf3f8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.65 system-ui,"Noto Sans CJK SC",sans-serif}nav{position:sticky;top:0;background:#18263df2;color:#fff;padding:9px 5vw;font-size:14px;z-index:2}nav a{color:#d8efff;margin-right:16px}main{max-width:1280px;margin:auto}.slide{background:var(--paper);min-height:680px;padding:54px 64px;margin:24px 0;position:relative;scroll-margin-top:60px;border:1px solid var(--line)}.eyebrow{color:var(--accent);font-size:15px;font-weight:700;letter-spacing:.1em}h1{font-size:48px;line-height:1.22;margin:24px 0}h2{font-size:36px;line-height:1.3;margin:18px 0 28px}h3{font-size:23px;margin:0 0 12px}p{margin:16px 0}small,.small{font-size:15px;color:var(--muted)}.note{border-left:4px solid #c67a18;background:#fff8ea;padding:12px 20px;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.card{padding:22px;background:#f2f7fb;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;font-size:17px}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}th{background:#edf5fa}a{color:var(--accent)}li{margin:10px 0}footer{margin-top:30px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}.number{font-size:36px;font-weight:700;color:var(--accent)}code{font-size:.85em;overflow-wrap:anywhere}@media(max-width:750px){body{font-size:17px}.slide{padding:28px 22px;min-height:0}.grid{grid-template-columns:1fr}h1{font-size:34px}h2{font-size:27px}table{font-size:13px}th,td{padding:6px}}@media print{@page{size:A4 landscape;margin:12mm}body{background:white;font-size:16px}nav{display:none}.slide{margin:0;border:0;min-height:0;height:180mm;padding:14mm;break-after:page;overflow:hidden}h1{font-size:40px}h2{font-size:30px}.slide:last-child{break-after:auto}footer{font-size:12px}table{font-size:14px}}
+</style>
+</head>
+<body>
+<nav aria-label="幻灯片导航"><strong>InferX / 草稿</strong>　<a href="#s1">1 概述</a><a href="#s2">2 目标</a><a href="#s3">3 方案</a><a href="#s4">4 实现</a><a href="#s5">5 结果</a><a href="#s6">6 复现</a><a href="#s7">7 取舍</a><a href="#s8">8 不足</a></nav>
+<main>
+<section class="slide" id="s1">
+<div class="eyebrow">赛道 A · AI INFRA · 01 / 08</div>
+<h1>单卡 Qwen 推理优化<br>从可部署到可验证的性能取舍</h1>
+<p>InferX：Qwen3.8-27B 量化部署、NInfer/MTP 调优、长上下文与并发诊断。</p>
+<div class="grid"><div class="card"><h3>已有成果</h3><p>24GB 单卡部署、256K 容量探针、三个 Agent 接入、长短混合负载分析及策略对照。</p></div><div class="card"><h3>比赛环境</h3><p>UCloud：1 × 48GB RTX 4090。正式四档压测和 IFBench 待执行。</p></div></div>
+<p class="note">材料整理稿 · 未填正式成绩 · 团队/成员/冻结提交：提交前填写。</p>
+<footer>5 分钟汇报 + 3 分钟真实 Demo + 7 分钟问答。证据入口：submission/README.md。</footer>
+</section>
+<section class="slide" id="s2">
+<div class="eyebrow">问题与目标 · 02 / 08</div><h2>单卡上同时满足质量、吞吐和延迟</h2>
+<div class="grid"><div><h3>正式负载</h3><ul><li>8192 输入 / 512 输出；闭环并发 1、2、4、8。</li><li>每档 100 正式请求，另行预热。</li><li>IFBench 前 100；保留四项原生分数。</li></ul></div><div><h3>成功标准</h3><ul><li>TTFT P95 ≤ 10 秒。</li><li>TPOT P95 ≤ 40 ms/token。</li><li>质量可核验，环境可重建，原始记录完整。</li></ul></div></div>
+<p class="note">ZIP 默认按 tiktoken 计 8192；参考文档按模型 tokenizer。正式口径需确认，不能混报。</p>
+<footer>本页按原版评测包组织；参考 MD 的并发/预热/超时差异见 PROTOCOL.md。</footer>
+</section>
+<section class="slide" id="s3">
+<div class="eyebrow">整体方案 · 03 / 08</div><h2>固定模型来源，再用同条件实验选择配置</h2>
+<table><thead><tr><th>候选</th><th>依据</th><th>需补齐</th></tr></thead><tbody><tr><td>NInfer v2 + 混合 Q4/Q5 + MTP</td><td>24GB 单卡已部署；短代码生成有收益</td><td>官方 completions 协议、并发与精度</td></tr><tr><td>UCloud 已挂载 FP8 目录</td><td>与参考服务路径一致</td><td>来源/权重校验、部署与同机对照</td></tr><tr><td>llama.cpp / SGLang 研究对照</td><td>已有 GGUF / INT4 版本及策略试验</td><td>仅在选用时补正式条件复测</td></tr></tbody></table>
+<p>选择依据：官方负载下的联合 SLO、吞吐、显存和任务质量；最终采用方案尚未冻结。</p>
+<footer>模型及引擎固定 revision、权重 SHA256 见 model-manifest.json；不将不同量化当成相同精度。</footer>
+</section>
+<section class="slide" id="s4">
+<div class="eyebrow">核心实现 · 04 / 08</div><h2>MTP 加速与长上下文并发，需要分别验证</h2>
+<div class="grid"><div class="card"><h3>使用上游机制</h3><p>NInfer 量化执行与 MTP 投机解码；收益依赖接受率、输出分布和验证成本。</p><p>对照 MTP0/开启配置，不以单条最好速度代表整体。</p></div><div class="card"><h3>本项目工程工作</h3><p>版本与工具链适配、参数调优、Agent 接入、长上下文压测、干扰测量、策略适配及原始证据管理。</p><p>新调度机制尚无完整胜出证据。</p></div></div>
+<p>长预填充与短请求的竞争可能先受到准入/调度影响；必须用测量区分算力、带宽和等待时间。</p>
+<footer>本项目不将上游 MTP、量化格式或内核作为原创贡献。</footer>
+</section>
+<section class="slide" id="s5">
+<div class="eyebrow">结果与证据 · 05 / 08</div><h2>已有结果支持取舍，正式成绩待 UCloud 补齐</h2>
+<table><thead><tr><th>24GB 旧服务器诊断</th><th>短请求 P95：混合/单独</th><th>长请求耗时增加</th></tr></thead><tbody><tr><td>原策略</td><td>26.00–33.58×</td><td>1.9–3.6%</td></tr><tr><td>简单修正</td><td>1.78–2.00×</td><td>15.4–20.9%</td></tr><tr><td>PD 组合</td><td>1.50–1.52×</td><td>34.9–35.8%</td></tr></tbody></table>
+<p class="small">MTP0 / eager / C4；单独每项一轮，混合三轮中位数；78 条补测请求正确。诊断结果不等于官方 8192/512 成绩。</p>
+<p class="note">提交前补：UCloud C1/2/4/8 的 TTFT、TPOT、E2E、输出吞吐、失败率和显存；IFBench 四项分数及完整 100 样本。</p>
+<footer>原始数：results/pd-strategies/solo-comparison/comparison.json；正式表：submission/BENCHMARK.md。</footer>
+</section>
+<section class="slide" id="s6">
+<div class="eyebrow">工程化与复现 · 06 / 08</div><h2>每个结论都对应配置、原始记录与固定版本</h2>
+<div class="grid"><div><h3>提交材料链</h3><ul><li>main 固定提交 + 全部源码快照。</li><li>模型/引擎 revision、权重哈希、依赖锁。</li><li>原版 runner + 输入/输出数据哈希。</li></ul></div><div><h3>可靠性检查</h3><ul><li>usage 与生成长度校验；失败完整记录。</li><li>仅停止本次身份匹配的服务进程。</li><li>干净环境复验和约 3 分钟备用录屏。</li></ul></div></div>
+<p>UCloud 已做只读盘点，尚需明确持久数据目录、重建环境、协议兼容和二次复验。</p>
+<footer>不得将仍在追加的日志当成已冻结文件；API 密钥仅在环境中提供，不随材料提交。</footer>
+</section>
+<section class="slide" id="s7">
+<div class="eyebrow">性能与取舍 · 07 / 08</div><h2>长上下文容量与并发成绩，需要各自的证据</h2>
+<ul><li>24GB 卡上有限探针支持 253,914 输入；冷预填充约 200.8 秒，不适合现场等待，也不证明一般推理准确率。</li><li>旧 Agent 配置为 256K、MTP7、单活动请求；四档闭环负载需要重新测并发与队列行为。</li><li>更强短请求保护可能增加长请求耗时；同一张卡上的服务公平性有可测代价。</li><li>48GB UCloud 可重新比较 FP8 与既有量化配置；用吞吐、联合 SLO 和质量决定方案。</li></ul>
+<footer>资源成本：GPU 时间、显存、CPU/RAM、磁盘与部署耗时需填实测，不以客户端云 API 估价作为本地成本。</footer>
+</section>
+<section class="slide" id="s8">
+<div class="eyebrow">完成度与下一步 · 08 / 08</div><h2>先交付可复验的比赛结果，再继续机制研究</h2>
+<div class="grid"><div class="card"><h3>已经具备</h3><p>固定来源的部署与调优证据、长上下文/Agent 验证、长短请求干扰对照、提交材料和验收 TODO。</p></div><div class="card"><h3>提交前必须完成</h3><p>UCloud 环境与官方接口 → 小规模消融 → 正式性能与 IFBench → 干净复验 → 展示/视频/最终快照。</p></div></div>
+<p>研究局限：样本规模、硬件迁移、未完成的公平 SOTA 性能比较；不把适配成功写成性能胜出。</p>
+<p class="note">现场 Demo：实机配置 → 流式请求与代码测试 → 冻结结果和原始证据。团队分工与最终提交版本待填写。</p>
+<footer>仓库：github.com/Yuer-yuan/InferX · 材料验收入口：submission/TODO.md。</footer>
+</section>
+</main>
+</body>
+</html>
