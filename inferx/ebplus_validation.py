@@ -130,7 +130,8 @@ if not phase_allows_admission(self.pd_phase, target, self.pd_prefilled_count,
                               self.requests, num_scheduled_tokens):
     break
 ''').body
-    counts = {'running': 0, 'waiting': 0, 'prefill_allocation': 0, 'threshold': 0}
+    counts = {'running': 0, 'waiting': 0, 'prefill_allocation': 0,
+              'waiting_allocation': 0, 'threshold': 0}
 
     class Gates(ast.NodeTransformer):
         def visit_While(self, node):
@@ -142,6 +143,13 @@ if not phase_allows_admission(self.pd_phase, target, self.pd_prefilled_count,
                 counts['running'] += 1
             elif ast.unparse(node.test) == 'token_budget > 0':
                 node.body = waiting_gate + node.body
+                refused = [n for n in node.body if isinstance(n, ast.If)
+                           and ast.unparse(n.test) == 'new_blocks is None']
+                if len(refused) != 1:
+                    raise ValueError('native waiting allocation-refusal boundary mismatch')
+                refused[0].body.insert(0, ast.parse(
+                    'self._ebplus_note_admission_block(request)').body[0])
+                counts['waiting_allocation'] += 1
                 counts['waiting'] += 1
             elif ast.unparse(node.test) == 'True' and any(
                     isinstance(n, ast.Assign) and ast.unparse(n.targets[0]) == 'new_blocks'
@@ -162,15 +170,31 @@ if not phase_allows_admission(self.pd_phase, target, self.pd_prefilled_count,
             return node
 
     method = ast.fix_missing_locations(Gates().visit(method))
-    if counts != {'running': 1, 'waiting': 1, 'prefill_allocation': 1, 'threshold': 2}:
+    if counts != {'running': 1, 'waiting': 1, 'prefill_allocation': 1,
+                  'waiting_allocation': 1, 'threshold': 2}:
         raise ValueError(f'native boundary census mismatch: {counts}')
     author = _scheduler(_verified(scheduler, AUTHOR_SHA256, 'author'))
+    # Preserve all author branches. Modern full-sequence admission can refuse a
+    # request while raw free-block fraction is high, so feed that actual native
+    # resource refusal into the same existing memory-pressure escape predicate.
+    phase = copy.deepcopy(next(n for n in author.body if isinstance(n, ast.FunctionDef)
+                               and n.name == '_handle_phase_transition'))
+    phase_start = next(i for i, n in enumerate(phase.body) if isinstance(n, ast.If)
+                       and ast.unparse(n.test) == 'self.pd_phase == 0')
+    phase.body[phase_start:phase_start] = ast.parse('''
+native_admission_pressure = self._ebplus_admission_pressure()
+kv_cache_full = kv_cache_full or native_admission_pressure
+''').body
+    phase.body.extend(ast.parse('''
+if native_admission_pressure and prev_phase in (0, 2) and self.pd_phase == 1:
+    self._ebplus_admission_escapes += 1
+''').body)
     update = next(n for n in author.body if isinstance(n, ast.FunctionDef) and n.name == 'update_from_output')
     stopped = next(n for n in ast.walk(update) if isinstance(n, ast.If) and ast.unparse(n.test) == 'stopped')
     completion = ast.parse('def _ebplus_record_completion(self, request): pass').body[0]
     completion.body = [copy.deepcopy(stopped.body[0])]
     bridge = ast.parse(_BRIDGE_CLASS).body[0]
-    bridge.body.extend([method, completion])
+    bridge.body.extend([method, completion, phase])
     bridge = ast.fix_missing_locations(bridge)
     header = f'''# SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
@@ -212,6 +236,36 @@ class EBPlusScheduler(AuthorPolicy, _NativeScheduler):
         self._ebplus_execution_counts = {'mb': 0, 'prefill': 0, 'decode': 0}
         self._ebplus_evaluations = 0
         self._last_evaluation_inputs = None
+        self._ebplus_admission_blocked = None
+        self._ebplus_admission_failures = 0
+        self._ebplus_admission_escapes = 0
+        self._ebplus_last_admission_failure = None
+        self._ebplus_empty_schedule_streak = 0
+        self._ebplus_empty_snapshot = None
+
+    def _ebplus_note_admission_block(self, request):
+        free = self.kv_cache_manager.block_pool.get_num_free_blocks()
+        self._ebplus_admission_blocked = (request.request_id, free)
+        self._ebplus_admission_failures += 1
+        self._ebplus_last_admission_failure = dict(request_id=request.request_id,
+            prompt_tokens=request.num_prompt_tokens,free_blocks=free,phase=self.pd_phase,
+            full_sequence_must_fit=self.scheduler_reserve_full_isl,
+            decoders=len(self.pd_decoding_requests),running=len(self.running))
+
+    def _ebplus_admission_pressure(self):
+        blocked = self._ebplus_admission_blocked
+        if blocked is None:
+            return False
+        request_id, failed_free = blocked
+        queue = self.kv_holding_waiting or self.waiting
+        free = self.kv_cache_manager.block_pool.get_num_free_blocks()
+        # Retry when native capacity or queue head changes. While neither does,
+        # decode must release capacity instead of immediately retrying refill.
+        if (not self.pd_decoding_requests or not queue
+                or queue.peek_request().request_id != request_id or free > failed_free):
+            self._ebplus_admission_blocked = None
+            return False
+        return True
 
     def _evaluate_mode_switch(self):
         eligible = (self.pd_param_initialized and self._avg_prompt_len + self.pd_avg_output_tokens > 0
@@ -244,6 +298,11 @@ class EBPlusScheduler(AuthorPolicy, _NativeScheduler):
             mb_cost_profiled=getattr(self,'_mb_cost_profiled',False), execution_counts=self._ebplus_execution_counts,
             mode_switch_history=getattr(self,'_mode_switch_history',[]),
             completed=completed,last_evaluation_inputs=self._last_evaluation_inputs,
+            native_admission_failures=self._ebplus_admission_failures,
+            native_admission_escapes=self._ebplus_admission_escapes,
+            last_native_admission_failure=self._ebplus_last_admission_failure,
+            zero_schedule_streak=self._ebplus_empty_schedule_streak,
+            scheduler_snapshot=self._ebplus_empty_snapshot,
             max_num_running_reqs=self.max_num_running_reqs,
             block_size=self.block_size, num_gpu_blocks=self.kv_cache_config.num_blocks,
             kv_groups=[dict(type=type(g.kv_cache_spec).__name__,spec=str(g.kv_cache_spec),layers=g.layer_names)
@@ -273,9 +332,34 @@ class EBPlusScheduler(AuthorPolicy, _NativeScheduler):
         self._ebplus_exclusive = True
         try:
             self._ebplus_execution_counts['decode' if self.pd_phase == 1 else 'prefill'] += 1
-            return self._schedule_exclusive_native()
+            output = self._schedule_exclusive_native()
+            self._ebplus_empty_schedule_streak = (self._ebplus_empty_schedule_streak + 1
+                if output.total_num_scheduled_tokens == 0 else 0)
+            if self._ebplus_empty_schedule_streak == 64 and self.pd_decoding_requests:
+                self._ebplus_empty_snapshot = self._ebplus_scheduler_snapshot()
+                self._ebplus_dump_evidence()
+            return output
         finally:
             self._ebplus_exclusive = False
+
+    def _ebplus_scheduler_snapshot(self):
+        # Observe ordinary fields only: reading a grammar future/property can
+        # itself advance readiness and would change the state being diagnosed.
+        return dict(phase=self.pd_phase,current_step=self.current_step,
+            N=self.pd_batch_size_N,k=self.pd_switch_threshold_k,
+            refill_target=self.pd_refill_target,prefilled=self.pd_prefilled_count,
+            free_blocks=self.kv_cache_manager.block_pool.get_num_free_blocks(),
+            running=[r.request_id for r in self.running],
+            waiting=[r.request_id for r in self.waiting],
+            kv_holding_waiting=[r.request_id for r in self.kv_holding_waiting],
+            deferred_waiting=[r.request_id for r in self.deferred_waiting],
+            decoding=sorted(self.pd_decoding_requests),
+            inflight_prefills=[r.request_id for r in self._inflight_prefills],
+            requests={rid:dict(status=r.status.name,prompt_tokens=r.num_prompt_tokens,
+                computed_tokens=r.num_computed_tokens,output_tokens=len(r.output_token_ids),
+                next_decode_eligible_step=r.next_decode_eligible_step,
+                output_placeholders=r.num_output_placeholders)
+                for rid,r in self.requests.items()})
 
     def _compute_adaptive_N(self):
         # The author's large-server heuristic has a minimum of16. Respect C4.
@@ -356,6 +440,7 @@ def prepare_adapter(scheduler, calibration, native_scheduler, destination):
     (destination / 'inferx_ebplus_scheduler.py').write_text(adapter)
     (destination / 'LICENSE').write_bytes(license_bytes)
     manifest = {'author_commit': AUTHOR_COMMIT,
+                'overlay_directory_name': destination.name,
                 'author_sha256': AUTHOR_SHA256,
                 'calibration_sha256': CALIBRATION_SHA256,
                 'native_sha256': NATIVE_SHA256,
@@ -363,6 +448,9 @@ def prepare_adapter(scheduler, calibration, native_scheduler, destination):
                     'schedule_pd', '_schedule_default', '_update_after_schedule',
                     '_free_request', '_preempt_request', '_preempt_chunk_prefilling',
                     '_compute_adaptive_N', 'schedule throttle guard',
+                    '_handle_phase_transition native admission-pressure predicate',
+                    'waiting allocation-refusal observation',
+                    'sustained-empty-schedule state snapshot',
                     '_evaluate_mode_switch observational counter', 'shutdown evidence snapshot',
                 ],
                 'extracted_method_sha256': {

@@ -1,0 +1,51 @@
+/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+(MainProcess pid=4027633) INFO 10-16 08:45:46 [model.py:699] Resolved architecture: Qwen3_5ForConditionalGeneration
+(MainProcess pid=4027633) INFO 10-16 08:45:46 [model.py:2109] Using max model len 131328
+(MainProcess pid=4027633) WARNING 10-16 08:45:46 [model.py:1069] Model does not support mm_device_do_normalize, forcing mm_device_do_normalize = False.
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [model.py:917] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [model.py:974] Disabled mm_prefix attention mode because multimodal inputs are configuration-disabled. Attention backends without mm_prefix support may now be selected.
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [cache.py:363] Using fp8 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [scheduler.py:308] Chunked prefill is enabled with max_num_batched_tokens=4096.
+(MainProcess pid=4027633) WARNING 10-16 08:45:49 [vllm.py:1706] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+(MainProcess pid=4027633) WARNING 10-16 08:45:49 [vllm.py:1750] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [kernel.py:408] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [vllm.py:1968] Cudagraph is disabled under eager mode
+(MainProcess pid=4027633) INFO 10-16 08:45:49 [compilation.py:331] Enabled custom fusions: norm_quant, act_quant
+test_actual_native_completion_hook_drives_default_crossover (test_ebplus_native.NativeHybridContractTests.test_actual_native_completion_hook_drives_default_crossover) ... ok
+test_allocator_exception_retains_native_queues_and_clears_phase_guard (test_ebplus_native.NativeHybridContractTests.test_allocator_exception_retains_native_queues_and_clears_phase_guard) ... ok
+test_calibration_preserves_native_hybrid_alignment (test_ebplus_native.NativeHybridContractTests.test_calibration_preserves_native_hybrid_alignment) ... (MainProcess pid=4027633) INFO 10-16 08:45:50 [model.py:699] Resolved architecture: Qwen3_5ForConditionalGeneration
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [model.py:2109] Using max model len 131328
+(MainProcess pid=4027633) WARNING 10-16 08:45:50 [model.py:1069] Model does not support mm_device_do_normalize, forcing mm_device_do_normalize = False.
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [cache.py:363] Using fp8 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [kernel.py:408] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+ok
+test_calibration_request_uses_current_interface_and_no_cross_request_hits (test_ebplus_native.NativeHybridContractTests.test_calibration_request_uses_current_interface_and_no_cross_request_hits) ... ok
+test_full_native_running_queue_keeps_fifth_request_out_at_C4 (test_ebplus_native.NativeHybridContractTests.test_full_native_running_queue_keeps_fifth_request_out_at_C4) ... (MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=4, decoded=0, k*=2, refill_target=0, decoding=4, N=4, avg_out=100.0, kv_thresh=5.00%
+ok
+test_full_sequence_admission_refusal_cannot_freeze_live_decoders (test_ebplus_native.NativeHybridContractTests.test_full_sequence_admission_refusal_cannot_freeze_live_decoders) ... (MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:670] [P/D] KV cache threshold (5.00%) escape: phase 0->1 with 1 prefilled, 0 waiting, adaptive_N=4, avg_output=100.0, preempted_chunks=0 (freed 0 computed tokens)
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=1, decoded=0, k*=2, refill_target=0, decoding=1, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:670] [P/D] KV cache threshold (5.00%) escape: phase 0->1 with 1 prefilled, 2 waiting, adaptive_N=4, avg_output=100.0, preempted_chunks=0 (freed 0 computed tokens)
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=1, decoded=0, k*=2, refill_target=0, decoding=1, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] DECODE -> REFILL_PREFILL | prefilled=0, decoded=0, k*=2, refill_target=2, decoding=1, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] DECODE -> REFILL_PREFILL | prefilled=0, decoded=0, k*=1, refill_target=1, decoding=3, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] REFILL_PREFILL -> DECODE | prefilled=0, decoded=0, k*=1, refill_target=1, decoding=3, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] DECODE -> REFILL_PREFILL | prefilled=0, decoded=1, k*=1, refill_target=1, decoding=2, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] REFILL_PREFILL -> DECODE | prefilled=0, decoded=0, k*=1, refill_target=1, decoding=2, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] DECODE -> INITIAL_PREFILL | prefilled=0, decoded=0, k*=2, refill_target=0, decoding=0, N=4, avg_out=100.0, kv_thresh=5.00%
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:670] [P/D] KV cache threshold (5.00%) escape: phase 0->1 with 1 prefilled, 0 waiting, adaptive_N=4, avg_output=100.0, preempted_chunks=0 (freed 0 computed tokens)
+(MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=1, decoded=0, k*=2, refill_target=0, decoding=1, N=4, avg_out=100.0, kv_thresh=5.00%
+ok
+test_native_control_observes_actual_allocator_without_policy (test_ebplus_native.NativeHybridContractTests.test_native_control_observes_actual_allocator_without_policy) ... ok
+test_native_decode_progress_when_full_sequence_admission_refuses_a_distinct_long (test_ebplus_native.NativeHybridContractTests.test_native_decode_progress_when_full_sequence_admission_refuses_a_distinct_long) ... ok
+test_online_snapshot_counts_the_100th_completion_once_and_keeps_decision_inputs (test_ebplus_native.NativeHybridContractTests.test_online_snapshot_counts_the_100th_completion_once_and_keeps_decision_inputs) ... ok
+test_partial_prefill_preserves_both_native_hybrid_owners (test_ebplus_native.NativeHybridContractTests.test_partial_prefill_preserves_both_native_hybrid_owners) ... (MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=2, decoded=0, k*=2, refill_target=0, decoding=2, N=4, avg_out=100.0, kv_thresh=5.00%
+ok
+test_policy_preemption_uses_native_hybrid_free_and_resumes (test_ebplus_native.NativeHybridContractTests.test_policy_preemption_uses_native_hybrid_free_and_resumes) ... ok
+test_shutdown_keeps_actual_policy_evidence (test_ebplus_native.NativeHybridContractTests.test_shutdown_keeps_actual_policy_evidence) ... (MainProcess pid=4027633) INFO 10-16 08:45:50 [inferx_ebplus_scheduler.py:711] [P/D] INITIAL_PREFILL -> DECODE | prefilled=1, decoded=0, k*=2, refill_target=0, decoding=1, N=4, avg_out=100.0, kv_thresh=5.00%
+ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 9.965s
+
+OK

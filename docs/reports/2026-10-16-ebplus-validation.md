@@ -1,6 +1,6 @@
-# EB+ 适配：校准与完整模型验证完成，联合性能待比较
+# EB+ 适配：单独场景合格，混合准入修正验证中
 
-目标是保留公开实现的 EB/MB crossover、CFR/IFR 阈值和三阶段调度，接到已通过完整 27B/128K 验证的 vLLM 0.31 引擎。当前已完成源码适配、本机分离代价与独立MB代价校准，原生／强制EB／自动EB+三种模式均通过完整模型检查：118条严格工具请求、3次代码检查，含每组4条24K预热与完整冷长／续接长输入。正式混合性能结论仍待完成。
+目标是保留公开实现的 EB/MB crossover、CFR/IFR 阈值和三阶段调度，接到已通过完整 27B/128K 验证的 vLLM 0.31 引擎。当前已完成源码适配、本机分离代价与独立MB代价校准，原生／强制EB／自动EB+三种模式均通过完整模型检查：118条严格工具请求、3次代码检查，含每组4条24K预热与完整冷长／续接长输入。这些门槛对应此前适配版本；随后混合诊断暴露了原生准入与阶段退让的兼容边界，当前修正版仍在重新验证，正式混合性能结论待完成。
 
 源码固定为 `weifang231/eb-vllm@5b6a619b732b8eeaea93c8c726dbe13948920599`。作者调度器、校准器和实际安装的现代调度器已逐字节固定到 [源码胶囊](../../results/ebplus-validation/source-capsule-v1.tar.gz)，包含作者许可证。服务器原件、后续环境、构建、校准和原始数据均放 HDD。
 
@@ -77,3 +77,12 @@ Task3已启动独立诊断，运行路径为HDD `ebplus-validation/raw/diagnosti
 第一组自动模式的实际100次完成记录揭示了需要修正的参数尺度：原公式`LHS=6.26307e-5`、`RHS=5.59401e-5`，差值`6.69061e-6`秒／总token，默认滞回`1e-4`因此保留MB；相同观测输入下，`1e-6`会选择EB。[观测原件与独立复算](../../results/ebplus-validation/comparison/qualification/hysteresis-scale-diagnostic-v1.json)。作者[复现说明](https://github.com/weifang231/eb-vllm/blob/main/reproduce/REPRODUCE.md)明确建议无切换时尝试`1e-6`。将先补测这一作者已有参数，不能把未校正的默认设置作为SOTA上限或负面结论；原公式、实测系数、IFR、100次更新和内存限制均不变。
 
 因此内部诊断上限从3组增为4组，原生／默认自动／强制EB原始数据继续保留；新自动参数组将另起目录，在前轮全部终态恢复后独立通过相同完整输入及实际EB执行检查。此前冻结的三组正式配置暂不启动，补测资格通过后再固定包含已调好EB+的正式配置，所有正式数据仍未产生。调整依据是实测决策尺度与作者指导，未用正式结果优化参数。当前完整CPU检查314项通过、10项专用检查跳过；原生调度核心与已实际通过的10项专用合约及adapter-v4保持一致。
+
+
+第一轮混合诊断已保留为失败记录：原生与默认自动MB的4个波次完整完成，但强制EB在100条预热后、混合组仅完成6条短请求便停止推进。现场持续有排队请求、GPU为0%且EngineCore忙等。只向已核对身份的自有controller发送SIGINT，原256K/MTP7服务、原argv和双manifest恢复并独立核验；GPU0保持停止。[中断原始包](../../results/ebplus-validation/comparison/diagnostic-v1-interrupted.tar.gz)、[逐文件清单与排除说明](../../results/ebplus-validation/comparison/diagnostic-v1-debug/diagnostic-v1-inventory.json)。这组不产生SOTA效能分数。
+
+真实原生CPU合约复现了同类边界：30720-token独立长请求在128块小型原生混合池中可单独完成；与3个2560-token解码请求并存时，原生MB继续解码，旧EB适配连续返回空调度。现代原生`full_sequence_must_fit`可在空闲比例仍高时拒绝完整请求，旧阶段机只看到空闲比例，因而看不到该准入压力。桥接层现将真实分配拒绝接到作者原有内存压力退让分支，在释放容量或队头改变后重试；不隐藏请求、不伪造缓存API，也不改变C4或作者数学。原生合约先观察两次调度总token仍为0的失败，再修复；13项真实原生CPU合约全部通过，包括完整完成、原生对照及无需ptrace的空调度快照。[RED](../../results/ebplus-validation/comparison/diagnostic-v1-debug/cpu-reproduction-red-v5.log)、[13项GREEN](../../results/ebplus-validation/comparison/diagnostic-v1-debug/native-full-green-v2.log)。
+
+作者策略文件与33个原方法哈希保持相同；实际桥接阶段分派明确扩展了一个资源压力谓词，不能把它描述为所有上游阶段代码原样执行。精确AST比较验证其余原分支、现代分配与状态转换主体和原生控制均保持一致。[适配差异核验](../../results/ebplus-validation/comparison/diagnostic-v1-debug/capacity-boundary-comparison-v4-v5.json)、[adapter-v5](../../results/ebplus-validation/reproduction/adapter-v5/manifest.json)。完整CPU315项通过，13项专用检查另在真实环境全部通过。[完整CPU](../../results/ebplus-validation/comparison/diagnostic-v1-debug/full-cpu-v12.log)。
+
+新的HDD `raw/diagnostic-v2` 已启动，使用不可变`code-task3-v12`与`adapter-v5`，重新检查原生、强制EB、作者推荐`1e-6`滞回的自动EB+，每种冷长／续接长各一组。新的完整模型及实际阶段证据通过后才冻结正式三轮与匹配单独基准。此前中断不是作者性能上限，准入映射修复也不是研究创新。

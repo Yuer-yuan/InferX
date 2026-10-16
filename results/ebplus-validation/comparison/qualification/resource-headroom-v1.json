@@ -1,0 +1,62 @@
+{
+  "status": "diagnostic-observation",
+  "items": [
+    {
+      "identity": "native-r0-cold-low",
+      "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v1/native-r0-cold-low/gpu.csv",
+      "sha256": "585064155c92d8d51cfbc8299a2599515961b481917d48ee9a13a0accf9e73b9",
+      "gpu_memory": {
+        "status": "observed",
+        "valid_samples": 1705,
+        "invalid_rows": 0,
+        "sampling_interval_ms": 200,
+        "sampled_peak_mib": 24025.0,
+        "sampled_min_free_mib": 83.0,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device."
+      }
+    },
+    {
+      "identity": "native-r0-resume-high",
+      "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v1/native-r0-resume-high/gpu.csv",
+      "sha256": "82cd4fa6a891753dbd3b3102e38e60abe7bedcabffe578fcb00888aedd38073e",
+      "gpu_memory": {
+        "status": "observed",
+        "valid_samples": 1634,
+        "invalid_rows": 0,
+        "sampling_interval_ms": 200,
+        "sampled_peak_mib": 24025.0,
+        "sampled_min_free_mib": 83.0,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device."
+      }
+    },
+    {
+      "identity": "auto-default-r0-cold-low",
+      "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v1/auto-default-r0-cold-low/gpu.csv",
+      "sha256": "e5b1b976b3baca79f7c4b3c16e8d38d7fdd39a52d9f839e154315beaf27f1326",
+      "gpu_memory": {
+        "status": "observed",
+        "valid_samples": 1706,
+        "invalid_rows": 0,
+        "sampling_interval_ms": 200,
+        "sampled_peak_mib": 24025.0,
+        "sampled_min_free_mib": 83.0,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device."
+      }
+    },
+    {
+      "identity": "auto-default-r0-resume-high",
+      "source": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v1/auto-default-r0-resume-high/gpu.csv",
+      "sha256": "575b2944d5eb392a785600fd19848dff2cc4aa6cf40f1fbdc8c3d9b69d9817bc",
+      "gpu_memory": {
+        "status": "observed",
+        "valid_samples": 1639,
+        "invalid_rows": 0,
+        "sampling_interval_ms": 200,
+        "sampled_peak_mib": 24025.0,
+        "sampled_min_free_mib": 83.0,
+        "scope": "Healthy server lifetime including quality/warmups/measurement; startup excluded. 200 ms samples can miss short peaks; values cover the selected GPU device."
+      }
+    }
+  ],
+  "scope": "Healthy server lifetime includes code/warmups/priming/measurement; startup excluded. GPU aggregate allocation is not live-tensor/allocator-cache attribution. Cannot infer physical bandwidth or conclude larger pools impossible from this alone."
+}

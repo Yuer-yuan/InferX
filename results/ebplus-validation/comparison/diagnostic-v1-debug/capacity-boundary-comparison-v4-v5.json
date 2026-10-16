@@ -1,0 +1,34 @@
+{
+  "author_policy_bytes_identical": true,
+  "original_author_method_hashes_identical": 33,
+  "phase_branches_identical_except_native_pressure_predicate_and_counter": true,
+  "native_exclusive_schedule_identical_except_real_allocation_refusal_hook": true,
+  "observed_native_control_identical": true,
+  "unchanged_bridge_methods": [
+    "_evaluate_mode_switch",
+    "shutdown",
+    "schedule",
+    "_schedule_default",
+    "_compute_adaptive_N",
+    "_update_after_schedule",
+    "_preempt_request",
+    "_preempt_chunk_prefilling",
+    "_free_request",
+    "_ebplus_record_completion"
+  ],
+  "changed_bridge_methods": [
+    "__init__",
+    "_ebplus_dump_evidence",
+    "_schedule_exclusive_native",
+    "schedule_pd"
+  ],
+  "added_bridge_methods": [
+    "_ebplus_admission_pressure",
+    "_ebplus_note_admission_block",
+    "_ebplus_scheduler_snapshot",
+    "_handle_phase_transition"
+  ],
+  "old_module_sha256": "02c549c73f8a372da306730d0fc9637158681470d40879b3b0a15a5ee2014458",
+  "new_module_sha256": "71cad70507c5ab7a0adb3e7a5b55154f61b8887a7e15f9e4bb3f52392dafe4e7",
+  "limitation": "Engine-bound admission-pressure semantics explicitly extended. No arbitrary-program equivalence or GPU correctness/performance proof."
+}

@@ -1,0 +1,33 @@
+{
+  "pid": 4032166,
+  "args": [
+    "taskset",
+    "-c",
+    "40-43,96-99",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+    "-u",
+    "scripts/run_ebplus_validation.py",
+    "--run-id",
+    "diagnostic-v2",
+    "--stage",
+    "compare",
+    "--plan",
+    "configs/ebplus-validation.json",
+    "--prerequisite",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v1",
+    "--hardware-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v4",
+    "--mb-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-grid-v1",
+    "--overlay",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v5",
+    "--comparison",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/frozen-20261016-v2/ebplus-repaired-diagnostic.json"
+  ],
+  "code": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v12",
+  "stdout": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/task3-diagnostic-v2.log",
+  "detached": true,
+  "started_unix": 1792112019.1544592,
+  "adapter_manifest_sha256": "6b404ae0163d87539e588abe7a4c7897b984b3f7f3ecf9360ef13a4e5fe84613",
+  "scope": "Fresh full-input model/phase qualification and unscored diagnostic after native admission-pressure boundary fix; no formal efficacy yet."
+}

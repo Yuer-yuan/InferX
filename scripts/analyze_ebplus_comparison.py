@@ -38,6 +38,9 @@ def export_campaign(root,templates):
     if mb['identity']!=plan['identity'] or mb['status']!='complete' or fit_mb_cost(mb['rows'],plan)!=mb['fit']:
         raise ValueError('MB calibration mismatch')
     manifest=read('overlay/manifest.json')
+    overlay_name=manifest.get('overlay_directory_name','adapter-v4')
+    if not isinstance(overlay_name,str) or Path(overlay_name).name!=overlay_name or overlay_name in {'.','..',''}:
+        raise ValueError('invalid overlay source directory')
     if (manifest['author_sha256']!=AUTHOR_SHA256 or manifest['native_sha256']!=NATIVE_SHA256 or
         manifest['calibration_sha256']!=CALIBRATION_SHA256 or
         set(manifest['files'])!={'inferx_ebplus_policy.py','inferx_ebplus_scheduler.py','LICENSE'}):
@@ -69,7 +72,7 @@ def export_campaign(root,templates):
         actual_case=startup['case'];wanted=copy.deepcopy(case);environment=wanted['environment']
         run_dir=artifact/'ebplus-validation/raw'/root.name/identity
         pythonpath=actual_case['environment'].get('PYTHONPATH','').split(':')
-        if len(pythonpath)!=2 or pythonpath[0]!=str(artifact/'ebplus-validation/overlays/adapter-v4') or not pythonpath[1].startswith(str(artifact/'ebplus-validation/code-task3-v')):
+        if len(pythonpath)!=2 or pythonpath[0]!=str(artifact/'ebplus-validation/overlays'/overlay_name) or not pythonpath[1].startswith(str(artifact/'ebplus-validation/code-task3-v')):
             raise ValueError('runtime source path mismatch')
         environment.update(PYTHONPATH=':'.join(pythonpath),INFERX_VLLM_RUNTIME=str(run_dir/'native-runtime.json'))
         if case['id']!='native':

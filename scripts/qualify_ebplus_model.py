@@ -36,6 +36,8 @@ def verify_inputs(plan,hardware_run,mb_run,overlay):
     if mb['identity']!=plan['identity'] or mb['status']!='complete':raise ValueError('MB calibration identity/incomplete')
     if fit_mb_cost(mb['rows'],plan)!=mb['fit']:raise ValueError('MB fit differs from raw independent grid')
     manifest=json.loads((overlay/'manifest.json').read_text())
+    if manifest.get('overlay_directory_name',overlay.name)!=overlay.name:
+        raise ValueError('overlay directory differs from prepared source manifest')
     if (manifest['author_sha256']!=AUTHOR_SHA256 or manifest['native_sha256']!=NATIVE_SHA256
         or manifest['calibration_sha256']!=CALIBRATION_SHA256):raise ValueError('overlay source mismatch')
     for name,digest in manifest['files'].items():

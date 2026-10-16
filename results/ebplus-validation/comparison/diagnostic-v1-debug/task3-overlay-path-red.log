@@ -1,0 +1,88 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_export_binds_overlay_directory_to_its_archived_manifest _________
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-368/test_export_binds_overlay_dire0')
+
+    def test_export_binds_overlay_directory_to_its_archived_manifest(tmp_path):
+        from scripts import analyze_ebplus_comparison as api
+        templates=comparison_fixture(tmp_path)
+        p=tmp_path/'overlay/manifest.json';manifest=json.loads(p.read_text())
+        manifest['overlay_directory_name']='adapter-v5';p.write_text(json.dumps(manifest))
+        for group in ['cold-low','resume-high']:
+            p=tmp_path/('native-r0-'+group)/'startup.json';d=json.loads(p.read_text())
+            d['case']['environment']['PYTHONPATH']=d['case']['environment']['PYTHONPATH'].replace('adapter-v4:','adapter-v5:')
+            p.write_text(json.dumps(d))
+>       assert len(api.export_campaign(tmp_path,templates)['groups'])==2
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ebplus_export.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-yuer/pytest-368/test_export_binds_overlay_dire0')
+templates = {'tool-24576': {'payload': {'messages': [{'role': 'user', 'content': 'frozen'}]}, 'expected_tool': {'name': 'record_st...ges': [{'role': 'user', 'content': 'frozen'}]}, 'expected_tool': {'name': 'record_status', 'arguments': {'ok': True}}}}
+
+    def export_campaign(root,templates):
+        root=Path(root);sources={}
+        def data(relative):
+            relative=Path(relative)
+            if relative.is_absolute() or '..' in relative.parts:raise ValueError('invalid source path')
+            path=root/relative
+            if path.is_symlink():raise ValueError('symlink source')
+            raw=path.read_bytes();sources[str(relative)]=hashlib.sha256(raw).hexdigest();return raw
+        def read(relative):return json.loads(data(relative))
+        def rows(relative):return [json.loads(line) for line in data(relative).splitlines() if line.strip()]
+        campaign=read('campaign.json');definition=read('comparison-definition.json');plan=read('plan.json')
+        if campaign['status']!='restored' or campaign.get('restored') is not True:raise ValueError('campaign not restored/terminal')
+        read('restored-service.json')
+        actual={str(p.relative_to(root/'harness')) for p in (root/'harness').rglob('*.py')}
+        if actual!=set(campaign['harness_sha256']):raise ValueError('source inventory mismatch')
+        for name,digest in campaign['harness_sha256'].items():
+            if hashlib.sha256(data(Path('harness')/name)).hexdigest()!=digest:raise ValueError('source hash mismatch')
+        hardware=read('hardware/hardware-result.json');validate_hardware_result(hardware,plan)
+        params=read('hardware/pd-hardware-parameters.json')
+        if hardware['status']!='complete' or any(params[k]!=v for k,v in hardware['parameters'].items()):
+            raise ValueError('hardware calibration mismatch')
+        mb=read('mb/mb-grid-result.json')
+        if mb['identity']!=plan['identity'] or mb['status']!='complete' or fit_mb_cost(mb['rows'],plan)!=mb['fit']:
+            raise ValueError('MB calibration mismatch')
+        manifest=read('overlay/manifest.json')
+        if (manifest['author_sha256']!=AUTHOR_SHA256 or manifest['native_sha256']!=NATIVE_SHA256 or
+            manifest['calibration_sha256']!=CALIBRATION_SHA256 or
+            set(manifest['files'])!={'inferx_ebplus_policy.py','inferx_ebplus_scheduler.py','LICENSE'}):
+            raise ValueError('overlay source inventory mismatch')
+        for name,digest in manifest['files'].items():
+            if hashlib.sha256(data(Path('overlay')/name)).hexdigest()!=digest:raise ValueError('overlay source hash mismatch')
+        expected={c['id']:c for c in comparison_cases(plan)};cases=read('config.json')
+        if len({c['id'] for c in cases})!=len(cases) or [c['id'] for c in cases]!=definition['case_ids']:
+            raise ValueError('comparison configuration identity mismatch')
+        for case in cases:
+            target=copy.deepcopy(expected[case['id']])
+            if case['id']!='native':target['environment'].update(mb['fit']['env_vars'])
+            if target!=case:raise ValueError('comparison configuration differs from frozen calibrated case')
+        kind=definition['kind'];phase=definition['phase'];repeat_count=definition['repeats']
+        if phase not in {'diagnostic','formal','solo'} or kind!=('isolated-serial-C4' if phase=='solo' else 'mixed') or repeat_count!=(3 if phase=='formal' else 1):
+            raise ValueError('unfrozen phase/kind/repeats')
+        group_names=['short-control','cold-low','resume-high'] if kind=='isolated-serial-C4' else ['cold-low','resume-high']
+        required={(c['id'],g,r) for c in cases for g in group_names for r in range(repeat_count)}
+        observed=[(s['case'],s['group'],s['repeat']) for s in campaign['cases']]
+        if len(set(observed))!=len(observed) or set(observed)!=required:raise ValueError('missing or duplicate independent wave')
+        case_map={c['id']:c for c in cases};groups=[]
+        for state in campaign['cases']:
+            if state['state']!='measured':raise ValueError('unqualified/failed wave')
+            case=case_map[state['case']];group=state['group'];repeat=state['repeat'];identity=f'{case["id"]}-r{repeat}-{group}'
+            if state['identity']!=identity:raise ValueError('wave identity mismatch')
+            folder=Path(identity);wave=folder/group;startup=read(folder/'startup.json');runtime=read(folder/'native-runtime.json')
+            model_path=Path(runtime['model']);artifact=model_path.parents[1]
+            audit_native_runtime(runtime,plan,hardware,root=artifact)
+            actual_case=startup['case'];wanted=copy.deepcopy(case);environment=wanted['environment']
+            run_dir=artifact/'ebplus-validation/raw'/root.name/identity
+            pythonpath=actual_case['environment'].get('PYTHONPATH','').split(':')
+            if len(pythonpath)!=2 or pythonpath[0]!=str(artifact/'ebplus-validation/overlays/adapter-v4') or not pythonpath[1].startswith(str(artifact/'ebplus-validation/code-task3-v')):
+>               raise ValueError('runtime source path mismatch')
+E               ValueError: runtime source path mismatch
+
+scripts/analyze_ebplus_comparison.py:73: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_ebplus_export.py::test_export_binds_overlay_directory_to_its_archived_manifest
+1 failed, 8 deselected in 0.45s

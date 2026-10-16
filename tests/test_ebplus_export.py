@@ -123,3 +123,17 @@ def test_author_tuned_automatic_export_uses_its_actual_hysteresis_and_phase_evid
     p=tmp_path/'auto-tuned-r0-cold-low/policy-evidence.json';d=json.loads(p.read_text())
     d['execution_counts'].update(prefill=0,decode=0);p.write_text(json.dumps(d))
     with pytest.raises(ValueError,match='exclusive'):api.export_campaign(tmp_path,templates)
+
+
+def test_export_binds_overlay_directory_to_its_archived_manifest(tmp_path):
+    from scripts import analyze_ebplus_comparison as api
+    templates=comparison_fixture(tmp_path)
+    p=tmp_path/'overlay/manifest.json';manifest=json.loads(p.read_text())
+    manifest['overlay_directory_name']='adapter-v5';p.write_text(json.dumps(manifest))
+    for group in ['cold-low','resume-high']:
+        p=tmp_path/('native-r0-'+group)/'startup.json';d=json.loads(p.read_text())
+        d['case']['environment']['PYTHONPATH']=d['case']['environment']['PYTHONPATH'].replace('adapter-v4:','adapter-v5:')
+        p.write_text(json.dumps(d))
+    assert len(api.export_campaign(tmp_path,templates)['groups'])==2
+    manifest['overlay_directory_name']='../../unbound';(tmp_path/'overlay/manifest.json').write_text(json.dumps(manifest))
+    with pytest.raises(ValueError,match='overlay|source'):api.export_campaign(tmp_path,templates)
