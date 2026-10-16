@@ -1,0 +1,27 @@
+Downloading aiohttp (1.6MiB)
+ Downloaded aiohttp
+Installed 14 packages in 12ms
+........................................................................ [ 20%]
+..ssssssssssssss........................................................ [ 41%]
+........................................................................ [ 61%]
+............F........................................................... [ 82%]
+...............................................................          [100%]
+=================================== FAILURES ===================================
+________ RepoVerifierTests.test_pytest_full_suite_uses_scratch_for_logs ________
+
+self = <test_repo_verifier.RepoVerifierTests testMethod=test_pytest_full_suite_uses_scratch_for_logs>
+
+    @unittest.skipUnless(importlib.util.find_spec('pytest'), 'pytest is installed in HDD verifier venv')
+    async def test_pytest_full_suite_uses_scratch_for_logs(self):
+        self.task['test_mode'] = 'pytest'
+        result = await self.check('return x + 1')
+>       self.assertEqual(result['status'], 'passed', result)
+E       AssertionError: 'failed' != 'passed'
+E       - failed
+E       + passed
+E        : {'status': 'failed', 'error': "PermissionError(13, 'Permission denied')", 'counts': {'collected': 0, 'skipped': 0, 'failed': 0}, 'test_elapsed': 0.00787694938480854, 'elapsed': 0.3080333834514022, 'output_tail': '\nINFERX_8df99865f03f45a299bc41e3916dc292:{"status": "ready"}\nTraceback (most recent call last):\n  File "/home/yuer/mypro/InferX/inferx/repo_worker.py", line 68, in main\n    passed = pytest.main([\'-q\', \'-p\', \'no:cacheprovider\',\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/yuer/.cache/uv/archive-v0/LAYH7qN9Xs5rVIJ5/lib/python3.12/site-packages/_pytest/config/__init__.py", line 159, in main\n  File "/home/yuer/.cache/uv/archive-v0/LAYH7qN9Xs5rVIJ5/lib/python3.12/site-packages/_pytest/config/__init__.py", line 337, in _prepareconfig\n  File "/home/yuer/.cache/uv/archive-v0/LAYH7qN9Xs5rVIJ5/lib/python3.12/site-packages/_pytest/config/__init__.py", line 307, in get_config\n  File "/home/yuer/.cache/uv/archive-v0/LAYH7qN9Xs5rVIJ5/lib/python3.12/site-packages/_pytest/config/__init__.py", line 865, in import_plugin\n  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load\n  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked\n  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked\n  File "<frozen importlib._bootstrap_external>", line 991, in exec_module\n  File "<frozen importlib._bootstrap_external>", line 1128, in get_code\n  File "<frozen importlib._bootstrap_external>", line 1186, in get_data\nPermissionError: [Errno 13] Permission denied: \'/home/yuer/.cache/uv/archive-v0/LAYH7qN9Xs5rVIJ5/lib/python3.12/site-packages/_pytest/helpconfig.py\'\n\nINFERX_8df99865f03f45a299bc41e3916dc292:{"status": "failed", "error": "PermissionError(13, \'Permission denied\')", "counts": {"collected": 0, "skipped": 0, "failed": 0}, "test_elapsed": 0.00787694938480854}\n'}
+
+tests/test_repo_verifier.py:137: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_repo_verifier.py::RepoVerifierTests::test_pytest_full_suite_uses_scratch_for_logs
+1 failed, 336 passed, 14 skipped in 40.74s

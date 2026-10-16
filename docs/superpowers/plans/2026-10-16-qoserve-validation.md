@@ -34,7 +34,7 @@
 
 **Files:** Create `inferx/qoserve_policy.py`, `tests/test_qoserve_policy.py`; source evidence `results/qoserve-validation/author-source-v1.*`, supplemental author timing file/hash and compatibility notes.
 
-**Interfaces:** Consume verified source capsule/manifest and timing source. Produce `load_author_policy(capsule:Path, manifest:dict, coefficients:dict|None=None)->type`, importable stdlib-only author methods; `policy_manifest(capsule:Path,manifest:dict,coefficients:dict|None=None)->dict` retains exact method/body SHA and explicit coefficient/native mappings. Missing deployment coefficients must not default to A100 silently.
+**Interfaces:** Consume verified source capsule/manifest and timing source. Produce `load_author_policy(capsule:Path, manifest:dict, coefficients:dict|None=None)->type`, importable stdlib-only author methods; `policy_manifest(capsule:Path,manifest:dict,coefficients:dict|None=None,*,timing_source:Path)->dict` retains exact method/body SHA and explicit coefficient/native mappings. Read and hash the supplemental timing file explicitly. Missing deployment coefficients must not default to A100 silently.
 
 - [ ] Write failing contracts for changed source bytes, source license, the original <=512 predictor boundary, exact normal/low-memory chunk searches, nonpositive slack, hybrid priority/drop ordering and cumulative TBT deadline with literal expected results.
 - [ ] Observe correct RED, then extract original methods and inject only coefficient tables/native capacity access explicitly. Preserve original A100 tables for source-reference tests, reject unqualified deployment use.

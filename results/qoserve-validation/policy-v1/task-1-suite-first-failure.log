@@ -1,0 +1,81 @@
+.......F
+=================================== FAILURES ===================================
+____________ test_changed_agent_tests_cannot_make_wrong_source_pass ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-yuer/pytest-378/test_changed_agent_tests_canno0')
+
+    def test_changed_agent_tests_cannot_make_wrong_source_pass(tmp_path):
+        import asyncio
+        import shutil
+        from inferx.agent_trials import verify_agent_edit
+        fixture = tmp_path/'fixtures'/'demo'
+        (fixture/'tests').mkdir(parents=True)
+        (fixture/'pkg.py').write_text('def value():\n    return 1\n')
+        (fixture/'tests'/'test_pkg.py').write_text('from pkg import value\ndef test_value():\n    assert value() == 1\n')
+        workspace = tmp_path/'workspace'
+        shutil.copytree(fixture, workspace)
+        (workspace/'pkg.py').write_text('def value():\n    return 2\n')
+        (workspace/'tests'/'test_pkg.py').write_text('from pkg import value\ndef test_value():\n    assert value() == 2\n')
+        task = dict(repo_name='demo', file_name='/demo/pkg.py', test_mode='pytest',
+                    expected_counts={'collected': 1, 'skipped': 0, 'failed': 0})
+>       result = asyncio.run(verify_agent_edit(workspace, task, fixture_root=fixture.parent,
+            python=sys.executable, work_root=tmp_path/'verify', cpu=min(os.sched_getaffinity(0))))
+
+tests/test_agent_trials.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/asyncio/runners.py:44: in run
+    return loop.run_until_complete(main)
+../../.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/asyncio/base_events.py:649: in run_until_complete
+    return future.result()
+inferx/agent_trials.py:56: in verify_agent_edit
+    return await verify_repo(target.read_text(), full_source_task, fixture_root=fixture_root,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+code = 'def value():\n    return 2\n'
+task = {'expected_counts': {'collected': 1, 'failed': 0, 'skipped': 0}, 'file_name': '/demo/pkg.py', 'prefix_code': '', 'repo_name': 'demo', ...}
+
+    async def verify_repo(code: str, task: dict, *, fixture_root: Path, python: str,
+                          work_root: Path, cpu: int, timeout: float = 30,
+                          worker: Path | None = None) -> dict:
+        if timeout <= 0:
+            raise ValueError('timeout must be positive')
+        relative = safe_relative(task['repo_name'], task['file_name'])
+        original = fixture_root/task['repo_name']
+        # Refuse links rather than following one outside the fixture boundary.
+        if original.is_symlink() or any(p.is_symlink() for p in original.rglob('*')):
+            raise InfrastructureError('symlink in repository fixture')
+        worker = worker or Path(__file__).with_name('repo_worker.py')
+        work_root.mkdir(parents=True, exist_ok=True)
+        start = time.monotonic()
+        with tempfile.TemporaryDirectory(prefix='candidate-', dir=work_root) as directory:
+            private = Path(directory)
+            repo, scratch = private/'repo', private/'scratch'
+            shutil.copytree(original, repo, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.pytest_cache'))
+            scratch.mkdir()
+            target = repo/relative
+            if not target.is_file():
+                raise InfrastructureError('target source is absent: ' + str(relative))
+            target.write_text(task['prefix_code'] + code + task['suffix_code'])
+            marker = 'INFERX_' + uuid.uuid4().hex + ':'
+            payload = dict(repo=str(repo.resolve()), scratch=str(scratch.resolve()), cpu=cpu,
+                           timeout=timeout, marker=marker, test_mode=task['test_mode'],
+                           expected_counts=task.get('expected_counts'))
+            process = await asyncio.create_subprocess_exec(
+                python, '-I', '-B', '-u', str(worker.resolve()),
+                stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.STDOUT, start_new_session=True,
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8',
+                     'TMPDIR': str(scratch.resolve()), 'HOME': str(scratch.resolve()),
+                     'PYTEST_DISABLE_PLUGIN_AUTOLOAD': '1', 'OMP_NUM_THREADS': '1',
+                     'OPENBLAS_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}, limit=65536)
+            output = bytearray()
+            status = None
+            try:
+>               async with asyncio.timeout(timeout):
+E               AttributeError: module 'asyncio' has no attribute 'timeout'
+
+inferx/repo_verifier.py:52: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_agent_trials.py::test_changed_agent_tests_cannot_make_wrong_source_pass
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 7 passed in 1.47s
