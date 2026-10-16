@@ -1,0 +1,129 @@
+{
+  "scope": "CPU-native logical hybrid allocator; not27B performance",
+  "observations": [
+    {
+      "kind": "native",
+      "reserve_full": false,
+      "lengths": [
+        30720,
+        8000
+      ],
+      "steps": 16,
+      "empty_streak": 1,
+      "elapsed_s": 0.002213001251220703,
+      "phase": null,
+      "N": null,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 0
+        },
+        {
+          "id": "p1",
+          "prompt": 8000,
+          "computed": 8003,
+          "output": 4,
+          "preemptions": 0
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": false,
+      "lengths": [
+        30720
+      ],
+      "steps": 20,
+      "empty_streak": 1,
+      "elapsed_s": 0.002271890640258789,
+      "phase": 1,
+      "N": 4,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 0
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": true,
+      "lengths": [
+        30720,
+        8000
+      ],
+      "steps": 24,
+      "empty_streak": 1,
+      "elapsed_s": 0.003393411636352539,
+      "phase": 1,
+      "N": 4,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 1
+        },
+        {
+          "id": "p1",
+          "prompt": 8000,
+          "computed": 8003,
+          "output": 4,
+          "preemptions": 0
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": false,
+      "lengths": [
+        30720,
+        8000
+      ],
+      "steps": 24,
+      "empty_streak": 1,
+      "elapsed_s": 0.00327301025390625,
+      "phase": 1,
+      "N": 4,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 1
+        },
+        {
+          "id": "p1",
+          "prompt": 8000,
+          "computed": 8003,
+          "output": 4,
+          "preemptions": 0
+        }
+      ]
+    }
+  ]
+}

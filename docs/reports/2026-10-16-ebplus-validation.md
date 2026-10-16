@@ -10,7 +10,11 @@
 
 这些是每组一轮的诊断绝对值，尚无正式三轮或匹配单独基准，结论限定于这一适配与配置。不能据此宣称作者实现上限、所有SOTA的能力或已达到带宽下限。原生冷长／续接组分别发生3／2次抢占，强制EB为5／7次；现有token指标不累计重放GPU工作量，额外计算代价仍待核对。原始181文件完整留存，[原始包](../../results/ebplus-validation/comparison/diagnostic-v2/raw.tar.gz)、[严格导出](../../results/ebplus-validation/comparison/diagnostic-v2/export.json)、[逐文件哈希](../../results/ebplus-validation/comparison/diagnostic-v2/inventory.json)。两次独立导出完全相同，新增导出器也能逐字节重现旧结果。
 
-下一步已预先声明关闭vLLM官方完整输入容量检查的原生／自动EB+对照，模型、池、分块与其他设置一致。该开关只改变准入检查，不表示在准入时物理预留整个请求。先在新设置下重新运行作者完整54点MB标定，再做4个完整混合诊断；相同模型与GPU kernel的200条分离事件标定保留。两个对照必须记录实际初始化后的开关值，并拒绝与其不一致的MB代价文件。[标定配置](../../configs/ebplus-admission-calibration.json)、[诊断配置](../../configs/ebplus-admission-diagnostic.json)。这是现成策略验证，尚未证明需要新机制。
+关闭vLLM官方完整输入容量检查的补测已收尾。新设置完成全部54点MB校准，六次真实运行时观测均为False；拟合为 `a=0.0005015821, b=0.0166214507, c=0.0013851011`。这仍是三个比例最佳点的精确二次拟合，不是长上下文泛化证明。相同27B／98块／C4／MTP0／eager／2048cap下，原生冷长／续接长各25条工具均完成，短P95分别107.65／123.42秒，长耗时94.47／106.65秒。仅切换检查开关没有消除短请求排队。
+
+自动EB+的False冷长组合随后在完成9条混合请求后停止推进：超过7分钟没有新完成，GPU空闲，仍有运行和排队请求。该波次没有长请求完成分数；预定第四组和严格整套导出均未启动。已对精确身份匹配的自有控制器发送一次SIGINT，经原恢复路径退出，独立验证原256K／MTP7／C1服务PID4084818、完整argv、双manifest、空闲与GPU0停止。原始328文件及失败均保留：[完整闭合数据包](../../results/ebplus-validation/comparison/admission-flag-v1/admission-extension-v1.tar.gz)、[逐文件哈希](../../results/ebplus-validation/comparison/admission-flag-v1/admission-extension-v1-inventory.json)、[中断与恢复证据](../../results/ebplus-validation/comparison/admission-flag-v1/stall-v1/after-stop-service.json)。
+
+实际原生CPU分配器的独立诊断复现了一种相符的边界：128个逻辑混合块、两个分别能单独放入的30720／20000-token prefill，两者均未完成时只剩5块，连续64步无执行；两条请求分别直接尝试2048-token原生分配都返回None，True／False检查均可出现。相同输入的原生连续批处理通过抢占完成，EB单独长请求也完成。作者阶段转换的内存逃逸要求存在decode请求；这个状态没有decode。较短的8000-token第二请求并未复现，原件也保留。[复现数据](../../results/ebplus-validation/comparison/admission-flag-v1/stall-v1/cpu-native-reproduction-v2.json)、[复现脚本](../../results/ebplus-validation/comparison/admission-flag-v1/stall-v1/cpu_native_probe_v2.py)。这是CPU逻辑缓存的状态诊断，不是27B效能测量，也不能证明GPU停滞完全由同一原因造成。需要更强的容量／SLO基线比较后再判断研究价值，不能把停滞计为SOTA性能差。
 
 新增观测回归在真实vLLM中先因缺失开关字段失败，再修复；14项真实原生合约全部通过，完整CPU测试322项通过、14项专用检查另行执行。[真实原生日志](../../results/ebplus-validation/comparison/admission-flag-v1/native-admission-green.log)、[完整CPU](../../results/ebplus-validation/comparison/admission-flag-v1/full-cpu-green.log)。33个作者方法和策略文件字节相同，全部调度类AST相同；仅运行时观测函数增加字段。[差异核对](../../results/ebplus-validation/comparison/admission-flag-v1/overlay-v5-v6-comparison.json)。上一轮结束后已独立核验原256K/MTP7服务、原argv、双manifest、空闲与GPU0停止；后续拥有者仍负责每次退出恢复。
 

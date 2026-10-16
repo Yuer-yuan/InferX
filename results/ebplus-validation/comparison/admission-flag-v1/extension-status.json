@@ -1,0 +1,61 @@
+{
+  "pid": 4056513,
+  "status": "failed",
+  "started_unix": 1792115206.768659,
+  "actions": [
+    {
+      "action": "mb-grid",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+        "-u",
+        "scripts/run_ebplus_validation.py",
+        "--run-id",
+        "mb-admission-false-v1",
+        "--stage",
+        "mb-grid",
+        "--plan",
+        "configs/ebplus-admission-calibration.json",
+        "--prerequisite",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/diagnostic-v2"
+      ],
+      "state": "complete",
+      "started_unix": 1792115206.770849,
+      "child_pid": 4056523,
+      "exit_code": 0,
+      "finished_unix": 1792117751.741354
+    },
+    {
+      "action": "diagnostic",
+      "command": [
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+        "-u",
+        "scripts/run_ebplus_validation.py",
+        "--run-id",
+        "diagnostic-admission-false-v1",
+        "--stage",
+        "compare",
+        "--plan",
+        "configs/ebplus-validation.json",
+        "--prerequisite",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-admission-false-v1",
+        "--hardware-run",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v4",
+        "--mb-run",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-admission-false-v1",
+        "--overlay",
+        "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v6",
+        "--comparison",
+        "configs/ebplus-admission-diagnostic.json"
+      ],
+      "state": "failed",
+      "started_unix": 1792117751.7679527,
+      "child_pid": 4073454,
+      "exit_code": -2,
+      "finished_unix": 1792119484.101897
+    }
+  ],
+  "formal_actions": false,
+  "error": "RuntimeError('diagnostic failed; no dependent GPU launch')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/run-admission-extension-v1.py\", line 34, in <module>\n    run('diagnostic',['-u','scripts/run_ebplus_validation.py','--run-id','diagnostic-admission-false-v1','--stage','compare','--plan','configs/ebplus-validation.json','--prerequisite',str(mb),'--hardware-run',str(b/'raw/hardware-v4'),'--mb-run',str(mb),'--overlay',str(b/'overlays/adapter-v6'),'--comparison','configs/ebplus-admission-diagnostic.json'])\n  File \"/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/run-admission-extension-v1.py\", line 14, in run\n    if result:raise RuntimeError(label+' failed; no dependent GPU launch')\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: diagnostic failed; no dependent GPU launch\n",
+  "finished_unix": 1792119484.1044157
+}

@@ -1,0 +1,31 @@
+{
+  "controller_pid": 4073454,
+  "proc_start_ticks": "2095161577",
+  "uid": 1004,
+  "executable": "/usr/bin/python3.12",
+  "argv": [
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/repo-venv/bin/python",
+    "-u",
+    "scripts/run_ebplus_validation.py",
+    "--run-id",
+    "diagnostic-admission-false-v1",
+    "--stage",
+    "compare",
+    "--plan",
+    "configs/ebplus-validation.json",
+    "--prerequisite",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-admission-false-v1",
+    "--hardware-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/hardware-v4",
+    "--mb-run",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/raw/mb-admission-false-v1",
+    "--overlay",
+    "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/overlays/adapter-v6",
+    "--comparison",
+    "configs/ebplus-admission-diagnostic.json"
+  ],
+  "completed_records": 9,
+  "last_completion_age_s": 462.73712515830994,
+  "observed_unix": 1792119420.3187773,
+  "reason": "No completed requests for over300s; GPU idle and uncompleted running prefills. Unscored diagnostic; interrupt owned child for protected restoration, no dependent launch."
+}

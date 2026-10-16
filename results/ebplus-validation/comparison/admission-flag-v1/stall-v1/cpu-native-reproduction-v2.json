@@ -1,0 +1,172 @@
+{
+  "scope": "CPU-native128block/256token logical hybrid cache; not27B performance",
+  "source_snapshot": "/home/guokc/mypro/gnn-mount-sda1/InferX/ebplus-validation/code-task3-v14",
+  "observations": [
+    {
+      "kind": "native",
+      "reserve_full": false,
+      "lengths": [
+        30720,
+        20000
+      ],
+      "steps": 27,
+      "empty_streak": 0,
+      "remaining_requests": 0,
+      "elapsed_s": 0.005870342254638672,
+      "phase": null,
+      "N": null,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 0
+        },
+        {
+          "id": "p1",
+          "prompt": 20000,
+          "computed": 20003,
+          "output": 4,
+          "preemptions": 4
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": false,
+      "lengths": [
+        30720
+      ],
+      "steps": 19,
+      "empty_streak": 0,
+      "remaining_requests": 0,
+      "elapsed_s": 0.002901792526245117,
+      "phase": 1,
+      "N": 4,
+      "decoding": [],
+      "free": 127,
+      "running": [],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 30723,
+          "output": 4,
+          "preemptions": 0
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": true,
+      "lengths": [
+        30720,
+        20000
+      ],
+      "steps": 72,
+      "empty_streak": 64,
+      "remaining_requests": 2,
+      "elapsed_s": 0.0059757232666015625,
+      "phase": 0,
+      "N": 4,
+      "decoding": [],
+      "free": 5,
+      "running": [
+        "p0",
+        "p1"
+      ],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 16384,
+          "output": 0,
+          "preemptions": 0
+        },
+        {
+          "id": "p1",
+          "prompt": 20000,
+          "computed": 14336,
+          "output": 0,
+          "preemptions": 0
+        }
+      ],
+      "each_native_allocation_after_stall": [
+        {
+          "id": "p0",
+          "tokens": 2048,
+          "returned_none": true,
+          "free_before": 5,
+          "free_after": 5
+        },
+        {
+          "id": "p1",
+          "tokens": 2048,
+          "returned_none": true,
+          "free_before": 5,
+          "free_after": 5
+        }
+      ]
+    },
+    {
+      "kind": "eb",
+      "reserve_full": false,
+      "lengths": [
+        30720,
+        20000
+      ],
+      "steps": 72,
+      "empty_streak": 64,
+      "remaining_requests": 2,
+      "elapsed_s": 0.00586700439453125,
+      "phase": 0,
+      "N": 4,
+      "decoding": [],
+      "free": 5,
+      "running": [
+        "p0",
+        "p1"
+      ],
+      "waiting": [],
+      "requests": [
+        {
+          "id": "p0",
+          "prompt": 30720,
+          "computed": 16384,
+          "output": 0,
+          "preemptions": 0
+        },
+        {
+          "id": "p1",
+          "prompt": 20000,
+          "computed": 14336,
+          "output": 0,
+          "preemptions": 0
+        }
+      ],
+      "each_native_allocation_after_stall": [
+        {
+          "id": "p0",
+          "tokens": 2048,
+          "returned_none": true,
+          "free_before": 5,
+          "free_after": 5
+        },
+        {
+          "id": "p1",
+          "tokens": 2048,
+          "returned_none": true,
+          "free_before": 5,
+          "free_after": 5
+        }
+      ]
+    }
+  ]
+}
