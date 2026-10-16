@@ -1,0 +1,1326 @@
+{
+  "status": "complete",
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "engine_id": "cddd36bcb04344feb98fe443eba29132",
+  "rollouts": [
+    {
+      "spec": {
+        "rollout_id": "initial-pps-00-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-00-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-00-p512-d0/decoder",
+        "token_seed": 42
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132721.7989624,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 1,
+          "time_unix_s": 1792132722.1259212,
+          "monotonic_s": 20966586.134763755,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 47,
+          "sm_clock_mhz": 2745,
+          "memory_clock_mhz": 10251,
+          "power_w": 94.16,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132722.1278512
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-01-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-01-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-01-p512-d0/decoder",
+        "token_seed": 43
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132722.1288052,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 3,
+          "time_unix_s": 1792132722.3104775,
+          "monotonic_s": 20966586.319320597,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 50,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 150.294,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132722.3143542
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-02-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-02-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-02-p512-d0/decoder",
+        "token_seed": 44
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132722.3174546,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 5,
+          "time_unix_s": 1792132722.5131264,
+          "monotonic_s": 20966586.521969426,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 51,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 202.56,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132722.5166805
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-03-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-03-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-03-p512-d0/decoder",
+        "token_seed": 45
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132722.5198138,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 7,
+          "time_unix_s": 1792132722.714113,
+          "monotonic_s": 20966586.722956136,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 51,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 254.25,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132722.7177823
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-04-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-04-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-04-p512-d0/decoder",
+        "token_seed": 46
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132722.7210176,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 9,
+          "time_unix_s": 1792132722.9168086,
+          "monotonic_s": 20966586.925651733,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 53,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 306.601,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132722.942022
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-05-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-05-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-05-p512-d0/decoder",
+        "token_seed": 47
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132722.9455032,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 11,
+          "time_unix_s": 1792132723.1611872,
+          "monotonic_s": 20966587.170030065,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 359.699,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132723.1650128
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-06-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-06-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-06-p512-d0/decoder",
+        "token_seed": 48
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132723.1684978,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 13,
+          "time_unix_s": 1792132723.3643034,
+          "monotonic_s": 20966587.37314644,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 355.601,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132723.3682437
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-07-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-07-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-07-p512-d0/decoder",
+        "token_seed": 49
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132723.3717718,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 15,
+          "time_unix_s": 1792132723.5654037,
+          "monotonic_s": 20966587.57424658,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 356.093,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132723.569476
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-08-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-08-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-08-p512-d0/decoder",
+        "token_seed": 50
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132723.5730813,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 17,
+          "time_unix_s": 1792132723.794057,
+          "monotonic_s": 20966587.802900005,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 347.864,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132723.7982144
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-09-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-09-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-09-p512-d0/decoder",
+        "token_seed": 51
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132723.8019643,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 19,
+          "time_unix_s": 1792132723.996908,
+          "monotonic_s": 20966588.005751025,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 347.9,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132724.030521
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-10-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-10-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-10-p512-d0/decoder",
+        "token_seed": 52
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132724.0345454,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 21,
+          "time_unix_s": 1792132724.2319272,
+          "monotonic_s": 20966588.240770318,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 350.611,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132724.2363057
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-11-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-11-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-11-p512-d0/decoder",
+        "token_seed": 53
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132724.2402396,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 23,
+          "time_unix_s": 1792132724.4557362,
+          "monotonic_s": 20966588.464579076,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 53,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 344.507,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132724.4602506
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-12-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-12-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-12-p512-d0/decoder",
+        "token_seed": 54
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132724.4643173,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 25,
+          "time_unix_s": 1792132724.6575847,
+          "monotonic_s": 20966588.666427206,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 344.0,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132724.6603737
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-13-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-13-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-13-p512-d0/decoder",
+        "token_seed": 55
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132724.6629758,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 27,
+          "time_unix_s": 1792132724.8546238,
+          "monotonic_s": 20966588.863466393,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 53,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 348.665,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132724.857664
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-14-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-14-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-14-p512-d0/decoder",
+        "token_seed": 56
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132724.8604605,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 29,
+          "time_unix_s": 1792132725.0583746,
+          "monotonic_s": 20966589.067217298,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 353.409,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132725.0607464
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-15-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-15-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-15-p512-d0/decoder",
+        "token_seed": 57
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132725.0625765,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 31,
+          "time_unix_s": 1792132725.24762,
+          "monotonic_s": 20966589.25646271,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 351.592,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132725.2503917
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-16-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-16-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-16-p512-d0/decoder",
+        "token_seed": 58
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132725.252351,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 33,
+          "time_unix_s": 1792132725.4379766,
+          "monotonic_s": 20966589.446819123,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 363.073,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132725.4494016
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-17-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-17-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-17-p512-d0/decoder",
+        "token_seed": 59
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132725.4533384,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 35,
+          "time_unix_s": 1792132725.6495657,
+          "monotonic_s": 20966589.658408325,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 53,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 367.339,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132725.652697
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-18-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-18-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-18-p512-d0/decoder",
+        "token_seed": 60
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132725.6555672,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 37,
+          "time_unix_s": 1792132725.8443224,
+          "monotonic_s": 20966589.853165165,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 53,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 369.743,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132725.8747349
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-19-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-19-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-19-p512-d0/decoder",
+        "token_seed": 61
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132725.8791308,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 39,
+          "time_unix_s": 1792132726.0763178,
+          "monotonic_s": 20966590.085160226,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 367.918,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132726.0787277
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-20-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-20-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-20-p512-d0/decoder",
+        "token_seed": 62
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132726.080339,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 41,
+          "time_unix_s": 1792132726.2657392,
+          "monotonic_s": 20966590.274581958,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 367.838,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132726.2696621
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-21-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-21-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-21-p512-d0/decoder",
+        "token_seed": 63
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132726.2733026,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 43,
+          "time_unix_s": 1792132726.4625993,
+          "monotonic_s": 20966590.47144171,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 56,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 365.951,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132726.4745662
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-22-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-22-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-22-p512-d0/decoder",
+        "token_seed": 64
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132726.4783087,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 45,
+          "time_unix_s": 1792132726.6707907,
+          "monotonic_s": 20966590.679633375,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 366.959,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132726.6738393
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-23-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-23-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-23-p512-d0/decoder",
+        "token_seed": 65
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132726.6762712,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 47,
+          "time_unix_s": 1792132726.8623111,
+          "monotonic_s": 20966590.87115372,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 56,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 368.078,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132726.8650157
+    },
+    {
+      "spec": {
+        "rollout_id": "initial-pps-24-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-24-p512-d0/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/initial-pps-24-p512-d0/decoder",
+        "token_seed": 66
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132726.8669786,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 49,
+          "time_unix_s": 1792132727.0535953,
+          "monotonic_s": 20966591.062437803,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 363.311,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792132727.0617173
+    },
+    {
+      "spec": {
+        "rollout_id": "diagnostic-fixed-before",
+        "kind": "diagnostic",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "unscored-cpu-profile",
+        "candidates": [
+          128
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "decoder_prompt_len": 512,
+        "decoder_max_tokens": 1024,
+        "warmup_steps": 5,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-before/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-before/decoder",
+        "token_seed": 777
+      },
+      "status": "collected",
+      "rows": 66,
+      "started_unix": 1792132727.1431572,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 51,
+          "time_unix_s": 1792132727.3945,
+          "monotonic_s": 20966591.40334272,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 45,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 315.938,
+          "pstate": 2
+        },
+        {
+          "after_step": 76,
+          "time_unix_s": 1792132731.361849,
+          "monotonic_s": 20966595.370692108,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 44,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 159.788,
+          "pstate": 2
+        },
+        {
+          "after_step": 101,
+          "time_unix_s": 1792132734.0303166,
+          "monotonic_s": 20966598.039159395,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 49,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 235.962,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "intentional-diagnostic-abort",
+      "events": [],
+      "finished_unix": 1792132735.6839366,
+      "source_loop_stop_reason": "long-completed"
+    },
+    {
+      "spec": {
+        "rollout_id": "diagnostic-variable-before",
+        "kind": "diagnostic",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "unscored-cpu-profile",
+        "candidates": [
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "decoder_prompt_len": 512,
+        "decoder_max_tokens": 1024,
+        "warmup_steps": 5,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-before/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-before/decoder",
+        "token_seed": 777
+      },
+      "status": "collected",
+      "rows": 12,
+      "started_unix": 1792132735.7356591,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 118,
+          "time_unix_s": 1792132735.8811018,
+          "monotonic_s": 20966599.88994482,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 47,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 209.846,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "intentional-diagnostic-abort",
+      "events": [],
+      "finished_unix": 1792132739.0696135,
+      "source_loop_stop_reason": "long-completed"
+    },
+    {
+      "spec": {
+        "rollout_id": "diagnostic-warm-mixed",
+        "kind": "diagnostic",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "unscored-cpu-profile",
+        "candidates": [
+          128
+        ],
+        "prefill_target": 128,
+        "decoders": 3,
+        "prompt_len": 131072,
+        "decoder_prompt_len": 512,
+        "decoder_max_tokens": 1024,
+        "warmup_steps": 5,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-warm-mixed/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-warm-mixed/decoder",
+        "token_seed": 777
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792132739.6800764,
+      "decoder_preparation_steps": 1,
+      "gpu_telemetry": [
+        {
+          "after_step": 132,
+          "time_unix_s": 1792132739.8407035,
+          "monotonic_s": 20966603.849546116,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 50,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 340.903,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 85,
+      "stop_reason": "intentional-diagnostic-abort",
+      "events": [],
+      "finished_unix": 1792132739.8432274,
+      "source_loop_stop_reason": "long-completed"
+    },
+    {
+      "spec": {
+        "rollout_id": "diagnostic-variable-after-mixed",
+        "kind": "diagnostic",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "unscored-cpu-profile",
+        "candidates": [
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "decoder_prompt_len": 512,
+        "decoder_max_tokens": 1024,
+        "warmup_steps": 5,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-after-mixed/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-after-mixed/decoder",
+        "token_seed": 777
+      },
+      "status": "collected",
+      "rows": 12,
+      "started_unix": 1792132739.8934445,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 134,
+          "time_unix_s": 1792132740.0348659,
+          "monotonic_s": 20966604.043708857,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 50,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 295.965,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "intentional-diagnostic-abort",
+      "events": [],
+      "finished_unix": 1792132743.2345521,
+      "source_loop_stop_reason": "long-completed"
+    },
+    {
+      "spec": {
+        "rollout_id": "diagnostic-fixed-after-mixed",
+        "kind": "diagnostic",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "unscored-cpu-profile",
+        "candidates": [
+          128
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "decoder_prompt_len": 512,
+        "decoder_max_tokens": 1024,
+        "warmup_steps": 5,
+        "long_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-after-mixed/long",
+        "decoder_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-after-mixed/decoder",
+        "token_seed": 777
+      },
+      "status": "collected",
+      "rows": 66,
+      "started_unix": 1792132743.284736,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 147,
+          "time_unix_s": 1792132743.4263833,
+          "monotonic_s": 20966607.435225684,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 347.763,
+          "pstate": 2
+        },
+        {
+          "after_step": 172,
+          "time_unix_s": 1792132746.1015282,
+          "monotonic_s": 20966610.11037111,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 50,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 236.567,
+          "pstate": 2
+        },
+        {
+          "after_step": 197,
+          "time_unix_s": 1792132748.7736053,
+          "monotonic_s": 20966612.782447957,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 240.145,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "intentional-diagnostic-abort",
+      "events": [],
+      "finished_unix": 1792132750.4311051,
+      "source_loop_stop_reason": "long-completed"
+    }
+  ],
+  "started_unix": 1792132708.190491,
+  "plan_sha256": "9bce702004389d466c32435b1e9d13ae1ef00dcb285e827b68212444df5e7a23",
+  "worker_sha256": "f4b32618c89548c2b8ea8caa0f927e0cefa106203cbf716036c8c84a2232e2ac",
+  "measurement_type": "completed-engine-wall",
+  "raw_rows": "steps.jsonl",
+  "matrix_kind": "unscored-shape-transition-cpu-profile",
+  "gpu_process": {
+    "pid": 4177020,
+    "uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189"
+  },
+  "gpu_telemetry_initial": {
+    "time_unix_s": 1792132721.7934628,
+    "monotonic_s": 20966585.802306585,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "temperature_c": 36,
+    "sm_clock_mhz": 2745,
+    "memory_clock_mhz": 10251,
+    "power_w": 121.606,
+    "pstate": 2
+  },
+  "host_process_cpu_time_boundary": "around EngineCore.step; includes read-only output observers",
+  "device_name": "NVIDIA GeForce RTX 4090",
+  "torch_version": "2.13.0+cu129",
+  "native_runtime": {
+    "scheduler_class": "ProfilingNativeScheduler",
+    "max_model_len": 131328,
+    "max_num_running_reqs": 4,
+    "block_size": 1568,
+    "cache_block_size": 1568,
+    "num_gpu_blocks": 98,
+    "full_isl": false,
+    "cap": 0,
+    "kv_dtype": "fp8",
+    "quantization": "compressed-tensors",
+    "mamba_cache_mode": "align",
+    "torch_num_threads": 1,
+    "kv_groups": [
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.0.linear_attn",
+          "language_model.model.layers.4.linear_attn",
+          "language_model.model.layers.8.linear_attn",
+          "language_model.model.layers.12.linear_attn",
+          "language_model.model.layers.16.linear_attn",
+          "language_model.model.layers.20.linear_attn",
+          "language_model.model.layers.24.linear_attn",
+          "language_model.model.layers.28.linear_attn",
+          "language_model.model.layers.32.linear_attn",
+          "language_model.model.layers.36.linear_attn",
+          "language_model.model.layers.40.linear_attn",
+          "language_model.model.layers.44.linear_attn",
+          "language_model.model.layers.48.linear_attn",
+          "language_model.model.layers.52.linear_attn",
+          "language_model.model.layers.56.linear_attn",
+          "language_model.model.layers.60.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.1.linear_attn",
+          "language_model.model.layers.5.linear_attn",
+          "language_model.model.layers.9.linear_attn",
+          "language_model.model.layers.13.linear_attn",
+          "language_model.model.layers.17.linear_attn",
+          "language_model.model.layers.21.linear_attn",
+          "language_model.model.layers.25.linear_attn",
+          "language_model.model.layers.29.linear_attn",
+          "language_model.model.layers.33.linear_attn",
+          "language_model.model.layers.37.linear_attn",
+          "language_model.model.layers.41.linear_attn",
+          "language_model.model.layers.45.linear_attn",
+          "language_model.model.layers.49.linear_attn",
+          "language_model.model.layers.53.linear_attn",
+          "language_model.model.layers.57.linear_attn",
+          "language_model.model.layers.61.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.2.linear_attn",
+          "language_model.model.layers.6.linear_attn",
+          "language_model.model.layers.10.linear_attn",
+          "language_model.model.layers.14.linear_attn",
+          "language_model.model.layers.18.linear_attn",
+          "language_model.model.layers.22.linear_attn",
+          "language_model.model.layers.26.linear_attn",
+          "language_model.model.layers.30.linear_attn",
+          "language_model.model.layers.34.linear_attn",
+          "language_model.model.layers.38.linear_attn",
+          "language_model.model.layers.42.linear_attn",
+          "language_model.model.layers.46.linear_attn",
+          "language_model.model.layers.50.linear_attn",
+          "language_model.model.layers.54.linear_attn",
+          "language_model.model.layers.58.linear_attn",
+          "language_model.model.layers.62.linear_attn"
+        ]
+      },
+      {
+        "type": "FullAttentionSpec",
+        "spec": "FullAttentionSpec(block_size=1568, dcp_sharded=True, block_stride_alignment=None, max_tp_shards=None, num_kv_heads=4, head_size=256, dtype=torch.uint8, head_size_v=256, kv_quant_mode=<KVQuantMode.FP8_PER_TENSOR: 1>, page_size_padded=None, num_head_slots=None, state_content_bytes=None, tokens_per_state=1, sliding_window=None, attention_chunk_size=None, non_causal=False)",
+        "layers": [
+          "language_model.model.layers.3.self_attn.attn",
+          "language_model.model.layers.7.self_attn.attn",
+          "language_model.model.layers.11.self_attn.attn",
+          "language_model.model.layers.15.self_attn.attn",
+          "language_model.model.layers.19.self_attn.attn",
+          "language_model.model.layers.23.self_attn.attn",
+          "language_model.model.layers.27.self_attn.attn",
+          "language_model.model.layers.31.self_attn.attn",
+          "language_model.model.layers.35.self_attn.attn",
+          "language_model.model.layers.39.self_attn.attn",
+          "language_model.model.layers.43.self_attn.attn",
+          "language_model.model.layers.47.self_attn.attn",
+          "language_model.model.layers.51.self_attn.attn",
+          "language_model.model.layers.55.self_attn.attn",
+          "language_model.model.layers.59.self_attn.attn",
+          "language_model.model.layers.63.self_attn.attn"
+        ]
+      }
+    ]
+  },
+  "initial_pps": 2700.857510913318,
+  "initial_pps_samples": [
+    2601.656044519853,
+    2665.887199176905,
+    2697.712769523559,
+    2587.3282838757486,
+    2681.4462382714123,
+    2651.030178651553,
+    2607.1280659359545,
+    2704.002252303077,
+    2719.622055772504,
+    2632.6022278221208,
+    2799.321262729992,
+    2790.5898634340624,
+    2673.6000559935173,
+    2758.796812425279,
+    2668.291082875667,
+    2796.3697024220032,
+    2758.6656304998983,
+    2716.5107788327728,
+    2790.769432849767,
+    2779.9233288718838
+  ],
+  "finished_unix": 1792132750.4327714,
+  "training_allowed": false,
+  "qualification_allowed": false
+}

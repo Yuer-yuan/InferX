@@ -330,7 +330,7 @@ class QoServeNativeContracts(unittest.TestCase):
             prefill_target=target,candidates=[128,256,384,512,768,1024,1280,1536,1792,2048,2552],warmup_steps=5)
 
     def test_collector_builds_actual_native_engine_config_and_salted_requests(self):
-        from scripts.calibrate_qoserve_model import calibration_engine_args,calibration_request,rollout_specs
+        from scripts.calibrate_qoserve_model import calibration_engine_args,calibration_request,rollout_specs,repair_rollout_specs
         plan=json.loads((self.evidence.parents[1]/'configs/qoserve-validation.json').read_text())
         args=calibration_engine_args(plan,Path(os.environ['INFERX_ROOT']))
         config=args.create_engine_config()
@@ -349,6 +349,12 @@ class QoServeNativeContracts(unittest.TestCase):
         self.assertEqual([s.prompt_token_ids for s in seeds],[seeds[0].prompt_token_ids]*3)
         self.assertEqual({s.cache_salt for s in seeds},{spec['decoder_salt']})
         self.assertNotEqual(long.cache_salt,seeds[0].cache_salt)
+        definition=json.loads((self.evidence.parents[1]/'configs/qoserve-profile-repair-v1.json').read_text())
+        high=next(s for s in repair_rollout_specs(plan,'native-repair-abi',definition)
+                  if s.get('decoder_prompt_len')==131072)
+        seed=calibration_request(high,'decoder',0,plan)
+        self.assertEqual((len(seed.prompt_token_ids),seed.sampling_params.max_tokens),(131072,256))
+        self.assertEqual(len(seed.prompt_token_ids)+seed.sampling_params.max_tokens,config.model_config.max_model_len)
 
     def test_profiler_reads_actual_start_positions_before_optimistic_native_update(self):
         from inferx.qoserve_profile import validate_step_row
@@ -379,6 +385,19 @@ class QoServeNativeContracts(unittest.TestCase):
         self.assertEqual(rows[1]['features']['batch_num_tokens'],130)
         self.assertEqual(rows[1]['features']['batch_prefill_context'],127)
         self.assertEqual(long.num_computed_tokens,256)
+
+    def test_training_cycle_is_recorded_as_training_with_real_native_alignment(self):
+        scheduler=self.scheduler('ProfilingNativeScheduler')
+        long=self.add(scheduler,'repair-training',length=5000,output=1,salt='repair-training')
+        cfg=self.profile_config(long);cfg.update(budget_mode='total-cycle',candidates=[128,256])
+        scheduler.begin_profile(cfg)
+        for _ in range(3):self.step(scheduler)
+        rows=scheduler.end_profile()['rows']
+        self.assertEqual([r['phase'] for r in rows],['train']*3)
+        self.assertEqual([r['proposed_total_tokens'] for r in rows],[128,256,128])
+        self.assertEqual([r['features']['batch_num_tokens'] for r in rows],[128,128,128])
+        self.assertEqual(long.num_computed_tokens,384)
+        self.assertEqual(scheduler.max_num_scheduled_tokens,4096)
 
     def test_profiler_closes_timing_before_readonly_token_observer_logging(self):
         from vllm.v1.outputs import ModelRunnerOutput

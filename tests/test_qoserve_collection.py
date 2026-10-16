@@ -2,7 +2,9 @@
 import copy
 import importlib
 import json
+import hashlib
 from pathlib import Path
+import tempfile
 import unittest
 
 
@@ -35,6 +37,54 @@ class CollectionProtocolContracts(unittest.TestCase):
         self.assertTrue(all(s['prompt_len']==512 and s['decoders']==0 for s in pps))
         self.assertTrue(all(s['prompt_len']==131072 and s['warmup_steps']==5
             for s in specs if s['kind']!='initial-pps'))
+
+    def test_repair_uses_new_train_salts_and_fresh_holdouts_with_bounded_context_diversity(self):
+        path=Path(__file__).resolve().parents[1]/'configs/qoserve-profile-repair-v1.json'
+        definition=json.loads(path.read_text());api=self.api()
+        specs=api.repair_rollout_specs(self.plan(),'new-repair-engine',definition)
+        self.assertEqual(len(specs),37)
+        training=[s for s in specs if s['kind']=='train']
+        self.assertEqual({(s['decoders'],s['decoder_prompt_len']) for s in training},
+            {(0,24557),(1,512),(1,24557),(2,24557),(3,24557),(1,65536),(1,131072)})
+        self.assertTrue(all(s['budget_mode']=='total-cycle' for s in specs if s['kind']!='initial-pps'))
+        self.assertTrue(all(s['candidates']==[32,64,96,128,256,384,512,768,1024,1280,1536,1792,2048,2552]
+            for s in training))
+        held=[s for s in specs if s['kind']=='holdout']
+        self.assertEqual([(s['holdout_protocol'],s['decoders']) for s in held],
+            [('original-cycle-v1',0),('original-cycle-v1',2),('remainder-cycle-v1',0),('remainder-cycle-v1',2)])
+        self.assertEqual(held[0]['candidates'],self.plan()['profile']['candidates'])
+        diagnostic=[s for s in specs if s['kind']=='diagnostic']
+        self.assertEqual(len(diagnostic),1)
+        self.assertEqual((diagnostic[0]['decoders'],diagnostic[0]['candidates']),(0,[128]))
+        self.assertTrue({s['long_salt'] for s in specs}.isdisjoint(
+            s['long_salt'] for s in api.rollout_specs(self.plan(),'original-engine')))
+        high=next(s for s in training if s['decoder_prompt_len']==131072)
+        self.assertEqual(high['decoder_max_tokens'],256)
+        for mutation in ('identity','old-holdout','candidate','missing-context','missing-original-cycle'):
+            d=copy.deepcopy(definition)
+            if mutation=='identity':d['identity']['draft']=7
+            elif mutation=='old-holdout':d['replace_initial_holdout']=False
+            elif mutation=='candidate':d['calibration_candidates'].remove(32)
+            elif mutation=='missing-context':d['train_decoder_geometries'].pop()
+            else:d['holdout_candidate_cycles'].pop(0)
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                api.repair_rollout_specs(self.plan(),'new-repair-engine',d)
+
+    def test_repair_basis_is_the_exact_completed_independent_fit(self):
+        path=Path(__file__).resolve().parents[1]/'configs/qoserve-profile-repair-v1.json'
+        definition=json.loads(path.read_text());api=self.api()
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);basis=root/definition['basis_fit_path'];basis.parent.mkdir(parents=True)
+            value=dict(qualified=False,identity=self.plan()['identity'],input_evidence={
+                'archive_sha256':definition['basis_archive_sha256']})
+            basis.write_text(json.dumps(value));definition['basis_fit_sha256']=hashlib.sha256(basis.read_bytes()).hexdigest()
+            inv=root/'qoserve-validation/exports/independent-profile-v5-inventory.json';inv.parent.mkdir(parents=True)
+            inv.write_text(json.dumps({'archive_sha256':definition['basis_archive_sha256']}))
+            api.verify_repair_basis(definition,root)
+            basis.write_text(basis.read_text()+' ')
+            with self.assertRaisesRegex(ValueError,'hash'):api.verify_repair_basis(definition,root)
+            escaped=dict(definition,basis_fit_path='../outside.json')
+            with self.assertRaises(ValueError):api.verify_repair_basis(escaped,root)
 
     def test_profile_configuration_rejects_runtime_or_geometry_drift(self):
         api=self.api();plan=self.plan();api.validate_profile_plan(plan)

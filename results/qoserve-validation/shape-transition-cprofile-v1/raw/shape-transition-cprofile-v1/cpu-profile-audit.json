@@ -1,0 +1,3144 @@
+{
+  "scope": "Instrumented diagnostic only; never predictor fitting, qualification, throughput or SLO evidence.",
+  "training_allowed": false,
+  "qualification_allowed": false,
+  "captures": {
+    "fixed-before": {
+      "before": {
+        "computed_tokens": 7840,
+        "prompt_tokens": 131072
+      },
+      "row": {
+        "row_id": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-before/116",
+        "phase": "holdout",
+        "engine_id": "cddd36bcb04344feb98fe443eba29132",
+        "rollout_id": "diagnostic-fixed-before",
+        "cache_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-before/long",
+        "step_index": 116,
+        "warmup": false,
+        "identity": {
+          "concurrency": 4,
+          "context_window": 131328,
+          "cuda_graph": false,
+          "draft": 0,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "kv_dtype": "fp8",
+          "model": "models/qwen38-int4-redhat",
+          "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+          "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+          "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+          "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+        },
+        "budget_mode": "total-cycle",
+        "calibration_kind": "diagnostic",
+        "holdout_protocol": "unscored-cpu-profile",
+        "proposed_total_tokens": 128,
+        "requests": [
+          {
+            "request_id": "diagnostic-fixed-before/long/0",
+            "computed_before": 7840,
+            "prefill_end": 131072,
+            "scheduled_tokens": 128,
+            "stage": "prefill",
+            "output_tokens_before": 0
+          }
+        ],
+        "features": {
+          "batch_num_tokens": 128,
+          "batch_num_prefill_tokens": 128,
+          "batch_num_decode_tokens": 0,
+          "batch_decode_context": 0,
+          "batch_prefill_context": 7840
+        },
+        "preempted_request_ids": [],
+        "timing": {
+          "start_s": 20966599.536535434,
+          "end_s": 20966599.675642136,
+          "batch_execution_time": 0.13910670205950737,
+          "boundary": "schedule-entry-to-native-update-exit",
+          "completed_model_step": true
+        }
+      },
+      "functions": [
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.009597062,
+          "cumulative_s": 0.009597062
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1245,
+          "function": "_forward_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.006743041000000001,
+          "cumulative_s": 0.055340548
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 708,
+          "function": "run",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.006173322,
+          "cumulative_s": 0.022222061
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 850,
+          "calls": 850,
+          "self_s": 0.005910035,
+          "cumulative_s": 0.005910035
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 212,
+          "function": "run",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.0055371890000000005,
+          "cumulative_s": 0.019725508000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py",
+          "line": 43,
+          "function": "fused_add_rms_norm",
+          "primitive_calls": 128,
+          "calls": 128,
+          "self_s": 0.005316318,
+          "cumulative_s": 0.014247682000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method cuda_utils.launch>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0042000530000000005,
+          "cumulative_s": 0.004629009
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0037190010000000004,
+          "cumulative_s": 0.019277566000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 752,
+          "function": "apply_gptq_marlin_linear",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.002586468,
+          "cumulative_s": 0.025025099000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 704,
+          "calls": 704,
+          "self_s": 0.002538217,
+          "cumulative_s": 0.002538217
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method triton._C.libtriton.native_specialize_impl>",
+          "primitive_calls": 4986,
+          "calls": 4986,
+          "self_s": 0.0025297920000000003,
+          "cumulative_s": 0.0025297920000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 456,
+          "function": "run",
+          "primitive_calls": 336,
+          "calls": 336,
+          "self_s": 0.002476097,
+          "cumulative_s": 0.024682687000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty>",
+          "primitive_calls": 453,
+          "calls": 453,
+          "self_s": 0.0023303020000000002,
+          "cumulative_s": 0.0023303020000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<function Event.synchronize at 0x76a5f1e7f560>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.0022035930000000002,
+          "cumulative_s": 0.0022035930000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py",
+          "line": 159,
+          "function": "forward_native",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.002148625,
+          "cumulative_s": 0.020423273000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._disabled_torch_function_impl>",
+          "primitive_calls": 192,
+          "calls": 192,
+          "self_s": 0.0021292570000000003,
+          "cumulative_s": 0.0021292570000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0019364850000000002,
+          "cumulative_s": 0.0019364850000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'contiguous' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1010,
+          "calls": 1010,
+          "self_s": 0.001920887,
+          "cumulative_s": 0.001920887
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 88,
+          "function": "wrapper",
+          "primitive_calls": 96,
+          "calls": 192,
+          "self_s": 0.0016835910000000001,
+          "cumulative_s": 0.039190632
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1782,
+          "function": "_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.001676254,
+          "cumulative_s": 0.132691151
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 370,
+          "function": "<lambda>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.001650056,
+          "cumulative_s": 0.034164696
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001564335,
+          "cumulative_s": 0.001564335
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty_like>",
+          "primitive_calls": 305,
+          "calls": 305,
+          "self_s": 0.0015083470000000002,
+          "cumulative_s": 0.0015083470000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1954,
+          "function": "__getattr__",
+          "primitive_calls": 2781,
+          "calls": 2781,
+          "self_s": 0.00139539,
+          "cumulative_s": 0.00139539
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'pow' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0013787880000000001,
+          "cumulative_s": 0.0013787880000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1774,
+          "function": "_wrapped_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.001287336,
+          "cumulative_s": 0.132697382
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 574,
+          "function": "compute_cache_key",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0012292260000000001,
+          "cumulative_s": 0.0019466330000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 1109,
+          "function": "__call__",
+          "primitive_calls": 425,
+          "calls": 425,
+          "self_s": 0.0011533980000000001,
+          "cumulative_s": 0.0022898600000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 418,
+          "function": "get_marlin_workspace",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.001086228,
+          "cumulative_s": 0.0051687470000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 1839,
+          "calls": 1839,
+          "self_s": 0.001026662,
+          "cumulative_s": 0.001037607
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 6779,
+          "calls": 6779,
+          "self_s": 0.00102479,
+          "cumulative_s": 0.0010394380000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 5098,
+          "calls": 5098,
+          "self_s": 0.000983579,
+          "cumulative_s": 0.001034091
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.rsqrt>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.000981792,
+          "cumulative_s": 0.000981792
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'size' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1072,
+          "calls": 1072,
+          "self_s": 0.0009602650000000001,
+          "cumulative_s": 0.001141626
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 895,
+          "function": "forward_cuda",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0008665400000000001,
+          "cumulative_s": 0.083124898
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros>",
+          "primitive_calls": 50,
+          "calls": 50,
+          "self_s": 0.0008605650000000001,
+          "cumulative_s": 0.0008605650000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method apply>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0008391130000000001,
+          "cumulative_s": 0.032619541
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/ops/causal_conv1d.py",
+          "line": 481,
+          "function": "causal_conv1d_fn",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0008359060000000001,
+          "cumulative_s": 0.006482496000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/compiler/compiler.py",
+          "line": 482,
+          "function": "launch_metadata",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.000823564,
+          "cumulative_s": 0.001058977
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'new_empty' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 162,
+          "calls": 162,
+          "self_s": 0.0007779320000000001,
+          "cumulative_s": 0.0007779320000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'stride' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1537,
+          "calls": 1537,
+          "self_s": 0.0007526690000000001,
+          "cumulative_s": 0.0007526690000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros_like>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000743361,
+          "cumulative_s": 0.000743361
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 130,
+          "function": "get_persistent_resource",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0007285050000000001,
+          "cumulative_s": 0.002379464
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py",
+          "line": 313,
+          "function": "__call__",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0007243600000000001,
+          "cumulative_s": 0.005465948
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 549,
+          "function": "forward",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000722049,
+          "cumulative_s": 0.131621755
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 321,
+          "function": "dispatch",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.000716396,
+          "cumulative_s": 0.001210219
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.qwen_gdn_attention_core>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00068802,
+          "cumulative_s": 0.056717846
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1894,
+          "function": "qwen_gdn_attention_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0006511840000000001,
+          "cumulative_s": 0.056029826000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+          "line": 152,
+          "function": "fused_post_conv_prep",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000639695,
+          "cumulative_s": 0.005085147
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 440,
+          "function": "_marlin_gemm",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0006391200000000001,
+          "cumulative_s": 0.015558565000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.silu_and_mul>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000615778,
+          "cumulative_s": 0.000615778
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+          "line": 181,
+          "function": "apply_weights",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.00061164,
+          "cumulative_s": 0.026349134000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 2957,
+          "function": "run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.0006029140000000001,
+          "cumulative_s": 0.0012327570000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._get_tracing_state>",
+          "primitive_calls": 1196,
+          "calls": 1196,
+          "self_s": 0.000585504,
+          "cumulative_s": 0.000585504
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'transpose' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_s": 0.000513539,
+          "cumulative_s": 0.000513539
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 157,
+          "function": "get_persistent",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0004988740000000001,
+          "cumulative_s": 0.0028783380000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1179,
+          "function": "__len__",
+          "primitive_calls": 388,
+          "calls": 388,
+          "self_s": 0.0004917750000000001,
+          "cumulative_s": 0.0008510070000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/utils/torch_utils.py",
+          "line": 803,
+          "function": "current_stream",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.00047684100000000004,
+          "cumulative_s": 0.0011296090000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/language/core.py",
+          "line": 352,
+          "function": "_unwrap_if_constexpr",
+          "primitive_calls": 622,
+          "calls": 622,
+          "self_s": 0.00046624300000000003,
+          "cumulative_s": 0.000798717
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 114,
+          "function": "__eq__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.000462855,
+          "cumulative_s": 0.0006327440000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 1780,
+          "calls": 1785,
+          "self_s": 0.00045771900000000004,
+          "cumulative_s": 0.001315444
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_ops.py",
+          "line": 1267,
+          "function": "__call__",
+          "primitive_calls": 400,
+          "calls": 672,
+          "self_s": 0.00044676100000000005,
+          "cumulative_s": 0.080288438
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1044,
+          "function": "split",
+          "primitive_calls": 96,
+          "calls": 96,
+          "self_s": 0.00044578300000000005,
+          "cumulative_s": 0.0011449680000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+          "line": 23,
+          "function": "chunk_gated_delta_rule_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00043464,
+          "cumulative_s": 0.029650926
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 90,
+          "function": "<genexpr>",
+          "primitive_calls": 1056,
+          "calls": 1056,
+          "self_s": 0.0004327,
+          "cumulative_s": 0.000749415
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/knobs.py",
+          "line": 422,
+          "function": "__call__",
+          "primitive_calls": 930,
+          "calls": 930,
+          "self_s": 0.00042895600000000003,
+          "cumulative_s": 0.00042895600000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 724,
+          "function": "paged_run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.000419782,
+          "cumulative_s": 0.000443053
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+          "line": 366,
+          "function": "__call__",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00039898500000000003,
+          "cumulative_s": 0.003956084
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 1302,
+          "calls": 1303,
+          "self_s": 0.00039412800000000005,
+          "cumulative_s": 0.0005871870000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 640,
+          "function": "func_impl_fn",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.000379854,
+          "cumulative_s": 0.014733519
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 2008,
+          "calls": 2008,
+          "self_s": 0.00037957100000000004,
+          "cumulative_s": 0.00037957100000000004
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 119,
+          "function": "__hash__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.00037421400000000005,
+          "cumulative_s": 0.000499554
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+          "line": 320,
+          "function": "chunk_gated_delta_rule_fwd_h",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000373753,
+          "cumulative_s": 0.006099820000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/__init__.py",
+          "line": 1203,
+          "function": "current_device",
+          "primitive_calls": 513,
+          "calls": 513,
+          "self_s": 0.000363948,
+          "cumulative_s": 0.00114936
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 689,
+          "function": "forward",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.00035616500000000003,
+          "cumulative_s": 0.132596655
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 341,
+          "function": "all_kwargs",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.00035401400000000004,
+          "cumulative_s": 0.00035401400000000004
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+          "line": 119,
+          "function": "recompute_w_u_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00033677100000000003,
+          "cumulative_s": 0.004607885
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.split_with_sizes>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.00033278800000000004,
+          "cumulative_s": 0.00033278800000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'view' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 146,
+          "calls": 146,
+          "self_s": 0.000329559,
+          "cumulative_s": 0.000512015
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'unsqueeze' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 240,
+          "calls": 240,
+          "self_s": 0.000324526,
+          "cumulative_s": 0.000324526
+        }
+      ],
+      "profiler_total_s": 0.13730101800000008,
+      "primitive_calls": 76019,
+      "total_calls": 78014
+    },
+    "variable-before": {
+      "before": {
+        "computed_tokens": 7840,
+        "prompt_tokens": 131072
+      },
+      "row": {
+        "row_id": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-before/129",
+        "phase": "holdout",
+        "engine_id": "cddd36bcb04344feb98fe443eba29132",
+        "rollout_id": "diagnostic-variable-before",
+        "cache_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-before/long",
+        "step_index": 129,
+        "warmup": false,
+        "identity": {
+          "concurrency": 4,
+          "context_window": 131328,
+          "cuda_graph": false,
+          "draft": 0,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "kv_dtype": "fp8",
+          "model": "models/qwen38-int4-redhat",
+          "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+          "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+          "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+          "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+        },
+        "budget_mode": "total-cycle",
+        "calibration_kind": "diagnostic",
+        "holdout_protocol": "unscored-cpu-profile",
+        "proposed_total_tokens": 128,
+        "requests": [
+          {
+            "request_id": "diagnostic-variable-before/long/0",
+            "computed_before": 7840,
+            "prefill_end": 131072,
+            "scheduled_tokens": 128,
+            "stage": "prefill",
+            "output_tokens_before": 0
+          }
+        ],
+        "features": {
+          "batch_num_tokens": 128,
+          "batch_num_prefill_tokens": 128,
+          "batch_num_decode_tokens": 0,
+          "batch_decode_context": 0,
+          "batch_prefill_context": 7840
+        },
+        "preempted_request_ids": [],
+        "timing": {
+          "start_s": 20966602.893590756,
+          "end_s": 20966603.06110824,
+          "batch_execution_time": 0.16751748323440552,
+          "boundary": "schedule-entry-to-native-update-exit",
+          "completed_model_step": true
+        }
+      },
+      "functions": [
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.010703382000000001,
+          "cumulative_s": 0.010703382000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1245,
+          "function": "_forward_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.007731394000000001,
+          "cumulative_s": 0.06544799600000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 708,
+          "function": "run",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0075344060000000004,
+          "cumulative_s": 0.028986471000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 850,
+          "calls": 850,
+          "self_s": 0.006826744,
+          "cumulative_s": 0.006826744
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 212,
+          "function": "run",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.006251153000000001,
+          "cumulative_s": 0.024665976000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py",
+          "line": 43,
+          "function": "fused_add_rms_norm",
+          "primitive_calls": 128,
+          "calls": 128,
+          "self_s": 0.005786055,
+          "cumulative_s": 0.015523424000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method cuda_utils.launch>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.005088137,
+          "cumulative_s": 0.005617004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.004130175000000001,
+          "cumulative_s": 0.021476064000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method triton._C.libtriton.native_specialize_impl>",
+          "primitive_calls": 4986,
+          "calls": 4986,
+          "self_s": 0.003016579,
+          "cumulative_s": 0.003016579
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 752,
+          "function": "apply_gptq_marlin_linear",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.002900226,
+          "cumulative_s": 0.027870125000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 456,
+          "function": "run",
+          "primitive_calls": 336,
+          "calls": 336,
+          "self_s": 0.0028329740000000003,
+          "cumulative_s": 0.030314177
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 704,
+          "calls": 704,
+          "self_s": 0.00280113,
+          "cumulative_s": 0.00280113
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty>",
+          "primitive_calls": 453,
+          "calls": 453,
+          "self_s": 0.002699546,
+          "cumulative_s": 0.002699546
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._disabled_torch_function_impl>",
+          "primitive_calls": 192,
+          "calls": 192,
+          "self_s": 0.002454894,
+          "cumulative_s": 0.002454894
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py",
+          "line": 159,
+          "function": "forward_native",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.002387001,
+          "cumulative_s": 0.022588552
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py",
+          "line": 316,
+          "function": "allocate_scratch",
+          "primitive_calls": 930,
+          "calls": 930,
+          "self_s": 0.0023279200000000002,
+          "cumulative_s": 0.0023279200000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<function Event.synchronize at 0x76a5f1e7f560>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.002239509,
+          "cumulative_s": 0.002239509
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'contiguous' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1010,
+          "calls": 1010,
+          "self_s": 0.002173335,
+          "cumulative_s": 0.002173335
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.002146383,
+          "cumulative_s": 0.002146383
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 370,
+          "function": "<lambda>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.002002312,
+          "cumulative_s": 0.042648748
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1782,
+          "function": "_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.00193483,
+          "cumulative_s": 0.151690232
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 88,
+          "function": "wrapper",
+          "primitive_calls": 96,
+          "calls": 192,
+          "self_s": 0.0019047640000000002,
+          "cumulative_s": 0.046853341
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty_like>",
+          "primitive_calls": 305,
+          "calls": 305,
+          "self_s": 0.0017252020000000001,
+          "cumulative_s": 0.0017252020000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0017239450000000002,
+          "cumulative_s": 0.0017239450000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1954,
+          "function": "__getattr__",
+          "primitive_calls": 2781,
+          "calls": 2781,
+          "self_s": 0.0015532100000000002,
+          "cumulative_s": 0.0015532100000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'pow' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001533847,
+          "cumulative_s": 0.001533847
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 574,
+          "function": "compute_cache_key",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0014704310000000001,
+          "cumulative_s": 0.002318332
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1774,
+          "function": "_wrapped_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.0014223,
+          "cumulative_s": 0.15170608200000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 1109,
+          "function": "__call__",
+          "primitive_calls": 425,
+          "calls": 425,
+          "self_s": 0.001387543,
+          "cumulative_s": 0.0028814630000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 418,
+          "function": "get_marlin_workspace",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.001246726,
+          "cumulative_s": 0.005762103
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 1839,
+          "calls": 1839,
+          "self_s": 0.001236397,
+          "cumulative_s": 0.0012475510000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 6779,
+          "calls": 6779,
+          "self_s": 0.001225687,
+          "cumulative_s": 0.00127078
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 5098,
+          "calls": 5098,
+          "self_s": 0.001128558,
+          "cumulative_s": 0.0011831650000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.rsqrt>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0010826990000000001,
+          "cumulative_s": 0.0010826990000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'size' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1072,
+          "calls": 1072,
+          "self_s": 0.001061242,
+          "cumulative_s": 0.001268896
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros>",
+          "primitive_calls": 50,
+          "calls": 50,
+          "self_s": 0.001026271,
+          "cumulative_s": 0.001026271
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/compiler/compiler.py",
+          "line": 482,
+          "function": "launch_metadata",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0010233240000000002,
+          "cumulative_s": 0.0012951990000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 895,
+          "function": "forward_cuda",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000985944,
+          "cumulative_s": 0.097054965
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/ops/causal_conv1d.py",
+          "line": 481,
+          "function": "causal_conv1d_fn",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0009722660000000001,
+          "cumulative_s": 0.007476161
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method apply>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000964043,
+          "cumulative_s": 0.039432975
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py",
+          "line": 313,
+          "function": "__call__",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.000909525,
+          "cumulative_s": 0.008854449
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'stride' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1537,
+          "calls": 1537,
+          "self_s": 0.0008739360000000001,
+          "cumulative_s": 0.0008739360000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'new_empty' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 162,
+          "calls": 162,
+          "self_s": 0.0008709880000000001,
+          "cumulative_s": 0.0008709880000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros_like>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0008329020000000001,
+          "cumulative_s": 0.0008329020000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 321,
+          "function": "dispatch",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.000813111,
+          "cumulative_s": 0.001376361
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 549,
+          "function": "forward",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000803738,
+          "cumulative_s": 0.150335724
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 130,
+          "function": "get_persistent_resource",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0008032540000000001,
+          "cumulative_s": 0.002615341
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.qwen_gdn_attention_core>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0007976820000000001,
+          "cumulative_s": 0.067052025
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1894,
+          "function": "qwen_gdn_attention_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0007633080000000001,
+          "cumulative_s": 0.06625434300000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+          "line": 152,
+          "function": "fused_post_conv_prep",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000731505,
+          "cumulative_s": 0.005746274
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 440,
+          "function": "_marlin_gemm",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0007119250000000001,
+          "cumulative_s": 0.017345889
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+          "line": 181,
+          "function": "apply_weights",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000680632,
+          "cumulative_s": 0.029375362000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._get_tracing_state>",
+          "primitive_calls": 1196,
+          "calls": 1196,
+          "self_s": 0.000669221,
+          "cumulative_s": 0.000669221
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.silu_and_mul>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000664968,
+          "cumulative_s": 0.000664968
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 2957,
+          "function": "run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.000626521,
+          "cumulative_s": 0.001291644
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 1789,
+          "calls": 1794,
+          "self_s": 0.000610298,
+          "cumulative_s": 0.0016592570000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1179,
+          "function": "__len__",
+          "primitive_calls": 388,
+          "calls": 388,
+          "self_s": 0.000606091,
+          "cumulative_s": 0.0010267660000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'transpose' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_s": 0.0005855120000000001,
+          "cumulative_s": 0.0005855120000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/language/core.py",
+          "line": 352,
+          "function": "_unwrap_if_constexpr",
+          "primitive_calls": 622,
+          "calls": 622,
+          "self_s": 0.000563483,
+          "cumulative_s": 0.000953121
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 157,
+          "function": "get_persistent",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000549447,
+          "cumulative_s": 0.0031647880000000004
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/utils/torch_utils.py",
+          "line": 803,
+          "function": "current_stream",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.00053993,
+          "cumulative_s": 0.001268645
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/knobs.py",
+          "line": 422,
+          "function": "__call__",
+          "primitive_calls": 930,
+          "calls": 930,
+          "self_s": 0.000528867,
+          "cumulative_s": 0.000528867
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 114,
+          "function": "__eq__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.000519958,
+          "cumulative_s": 0.000696862
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 1302,
+          "calls": 1303,
+          "self_s": 0.000515205,
+          "cumulative_s": 0.0007268750000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+          "line": 23,
+          "function": "chunk_gated_delta_rule_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000502946,
+          "cumulative_s": 0.036033527
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_ops.py",
+          "line": 1267,
+          "function": "__call__",
+          "primitive_calls": 400,
+          "calls": 672,
+          "self_s": 0.0005001010000000001,
+          "cumulative_s": 0.09311648600000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 90,
+          "function": "<genexpr>",
+          "primitive_calls": 1056,
+          "calls": 1056,
+          "self_s": 0.00048428800000000004,
+          "cumulative_s": 0.0008397620000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1044,
+          "function": "split",
+          "primitive_calls": 96,
+          "calls": 96,
+          "self_s": 0.00047467,
+          "cumulative_s": 0.001255176
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 2011,
+          "calls": 2011,
+          "self_s": 0.000470842,
+          "cumulative_s": 0.000470842
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+          "line": 366,
+          "function": "__call__",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000450653,
+          "cumulative_s": 0.0044737100000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 724,
+          "function": "paged_run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.000449058,
+          "cumulative_s": 0.000472946
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/__init__.py",
+          "line": 1203,
+          "function": "current_device",
+          "primitive_calls": 513,
+          "calls": 513,
+          "self_s": 0.000446907,
+          "cumulative_s": 0.001397809
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+          "line": 320,
+          "function": "chunk_gated_delta_rule_fwd_h",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00042435700000000004,
+          "cumulative_s": 0.009184884
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 640,
+          "function": "func_impl_fn",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.00042178200000000005,
+          "cumulative_s": 0.016230308000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 119,
+          "function": "__hash__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.0004065,
+          "cumulative_s": 0.000536101
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 689,
+          "function": "forward",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.00039736800000000005,
+          "cumulative_s": 0.151548867
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 341,
+          "function": "all_kwargs",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.000394512,
+          "cumulative_s": 0.000394512
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+          "line": 119,
+          "function": "recompute_w_u_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00038065,
+          "cumulative_s": 0.005234692
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.split_with_sizes>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.00037196,
+          "cumulative_s": 0.00037196
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "primitive_calls": 2007,
+          "calls": 2007,
+          "self_s": 0.00037139000000000003,
+          "cumulative_s": 0.00037139000000000003
+        }
+      ],
+      "profiler_total_s": 0.16543587900000006,
+      "primitive_calls": 76049,
+      "total_calls": 78044
+    },
+    "variable-after-mixed": {
+      "before": {
+        "computed_tokens": 7840,
+        "prompt_tokens": 131072
+      },
+      "row": {
+        "row_id": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-after-mixed/145",
+        "phase": "holdout",
+        "engine_id": "cddd36bcb04344feb98fe443eba29132",
+        "rollout_id": "diagnostic-variable-after-mixed",
+        "cache_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-variable-after-mixed/long",
+        "step_index": 145,
+        "warmup": false,
+        "identity": {
+          "concurrency": 4,
+          "context_window": 131328,
+          "cuda_graph": false,
+          "draft": 0,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "kv_dtype": "fp8",
+          "model": "models/qwen38-int4-redhat",
+          "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+          "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+          "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+          "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+        },
+        "budget_mode": "total-cycle",
+        "calibration_kind": "diagnostic",
+        "holdout_protocol": "unscored-cpu-profile",
+        "proposed_total_tokens": 128,
+        "requests": [
+          {
+            "request_id": "diagnostic-variable-after-mixed/long/0",
+            "computed_before": 7840,
+            "prefill_end": 131072,
+            "scheduled_tokens": 128,
+            "stage": "prefill",
+            "output_tokens_before": 0
+          }
+        ],
+        "features": {
+          "batch_num_tokens": 128,
+          "batch_num_prefill_tokens": 128,
+          "batch_num_decode_tokens": 0,
+          "batch_decode_context": 0,
+          "batch_prefill_context": 7840
+        },
+        "preempted_request_ids": [],
+        "timing": {
+          "start_s": 20966607.054434832,
+          "end_s": 20966607.2254866,
+          "batch_execution_time": 0.1710517667233944,
+          "boundary": "schedule-entry-to-native-update-exit",
+          "completed_model_step": true
+        }
+      },
+      "functions": [
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.011126375,
+          "cumulative_s": 0.011126375
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1245,
+          "function": "_forward_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.008121655,
+          "cumulative_s": 0.06546284000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 708,
+          "function": "run",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0077116020000000006,
+          "cumulative_s": 0.027458631
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 850,
+          "calls": 850,
+          "self_s": 0.0070341430000000005,
+          "cumulative_s": 0.0070341430000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 212,
+          "function": "run",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.00642161,
+          "cumulative_s": 0.022951230000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py",
+          "line": 43,
+          "function": "fused_add_rms_norm",
+          "primitive_calls": 128,
+          "calls": 128,
+          "self_s": 0.005908967,
+          "cumulative_s": 0.015988483
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method cuda_utils.launch>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.005229493,
+          "cumulative_s": 0.0057662600000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.004276292,
+          "cumulative_s": 0.022381008
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method triton._C.libtriton.native_specialize_impl>",
+          "primitive_calls": 4986,
+          "calls": 4986,
+          "self_s": 0.0030532700000000003,
+          "cumulative_s": 0.0030532700000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 752,
+          "function": "apply_gptq_marlin_linear",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.003020506,
+          "cumulative_s": 0.029045708000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 704,
+          "calls": 704,
+          "self_s": 0.0029189710000000002,
+          "cumulative_s": 0.0029189710000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 456,
+          "function": "run",
+          "primitive_calls": 336,
+          "calls": 336,
+          "self_s": 0.002859154,
+          "cumulative_s": 0.028673362
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty>",
+          "primitive_calls": 453,
+          "calls": 453,
+          "self_s": 0.002811446,
+          "cumulative_s": 0.002811446
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._disabled_torch_function_impl>",
+          "primitive_calls": 192,
+          "calls": 192,
+          "self_s": 0.002639015,
+          "cumulative_s": 0.002639015
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py",
+          "line": 159,
+          "function": "forward_native",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.002498204,
+          "cumulative_s": 0.023507196
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0022539780000000002,
+          "cumulative_s": 0.0022539780000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'contiguous' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1010,
+          "calls": 1010,
+          "self_s": 0.002252988,
+          "cumulative_s": 0.002252988
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<function Event.synchronize at 0x76a5f1e7f560>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.0021322570000000002,
+          "cumulative_s": 0.0021322570000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 370,
+          "function": "<lambda>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0020548930000000003,
+          "cumulative_s": 0.041443041
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1782,
+          "function": "_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.001992723,
+          "cumulative_s": 0.155245241
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 88,
+          "function": "wrapper",
+          "primitive_calls": 96,
+          "calls": 192,
+          "self_s": 0.0019578390000000003,
+          "cumulative_s": 0.045596042
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0018290670000000002,
+          "cumulative_s": 0.0018290670000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty_like>",
+          "primitive_calls": 305,
+          "calls": 305,
+          "self_s": 0.001753189,
+          "cumulative_s": 0.001753189
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1954,
+          "function": "__getattr__",
+          "primitive_calls": 2781,
+          "calls": 2781,
+          "self_s": 0.001608599,
+          "cumulative_s": 0.001608599
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'pow' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001567596,
+          "cumulative_s": 0.001567596
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 574,
+          "function": "compute_cache_key",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0015131340000000002,
+          "cumulative_s": 0.002372538
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1774,
+          "function": "_wrapped_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.001490678,
+          "cumulative_s": 0.155265484
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 1109,
+          "function": "__call__",
+          "primitive_calls": 425,
+          "calls": 425,
+          "self_s": 0.001460679,
+          "cumulative_s": 0.0030067970000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 418,
+          "function": "get_marlin_workspace",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0013194510000000001,
+          "cumulative_s": 0.006082149
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 6779,
+          "calls": 6779,
+          "self_s": 0.00128655,
+          "cumulative_s": 0.001337682
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 1839,
+          "calls": 1839,
+          "self_s": 0.0012532910000000001,
+          "cumulative_s": 0.00126479
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 5098,
+          "calls": 5098,
+          "self_s": 0.001181973,
+          "cumulative_s": 0.0012380000000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.rsqrt>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001157484,
+          "cumulative_s": 0.001157484
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'size' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1072,
+          "calls": 1072,
+          "self_s": 0.001108574,
+          "cumulative_s": 0.00132734
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros>",
+          "primitive_calls": 50,
+          "calls": 50,
+          "self_s": 0.0010732180000000001,
+          "cumulative_s": 0.0010732180000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 895,
+          "function": "forward_cuda",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.001066127,
+          "cumulative_s": 0.09840288300000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/compiler/compiler.py",
+          "line": 482,
+          "function": "launch_metadata",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.001059594,
+          "cumulative_s": 0.001343863
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/ops/causal_conv1d.py",
+          "line": 481,
+          "function": "causal_conv1d_fn",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0010150670000000001,
+          "cumulative_s": 0.007841417
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method apply>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0009755470000000001,
+          "cumulative_s": 0.038099295000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'new_empty' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 162,
+          "calls": 162,
+          "self_s": 0.0009053030000000001,
+          "cumulative_s": 0.0009053030000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py",
+          "line": 313,
+          "function": "__call__",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0008922270000000001,
+          "cumulative_s": 0.0067929570000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'stride' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1537,
+          "calls": 1537,
+          "self_s": 0.000891797,
+          "cumulative_s": 0.000891797
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros_like>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000871083,
+          "cumulative_s": 0.000871083
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 130,
+          "function": "get_persistent_resource",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0008632980000000001,
+          "cumulative_s": 0.0027501550000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 321,
+          "function": "dispatch",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.000851973,
+          "cumulative_s": 0.001441905
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 549,
+          "function": "forward",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.0008226990000000001,
+          "cumulative_s": 0.15380553200000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.qwen_gdn_attention_core>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0008145470000000001,
+          "cumulative_s": 0.067122201
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1894,
+          "function": "qwen_gdn_attention_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000798307,
+          "cumulative_s": 0.06630765400000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+          "line": 152,
+          "function": "fused_post_conv_prep",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000794319,
+          "cumulative_s": 0.006034342000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 440,
+          "function": "_marlin_gemm",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000725259,
+          "cumulative_s": 0.018104716
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+          "line": 181,
+          "function": "apply_weights",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000723931,
+          "cumulative_s": 0.030632837000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.silu_and_mul>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000694308,
+          "cumulative_s": 0.000694308
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._get_tracing_state>",
+          "primitive_calls": 1196,
+          "calls": 1196,
+          "self_s": 0.000693887,
+          "cumulative_s": 0.000693887
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 2957,
+          "function": "run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.0006476780000000001,
+          "cumulative_s": 0.001332478
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 1789,
+          "calls": 1794,
+          "self_s": 0.0006408840000000001,
+          "cumulative_s": 0.001732278
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1179,
+          "function": "__len__",
+          "primitive_calls": 388,
+          "calls": 388,
+          "self_s": 0.0006311730000000001,
+          "cumulative_s": 0.0010681970000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'transpose' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_s": 0.0006050830000000001,
+          "cumulative_s": 0.0006050830000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 157,
+          "function": "get_persistent",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0005962340000000001,
+          "cumulative_s": 0.0033463890000000004
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/language/core.py",
+          "line": 352,
+          "function": "_unwrap_if_constexpr",
+          "primitive_calls": 622,
+          "calls": 622,
+          "self_s": 0.000583043,
+          "cumulative_s": 0.0010017790000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/utils/torch_utils.py",
+          "line": 803,
+          "function": "current_stream",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000556809,
+          "cumulative_s": 0.0013303450000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_ops.py",
+          "line": 1267,
+          "function": "__call__",
+          "primitive_calls": 400,
+          "calls": 672,
+          "self_s": 0.000537247,
+          "cumulative_s": 0.094281585
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/knobs.py",
+          "line": 422,
+          "function": "__call__",
+          "primitive_calls": 930,
+          "calls": 930,
+          "self_s": 0.0005367670000000001,
+          "cumulative_s": 0.0005367670000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 114,
+          "function": "__eq__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.000535009,
+          "cumulative_s": 0.0007178480000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 1302,
+          "calls": 1303,
+          "self_s": 0.000530636,
+          "cumulative_s": 0.000747888
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+          "line": 23,
+          "function": "chunk_gated_delta_rule_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0005168120000000001,
+          "cumulative_s": 0.034569894000000004
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1044,
+          "function": "split",
+          "primitive_calls": 96,
+          "calls": 96,
+          "self_s": 0.000502674,
+          "cumulative_s": 0.0013071320000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 90,
+          "function": "<genexpr>",
+          "primitive_calls": 1056,
+          "calls": 1056,
+          "self_s": 0.0005004300000000001,
+          "cumulative_s": 0.000871901
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 640,
+          "function": "func_impl_fn",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.00046908000000000003,
+          "cumulative_s": 0.016815985000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 2011,
+          "calls": 2011,
+          "self_s": 0.00046822400000000005,
+          "cumulative_s": 0.00046822400000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 724,
+          "function": "paged_run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.000465526,
+          "cumulative_s": 0.0004899980000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/__init__.py",
+          "line": 1203,
+          "function": "current_device",
+          "primitive_calls": 513,
+          "calls": 513,
+          "self_s": 0.000465161,
+          "cumulative_s": 0.001449832
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+          "line": 366,
+          "function": "__call__",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00045630800000000005,
+          "cumulative_s": 0.00455239
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+          "line": 320,
+          "function": "chunk_gated_delta_rule_fwd_h",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000434299,
+          "cumulative_s": 0.007065874000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 119,
+          "function": "__hash__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.00042001,
+          "cumulative_s": 0.0005548710000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 689,
+          "function": "forward",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.000418065,
+          "cumulative_s": 0.155098187
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 341,
+          "function": "all_kwargs",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.000402737,
+          "cumulative_s": 0.000402737
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'unsqueeze' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 240,
+          "calls": 240,
+          "self_s": 0.000393719,
+          "cumulative_s": 0.000393719
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.split_with_sizes>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000391482,
+          "cumulative_s": 0.000391482
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+          "line": 119,
+          "function": "recompute_w_u_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00038669800000000004,
+          "cumulative_s": 0.005362188
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "primitive_calls": 2007,
+          "calls": 2007,
+          "self_s": 0.000384399,
+          "cumulative_s": 0.000384399
+        }
+      ],
+      "profiler_total_s": 0.1688272810000001,
+      "primitive_calls": 76049,
+      "total_calls": 78044
+    },
+    "fixed-after-mixed": {
+      "before": {
+        "computed_tokens": 7840,
+        "prompt_tokens": 131072
+      },
+      "row": {
+        "row_id": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-after-mixed/212",
+        "phase": "holdout",
+        "engine_id": "cddd36bcb04344feb98fe443eba29132",
+        "rollout_id": "diagnostic-fixed-after-mixed",
+        "cache_salt": "cddd36bcb04344feb98fe443eba29132/diagnostic-fixed-after-mixed/long",
+        "step_index": 212,
+        "warmup": false,
+        "identity": {
+          "concurrency": 4,
+          "context_window": 131328,
+          "cuda_graph": false,
+          "draft": 0,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "kv_dtype": "fp8",
+          "model": "models/qwen38-int4-redhat",
+          "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+          "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+          "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+          "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+        },
+        "budget_mode": "total-cycle",
+        "calibration_kind": "diagnostic",
+        "holdout_protocol": "unscored-cpu-profile",
+        "proposed_total_tokens": 128,
+        "requests": [
+          {
+            "request_id": "diagnostic-fixed-after-mixed/long/0",
+            "computed_before": 7840,
+            "prefill_end": 131072,
+            "scheduled_tokens": 128,
+            "stage": "prefill",
+            "output_tokens_before": 0
+          }
+        ],
+        "features": {
+          "batch_num_tokens": 128,
+          "batch_num_prefill_tokens": 128,
+          "batch_num_decode_tokens": 0,
+          "batch_decode_context": 0,
+          "batch_prefill_context": 7840
+        },
+        "preempted_request_ids": [],
+        "timing": {
+          "start_s": 20966614.278554104,
+          "end_s": 20966614.41966126,
+          "batch_execution_time": 0.14110715687274933,
+          "boundary": "schedule-entry-to-native-update-exit",
+          "completed_model_step": true
+        }
+      },
+      "functions": [
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.009685609000000001,
+          "cumulative_s": 0.009685609000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1245,
+          "function": "_forward_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.006767373,
+          "cumulative_s": 0.056098377000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 708,
+          "function": "run",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.006314800000000001,
+          "cumulative_s": 0.022574904
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 850,
+          "calls": 850,
+          "self_s": 0.005946318000000001,
+          "cumulative_s": 0.005946318000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 212,
+          "function": "run",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.005608358,
+          "cumulative_s": 0.020014392000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py",
+          "line": 43,
+          "function": "fused_add_rms_norm",
+          "primitive_calls": 128,
+          "calls": 128,
+          "self_s": 0.005272205,
+          "cumulative_s": 0.014290024
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method cuda_utils.launch>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.004228906,
+          "cumulative_s": 0.0046603600000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.marlin_gemm>",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.00372959,
+          "cumulative_s": 0.019536524
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 752,
+          "function": "apply_gptq_marlin_linear",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0026254710000000003,
+          "cumulative_s": 0.025334108
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method triton._C.libtriton.native_specialize_impl>",
+          "primitive_calls": 4986,
+          "calls": 4986,
+          "self_s": 0.00254016,
+          "cumulative_s": 0.00254016
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 456,
+          "function": "run",
+          "primitive_calls": 336,
+          "calls": 336,
+          "self_s": 0.0025354310000000003,
+          "cumulative_s": 0.025102931000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reshape' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 704,
+          "calls": 704,
+          "self_s": 0.0025326040000000004,
+          "cumulative_s": 0.0025326040000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty>",
+          "primitive_calls": 453,
+          "calls": 453,
+          "self_s": 0.002352905,
+          "cumulative_s": 0.002352905
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<function Event.synchronize at 0x76a5f1e7f560>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.002238898,
+          "cumulative_s": 0.002238898
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py",
+          "line": 159,
+          "function": "forward_native",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.002165306,
+          "cumulative_s": 0.020584496
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._disabled_torch_function_impl>",
+          "primitive_calls": 192,
+          "calls": 192,
+          "self_s": 0.002160018,
+          "cumulative_s": 0.002160018
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001969934,
+          "cumulative_s": 0.001969934
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'contiguous' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1010,
+          "calls": 1010,
+          "self_s": 0.0019405160000000002,
+          "cumulative_s": 0.0019405160000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 88,
+          "function": "wrapper",
+          "primitive_calls": 96,
+          "calls": 192,
+          "self_s": 0.0017054680000000001,
+          "cumulative_s": 0.039853829
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1782,
+          "function": "_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.0017052920000000002,
+          "cumulative_s": 0.134396601
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 370,
+          "function": "<lambda>",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0016930430000000002,
+          "cumulative_s": 0.03472544
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'mean' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001583283,
+          "cumulative_s": 0.001583283
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.empty_like>",
+          "primitive_calls": 305,
+          "calls": 305,
+          "self_s": 0.0015266910000000002,
+          "cumulative_s": 0.0015266910000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1954,
+          "function": "__getattr__",
+          "primitive_calls": 2781,
+          "calls": 2781,
+          "self_s": 0.0014014630000000001,
+          "cumulative_s": 0.0014014630000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'pow' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001379386,
+          "cumulative_s": 0.001379386
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py",
+          "line": 1774,
+          "function": "_wrapped_call_impl",
+          "primitive_calls": 2,
+          "calls": 804,
+          "self_s": 0.0012834340000000002,
+          "cumulative_s": 0.134403627
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 574,
+          "function": "compute_cache_key",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.001238738,
+          "cumulative_s": 0.001962194
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py",
+          "line": 1109,
+          "function": "__call__",
+          "primitive_calls": 425,
+          "calls": 425,
+          "self_s": 0.001181957,
+          "cumulative_s": 0.0023426750000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 418,
+          "function": "get_marlin_workspace",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.001132509,
+          "cumulative_s": 0.005312205
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 6779,
+          "calls": 6779,
+          "self_s": 0.0010492470000000001,
+          "cumulative_s": 0.0010650500000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 1839,
+          "calls": 1839,
+          "self_s": 0.0010477280000000002,
+          "cumulative_s": 0.001058265
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 5098,
+          "calls": 5098,
+          "self_s": 0.001011876,
+          "cumulative_s": 0.001064277
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.rsqrt>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.001009219,
+          "cumulative_s": 0.001009219
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'size' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1072,
+          "calls": 1072,
+          "self_s": 0.0009523330000000001,
+          "cumulative_s": 0.001131594
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros>",
+          "primitive_calls": 50,
+          "calls": 50,
+          "self_s": 0.0008720240000000001,
+          "cumulative_s": 0.0008720240000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 895,
+          "function": "forward_cuda",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000867728,
+          "cumulative_s": 0.084186436
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/ops/causal_conv1d.py",
+          "line": 481,
+          "function": "causal_conv1d_fn",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000859506,
+          "cumulative_s": 0.0065826700000000005
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/compiler/compiler.py",
+          "line": 482,
+          "function": "launch_metadata",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.000851416,
+          "cumulative_s": 0.0010839270000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method apply>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000823288,
+          "cumulative_s": 0.033108054000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'new_empty' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 162,
+          "calls": 162,
+          "self_s": 0.0007883110000000001,
+          "cumulative_s": 0.0007883110000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'stride' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 1537,
+          "calls": 1537,
+          "self_s": 0.0007721500000000001,
+          "cumulative_s": 0.0007721500000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 130,
+          "function": "get_persistent_resource",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0007606300000000001,
+          "cumulative_s": 0.0024386940000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.zeros_like>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0007336360000000001,
+          "cumulative_s": 0.0007336360000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 321,
+          "function": "dispatch",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.0007313850000000001,
+          "cumulative_s": 0.001244688
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 549,
+          "function": "forward",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000723786,
+          "cumulative_s": 0.133326361
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py",
+          "line": 313,
+          "function": "__call__",
+          "primitive_calls": 465,
+          "calls": 465,
+          "self_s": 0.0007201950000000001,
+          "cumulative_s": 0.005493408
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops.vllm.qwen_gdn_attention_core>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0006861930000000001,
+          "cumulative_s": 0.057501648
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py",
+          "line": 1894,
+          "function": "qwen_gdn_attention_core",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0006791480000000001,
+          "cumulative_s": 0.056815455
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+          "line": 152,
+          "function": "fused_post_conv_prep",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.0006745420000000001,
+          "cumulative_s": 0.005186716
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py",
+          "line": 440,
+          "function": "_marlin_gemm",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000647725,
+          "cumulative_s": 0.015806934
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+          "line": 181,
+          "function": "apply_weights",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0006346580000000001,
+          "cumulative_s": 0.026740065
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._ops._C.silu_and_mul>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000599538,
+          "cumulative_s": 0.000599538
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 2957,
+          "function": "run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.0005911250000000001,
+          "cumulative_s": 0.0012236550000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch._C._get_tracing_state>",
+          "primitive_calls": 1196,
+          "calls": 1196,
+          "self_s": 0.000590797,
+          "cumulative_s": 0.000590797
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'transpose' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "self_s": 0.000518365,
+          "cumulative_s": 0.000518365
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/workspace.py",
+          "line": 157,
+          "function": "get_persistent",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.0005038250000000001,
+          "cumulative_s": 0.002942519
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1179,
+          "function": "__len__",
+          "primitive_calls": 388,
+          "calls": 388,
+          "self_s": 0.0004996250000000001,
+          "cumulative_s": 0.000865423
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/utils/torch_utils.py",
+          "line": 803,
+          "function": "current_stream",
+          "primitive_calls": 256,
+          "calls": 256,
+          "self_s": 0.000488354,
+          "cumulative_s": 0.0011590720000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/language/core.py",
+          "line": 352,
+          "function": "_unwrap_if_constexpr",
+          "primitive_calls": 622,
+          "calls": 622,
+          "self_s": 0.00047686900000000005,
+          "cumulative_s": 0.000820871
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_ops.py",
+          "line": 1267,
+          "function": "__call__",
+          "primitive_calls": 400,
+          "calls": 672,
+          "self_s": 0.000473772,
+          "cumulative_s": 0.08135560800000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 114,
+          "function": "__eq__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.00047314300000000003,
+          "cumulative_s": 0.000639654
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 1780,
+          "calls": 1785,
+          "self_s": 0.00047216,
+          "cumulative_s": 0.001349872
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+          "line": 90,
+          "function": "<genexpr>",
+          "primitive_calls": 1056,
+          "calls": 1056,
+          "self_s": 0.00044753400000000003,
+          "cumulative_s": 0.000768902
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_tensor.py",
+          "line": 1044,
+          "function": "split",
+          "primitive_calls": 96,
+          "calls": 96,
+          "self_s": 0.00044122800000000005,
+          "cumulative_s": 0.0011407910000000002
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+          "line": 23,
+          "function": "chunk_gated_delta_rule_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000436626,
+          "cumulative_s": 0.030115855
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 1302,
+          "calls": 1303,
+          "self_s": 0.00043601200000000005,
+          "cumulative_s": 0.000630076
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/knobs.py",
+          "line": 422,
+          "function": "__call__",
+          "primitive_calls": 930,
+          "calls": 930,
+          "self_s": 0.000431454,
+          "cumulative_s": 0.000431454
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/flashinfer/prefill.py",
+          "line": 724,
+          "function": "paged_run",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_s": 0.00042101000000000004,
+          "cumulative_s": 0.000443752
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+          "line": 366,
+          "function": "__call__",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00040318,
+          "cumulative_s": 0.00405233
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py",
+          "line": 640,
+          "function": "func_impl_fn",
+          "primitive_calls": 129,
+          "calls": 129,
+          "self_s": 0.00039688900000000004,
+          "cumulative_s": 0.014787370000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 2008,
+          "calls": 2008,
+          "self_s": 0.00039057,
+          "cumulative_s": 0.00039057
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/__init__.py",
+          "line": 1203,
+          "function": "current_device",
+          "primitive_calls": 513,
+          "calls": 513,
+          "self_s": 0.00038929000000000004,
+          "cumulative_s": 0.001188763
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/cuda/streams.py",
+          "line": 119,
+          "function": "__hash__",
+          "primitive_calls": 512,
+          "calls": 512,
+          "self_s": 0.000381897,
+          "cumulative_s": 0.000501405
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+          "line": 320,
+          "function": "chunk_gated_delta_rule_fwd_h",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.000378874,
+          "cumulative_s": 0.006219855000000001
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+          "line": 689,
+          "function": "forward",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_s": 0.00036546200000000005,
+          "cumulative_s": 0.134312243
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py",
+          "line": 341,
+          "function": "all_kwargs",
+          "primitive_calls": 288,
+          "calls": 288,
+          "self_s": 0.00034961300000000003,
+          "cumulative_s": 0.00034961300000000003
+        },
+        {
+          "file": "/home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+          "line": 119,
+          "function": "recompute_w_u_fwd",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_s": 0.00034860800000000003,
+          "cumulative_s": 0.004652168
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'unsqueeze' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 240,
+          "calls": 240,
+          "self_s": 0.00033394800000000004,
+          "cumulative_s": 0.00033394800000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method torch.split_with_sizes>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "self_s": 0.000332463,
+          "cumulative_s": 0.000332463
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'view' of 'torch._C.TensorBase' objects>",
+          "primitive_calls": 146,
+          "calls": 146,
+          "self_s": 0.000319734,
+          "cumulative_s": 0.0005036190000000001
+        }
+      ],
+      "profiler_total_s": 0.13937815199999998,
+      "primitive_calls": 76019,
+      "total_calls": 78014
+    }
+  },
+  "intentional_aborts": {
+    "fixed-before": "intentional diagnostic stop after matched step",
+    "variable-before": "intentional diagnostic stop after matched step",
+    "warm-mixed": "intentional diagnostic stop after matched step",
+    "variable-after-mixed": "intentional diagnostic stop after matched step",
+    "fixed-after-mixed": "intentional diagnostic stop after matched step"
+  },
+  "driver_sha256": "fe4281725b3e3316f0dd7321896452519ab35fd469e31c4012e2a4d0ff30db27",
+  "matched_features_verified": true
+}

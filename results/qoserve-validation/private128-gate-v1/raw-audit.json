@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "scope": "Correctness gate only, no efficacy conclusion.",
+  "archive_sha256": "27dda852da27e1b0b42b7bdc590fe49fe39677bd974c537e50db612c7fd952d8",
+  "verified_files": 109,
+  "code_gate": "passed",
+  "strict_tools": {
+    "warm24k": {
+      "strict_requests": 4,
+      "actual_prompt_tokens": [
+        24557,
+        24557,
+        24557,
+        24557
+      ]
+    },
+    "cold128k": {
+      "strict_requests": 1,
+      "actual_prompt_tokens": [
+        131049
+      ]
+    },
+    "resume-prime": {
+      "strict_requests": 1,
+      "actual_prompt_tokens": [
+        24557
+      ]
+    },
+    "resume128k": {
+      "strict_requests": 1,
+      "actual_prompt_tokens": [
+        131038
+      ]
+    }
+  },
+  "full_long_geometry": {
+    "131049": {
+      "request_id": "chatcmpl-866d495e7931192a-a0115824",
+      "first_computed": 0,
+      "final_computed": 131049,
+      "prefill_steps": 1087
+    },
+    "131038": {
+      "request_id": "chatcmpl-8658c649638809c2-b2765e19",
+      "first_computed": 23520,
+      "final_computed": 131038,
+      "prefill_steps": 891
+    }
+  },
+  "actual_steps": 3269,
+  "complete_requests": 8,
+  "maximum_actual_batch_tokens": 128
+}

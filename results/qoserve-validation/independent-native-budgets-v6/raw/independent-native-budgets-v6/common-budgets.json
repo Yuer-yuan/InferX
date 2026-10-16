@@ -1,0 +1,79 @@
+{
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "label": "independent proxy SLOs; not enterprise SLAs",
+  "quantile": "sorted[ceil(0.95*n)-1]",
+  "source_request_ids": {
+    "short": [
+      "native-budget-short-r0/measured/0",
+      "native-budget-short-r0/measured/1",
+      "native-budget-short-r0/measured/2",
+      "native-budget-short-r0/measured/3",
+      "native-budget-short-r0/measured/4",
+      "native-budget-short-r0/measured/5",
+      "native-budget-short-r0/measured/6",
+      "native-budget-short-r0/measured/7",
+      "native-budget-short-r0/measured/8",
+      "native-budget-short-r0/measured/9",
+      "native-budget-short-r0/measured/10",
+      "native-budget-short-r0/measured/11",
+      "native-budget-short-r0/measured/12",
+      "native-budget-short-r0/measured/13",
+      "native-budget-short-r0/measured/14",
+      "native-budget-short-r0/measured/15",
+      "native-budget-short-r0/measured/16",
+      "native-budget-short-r0/measured/17",
+      "native-budget-short-r0/measured/18",
+      "native-budget-short-r0/measured/19",
+      "native-budget-short-r0/measured/20",
+      "native-budget-short-r0/measured/21",
+      "native-budget-short-r0/measured/22",
+      "native-budget-short-r0/measured/23"
+    ],
+    "cold": [
+      "native-budget-cold-r0/measured/0",
+      "native-budget-cold-r1/measured/0",
+      "native-budget-cold-r2/measured/0"
+    ],
+    "resume": [
+      "native-budget-resume-r0/measured/0",
+      "native-budget-resume-r1/measured/0",
+      "native-budget-resume-r2/measured/0"
+    ]
+  },
+  "independent_native": {
+    "short_ttft_p95_s": 1.1832672767341137,
+    "short_model_tbt_p95_s": 0.09391435608267784,
+    "short_e2e_p95_s": 4.9092021733522415,
+    "long_median_s": {
+      "cold": 83.64537221938372,
+      "resume": 73.8801318705082
+    }
+  },
+  "interactive": {
+    "ttft_s": 1.7749009151011705,
+    "tbt_s": 0.14087153412401676,
+    "practical_e2e_s": 7.363803260028362
+  },
+  "long": {
+    "cold": {
+      "ttlt_s": 104.55671527422965,
+      "tbt_s": 0.563486136496067
+    },
+    "resume": {
+      "ttlt_s": 92.35016483813524,
+      "tbt_s": 0.563486136496067
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "basis_archive_sha256": "06c3edc0baf41e45c85768aa8a8e845ffe5efbf66d1515758aad3d23fd9caa52",
+  "basis_fit_sha256": "6a407319833db9828fc8b4a2b2fb7ef0e566b3563197a4562d93cb45b1c78660",
+  "basis_fit_path": "qoserve-validation/analysis/independent-profile-v5-fitted-profile.json",
+  "calibration_candidates": [
+    32,
+    64,
+    96,
+    128,
+    256,
+    384,
+    512,
+    768,
+    1024,
+    1280,
+    1536,
+    1792,
+    2048,
+    2552
+  ],
+  "train_decoder_geometries": [
+    {
+      "decoders": 0,
+      "context": 24557
+    },
+    {
+      "decoders": 1,
+      "context": 512
+    },
+    {
+      "decoders": 1,
+      "context": 24557
+    },
+    {
+      "decoders": 2,
+      "context": 24557
+    },
+    {
+      "decoders": 3,
+      "context": 24557
+    },
+    {
+      "decoders": 1,
+      "context": 65536
+    },
+    {
+      "decoders": 1,
+      "context": 131072
+    }
+  ],
+  "holdout_decoder_geometries": [
+    {
+      "decoders": 0,
+      "context": 24557
+    },
+    {
+      "decoders": 2,
+      "context": 24557
+    }
+  ],
+  "retain_initial_training": true,
+  "replace_initial_holdout": true,
+  "warmup_steps": 5,
+  "scope": "One bounded independent calibration repair. Original OLS/bins/policy unchanged; extra small calibration sizes are not new deployment candidates. Fresh original and extended candidate cycles qualify separately. Late homogeneous128 diagnostic is excluded from fitting and qualification.",
+  "holdout_candidate_cycles": [
+    {
+      "protocol": "original-cycle-v1",
+      "candidates": [
+        128,
+        256,
+        384,
+        512,
+        768,
+        1024,
+        1280,
+        1536,
+        1792,
+        2048,
+        2552
+      ]
+    },
+    {
+      "protocol": "remainder-cycle-v1",
+      "candidates": [
+        32,
+        64,
+        96,
+        128,
+        256,
+        384,
+        512,
+        768,
+        1024,
+        1280,
+        1536,
+        1792,
+        2048,
+        2552
+      ]
+    }
+  ],
+  "diagnostic_homogeneous_prefill_target": 128,
+  "separate_protocol_guard_required": true
+}

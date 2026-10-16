@@ -1,0 +1,1941 @@
+{
+  "status": "complete",
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "engine_id": "2ad5fdd290fa4e00ae4087029ec1e04f",
+  "rollouts": [
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-00-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-00-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-00-p512-d0/decoder",
+        "token_seed": 1042
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133632.3806837,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 1,
+          "time_unix_s": 1792133632.7110739,
+          "monotonic_s": 20967496.719916355,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 48,
+          "sm_clock_mhz": 2745,
+          "memory_clock_mhz": 10251,
+          "power_w": 89.082,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133632.712985
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-01-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-01-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-01-p512-d0/decoder",
+        "token_seed": 1043
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133632.714303,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 3,
+          "time_unix_s": 1792133632.8964903,
+          "monotonic_s": 20967496.905333135,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 52,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 145.144,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133632.8998985
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-02-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-02-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-02-p512-d0/decoder",
+        "token_seed": 1044
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133632.902972,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 5,
+          "time_unix_s": 1792133633.0979826,
+          "monotonic_s": 20967497.1068258,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 197.724,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133633.1226506
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-03-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-03-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-03-p512-d0/decoder",
+        "token_seed": 1045
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133633.1258018,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 7,
+          "time_unix_s": 1792133633.3225248,
+          "monotonic_s": 20967497.331367992,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 242.529,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133633.3423176
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-04-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 1,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-04-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-04-p512-d0/decoder",
+        "token_seed": 1046
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133633.3456569,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 9,
+          "time_unix_s": 1792133633.542194,
+          "monotonic_s": 20967497.551037073,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 320.161,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133633.545909
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-05-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-05-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-05-p512-d0/decoder",
+        "token_seed": 1047
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133633.5492706,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 11,
+          "time_unix_s": 1792133633.7430618,
+          "monotonic_s": 20967497.751904793,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 362.074,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133633.746853
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-06-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-06-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-06-p512-d0/decoder",
+        "token_seed": 1048
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133633.7502997,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 13,
+          "time_unix_s": 1792133633.9455595,
+          "monotonic_s": 20967497.954402428,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 358.523,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133633.9495
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-07-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-07-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-07-p512-d0/decoder",
+        "token_seed": 1049
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133633.9530408,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 15,
+          "time_unix_s": 1792133634.1478505,
+          "monotonic_s": 20967498.156693704,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 358.679,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133634.1519535
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-08-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-08-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-08-p512-d0/decoder",
+        "token_seed": 1050
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133634.1556213,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 17,
+          "time_unix_s": 1792133634.3505375,
+          "monotonic_s": 20967498.359380424,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 54,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 365.5,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133634.3546937
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-09-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-09-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-09-p512-d0/decoder",
+        "token_seed": 1051
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133634.3584454,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 19,
+          "time_unix_s": 1792133634.552115,
+          "monotonic_s": 20967498.560957935,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 370.789,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133634.5564246
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-10-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-10-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-10-p512-d0/decoder",
+        "token_seed": 1052
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133634.560269,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 21,
+          "time_unix_s": 1792133634.755819,
+          "monotonic_s": 20967498.76466212,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 370.088,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133634.7602322
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-11-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-11-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-11-p512-d0/decoder",
+        "token_seed": 1053
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133634.764158,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 23,
+          "time_unix_s": 1792133634.9579163,
+          "monotonic_s": 20967498.966759264,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 370.004,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133634.962338
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-12-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-12-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-12-p512-d0/decoder",
+        "token_seed": 1054
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133634.9663787,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 25,
+          "time_unix_s": 1792133635.1609027,
+          "monotonic_s": 20967499.169745587,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 369.629,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133635.1654844
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-13-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-13-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-13-p512-d0/decoder",
+        "token_seed": 1055
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133635.1696126,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 27,
+          "time_unix_s": 1792133635.3629003,
+          "monotonic_s": 20967499.371743128,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 369.458,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133635.3675878
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-14-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-14-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-14-p512-d0/decoder",
+        "token_seed": 1056
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133635.3718123,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 29,
+          "time_unix_s": 1792133635.56645,
+          "monotonic_s": 20967499.57529322,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 368.463,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133635.571243
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-15-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-15-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-15-p512-d0/decoder",
+        "token_seed": 1057
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133635.5756092,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 31,
+          "time_unix_s": 1792133635.7692542,
+          "monotonic_s": 20967499.778097175,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 57,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 367.76,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133635.7741578
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-16-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-16-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-16-p512-d0/decoder",
+        "token_seed": 1058
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133635.7786174,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 33,
+          "time_unix_s": 1792133635.991572,
+          "monotonic_s": 20967500.00041522,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 361.176,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133635.9965274
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-17-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-17-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-17-p512-d0/decoder",
+        "token_seed": 1059
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133636.0011249,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 35,
+          "time_unix_s": 1792133636.1959596,
+          "monotonic_s": 20967500.20480259,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 359.972,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133636.201044
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-18-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-18-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-18-p512-d0/decoder",
+        "token_seed": 1060
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133636.205724,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 37,
+          "time_unix_s": 1792133636.4012623,
+          "monotonic_s": 20967500.410105366,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 360.418,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133636.406434
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-19-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-19-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-19-p512-d0/decoder",
+        "token_seed": 1061
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133636.4111829,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 39,
+          "time_unix_s": 1792133636.6038158,
+          "monotonic_s": 20967500.612658713,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 57,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 357.711,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133636.6261292
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-20-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-20-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-20-p512-d0/decoder",
+        "token_seed": 1062
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133636.6310148,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 41,
+          "time_unix_s": 1792133636.8289065,
+          "monotonic_s": 20967500.837749586,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 57,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 350.353,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133636.8342614
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-21-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-21-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-21-p512-d0/decoder",
+        "token_seed": 1063
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133636.8392487,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 43,
+          "time_unix_s": 1792133637.0318017,
+          "monotonic_s": 20967501.040644675,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 55,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 349.659,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133637.041316
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-22-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-22-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-22-p512-d0/decoder",
+        "token_seed": 1064
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133637.046421,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 45,
+          "time_unix_s": 1792133637.2434437,
+          "monotonic_s": 20967501.252286695,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 56,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 361.35,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133637.2497864
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-23-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-23-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-23-p512-d0/decoder",
+        "token_seed": 1065
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133637.2549307,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 47,
+          "time_unix_s": 1792133637.4501576,
+          "monotonic_s": 20967501.459032748,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 57,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 361.062,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133637.48878
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-initial-pps-24-p512-d0",
+        "kind": "initial-pps",
+        "phase": "train",
+        "prefill_target": 512,
+        "decoders": 0,
+        "prompt_len": 512,
+        "warmup_steps": 0,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-24-p512-d0/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-initial-pps-24-p512-d0/decoder",
+        "token_seed": 1066
+      },
+      "status": "collected",
+      "rows": 1,
+      "started_unix": 1792133637.4941926,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 49,
+          "time_unix_s": 1792133637.7049036,
+          "monotonic_s": 20967501.713746816,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 57,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 345.337,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133637.710721
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-repair-holdout-33-d0-ctx24557",
+        "kind": "holdout",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "original-cycle-v1",
+        "candidates": [
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "warmup_steps": 5,
+        "decoder_prompt_len": 24557,
+        "decoder_max_tokens": 1024,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-33-d0-ctx24557/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-33-d0-ctx24557/decoder",
+        "token_seed": 1175
+      },
+      "status": "collected",
+      "rows": 186,
+      "started_unix": 1792133637.7855546,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 51,
+          "time_unix_s": 1792133637.9321327,
+          "monotonic_s": 20967501.940975517,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 49,
+          "sm_clock_mhz": 2730,
+          "memory_clock_mhz": 10251,
+          "power_w": 341.047,
+          "pstate": 2
+        },
+        {
+          "after_step": 76,
+          "time_unix_s": 1792133644.9486215,
+          "monotonic_s": 20967508.95746459,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 59,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 365.036,
+          "pstate": 2
+        },
+        {
+          "after_step": 101,
+          "time_unix_s": 1792133653.3810177,
+          "monotonic_s": 20967517.389860574,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 64,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 379.401,
+          "pstate": 2
+        },
+        {
+          "after_step": 126,
+          "time_unix_s": 1792133663.6774886,
+          "monotonic_s": 20967527.686331622,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 67,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 381.209,
+          "pstate": 2
+        },
+        {
+          "after_step": 151,
+          "time_unix_s": 1792133674.540298,
+          "monotonic_s": 20967538.549141016,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 66,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 393.225,
+          "pstate": 2
+        },
+        {
+          "after_step": 176,
+          "time_unix_s": 1792133686.1482522,
+          "monotonic_s": 20967550.15709516,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 67,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 347.855,
+          "pstate": 2
+        },
+        {
+          "after_step": 201,
+          "time_unix_s": 1792133700.0796492,
+          "monotonic_s": 20967564.088492174,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 68,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 394.17,
+          "pstate": 2
+        },
+        {
+          "after_step": 226,
+          "time_unix_s": 1792133715.441396,
+          "monotonic_s": 20967579.45023925,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 69,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 399.094,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133720.467905
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-repair-holdout-34-d2-ctx24557",
+        "kind": "holdout",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "original-cycle-v1",
+        "candidates": [
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 2,
+        "prompt_len": 131072,
+        "warmup_steps": 5,
+        "decoder_prompt_len": 24557,
+        "decoder_max_tokens": 1024,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-34-d2-ctx24557/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-34-d2-ctx24557/decoder",
+        "token_seed": 1176
+      },
+      "status": "collected",
+      "rows": 153,
+      "started_unix": 1792133731.1394107,
+      "decoder_preparation_steps": 9,
+      "gpu_telemetry": [
+        {
+          "after_step": 247,
+          "time_unix_s": 1792133731.3047097,
+          "monotonic_s": 20967595.313552048,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 64,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 380.761,
+          "pstate": 2
+        },
+        {
+          "after_step": 272,
+          "time_unix_s": 1792133738.5242326,
+          "monotonic_s": 20967602.533075757,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 71,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 391.289,
+          "pstate": 2
+        },
+        {
+          "after_step": 297,
+          "time_unix_s": 1792133747.1389177,
+          "monotonic_s": 20967611.147760753,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 74,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 406.109,
+          "pstate": 2
+        },
+        {
+          "after_step": 322,
+          "time_unix_s": 1792133757.6674395,
+          "monotonic_s": 20967621.676282503,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 72,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 387.681,
+          "pstate": 2
+        },
+        {
+          "after_step": 347,
+          "time_unix_s": 1792133768.77773,
+          "monotonic_s": 20967632.786573015,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 71,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 390.474,
+          "pstate": 2
+        },
+        {
+          "after_step": 372,
+          "time_unix_s": 1792133780.5912097,
+          "monotonic_s": 20967644.60005309,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 71,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 351.616,
+          "pstate": 2
+        },
+        {
+          "after_step": 397,
+          "time_unix_s": 1792133794.7135255,
+          "monotonic_s": 20967658.722368676,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 72,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 398.086,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 71,
+      "stop_reason": "native-preemption-with-held-decoders",
+      "preempted_request_ids": [
+        "envelope-validation-repair-holdout-34-d2-ctx24557/long/0"
+      ],
+      "capacity_snapshot": {
+        "free_blocks": 74,
+        "requests": {
+          "envelope-validation-repair-holdout-34-d2-ctx24557/decoder/0": {
+            "computed_tokens": 24710,
+            "prompt_tokens": 24557,
+            "output_tokens": 154,
+            "preemptions": 0,
+            "blocks": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                90
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                6
+              ],
+              [
+                7,
+                91,
+                95,
+                96,
+                97,
+                2,
+                3,
+                4,
+                89,
+                88,
+                87,
+                86,
+                85,
+                84,
+                83,
+                82
+              ]
+            ]
+          },
+          "envelope-validation-repair-holdout-34-d2-ctx24557/decoder/1": {
+            "computed_tokens": 24710,
+            "prompt_tokens": 24557,
+            "output_tokens": 154,
+            "preemptions": 0,
+            "blocks": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                81
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                80
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                79
+              ],
+              [
+                7,
+                91,
+                95,
+                96,
+                97,
+                2,
+                3,
+                4,
+                89,
+                88,
+                87,
+                86,
+                85,
+                84,
+                83,
+                78
+              ]
+            ]
+          },
+          "envelope-validation-repair-holdout-34-d2-ctx24557/long/0": {
+            "computed_tokens": 0,
+            "prompt_tokens": 131072,
+            "output_tokens": 0,
+            "preemptions": 1,
+            "blocks": [
+              [],
+              [],
+              [],
+              []
+            ]
+          }
+        }
+      },
+      "events": [],
+      "finished_unix": 1792133794.9483433
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-repair-holdout-35-d0-ctx24557",
+        "kind": "holdout",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "remainder-cycle-v1",
+        "candidates": [
+          32,
+          64,
+          96,
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 0,
+        "prompt_len": 131072,
+        "warmup_steps": 5,
+        "decoder_prompt_len": 24557,
+        "decoder_max_tokens": 1024,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-35-d0-ctx24557/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-35-d0-ctx24557/decoder",
+        "token_seed": 1177
+      },
+      "status": "collected",
+      "rows": 237,
+      "started_unix": 1792133795.0007699,
+      "decoder_preparation_steps": 0,
+      "gpu_telemetry": [
+        {
+          "after_step": 401,
+          "time_unix_s": 1792133795.1446645,
+          "monotonic_s": 20967659.15350724,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 62,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 334.853,
+          "pstate": 2
+        },
+        {
+          "after_step": 426,
+          "time_unix_s": 1792133800.9065309,
+          "monotonic_s": 20967664.91537385,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 64,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 420.801,
+          "pstate": 2
+        },
+        {
+          "after_step": 451,
+          "time_unix_s": 1792133807.6675894,
+          "monotonic_s": 20967671.676432487,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 76,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 389.329,
+          "pstate": 2
+        },
+        {
+          "after_step": 476,
+          "time_unix_s": 1792133815.3839424,
+          "monotonic_s": 20967679.39278551,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 71,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 331.945,
+          "pstate": 2
+        },
+        {
+          "after_step": 501,
+          "time_unix_s": 1792133824.2488668,
+          "monotonic_s": 20967688.257709287,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 68,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 371.511,
+          "pstate": 2
+        },
+        {
+          "after_step": 526,
+          "time_unix_s": 1792133834.1483462,
+          "monotonic_s": 20967698.15718899,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 73,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 413.104,
+          "pstate": 2
+        },
+        {
+          "after_step": 551,
+          "time_unix_s": 1792133843.1204023,
+          "monotonic_s": 20967707.129245557,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 73,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 402.753,
+          "pstate": 2
+        },
+        {
+          "after_step": 576,
+          "time_unix_s": 1792133852.7848935,
+          "monotonic_s": 20967716.79373587,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 69,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 342.558,
+          "pstate": 2
+        },
+        {
+          "after_step": 601,
+          "time_unix_s": 1792133864.3317149,
+          "monotonic_s": 20967728.340557806,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 70,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 348.98,
+          "pstate": 2
+        },
+        {
+          "after_step": 626,
+          "time_unix_s": 1792133877.2310493,
+          "monotonic_s": 20967741.239891656,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 68,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 378.49,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 97,
+      "stop_reason": "long-completed",
+      "events": [],
+      "finished_unix": 1792133882.1890893
+    },
+    {
+      "spec": {
+        "rollout_id": "envelope-validation-repair-holdout-36-d2-ctx24557",
+        "kind": "holdout",
+        "phase": "holdout",
+        "budget_mode": "total-cycle",
+        "holdout_protocol": "remainder-cycle-v1",
+        "candidates": [
+          32,
+          64,
+          96,
+          128,
+          256,
+          384,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2552
+        ],
+        "prefill_target": 128,
+        "decoders": 2,
+        "prompt_len": 131072,
+        "warmup_steps": 5,
+        "decoder_prompt_len": 24557,
+        "decoder_max_tokens": 1024,
+        "long_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-36-d2-ctx24557/long",
+        "decoder_salt": "2ad5fdd290fa4e00ae4087029ec1e04f/envelope-validation-repair-holdout-36-d2-ctx24557/decoder",
+        "token_seed": 1178
+      },
+      "status": "collected",
+      "rows": 195,
+      "started_unix": 1792133892.8621666,
+      "decoder_preparation_steps": 9,
+      "gpu_telemetry": [
+        {
+          "after_step": 648,
+          "time_unix_s": 1792133893.0179794,
+          "monotonic_s": 20967757.02682186,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 64,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 372.05,
+          "pstate": 2
+        },
+        {
+          "after_step": 673,
+          "time_unix_s": 1792133898.9842558,
+          "monotonic_s": 20967762.993098285,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 65,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 415.451,
+          "pstate": 2
+        },
+        {
+          "after_step": 698,
+          "time_unix_s": 1792133906.3221252,
+          "monotonic_s": 20967770.330968518,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 74,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 372.718,
+          "pstate": 2
+        },
+        {
+          "after_step": 723,
+          "time_unix_s": 1792133914.979912,
+          "monotonic_s": 20967778.988755137,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 70,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 239.867,
+          "pstate": 2
+        },
+        {
+          "after_step": 748,
+          "time_unix_s": 1792133924.7437077,
+          "monotonic_s": 20967788.75255028,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 64,
+          "sm_clock_mhz": 2715,
+          "memory_clock_mhz": 10251,
+          "power_w": 307.808,
+          "pstate": 2
+        },
+        {
+          "after_step": 773,
+          "time_unix_s": 1792133935.3962252,
+          "monotonic_s": 20967799.405068424,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 72,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 409.937,
+          "pstate": 2
+        },
+        {
+          "after_step": 798,
+          "time_unix_s": 1792133945.2278247,
+          "monotonic_s": 20967809.23666762,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 71,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 400.041,
+          "pstate": 2
+        },
+        {
+          "after_step": 823,
+          "time_unix_s": 1792133955.8034663,
+          "monotonic_s": 20967819.81230872,
+          "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+          "temperature_c": 66,
+          "sm_clock_mhz": 2700,
+          "memory_clock_mhz": 10251,
+          "power_w": 334.892,
+          "pstate": 2
+        }
+      ],
+      "free_blocks_before": 71,
+      "stop_reason": "native-preemption-with-held-decoders",
+      "preempted_request_ids": [
+        "envelope-validation-repair-holdout-36-d2-ctx24557/long/0"
+      ],
+      "capacity_snapshot": {
+        "free_blocks": 74,
+        "requests": {
+          "envelope-validation-repair-holdout-36-d2-ctx24557/decoder/0": {
+            "computed_tokens": 24752,
+            "prompt_tokens": 24557,
+            "output_tokens": 196,
+            "preemptions": 0,
+            "blocks": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                82
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                6
+              ],
+              [
+                5,
+                3,
+                95,
+                91,
+                7,
+                80,
+                79,
+                78,
+                89,
+                88,
+                87,
+                86,
+                85,
+                84,
+                83,
+                74
+              ]
+            ]
+          },
+          "envelope-validation-repair-holdout-36-d2-ctx24557/decoder/1": {
+            "computed_tokens": 24752,
+            "prompt_tokens": 24557,
+            "output_tokens": 196,
+            "preemptions": 0,
+            "blocks": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                69
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                68
+              ],
+              [
+                5,
+                3,
+                95,
+                91,
+                7,
+                80,
+                79,
+                78,
+                89,
+                88,
+                87,
+                86,
+                85,
+                84,
+                83,
+                67
+              ]
+            ]
+          },
+          "envelope-validation-repair-holdout-36-d2-ctx24557/long/0": {
+            "computed_tokens": 0,
+            "prompt_tokens": 131072,
+            "output_tokens": 0,
+            "preemptions": 1,
+            "blocks": [
+              [],
+              [],
+              [],
+              []
+            ]
+          }
+        }
+      },
+      "events": [],
+      "finished_unix": 1792133965.049782
+    }
+  ],
+  "started_unix": 1792133612.640575,
+  "plan_sha256": "9bce702004389d466c32435b1e9d13ae1ef00dcb285e827b68212444df5e7a23",
+  "worker_sha256": "f4b32618c89548c2b8ea8caa0f927e0cefa106203cbf716036c8c84a2232e2ac",
+  "measurement_type": "completed-engine-wall",
+  "raw_rows": "steps.jsonl",
+  "matrix_kind": "frozen-envelope-independent-holdouts-v1",
+  "gpu_process": {
+    "pid": 4183756,
+    "uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189"
+  },
+  "gpu_telemetry_initial": {
+    "time_unix_s": 1792133632.3743472,
+    "monotonic_s": 20967496.383191306,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "temperature_c": 38,
+    "sm_clock_mhz": 2745,
+    "memory_clock_mhz": 10251,
+    "power_w": 103.805,
+    "pstate": 2
+  },
+  "host_process_cpu_time_boundary": "around EngineCore.step; includes read-only output observers",
+  "device_name": "NVIDIA GeForce RTX 4090",
+  "torch_version": "2.13.0+cu129",
+  "native_runtime": {
+    "scheduler_class": "ProfilingNativeScheduler",
+    "max_model_len": 131328,
+    "max_num_running_reqs": 4,
+    "block_size": 1568,
+    "cache_block_size": 1568,
+    "num_gpu_blocks": 98,
+    "full_isl": false,
+    "cap": 0,
+    "kv_dtype": "fp8",
+    "quantization": "compressed-tensors",
+    "mamba_cache_mode": "align",
+    "torch_num_threads": 1,
+    "kv_groups": [
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.0.linear_attn",
+          "language_model.model.layers.4.linear_attn",
+          "language_model.model.layers.8.linear_attn",
+          "language_model.model.layers.12.linear_attn",
+          "language_model.model.layers.16.linear_attn",
+          "language_model.model.layers.20.linear_attn",
+          "language_model.model.layers.24.linear_attn",
+          "language_model.model.layers.28.linear_attn",
+          "language_model.model.layers.32.linear_attn",
+          "language_model.model.layers.36.linear_attn",
+          "language_model.model.layers.40.linear_attn",
+          "language_model.model.layers.44.linear_attn",
+          "language_model.model.layers.48.linear_attn",
+          "language_model.model.layers.52.linear_attn",
+          "language_model.model.layers.56.linear_attn",
+          "language_model.model.layers.60.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.1.linear_attn",
+          "language_model.model.layers.5.linear_attn",
+          "language_model.model.layers.9.linear_attn",
+          "language_model.model.layers.13.linear_attn",
+          "language_model.model.layers.17.linear_attn",
+          "language_model.model.layers.21.linear_attn",
+          "language_model.model.layers.25.linear_attn",
+          "language_model.model.layers.29.linear_attn",
+          "language_model.model.layers.33.linear_attn",
+          "language_model.model.layers.37.linear_attn",
+          "language_model.model.layers.41.linear_attn",
+          "language_model.model.layers.45.linear_attn",
+          "language_model.model.layers.49.linear_attn",
+          "language_model.model.layers.53.linear_attn",
+          "language_model.model.layers.57.linear_attn",
+          "language_model.model.layers.61.linear_attn"
+        ]
+      },
+      {
+        "type": "MambaSpec",
+        "spec": "MambaSpec(block_size=1568, dcp_sharded=False, block_stride_alignment=None, shapes=((3, 10240), (48, 128, 128)), dtypes=(torch.bfloat16, torch.float32), page_size_padded=3211264, mamba_type=<MambaAttentionBackendEnum.GDN_ATTN: 'vllm.v1.attention.backends.gdn_attn.GDNAttentionBackend'>, mamba_cache_mode='align', num_speculative_blocks=0, num_prefill_checkpoint_blocks=0, prefill_checkpoint_alignment=None, num_heads=1, tokens_per_state=-1, tp_replicated=False)",
+        "layers": [
+          "language_model.model.layers.2.linear_attn",
+          "language_model.model.layers.6.linear_attn",
+          "language_model.model.layers.10.linear_attn",
+          "language_model.model.layers.14.linear_attn",
+          "language_model.model.layers.18.linear_attn",
+          "language_model.model.layers.22.linear_attn",
+          "language_model.model.layers.26.linear_attn",
+          "language_model.model.layers.30.linear_attn",
+          "language_model.model.layers.34.linear_attn",
+          "language_model.model.layers.38.linear_attn",
+          "language_model.model.layers.42.linear_attn",
+          "language_model.model.layers.46.linear_attn",
+          "language_model.model.layers.50.linear_attn",
+          "language_model.model.layers.54.linear_attn",
+          "language_model.model.layers.58.linear_attn",
+          "language_model.model.layers.62.linear_attn"
+        ]
+      },
+      {
+        "type": "FullAttentionSpec",
+        "spec": "FullAttentionSpec(block_size=1568, dcp_sharded=True, block_stride_alignment=None, max_tp_shards=None, num_kv_heads=4, head_size=256, dtype=torch.uint8, head_size_v=256, kv_quant_mode=<KVQuantMode.FP8_PER_TENSOR: 1>, page_size_padded=None, num_head_slots=None, state_content_bytes=None, tokens_per_state=1, sliding_window=None, attention_chunk_size=None, non_causal=False)",
+        "layers": [
+          "language_model.model.layers.3.self_attn.attn",
+          "language_model.model.layers.7.self_attn.attn",
+          "language_model.model.layers.11.self_attn.attn",
+          "language_model.model.layers.15.self_attn.attn",
+          "language_model.model.layers.19.self_attn.attn",
+          "language_model.model.layers.23.self_attn.attn",
+          "language_model.model.layers.27.self_attn.attn",
+          "language_model.model.layers.31.self_attn.attn",
+          "language_model.model.layers.35.self_attn.attn",
+          "language_model.model.layers.39.self_attn.attn",
+          "language_model.model.layers.43.self_attn.attn",
+          "language_model.model.layers.47.self_attn.attn",
+          "language_model.model.layers.51.self_attn.attn",
+          "language_model.model.layers.55.self_attn.attn",
+          "language_model.model.layers.59.self_attn.attn",
+          "language_model.model.layers.63.self_attn.attn"
+        ]
+      }
+    ]
+  },
+  "initial_pps": 2690.3412918755967,
+  "initial_pps_samples": [
+    2692.035114950912,
+    2670.376080025159,
+    2682.485203124073,
+    2682.226014585964,
+    2694.888838361517,
+    2675.5528793939607,
+    2698.9130345826197,
+    2692.148804016911,
+    2703.4982316284204,
+    2688.647468800282,
+    2703.801706583227,
+    2599.104736851501,
+    2693.6438961151007,
+    2687.708999311817,
+    2714.83392625634,
+    2657.4538090735223,
+    2718.6788360911796,
+    2670.3336394344446,
+    2692.582292124364,
+    2603.4983425113787
+  ],
+  "finished_unix": 1792133965.0564308,
+  "frozen_profile_sha256": "55c1d1e06cd4e1a21bcf76b5b8b917ffe429fd8084cc6864c300165cb2f5b7fb",
+  "training_allowed": false,
+  "validation_driver_sha256": "39a0ff4fe919513d343dd74e3a2da86491c5fe566d13a3c3dce0a4dc02274a16"
+}

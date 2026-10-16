@@ -32,6 +32,16 @@ class ProfileRowContracts(unittest.TestCase):
             dict(batch_num_tokens=129,batch_num_prefill_tokens=128,
                  batch_num_decode_tokens=1,batch_decode_context=24558,batch_prefill_context=512))
 
+    def test_training_budget_cycle_keeps_the_training_phase_and_original_fixed_mode(self):
+        api=self.api();cfg=dict(phase='train',prefill_target=128,candidates=[32,128,384])
+        self.assertEqual(api.proposed_profile_budget(cfg,3,1),131)
+        cfg['budget_mode']='total-cycle'
+        self.assertEqual([api.proposed_profile_budget(cfg,2,i) for i in range(4)],[32,128,384,32])
+        self.assertEqual(cfg['phase'],'train')
+        self.assertEqual(api.proposed_profile_budget(cfg,2,2,ceiling=256),256)
+        cfg['budget_mode']='unknown'
+        with self.assertRaises(ValueError):api.proposed_profile_budget(cfg,2,0)
+
     def test_replayed_old_outputs_remain_prefill_until_the_native_boundary(self):
         row=self.row();row['requests']=[dict(request_id='replay',computed_before=50,
             prefill_end=199,scheduled_tokens=128,stage='prefill',output_tokens_before=100)]

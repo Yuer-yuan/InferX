@@ -1,0 +1,99 @@
+{
+  "identity": {
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "kv_dtype": "fp8",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "native_scheduler_sha256": "f820bee4f42b878b262a30f3728a97d7413477b2a277748e20f2528ac2ec2f2a",
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f"
+  },
+  "base_case": {
+    "binary": "pd-baselines/vllm031-venv/bin/python",
+    "capacity_note": "Official vLLM0.31/cu129 plus Torch2.13/cu129; fresh full27B/128K and semantic qualification required. Legacy0.24 results are separate.",
+    "chunk": 4096,
+    "concurrency": 4,
+    "context_window": 131328,
+    "cuda_graph": false,
+    "draft": 0,
+    "engine": "vllm",
+    "environment": {
+      "CUDA_HOME": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1",
+      "FLASHINFER_WORKSPACE_BASE": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/flashinfer-workspace",
+      "TORCH_EXTENSIONS_DIR": "/home/guokc/mypro/gnn-mount-sda1/InferX/cache/torch-extensions",
+      "TRITON_PTXAS_PATH": "/home/guokc/mypro/gnn-mount-sda1/InferX/toolchains/cuda-12.8.1/bin/ptxas"
+    },
+    "gpu_memory_utilization": 0.95,
+    "gpu_uuid": "GPU-4d9bef9d-631c-bb36-3ff4-589d6a184189",
+    "id": "qoserve-profile-c4-b4096-cap0-eager-pool98",
+    "kv_capacity": 212992,
+    "kv_capacity_kind": "requested comparison target; vLLM allocator auto-sizes and actual pool must be observed",
+    "kv_dtype": "fp8",
+    "long_prefill_token_threshold": 0,
+    "mamba_cache_mode": "align",
+    "model": "models/qwen38-int4-redhat",
+    "model_revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+    "morphx": {
+      "enabled": false,
+      "patched_launches": 0
+    },
+    "quantization": "RedHatAI compressed-tensors W4A16/group128; unquantized GDN/vision exclusions",
+    "startup_timeout_s": 1200,
+    "wheel_sha256": "5176ab746f4e736c4a354a11d0620abf0a941de287cad937ac34039293ca6f5f",
+    "scheduler_reserve_full_isl": false
+  },
+  "profile": {
+    "num_gpu_blocks": 98,
+    "prefill_targets": [
+      128,
+      512,
+      2048,
+      2552
+    ],
+    "decoder_counts": [
+      0,
+      1,
+      3
+    ],
+    "holdout_decoder_counts": [
+      0,
+      2
+    ],
+    "candidates": [
+      128,
+      256,
+      384,
+      512,
+      768,
+      1024,
+      1280,
+      1536,
+      1792,
+      2048,
+      2552
+    ],
+    "long_prompt_len": 131072,
+    "decoder_prompt_len": 24557,
+    "decoder_max_tokens": 1024,
+    "warmup_steps": 5,
+    "initial_pps_warmup": 5,
+    "initial_pps_samples": 20,
+    "stop_on_preemption_with_decoders": true
+  },
+  "fit": {
+    "min_train_per_bin": 100,
+    "min_holdout_per_bin": 30,
+    "min_holdout_per_candidate": 5,
+    "guard": 1.2,
+    "minimum_guard_coverage": 0.95,
+    "source_cutoff_s": 1.0,
+    "compatibility_cutoff_s": 5.0,
+    "random_state": 42,
+    "test_size": 0.2
+  },
+  "scope": "Independent real-model schedule-entry to completed native-update profiling. Calibration only; never formal efficacy evidence."
+}

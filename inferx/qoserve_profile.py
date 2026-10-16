@@ -13,6 +13,21 @@ FEATURES=('batch_num_tokens','batch_num_prefill_tokens','batch_num_decode_tokens
 TIMING_BOUNDARY='schedule-entry-to-native-update-exit'
 
 
+def proposed_profile_budget(config,decoders,step_index,ceiling=4096):
+    """Calibration proposals; phase labels never change to enable cycling."""
+    if (type(decoders) is not int or not 0<=decoders<=4 or type(step_index) is not int
+            or step_index<0 or type(ceiling) is not int or not 1<=ceiling<=4096):
+        raise ValueError('invalid profiling budget counters')
+    phase=config['phase']
+    if phase not in ('train','holdout'):raise ValueError('invalid calibration phase')
+    mode=config.get('budget_mode','prefill-target' if phase=='train' else 'total-cycle')
+    if mode=='prefill-target' and phase=='train':proposed=config['prefill_target']+decoders
+    elif mode=='total-cycle':proposed=config['candidates'][step_index%len(config['candidates'])]
+    else:raise ValueError('invalid profiling budget mode')
+    if type(proposed) is not int or proposed<=0:raise ValueError('invalid proposed budget')
+    return min(ceiling,proposed)
+
+
 def snapshot_step_geometry(output,metadata):
     """Read pre-step counters from the actual native SchedulerOutput ABI."""
     starts={}
@@ -138,12 +153,15 @@ def _coverage_signature(row):
             row['features']['batch_num_decode_tokens'],_context_band(row))
 
 
-def fit_profile(rows,holdout,plan):
+def fit_profile(rows,holdout,plan,*,calibration_envelope=False):
     """Fit the pinned author's OLS; independently gate, never repair with holdout.
 
+    The optional, disclosed compatibility envelope changes only the intercept,
+    using the source-internal 20% split as calibration, never external holdout.
     A returned unqualified result is diagnostic evidence, not a deployable model.
     Scientific dependencies are deliberately lazy and isolated from vLLM.
     """
+    if type(calibration_envelope) is not bool:raise ValueError('invalid calibration envelope mode')
     rows=list(rows);holdout=list(holdout);identity=plan['identity'];protocol=plan['fit']
     expected=dict(min_train_per_bin=100,min_holdout_per_bin=30,min_holdout_per_candidate=5,
         guard=1.2,minimum_guard_coverage=.95,source_cutoff_s=1.,compatibility_cutoff_s=5.,
@@ -154,11 +172,24 @@ def fit_profile(rows,holdout,plan):
         for row in records:
             validate_step_row(row,identity)
             if row['phase']!=phase:raise ValueError('formal data or incorrect phase entered calibration')
+            if row.get('calibration_kind',phase)!=phase:
+                raise ValueError('diagnostic/throughput-only rows cannot train or qualify the predictor')
             if row['row_id'] in seen:raise ValueError('duplicate calibration row identity')
             seen.add(row['row_id'])
     for field in ('cache_salt','rollout_id'):
         if {r[field] for r in rows}&{r[field] for r in holdout}:
             raise ValueError('holdout contamination: '+field)
+    known_protocols=['original-cycle-v1','remainder-cycle-v1']
+    tagged_protocols={r['holdout_protocol'] for r in holdout if 'holdout_protocol' in r}
+    if not tagged_protocols.issubset(known_protocols):raise ValueError('unknown holdout protocol')
+    required_protocols=plan.get('required_holdout_protocols')
+    if required_protocols is None:
+        required_protocols=(known_protocols if 'remainder-cycle-v1' in tagged_protocols else
+                            ['original-cycle-v1'] if tagged_protocols else [])
+    if required_protocols not in ([],['original-cycle-v1'],known_protocols):
+        raise ValueError('invalid required holdout protocols')
+    if 'remainder-cycle-v1' in tagged_protocols and required_protocols!=known_protocols:
+        raise ValueError('extended-cycle qualification must retain the original-cycle gate')
     warmed=[r for r in rows if not r['warmup']]
     source=[r for r in warmed if r['timing']['batch_execution_time']<=1. and _training_bin(r)]
     compatible=[r for r in warmed if r['timing']['batch_execution_time']<=5. and _training_bin(r)]
@@ -180,6 +211,9 @@ def fit_profile(rows,holdout,plan):
         holdout_warmup_exclusions=[r['row_id'] for r in holdout if r['warmup']],
         coefficients={},bins={},candidates={},prediction_failures=[],deployment_prediction_failures=[])
     reasons=result['qualification_reasons']
+    if calibration_envelope:
+        result['mean_ols_coefficients']={}
+        result['fit_protocol']['compatibility_variant']='internal-max-residual-intercept-envelope-v1'
     import numpy as np
     import sklearn
     from sklearn.linear_model import LinearRegression
@@ -206,6 +240,19 @@ def fit_profile(rows,holdout,plan):
                 r2=float(model.score(x[test_indices],y[test_indices])) if np.var(y[test_indices])>0 else None))
         result['coefficients'][name]=dict(coefficients={f:float(c) for f,c in zip(FEATURES,model.coef_)},
                                          intercept=float(model.intercept_))
+        if calibration_envelope:
+            result['mean_ols_coefficients'][name]=copy.deepcopy(result['coefficients'][name])
+            residuals=y[test_indices]/protocol['guard']-predicted
+            correction=max(0.,float(np.max(residuals)))
+            info['mean_ols_internal_test']=info.pop('internal_test')
+            info['calibration_envelope']=dict(
+                method='nonnegative maximum(actual/1.2 - meanOLS prediction) on internal20% only',
+                row_ids=list(info['internal_test_row_ids']),
+                maximizing_row_id=records[test_indices[int(np.argmax(residuals))]]['row_id'],
+                intercept_correction_s=correction,
+                independent_accuracy_test=False)
+            model.intercept_+=correction
+            result['coefficients'][name]['intercept']=float(model.intercept_)
         if set(info['training_context_bands'])!=set(CONTEXT_BANDS):reasons.append(name+' training context coverage incomplete')
     held=[r for r in holdout if not r['warmup']]
     predictions={}
@@ -252,6 +299,23 @@ def fit_profile(rows,holdout,plan):
                     predicted=float(models[name].predict([features])[0])
                     if not math.isfinite(predicted) or predicted<=0:
                         result['deployment_prediction_failures'].append(dict(features=list(features),prediction_s=predicted))
+    if required_protocols:
+        result['required_holdout_protocols']=required_protocols
+        result['holdout_protocols']={}
+        for protocol_name in required_protocols:
+            subset=[r for r in held if r.get('holdout_protocol','original-cycle-v1')==protocol_name]
+            group=dict(bins={},candidates={});result['holdout_protocols'][protocol_name]=group
+            for name in bin_names:
+                records=[r for r in subset if _runtime_bin(r)==name];info=metrics(records)
+                info['context_bands']=sorted({_context_band(r) for r in records if _context_band(r) is not None})
+                group['bins'][name]=info
+                if len(records)<30:reasons.append(f'protocol {protocol_name} bin {name} coverage below 30')
+                if info['guard_coverage']<.95:reasons.append(f'protocol {protocol_name} bin {name} guard below 95%')
+            for candidate in plan['profile']['candidates']:
+                records=[r for r in subset if r['proposed_total_tokens']==candidate];info=metrics(records)
+                group['candidates'][str(candidate)]=info
+                if len(records)<5:reasons.append(f'protocol {protocol_name} candidate {candidate} coverage below 5')
+                if info['guard_coverage']<.95:reasons.append(f'protocol {protocol_name} candidate {candidate} guard below 95%')
     if result['prediction_failures'] or result['deployment_prediction_failures']:
         reasons.append('nonpositive or nonfinite observed/deployment predictions')
     result['qualified']=not reasons

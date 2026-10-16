@@ -202,7 +202,7 @@ for _name,_sha in {references!r}.items():
 globals().update({{k:v for k,v in vars(_native).items() if not k.startswith('__')}})
 from vllm.v1.core.sched.request_queue import FCFSRequestQueue
 from inferx_qoserve_author_policy import AuthorPolicy
-from inferx.qoserve_profile import snapshot_step_geometry,validate_step_row,TIMING_BOUNDARY
+from inferx.qoserve_profile import snapshot_step_geometry,validate_step_row,TIMING_BOUNDARY,proposed_profile_budget
 '''
     from inferx.ebplus_validation import record_native_runtime
     source=(header+'\n'+inspect.getsource(parse_contract)+'\n'+inspect.getsource(sequence_view_type)
@@ -349,6 +349,7 @@ class ProfilingNativeScheduler(ObservedNativeScheduler):
             raise ValueError('invalid profiling warmup count')
         if not cfg.get('candidates') or any(type(n) is not int or not 1<=n<=4096 for n in cfg['candidates']):
             raise ValueError('invalid profiling candidate list')
+        proposed_profile_budget(cfg,0,0)
         self._profile_config=cfg;self._profile_rows=[];self._profile_events=[]
         self._qoserve_profiling_mode=cfg['phase'];_record_qoserve_runtime(self)
 
@@ -371,9 +372,8 @@ class ProfilingNativeScheduler(ObservedNativeScheduler):
         is_decode=lambda r:r.num_computed_tokens>=max(r.num_prompt_tokens,r.num_tokens-1)
         decoders=sum(is_decode(r) for r in self.running)
         self.running.sort(key=lambda r:not is_decode(r))
-        proposed=(cfg['prefill_target']+decoders if cfg['phase']=='train'
-                  else cfg['candidates'][len(self._profile_rows)%len(cfg['candidates'])])
         ceiling=self.max_num_scheduled_tokens
+        proposed=proposed_profile_budget(cfg,decoders,len(self._profile_rows),ceiling)
         try:
             self.max_num_scheduled_tokens=min(ceiling,proposed)
             output=_NativeScheduler.schedule(self)
@@ -395,6 +395,9 @@ class ProfilingNativeScheduler(ObservedNativeScheduler):
             phase=cfg['phase'],engine_id=cfg['engine_id'],rollout_id=cfg['rollout_id'],
             cache_salt=cfg['cache_salt'],step_index=pending['step'],
             warmup=len(self._profile_rows)<cfg['warmup_steps'],identity=cfg['identity'],
+            budget_mode=cfg.get('budget_mode','prefill-target' if cfg['phase']=='train' else 'total-cycle'),
+            calibration_kind=cfg.get('calibration_kind',cfg['phase']),
+            holdout_protocol=cfg.get('holdout_protocol','original-cycle-v1'),
             proposed_total_tokens=pending['proposed'],requests=requests,features=features,
             preempted_request_ids=sorted(output.preempted_req_ids),
             timing=dict(start_s=pending['started'],end_s=ended,

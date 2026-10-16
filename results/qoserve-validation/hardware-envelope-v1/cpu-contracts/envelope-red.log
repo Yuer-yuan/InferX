@@ -1,0 +1,23 @@
+EE
+======================================================================
+ERROR: test_optional_envelope_uses_only_internal_calibration_and_preserves_slopes (tests.test_qoserve_fit.StatisticalProfileContracts.test_optional_envelope_uses_only_internal_calibration_and_preserves_slopes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 152, in test_optional_envelope_uses_only_internal_calibration_and_preserves_slopes
+    envelope = fit_profile(rows, held, self.plan(), calibration_envelope=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: fit_profile() got an unexpected keyword argument 'calibration_envelope'
+
+======================================================================
+ERROR: test_envelope_cannot_fit_external_holdout_or_hide_qualification_failures (tests.test_qoserve_fit.StatisticalProfileContracts.test_envelope_cannot_fit_external_holdout_or_hide_qualification_failures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/tests/test_qoserve_fit.py", line 172, in test_envelope_cannot_fit_external_holdout_or_hide_qualification_failures
+    baseline = fit_profile(rows, held, self.plan(), calibration_envelope=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: fit_profile() got an unexpected keyword argument 'calibration_envelope'
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.370s
+
+FAILED (errors=2)

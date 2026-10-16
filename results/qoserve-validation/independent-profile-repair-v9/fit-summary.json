@@ -1,0 +1,179 @@
+{
+  "qualified": false,
+  "reasons": [
+    "tokens_0_512 holdout guard below 95%",
+    "candidate 128 guard below 95%",
+    "candidate 384 guard below 95%",
+    "candidate 512 guard below 95%",
+    "candidate 768 guard below 95%",
+    "candidate 1280 guard below 95%",
+    "candidate 1792 guard below 95%",
+    "protocol original-cycle-v1 bin tokens_0_512 guard below 95%",
+    "protocol original-cycle-v1 bin tokens_513_plus guard below 95%",
+    "protocol original-cycle-v1 candidate 128 guard below 95%",
+    "protocol original-cycle-v1 candidate 384 guard below 95%",
+    "protocol original-cycle-v1 candidate 512 guard below 95%",
+    "protocol original-cycle-v1 candidate 1280 guard below 95%",
+    "protocol original-cycle-v1 candidate 1792 guard below 95%",
+    "protocol remainder-cycle-v1 bin tokens_0_512 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 128 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 384 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 512 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 768 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 1280 guard below 95%",
+    "protocol remainder-cycle-v1 candidate 1792 guard below 95%"
+  ],
+  "cutoff_s": 1.0,
+  "training": {
+    "tokens_0_512": {
+      "rows": 4010,
+      "rank": 4
+    },
+    "tokens_513_plus": {
+      "rows": 819,
+      "rank": 4
+    }
+  },
+  "protocols": {
+    "original-cycle-v1": {
+      "bins": {
+        "tokens_0_512": [
+          177,
+          0.6497175141242938
+        ],
+        "tokens_513_plus": [
+          152,
+          0.9473684210526315
+        ]
+      },
+      "candidates": {
+        "128": [
+          29,
+          0.7586206896551724
+        ],
+        "256": [
+          29,
+          1.0
+        ],
+        "384": [
+          29,
+          0.5517241379310345
+        ],
+        "512": [
+          29,
+          0.6896551724137931
+        ],
+        "768": [
+          29,
+          0.9655172413793104
+        ],
+        "1024": [
+          31,
+          1.0
+        ],
+        "1280": [
+          31,
+          0.7419354838709677
+        ],
+        "1536": [
+          31,
+          1.0
+        ],
+        "1792": [
+          31,
+          0.0
+        ],
+        "2048": [
+          31,
+          0.967741935483871
+        ],
+        "2552": [
+          29,
+          1.0
+        ]
+      }
+    },
+    "remainder-cycle-v1": {
+      "bins": {
+        "tokens_0_512": [
+          270,
+          0.2740740740740741
+        ],
+        "tokens_513_plus": [
+          152,
+          0.9539473684210527
+        ]
+      },
+      "candidates": {
+        "128": [
+          29,
+          0.13793103448275862
+        ],
+        "256": [
+          29,
+          1.0
+        ],
+        "384": [
+          31,
+          0.6129032258064516
+        ],
+        "512": [
+          31,
+          0.7096774193548387
+        ],
+        "768": [
+          31,
+          0.0
+        ],
+        "1024": [
+          31,
+          1.0
+        ],
+        "1280": [
+          31,
+          0.7741935483870968
+        ],
+        "1536": [
+          31,
+          1.0
+        ],
+        "1792": [
+          31,
+          0.0
+        ],
+        "2048": [
+          31,
+          0.967741935483871
+        ],
+        "2552": [
+          29,
+          1.0
+        ]
+      }
+    }
+  },
+  "negative_observed": 0,
+  "negative_deployment": 0,
+  "coefficients": {
+    "tokens_0_512": {
+      "coefficients": {
+        "batch_num_tokens": 0.002747632013179713,
+        "batch_num_prefill_tokens": -0.0022698473635964773,
+        "batch_num_decode_tokens": 0.005017479376762329,
+        "batch_decode_context": -1.4478391669207544e-07,
+        "batch_prefill_context": 3.511691382494103e-07
+      },
+      "intercept": 0.04423898678195032
+    },
+    "tokens_513_plus": {
+      "coefficients": {
+        "batch_num_tokens": 0.0019394048147361824,
+        "batch_num_prefill_tokens": -0.001440934248275997,
+        "batch_num_decode_tokens": 0.003380339063013358,
+        "batch_decode_context": 8.700799585458982e-08,
+        "batch_prefill_context": 3.6332945405395927e-06
+      },
+      "intercept": -0.15190589098914564
+    }
+  }
+}

@@ -74,13 +74,14 @@ class StatisticalProfileContracts(unittest.TestCase):
         self.assertFalse(result['qualified']);self.assertTrue(any('context' in s for s in result['qualification_reasons']))
 
     def test_holdout_identity_salts_ids_and_formal_outcomes_never_enter_fit(self):
-        for mutation in ('salt','rollout','row','identity','formal'):
+        for mutation in ('salt','rollout','row','identity','formal','diagnostic'):
             rows,holdout=self.data()
             if mutation=='salt':holdout[0]['cache_salt']=rows[0]['cache_salt']
             elif mutation=='rollout':holdout[0]['rollout_id']=rows[0]['rollout_id']
             elif mutation=='row':holdout[0]['row_id']=rows[0]['row_id']
             elif mutation=='identity':holdout[0]['identity']['draft']=7
-            else:rows[0]['phase']='formal'
+            elif mutation=='formal':rows[0]['phase']='formal'
+            else:holdout[0]['calibration_kind']='diagnostic'
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):self.fit(rows,holdout)
 
     def test_five_second_fallback_requires_actual_context_or_geometry_censoring(self):
@@ -119,6 +120,66 @@ class StatisticalProfileContracts(unittest.TestCase):
         result=self.fit(rows,holdout)
         self.assertFalse(result['qualified'])
         self.assertIn(tail['row_id'],result['prediction_failures'])
+
+    def test_easier_candidate_cycle_cannot_hide_original_protocol_guard_failure(self):
+        rows,base=self.data();held=[]
+        for protocol,copies in (('original-cycle-v1',1),('remainder-cycle-v1',6)):
+            for repeat in range(copies):
+                for source in base:
+                    row=copy.deepcopy(source)
+                    row.update(row_id=f'{protocol}-{repeat}-{source["row_id"]}',
+                        rollout_id=f'{protocol}-{repeat}',cache_salt=f'{protocol}-{repeat}',holdout_protocol=protocol)
+                    if protocol=='original-cycle-v1' and row['proposed_total_tokens']==128 and row['step_index']<1020:
+                        duration=row['timing']['batch_execution_time']*1.5
+                        row['timing'].update(end_s=100.+duration,batch_execution_time=duration)
+                    held.append(row)
+        baseline=self.fit(rows,base)
+        separate=self.fit(rows,held)
+        self.assertGreaterEqual(separate['candidates']['128']['guard_coverage'],.95)
+        self.assertFalse(separate['qualified'])
+        self.assertEqual(separate['coefficients'],baseline['coefficients'])
+        self.assertTrue(any('original-cycle-v1' in s and 'candidate 128' in s
+                            for s in separate['qualification_reasons']))
+
+    def test_optional_envelope_uses_only_internal_calibration_and_preserves_slopes(self):
+        from inferx.qoserve_profile import fit_profile
+        rows, held = self.data()
+        for i, row in enumerate(rows):
+            if i % 17 == 0:
+                duration = row['timing']['batch_execution_time'] + .15
+                row['timing'].update(end_s=100.+duration, batch_execution_time=duration)
+        mean = fit_profile(rows, held, self.plan())
+        envelope = fit_profile(rows, held, self.plan(), calibration_envelope=True)
+        self.assertEqual(envelope['mean_ols_coefficients'], mean['coefficients'])
+        lookup = {r['row_id']: r for r in rows}
+        for name, table in envelope['coefficients'].items():
+            base = mean['coefficients'][name]
+            self.assertEqual(table['coefficients'], base['coefficients'])
+            evidence = envelope['bins'][name]['calibration_envelope']
+            self.assertEqual(set(evidence['row_ids']), set(mean['bins'][name]['internal_test_row_ids']))
+            self.assertFalse(set(evidence['row_ids']) & set(mean['bins'][name]['fit_row_ids']))
+            self.assertGreater(evidence['intercept_correction_s'], 0.)
+            self.assertAlmostEqual(table['intercept'], base['intercept'] + evidence['intercept_correction_s'])
+            for rid in evidence['row_ids']:
+                row = lookup[rid]
+                prediction = table['intercept'] + sum(row['features'][f]*v for f,v in table['coefficients'].items())
+                self.assertGreaterEqual(1.2*prediction + 1e-12, row['timing']['batch_execution_time'])
+            self.assertNotIn('internal_test', envelope['bins'][name])
+
+    def test_envelope_cannot_fit_external_holdout_or_hide_qualification_failures(self):
+        from inferx.qoserve_profile import fit_profile
+        rows, held = self.data()
+        baseline = fit_profile(rows, held, self.plan(), calibration_envelope=True)
+        for row in held:
+            duration = row['timing']['batch_execution_time'] * 100
+            row['timing'].update(end_s=100.+duration, batch_execution_time=duration)
+        failing = fit_profile(rows, held, self.plan(), calibration_envelope=True)
+        self.assertEqual(failing['coefficients'], baseline['coefficients'])
+        self.assertEqual(failing['mean_ols_coefficients'], baseline['mean_ols_coefficients'])
+        for name in failing['bins']:
+            self.assertEqual(failing['bins'][name]['calibration_envelope'], baseline['bins'][name]['calibration_envelope'])
+        self.assertFalse(failing['qualified'])
+        self.assertTrue(any('guard below 95%' in s for s in failing['qualification_reasons']))
 
 
 if __name__=='__main__':unittest.main()

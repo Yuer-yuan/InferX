@@ -1,0 +1,68 @@
+         78014 function calls (76019 primitive calls) in 0.137 seconds
+
+   Ordered by: cumulative time
+   List reduced from 653 to 60 due to restriction <60>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        4    0.000    0.000    0.273    0.068 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/autograd/grad_mode.py:294(__exit__)
+        1    0.000    0.000    0.136    0.136 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/worker_base.py:358(execute_model)
+      3/1    0.000    0.000    0.136    0.136 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/utils/_contextlib.py:120(decorate_context)
+        1    0.000    0.000    0.136    0.136 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py:1219(execute_model)
+        1    0.000    0.000    0.135    0.135 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py:1675(execute_model)
+    804/2    0.001    0.000    0.133    0.066 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py:1774(_wrapped_call_impl)
+    804/2    0.002    0.000    0.133    0.066 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/nn/modules/module.py:1782(_call_impl)
+        1    0.000    0.000    0.133    0.133 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py:558(forward)
+        1    0.000    0.000    0.133    0.133 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/compilation/decorators.py:502(__call__)
+        1    0.000    0.000    0.133    0.133 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py:689(forward)
+       64    0.001    0.000    0.132    0.002 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py:549(forward)
+       48    0.000    0.000    0.083    0.002 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:839(forward)
+       48    0.001    0.000    0.083    0.002 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:895(forward_cuda)
+  672/400    0.000    0.000    0.080    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_ops.py:1267(__call__)
+      289    0.000    0.000    0.064    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/custom_op.py:133(forward)
+       48    0.001    0.000    0.057    0.001 {built-in method torch._ops.vllm.qwen_gdn_attention_core}
+       48    0.001    0.000    0.056    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:1894(qwen_gdn_attention_core)
+       48    0.007    0.000    0.055    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:1245(_forward_core)
+   192/96    0.002    0.000    0.039    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py:88(wrapper)
+       48    0.000    0.000    0.034    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:297(forward_native)
+       48    0.000    0.000    0.034    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1423(_fn)
+      465    0.002    0.000    0.034    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py:370(<lambda>)
+       48    0.000    0.000    0.034    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py:137(chunk_gated_delta_rule)
+       48    0.000    0.000    0.034    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/autograd/function.py:609(apply)
+       48    0.001    0.000    0.033    0.001 {built-in method apply}
+       48    0.000    0.000    0.031    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/torch/amp/autocast_mode.py:476(decorate_fwd)
+       48    0.000    0.000    0.030    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py:90(forward)
+       48    0.000    0.000    0.030    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py:23(chunk_gated_delta_rule_fwd)
+      256    0.000    0.000    0.027    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1032(apply)
+      256    0.000    0.000    0.027    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py:242(apply_weights)
+      256    0.001    0.000    0.026    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/kernels/linear/mixed_precision/marlin.py:181(apply_weights)
+      256    0.003    0.000    0.025    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py:752(apply_gptq_marlin_linear)
+      336    0.002    0.000    0.025    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py:456(run)
+      465    0.006    0.000    0.022    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/jit.py:708(run)
+      129    0.000    0.000    0.021    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py:170(forward_cuda)
+      129    0.002    0.000    0.020    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py:159(forward_native)
+      288    0.006    0.000    0.020    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/runtime/autotuner.py:212(run)
+      256    0.004    0.000    0.019    0.000 {built-in method torch._ops.vllm.marlin_gemm}
+      129    0.000    0.000    0.016    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py:361(__call__)
+      176    0.000    0.000    0.016    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/linear.py:603(forward)
+      129    0.000    0.000    0.016    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py:300(_inner_call)
+      256    0.001    0.000    0.016    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py:440(_marlin_gemm)
+       64    0.000    0.000    0.015    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen2_moe.py:115(forward)
+      129    0.000    0.000    0.015    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/op.py:640(func_impl_fn)
+       48    0.000    0.000    0.014    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py:845(_output_projection)
+      128    0.005    0.000    0.014    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py:43(fused_add_rms_norm)
+      128    0.000    0.000    0.013    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/linear.py:1762(forward)
+       16    0.000    0.000    0.010    0.001 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py:449(forward)
+      256    0.010    0.000    0.010    0.000 {built-in method torch._ops._C.marlin_gemm}
+       48    0.000    0.000    0.008    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py:331(forward_cuda)
+       48    0.001    0.000    0.006    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/mamba/ops/causal_conv1d.py:481(causal_conv1d_fn)
+       48    0.000    0.000    0.006    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py:320(chunk_gated_delta_rule_fwd_h)
+      850    0.006    0.000    0.006    0.000 {method 'to' of 'torch._C.TensorBase' objects}
+       48    0.000    0.000    0.006    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py:561(rmsnorm_fn)
+       48    0.000    0.000    0.006    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py:496(_layer_norm_fn_impl)
+      465    0.001    0.000    0.005    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py:313(__call__)
+      256    0.001    0.000    0.005    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/marlin_utils.py:418(get_marlin_workspace)
+       48    0.001    0.000    0.005    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py:152(fused_post_conv_prep)
+       48    0.000    0.000    0.005    0.000 /home/guokc/mypro/gnn-mount-sda1/InferX/pd-baselines/vllm031-venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py:441(layer_norm_fwd)
+      465    0.004    0.000    0.005    0.000 {built-in method cuda_utils.launch}
+
+
