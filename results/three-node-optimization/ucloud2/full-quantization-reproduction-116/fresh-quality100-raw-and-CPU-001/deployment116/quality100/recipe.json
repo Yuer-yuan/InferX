@@ -1,0 +1,93 @@
+{
+  "assets": {
+    "binding_evidence": {
+      "file": "evidence/fresh-binding.json",
+      "sha256": "013c05b3ae2dd376180973a5885cc49359f5278296b426b442935c16655cc490"
+    },
+    "contract": {
+      "file": "assets-u3-47.json",
+      "sha256": "7f1f5dbd1b6b288f165852772ed0c8090cc8f5abc0a73265a14f3b604d0b911a"
+    },
+    "original_cache_roots": {
+      "weights025": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/true-int4-all-layer-GPTQ-025",
+      "weights041": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/true-int4-all-input-GPTQ-041",
+      "weights047": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/true-int4-all-output-GPTQ-047"
+    },
+    "verification": "All selected 478 packed/scales payloads freshly SHA256 hashed. Original 47-layer mask, file format, model identity and 19 environment values preserved. SHA is identity, not numerical qualification."
+  },
+  "binary_artifact_id": "116-fresh47",
+  "binary_sha256": "e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5",
+  "environment": {
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "{assets}/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "{assets}/weights047",
+    "NINFER_OUTPUT_S4_VERIFY": "1",
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+    "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+    "NINFER_S4_GPTQ_CACHE": "{assets}/weights025",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_VERIFY_Q5_A8": "1"
+  },
+  "profiles": {
+    "perf-c12": {
+      "client_concurrency": 12,
+      "kv_capacity": 104448,
+      "mode": "perf",
+      "name": "perf-c12",
+      "native_concurrency": 12
+    },
+    "perf-c13": {
+      "client_concurrency": 13,
+      "kv_capacity": 113152,
+      "mode": "perf",
+      "name": "perf-c13",
+      "native_concurrency": 13
+    },
+    "perf-c14": {
+      "client_concurrency": 14,
+      "kv_capacity": 121856,
+      "mode": "perf",
+      "name": "perf-c14",
+      "native_concurrency": 13
+    },
+    "perf-c4": {
+      "client_concurrency": 4,
+      "kv_capacity": 65536,
+      "mode": "perf",
+      "name": "perf-c4",
+      "native_concurrency": 4
+    },
+    "perf-c8": {
+      "client_concurrency": 8,
+      "kv_capacity": 69632,
+      "mode": "perf",
+      "name": "perf-c8",
+      "native_concurrency": 8
+    },
+    "quality100": {
+      "client_concurrency": 13,
+      "kv_capacity": 532480,
+      "mode": "accuracy",
+      "name": "quality100",
+      "native_concurrency": 13
+    }
+  },
+  "qualification": "Fresh cache content identity only. No inherited performance or quality. Numerical calibration/fit/native qualification is separate and required before evaluation.",
+  "quality_status": "fresh_cache_unmeasured_0_quality_questions",
+  "recipe_id": "116-fresh47",
+  "schema_version": 1,
+  "selection_status": "fresh_cache_unmeasured_0_performance_requests",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "status": "candidate",
+  "version_id": "116-fresh47"
+}

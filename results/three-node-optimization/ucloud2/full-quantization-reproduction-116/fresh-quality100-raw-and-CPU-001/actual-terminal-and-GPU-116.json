@@ -1,0 +1,101 @@
+{
+  "observed_at": "2026-10-18T01:56:42.502591+00:00",
+  "owned_processes": [
+    {
+      "pid": 401522,
+      "expected_start_ticks": "50551532",
+      "exists": false
+    },
+    {
+      "pid": 541341,
+      "expected_start_ticks": "50898373",
+      "exists": false
+    },
+    {
+      "pid": 541711,
+      "expected_start_ticks": "50908264",
+      "exists": false
+    },
+    {
+      "pid": 541722,
+      "expected_start_ticks": "50908388",
+      "exists": false
+    },
+    {
+      "pid": 542687,
+      "expected_start_ticks": "50936719",
+      "exists": false
+    },
+    {
+      "pid": 542696,
+      "expected_start_ticks": "50936844",
+      "exists": false
+    },
+    {
+      "pid": 544507,
+      "expected_start_ticks": "51049924",
+      "exists": false
+    }
+  ],
+  "gpu_compute_processes": "",
+  "service_port_listeners": [],
+  "port_observer": "/proc/net/tcp and tcp6 LISTEN records",
+  "controller_terminal": {
+    "identity": {
+      "pid": 541341,
+      "proc_start_ticks": "50898373",
+      "uid": 0,
+      "executable": "/usr/bin/python3.10"
+    },
+    "returncode": 0,
+    "reaped": true,
+    "time": "2026-10-18T01:53:31.980743+00:00"
+  },
+  "CPU_score_terminal": {
+    "identity": {
+      "pid": 544507,
+      "start_ticks": "51049924",
+      "uid": 0
+    },
+    "argv": [
+      "/workspace/InferX/eval-envs/evalscope-1.13.0/bin/python",
+      "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/score_quality_cpu_116.py"
+    ],
+    "started_at": "2026-10-18T01:55:02.813579+00:00",
+    "CPU_only": true,
+    "CUDA_VISIBLE_DEVICES": "",
+    "returncode": 0,
+    "reaped": true,
+    "ended_at": "2026-10-18T01:55:05.056799+00:00"
+  },
+  "service_terminals": [
+    {
+      "profile": "perf-c14",
+      "terminal": {
+        "identity": {
+          "pid": 541711,
+          "start": "50908264",
+          "uid": 0,
+          "exe": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/normal-builds/selected100/build/apps/ninfer-serve"
+        },
+        "returncode": 0,
+        "reaped": true
+      }
+    },
+    {
+      "profile": "quality100",
+      "terminal": {
+        "identity": {
+          "pid": 542687,
+          "start": "50936719",
+          "uid": 0,
+          "exe": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/normal-builds/selected100/build/apps/ninfer-serve"
+        },
+        "returncode": 0,
+        "reaped": true
+      }
+    }
+  ],
+  "original_main_terminal_phase": "fresh_quantization_and_selected100_load_complete",
+  "scope": "Read-only actual/proc/nvidia-smi after original owner naturally completed; no signal or new generation issued"
+}

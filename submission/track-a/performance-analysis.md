@@ -135,7 +135,7 @@
 
 吞吐使用原profiling观察窗214.497380861s（整数end_ns−start_ns），输出65536 Token；不将另一benchmark_duration字段214.49216998400001s换作分母。所有初始测量和准入等待保留，性能服务正常回收。来源：[原始汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)、[逐请求数据](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/profile_export.jsonl)、[独立复算](../records/typst/clean-reproduction/fresh-performance-audit.json)。
 
-这是一轮独立复验，不能由e919、664与历史e4ed之间的数值差异推断某项优化收益，也不能据此建立长期稳定上限。原100题精度独立进行，当前不预报分数；后续终态见[复验指南](quantization-reproduction.md)。
+这是一轮独立复验，不能由e919、664与历史e4ed之间的数值差异推断某项优化收益，也不能据此建立长期稳定上限。独立原100题质量已完成：strict85/100、loose88/100，指令95/111与99/111，0错误；key50同时为空final及32768截断，全部100题计分且经原verifier独审，服务正常回收。性能与精度分别使用KV121856和532480；完整终态见[复验指南](quantization-reproduction.md#116新二进制的原100题质量)。
 
 ## 资源与成本
 

@@ -9,7 +9,7 @@
 | 当前冻结100：C4/8/12/13及C14两轮 | 冻结100 | `e4ed1bf4` | C14客户端14/活动13，KV121856；[原始配置与证据](selected-results.md) |
 | 当前冻结100：原100题质量105 | 冻结100 | `e4ed1bf4` | 客户端/活动13，KV532480，strict85/100、loose88/100 |
 | 完整源码重建：性能与原100题质量002 | 重建664 | `664cfbb9` | C14性能304.8967 tok/s；独立质量90/100、96/100；[复验记录](reproduction.md) |
-| 新量化239矩阵／478文件与独立C14 | 复验116 | `e919f180` | C14性能305.5329 tok/s、两项SLO通过；原100题质量待终态；[完整流程](quantization-reproduction.md) |
+| 新量化239矩阵／478文件与独立C14 | 复验116 | `e919f180` | C14性能305.5329 tok/s、两项SLO通过；原100题strict85/100、loose88/100；[完整流程](quantization-reproduction.md) |
 | 历史12并发单轮通过 | 输出投影量化版 | `9270f73e` | u3，活动12，K3，KV104448 |
 | 同版16/32并发 | 输出投影量化版 | `9270f73e` | 16在u3、32在u1；KV139264/278528 |
 | 历史验证扩展版100题质量 | 验证阶段扩展版 | `66328f67` | u2，客户端/活动16，K3，KV532480 |
@@ -22,7 +22,7 @@
 - 独立[116-fresh47配方](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/entrypoint/candidate_recipes/116-fresh47.json) SHA：`4b7d1b7542291948bbec1af23fe99973189d48d6e171bcabc4a40e0b6c123a59`。
 - 025／041／047实际拟合128／64／47矩阵，生成256／128／94文件；[478文件SHA及大小对照](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-vs-original478-SHA.json)全部一致、差异0。
 - C14：client14／native13／KV121856／K3；原128＋8＋1，全部冷8192／512。[汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)、[原客户端数据](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/profile_export.jsonl)、[观察时间窗](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/phase_manifest.json)。TTFT 9.86221024060s、TPOT 39.42860192427ms、305.53286821935 tok/s，0错、两项SLO通过。
-- 原100题质量：另启client/native13、KV532480、K3，保留默认thinking、采样及自然EOS，仅显式覆盖max_tokens32768；实际终态与四项原分数待单独记录，不沿用664或105。
+- 原100题质量：另启client/native13、KV532480、K3，保留默认thinking、采样及自然EOS，仅显式覆盖max_tokens32768；实际题目85/100、88/100，指令95/111、99/111；100成功、0错，99stop＋1length，key50为空final且32768截断，全部保留。原verifier独审全100一致，服务正常回收；见[原始汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/deployment116/quality100/evaluation/summary.json)、[独审](../records/typst/clean-reproduction/fresh-quality-audit.json)及[实际终态](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/actual-terminal-and-GPU-116.json)。不沿用664或105成绩。
 
 ## 每次性能测试
 

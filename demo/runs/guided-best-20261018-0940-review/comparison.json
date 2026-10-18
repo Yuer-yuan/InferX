@@ -1,0 +1,132 @@
+{
+  "status": "VALID_RUN_JOINT_SLO_FAIL",
+  "same_binary": true,
+  "same_gpu_uuid": true,
+  "same_nonpath_server_arguments": true,
+  "same_nonpath_ninfer_environment": true,
+  "actual_inputs_canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+  "runs": {
+    "current": {
+      "measured": 128,
+      "time_to_first_token": {
+        "p95_ms": 10161.440413249995,
+        "over_threshold": 7,
+        "contributors": [
+          {
+            "conversation_id": "session_000018",
+            "value_ms": 9851.263465,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000115",
+            "value_ms": 10328.45877,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "inter_token_latency": {
+        "p95_ms": 39.8260672274951,
+        "over_threshold": 6,
+        "contributors": [
+          {
+            "conversation_id": "session_000043",
+            "value_ms": 39.58836059295499,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000117",
+            "value_ms": 39.95406310763209,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "joint_slo": false
+    },
+    "historical_r1": {
+      "measured": 128,
+      "time_to_first_token": {
+        "p95_ms": 9893.64278495,
+        "over_threshold": 6,
+        "contributors": [
+          {
+            "conversation_id": "session_000018",
+            "value_ms": 9851.089623,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000055",
+            "value_ms": 9916.556026,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "inter_token_latency": {
+        "p95_ms": 39.92924192739724,
+        "over_threshold": 7,
+        "contributors": [
+          {
+            "conversation_id": "session_000043",
+            "value_ms": 39.32560444814089,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000009",
+            "value_ms": 40.25427749315068,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "joint_slo": true
+    },
+    "historical_r2": {
+      "measured": 128,
+      "time_to_first_token": {
+        "p95_ms": 9821.661092449998,
+        "over_threshold": 6,
+        "contributors": [
+          {
+            "conversation_id": "session_000132",
+            "value_ms": 9728.025802,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000016",
+            "value_ms": 9872.080095,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "inter_token_latency": {
+        "p95_ms": 39.14179836418786,
+        "over_threshold": 6,
+        "contributors": [
+          {
+            "conversation_id": "session_000036",
+            "value_ms": 38.804192289628176,
+            "weight": 0.3500000000000085
+          },
+          {
+            "conversation_id": "session_000094",
+            "value_ms": 39.323586250489235,
+            "weight": 0.6499999999999915
+          }
+        ]
+      },
+      "joint_slo": true
+    }
+  },
+  "limits": {
+    "TTFT_P95_ms": 10000,
+    "TPOT_P95_ms": 40
+  },
+  "causal_scope": "Repeated tail-latency outcome; no per-executor trace or in-run GPU telemetry was collected by this guided run, so no exclusive hardware or scheduler cause is asserted.",
+  "output_tokens_per_second": 308.6625261432301,
+  "source_sha256": {
+    "evaluation-identity.json": "791c1de6b11ed0f23f753700a392e8547cf55f7daf91ef06f237e655927c58a5",
+    "launch.json": "98347ee3160a04ba310e5650c62d8d8a9b677be0db9ea396618925767ce0fdb4",
+    "plan.json": "f3e26594b65042d9d05b7ab70e3a0419f47cbcfa4261ab6bfc4db9bb21b680e7",
+    "profile_export.jsonl": "8af0948c423af347dd33dcc7d6aaf208fca1bb0061c60e01d2b1b594099c6b82",
+    "requests.jsonl": "ec7998cdc6cfbf1777dbbd6cede1b26ba4d5c4752717c497bd4a604303223b0e",
+    "summary.json": "161ca960411f4050f58c9bba66e27593c989953392e841f80600f89cb61b5223"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "started_at": "2026-10-18T01:36:49.023939+00:00",
+  "configuration": {
+    "mode": "accuracy",
+    "base_url": "http://127.0.0.1:18553/v1",
+    "model": "qwen38-27b",
+    "tokenizer": "/workspace/InferX/models/tokenizer",
+    "tokenizer_revision": null,
+    "api_key_env": "OPENAI_API_KEY",
+    "output_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation",
+    "env_dir": "/workspace/InferX/eval-envs",
+    "perf_requests": 100,
+    "eval_batch_size": 13,
+    "request_timeout": 600,
+    "seed": 42,
+    "dry_run": false,
+    "isl": 8192,
+    "osl": 512,
+    "concurrencies": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "warmup_requests": 8,
+    "accuracy_limit": 100,
+    "accuracy_generation_config": {
+      "max_tokens": 32768
+    }
+  },
+  "status": "完整",
+  "issues": [],
+  "accuracy": {
+    "status": "完整",
+    "issues": [],
+    "metrics": {
+      "prompt_level_strict": {
+        "score": 0.85,
+        "num": 100
+      },
+      "inst_level_strict": {
+        "score": 0.8559,
+        "num": 111
+      },
+      "prompt_level_loose": {
+        "score": 0.88,
+        "num": 100
+      },
+      "inst_level_loose": {
+        "score": 0.8919,
+        "num": 111
+      }
+    },
+    "generated_samples": 100,
+    "execution_summary": {
+      "requested": 100,
+      "succeeded": 100,
+      "errored": 0,
+      "incomplete": false,
+      "subsets": {
+        "default": {
+          "requested": 100,
+          "succeeded": 100,
+          "errored": 0
+        }
+      }
+    },
+    "native_report": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json",
+    "artifacts": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy"
+  },
+  "ended_at": "2026-10-18T01:53:31.036270+00:00"
+}

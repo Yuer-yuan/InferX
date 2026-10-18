@@ -13,7 +13,7 @@
 
 116从固定FP8输入重新拟合025、041、047三类缓存，共128＋64＋47＝239个服务矩阵、478个文件。新文件逐项SHA与字节数均同原selected478一致，差异0；这说明本轮复现了指定缓存内容，没有把内容相同当作模型精度通过。
 
-独立正常构建的e919f180…在新缓存上完成原C14：TTFT P95 9.862210s、TPOT P95 39.428602ms、305.5329 tok/s，128测量零错误，两项SLO通过。原100题质量仍待实际终态，不继承664的90/96或历史100/105的85/88。基础.ninfer容器继续作为独立固定公共输入，未宣称从FP8重造整个基础容器。完整输入、命令及[缓存SHA对照](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-vs-original478-SHA.json)见[量化复验指南](quantization-reproduction.md)。
+独立正常构建的e919f180…在新缓存上完成原C14：TTFT P95 9.862210s、TPOT P95 39.428602ms、305.5329 tok/s，128测量零错误，两项SLO通过。独立原100题质量已实际得到strict85/100、loose88/100、指令95/111与99/111；0错误，1空final及1长度截断为同一key50，全部保留。原verifier独审100题通过。与历史105题级得分虽相同，严格指令分数不同；不是继承664或105成绩。基础.ninfer容器继续作为独立固定公共输入，未宣称从FP8重造整个基础容器。完整输入、命令及[缓存SHA对照](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-vs-original478-SHA.json)见[量化复验指南](quantization-reproduction.md)。
 
 ## 框架选择
 

@@ -138,14 +138,27 @@ IFBench固定数据由入口置入work目录下独立缓存，原300题/344指�
 | 041输入投影 | 64 | 128 | 128 / 128 |
 | 047输出投影 | 47 | 94 | 94 / 94 |
 
-这些新文件已绑定独立[116-fresh47配方](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/entrypoint/candidate_recipes/116-fresh47.json)。正常重建的新二进制SHA为`e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5`，源码聚合仍为`c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8`。新二进制的C14性能已独立实测通过，结果见下一节；原100题质量仍待实际终态回执。不继承664或历史e4ed成绩，内容一致不能替代新构建的端到端评测。
+这些新文件已绑定独立[116-fresh47配方](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/entrypoint/candidate_recipes/116-fresh47.json)。正常重建的新二进制SHA为`e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5`，源码聚合仍为`c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8`。新二进制的C14性能已独立实测通过，结果见下一节；原100题质量亦已完成，严格85/100、宽松88/100，详细终态见末节。不继承664或历史e4ed成绩，内容一致不能替代新构建的端到端评测。
 
 ### 116新二进制的实际C14性能
 
 新二进制e919f180…与本轮新478缓存完成原C14评测：客户端14／引擎13，KV121856、普通MTP K3，冷8192输入／512输出；128正式＋8预热＋1探测。128条测量全部成功、错误0。TTFT P95 **9.862210240600s**，TPOT P95 **39.42860192427ms**，同时满足10s／40ms；吞吐 **305.532868219352 tok/s**。吞吐分母为原profiling观察时间窗214.497380861秒，输出65536 Token；保留初始测量和准入等待。
 
-[原始汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)保留原数值。原解析器没有meets_slo字段，入口回执为null；联合PASS按两项原P95分别比较阈值得到。性能服务已正常回收，随后独立运行原100题质量；质量分数待实际完成回执。此行为e919自己的实测，不替换主展示664或历史100/105的记录。
+[原始汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)保留原数值。原解析器没有meets_slo字段，入口回执为null；联合PASS按两项原P95分别比较阈值得到。性能服务已正常回收，随后独立完成原100题质量；其独立分数及完整失败见末节。此行为e919自己的实测，不替换主展示664或历史100/105的记录。
 
 独立逐请求复算见[材料侧原raw审计](../records/typst/clean-reproduction/fresh-performance-audit.json)，阈值和服务回收记录见[C14终态判定](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/C14-threshold-evaluation.json)。
 
 吞吐分母核对：`phase_manifest.json`中profiling的`end_ns=1792287366484028998`、`start_ns=1792287151986648137`，整数相减后除以10⁹得到214.497380861s；65536除以该值为305.53286821935166 tok/s。原AIPerf另导出的`benchmark_duration=214.49216998400001s`是不同字段，不用于替换上述吞吐分母。
+
+### 116新二进制的原100题质量
+
+同一e919二进制与新478缓存另启质量服务：客户端／活动槽13，KV532480、普通MTP K3，保留默认thinking、采样temperature=1、top_k=20、top_p=0.95及seed42，仅显式覆盖max_tokens=32768，按自然EOS结束。原IFBench前100题、111条指令全部完成，生成错误0；全100题的顺序、prompt、指令ID和kwargs与历史固定集合一致。
+
+| 计分层级 | 严格strict | 宽松loose |
+|---|---:|---:|
+| 题目prompt |85/100 |88/100 |
+| 指令instruction |95/111 |99/111 |
+
+99题自然结束，1题触及长度上限。ordinal50／key50生成32768 Token后截断，保留reasoning但final为空；这是同一题的两种状态，仍完整计入全部分母。原EvalScope 1.13.0 verifier已独立重算100题，与原review逐项一致。原summary指令分数保留其四位小数0.8559／0.8919；上表整数由逐题计分汇总。质量服务正常回收，所属进程均退出、端口关闭、观察时GPU计算进程为空。
+
+来源：[原始质量汇总](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/deployment116/quality100/evaluation/summary.json)、[原verifier独立复核](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/quality-independent-CPU-001/summary.json)、[完整失败及空答案／截断记录](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/quality-independent-CPU-001/failures-empty-length.jsonl)、[实际终态](../../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/actual-terminal-and-GPU-116.json)、[材料侧47文件及100题核对](../records/typst/clean-reproduction/fresh-quality-audit.json)。题级85/88与历史105相同，但严格指令分数为95/111，历史105为96/111；不称为精度完全一致。这里只覆盖原前100题，不代表全300题或一般任务精度，也不能把不同构建间的单轮差异归因于量化。

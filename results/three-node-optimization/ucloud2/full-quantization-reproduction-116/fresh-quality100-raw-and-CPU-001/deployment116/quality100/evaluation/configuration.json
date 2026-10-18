@@ -1,0 +1,28 @@
+{
+  "mode": "accuracy",
+  "base_url": "http://127.0.0.1:18553/v1",
+  "model": "qwen38-27b",
+  "tokenizer": "/workspace/InferX/models/tokenizer",
+  "tokenizer_revision": null,
+  "api_key_env": "OPENAI_API_KEY",
+  "output_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation",
+  "env_dir": "/workspace/InferX/eval-envs",
+  "perf_requests": 100,
+  "eval_batch_size": 13,
+  "request_timeout": 600,
+  "seed": 42,
+  "dry_run": false,
+  "isl": 8192,
+  "osl": 512,
+  "concurrencies": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "warmup_requests": 8,
+  "accuracy_limit": 100,
+  "accuracy_generation_config": {
+    "max_tokens": 32768
+  }
+}

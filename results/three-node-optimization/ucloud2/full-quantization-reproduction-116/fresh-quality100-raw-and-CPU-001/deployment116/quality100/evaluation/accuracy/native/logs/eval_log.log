@@ -1,0 +1,139 @@
+2026-10-18 01:36:50 - evalscope - INFO: Running with native backend
+2026-10-18 01:36:50 - evalscope - INFO: Dump task config to /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/configs/task_config.yaml
+2026-10-18 01:36:50 - evalscope - INFO: {
+    "model_id": "qwen38-27b",
+    "model_args": {},
+    "model_task": "text_generation",
+    "chat_template": null,
+    "datasets": [
+        "ifbench"
+    ],
+    "dataset_args": {},
+    "dataset_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/fixed-eval-cache/modelscope/datasets",
+    "dataset_hub": "modelscope",
+    "repeats": 1,
+    "eval_type": "openai_api",
+    "eval_backend": "Native",
+    "eval_config": null,
+    "limit": 100,
+    "eval_batch_size": 13,
+    "use_cache": null,
+    "rerun_review": false,
+    "work_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native",
+    "no_timestamp": true,
+    "enable_progress_tracker": false,
+    "ignore_errors": false,
+    "debug": false,
+    "seed": 42,
+    "api_url": "http://127.0.0.1:18553/v1",
+    "api_key": "**********",
+    "timeout": null,
+    "stream": null,
+    "judge": {
+        "strategy": "auto",
+        "models": [],
+        "contract": {
+            "system_prompt": null,
+            "prompt_template": null,
+            "score_mapping": null,
+            "score_type": "pattern"
+        },
+        "repeats": 1,
+        "position_swap": "auto",
+        "aggregation": "mean",
+        "min_valid_judges": 1
+    },
+    "analysis_report": false,
+    "collect_perf": true,
+    "use_sandbox": false,
+    "sandbox_type": "docker",
+    "sandbox_manager_config": {},
+    "evalscope_version": "1.13.0",
+    "model": "qwen38-27b",
+    "generation_config": {
+        "batch_size": 13,
+        "max_tokens": 32768
+    },
+    "sandbox": {
+        "enabled": false,
+        "engine": "docker",
+        "default_config": {},
+        "manager_config": {},
+        "pool_size": null
+    },
+    "agent_config": null
+}
+2026-10-18 01:36:50 - evalscope - INFO: Start loading benchmark dataset: ifbench
+2026-10-18 01:36:50 - evalscope - INFO: Loading dataset allenai/IFBench_test from modelscope > subset: default > split: train ...
+2026-10-18 01:36:51 - evalscope - INFO: Using cached ModelScope dataset allenai/IFBench_test from /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/fixed-eval-cache/modelscope/datasets/allenai--IFBench_test/snapshots/cf340e885a36d4b7b02692ddb7da242ea2643f4e
+2026-10-18 01:36:51 - evalscope - WARNING: ifbench: 100 samples to evaluate (1 subset, --limit=100 per subset). Remove `--limit` for a formal evaluation.
+2026-10-18 01:36:51 - evalscope - INFO: Subsets of ifbench: ['default']
+2026-10-18 01:36:51 - evalscope - INFO: Loading model for prediction...
+2026-10-18 01:36:51 - evalscope - INFO: Creating model qwen38-27b with eval_type=openai_api base_url=http://127.0.0.1:18553/v1, config={'retries': 5, 'retry_interval': 10, 'batch_size': 13, 'max_tokens': 32768, 'anthropic_cache_strategy': 'evaluation'}, model_args={}
+2026-10-18 01:36:51 - evalscope - INFO: Model loaded successfully.
+2026-10-18 01:37:51 - evalscope - INFO: Evaluating[ifbench]   6%| 6/100 [Elapsed: 01:00 < Remaining: 09:39,  6.17s/it]
+2026-10-18 01:38:51 - evalscope - INFO: Evaluating[ifbench]  22%| 22/100 [Elapsed: 02:00 < Remaining: 05:28,  4.22s/it]
+2026-10-18 01:39:51 - evalscope - INFO: Evaluating[ifbench]  28%| 28/100 [Elapsed: 03:00 < Remaining: 13:14, 11.04s/it]
+2026-10-18 01:40:51 - evalscope - INFO: Evaluating[ifbench]  37%| 37/100 [Elapsed: 04:00 < Remaining: 07:32,  7.18s/it]
+2026-10-18 01:41:51 - evalscope - INFO: Evaluating[ifbench]  42%| 42/100 [Elapsed: 05:00 < Remaining: 08:44,  9.05s/it]
+2026-10-18 01:42:51 - evalscope - INFO: Evaluating[ifbench]  51%| 51/100 [Elapsed: 06:00 < Remaining: 04:30,  5.53s/it]
+2026-10-18 01:43:51 - evalscope - INFO: Evaluating[ifbench]  63%| 63/100 [Elapsed: 07:00 < Remaining: 04:06,  6.66s/it]
+2026-10-18 01:44:51 - evalscope - INFO: Evaluating[ifbench]  71%| 71/100 [Elapsed: 08:00 < Remaining: 03:37,  7.50s/it]
+2026-10-18 01:45:51 - evalscope - INFO: Evaluating[ifbench]  77%| 77/100 [Elapsed: 09:00 < Remaining: 03:42,  9.66s/it]
+2026-10-18 01:46:51 - evalscope - INFO: Evaluating[ifbench]  83%| 83/100 [Elapsed: 10:00 < Remaining: 01:53,  6.65s/it]
+2026-10-18 01:47:51 - evalscope - INFO: Evaluating[ifbench]  84%| 84/100 [Elapsed: 11:00 < Remaining: 06:26, 24.15s/it]
+2026-10-18 01:48:51 - evalscope - INFO: Evaluating[ifbench]  91%| 91/100 [Elapsed: 12:00 < Remaining: 02:01, 13.51s/it]
+2026-10-18 01:49:51 - evalscope - INFO: Evaluating[ifbench]  98%| 98/100 [Elapsed: 13:00 < Remaining: 00:12,  6.12s/it]
+2026-10-18 01:50:51 - evalscope - INFO: Evaluating[ifbench]  99%| 99/100 [Elapsed: 14:00 < Remaining: 00:16, 16.50s/it]
+2026-10-18 01:51:51 - evalscope - INFO: Evaluating[ifbench]  99%| 99/100 [Elapsed: 15:00 < Remaining: 00:16, 16.50s/it]
+2026-10-18 01:52:51 - evalscope - INFO: Evaluating[ifbench]  99%| 99/100 [Elapsed: 16:00 < Remaining: 00:16, 16.50s/it]
+2026-10-18 01:53:29 - evalscope - INFO: Evaluating[ifbench] 100%| 100/100 [Elapsed: 16:38 < Remaining: 00:00, 69.26s/it]
+2026-10-18 01:53:29 - evalscope - INFO: ifbench: predictions complete, aggregating scores...
+2026-10-18 01:53:29 - evalscope - INFO: Aggregating scores for subset: default
+2026-10-18 01:53:29 - evalscope - INFO: Generating report...
+2026-10-18 01:53:29 - evalscope - INFO: 
+ifbench report table:
+┌────────────┬───────────┬──────────────────────────────────────────────┬──────────┬───────┬─────────┐
+│ Model      │ Dataset   │ Metric                                       │ Subset   │   Num │ Score   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_strict:mean)        │ default  │   100 │ 85%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_strict:weighted_mean) │ default  │   111 │ 85.6%   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_loose:mean)         │ default  │   100 │ 88%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_loose:weighted_mean)  │ default  │   111 │ 89.2%   │
+└────────────┴───────────┴──────────────────────────────────────────────┴──────────┴───────┴─────────┘ 
+
+2026-10-18 01:53:29 - evalscope - INFO: Skipping report analysis (`analysis_report=False`).
+2026-10-18 01:53:29 - evalscope - INFO: Dump report to: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json 
+
+2026-10-18 01:53:29 - evalscope - INFO: 
+ifbench perf table:
+Model       Dataset      Num  Avg Lat    Avg TTFT    Avg TPOT    Avg Thpt       Avg In    Avg Out
+----------  ---------  -----  ---------  ----------  ----------  -----------  --------  ---------
+qwen38-27b  IFBench      100  97.505 s   —           —           53.23 tok/s       133       5190
+
+2026-10-18 01:53:29 - evalscope - INFO: Benchmark ifbench evaluation finished.
+2026-10-18 01:53:29 - evalscope - INFO: Running[eval] 100%| 1/1 [Elapsed: 16:38 < Remaining: 00:00, 998.92s/benchmark]
+2026-10-18 01:53:29 - evalscope - INFO: Overall report table: 
+┌────────────┬───────────┬──────────────────────────────────────────────┬──────────┬───────┬─────────┐
+│ Model      │ Dataset   │ Metric                                       │ Subset   │   Num │ Score   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_strict:mean)        │ default  │   100 │ 85%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_strict:weighted_mean) │ default  │   111 │ 85.6%   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_loose:mean)         │ default  │   100 │ 88%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_loose:weighted_mean)  │ default  │   111 │ 89.2%   │
+└────────────┴───────────┴──────────────────────────────────────────────┴──────────┴───────┴─────────┘ 
+
+2026-10-18 01:53:29 - evalscope - INFO: Overall perf table: 
+Model       Dataset      Num  Avg Lat    Avg TTFT    Avg TPOT    Avg Thpt       Avg In    Avg Out
+----------  ---------  -----  ---------  ----------  ----------  -----------  --------  ---------
+qwen38-27b  IFBench      100  97.505 s   —           —           53.23 tok/s       133       5190 
+
+2026-10-18 01:53:30 - evalscope - INFO: HTML report generated: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reports/report.html
+2026-10-18 01:53:30 - evalscope - INFO: Finished evaluation for qwen38-27b on ['ifbench']
+2026-10-18 01:53:30 - evalscope - INFO: Output directory: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native

@@ -1,0 +1,533 @@
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: Args: Task config is provided with TaskConfig type.[0m
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: Running with native backend[0m
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: Dump task config to /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/configs/task_config.yaml[0m
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: {
+    "model_id": "qwen38-27b",
+    "model_args": {},
+    "model_task": "text_generation",
+    "chat_template": null,
+    "datasets": [
+        "ifbench"
+    ],
+    "dataset_args": {},
+    "dataset_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/fixed-eval-cache/modelscope/datasets",
+    "dataset_hub": "modelscope",
+    "repeats": 1,
+    "eval_type": "openai_api",
+    "eval_backend": "Native",
+    "eval_config": null,
+    "limit": 100,
+    "eval_batch_size": 13,
+    "use_cache": null,
+    "rerun_review": false,
+    "work_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native",
+    "no_timestamp": true,
+    "enable_progress_tracker": false,
+    "ignore_errors": false,
+    "debug": false,
+    "seed": 42,
+    "api_url": "http://127.0.0.1:18553/v1",
+    "api_key": "**********",
+    "timeout": null,
+    "stream": null,
+    "judge": {
+        "strategy": "auto",
+        "models": [],
+        "contract": {
+            "system_prompt": null,
+            "prompt_template": null,
+            "score_mapping": null,
+            "score_type": "pattern"
+        },
+        "repeats": 1,
+        "position_swap": "auto",
+        "aggregation": "mean",
+        "min_valid_judges": 1
+    },
+    "analysis_report": false,
+    "collect_perf": true,
+    "use_sandbox": false,
+    "sandbox_type": "docker",
+    "sandbox_manager_config": {},
+    "evalscope_version": "1.13.0",
+    "model": "qwen38-27b",
+    "generation_config": {
+        "batch_size": 13,
+        "max_tokens": 32768
+    },
+    "sandbox": {
+        "enabled": false,
+        "engine": "docker",
+        "default_config": {},
+        "manager_config": {},
+        "pool_size": null
+    },
+    "agent_config": null
+}[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+                                                           
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: Start loading benchmark dataset: ifbench[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+                                                           
+2026-10-18 01:36:50 - evalscope - [32mINFO[0m: Loading dataset allenai/IFBench_test from modelscope > subset: default > split: train ...[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]2026-10-18 01:36:51,064 | WARNING | modelscope_hub.download | Using cached revision cf340e885a36d4b7b02692ddb7da242ea2643f4e because no revision was provided and outgoing traffic is disabled.
+
+                                                           
+2026-10-18 01:36:51 - evalscope - [32mINFO[0m: Using cached ModelScope dataset allenai/IFBench_test from /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/fixed-eval-cache/modelscope/datasets/allenai--IFBench_test/snapshots/cf340e885a36d4b7b02692ddb7da242ea2643f4e[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+
+Generating train split: 0 examples [00:00, ? examples/s][A
+Generating train split: 300 examples [00:00, 53094.70 examples/s]
+
+
+Saving the dataset (0/1 shards):   0%|          | 0/300 [00:00<?, ? examples/s][A
+
+Saving the dataset (1/1 shards): 100%|██████████| 300/300 [00:00<00:00, 38838.55 examples/s][A
+Saving the dataset (1/1 shards): 100%|██████████| 300/300 [00:00<00:00, 38352.01 examples/s]
+
+
+Processing records:   0%|          | 0/100 [00:00<?, ?it/s][A
+Processing records: 100%|██████████| 100/100 [00:00<00:00, 89756.13it/s]
+
+                                                           
+2026-10-18 01:36:51 - evalscope - [33mWARNING[0m: ifbench: 100 samples to evaluate (1 subset, --limit=100 per subset). Remove `--limit` for a formal evaluation.[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+                                                           
+2026-10-18 01:36:51 - evalscope - [32mINFO[0m: Subsets of ifbench: ['default'][0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:   0%|          | 0/100 [00:00<?, ?it/s][A
+                                                           
+
+                                                            
+[A2026-10-18 01:36:51 - evalscope - [32mINFO[0m: Loading model for prediction...[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:   0%|          | 0/100 [00:00<?, ?it/s][A
+                                                           
+
+                                                            
+[A2026-10-18 01:36:51 - evalscope - [32mINFO[0m: Creating model qwen38-27b with eval_type=openai_api base_url=http://127.0.0.1:18553/v1, config={'retries': 5, 'retry_interval': 10, 'batch_size': 13, 'max_tokens': 32768, 'anthropic_cache_strategy': 'evaluation'}, model_args={}[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:   0%|          | 0/100 [00:00<?, ?it/s][A
+                                                           
+
+                                                            
+[A2026-10-18 01:36:51 - evalscope - [32mINFO[0m: Model loaded successfully.[0m
+
+Running[eval]:   0%|          | 0/1 [00:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+Evaluating[ifbench]:   1%|          | 1/100 [00:21<34:39, 21.01s/it][A
+
+Evaluating[ifbench]:   2%|▏         | 2/100 [00:39<31:25, 19.24s/it][A
+
+Evaluating[ifbench]:   3%|▎         | 3/100 [00:44<20:35, 12.74s/it][A
+
+Evaluating[ifbench]:   4%|▍         | 4/100 [00:48<14:51,  9.29s/it][A
+
+Evaluating[ifbench]:   5%|▌         | 5/100 [00:56<13:58,  8.83s/it][A
+
+Evaluating[ifbench]:   6%|▌         | 6/100 [00:57<09:39,  6.17s/it][A
+                                                           
+
+                                                                    
+[A2026-10-18 01:37:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]   6%| 6/100 [Elapsed: 01:00 < Remaining: 09:39,  6.17s/it][0m
+
+Running[eval]:   0%|          | 0/1 [01:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:   6%|▌         | 6/100 [01:00<09:39,  6.17s/it][A
+
+Evaluating[ifbench]:   7%|▋         | 7/100 [01:02<08:58,  5.79s/it][A
+
+Evaluating[ifbench]:   8%|▊         | 8/100 [01:03<06:32,  4.26s/it][A
+
+Evaluating[ifbench]:   9%|▉         | 9/100 [01:06<05:52,  3.87s/it][A
+
+Evaluating[ifbench]:  10%|█         | 10/100 [01:12<06:47,  4.53s/it][A
+
+Evaluating[ifbench]:  11%|█         | 11/100 [01:15<06:01,  4.06s/it][A
+
+Evaluating[ifbench]:  13%|█▎        | 13/100 [01:19<04:29,  3.10s/it][A
+
+Evaluating[ifbench]:  14%|█▍        | 14/100 [01:21<04:03,  2.83s/it][A
+
+Evaluating[ifbench]:  15%|█▌        | 15/100 [01:25<04:26,  3.14s/it][A
+
+Evaluating[ifbench]:  16%|█▌        | 16/100 [01:33<06:15,  4.47s/it][A
+
+Evaluating[ifbench]:  17%|█▋        | 17/100 [01:35<05:13,  3.77s/it][A
+
+Evaluating[ifbench]:  19%|█▉        | 19/100 [01:40<04:19,  3.21s/it][A
+
+Evaluating[ifbench]:  20%|██        | 20/100 [01:42<03:53,  2.92s/it][A
+
+Evaluating[ifbench]:  21%|██        | 21/100 [01:46<04:12,  3.19s/it][A
+
+Evaluating[ifbench]:  22%|██▏       | 22/100 [01:53<05:28,  4.22s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:38:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  22%| 22/100 [Elapsed: 02:00 < Remaining: 05:28,  4.22s/it][0m
+
+Running[eval]:   0%|          | 0/1 [02:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  22%|██▏       | 22/100 [02:00<05:28,  4.22s/it][A
+
+Evaluating[ifbench]:  23%|██▎       | 23/100 [02:04<07:49,  6.09s/it][A
+
+Evaluating[ifbench]:  24%|██▍       | 24/100 [02:07<06:36,  5.22s/it][A
+
+Evaluating[ifbench]:  25%|██▌       | 25/100 [02:14<07:09,  5.73s/it][A
+
+Evaluating[ifbench]:  26%|██▌       | 26/100 [02:27<09:41,  7.85s/it][A
+
+Evaluating[ifbench]:  27%|██▋       | 27/100 [02:40<11:23,  9.37s/it][A
+
+Evaluating[ifbench]:  28%|██▊       | 28/100 [02:55<13:14, 11.04s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:39:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  28%| 28/100 [Elapsed: 03:00 < Remaining: 13:14, 11.04s/it][0m
+
+Running[eval]:   0%|          | 0/1 [03:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  28%|██▊       | 28/100 [03:00<13:14, 11.04s/it][A
+
+Evaluating[ifbench]:  29%|██▉       | 29/100 [03:14<15:51, 13.40s/it][A
+
+Evaluating[ifbench]:  30%|███       | 30/100 [03:20<13:03, 11.20s/it][A
+
+Evaluating[ifbench]:  31%|███       | 31/100 [03:23<10:03,  8.75s/it][A
+
+Evaluating[ifbench]:  32%|███▏      | 32/100 [03:29<08:59,  7.93s/it][A
+
+Evaluating[ifbench]:  33%|███▎      | 33/100 [03:40<09:52,  8.85s/it][A
+
+Evaluating[ifbench]:  34%|███▍      | 34/100 [03:42<07:28,  6.80s/it][A
+
+Evaluating[ifbench]:  35%|███▌      | 35/100 [03:45<06:08,  5.66s/it][A
+
+Evaluating[ifbench]:  36%|███▌      | 36/100 [03:46<04:32,  4.26s/it][A
+
+Evaluating[ifbench]:  37%|███▋      | 37/100 [04:00<07:32,  7.18s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:40:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  37%| 37/100 [Elapsed: 04:00 < Remaining: 07:32,  7.18s/it][0m
+
+Running[eval]:   0%|          | 0/1 [04:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  37%|███▋      | 37/100 [04:00<07:32,  7.18s/it][A
+
+Evaluating[ifbench]:  39%|███▉      | 39/100 [04:02<04:24,  4.33s/it][A
+
+Evaluating[ifbench]:  40%|████      | 40/100 [04:21<07:58,  7.97s/it][A
+
+Evaluating[ifbench]:  41%|████      | 41/100 [04:36<09:38,  9.81s/it][A
+
+Evaluating[ifbench]:  42%|████▏     | 42/100 [04:43<08:44,  9.05s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:41:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  42%| 42/100 [Elapsed: 05:00 < Remaining: 08:44,  9.05s/it][0m
+
+Running[eval]:   0%|          | 0/1 [05:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  42%|████▏     | 42/100 [05:00<08:44,  9.05s/it][A
+
+Evaluating[ifbench]:  43%|████▎     | 43/100 [05:05<12:02, 12.67s/it][A
+
+Evaluating[ifbench]:  44%|████▍     | 44/100 [05:06<08:43,  9.34s/it][A
+
+Evaluating[ifbench]:  45%|████▌     | 45/100 [05:17<09:00,  9.82s/it][A
+
+Evaluating[ifbench]:  46%|████▌     | 46/100 [05:35<10:59, 12.22s/it][A
+
+Evaluating[ifbench]:  47%|████▋     | 47/100 [05:40<08:54, 10.09s/it][A
+
+Evaluating[ifbench]:  48%|████▊     | 48/100 [05:52<09:14, 10.66s/it][A
+
+Evaluating[ifbench]:  49%|████▉     | 49/100 [05:55<07:07,  8.38s/it][A
+
+Evaluating[ifbench]:  50%|█████     | 50/100 [05:56<05:09,  6.18s/it][A
+
+Evaluating[ifbench]:  51%|█████     | 51/100 [06:00<04:30,  5.53s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:42:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  51%| 51/100 [Elapsed: 06:00 < Remaining: 04:30,  5.53s/it][0m
+
+Running[eval]:   0%|          | 0/1 [06:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  51%|█████     | 51/100 [06:00<04:30,  5.53s/it][A
+
+Evaluating[ifbench]:  52%|█████▏    | 52/100 [06:01<03:20,  4.18s/it][A
+
+Evaluating[ifbench]:  53%|█████▎    | 53/100 [06:02<02:31,  3.22s/it][A
+
+Evaluating[ifbench]:  54%|█████▍    | 54/100 [06:05<02:25,  3.16s/it][A
+
+Evaluating[ifbench]:  56%|█████▌    | 56/100 [06:07<01:35,  2.16s/it][A
+
+Evaluating[ifbench]:  57%|█████▋    | 57/100 [06:09<01:31,  2.12s/it][A
+
+Evaluating[ifbench]:  58%|█████▊    | 58/100 [06:14<02:00,  2.88s/it][A
+
+Evaluating[ifbench]:  59%|█████▉    | 59/100 [06:29<04:13,  6.17s/it][A
+
+Evaluating[ifbench]:  60%|██████    | 60/100 [06:32<03:31,  5.29s/it][A
+
+Evaluating[ifbench]:  61%|██████    | 61/100 [06:34<02:49,  4.35s/it][A
+
+Evaluating[ifbench]:  62%|██████▏   | 62/100 [06:53<05:26,  8.59s/it][A
+
+Evaluating[ifbench]:  63%|██████▎   | 63/100 [06:55<04:06,  6.66s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:43:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  63%| 63/100 [Elapsed: 07:00 < Remaining: 04:06,  6.66s/it][0m
+
+Running[eval]:   0%|          | 0/1 [07:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  63%|██████▎   | 63/100 [07:00<04:06,  6.66s/it][A
+
+Evaluating[ifbench]:  64%|██████▍   | 64/100 [07:02<04:03,  6.76s/it][A
+
+Evaluating[ifbench]:  66%|██████▌   | 66/100 [07:15<03:45,  6.64s/it][A
+
+Evaluating[ifbench]:  67%|██████▋   | 67/100 [07:30<04:47,  8.70s/it][A
+
+Evaluating[ifbench]:  68%|██████▊   | 68/100 [07:42<05:06,  9.56s/it][A
+
+Evaluating[ifbench]:  69%|██████▉   | 69/100 [07:43<03:44,  7.24s/it][A
+
+Evaluating[ifbench]:  70%|███████   | 70/100 [07:49<03:26,  6.90s/it][A
+
+Evaluating[ifbench]:  71%|███████   | 71/100 [07:58<03:37,  7.50s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:44:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  71%| 71/100 [Elapsed: 08:00 < Remaining: 03:37,  7.50s/it][0m
+
+Running[eval]:   0%|          | 0/1 [08:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  71%|███████   | 71/100 [08:00<03:37,  7.50s/it][A
+
+Evaluating[ifbench]:  72%|███████▏  | 72/100 [08:13<04:30,  9.67s/it][A
+
+Evaluating[ifbench]:  73%|███████▎  | 73/100 [08:20<04:00,  8.89s/it][A
+
+Evaluating[ifbench]:  74%|███████▍  | 74/100 [08:23<03:06,  7.15s/it][A
+
+Evaluating[ifbench]:  75%|███████▌  | 75/100 [08:38<03:57,  9.48s/it][A
+
+Evaluating[ifbench]:  76%|███████▌  | 76/100 [08:39<02:47,  6.96s/it][A
+
+Evaluating[ifbench]:  77%|███████▋  | 77/100 [08:55<03:42,  9.66s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:45:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  77%| 77/100 [Elapsed: 09:00 < Remaining: 03:42,  9.66s/it][0m
+
+Running[eval]:   0%|          | 0/1 [09:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  77%|███████▋  | 77/100 [09:00<03:42,  9.66s/it][A
+
+Evaluating[ifbench]:  78%|███████▊  | 78/100 [09:27<05:59, 16.33s/it][A
+
+Evaluating[ifbench]:  79%|███████▉  | 79/100 [09:28<04:06, 11.75s/it][A
+
+Evaluating[ifbench]:  80%|████████  | 80/100 [09:30<02:56,  8.83s/it][A
+
+Evaluating[ifbench]:  81%|████████  | 81/100 [09:43<03:11, 10.08s/it][A
+
+Evaluating[ifbench]:  82%|████████▏ | 82/100 [09:44<02:12,  7.36s/it][A
+
+Evaluating[ifbench]:  83%|████████▎ | 83/100 [09:49<01:53,  6.65s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:46:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  83%| 83/100 [Elapsed: 10:00 < Remaining: 01:53,  6.65s/it][0m
+
+Running[eval]:   0%|          | 0/1 [10:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  83%|████████▎ | 83/100 [10:00<01:53,  6.65s/it][A
+
+Evaluating[ifbench]:  84%|████████▍ | 84/100 [10:54<06:26, 24.15s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:47:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  84%| 84/100 [Elapsed: 11:00 < Remaining: 06:26, 24.15s/it][0m
+
+Running[eval]:   0%|          | 0/1 [11:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  84%|████████▍ | 84/100 [11:00<06:26, 24.15s/it][A
+
+Evaluating[ifbench]:  85%|████████▌ | 85/100 [11:04<04:58, 19.91s/it][A
+
+Evaluating[ifbench]:  86%|████████▌ | 86/100 [11:14<03:57, 16.94s/it][A
+
+Evaluating[ifbench]:  87%|████████▋ | 87/100 [11:22<03:05, 14.26s/it][A
+
+Evaluating[ifbench]:  89%|████████▉ | 89/100 [11:26<01:34,  8.60s/it][A
+
+Evaluating[ifbench]:  90%|█████████ | 90/100 [11:28<01:09,  6.97s/it][A
+
+Evaluating[ifbench]:  91%|█████████ | 91/100 [12:00<02:01, 13.51s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:48:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  91%| 91/100 [Elapsed: 12:00 < Remaining: 02:01, 13.51s/it][0m
+
+Running[eval]:   0%|          | 0/1 [12:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  91%|█████████ | 91/100 [12:00<02:01, 13.51s/it][A
+
+Evaluating[ifbench]:  92%|█████████▏| 92/100 [12:08<01:36, 12.02s/it][A
+
+Evaluating[ifbench]:  93%|█████████▎| 93/100 [12:11<01:06,  9.49s/it][A
+
+Evaluating[ifbench]:  94%|█████████▍| 94/100 [12:22<00:59,  9.92s/it][A
+
+Evaluating[ifbench]:  95%|█████████▌| 95/100 [12:25<00:39,  7.92s/it][A
+
+Evaluating[ifbench]:  96%|█████████▌| 96/100 [12:39<00:38,  9.70s/it][A
+
+Evaluating[ifbench]:  97%|█████████▋| 97/100 [12:41<00:22,  7.43s/it][A
+
+Evaluating[ifbench]:  98%|█████████▊| 98/100 [12:44<00:12,  6.12s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:49:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  98%| 98/100 [Elapsed: 13:00 < Remaining: 00:12,  6.12s/it][0m
+
+Running[eval]:   0%|          | 0/1 [13:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  98%|█████████▊| 98/100 [13:00<00:12,  6.12s/it][A
+
+Evaluating[ifbench]:  99%|█████████▉| 99/100 [13:25<00:16, 16.50s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:50:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  99%| 99/100 [Elapsed: 14:00 < Remaining: 00:16, 16.50s/it][0m
+
+Running[eval]:   0%|          | 0/1 [14:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  99%|█████████▉| 99/100 [14:00<00:16, 16.50s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:51:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  99%| 99/100 [Elapsed: 15:00 < Remaining: 00:16, 16.50s/it][0m
+
+Running[eval]:   0%|          | 0/1 [15:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  99%|█████████▉| 99/100 [15:00<00:16, 16.50s/it][A
+                                                           
+
+                                                                     
+[A2026-10-18 01:52:51 - evalscope - [32mINFO[0m: Evaluating[ifbench]  99%| 99/100 [Elapsed: 16:00 < Remaining: 00:16, 16.50s/it][0m
+
+Running[eval]:   0%|          | 0/1 [16:00<?, ?benchmark/s]
+
+Evaluating[ifbench]:  99%|█████████▉| 99/100 [16:00<00:16, 16.50s/it][A
+
+Evaluating[ifbench]: 100%|██████████| 100/100 [16:38<00:00, 69.26s/it][A
+                                                           
+
+                                                                      
+[A2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Evaluating[ifbench] 100%| 100/100 [Elapsed: 16:38 < Remaining: 00:00, 69.26s/it][0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+
+Evaluating[ifbench]: 100%|██████████| 100/100 [16:38<00:00, 69.26s/it][A
+Evaluating[ifbench]: 100%|██████████| 100/100 [16:38<00:00,  9.99s/it]
+
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: ifbench: predictions complete, aggregating scores...[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Aggregating scores for subset: default[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Generating report...[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: 
+ifbench report table:
+┌────────────┬───────────┬──────────────────────────────────────────────┬──────────┬───────┬─────────┐
+│ Model      │ Dataset   │ Metric                                       │ Subset   │   Num │ Score   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_strict:mean)        │ default  │   100 │ 85%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_strict:weighted_mean) │ default  │   111 │ 85.6%   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_loose:mean)         │ default  │   100 │ 88%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_loose:weighted_mean)  │ default  │   111 │ 89.2%   │
+└────────────┴───────────┴──────────────────────────────────────────────┴──────────┴───────┴─────────┘ 
+[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Skipping report analysis (`analysis_report=False`).[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Dump report to: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json 
+[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: 
+ifbench perf table:
+Model       Dataset      Num  Avg Lat    Avg TTFT    Avg TPOT    Avg Thpt       Avg In    Avg Out
+----------  ---------  -----  ---------  ----------  ----------  -----------  --------  ---------
+qwen38-27b  IFBench      100  97.505 s   —           —           53.23 tok/s       133       5190
+[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+                                                           
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Benchmark ifbench evaluation finished.[0m
+
+Running[eval]:   0%|          | 0/1 [16:38<?, ?benchmark/s]
+Running[eval]: 100%|██████████| 1/1 [16:38<00:00, 998.92s/benchmark]
+                                                                    
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Running[eval] 100%| 1/1 [Elapsed: 16:38 < Remaining: 00:00, 998.92s/benchmark][0m
+
+Running[eval]: 100%|██████████| 1/1 [16:38<00:00, 998.92s/benchmark]
+Running[eval]: 100%|██████████| 1/1 [16:38<00:00, 998.92s/benchmark]
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Overall report table: 
+┌────────────┬───────────┬──────────────────────────────────────────────┬──────────┬───────┬─────────┐
+│ Model      │ Dataset   │ Metric                                       │ Subset   │   Num │ Score   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_strict:mean)        │ default  │   100 │ 85%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_strict:weighted_mean) │ default  │   111 │ 85.6%   │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (prompt_level_loose:mean)         │ default  │   100 │ 88%     │
+├────────────┼───────────┼──────────────────────────────────────────────┼──────────┼───────┼─────────┤
+│ qwen38-27b │ IFBench   │ Accuracy ↑ (inst_level_loose:weighted_mean)  │ default  │   111 │ 89.2%   │
+└────────────┴───────────┴──────────────────────────────────────────────┴──────────┴───────┴─────────┘ 
+[0m
+2026-10-18 01:53:29 - evalscope - [32mINFO[0m: Overall perf table: 
+Model       Dataset      Num  Avg Lat    Avg TTFT    Avg TPOT    Avg Thpt       Avg In    Avg Out
+----------  ---------  -----  ---------  ----------  ----------  -----------  --------  ---------
+qwen38-27b  IFBench      100  97.505 s   —           —           53.23 tok/s       133       5190 
+[0m
+2026-10-18 01:53:30 - evalscope - [32mINFO[0m: HTML report generated: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reports/report.html[0m
+2026-10-18 01:53:30 - evalscope - [32mINFO[0m: Finished evaluation for qwen38-27b on ['ifbench'][0m
+2026-10-18 01:53:30 - evalscope - [32mINFO[0m: Output directory: /workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native[0m

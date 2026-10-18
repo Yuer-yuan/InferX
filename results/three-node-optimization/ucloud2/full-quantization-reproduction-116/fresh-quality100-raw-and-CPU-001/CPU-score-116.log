@@ -1,0 +1,89 @@
+{
+  "status": "COMPLETE_INDEPENDENTLY_RECOMPUTED_100",
+  "samples": 100,
+  "instructions": 111,
+  "binary_sha256": "e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "recipe_sha256": "4b7d1b7542291948bbec1af23fe99973189d48d6e171bcabc4a40e0b6c123a59",
+  "profile": {
+    "client_concurrency": 13,
+    "kv_capacity": 532480,
+    "mode": "accuracy",
+    "name": "quality100",
+    "native_concurrency": 13
+  },
+  "metrics": {
+    "prompt_level_strict": {
+      "score": 0.85,
+      "numerator": 85,
+      "denominator": 100
+    },
+    "inst_level_strict": {
+      "score": 0.8558558558558559,
+      "numerator": 95,
+      "denominator": 111
+    },
+    "prompt_level_loose": {
+      "score": 0.88,
+      "numerator": 88,
+      "denominator": 100
+    },
+    "inst_level_loose": {
+      "score": 0.8918918918918919,
+      "numerator": 99,
+      "denominator": 111
+    }
+  },
+  "errors": 0,
+  "native_started": 100,
+  "native_done": 100,
+  "all100cold": true,
+  "original_first100_metadata_all_match": true,
+  "original_verifier_recomputed_all100": true,
+  "all_native_scores_exact_match": true,
+  "empty_final": 1,
+  "reasoning_nonempty": 100,
+  "stop_reason_counts": {
+    "stop": 99,
+    "max_tokens": 1
+  },
+  "native_finish_reason_counts": {
+    "stop_token": 99,
+    "output_limit": 1
+  },
+  "length_stops": 1,
+  "sampling_values": [
+    {
+      "frequency_penalty": 0.0,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "seed": 42,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.949999988079071
+    }
+  ],
+  "verifier_files": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+    "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+    "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+    "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+    "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+  },
+  "raw_identity": {
+    "predictions": {
+      "path": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "2e4a837a4bebf320351fbdd59b33f726b58cf52d4b34ff6bfc03f630893796bd"
+    },
+    "reviews": {
+      "path": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "9f9cce7915549f3a4d70406af1c9956d9e5360a27ccf5b6be49514acf35b4b69"
+    },
+    "native": {
+      "path": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/service-quality100/requests.jsonl",
+      "sha256": "674701ca949f3ac8e045d4c47ee1f9db35f93764d6d7fec140d72df4648ecc88"
+    }
+  },
+  "scope": "Actual116 fresh source100/c976 build e919 with239 freshly fitted matrices/478 payloads. No inherited quality; no claim of model-wide quality guarantee or paired quantization attribution. Full100 includes all length/empty cases."
+}

@@ -39,7 +39,7 @@ def main():
     if changes.exists():manifest['inputs'][str(changes.relative_to(ROOT))]=spec(changes)
     for key in ['inputs','outputs']:
         for rel,v in manifest[key].items():assert spec(ROOT/rel)==v,(key,rel)
-    manifest['scope']='Audited bilingual materials, historical100/105 measurements, independently rebuilt664 with old fixed caches, frozen v1 and portable116 source workflows, and fresh-prefix CPU environment/data-loader validation.116 new-cache runtime/results and final submission/archive are separately recorded in DELIVERY; no inherited scores or new-environment GPU claim.'
+    manifest['scope']='Audited bilingual materials, historical100/105 measurements, independently rebuilt664 with old fixed caches, frozen v1 and portable116 source workflows, and fresh-prefix CPU environment/data-loader validation.116 new-cache original C14 and first100 quality independently completed and audited, including empty/length cases; final submission/archive separately recorded in DELIVERY. No inherited scores or new-environment GPU claim.'
     manifest['updated_at_shanghai']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime('%Y-%m-%d %H:%M +08:00')
     manifest['input_fingerprint']=hashlib.sha256(dump(dict(inputs=manifest['inputs'],tools=manifest['tools'])).encode()).hexdigest()
     path.write_text(dump(manifest))

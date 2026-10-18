@@ -1,0 +1,38 @@
+{
+  "recipe_id": "116-fresh47",
+  "recipe_sha256": "4b7d1b7542291948bbec1af23fe99973189d48d6e171bcabc4a40e0b6c123a59",
+  "binary_sha256": "e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "profile": {
+    "client_concurrency": 13,
+    "kv_capacity": 532480,
+    "mode": "accuracy",
+    "name": "quality100",
+    "native_concurrency": 13
+  },
+  "task_config": {
+    "model": "qwen38-27b",
+    "api_url": "http://127.0.0.1:18553/v1",
+    "api_key_env": "OPENAI_API_KEY",
+    "eval_type": "openai_api",
+    "datasets": [
+      "ifbench"
+    ],
+    "limit": 100,
+    "eval_batch_size": 13,
+    "generation_config": {
+      "max_tokens": 32768
+    },
+    "work_dir": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/deployment116/quality100/evaluation/accuracy/native",
+    "no_timestamp": true
+  },
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "asset_contract": {
+    "file": "assets-u3-47.json",
+    "sha256": "7f1f5dbd1b6b288f165852772ed0c8090cc8f5abc0a73265a14f3b604d0b911a"
+  },
+  "selection_status": "fresh_cache_unmeasured_0_performance_requests",
+  "quality_status": "fresh_cache_unmeasured_0_quality_questions",
+  "service_verified": true,
+  "dry_run": false
+}

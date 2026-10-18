@@ -1,6 +1,6 @@
 # 提交与复现入口
 
-本次提交提供完整源码、固定公共输入的获取方式和量化缓存重建流程，**不附大型模型权重及12 GB量化缓存**。先读[量化重建指南](track-a/quantization-reproduction.md)，按其中链接安装环境、获取固定基础模型与FP8输入，再从源码生成缓存、构建服务并运行原评测。已有旧缓存时也可按[664复验指南](track-a/reproduction.md)复查对应历史结果。
+本次提交采用**单个小于50 MB的附件＋固定Git提交**：附件包含答辩PDF、技术文档、002完整量化重建源码包及获取工具；完整原始测试记录和历史源码包由同一公开仓库提交提供。附件中未随包附上的文件链接固定到该提交，不依赖可变的main分支。**不附大型模型权重及12 GB量化缓存**。先读[量化重建指南](track-a/quantization-reproduction.md)，按其中链接安装环境、获取固定基础模型与FP8输入，再从源码生成缓存、构建服务并运行原评测。已有旧缓存时也可按[664复验指南](track-a/reproduction.md)复查对应历史结果。
 
 [答辩材料](basic/presentation/README.md)、[技术报告](track-a/README.md)、[性能评测现场命令](basic/demo.md)和[采用结果](track-a/selected-results.md)分别对应展示、实现、运行与证据。[提交快照说明](SNAPSHOT.md)列出归档范围、版本身份和校验方式。
 
@@ -13,7 +13,9 @@
 | 664：原 100 题质量 | 题目严格 **90/100**、宽松 **96/100**；指令严格 **100/111**、宽松 **106/111** | 100 个请求均完成；第 88 题空最终答案且触及输出长度上限，保留在分母中 |
 | 新前缀环境安装 | 27 步安装与检查均成功；原入口与新 EvalScope 组合通过固定数据全部 300 条及前 100 题 / 111 指令检查 | 以上性能/质量复验使用原有环境；新安装验证没有发模型推理请求 |
 | 116：从 FP8 重建量化缓存 | 025/041/047共239个矩阵拟合完成，生成478个服务文件；逐文件SHA与参考缓存一致，239项独立CPU抽样核对无差异 | [SHA核对](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-vs-original478-SHA.json)、[拟合核对](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh239-sampled-fit-numeric-summary.json)与[原始证据包](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh239-fit-light-evidence-001.tar.gz) |
-| 116：新缓存与新构建的C14 | binary `e919f180…`；128条正式请求全部成功；TTFT P95 **9.8622 s**、TPOT P95 **39.4286 ms**，吞吐 **305.5329 token/s** | [原始汇总](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)；独立实测同时通过10 s / 40 ms，原100题质量仍待终态回执 |
+| 116：新缓存与新构建的C14 | binary `e919f180…`；128条正式请求全部成功；TTFT P95 **9.8622 s**、TPOT P95 **39.4286 ms**，吞吐 **305.5329 token/s** | [原始汇总](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json)；独立实测同时通过10 s / 40 ms，性能配置与下行质量配置分别记录 |
+| 116：新缓存与新构建的原100题质量 | 题目严格 **85/100**、宽松 **88/100**；指令严格 **95/111**、宽松 **99/111**；100请求成功、0错误 | [原评分与独立复算](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-quality100-raw-and-CPU-001/quality-independent-CPU-001/summary.json)；1个空最终答案、1个长度截断保留在分母内，不宣称与历史105全部指标相等 |
+| 现场e4ed C14排查记录（修复进行中） | 128条正式请求全部成功，TTFT P95 **10.1614 s**、TPOT P95 **39.8261 ms**，吞吐 **308.6625 token/s** | [实际汇总](../demo/runs/guided-best-20261018-0940-review/summary.json)及[版本与逐请求核对](../demo/runs/guided-best-20261018-0940-review/comparison.json)；TTFT超限，联合SLO **未通过**。当前作为现场排查记录保留，修复后的配置和结果另行记录；历史两次通过不能证明C14稳定达标 |
 
 664复验使用了固定公共基础模型和旧478文件量化缓存；116复验使用同一源码重新构建的二进制及本轮重新生成的478文件缓存，两轮结果分别记录。[性能独立核对](../results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/root-C14-independent-audit.json)与[质量独立核对](../results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/root-quality-independent-audit.json)记录了原始数据、统计口径和异常保留情况。历史 `e4ed1bf4…` 二进制的 100/105 结果另行保存；没有把历史成绩移交给新二进制。
 
@@ -28,7 +30,7 @@
 | [全流程量化源码包 002](../results/three-node-optimization/ucloud2/full-quantization-reproduction-116-portable-source-002.tar.gz) | 四套完整父版本源码、采集与拟合脚本、固定输入、环境锁及新缓存评测入口。38,965,052 字节；SHA256 `7300c70a5857221537b878046d8c869ce640c788de4773d91d4e523b6bb41f9e`。包内 `portable116/README.md` 为入口；实际复验结果见上表及独立证据 |
 | [环境与数据实际复验补充包](../results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-addenda-r1.tar.gz) | 安装、原入口组合、包版本及动态库路径对照的原始回执。10,501,827 字节；SHA256 `4d28291bac9a0ce1ba9cc21d9a6654a12dcd7206c2aa1f5835c223c5e37867a8` |
 
-已完成的新环境和数据检查以独立附件保存；116新缓存的测量按其实际完成范围报告。既有冻结包保持原样，归档包含本表所列附件。
+已完成的新环境和数据检查以独立附件保存；116新缓存的测量按其实际完成范围报告。既有冻结包保持原样，完整仓库包含本表所有文件；50 MB提交附件保留002完整源码包与必要获取工具，其余记录通过固定提交链接取得。
 
 ## 输入资产与交付方式
 
@@ -36,4 +38,4 @@
 
 精确复查上述664历史成绩时，旧缓存的身份为`selected100-u3-47-caches.tar`，12,082,360,320字节，SHA256 `a8936aa7d39e9f971256a30b415f6f271f4f70418d0705233c0c84bfabfc3fb7`。这项资产用于说明历史测量条件，不是本次提交的必要附件；本次默认执行002源码包重建缓存。重建后保存新缓存与新二进制身份，并运行自己的性能和精度测试。
 
-最终材料按当前工作区的显式文件清单归档并核验解压内容。不要直接用 `git archive main` 代替最终交付：当前实际源码包、量化脚本和新记录中存在尚未纳入该提交的文件。归档、可访问的上传地址和主办方提交回执是不同步骤；此页不表示已经上传或提交。
+最终附件从已经推送的精确Git提交生成，提交号写入附件根目录`SNAPSHOT.json`，逐文件校验值写入`MANIFEST.json`。附件中的PDF、完整源码包和实际记录保持原字节；Markdown中指向未附文件的相对链接改为该提交的永久链接。单个附件严格小于50,000,000字节，不分卷。归档生成、Git推送与向主办方正式提交分别记录，此页不表示已经发送提交邮件。

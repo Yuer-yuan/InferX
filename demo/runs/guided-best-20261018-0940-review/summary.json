@@ -1,0 +1,42 @@
+{
+  "status": "完整",
+  "issues": [],
+  "concurrency": 14,
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 6942.663484132812,
+      "p50": 6848.4325305,
+      "p95": 10161.440413250002,
+      "p99": 11428.860494910003
+    },
+    "inter_token_latency": {
+      "mean": 30.287167060726514,
+      "p50": 30.644055053816047,
+      "p95": 39.82606722749511,
+      "p99": 42.655111910176124
+    },
+    "request_latency": {
+      "mean": 22419.40585216406,
+      "p50": 21914.0345295,
+      "p95": 29118.263359000004,
+      "p99": 33186.333053480004
+    }
+  },
+  "benchmark_duration": 212.31913676800002,
+  "request_throughput": 0.6028564963734963,
+  "output_token_throughput": 308.6625261432301,
+  "artifacts": "/workspace/InferX/reproductions/guided-best-20261018-0940/performance/c14"
+}
