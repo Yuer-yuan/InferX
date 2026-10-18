@@ -1,0 +1,68 @@
+{
+  "updated_at_utc": "2026-10-17T22:12:15.676087+00:00",
+  "selection_status": "selected_measured_C4_C8_C12_C13_C14",
+  "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "original080_GPU_cubin_equality": "NOT_ESTABLISHED",
+  "performance_registry": "submission/track-a/data/selected-campaign.json",
+  "performance": {
+    "C4": "u3 PASS 2.269116713 s /22.891142453 ms native4 KV65536",
+    "C8": "u3 PASS 5.921628374 s /29.532079870 ms native8 KV69632",
+    "C12": "u1 PASS 9.593670567 s /36.234647029 ms native12 KV104448",
+    "C13": "u1 PASS 9.706068063 s /38.181167186 ms native13 KV113152",
+    "C14": "u3 client14/native13 KV121856, two complete PASS:9.893642785/39.929241927 and9.821661092/39.141798364; no stability guarantee",
+    "C15_C16": "measured candidates failed; not included as passing profiles"
+  },
+  "accuracy": {
+    "status": "COMPLETE",
+    "summary": "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/summary.json",
+    "summary_sha256": "22d0c9aa52b5440fb70c4048f2e38a46b850a3a708ef67413bb61429479a4510",
+    "metrics": {
+      "prompt_level_strict": {
+        "numerator": 85,
+        "denominator": 100,
+        "score": 0.85,
+        "prompt_cluster_95ci": [
+          0.78,
+          0.92
+        ]
+      },
+      "inst_level_strict": {
+        "numerator": 96,
+        "denominator": 111,
+        "score": 0.8648648648648649,
+        "prompt_cluster_95ci": [
+          0.8,
+          0.9238095238095239
+        ]
+      },
+      "prompt_level_loose": {
+        "numerator": 88,
+        "denominator": 100,
+        "score": 0.88,
+        "prompt_cluster_95ci": [
+          0.81,
+          0.94
+        ]
+      },
+      "inst_level_loose": {
+        "numerator": 99,
+        "denominator": 111,
+        "score": 0.8918918918918919,
+        "prompt_cluster_95ci": [
+          0.8303571428571429,
+          0.944954128440367
+        ]
+      }
+    },
+    "samples": 100,
+    "instructions": 111,
+    "empty_final": 1,
+    "errors": 0,
+    "length": 0,
+    "native_and_client_C": 13,
+    "KV": 532480,
+    "W2": false
+  },
+  "portable_entrypoint_scope": "CPU tested only; no new GPU deployment claimed. Original preparation checks are preserved historical receipts. Current metadata update is recorded in control/performance-selection-20261018/demo100-selection-update.json."
+}

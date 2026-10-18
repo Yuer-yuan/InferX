@@ -1,0 +1,81 @@
+[2026-10-17 21:27:03.273] [error] ninfer-serve: --kv-capacity must be at least --max-context
+usage: /workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve <model.ninfer> [options]
+
+High-performance OpenAI Responses/Chat Completions and Anthropic Messages server
+for native .ninfer checkpoint artifacts.
+
+Server & Network:
+  --host <H>                  HTTP listen address (default: 127.0.0.1)
+  --port <N>                  HTTP listen port (default: 8080)
+  --api-key <KEY>             Bearer token authentication key (optional; auth disabled if omitted)
+  --cors                      Enable Cross-Origin Resource Sharing (CORS) headers for web clients
+  --ui / --no-ui              Enable or disable the embedded Web UI dashboard (default: enabled)
+  --model-id <ID>             Override model identifier in /v1/models (default: artifact identity.model_id)
+  --max-request-mib <N>       Maximum incoming request payload size in MiB (default: 384, enforced before parsing)
+  --request-log-jsonl <FILE>  Append full-precision server request and telemetry records to JSONL file
+  --log-stats-interval-ms <N> Periodic throughput and engine stats logging interval in ms (default: 5000; 0 disables)
+
+Concurrency & Ingress:
+  --max-concurrency <N>       Maximum active parallel decode slots (1 to 32, default: 1)
+  --max-pending-requests <N>  Maximum capacity of incoming request FIFO queue (default: 16)
+  --pending-timeout-ms <N>    Queue wait timeout before returning 503 Service Unavailable (default: 30000)
+
+Stateful Conversations & Response Store:
+  --response-store-max-records <N>  Maximum completed response records in process-local store (default: 1024)
+  --response-store-max-mib <N>      Memory budget in MiB for response store records (default: 256)
+
+Model & Hardware Configuration:
+  --device <N>                CUDA device ordinal (default: 0)
+  --max-context <N>           Maximum sequence context length in tokens (prompt + completion, default: 8192)
+  --kv-capacity <N|auto>      KV cache capacity in tokens, or 'auto' (allocates available VRAM
+                              reserving 1024 MiB headroom; default: matches --max-context)
+  --prefill-chunk <N>         Prefill chunk size in tokens (multiple of 128, default: 1024)
+  --no-cuda-graph             Disable CUDA Graph capture/replay (executes via standard CUDA streams)
+  --no-prefix-reuse           Disable KV prefix cache reuse across requests (prefix reuse enabled by default)
+  --wddm-evictable-budget     Allow aggressive WDDM memory budgeting against total VRAM on dedicated GPUs (Windows only)
+
+Persistent Prompt Cache (DirectStorage DMA):
+  --disk-cache / --prompt-cache     Enable persistent multi-turn prompt caching to disk via DirectStorage DMA
+  --no-disk-cache                   Disable persistent disk prompt cache (default)
+  --disk-cache-dir <DIR>            Directory path for prompt cache (default: %LOCALAPPDATA%/ninfer/cache/<profile>)
+  --disk-cache-gb <N>               Disk cache storage quota limit in GiB (default: 30)
+
+Quantization & Storage Layouts:
+  --kv-dtype <dtype>          KV cache storage data type and quantization layout:
+                                bf16       - 16-bit brain floating-point
+                                int8       - 8-bit integer channel-quantized
+                                rk8v4      - 8-bit rank-compressed K, 4-bit V
+                                rk4v4      - 4-bit rank-compressed K, 4-bit V
+                                rk4v4-e8   - 4-bit E8 lattice Keys, 4-bit Values
+                                rk2v4-e8   - 2-bit E8 lattice Keys, 4-bit Values
+
+Speculative Decoding:
+  --spec <mtp|dflash>         Speculative execution backend (default: none / autoregressive):
+                                mtp        - Multi-Token Prediction draft heads
+                                dflash     - Block-parallel draft model (35B-A3B text-only)
+  --draft-tokens <N>          Speculative draft tokens per verification round (MTP: 1..15, DFlash: 1..15)
+  --lm-head-draft             Draft with the dedicated proposal head instead of the full LM head:
+                              a smaller projection over the artifact's draft vocabulary, so each
+                              draft step reads far less weight memory. Slightly lower acceptance,
+                              markedly faster rounds; verification still uses the full head, so
+                              generated text is unchanged (requires --spec)
+
+Vision & Multimodal:
+  --vision                    Enable image/video vision encoder and load Vision GPU allocations
+  --vision-max-tokens <N>     Vision scratchpad token capacity (default: 8192)
+
+Reasoning & Generation Defaults:
+  --default-max-tokens <N>    Default maximum output tokens when omitted in client request (default: 8192)
+  --no-thinking               Disable reasoning/thinking mode globally by default
+  --preserve-thinking         Retain closed-turn assistant reasoning in multi-turn conversation history
+  --reasoning-effort <effort> Default thinking depth preset (low | medium | xhigh) when omitted by client
+
+Sampler Defaults (overridden by client request parameters):
+  --temperature <F>           Fallback softmax temperature (0.0 to 2.0)
+  --top-p <F>                 Fallback nucleus sampling cumulative probability cutoff (0.0 to 1.0)
+  --top-k <N>                 Fallback top-K vocabulary truncation candidate count (0 to INT32_MAX)
+  --min-p <F>                 Fallback minimum token probability relative to top token (0.0 to 1.0)
+  --presence-penalty <F>      Fallback presence penalty (-2.0 to 2.0)
+  --frequency-penalty <F>     Fallback frequency penalty (-2.0 to 2.0)
+  --seed <N>                  Fallback 64-bit random seed
+  --greedy                    Force greedy argmax sampling (equivalent to --temperature 0)

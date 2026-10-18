@@ -1,0 +1,22 @@
+{
+  "scope": "Historical output examples only; not results of the displayed repro080 directories. Performance: ucloud2 best080, client14/native14/K5/KV139264, 128+8 cold8192/512, one run. Quality: independent build6632, client16/native16/K3/KV532480, original first100/111. No joint pass or new run is claimed.",
+  "sources": {
+    "results/three-node-optimization/ucloud2/best080-C14-perf-090/delivery/raw/candidate/c14/summary.json": "ae152613965e88048011ec5978ddd7e1ca1748145eac553c125b621f2d0a944c",
+    "results/three-node-optimization/ucloud2/best080-C14-perf-090/delivery/raw/candidate/c14/profile_export.jsonl": "d768a832d6cc3eb5c3648a3ea351adc1a78186412e130de3a54ea78b05352085",
+    "results/three-node-optimization/ucloud2/best080-C14-perf-090/delivery/raw/candidate/c14/profile_export_aiperf.json": "5bbd19082c2f2bab3094547b6c37be94a6995631ee3ee118113fcf524468ecf5",
+    "results/three-node-optimization/ucloud2/best080-C14-perf-090/delivery/raw/candidate-identity.json": "efd1ece00671521c115399f86c68356da3ccbee950a72740c2373abf97f8388e",
+    "results/three-node-optimization/ucloud2/best080-C14-perf-090/summary.json": "f6f33778e5d775f295c8c96f68d091076b88f75eb3ebbe9e14c577627b974093",
+    "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/CPU-score-001/summary.json": "456dc45813eb47655e1a53a574d7424694f3d3fc73643fd4dcee854197644d0c",
+    "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/expected-runtime.json": "192845f3508188a4f8e4eb376b1e4b83466a3054cf6db21ba4d5f6825f913e0b",
+    "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/runtime-summary.json": "68ff43cff600f15e147d41abe9633ae20db244974b5a186dd9c874d600a9a1e4"
+  },
+  "performance_excerpt": {
+    "source": "results/three-node-optimization/ucloud2/best080-C14-perf-090/delivery/raw/candidate/c14/summary.json",
+    "json": "{\n  \"concurrency\": 14,\n  \"meets_slo\": false,\n  \"error_requests\": 0,\n  \"metrics\": {\n    \"time_to_first_token\": {\n      \"p95\": 9791.313423\n    },\n    \"inter_token_latency\": {\n      \"p95\": 46.68743106898239\n    }\n  },\n  \"output_token_throughput\": 329.5678410433484\n}"
+  },
+  "quality_excerpt": {
+    "source": "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/CPU-score-001/summary.json",
+    "json": "{\n  \"samples\": 100,\n  \"instructions\": 111,\n  \"metrics\": {\n    \"prompt_level_strict\": {\n      \"score\": 0.84\n    },\n    \"prompt_level_loose\": {\n      \"score\": 0.87\n    }\n  },\n  \"failures\": 0,\n  \"empty_final\": 0,\n  \"length\": 0\n}"
+  },
+  "excerpt_method": "Omit unrelated object members; preserve original field names, nesting, numeric values and units. JSON indentation normalized to two spaces. No derived labels, converted units, rounded scores or sample-count conversions."
+}

@@ -1,0 +1,49 @@
+{
+  "reviewed_at": "2026-10-17T01:13:40.043629+00:00",
+  "source_contract_PASS": true,
+  "source_CPU_layout_review": "control/FFN-producer-fusion-layout-CPU-independent-review.json",
+  "private_writer_only_change": "Exactly reuse original baseline int8_quantize_rn; inherited BF16stage/MAC/source/layout unchanged",
+  "frozen_files": {
+    "private_quantized_problem.cuh": "56601caed296ae02c2d6a8dd18bd398ff6c1036408135b438acb9c2f99496eb0",
+    "private_ffn_pair_wrapper.cuh": "5656332a9e97347008e48e211024ef7f1fbd5b5b4374d93501c55b094fe5b5f8",
+    "original_Config.inc": "76ccffa096c1d9d4141a674536a5f61da864378701e63026b436ca5f5154e309",
+    "original_QuantizedProblem.inc": "e461c171ef9213589a99cb79461fa43eb7e3d59d0b8fa6e818f8682510063a94",
+    "original_SwiGluQ4Problem.inc": "5ed7ebfef88014bee0454743487d538778f9d8f06a8c3a159d1e9f0bade249d9"
+  },
+  "GPU_authorized": true,
+  "scope": "One isolated actual layer0 FFNpair operator build/Graph/fullnumeric/wholepairtiming, no model integration",
+  "baseline": "input group64 quant -> original Q4 SwiGLU(BF16global) -> middle group64quant -> original V1 Q5 residual",
+  "candidate": "same inputquant -> private same BF16rounded SwiGLU producerquant -> same V1 Q5 residual; disjoint input/middle qx+scale buffers",
+  "numeric_shapes": [
+    256,
+    257,
+    2048
+  ],
+  "patterns": [
+    "zero",
+    "dense",
+    "groupoutlier"
+  ],
+  "seed": 42,
+  "coldGraph": "First new candidate projection capture before any newcandidate eager launch; actual nodes/parameters/dependencies and all stable allocations validated",
+  "numeric_gate": [
+    "Actual current old owners/children absent and GPU compute empty before build/run. Preserve original001/002/003 failures; no source/model/library mutation.",
+    "Separate small writer comparison covers all65536 BF16 encodings incl tiny/subnormal/NaN/Inf/-0 with baseline helper; exact codes/scalebits, preserve original writer delta evidence separately.",
+    "All9 fullpairs: exact final BF16bits and middle signed8codes/scalebits vsfresh unchanged baseline; input qx/scales, weights, residual guards immutable as appropriate.",
+    "Eager/actualGraph/repeat bit equality per arm; guards; nonzeroBF16residual reset outside measurement; quantizer domains and T257 masking actual verified.",
+    "No tolerance for bit mismatches; source equivalence is not substitute for actual GPU. If numeric fails, stop before timing; preserve wholefailure."
+  ],
+  "timing_gate": [
+    "Wholepair only, includes all4baseline/3candidate kernels and IO; no allocation/reset/flush inside measured event.",
+    "T256/T2048, fixed20warmup then100/arm/shape in10alternating blocks, fixedseed42; raw order retained, unprofiled.",
+    "Report both complete distributions and paired-block medians. If either shape median does not improve, no model integration or tuning grid.",
+    "Only if both fixed shapes improve, one separate actual20operator Nsight diagnostic can attribute eliminatedquant/IO and resource changes; no NCU privilege changes."
+  ],
+  "authorization_limits": [
+    "Only external private wrapper/Problem and standalone harness. No parent235/9695/ed91 source/archive mutation.",
+    "Routine staging/header/metadata/process repairs may proceed within this exact math/fixture/shape contract, preserving failed attempts; do not repeatedly wait for Root on path repairs.",
+    "Before launch freeze fullharness/controller/fixture/compile command and actualparent source/libs SHA; selfcheck conditions; one owned supervised job with actualPID/start/exit/readback.",
+    "No automatic production dispatch/fullmodel build/quality/performance requests."
+  ],
+  "research_note": "control/fullK-and-producer-fusion-review-20261017.md"
+}

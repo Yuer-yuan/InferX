@@ -1,0 +1,115 @@
+{
+  "reviewed_at": "2026-10-16T20:03:40.148682+00:00",
+  "scope": "Root independent raw heldout51 staticK1 official100+8 audit",
+  "run": "a8-v2-c8-k1-heldout51-r1",
+  "offered_C": 8,
+  "native_cap": 8,
+  "draft_tokens": 1,
+  "dataset_seed": 51,
+  "requests": 100,
+  "warmup": 8,
+  "ttft_p95_ms": 9794.5076058,
+  "tpot_p95_ms": 41.70421516917808,
+  "official_output_tok_s": 171.75825184142028,
+  "joint_slo": false,
+  "errors": 0,
+  "all8192_512": true,
+  "native109_cold": true,
+  "cleanup_reaped": true,
+  "initial8": {
+    "n": 8,
+    "TTFT_gt10000": 2,
+    "TPOT_gt40": 2
+  },
+  "later92": {
+    "n": 92,
+    "TTFT_gt10000": 1,
+    "TPOT_gt40": 12
+  },
+  "same_argv_as_selection100_except_logpath": true,
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "native_tail_diagnostics": [
+    {
+      "native_id": 94,
+      "TPOT_native_ms": 58.75725663992172,
+      "committed_per_round": 1.6754098360655738,
+      "speculative": {
+        "accepted_per_position": [
+          206
+        ],
+        "accepted_tokens": 206,
+        "backend": "mtp",
+        "draft_window": 1,
+        "drafted_tokens": 305,
+        "fallback_steps": 0,
+        "rounds": 305
+      }
+    },
+    {
+      "native_id": 16,
+      "TPOT_native_ms": 52.69327427201566,
+      "committed_per_round": 1.680921052631579,
+      "speculative": {
+        "accepted_per_position": [
+          207
+        ],
+        "accepted_tokens": 207,
+        "backend": "mtp",
+        "draft_window": 1,
+        "drafted_tokens": 303,
+        "fallback_steps": 1,
+        "rounds": 303
+      }
+    },
+    {
+      "native_id": 31,
+      "TPOT_native_ms": 47.05191727592955,
+      "committed_per_round": 1.9067164179104477,
+      "speculative": {
+        "accepted_per_position": [
+          243
+        ],
+        "accepted_tokens": 243,
+        "backend": "mtp",
+        "draft_window": 1,
+        "drafted_tokens": 267,
+        "fallback_steps": 1,
+        "rounds": 267
+      }
+    },
+    {
+      "native_id": 86,
+      "TPOT_native_ms": 42.684750397260274,
+      "committed_per_round": 1.6644951140065147,
+      "speculative": {
+        "accepted_per_position": [
+          204
+        ],
+        "accepted_tokens": 204,
+        "backend": "mtp",
+        "draft_window": 1,
+        "drafted_tokens": 307,
+        "fallback_steps": 0,
+        "rounds": 307
+      }
+    },
+    {
+      "native_id": 70,
+      "TPOT_native_ms": 41.88222163796477,
+      "committed_per_round": 1.7992957746478873,
+      "speculative": {
+        "accepted_per_position": [
+          227
+        ],
+        "accepted_tokens": 227,
+        "backend": "mtp",
+        "draft_window": 1,
+        "drafted_tokens": 283,
+        "fallback_steps": 1,
+        "rounds": 283
+      }
+    }
+  ],
+  "qualification": "Fresh51 fails jointSLO. Preserve passing selection100 and failed24; no C8 capacity confirmation, no conditionalC8stress50, no replacement validation seed. C7 still strongest cross-seed/300-stress candidate."
+}

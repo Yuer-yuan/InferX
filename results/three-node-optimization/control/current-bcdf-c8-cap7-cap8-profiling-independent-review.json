@@ -1,0 +1,246 @@
+{
+  "reviewed_at": "2026-10-16T19:32:15.069817+00:00",
+  "scope": "Root independent actual client/native/scheduler and SQLite phase/graph/tail review; CPU only",
+  "role": "diagnostic_only",
+  "official_performance": false,
+  "results": [
+    {
+      "native_cap": 7,
+      "offered_C": 8,
+      "unique_temporal_associations": 24,
+      "row511_accounting": true,
+      "all_host_parts_match_worker": true,
+      "same_request_weighted_tails": {
+        "TTFT": {
+          "metric_value": 17289.353145349985,
+          "native_ids": [
+            23,
+            30
+          ],
+          "arrival_ranks": [
+            15,
+            22
+          ],
+          "weights": [
+            0.15000000000000213,
+            0.8499999999999979
+          ],
+          "TTFT_parts_ms": {
+            "prepare": 0.09004984999999992,
+            "queue": 15666.377265602336,
+            "own_prefill": 1621.2116382718086,
+            "interleaved_shared_decode": 0.0,
+            "control_residual": 0.17260949909687043
+          },
+          "after_first_parts_ms_per_token": {
+            "competing_prefill": 8.744020203449988,
+            "own_shared_decode_rounds": 12.520955339721553,
+            "control_or_nonmember_residual": 0.013557675924086573,
+            "native_vs_trace_finish_residual": 9.372783124882085e-06
+          },
+          "GPU_host_phase_coverage": [
+            {
+              "native_id": 23,
+              "TTFT_overlap_fraction": 1.0,
+              "decode_overlap_fraction": 0.37026851026128765
+            },
+            {
+              "native_id": 30,
+              "TTFT_overlap_fraction": 0.23140150982230293,
+              "decode_overlap_fraction": 0.0
+            }
+          ]
+        },
+        "TPOT": {
+          "metric_value": 39.177717980919766,
+          "native_ids": [
+            18,
+            13
+          ],
+          "arrival_ranks": [
+            10,
+            5
+          ],
+          "weights": [
+            0.15000000000000213,
+            0.8499999999999979
+          ],
+          "TTFT_parts_ms": {
+            "prepare": 0.10367249999999999,
+            "queue": 5935.1869884818725,
+            "own_prefill": 1611.0355973511935,
+            "interleaved_shared_decode": 0.0,
+            "control_residual": 0.16313553154468535
+          },
+          "after_first_parts_ms_per_token": {
+            "competing_prefill": 18.859641413206923,
+            "own_shared_decode_rounds": 20.299146662048862,
+            "control_or_nonmember_residual": 0.018885481969950945,
+            "native_vs_trace_finish_residual": 1.4048645098512767e-05
+          },
+          "GPU_host_phase_coverage": [
+            {
+              "native_id": 18,
+              "TTFT_overlap_fraction": 1.0,
+              "decode_overlap_fraction": 1.0
+            },
+            {
+              "native_id": 13,
+              "TTFT_overlap_fraction": 0.0,
+              "decode_overlap_fraction": 0.3971588533736662
+            }
+          ]
+        }
+      },
+      "kernel_count": 239439,
+      "all_runtime_correlations_match": true,
+      "graph_node_count": 186882,
+      "kernel_sum_ms": 29235.143362000003,
+      "kernel_union_ms": 29204.059714,
+      "scheduler_phase_kernel_sum_ms": {
+        "prefill_chunk": 17436.630862,
+        "decode_round": 11798.5125
+      },
+      "graph_phase_kernel_sum_ms": {
+        "target_verify": 10599.296017005256,
+        "mtp_alignment": 178.77867299999943,
+        "AR_draft": 589.8435119999907
+      },
+      "full_graph_rounds": 235,
+      "full_graph_mean_kernel_ms_by_B": {
+        "7": 59.94361583050848,
+        "6": 56.94155338461538,
+        "5": 55.98527227272727,
+        "4": 34.315237477272724,
+        "3": 30.125905868421054,
+        "2": 25.803497545454544
+      },
+      "window_after_warmup": true,
+      "measured_replacement_arrivals_inside_window": 13,
+      "source_identity": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619"
+    },
+    {
+      "native_cap": 8,
+      "offered_C": 8,
+      "unique_temporal_associations": 24,
+      "row511_accounting": true,
+      "all_host_parts_match_worker": true,
+      "same_request_weighted_tails": {
+        "TTFT": {
+          "metric_value": 11069.446560149998,
+          "native_ids": [
+            22,
+            15
+          ],
+          "arrival_ranks": [
+            14,
+            8
+          ],
+          "weights": [
+            0.15000000000000213,
+            0.8499999999999979
+          ],
+          "TTFT_parts_ms": {
+            "prepare": 0.10137234999999999,
+            "queue": 9449.43803028166,
+            "own_prefill": 1617.5875077039002,
+            "interleaved_shared_decode": 0.0,
+            "control_residual": 0.16133832335472106
+          },
+          "after_first_parts_ms_per_token": {
+            "competing_prefill": 4.827772104716837,
+            "own_shared_decode_rounds": 17.763995566450934,
+            "control_or_nonmember_residual": 0.006361552839643113,
+            "native_vs_trace_finish_residual": 8.664446632915345e-06
+          },
+          "GPU_host_phase_coverage": [
+            {
+              "native_id": 22,
+              "TTFT_overlap_fraction": 1.0,
+              "decode_overlap_fraction": 0.9053272922763533
+            },
+            {
+              "native_id": 15,
+              "TTFT_overlap_fraction": 0.0,
+              "decode_overlap_fraction": 0.17858989429148267
+            }
+          ]
+        },
+        "TPOT": {
+          "metric_value": 46.416719562524456,
+          "native_ids": [
+            23,
+            14
+          ],
+          "arrival_ranks": [
+            15,
+            5
+          ],
+          "weights": [
+            0.15000000000000213,
+            0.8499999999999979
+          ],
+          "TTFT_parts_ms": {
+            "prepare": 0.10281799999999988,
+            "queue": 7448.894610398999,
+            "own_prefill": 1616.2751859605314,
+            "interleaved_shared_decode": 323.3312554568098,
+            "control_residual": 0.2389383256435404
+          },
+          "after_first_parts_ms_per_token": {
+            "competing_prefill": 24.937546415443283,
+            "own_shared_decode_rounds": 21.465701773739376,
+            "control_or_nonmember_residual": 0.013418334220953433,
+            "native_vs_trace_finish_residual": 8.90996232488429e-06
+          },
+          "GPU_host_phase_coverage": [
+            {
+              "native_id": 23,
+              "TTFT_overlap_fraction": 1.0,
+              "decode_overlap_fraction": 0.409834636915255
+            },
+            {
+              "native_id": 14,
+              "TTFT_overlap_fraction": 0.0,
+              "decode_overlap_fraction": 0.5812139212483957
+            }
+          ]
+        }
+      },
+      "kernel_count": 250722,
+      "all_runtime_correlations_match": true,
+      "graph_node_count": 203682,
+      "kernel_sum_ms": 29475.943446,
+      "kernel_union_ms": 29452.657506,
+      "scheduler_phase_kernel_sum_ms": {
+        "decode_round": 13863.073157,
+        "prefill_chunk": 15612.870289
+      },
+      "graph_phase_kernel_sum_ms": {
+        "target_verify": 12505.310991008115,
+        "mtp_alignment": 202.4895680000006,
+        "AR_draft": 654.677447000001
+      },
+      "full_graph_rounds": 259,
+      "full_graph_mean_kernel_ms_by_B": {
+        "8": 61.696469156250004,
+        "7": 60.08042735897436,
+        "6": 56.83617337755102,
+        "4": 34.351834875,
+        "3": 29.85152783870968,
+        "2": 26.5019485,
+        "5": 55.89797436
+      },
+      "window_after_warmup": true,
+      "measured_replacement_arrivals_inside_window": 13,
+      "source_identity": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619"
+    }
+  ],
+  "qualifications": [
+    "Unique end/duration/TTFT temporal associations, not header-ID equality.",
+    "Same-request P95 interpolation; shared decode elapsed is not exclusive GPU cost.",
+    "Partial GPU coverage explicit; profiling changes scheduling and cannot replace trace-off failures.",
+    "Markers classify source-pinned K3 target/alignment/AR graph phases.",
+    "No hardware counters, measured roofline, SM occupancy or DRAM bandwidth claim."
+  ]
+}

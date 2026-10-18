@@ -1,0 +1,7 @@
+# GDN native lifecycle gate
+
+PASS: new source4fcb/1019, binary2362fc. Two fresh model processes OFF/ON, each34 short prefills (including resident checkpoint restore/reset) and7 actual K3 rounds/168 rows. Source/archive identities unchanged. 2013 paired records zero differences:1776 layer/slot recurrent+conv hashes,168 live hidden/token/commit records,68 prefill records and1 snapshot record. These are supplementary parity; actual90CTest provided independent public-op FP64 and Graph coverage (86 pass,4 missing-fixture skips).
+
+ON actual480 deferred nodes across10 inspected Graph definitions (3 capture-only8K profiles plus7 selected/replayed rounds); OFF0. Native alternate-bank/control pointers and disjoint planes checked. Actual9 partial commits/arm,17 oldrecordrows>=activeB,87 positive oldaccepted, both banks,slot15/31,cancel/reset,omitted bank leases and budget1 covered. No forced materialization between rounds. Only lane7 real snapshot and real terminal/restore boundaries drain pending.
+
+Both snapshot manifests physically exist (154634240B each), valid header305tokens/GDN153944064B and matching payload checksum. Resident checkpoint160 restore exercised; disk restore not tested. Actual ON persistent20327117568B vs OFF20224094208B (+103023360B); ON free9315287040B. All5 owner/child identities missing after pidfd reap. No SLO/task quality claim. Raw and explicit counts in delivery/content; large snapshot remains remote with SHA.

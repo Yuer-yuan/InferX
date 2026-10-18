@@ -8,10 +8,24 @@
 |---|---|---|---|---|
 | 完整性能与 IFBench 测量 | ucloud1 | `ucloud` | EPYC 7A23 | `http://127.0.0.1:8088/v1` |
 | 相同基线备用，短功能核验 | ucloud2 | `ucloud2` | EPYC 7B13 | `http://127.0.0.1:8088/v1` |
+| 新节点，NInfer 基线就绪，另备 vLLM / SGLang 环境 | ucloud3 | `ucloud3` | EPYC 7A23 | `http://127.0.0.1:8088/v1` |
 
 实时状态以各节点`config/active-service.json`为准；本轮结束时的[身份/健康快照](../results/ninfer-performance/handoff/)另存，PID不作为长期常量。
 
-均为单卡49,140MiB RTX4090，工作前缀为`/workspace/InferX`。该路径是可写overlay，实例释放后是否保留尚未确认；关键结果回传仓库。两机权重和二进制SHA一致，CPU不同。表中端口都是各节点自身的回环地址。
+均为单卡49,140MiB RTX4090，工作前缀为`/workspace/InferX`。该路径是可写overlay，实例释放后是否保留尚未确认；关键结果回传仓库。ucloud1/2权重和二进制SHA一致，CPU不同；ucloud3复制校验见下方记录。表中端口都是各节点自身的回环地址。
+
+`ucloud3` 的[部署记录](../results/ninfer-performance/preparation/ucloud3-peer-copy.json)保存复制来源和校验结果：[硬件盘点](../results/ninfer-performance/inventory/ucloud3.json)、[服务/API 就绪快照](../results/ninfer-performance/handoff/ucloud3.json)分别记录新节点身份与真实请求。公共 NInfer、构建和评测环境从 `ucloud2` 经内网 SSH 复制，权重、二进制、tokenizer 和原版 runner 均通过冻结 SHA256 校验；vLLM 0.31.0 来自 `ucloud1`，SGLang 0.5.19 来自 `ucloud2`。平台已挂载的 `/model/ModelScope/Qwen/Qwen3.8-27B-FP8` 可直接访问，无需复制。
+
+新节点当前运行 NInfer；vLLM / SGLang 已通过包导入、依赖一致性、CLI 和 CUDA 张量运算检查，尚未在该节点启动模型服务或执行正式性能评测。登录后可分别加载环境：
+
+```bash
+ssh ucloud3
+source /workspace/InferX/config/vllm-env.sh
+# 或在另一个新 shell 中使用 SGLang：
+source /workspace/InferX/config/sglang-env.sh
+```
+
+加载环境不会停止服务。启动另一个模型引擎前，应先按下文的身份核验流程停止当前 NInfer，释放显存。
 
 从本机访问其中一台：
 

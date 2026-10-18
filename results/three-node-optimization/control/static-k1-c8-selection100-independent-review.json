@@ -1,0 +1,35 @@
+{
+  "reviewed_at": "2026-10-16T19:55:18.359267+00:00",
+  "scope": "Root independent raw official-size100+8 staticK1 selection audit",
+  "run": "a8-v2-c8-k1-selection100-r1",
+  "offered_C": 8,
+  "native_cap": 8,
+  "draft_tokens": 1,
+  "dataset_seed": 20261016,
+  "requests": 100,
+  "warmup": 8,
+  "ttft_p95_ms": 9723.213133000001,
+  "tpot_p95_ms": 39.8232085704501,
+  "official_output_tok_s": 168.57002505097515,
+  "joint_slo": true,
+  "TPOT_margin_ms": 0.17679142954990112,
+  "errors": 0,
+  "all8192_512": true,
+  "native109_cold": true,
+  "cleanup_reaped": true,
+  "initial8": {
+    "n": 8,
+    "TTFT_gt10000": 2,
+    "TPOT_gt40": 2
+  },
+  "later92": {
+    "n": 92,
+    "TTFT_gt10000": 0,
+    "TPOT_gt40": 3
+  },
+  "same_argv_as_failed24_except_logpath": true,
+  "generated_inputs_equal_to_original_selection100_except_salt": true,
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "qualification": "Post-pilot selection after recorded amendment; failed24 retained. Official100 uses8warmup versus pilot4, so sample weighting alone does not explain outcome. Extremely small margin; independentfresh51/long stress/task-quality pending. Not established stableC8 capacity."
+}

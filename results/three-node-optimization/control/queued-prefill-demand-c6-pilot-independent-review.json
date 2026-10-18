@@ -1,0 +1,55 @@
+{
+  "reviewed_at": "2026-10-16T18:22:45.082261+00:00",
+  "scope": "Root independent three matchedC6pilot rawpercentile/formula/actualpayload/nativecold audit. No GPU work.",
+  "arms": [
+    {
+      "experiment": "a8-pipeline-k3-r1/a8_pipeline_completion_k3_margin300/c6",
+      "requests": 24,
+      "warmup": 4,
+      "ttft_p95_ms": 12589.9815689,
+      "tpot_p95_ms": 36.28701921682974,
+      "output_tok_s": 140.8693192249407,
+      "joint_slo": false,
+      "all8192_512": true,
+      "all_native_long_cold": true,
+      "later18_TTFT_violations": 5,
+      "later18_TPOT_violations": 1,
+      "binary_sha256": "7df21b6470608d80205ed3aee39747d7387913b7b1f5fbc0bcdcd82c4c969601",
+      "client_profile_sha256": "985ee2374b3d45a2a09076f404ede3a8145d61005d04b7bce53f076e9a70ee38"
+    },
+    {
+      "experiment": "a8-pipeline-frozen-k3-r1/a8_pipeline_frozen_k3/c6",
+      "requests": 24,
+      "warmup": 4,
+      "ttft_p95_ms": 8798.332973399996,
+      "tpot_p95_ms": 46.97651815136985,
+      "output_tok_s": 154.75844793500312,
+      "joint_slo": false,
+      "all8192_512": true,
+      "all_native_long_cold": true,
+      "later18_TTFT_violations": 0,
+      "later18_TPOT_violations": 4,
+      "binary_sha256": "7df21b6470608d80205ed3aee39747d7387913b7b1f5fbc0bcdcd82c4c969601",
+      "client_profile_sha256": "57817bc933f92863f341d826dfb2b2936948eeb7535605bc87fa0c225d1204c1"
+    },
+    {
+      "experiment": "a8-pipeline-queue-k3-r1/a8_pipeline_queue_k3_margin300/c6",
+      "requests": 24,
+      "warmup": 4,
+      "ttft_p95_ms": 9070.279904949999,
+      "tpot_p95_ms": 34.182490464285706,
+      "output_tok_s": 154.02655972976996,
+      "joint_slo": true,
+      "all8192_512": true,
+      "all_native_long_cold": true,
+      "later18_TTFT_violations": 0,
+      "later18_TPOT_violations": 0,
+      "binary_sha256": "7b15cf55687ac9499da6c050f046848a0b50ff5a34541fce211e973bf6e1267a",
+      "client_profile_sha256": "8d313a1c49d5f9863d5ca0acac3ebe6bfdaa804bb916e4004866f633d0371bae"
+    }
+  ],
+  "actual_phase_payload_equal_except_only_cache_salt": true,
+  "source_review": "queued-prefill-demand-implementation-independent-review.json",
+  "interpretation": "Queue-demandpilot passesboth, originalcompletionK3failsTTFT andfrozenK3failsTPOT. Scheduling changesbatchcomposition/yields despiteunchangedGPUmathcode; throughputeffectisnotpurewaiting reduction. NewC6capacityunprovenuntil100selection/fresh45.",
+  "quality": "Smallpairedchecks/expandedqualitystillrequired"
+}

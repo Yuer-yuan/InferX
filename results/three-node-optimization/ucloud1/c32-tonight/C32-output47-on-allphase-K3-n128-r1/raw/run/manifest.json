@@ -1,0 +1,219 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "started_at": "2026-10-17T11:46:21.490684+00:00",
+  "run_id": "903c8cd2ed124b729190d1e7a488e694",
+  "runner": "/workspace/InferX/code/submission/organizer/runner.py",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "config_sha256": "3f6a1ce8377092983f7fa8cf14f6dd5e84481c4c203d1f90e0ea97c742c51645",
+  "selected_cases": [
+    "candidate"
+  ],
+  "cases": [
+    {
+      "label": "PILOT",
+      "name": "candidate",
+      "command": [
+        "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18484",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "278528",
+        "--max-concurrency",
+        "32",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "concurrencies": [
+        32
+      ],
+      "started_at": "2026-10-17T11:46:23.567589+00:00",
+      "status": "complete",
+      "tiers": [
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 32,
+          "artifacts": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/c32",
+          "started_at": "2026-10-17T11:47:00.951754+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 128,
+          "records": 128,
+          "valid_records": 128,
+          "successful_requests": 128.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 9496.666763312507,
+              "p50": 8254.96207,
+              "p95": 23694.500605100005,
+              "p99": 28406.197854280003
+            },
+            "inter_token_latency": {
+              "mean": 65.88644720347665,
+              "p50": 65.5010724001957,
+              "p95": 101.15738747495108,
+              "p99": 115.71145693506848
+            },
+            "request_latency": {
+              "mean": 43164.64128428907,
+              "p50": 42214.015146,
+              "p95": 64528.09229555,
+              "p99": 66461.20223267001
+            }
+          },
+          "benchmark_duration": 180.250304768,
+          "request_throughput": 0.710111048895557,
+          "output_token_throughput": 363.5768570345252,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-17T11:50:24.009165+00:00",
+          "elapsed_seconds": 203.05742857902078
+        }
+      ],
+      "server_log": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/server.log",
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0,
+        "lifecycle": "direct engine child held via pidfd; no process-group or global kill"
+      },
+      "port_preflight": {
+        "status": "unused",
+        "started_at": "2026-10-17T11:46:23.567807+00:00",
+        "timeout_seconds": 0,
+        "previous_owned_server": null,
+        "attempts": 1,
+        "waited_seconds": 0.00188632303616032
+      },
+      "pid": 451016,
+      "start_ticks": 45878884,
+      "owned_identity": {
+        "pid": 451016,
+        "start_ticks": 45878884,
+        "uid": 0,
+        "executable": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+        "lifecycle": "pidfd held until reaped"
+      },
+      "ready_at": "2026-10-17T11:47:00.029837+00:00",
+      "numeric_gate": {
+        "status": "passed",
+        "receipt": {
+          "kind": "frozen_candidate_numeric_qualification",
+          "passed": true,
+          "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+          "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+          "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+          "evidence": {
+            "build": {
+              "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/build-state.json",
+              "sha256": "6b3ad962cf17001a49c79a21120942ca974c1546f37b3a318489537bb8463c95"
+            },
+            "source": {
+              "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/source-identity.json",
+              "sha256": "73c1e8576db83cdecb796032c0dc04631fce29b90b8c32f1ebc60e78d8dfe5f8"
+            },
+            "cache": {
+              "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025/cache025-ready.json",
+              "sha256": "00494909e18f0cd5d938edc05e0f4eabe685e07694f9a8879b8f63a15e60bcda"
+            },
+            "model_owned_47_seam": {
+              "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/model-seam-qualification.json",
+              "sha256": "6485d79a652c5dbc99b38a2f550446a2b7a818337d6946e5699e0236bd94f449"
+            }
+          },
+          "scope": "Frozen025/041 parent retained; exact9270 selected L1T1/L2T2044 model-owned registration/Prefill/Graph reported PASS by ucloud3 and accepted by Root. Protected oldT4 parity failed and diagnostic remains pending; Root explicitly permits this performance run. No task-quality claim."
+        },
+        "sha256": "b2d003693850e2ed5e85d5dc02aabcc1b87a06801a534fd4120e2cdd4ce29c5a"
+      },
+      "candidate_build_qualification": {
+        "kind": "native32_s4_startup_qualification",
+        "passed": true,
+        "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+        "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+        "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+        "evidence": {
+          "build": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/build-state.json",
+            "sha256": "6b3ad962cf17001a49c79a21120942ca974c1546f37b3a318489537bb8463c95"
+          },
+          "source": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/source-identity.json",
+            "sha256": "73c1e8576db83cdecb796032c0dc04631fce29b90b8c32f1ebc60e78d8dfe5f8"
+          },
+          "cache": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025/cache025-ready.json",
+            "sha256": "00494909e18f0cd5d938edc05e0f4eabe685e07694f9a8879b8f63a15e60bcda"
+          },
+          "model_owned_47_seam": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/model-seam-qualification.json",
+            "sha256": "6485d79a652c5dbc99b38a2f550446a2b7a818337d6946e5699e0236bd94f449"
+          }
+        },
+        "scope": "CPU/source/cache build qualification only. GPU numeric gate is checked after startup and before any original probe/performance request.",
+        "receipt": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/qualification.json",
+        "receipt_sha256": "ed487baeb67748e32f405aacad99e7fde9f595001cc79460d6e8945a4ae5dda5",
+        "freshservice_semantic_smoke_completed": false
+      },
+      "probe": {
+        "cache_salt": "903c8cd2ed124b729190d1e7a488e694:candidate:probe",
+        "status": "complete",
+        "excluded_from_metrics": true
+      },
+      "finished_at": "2026-10-17T11:50:24.825689+00:00",
+      "elapsed_seconds": 241.25813151500188
+    }
+  ],
+  "any_slo_met": false,
+  "slo": {
+    "ttft_p95_max_ms": 10000,
+    "tpot_p95_max_ms": 40
+  },
+  "note": "PILOT only; no official score. Probe and warmup excluded; cache isolation not verified by telemetry.",
+  "dataset": {
+    "path": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/dataset.jsonl",
+    "metadata": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/dataset.meta.json",
+    "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599"
+  },
+  "finished_at": "2026-10-17T11:50:24.827641+00:00",
+  "elapsed_seconds": 243.33666348597035
+}

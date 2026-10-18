@@ -1,0 +1,72 @@
+{
+  "started_at": "2026-10-18T00:28:09.542007+00:00",
+  "configuration": {
+    "mode": "accuracy",
+    "base_url": "http://127.0.0.1:18541/v1",
+    "model": "qwen38-27b",
+    "tokenizer": "/workspace/InferX/models/tokenizer",
+    "tokenizer_revision": null,
+    "api_key_env": "OPENAI_API_KEY",
+    "output_dir": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation",
+    "env_dir": "/workspace/InferX/eval-envs",
+    "perf_requests": 100,
+    "eval_batch_size": 13,
+    "request_timeout": 600,
+    "seed": 42,
+    "dry_run": false,
+    "isl": 8192,
+    "osl": 512,
+    "concurrencies": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "warmup_requests": 8,
+    "accuracy_limit": 100,
+    "accuracy_generation_config": {
+      "max_tokens": 32768
+    }
+  },
+  "status": "完整",
+  "issues": [],
+  "accuracy": {
+    "status": "完整",
+    "issues": [],
+    "metrics": {
+      "prompt_level_strict": {
+        "score": 0.9,
+        "num": 100
+      },
+      "inst_level_strict": {
+        "score": 0.9009,
+        "num": 111
+      },
+      "prompt_level_loose": {
+        "score": 0.96,
+        "num": 100
+      },
+      "inst_level_loose": {
+        "score": 0.955,
+        "num": 111
+      }
+    },
+    "generated_samples": 100,
+    "execution_summary": {
+      "requested": 100,
+      "succeeded": 100,
+      "errored": 0,
+      "incomplete": false,
+      "subsets": {
+        "default": {
+          "requested": 100,
+          "succeeded": 100,
+          "errored": 0
+        }
+      }
+    },
+    "native_report": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json",
+    "artifacts": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation/accuracy"
+  },
+  "ended_at": "2026-10-18T00:46:48.822109+00:00"
+}

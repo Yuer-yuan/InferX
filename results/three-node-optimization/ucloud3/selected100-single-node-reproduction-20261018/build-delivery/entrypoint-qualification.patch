@@ -1,0 +1,11 @@
+--- candidate_common.py:original
++++ candidate_common.py:rebuilt
+@@ -146,7 +146,7 @@
+                 asset_contract=recipe["assets"]["contract"],
+                 version_id=recipe["version_id"], selection_status=recipe["selection_status"],
+                 quality_status=recipe["quality_status"],
+-                qualification="Frozen100 measured at C4/C8/C12/C13/C14 and original100 quality; portable entrypoint CPU checked only, not a new GPU deployment. See evidence/status.json for exact scope.")
++                qualification=recipe.get("qualification", "Frozen100 measured at C4/C8/C12/C13/C14 and original100 quality; portable entrypoint CPU checked only, not a new GPU deployment. See evidence/status.json for exact scope."))
+ 
+ 
+ def process_start(pid, proc_root=Path("/proc")):

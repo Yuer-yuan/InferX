@@ -1,0 +1,112 @@
+--- a/src/runtime/engine/concurrent_executor.h
++++ b/src/runtime/engine/concurrent_executor.h
+@@ -9,6 +9,7 @@
+ #include "runtime/engine/request_memory.h"
+ #include "runtime/engine/slo_budget_policy.h"
+ #include "runtime/engine/slo_completion_policy.h"
++#include "runtime/engine/slo_bounded_decode_membership.h"
+ #include "runtime/engine/slo_prefill_queue_policy.h"
+ #include "runtime/engine/scheduler_trace.h"
+ #include "runtime/generation/generation_budget.h"
+@@ -21,6 +22,7 @@
+ #include <condition_variable>
+ #include <cstddef>
+ #include <cstdint>
++#include <cstdio>
+ #include <deque>
+ #include <exception>
+ #include <memory>
+@@ -96,6 +98,13 @@
+                      completion_scheduler_ ? "policy_completion" :
+                      budget_scheduler_ ? "policy_budget" : "policy_baseline",
+                      SchedulerTrace::now_ms());
++        if (bounded_decode_membership_scheduler_ &&
++            (options.speculative.backend != SpeculativeBackend::Mtp ||
++             options.speculative.draft_tokens != 3)) {
++            throw std::invalid_argument("bounded decode membership requires ordinary MTP K3");
++        }
++        std::fprintf(stderr, "bounded_decode_membership_startup enabled=%d\n",
++                     bounded_decode_membership_scheduler_ ? 1 : 0);
+         worker_ = std::thread([this] { worker_loop(); });
+     }
+ 
+@@ -1104,6 +1113,51 @@
+         }
+     }
+ 
++    // Invoked ONLY after the original worker selected decode using full-ready membership.
++    void run_bounded_decode_round(const RoundMembership& full) {
++        if (!bounded_decode_membership_scheduler_) {
++            run_decode_round(full);
++            return;
++        }
++        std::array<BoundedDecodeView, kMaximumConcurrency> views{};
++        for (std::size_t i = 0; i < full.size; ++i) {
++            const auto lane = full.lanes[i];
++            const auto& request = slots_[lane];
++            auto& view = views[i];
++            view.lane = lane;
++            view.live = request != nullptr && request->decode_ready && request->first_token &&
++                        request->budget &&
++                        !request->cancelled.load(std::memory_order_acquire) &&
++                        request->generated.size() <= std::numeric_limits<unsigned>::max();
++            if (!view.live) { continue; }
++            view.completion = {
++                std::chrono::duration<double, std::milli>(
++                    request->first_token->time_since_epoch()).count(),
++                static_cast<unsigned>(request->generated.size()), request->budget->remaining(),
++                request_yield_max_scheduler_ ? request->committed_decode_rounds : 0};
++        }
++        const auto selection = choose_bounded_decode_membership(
++            true, SchedulerTrace::now_ms(), completion_costs_.get(static_cast<unsigned>(full.size)),
++            std::span<const BoundedDecodeView>(views.data(), full.size), bounded_decode_cadence_);
++        RoundMembership selected;
++        if (selection.use_subset) {
++            for (const auto index : selection.indices) {
++                selected.lanes[selected.size] = full.lanes[index];
++                selected.budgets[selected.size] = full.budgets[index];
++                ++selected.size;
++            }
++        }
++        // Original resolve/cancel/output/stats operate on exactly these actual lanes.
++        run_decode_round(selection.use_subset ? selected : full);
++        bounded_decode_cadence_.record_completed_decode(selection.use_subset);
++        if (selection.use_subset && !bounded_decode_first_subset_logged_) {
++            bounded_decode_first_subset_logged_ = true;
++            std::fprintf(stderr,
++                         "bounded_decode_membership_first_success full_B=%zu selected_B=%zu full_rounds_due=%u\n",
++                         full.size, selected.size, bounded_decode_cadence_.full_rounds_due());
++        }
++    }
++
+     void run_decode_round(const RoundMembership& membership) {
+         const double started_ms = SchedulerTrace::now_ms();
+         const std::span<const std::uint32_t> lanes = membership.lane_span();
+@@ -1361,7 +1415,7 @@
+ 
+                 if (prefill_lane_) {
+                     if (!membership.empty() && (budget_scheduler_ ? budget_decode : !previous_unit_was_decode)) {
+-                        run_decode_round(membership);
++                        run_bounded_decode_round(membership);
+                         previous_unit_was_decode = true;
+                     } else {
+                         run_prefill_step();
+@@ -1383,7 +1437,7 @@
+                 }
+ 
+                 if (!membership.empty()) {
+-                    run_decode_round(membership);
++                    run_bounded_decode_round(membership);
+                     previous_unit_was_decode = true;
+                     continue;
+                 }
+@@ -1404,6 +1458,9 @@
+     bool completion_scheduler_ = false;
+     bool queue_demand_scheduler_ = false;
+     const bool request_yield_max_scheduler_ = completion_request_yield_max_enabled();
++    const bool bounded_decode_membership_scheduler_ = bounded_decode_membership_enabled();
++    BoundedDecodeCadence bounded_decode_cadence_;
++    bool bounded_decode_first_subset_logged_ = false;
+     double completion_ttft_margin_ms_ = 300.0;
+     CompletionCostModel<kMaximumConcurrency> completion_costs_;
+     SloCostEstimate costs_;

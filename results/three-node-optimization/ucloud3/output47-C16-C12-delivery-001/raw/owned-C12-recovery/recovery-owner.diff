@@ -1,0 +1,43 @@
+--- original-owner.py
++++ C12-recovery-owner.py
+@@ -44,6 +44,14 @@
+  assert prior['client_cleanup']['reaped']and prior['service_cleanup']['reaped']
+  assert all(missing(h)for h in [prior['owner']]+prior['handles'])
+  cancel=R.parent/'output47-current-official100-001/actual-user-cancel-terminal.json';assert load(cancel)['disposition']=='USER_CANCELLED_PERFORMANCE_PRIORITY_NOT_COMPLETED'
++ previous_perf=load(R.parent/'output47-C16-C12-official128-001/job.json')
++ assert previous_perf['status']=='failed'and previous_perf['runs'][0]['status']=='complete'and previous_perf['runs'][0]['joint_PASS']is False
++ assert previous_perf['runs'][0]['all137cold']
++ assert previous_perf['runs'][1]['native_done']==0 and 'service'not in previous_perf['runs'][1]
++ assert all(missing(h)for h in [previous_perf['owner']]+previous_perf['handles']+[previous_perf['runs'][0]['service']])
++ failed_manifest=load('/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/manifest.json')
++ assert failed_manifest['cases'][0]['cleanup']['note']=='no server started'and failed_manifest['cases'][0]['tiers']==[]
++ j['recovery_scope']='Port preflight-only C12 failure; no previous C12 service/HTTP. Keep complete C16 SLO FAIL, no rerun.'
+  relay=load(R/'runtime-ready-compat.json')
+  assert relay['binary_sha256']=='9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2'
+  assert relay['source_sha256']=='91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc'
+@@ -72,14 +80,13 @@
+  expected=load(R/'environment.json');env.update(expected,OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',LD_LIBRARY_PATH=relay['LD_LIBRARY_PATH'])
+  assert not any('TRACE'in k or 'LOG'in k for k in expected)
+  save('ready',GPU_preflight=gpu,runtime=runtime,expected_env=expected)
+- for c,kv in [(16,139264),(12,104448)]:
+-  if c==12 and j['runs'][0]['joint_PASS']:break
++ for c,kv in [(12,104448)]:
+   idle();cfg=load(R/f'C{c}-config.json');argv=cfg['cases'][0]['command'];value=lambda f:argv[argv.index(f)+1]
+   assert cfg['requests']==128 and cfg['warmup']==8 and cfg['seed']==20261016 and cfg['cases'][0]['concurrencies']==[c]
+   for f,v in [('--max-concurrency',str(c)),('--kv-capacity',str(kv)),('--draft-tokens','3'),('--prefill-chunk','2048'),('--max-context','65536')]:assert value(f)==v
+   assert argv[0]==str(binary)and '--no-prefix-reuse'in argv and '--no-disk-cache'in argv
+   assert '--no-thinking'not in argv and '--greedy'not in argv
+-  run=Path(f'/workspace/InferX/runs/ucloud3-slo/output47-C{c}-K3-n128-r1');assert not run.exists()
++  run=Path(f'/workspace/InferX/runs/ucloud3-slo/output47-C{c}-K3-n128-recovery002');assert not run.exists()
+   rr=dict(concurrency=c,KV=kv,run_dir=str(run),started_ns=time.time_ns(),status='running');j['runs'].append(rr)
+   telemetry=Owned(['nvidia-smi','--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu','--format=csv','-l','1'],R/f'C{c}-gpu.csv',role='1Hz power/memory, not occupancy')
+   driver=Owned(['/usr/bin/python3',str(R/'run_candidate_sweep.py'),'--runner',str(RUNNER),'--config',str(R/f'C{c}-config.json'),'--output-dir',str(run)],R/f'C{c}-driver.log',env=env,role=f'original128+8+1 C{c}')
+@@ -124,7 +131,7 @@
+   rr.update(status='complete',joint_PASS=passed,independent_metrics=measured,all137cold=bool(exact_native),all_startup_retained=True,native_errors=len(errors),client_rows=clients,TTFT_violation_ranks=[x['arrival_rank']for x in clients if x['TTFT_ms']>10000],TPOT_violation_ranks=[x['arrival_rank']for x in clients if x['TPOT_ms']>40],finished_ns=time.time_ns())
+   idle();save(f'C{c}_complete')
+  assert sha(binary)==runtime['binary_sha256']and all(sha(R/k)==v for k,v in frozen['files'].items())
+- save('COMPLETE_C16_CONDITIONAL_C12',status='complete',finished_ns=time.time_ns())
++ save('COMPLETE_C12_RECOVERY_NO_C16_RERUN',status='complete',finished_ns=time.time_ns())
+ except BaseException as e:
+  save('FAILURE_preserved',status='failed',error=repr(e),traceback=traceback.format_exc(),finished_ns=time.time_ns());raise
+ finally:

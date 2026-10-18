@@ -1,0 +1,60 @@
+{
+  "reviewed_at": "2026-10-16T20:32:08.193847+00:00",
+  "scope": "Root independent local raw client/native/input audit, plus full-build saved provenance review; not remote physical source rehash",
+  "result": "FAIL",
+  "C": 7,
+  "measured": 24,
+  "warmup": 4,
+  "P95_ms": {
+    "time_to_first_token": 10911.233078299994,
+    "inter_token_latency": 37.571175733561645,
+    "request_latency": 24500.760597799996
+  },
+  "output_tok_s": 168.58477457185845,
+  "all_client_exact8192_512_errors0": true,
+  "all_native29_cold": true,
+  "all_startup_retained": true,
+  "violations": [
+    {
+      "arrival_rank": 7,
+      "session": "session_000009",
+      "TTFT_ms": 11138.933992999999,
+      "TPOT_ms": 15.880285279843443
+    },
+    {
+      "arrival_rank": 14,
+      "session": "session_000017",
+      "TTFT_ms": 11197.92673,
+      "TPOT_ms": 16.459405804305284
+    }
+  ],
+  "startup_only_gate_passes": false,
+  "fresh55_not_permitted": true,
+  "actual_cohorts_match_node1_pilot": {
+    "warmup": {
+      "count": 4,
+      "actual_payloads_equal_except_cache_salt": true,
+      "sha256": "586b8e1fdf9b5cf6d5e20beb19859b48a03c5653e48562d8c33e9e68fd1a68ac"
+    },
+    "profiling": {
+      "count": 24,
+      "actual_payloads_equal_except_cache_salt": true,
+      "sha256": "b404b1165d585616a22125480dadab9cf0a1a5659f55b022f3a0065b2efaf26d"
+    }
+  },
+  "source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "binary_sha256": "d0188bcb848c78da5601689fe1b21dce16718ae46a97755bedf53e99c09bee28",
+  "build_source_manifest_match_reported": true,
+  "hashes": {
+    "ucloud3/portable-c7-pilot24-seed20261016-002/portable_c7/c7/profile_export.jsonl": "49f192db0b1aef1ea77a940f2eb4ad628523ed753a26d16e685d0a22789492a2",
+    "ucloud3/portable-c7-pilot24-seed20261016-002/portable_c7/c7/inputs.json": "6ba2ebdb647459f8a6548d67f83394ce96de05ecab1fa69098359d814748617f",
+    "ucloud3/portable-c7-pilot24-seed20261016-002/portable_c7/requests.jsonl": "6f57d5e8e9514986d0b197d337b9ceb521317dddbc21439d1b5eff3cc6d5b983",
+    "ucloud3/portable-c7-reproduction-001/terminal-provenance.json": "35730e2b097f58118ea8079269de8fe0d3183ec34f3d0126e48dfe9fd322b00b"
+  },
+  "qualifications": [
+    "Node1 C7 two100 plus300 remain valid on that node; independent portable build/card pilot fails.",
+    "Binary byte inequality is allowed for separate full builds; exact source/correctness/runtime evidence retained.",
+    "No attribution to hardware, zero MTP acceptance, or build differences established by this audit.",
+    "One separate realistic profiling diagnostic assigned; no rerun/seed rescue or further100."
+  ]
+}

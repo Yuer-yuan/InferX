@@ -1,0 +1,67 @@
+--- 40b3-owner.py
++++ 9270-owner.py
+@@ -1,7 +1,7 @@
+ import hashlib,json,os,time,subprocess,traceback
+ from pathlib import Path
+ from owned_process import Owned,identity,write_json,same
+-R=Path(__file__).resolve().parent;BASE=R.parent;BUILD=BASE/'input-s4-allphase-native32-r1';RUN=Path('/workspace/InferX/runs/ucloud1-slo/c32-tonight-input-allphase-K3-n128-r1');J=R/'job.json';RUNNER=Path('/workspace/InferX/code/submission/organizer/runner.py')
++R=Path(__file__).resolve().parent;BASE=R.parent;BUILD=BASE/'output47-prefill-on-allphase-r1';RUN=Path('/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1');J=R/'job.json';RUNNER=Path('/workspace/InferX/code/submission/organizer/runner.py')
+ load=lambda p:json.loads(Path(p).read_text())
+ def sha(p):
+  h=hashlib.sha256()
+@@ -19,15 +19,18 @@
+ def missing(h):
+  try:return Path('/proc/'+str(h['pid'])+'/stat').read_text().rsplit(')',1)[1].split()[19]!=str(h['start_ticks'])
+  except(FileNotFoundError,ProcessLookupError):return True
+-assert not J.exists()and not RUN.exists();j=dict(status='running',stage='preflight',owner=identity(os.getpid()),handles=[],started_ns=time.time_ns(),scope='C32/K3 input S4 allphase only, fixed128+8 official runner; qualified six GDN seams; no output or gate128x64 change');write_json(J,j);driver=telemetry=None
++assert not J.exists()and not RUN.exists();j=dict(status='running',stage='preflight',owner=identity(os.getpid()),handles=[],started_ns=time.time_ns(),scope='C32/K3 fixed47 Prefill output S4 atop qualified40b3; fixed128+8 official runner; exact model-owned seam required; no rejected gate changes');write_json(J,j);driver=telemetry=None
+ try:
+  f=load(R/'bundle-identity.json');assert all(sha(R/n)==v for n,v in f['files'].items())
+  built=load(BUILD/'build-state.json');assert built['status']=='complete'and built['source_unchanged']and all(missing(h)for h in[built['owner']]+built['handles'])
+  assert all(x['cleanup']['reaped']and x['cleanup']['exit_code']==0 for x in built['steps'])
+- seams=load(BUILD/'seam-r1/job.json');assert seams['status']=='complete'and seams['server_sha256']==built['binary_sha256']and all(missing(h)for h in[seams['owner']]+seams['handles'])
+- assert load(BUILD/'seam-r1/raw/COMPLETE.json')['cases']==6
+- gate_old=load(BASE/'s4-gate128x64-lb2-execution-r1/job.json');assert gate_old['status']=='complete'and not gate_old['screen_pass']and all(missing(h)for h in[gate_old['owner']]+gate_old['handles'])
+- j['rejected_gate']='128x64 lb2 wholeOp slower; no integration'
++ seams=load(R/'model-seam-qualification.json')
++ assert seams['kind']=='root_authorized_selected47_execution'and seams['passed']and seams['selected_child_reaped']
++ assert seams['binary_sha256']==built['binary_sha256']=='9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2'
++ assert seams['source_sha256']=='91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc'
++ assert all(sha(v['path'])==v['sha256']for v in seams['evidence'].values())
++ previous=load(BASE/'C32-input-allphase-K3-n128-r1/job.json');assert previous['status']=='complete'and all(missing(h)for h in[previous['owner']]+previous['handles']+[previous['service']])
++ j['model_seam_receipt']=seams;j['protected_T4_diagnostic_pending']=True;j['task_quality_qualified']=False
+  sid=load(BUILD/'source-identity.json');pre={str(p.relative_to(BUILD/'source')):sha(p)for p in sorted((BUILD/'source').rglob('*'))if p.is_file()};assert pre==sid['files']==load(BUILD/'source-pre.json')==load(BUILD/'source-post.json');write_json(R/'source-pre.json',pre)
+  binary=BUILD/'ninfer-serve';assert sha(binary)==built['binary_sha256'];assert sha(RUNNER)=='d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0'
+  ready=load(BASE/'weights025/cache025-ready.json');assert ready['status']=='complete'and ready['files_verified']==256 and ready['bytes_verified']==8690073600;assert all(missing(h)for h in[ready['owner']]+ready['children'])
+@@ -36,21 +39,28 @@
+  assert (BASE/'weights041/READY').exists()
+  j['input_cache_ready_sha256']=sha(BASE/'weights041/READY.json')
+  j['input_cache_manifest_sha256']=sha(BASE/'weights041/all64-cache-manifest.json')
++ output_ready=load(BASE/'weights047/READY.json');assert output_ready['status']=='complete'and output_ready['weight_files_verified']==128 and output_ready['weight_bytes_verified']==1022361600
++ assert all(missing(h)for h in[output_ready['owner']]+output_ready['children'])
++ output_manifest=load(BASE/'weights047/all64-cache-manifest.json');selected=[m for m in output_manifest['cache']if m['layer']>0 and(m['layer']+1)%4!=0];assert len(selected)==47
++ selected_files=[v for m in selected for v in m['files']];assert len(selected_files)==94 and sum(v['bytes']for v in selected_files)==750796800
++ assert all((BASE/'weights047'/v['relative_path']).stat().st_size==v['bytes']for v in selected_files)
++ j['output_cache_ready']=output_ready;j['output_manifest_sha256']=sha(BASE/'weights047/all64-cache-manifest.json');j['selected_layers']=[m['layer']for m in selected]
++
+  assert not subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip()
+  for p in Path('/proc').glob('[0-9]*/comm'):
+   try:assert p.read_text().strip()not in['nvcc','ptxas','cicc','cc1plus','ninja','nsys','ncu','pigz','gzip','xz','ninfer-serve'],'contention'
+   except(FileNotFoundError,ProcessLookupError):pass
+  gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,memory.used,power.limit','--format=csv,noheader'],text=True);assert '450.00'in gpu and 'GPU-e7536e1c-450e-152d-e5e2-92c032a1c353'in gpu
+  runtime=dict(binary=str(binary),binary_sha256=built['binary_sha256'],source_sha256=sid['aggregate_sha256']);write_json(R/'runtime-identity.json',runtime)
+- evidence={n:dict(path=str(p),sha256=sha(p))for n,p in[('build',BUILD/'build-state.json'),('source',BUILD/'source-identity.json'),('cache',BASE/'weights025/cache025-ready.json'),('GDN_seams',BUILD/'seam-r1/job.json')]};write_json(R/'qualification.json',dict(kind='native32_s4_startup_qualification',passed=True,**runtime,evidence=evidence,scope='Only build/CPU/cache are qualified here. Separate exact numeric receipt required before any model HTTP; startup diagnostic not a mathematical or quality claim.'))
+- write_json(R/'numeric-ready.json',dict(kind='frozen_candidate_numeric_qualification',passed=True,**runtime,evidence=evidence,scope='Existing frozen025/041 CUDA math retained. New allphase Variant actual6GDN seams B1/B32,D1/4, partialvalid/slots/3resetGraph exact; original recipe/CPU and parent qualifications preserved. Not wholemodel task-quality proof.'))
++ evidence={n:dict(path=str(p),sha256=sha(p))for n,p in[('build',BUILD/'build-state.json'),('source',BUILD/'source-identity.json'),('cache',BASE/'weights025/cache025-ready.json'),('model_owned_47_seam',R/'model-seam-qualification.json')]};write_json(R/'qualification.json',dict(kind='native32_s4_startup_qualification',passed=True,**runtime,evidence=evidence,scope='Only build/CPU/cache are qualified here. Separate exact numeric receipt required before any model HTTP; startup diagnostic not a mathematical or quality claim.'))
++ write_json(R/'numeric-ready.json',dict(kind='frozen_candidate_numeric_qualification',passed=True,**runtime,evidence=evidence,scope='Frozen025/041 parent retained; exact9270 selected L1T1/L2T2044 model-owned registration/Prefill/Graph reported PASS by ucloud3 and accepted by Root. Protected oldT4 parity failed and diagnostic remains pending; Root explicitly permits this performance run. No task-quality claim.'))
+  cfg=load(R/'config.json');argv=cfg['cases'][0]['command'];value=lambda f:argv[argv.index(f)+1];assert cfg['requests']==128 and cfg['warmup']==8 and cfg['seed']==20261016 and cfg['cases'][0]['concurrencies']==[32]
+  for f,v in[('--max-concurrency','32'),('--draft-tokens','3'),('--kv-capacity','278528'),('--prefill-chunk','2048'),('--max-context','65536')]:assert value(f)==v
+  assert '--no-prefix-reuse'in argv and '--no-disk-cache'in argv and '--no-thinking'not in argv and '--greedy'not in argv
+  env=os.environ.copy()
+  for k in list(env):
+   if k.startswith(('NINFER_','CUDA_MPS_','UCLOUD2_','INFERX_OUTPUT_CAPTURE_')):env.pop(k)
+- expected=dict(NINFER_PREFILL_A8='all',NINFER_VERIFY_Q5_A8='1',NINFER_SCHED_POLICY='completion_queue',NINFER_SCHED_TTFT_MARGIN_MS='300',NINFER_PREFILL_FULLK='s4gptq64ffn',NINFER_S4_GPTQ_CACHE=str(BASE/'weights025'),NINFER_S4_TARGET_FFN='1',NINFER_S4_OMIT_LEGACY_FFN='1',NINFER_INPUT_S4='1',NINFER_INPUT_S4_CACHE=str(BASE/'weights041'));env.update(expected,OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',LD_LIBRARY_PATH='/workspace/InferX/envs/build/lib:/usr/local/cuda-13.2/lib64');j.update(runtime=runtime,expected_env=expected,GPU_preflight=gpu,command=argv)
++ expected=dict(NINFER_PREFILL_A8='all',NINFER_VERIFY_Q5_A8='1',NINFER_SCHED_POLICY='completion_queue',NINFER_SCHED_TTFT_MARGIN_MS='300',NINFER_PREFILL_FULLK='s4gptq64ffn',NINFER_S4_GPTQ_CACHE=str(BASE/'weights025'),NINFER_S4_TARGET_FFN='1',NINFER_S4_OMIT_LEGACY_FFN='1',NINFER_INPUT_S4='1',NINFER_INPUT_S4_CACHE=str(BASE/'weights041'),NINFER_OUTPUT_S4='1',NINFER_OUTPUT_S4_CACHE=str(BASE/'weights047'));env.update(expected,OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',LD_LIBRARY_PATH='/workspace/InferX/envs/build/lib:/usr/local/cuda-13.2/lib64');j.update(runtime=runtime,expected_env=expected,GPU_preflight=gpu,command=argv)
+  telemetry=Owned(['nvidia-smi','--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu','--format=csv','-l','1'],R/'gpu.csv',role='memory/power1Hz not occupancy');driver=Owned(['/usr/bin/python3',str(R/'run_candidate_sweep.py'),'--runner',str(RUNNER),'--config',str(R/'config.json'),'--output-dir',str(RUN)],R/'driver.log',env=env,role='C32 startup then exact GPU gate then original128+8');j['handles']+=[telemetry.record,driver.record];j['stage']='startup_or_wait_numeric';write_json(J,j)
+  while driver.child.poll()is None:
+   mf=RUN/'manifest.json'

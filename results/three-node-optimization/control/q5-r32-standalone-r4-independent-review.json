@@ -1,0 +1,206 @@
+{
+  "reviewed_at": "2026-10-16T20:22:51.530588+00:00",
+  "scope": "Root independent completedR4 numeric/Graph/conformance and all64ABBA blocks review; no GPU work",
+  "baseline_and_candidate_pair_bitwise_equal_all72": true,
+  "all18shape_finite_canary_immutable": true,
+  "oracle_error_checks432_all_original_criterion_pass": true,
+  "reset_checks36": true,
+  "actualGraph_one_node_and_gridXceil_T_over32_verified": true,
+  "attrs": [
+    {
+      "type": "funcattrs",
+      "variant": "R64",
+      "full": false,
+      "registers": 67,
+      "static_smem": 22016,
+      "dynamic_smem": 0,
+      "local_bytes": 0,
+      "max_threads": 128,
+      "grid_y": 80,
+      "block_x": 128,
+      "ptx_version": 89,
+      "binary_version": 89
+    },
+    {
+      "type": "funcattrs",
+      "variant": "R64",
+      "full": true,
+      "registers": 69,
+      "static_smem": 22016,
+      "dynamic_smem": 0,
+      "local_bytes": 0,
+      "max_threads": 128,
+      "grid_y": 80,
+      "block_x": 128,
+      "ptx_version": 89,
+      "binary_version": 89
+    },
+    {
+      "type": "funcattrs",
+      "variant": "R32",
+      "full": false,
+      "registers": 48,
+      "static_smem": 15104,
+      "dynamic_smem": 0,
+      "local_bytes": 0,
+      "max_threads": 128,
+      "grid_y": 160,
+      "block_x": 128,
+      "ptx_version": 89,
+      "binary_version": 89
+    },
+    {
+      "type": "funcattrs",
+      "variant": "R32",
+      "full": true,
+      "registers": 53,
+      "static_smem": 15104,
+      "dynamic_smem": 0,
+      "local_bytes": 0,
+      "max_threads": 128,
+      "grid_y": 160,
+      "block_x": 128,
+      "ptx_version": 89,
+      "binary_version": 89
+    }
+  ],
+  "timing_results": [
+    {
+      "K": 6144,
+      "T": 20,
+      "eager": {
+        "R64_median_us": 91.136002,
+        "R32_median_us": 92.160004,
+        "speedup": 0.988888867669754,
+        "baseline_last_first_median_ratio": 1.0
+      },
+      "graph": {
+        "R64_median_us": 89.087997,
+        "R32_median_us": 90.112,
+        "speedup": 0.9886363303444603,
+        "baseline_last_first_median_ratio": 1.0
+      }
+    },
+    {
+      "K": 6144,
+      "T": 24,
+      "eager": {
+        "R64_median_us": 89.087997,
+        "R32_median_us": 91.136002,
+        "speedup": 0.9775280355177309,
+        "baseline_last_first_median_ratio": 1.0
+      },
+      "graph": {
+        "R64_median_us": 89.087997,
+        "R32_median_us": 91.136002,
+        "speedup": 0.9775280355177309,
+        "baseline_last_first_median_ratio": 1.0
+      }
+    },
+    {
+      "K": 6144,
+      "T": 28,
+      "eager": {
+        "R64_median_us": 89.087997,
+        "R32_median_us": 92.160004,
+        "speedup": 0.9666665921585681,
+        "baseline_last_first_median_ratio": 1.0
+      },
+      "graph": {
+        "R64_median_us": 89.087997,
+        "R32_median_us": 92.160004,
+        "speedup": 0.9666665921585681,
+        "baseline_last_first_median_ratio": 1.0
+      }
+    },
+    {
+      "K": 6144,
+      "T": 32,
+      "eager": {
+        "R64_median_us": 88.064003,
+        "R32_median_us": 90.112,
+        "speedup": 0.9772727605646307,
+        "baseline_last_first_median_ratio": 1.0
+      },
+      "graph": {
+        "R64_median_us": 87.18400199999999,
+        "R32_median_us": 89.087997,
+        "speedup": 0.9786279289678046,
+        "baseline_last_first_median_ratio": 1.0064302887924232
+      }
+    },
+    {
+      "K": 17408,
+      "T": 20,
+      "eager": {
+        "R64_median_us": 315.392,
+        "R32_median_us": 302.08002,
+        "speedup": 1.0440677274849228,
+        "baseline_last_first_median_ratio": 1.0001522305823518
+      },
+      "graph": {
+        "R64_median_us": 314.36801,
+        "R32_median_us": 301.056,
+        "speedup": 1.0442177202912417,
+        "baseline_last_first_median_ratio": 0.998373999644722
+      }
+    },
+    {
+      "K": 17408,
+      "T": 24,
+      "eager": {
+        "R64_median_us": 314.36801,
+        "R32_median_us": 303.104,
+        "speedup": 1.0371621951541385,
+        "baseline_last_first_median_ratio": 0.9997456336142325
+      },
+      "graph": {
+        "R64_median_us": 315.392,
+        "R32_median_us": 303.104,
+        "speedup": 1.0405405405405406,
+        "baseline_last_first_median_ratio": 0.9968547394987826
+      }
+    },
+    {
+      "K": 17408,
+      "T": 28,
+      "eager": {
+        "R64_median_us": 314.36801,
+        "R32_median_us": 305.15201,
+        "speedup": 1.0302013412921645,
+        "baseline_last_first_median_ratio": 1.003308377180543
+      },
+      "graph": {
+        "R64_median_us": 314.36801,
+        "R32_median_us": 304.12799,
+        "speedup": 1.0336701005389213,
+        "baseline_last_first_median_ratio": 0.9967532784598215
+      }
+    },
+    {
+      "K": 17408,
+      "T": 32,
+      "eager": {
+        "R64_median_us": 312.32001,
+        "R32_median_us": 293.888,
+        "speedup": 1.0627178040614114,
+        "baseline_last_first_median_ratio": 1.0
+      },
+      "graph": {
+        "R64_median_us": 312.32001,
+        "R32_median_us": 293.888,
+        "speedup": 1.0627178040614114,
+        "baseline_last_first_median_ratio": 1.0
+      }
+    }
+  ],
+  "timing_samples": 1920,
+  "uniform_route_promoted": false,
+  "qualification": "Standalone whole-operator only. DownK17408 gains3-6%; attnoutK6144 regresses. No fullmodel benefit or unifiedroute promotion. OriginalR1/R2CPU failures/R3harness boundary failure retained. CorrectedR4 reruns all18 shapes.",
+  "hashes": {
+    "numeric.jsonl": "d9a788b8fea31d87337ecfd396a1ca0ff2d9af1adf56d9e986bbce7448e6d763",
+    "timing.jsonl": "7a16a6265845106ab5c6b21ec8afb9e6d11b6562618e7b25a72d227b96669bc5",
+    "probe/probe.cu": "83b9dee83d4225d208721e4aed4c4207134aeb96c5b780ffce9ed85c1d5705f8",
+    "compile_commands.json": "be726b87c85284455bff3d0aaa59d9c804f9b55aa71eea527bf0ddc11d25a197"
+  }
+}

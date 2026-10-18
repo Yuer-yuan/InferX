@@ -1,0 +1,41 @@
+{
+  "reviewed_at": "2026-10-16T19:07:17.568928+00:00",
+  "scope": "Root independent raw client/native/identity audit; all startup records retained; no GPU work",
+  "run": "a8-pipeline-queue-grouped-v2-c7-heldout46-r1",
+  "C": 7,
+  "native_cap": 8,
+  "dataset_seed": 46,
+  "requests": 100,
+  "warmup": 8,
+  "all8192_512": true,
+  "errors": 0,
+  "ttft_p95_ms": 9537.24208005,
+  "tpot_p95_ms": 38.9603602481409,
+  "official_output_tok_s": 160.14108172323424,
+  "phase_boundary_output_tok_s": 160.14108172323424,
+  "ttft_gt10000": 1,
+  "tpot_gt40": 1,
+  "initial": {
+    "n": 7,
+    "ttft_gt10000": 1,
+    "tpot_gt40": 0
+  },
+  "later": {
+    "n": 93,
+    "ttft_gt10000": 0,
+    "tpot_gt40": 1
+  },
+  "joint_slo": true,
+  "native_cold_count": 109,
+  "all_native_full_reset": true,
+  "cleanup_reaped": true,
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "hashes": {
+    "client_profile": "c5ff3b175b899122f9a866b1f03f89778261512e80a28f093ae6c4a20a5a2b76",
+    "native_log": "453a8d9da9abfe6bcc97c5bb98a132f7f0e0811c13632d96f8f2a9dd1a82fcd6",
+    "inputs": "d426bc0ad0058e14fb931d22511ae023aa55a3f7579e933265eef8ac8e248fb2",
+    "archive": "86c7ea34f3ada81b851969d1a95eb2cdc1d81148c97b86fd04a2e93f0079ed66"
+  },
+  "qualification": "Pilot and two fixed-binary 100+8 seeds support C7 performance; small TPOT margin, long stress and broad task quality remain unresolved. Input file identity is audited separately from actual wire payload identity."
+}

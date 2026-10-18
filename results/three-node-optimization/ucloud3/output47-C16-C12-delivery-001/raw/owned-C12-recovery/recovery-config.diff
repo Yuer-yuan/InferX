@@ -1,0 +1,38 @@
+--- original-C12-config.json
++++ recovery-C12-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "base_url": "http://127.0.0.1:18486/v1",
++  "base_url": "http://127.0.0.1:18487/v1",
+   "model": "qwen38-27b",
+   "tokenizer": "/workspace/InferX/models/tokenizer",
+   "env_dir": "/workspace/InferX/eval-envs",
+@@ -18,7 +18,7 @@
+         "--host",
+         "127.0.0.1",
+         "--port",
+-        "18486",
++        "18487",
+         "--model-id",
+         "qwen38-27b",
+         "--max-context",
+@@ -48,7 +48,7 @@
+         "3",
+         "--lm-head-draft",
+         "--request-log-jsonl",
+-        "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/candidate/requests.jsonl",
++        "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/candidate/requests.jsonl",
+         "--no-prefix-reuse",
+         "--no-disk-cache"
+       ],
+@@ -57,7 +57,7 @@
+       ]
+     }
+   ],
+-  "candidate_identity_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/runtime-identity.json",
+-  "qualification_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/qualification.json",
+-  "numeric_gate_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/numeric-ready.json"
++  "candidate_identity_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/runtime-identity.json",
++  "qualification_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/qualification.json",
++  "numeric_gate_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/numeric-ready.json"
+ }

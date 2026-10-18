@@ -1,0 +1,29 @@
+{
+  "reviewed_at": "2026-10-17T01:19:12.614212+00:00",
+  "source_file": "source/ninfer-ucloud1-pipeline-queue-grouped-v2/src/targets/qwen3_6_27b/impl/package.cpp",
+  "source_sha256": "537ebffb7c5f1c57df71488dcb168098fd3dd8d375a9407c4303120c2aabc244",
+  "Qwen3_8_registered_presets": {
+    "thinking": {
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0,
+      "presence_penalty": 0,
+      "frequency_penalty": 0
+    },
+    "non_thinking": {
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8,
+      "min_p": 0,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0
+    }
+  },
+  "current_experiments": "greedy temperature0, penalties0; selected deliberately for officialperformance and same-setting quality checks",
+  "stochastic_MTP_source": "ops/kernel/speculative_round.cuh has one-hot greedy draft accept/reject against truncated target distribution; source contract only, no task or distribution test in this audit",
+  "limits": [
+    "Registered recommended presets are not measured gains. Current C2 greedy thinking experiment must finish unchanged.",
+    "No new temperature/penalty grid or silent protocol change; official default-sampling reference remains distinct."
+  ]
+}

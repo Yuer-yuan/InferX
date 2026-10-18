@@ -1,0 +1,334 @@
+{
+  "at": "2026-10-17T16:49:13.303172+00:00",
+  "binary_SHA256": "837f0f1f98e4d45901a2c521e145d00e01716c3880e0679b530854c827f2d925",
+  "source_SHA256": "2bf64891c77d0c2e478d7f1648a76ae794b8b1c16852b3533a14ffc1134cdd01",
+  "C": 16,
+  "native_cap": 16,
+  "K": 3,
+  "KV": 139264,
+  "chunk": 2048,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "powerW": 450,
+  "traceOFF": true,
+  "all137cold": true,
+  "zero_errors": true,
+  "all_startup_retained": true,
+  "TTFT_p95_ms": 9837.809764949998,
+  "TPOT_p95_ms": 45.744885119080216,
+  "output_tokens_per_second": 315.733529747791,
+  "joint_PASS": false,
+  "TTFT_violation_ranks": [
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "TPOT_violation_ranks": [
+    1,
+    3,
+    4,
+    5,
+    15,
+    17,
+    20,
+    28,
+    29,
+    32,
+    43,
+    44,
+    45,
+    55,
+    57,
+    61,
+    73,
+    74,
+    81,
+    88,
+    90,
+    94,
+    113
+  ],
+  "P95_same_request_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 115,
+        "conversation_id": "session_000122",
+        "request_start_ns": 1792255379618414022,
+        "TTFT_ms": 9804.352469,
+        "TPOT_ms": 14.089381720156554,
+        "E2E_ms": 17004.026528,
+        "prompt_SHA256": "254ad3405307f425f6bdd01a5efdf6f300d5d88e9b07854f539fe9d7a4ea4eed"
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 11,
+        "conversation_id": "session_000021",
+        "request_start_ns": 1792255215405676620,
+        "TTFT_ms": 9855.825232,
+        "TPOT_ms": 25.330590792563605,
+        "E2E_ms": 22799.757127,
+        "prompt_SHA256": "d86a0ec2783f245baa30960ab8aaee148ea1e7751f25505e0accaa7dfa00d9b9"
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 73,
+        "conversation_id": "session_000080",
+        "request_start_ns": 1792255320018292406,
+        "TTFT_ms": 9696.318007,
+        "TPOT_ms": 44.56938249510763,
+        "E2E_ms": 32471.272461999997,
+        "prompt_SHA256": "ba23ad4fd1d3f89db01f55f4d71129c7b9ea1169113d5bd61ae318d445cacd00"
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 44,
+        "conversation_id": "session_000051",
+        "request_start_ns": 1792255273636490901,
+        "TTFT_ms": 8008.664666,
+        "TPOT_ms": 46.37784807045009,
+        "E2E_ms": 31707.74503,
+        "prompt_SHA256": "65811040a5a7a4a07c189f39d5fb6520c864cfb0821cc847e6d426a393990624"
+      }
+    ]
+  },
+  "cohort": {
+    "full137_SHA256": "62f94272362623a9d776cf99711ab67411957a1d7799b7987583b2570df4b021",
+    "phase_SHA256": {
+      "warmup": "d95825a70bfc6d759f2e4f9e7c2541e96a5fd016ffb05535109a0486a9a9569a",
+      "profiling": "a3ce19d76b555ce554b0956ffada2e14d80160b4190c9a1c8fb62f01cde6cca0"
+    },
+    "same_actual_payloads_as_previous_u3_2362_native16_except_salt": true,
+    "same_actual_phases_as_previous_u3_2362_native16": true
+  },
+  "throughput_scope": {
+    "original_phase_output_tps": 315.733529747791,
+    "phase_export_seconds": 207.567438,
+    "ISO_endpoint_resolution_seconds": 1e-06,
+    "distinct_benchmark_duration": 207.563159552
+  },
+  "engine": {
+    "cuda_graph": true,
+    "device": 0,
+    "kv_cache": "int8-group64",
+    "kv_capacity": 139264,
+    "kv_capacity_max_page_groups": 16384,
+    "kv_capacity_mode": "explicit",
+    "kv_capacity_page_groups": 2176,
+    "log_stats_interval_ms": 5000,
+    "max_concurrency": 16,
+    "max_context": 65536,
+    "max_pending_requests": 32,
+    "pending_timeout_ms": 600000,
+    "prefill_chunk": 2048,
+    "prefix_reuse": false,
+    "proposal_head": "optimized",
+    "speculative_backend": "mtp",
+    "speculative_draft_window": 3,
+    "vision": false
+  },
+  "memory": {
+    "available_after_startup_bytes": 19610206208,
+    "available_after_weights_bytes": 30297292800,
+    "cuda_graph_allowance_bytes": 4294967296,
+    "cuda_graph_observed_bytes": 144703488,
+    "kv_capacity_headroom_bytes": 0,
+    "kv_capacity_increment_bytes": 2297856,
+    "kv_payload_bytes": 5002297344,
+    "minimum_runtime_reservation_bytes": 12184049152,
+    "planned_slack_bytes": 15466113536,
+    "request_transient": {
+      "capacity_bytes": 0,
+      "peak_used_bytes": 0,
+      "used_bytes": 0
+    },
+    "runtime_reservation_bytes": 14831179264,
+    "sequence": {
+      "capacity_bytes": 10174305792,
+      "peak_used_bytes": 10174305792,
+      "used_bytes": 10174305792
+    },
+    "weights": {
+      "capacity_bytes": 8097612800,
+      "peak_used_bytes": 8097612800,
+      "used_bytes": 8097612800
+    },
+    "workspace": {
+      "capacity_bytes": 361906176,
+      "peak_used_bytes": 0,
+      "used_bytes": 0
+    }
+  },
+  "GPU": {
+    "compute_capability_major": 8,
+    "compute_capability_minor": 9,
+    "cuda_compile_version": "13.2",
+    "cuda_driver_version": "13.3",
+    "cuda_runtime_version": "13.2",
+    "device": 0,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+    "total_device_memory_bytes": 50894602240
+  },
+  "actual_environment": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047",
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+    "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+    "NINFER_SCHED_REQUEST_YIELD_MAX": "1"
+  },
+  "terminal": {
+    "observed_unix_ns": 1792255662005693892,
+    "handles": [
+      {
+        "pid": 490205,
+        "expected_start_ticks": "47621891",
+        "actual": "missing"
+      },
+      {
+        "pid": 490311,
+        "expected_start_ticks": "47623170",
+        "actual": "missing"
+      },
+      {
+        "pid": 490312,
+        "expected_start_ticks": "47623171",
+        "actual": "missing"
+      },
+      {
+        "pid": 490329,
+        "expected_start_ticks": "47623432",
+        "actual": "missing"
+      },
+      {
+        "pid": 490203,
+        "expected_start_ticks": "47621887",
+        "actual": "missing"
+      },
+      {
+        "pid": 490213,
+        "expected_start_ticks": "47622014",
+        "actual": "missing"
+      },
+      {
+        "pid": 490220,
+        "expected_start_ticks": "47622080",
+        "actual": "missing"
+      },
+      {
+        "pid": 490221,
+        "expected_start_ticks": "47622081",
+        "actual": "missing"
+      },
+      {
+        "pid": 490228,
+        "expected_start_ticks": "47622149",
+        "actual": "missing"
+      },
+      {
+        "pid": 490229,
+        "expected_start_ticks": "47622149",
+        "actual": "missing"
+      },
+      {
+        "pid": 490236,
+        "expected_start_ticks": "47622221",
+        "actual": "missing"
+      },
+      {
+        "pid": 490237,
+        "expected_start_ticks": "47622222",
+        "actual": "missing"
+      },
+      {
+        "pid": 490238,
+        "expected_start_ticks": "47622223",
+        "actual": "missing"
+      },
+      {
+        "pid": 490239,
+        "expected_start_ticks": "47622223",
+        "actual": "missing"
+      },
+      {
+        "pid": 490240,
+        "expected_start_ticks": "47622224",
+        "actual": "missing"
+      },
+      {
+        "pid": 447661,
+        "expected_start_ticks": "46851587",
+        "actual": "missing"
+      },
+      {
+        "pid": 447665,
+        "expected_start_ticks": "46851642",
+        "actual": "missing"
+      }
+    ],
+    "all_actual_missing": true,
+    "GPUapps": "",
+    "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 450.00 W, 1 MiB\n"
+  },
+  "delivery": {
+    "archive_SHA256": "4e810e4c4927e67dfb20cf40e7d1f9990371d9a296d990a9ff54c6a11821d872",
+    "bytes": 8367339,
+    "files_verified": 99
+  },
+  "limitations": [
+    "Single fixed-seed original128 C16 run, not an independent seed stability confirmation",
+    "Same-machine parent2362 vs conservative request-yield max; N5 OFF, K3/fusionON/outputVerifyOFF. Only host scheduling changes; same math and Graph, separate binaries, fixedseed not stability qualification.",
+    "No task-quality qualification or new profiler capture",
+    "Parent operator/Graph qualification reused; no new model math; original128 retains every error/startup request"
+  ],
+  "previous_2362_native16_comparison": {
+    "TTFT_p95_ms": {
+      "previous": 9855.90839725,
+      "current": 9837.809764949998,
+      "ratio_current_over_previous": 0.9981636768960788
+    },
+    "TPOT_p95_ms": {
+      "previous": 48.78407089129156,
+      "current": 45.744885119080216,
+      "ratio_current_over_previous": 0.9377012677153626
+    },
+    "output_tokens_per_second": {
+      "previous": 311.76838649641223,
+      "current": 315.733529747791,
+      "ratio_current_over_previous": 1.0127182338656533
+    }
+  },
+  "initial16_later112": {
+    "initial16": {
+      "count": 16,
+      "TTFT_violations": 5,
+      "TPOT_violations": 5,
+      "max_TTFT_ms": 14347.904101,
+      "max_TPOT_ms": 63.27133548140899
+    },
+    "later112": {
+      "count": 112,
+      "TTFT_violations": 0,
+      "TPOT_violations": 18,
+      "max_TTFT_ms": 9949.892071,
+      "max_TPOT_ms": 56.874357463796464
+    }
+  }
+}

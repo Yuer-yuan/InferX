@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-18T01:42:09.983866+00:00",
+  "source_summary": "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json",
+  "source_summary_sha256": "49ec55dc25936586d97113942509a40194954cef5759c7a5f91a80da48b25eec",
+  "recipe_sha256": "4b7d1b7542291948bbec1af23fe99973189d48d6e171bcabc4a40e0b6c123a59",
+  "binary_sha256": "e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5",
+  "client_concurrency": 14,
+  "native_concurrency": 13,
+  "measured_requests": 128,
+  "warmup_requests": 8,
+  "probe_requests": 1,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "TTFT_P95_ms": 9862.210240600001,
+  "TPOT_P95_ms": 39.42860192426614,
+  "output_tokens_per_second": 305.53286821935166,
+  "thresholds_ms": {
+    "TTFT_P95": 10000,
+    "TPOT_P95": 40
+  },
+  "joint_pass_from_values": true,
+  "original_parser_meets_slo_field": null,
+  "service_terminal": {
+    "identity": {
+      "pid": 541711,
+      "start": "50908264",
+      "uid": 0,
+      "exe": "/workspace/InferX/three-node-optimization/ucloud2/full-quantization-reproduction-116/normal-builds/selected100/build/apps/ninfer-serve"
+    },
+    "returncode": 0,
+    "reaped": true
+  },
+  "quality_status": "Independent original100 in progress; no quality result inferred",
+  "scope": "One complete original C14 run; not C16/C32 capacity or multi-run stability claim"
+}

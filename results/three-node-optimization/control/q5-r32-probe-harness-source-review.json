@@ -1,0 +1,18 @@
+{
+  "reviewed_at": "2026-10-16T20:13:45.093273+00:00",
+  "scope": "Root standalone R32 harness source audit before interpreting numeric/timing outcomes",
+  "harness_sha256": "83b9dee83d4225d208721e4aed4c4207134aeb96c5b780ffce9ed85c1d5705f8",
+  "actual_GPU_data_reviewed": false,
+  "checks": [
+    "Baseline/candidate share reviewed production q5 kernel template with only selected row/warp-row schedule difference.",
+    "Whole-op wrapper retains production Full predicate and token slicing, including33->32+1 and64->32+32.",
+    "Allbuffer512B guards, immutable input/weight planes SHA, finite nonzero residual, full-output bitdiff/finite checks.",
+    "Independent CPU signed5bit code/high/FP16-scale decode matches native bfe sign-extension; represented BF16 weights and FP64 dots sampled32stratifiedrows across allT.",
+    "Original A16 relative/max criterion unchanged against raw, represented and residual-rounding references for both arms.",
+    "Eager/graph outputs and reset0->1->0 full hashes checked; buffers stable before capture.",
+    "FixedABBA10warm+30measured, CUDAevents exclude reset/256MiB one-whole-op flush; 8core shapes only timed."
+  ],
+  "qualification": "Source checks do not establish compile, race freedom, bit equality, speedup or model benefit. CUDAresults and build/flags/resources must be reviewed separately.",
+  "review_gap_corrected": "Initial root review also missed hardcoded grid.x1 and mistaken per32 launch interpretation. GPU T33 graph-node check stopped before timing. CorrectedR4 uses actual production capacity32*65535, one node/grid.xceil(T/32) in domainT17..64; all18 shapes now rerun/verified.",
+  "corrected_runtime_review": "q5-r32-standalone-r4-independent-review.json"
+}

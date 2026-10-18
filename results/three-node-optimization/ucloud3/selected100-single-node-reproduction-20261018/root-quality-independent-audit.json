@@ -1,0 +1,77 @@
+{
+  "at": "2026-10-18T00:51:17.841834+00:00",
+  "reviewer": "root",
+  "scope": "Independent aggregation of original per-sample review scores, comparison to historical105 actual prediction metadata, and raw/terminal verification; no second generation and no independent verifier reimplementation.",
+  "raw_files_SHA_verified": 54,
+  "samples": 100,
+  "instructions": 111,
+  "unique_response_ids": 100,
+  "actual_first100_metadata_equal105": true,
+  "metrics": {
+    "prompt_level_strict": {
+      "numerator": 90,
+      "denominator": 100,
+      "score": 0.9
+    },
+    "prompt_level_loose": {
+      "numerator": 96,
+      "denominator": 100,
+      "score": 0.96
+    },
+    "inst_level_strict": {
+      "numerator": 100,
+      "denominator": 111,
+      "score": 0.9009009009009009
+    },
+    "inst_level_loose": {
+      "numerator": 106,
+      "denominator": 111,
+      "score": 0.954954954954955
+    }
+  },
+  "empty_final": [
+    {
+      "index": 88,
+      "key": "88",
+      "scores": {
+        "prompt_level_strict": 0.0,
+        "inst_level_strict": 0.0,
+        "prompt_level_loose": 0.0,
+        "inst_level_loose": 0.0
+      },
+      "completion_tokens": 32768
+    }
+  ],
+  "length_stop": [
+    {
+      "index": 88,
+      "key": "88",
+      "scores": {
+        "prompt_level_strict": 0.0,
+        "inst_level_strict": 0.0,
+        "prompt_level_loose": 0.0,
+        "inst_level_loose": 0.0
+      },
+      "completion_tokens": 32768
+    }
+  ],
+  "all100_in_denominator": true,
+  "stop_reason_counts": {
+    "stop": 99,
+    "max_tokens": 1
+  },
+  "native_finish_reason_counts": {
+    "stop_token": 99,
+    "output_limit": 1
+  },
+  "errors": 0,
+  "original_max_tokens32768_and_thinking": true,
+  "all100cold": true,
+  "owner_and_service_terminal_verified": true,
+  "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "predictions_sha256": "4c5da4b7dc7173a78daff67098d540b1f53c72280d9a17582351a2f26e748bd8",
+  "reviews_sha256": "075141e1daeec6ec50b1c255b065990b2de78585689ecd06fd03db5d5a4f1e6e",
+  "native_sha256": "b4fd3a349680b0c102f8b36d4311c6dfb66c244b74c3a3fafd5ab422434fe8ec",
+  "qualification": "Existing verified quantization caches; this source rebuild result is separate from historical e4ed/105 and in-progress newly regenerated116 caches. One output-limited empty answer retained, no inference of causal quality improvement."
+}

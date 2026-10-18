@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-18T00:31:58.940105+00:00",
+  "reviewer": "root",
+  "status": "COMPLETE_JOINT_PASS",
+  "method": "Independent raw original128 linear P95; TPOT=(E2E-TTFT)/511; TPS=65536/original profiling phase wall seconds.",
+  "raw_files_SHA_verified": 31,
+  "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "recipe_sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb",
+  "client_concurrency": 14,
+  "native_concurrency": 13,
+  "kv_capacity": 121856,
+  "formal_requests": 128,
+  "warmup_requests": 8,
+  "errors": 0,
+  "all_formal_cold8192_output512": true,
+  "metrics": {
+    "TTFT_p95_ms": 9896.417354649999,
+    "TPOT_p95_ms": 38.28584995440313,
+    "output_tokens_per_second": 304.89665937584215
+  },
+  "phase_seconds": 214.944959168,
+  "TTFT_violations": 6,
+  "TPOT_violations": 5,
+  "profile_sha256": "44769bda6bc968d2037baa113f164273d2889dd09ea5c61d2c737493575c0fa9",
+  "original_dataset_SHA_verified": true,
+  "qualification": "One fresh source rebuild run with existing verified public base and 478 existing quantized cache files. Does not establish newly regenerated quantization performance or run-to-run stability."
+}

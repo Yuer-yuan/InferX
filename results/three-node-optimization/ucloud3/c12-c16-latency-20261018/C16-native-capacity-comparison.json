@@ -1,0 +1,655 @@
+{
+  "at": "2026-10-17T21:54:41.010620+00:00",
+  "single_run_each_all_results_retained": true,
+  "same_binary_source_env_payload_KV": true,
+  "only_engine_native_capacity_and_log_path_changed": true,
+  "runs": [
+    {
+      "name": "C16-native13-bounded100",
+      "client": 16,
+      "native": 13,
+      "KV": 139264,
+      "status": "COMPLETE_JOINT_FAIL",
+      "metrics": {
+        "TTFT_p95_ms": 13275.426042049978,
+        "TPOT_p95_ms": 42.327509391585124,
+        "output_tokens_per_second": 310.62980402774474
+      },
+      "all137cold": true,
+      "errors": 0,
+      "P95_contributors": {
+        "TTFT_ms": [
+          {
+            "weight": 0.3500000000000085,
+            "arrival_rank": 13,
+            "conversation_id": "session_000018",
+            "start_ns": 1792273387995164346,
+            "TTFT_ms": 11645.473017999999,
+            "TPOT_ms": 23.583807381604696,
+            "native_match_count": 1,
+            "native_id": 22,
+            "end_difference_ms": 3.35872,
+            "first_token_epoch_difference_ms": 0.946176,
+            "own_prefill_ms": 898.345202,
+            "native_TTFT_minus_own_prefill_ms": 10741.453142,
+            "native_shared_decode_per_output_ms": 13.695198211350288,
+            "postfirst_remainder_ms": 9.888609170254409,
+            "rounds": 134,
+            "accepted": 377,
+            "drafted": 402,
+            "fallback": 0,
+            "committed_per_spec_round": 3.8134328358208953,
+            "accepted_per_position": [
+              128,
+              125,
+              124
+            ]
+          },
+          {
+            "weight": 0.6499999999999915,
+            "arrival_rank": 121,
+            "conversation_id": "session_000128",
+            "start_ns": 1792273563954122717,
+            "TTFT_ms": 14153.093055,
+            "TPOT_ms": 17.58081083365949,
+            "native_match_count": 1,
+            "native_id": 130,
+            "end_difference_ms": 0.213248,
+            "first_token_epoch_difference_ms": 0.01408,
+            "own_prefill_ms": 904.0334449999999,
+            "native_TTFT_minus_own_prefill_ms": 13246.875745000001,
+            "native_shared_decode_per_output_ms": 11.428335968688849,
+            "postfirst_remainder_ms": 6.152474864970642,
+            "rounds": 130,
+            "accepted": 381,
+            "drafted": 389,
+            "fallback": 0,
+            "committed_per_spec_round": 3.9307692307692306,
+            "accepted_per_position": [
+              128,
+              127,
+              126
+            ]
+          }
+        ],
+        "TPOT_ms": [
+          {
+            "weight": 0.3500000000000085,
+            "arrival_rank": 25,
+            "conversation_id": "session_000032",
+            "start_ns": 1792273411694477466,
+            "TTFT_ms": 8903.029183999999,
+            "TPOT_ms": 41.91042800782779,
+            "native_match_count": 1,
+            "native_id": 34,
+            "end_difference_ms": 1.007104,
+            "first_token_epoch_difference_ms": 0.726016,
+            "own_prefill_ms": 898.241315,
+            "native_TTFT_minus_own_prefill_ms": 8003.489104000001,
+            "native_shared_decode_per_output_ms": 16.85793141487281,
+            "postfirst_remainder_ms": 25.05249659295498,
+            "rounds": 170,
+            "accepted": 341,
+            "drafted": 508,
+            "fallback": 0,
+            "committed_per_spec_round": 3.0058823529411764,
+            "accepted_per_position": [
+              168,
+              166,
+              7
+            ]
+          },
+          {
+            "weight": 0.6499999999999915,
+            "arrival_rank": 2,
+            "conversation_id": "session_000008",
+            "start_ns": 1792273387988623294,
+            "TTFT_ms": 1782.995064,
+            "TPOT_ms": 42.55209167514678,
+            "native_match_count": 1,
+            "native_id": 11,
+            "end_difference_ms": 0.866048,
+            "first_token_epoch_difference_ms": 0.669184,
+            "own_prefill_ms": 895.4144580000001,
+            "native_TTFT_minus_own_prefill_ms": 885.8726359999999,
+            "native_shared_decode_per_output_ms": 17.965796884540122,
+            "postfirst_remainder_ms": 24.586294790606654,
+            "rounds": 180,
+            "accepted": 331,
+            "drafted": 539,
+            "fallback": 0,
+            "committed_per_spec_round": 2.838888888888889,
+            "accepted_per_position": [
+              161,
+              145,
+              25
+            ]
+          }
+        ]
+      },
+      "TTFT_violation_ranks": [
+        10,
+        12,
+        13,
+        15,
+        16,
+        27,
+        40,
+        52,
+        66,
+        93,
+        107,
+        121,
+        122,
+        123
+      ],
+      "TPOT_violation_ranks": [
+        1,
+        2,
+        9,
+        15,
+        16,
+        25,
+        28,
+        38,
+        39,
+        54,
+        55,
+        70,
+        80,
+        85,
+        87,
+        90,
+        108
+      ],
+      "throughput": {
+        "output_tokens": 65536,
+        "profiling_phase_start_ns": 1792273387986795115,
+        "profiling_phase_end_ns": 1792273598964618718,
+        "profiling_phase_seconds": 210.977823603,
+        "output_tokens_per_second": 310.6298040277448,
+        "formula": "65536/((profiling phase.end_ns-phase.start_ns)/1e9)",
+        "independent_match": true,
+        "actual_AIPerf_concurrency": 16,
+        "observed_client_peak_concurrency": 16,
+        "native_max_concurrency": 13,
+        "KV": 139264,
+        "all_queue_wait_in_client_latency": true
+      },
+      "input_SHA256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "runtime": {
+        "binary": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+        "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+        "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8"
+      },
+      "environment": {
+        "NINFER_DOWN_H512_SINGLEWARP": "1",
+        "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+        "NINFER_INPUT_S4": "1",
+        "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+        "NINFER_OUTPUT_S4": "1",
+        "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047",
+        "NINFER_OUTPUT_S4_VERIFY": "1",
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+        "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+        "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+        "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+        "NINFER_S4_OMIT_LEGACY_FFN": "1",
+        "NINFER_S4_TARGET_FFN": "1",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "NINFER_VERIFY_Q5_A8": "1",
+        "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "1"
+      },
+      "actual_argv": [
+        "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18527",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "139264",
+        "--max-concurrency",
+        "13",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C16-native13-bounded100/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "actual_terminal": {
+        "at": "2026-10-17T21:47:19.985421+00:00",
+        "all_owned_nonrunning": true,
+        "handles": [
+          {
+            "identity": {
+              "pid": 533287,
+              "start_ticks": "49440442",
+              "uid": 0,
+              "executable": "/usr/bin/python3.10",
+              "state": "R"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 533304,
+              "start_ticks": "49440531",
+              "uid": 0,
+              "executable": "/usr/bin/nvidia-smi",
+              "state": "R",
+              "command": [
+                "nvidia-smi",
+                "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+                "--format=csv",
+                "-l",
+                "1"
+              ],
+              "host": "ucloud3",
+              "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native13-bounded100/C16-gpu.csv",
+              "role": "1Hz power/memory, not occupancy",
+              "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 533305,
+              "start_ticks": "49440532",
+              "uid": 0,
+              "executable": "/usr/bin/python3.10",
+              "state": "R",
+              "command": [
+                "/usr/bin/python3",
+                "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native13-bounded100/run_candidate_sweep.py",
+                "--runner",
+                "/workspace/InferX/code/submission/organizer/runner.py",
+                "--config",
+                "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native13-bounded100/C16-config.json",
+                "--output-dir",
+                "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C16-native13-bounded100"
+              ],
+              "host": "ucloud3",
+              "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native13-bounded100/C16-driver.log",
+              "role": "original128+8+1 C16",
+              "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 533316,
+              "start_ticks": 49440792
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          }
+        ],
+        "GPU_compute": "",
+        "job_status": "complete"
+      }
+    },
+    {
+      "name": "C16-native16-bounded100",
+      "client": 16,
+      "native": 16,
+      "KV": 139264,
+      "status": "COMPLETE_JOINT_FAIL",
+      "metrics": {
+        "TTFT_p95_ms": 9967.465981999998,
+        "TPOT_p95_ms": 51.22064640479451,
+        "output_tokens_per_second": 316.7429641972238
+      },
+      "all137cold": true,
+      "errors": 0,
+      "P95_contributors": {
+        "TTFT_ms": [
+          {
+            "weight": 0.3500000000000085,
+            "arrival_rank": 7,
+            "conversation_id": "session_000017",
+            "start_ns": 1792273794321385992,
+            "TTFT_ms": 9878.110182999999,
+            "TPOT_ms": 22.451569305283755,
+            "native_match_count": 1,
+            "native_id": 20,
+            "end_difference_ms": 0.474112,
+            "first_token_epoch_difference_ms": -0.187136,
+            "own_prefill_ms": 899.92475,
+            "native_TTFT_minus_own_prefill_ms": 8971.848227,
+            "native_shared_decode_per_output_ms": 13.618716864970631,
+            "postfirst_remainder_ms": 8.832852440313124,
+            "rounds": 129,
+            "accepted": 382,
+            "drafted": 385,
+            "fallback": 0,
+            "committed_per_spec_round": 3.9612403100775193,
+            "accepted_per_position": [
+              128,
+              127,
+              127
+            ]
+          },
+          {
+            "weight": 0.6499999999999915,
+            "arrival_rank": 53,
+            "conversation_id": "session_000060",
+            "start_ns": 1792273859394780400,
+            "TTFT_ms": 10015.580643,
+            "TPOT_ms": 45.98037836007828,
+            "native_match_count": 1,
+            "native_id": 62,
+            "end_difference_ms": 0.453888,
+            "first_token_epoch_difference_ms": 0.317696,
+            "own_prefill_ms": 907.742221,
+            "native_TTFT_minus_own_prefill_ms": 9106.368272000002,
+            "native_shared_decode_per_output_ms": 18.89675882778866,
+            "postfirst_remainder_ms": 27.083619532289617,
+            "rounds": 192,
+            "accepted": 319,
+            "drafted": 574,
+            "fallback": 0,
+            "committed_per_spec_round": 2.6614583333333335,
+            "accepted_per_position": [
+              147,
+              103,
+              69
+            ]
+          }
+        ],
+        "TPOT_ms": [
+          {
+            "weight": 0.3500000000000085,
+            "arrival_rank": 63,
+            "conversation_id": "session_000070",
+            "start_ns": 1792273882234056281,
+            "TTFT_ms": 5279.293422,
+            "TPOT_ms": 50.4231111741683,
+            "native_match_count": 1,
+            "native_id": 72,
+            "end_difference_ms": 0.711168,
+            "first_token_epoch_difference_ms": 0.488704,
+            "own_prefill_ms": 908.6628999999999,
+            "native_TTFT_minus_own_prefill_ms": 4369.184993000001,
+            "native_shared_decode_per_output_ms": 18.577482753424675,
+            "postfirst_remainder_ms": 31.845628420743623,
+            "rounds": 184,
+            "accepted": 327,
+            "drafted": 551,
+            "fallback": 0,
+            "committed_per_spec_round": 2.777173913043478,
+            "accepted_per_position": [
+              138,
+              110,
+              79
+            ]
+          },
+          {
+            "weight": 0.6499999999999915,
+            "arrival_rank": 36,
+            "conversation_id": "session_000043",
+            "start_ns": 1792273839325471048,
+            "TTFT_ms": 6045.763733,
+            "TPOT_ms": 51.65008845205479,
+            "native_match_count": 1,
+            "native_id": 45,
+            "end_difference_ms": 0.652288,
+            "first_token_epoch_difference_ms": 0.312832,
+            "own_prefill_ms": 907.756057,
+            "native_TTFT_minus_own_prefill_ms": 5136.669386,
+            "native_shared_decode_per_output_ms": 19.67849150880625,
+            "postfirst_remainder_ms": 31.97159694324854,
+            "rounds": 200,
+            "accepted": 311,
+            "drafted": 599,
+            "fallback": 0,
+            "committed_per_spec_round": 2.555,
+            "accepted_per_position": [
+              151,
+              101,
+              59
+            ]
+          }
+        ]
+      },
+      "TTFT_violation_ranks": [
+        10,
+        13,
+        14,
+        15,
+        16,
+        53,
+        54
+      ],
+      "TPOT_violation_ranks": [
+        1,
+        2,
+        3,
+        4,
+        19,
+        28,
+        36,
+        40,
+        42,
+        43,
+        53,
+        55,
+        63,
+        64,
+        65,
+        72,
+        81,
+        87,
+        90,
+        93,
+        107,
+        108,
+        116
+      ],
+      "throughput": {
+        "output_tokens": 65536,
+        "profiling_phase_start_ns": 1792273794315398968,
+        "profiling_phase_end_ns": 1792274001221336614,
+        "profiling_phase_seconds": 206.905937646,
+        "output_tokens_per_second": 316.7429641972238,
+        "formula": "65536/((profiling phase.end_ns-phase.start_ns)/1e9)",
+        "independent_match": true,
+        "actual_AIPerf_concurrency": 16,
+        "observed_client_peak_concurrency": 16,
+        "native_max_concurrency": 16,
+        "KV": 139264,
+        "all_queue_wait_in_client_latency": true
+      },
+      "input_SHA256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "runtime": {
+        "binary": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+        "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+        "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8"
+      },
+      "environment": {
+        "NINFER_DOWN_H512_SINGLEWARP": "1",
+        "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+        "NINFER_INPUT_S4": "1",
+        "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+        "NINFER_OUTPUT_S4": "1",
+        "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047",
+        "NINFER_OUTPUT_S4_VERIFY": "1",
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+        "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+        "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+        "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+        "NINFER_S4_OMIT_LEGACY_FFN": "1",
+        "NINFER_S4_TARGET_FFN": "1",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "NINFER_VERIFY_Q5_A8": "1",
+        "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "1"
+      },
+      "actual_argv": [
+        "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18527",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "139264",
+        "--max-concurrency",
+        "16",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C16-native16-bounded100/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "actual_terminal": {
+        "at": "2026-10-17T21:54:24.356099+00:00",
+        "all_owned_nonrunning": true,
+        "handles": [
+          {
+            "identity": {
+              "pid": 534389,
+              "start_ticks": "49480978",
+              "uid": 0,
+              "executable": "/usr/bin/python3.10",
+              "state": "R"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 534410,
+              "start_ticks": "49481070",
+              "uid": 0,
+              "executable": "/usr/bin/nvidia-smi",
+              "state": "R",
+              "command": [
+                "nvidia-smi",
+                "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+                "--format=csv",
+                "-l",
+                "1"
+              ],
+              "host": "ucloud3",
+              "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native16-bounded100/C16-gpu.csv",
+              "role": "1Hz power/memory, not occupancy",
+              "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 534411,
+              "start_ticks": "49481070",
+              "uid": 0,
+              "executable": "/usr/bin/python3.10",
+              "state": "R",
+              "command": [
+                "/usr/bin/python3",
+                "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native16-bounded100/run_candidate_sweep.py",
+                "--runner",
+                "/workspace/InferX/code/submission/organizer/runner.py",
+                "--config",
+                "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native16-bounded100/C16-config.json",
+                "--output-dir",
+                "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C16-native16-bounded100"
+              ],
+              "host": "ucloud3",
+              "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C16-native16-bounded100/C16-driver.log",
+              "role": "original128+8+1 C16",
+              "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          },
+          {
+            "identity": {
+              "pid": 534420,
+              "start_ticks": 49481333
+            },
+            "identity_matches": false,
+            "state": null,
+            "nonrunning": true
+          }
+        ],
+        "GPU_compute": "",
+        "job_status": "complete"
+      }
+    }
+  ],
+  "delta_native16_minus13": {
+    "TTFT_p95_ms": -3307.96006004998,
+    "TPOT_p95_ms": 8.893137013209383,
+    "output_tokens_per_second": 6.113160169479045
+  },
+  "limitations": [
+    "Single run each, not a stability guarantee.",
+    "All initial measured requests and queue wait retained.",
+    "Native remainder contains unassigned scheduling/wait/PF; not exclusive-GPU or exclusive-queue attribution.",
+    "Policy eligibility remains B10..14 unchanged; native16 does not expand it.",
+    "New100 task accuracy not measured by performance test."
+  ]
+}

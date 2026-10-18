@@ -1,0 +1,13 @@
+{
+  "registered_at": "2026-10-16T23:53:00.633623+00:00",
+  "stage": "rejected_FAST1_speed_ceiling_diagnostic_then_CPU_stagedFP8_feasibility",
+  "original_numeric_status": "FAILED unchanged FP32forwardguard; rootindependentT256dense reproduced18violations and all18stilloutsidecorrectBF16RNEendpointinterval withsameFP32radius. No oracle-boundary false positive. Preserveall6failedfixtures/13010reported violations.",
+  "purpose": "Measure rejected-precision wholeOp speed only to decide whether accuratecustomstagedFP8 engineering is worth pursuing; never promoteFAST1 or fabricateNUMERIC_PASS.",
+  "allowed": "One separateexplicitrejectedPrecisionPerfOnly build/mode, frozenoriginalFAST1 ID60algos/noqueries/noMathchange, originalrealW/X/cache; T256/T2048/20warmups/100samples/fixedblocks+onephysicalreplay. Numeric_gate_pass=false inalloutputs, no SLO/model/taskquality.",
+  "next_CPU_only": [
+    "https://github.com/NVIDIA/cutlass/blob/main/examples/58_ada_fp8_gemm/ada_fp8_gemm.cu",
+    "https://github.com/NVIDIA/cutlass/tree/main/examples/94_ada_fp8_blockwise",
+    "https://github.com/NVIDIA/cutlass/blob/main/include/cutlass/arch/mma_sm89.h"
+  ],
+  "limitations": "CUTLASSexamplesdemonstratefunctionality, not speedguarantee. SoftwareSM89blockscaling isnotcuBLAS13.2hardwarevector-scale API support. Needactualsource/shape/precision/extraIO feasibility before anynewCUTLASSbuild/GPU."
+}

@@ -1,0 +1,109 @@
+{
+  "layer": 22,
+  "kind": "down",
+  "sources": [
+    {
+      "key": "model.language_model.layers.22.mlp.down_proj.weight",
+      "shard": "layers-22.safetensors",
+      "sha256": "63446546e3e09c2394fc51855f4e390cb47f896bb8b744f3a210c3159a3ccaf2",
+      "shape": [
+        5120,
+        17408
+      ],
+      "weight_offset": 116478592,
+      "scale_shard": "layers-22.safetensors",
+      "scale_sha256": "63446546e3e09c2394fc51855f4e390cb47f896bb8b744f3a210c3159a3ccaf2"
+    }
+  ],
+  "training_files": [
+    {
+      "name": "L22-chunk0-Y.bf16",
+      "sha256": "e61b72aa2667fead5f157e2f448d474482ee14ff408e7d5f1cb30347036016e0"
+    },
+    {
+      "name": "L22-chunk1-Y.bf16",
+      "sha256": "f842a95f47911c4fc20275786730267a08f0776826a4ca8fea7b483d536eaa27"
+    },
+    {
+      "name": "L22-chunk2-Y.bf16",
+      "sha256": "8fbaff8b1851361d990e12ddfbc205d7c47bc760875ed24c1b6f704481e78d12"
+    },
+    {
+      "name": "L22-chunk3-Y.bf16",
+      "sha256": "2c8db99658dcdb230ee63cdb3fb1de032b6aabb8f3250cd9994912be33126a95"
+    },
+    {
+      "name": "L22-chunk4-Y.bf16",
+      "sha256": "9539fc3f10c3d13646645a892ceaa8f00e7772ab1a67f868ba741d545c800318"
+    },
+    {
+      "name": "L22-chunk5-Y.bf16",
+      "sha256": "d8f22588995fa1360dbd935cd6f123e5e592f7d6c38aa8186a336cdce18aa04c"
+    },
+    {
+      "name": "L22-chunk6-Y.bf16",
+      "sha256": "aeb08d8f384752c4df47dd25559813dbaf33cf104f5b221d960db6ea746c5d81"
+    },
+    {
+      "name": "L22-chunk7-Y.bf16",
+      "sha256": "cd2135f957610608be062c18b8bf7a92485485dd75fd17f439c0aa4feb43b1e0"
+    },
+    {
+      "name": "L22-chunk8-Y.bf16",
+      "sha256": "f274d551ce6043fa2d017021c6f3cccafaa543c5d9fada96d37dff7acc22f021"
+    },
+    {
+      "name": "L22-chunk9-Y.bf16",
+      "sha256": "392dac48eb4ea7596fc4ca4286aa98bc45e432011044e523c2bd7bf9d2fd28a8"
+    },
+    {
+      "name": "L22-chunk10-Y.bf16",
+      "sha256": "38a31d63a2af6324bb451d4f7975a4eede30ecbe8fe4809e6eed6283b6dbedfd"
+    },
+    {
+      "name": "L22-chunk11-Y.bf16",
+      "sha256": "126612dce786e45a8a0e829183e289f78358bb35b7d41ac44fb49aa6acbdc50c"
+    },
+    {
+      "name": "L22-chunk12-Y.bf16",
+      "sha256": "b58260eac73ecbe109a2a33fcf22789f47525741a251d384217867083463a30a"
+    },
+    {
+      "name": "L22-chunk13-Y.bf16",
+      "sha256": "b7cef0976553b1445c8952508915ca3f09bded571e4cd133b5550089458a9f08"
+    },
+    {
+      "name": "L22-chunk14-Y.bf16",
+      "sha256": "f289c9d8a9b00161c391b01061003dbd1d2d998e0a1521f4feeccd41f810427a"
+    },
+    {
+      "name": "L22-chunk15-Y.bf16",
+      "sha256": "4c4ce0e8954a80dfc3e31f5b6477733e046f39d380f17e2dbd83274175b41c93"
+    }
+  ],
+  "heldout_values_read": false,
+  "files": {
+    "fit-equivalence.json": {
+      "bytes": 2611,
+      "sha256": "cc8f1e7f5a8dae7f2146a873922471acff1b5ac8ebd59766f522aa76140d9492"
+    },
+    "expanded.i8": {
+      "bytes": 89128960,
+      "sha256": "b2c33faad73ab9c47be156039964ad346fcc4374d31dde6742fa2505ea0054e4"
+    },
+    "packed.bin": {
+      "bytes": 44564480,
+      "sha256": "438de1a0cc7bd6b51567a3ac9e5205442adaf73eb75e98f7962d2d41e6ffaa5c"
+    },
+    "scales.f32": {
+      "bytes": 696320,
+      "sha256": "0a3c372a1a90af416951c1ec2493a9cbc5974e434694500d1cdd774f90ef381a"
+    },
+    "hessians.json": {
+      "bytes": 2667,
+      "sha256": "b9519206c0029da43eaee9b1f9f84482228dfce5bbe86f312133e233aef28bf7"
+    }
+  },
+  "profile": "same015 static H512/G512 GPTQ,FP64 feedback,noactorder,damp.01",
+  "offline_fit_seconds": 15.172760304005351
+}

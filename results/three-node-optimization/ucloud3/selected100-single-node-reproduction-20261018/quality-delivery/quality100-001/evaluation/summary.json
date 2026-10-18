@@ -1,0 +1,36 @@
+{
+  "started_at": "2026-10-18T00:24:09.823621+00:00",
+  "configuration": {
+    "mode": "accuracy",
+    "base_url": "http://127.0.0.1:18541/v1",
+    "model": "qwen38-27b",
+    "tokenizer": "/workspace/InferX/models/tokenizer",
+    "tokenizer_revision": null,
+    "api_key_env": "OPENAI_API_KEY",
+    "output_dir": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-001/evaluation",
+    "env_dir": "/workspace/InferX/eval-envs",
+    "perf_requests": 100,
+    "eval_batch_size": 13,
+    "request_timeout": 600,
+    "seed": 42,
+    "dry_run": false,
+    "isl": 8192,
+    "osl": 512,
+    "concurrencies": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "warmup_requests": 8,
+    "accuracy_limit": 100,
+    "accuracy_generation_config": {
+      "max_tokens": 32768
+    }
+  },
+  "status": "异常",
+  "issues": [
+    "API 请求失败：timed out"
+  ],
+  "ended_at": "2026-10-18T00:24:24.849225+00:00"
+}

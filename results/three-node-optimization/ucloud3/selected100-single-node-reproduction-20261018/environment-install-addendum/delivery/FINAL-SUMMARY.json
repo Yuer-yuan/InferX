@@ -1,0 +1,1116 @@
+{
+  "status": "COMPLETE_FRESH_ENV_INSTALL_AND_FIXED_DATA_CPU_COMPOSITION",
+  "install_steps": 27,
+  "install_seconds": 857.423551398,
+  "all_install_steps_exit0": true,
+  "three_pipchecks_PASS": true,
+  "original_runner_check_PASS": true,
+  "original_v1_prepare_assets_PASS": true,
+  "all300_fixed_data_original_loader_PASS": true,
+  "first100_instructions": 111,
+  "verifier6_original_source_SHA_match": true,
+  "comparison_r2_exit0": true,
+  "preserved_comparison_r1_failure": "Assumed LD_LIBRARY_PATH overrides measured664 DT_RPATH; corrected to compare fresh corresponding files directly. Original comparison failure retained; no data/model rerun.",
+  "library_comparison": {
+    "status": "COMPARED",
+    "measured_environment": "/workspace/InferX/reproductions/selected100-single-node-20261018",
+    "fresh_prefix": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1",
+    "scope": "664 performance/quality used original installed environments. Existing664 DT_RPATH still resolves original prefix even with new LD_LIBRARY_PATH; see actual readelf+ldd logs. Fresh corresponding library files are compared directly here, not claimed to have been used by664. No engine rebuild or GPU replay in new environment.",
+    "runtime_libraries": [
+      {
+        "old_path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "new_path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "path_changed": false,
+        "old": {
+          "bytes": 2220400,
+          "sha256": "6813de4f45796f58134ca3f06b3179344ddfea192cad73ea0af35375b1b66e76",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        "new": {
+          "bytes": 2220400,
+          "sha256": "6813de4f45796f58134ca3f06b3179344ddfea192cad73ea0af35375b1b66e76",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/libc.so.6"
+      },
+      {
+        "old_path": "/lib/x86_64-linux-gnu/libdl.so.2",
+        "new_path": "/lib/x86_64-linux-gnu/libdl.so.2",
+        "path_changed": false,
+        "old": {
+          "bytes": 14432,
+          "sha256": "b970e7f9969a175b5e0726977ee998753fd7cc10512937dafc24ce659508a16a",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        "new": {
+          "bytes": 14432,
+          "sha256": "b970e7f9969a175b5e0726977ee998753fd7cc10512937dafc24ce659508a16a",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/libdl.so.2"
+      },
+      {
+        "old_path": "/lib/x86_64-linux-gnu/libm.so.6",
+        "new_path": "/lib/x86_64-linux-gnu/libm.so.6",
+        "path_changed": false,
+        "old": {
+          "bytes": 940560,
+          "sha256": "297737a3541eb0bbe4c288045edc483321f24c21a237972c51d589cf2864a0b7",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        "new": {
+          "bytes": 940560,
+          "sha256": "297737a3541eb0bbe4c288045edc483321f24c21a237972c51d589cf2864a0b7",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/libm.so.6"
+      },
+      {
+        "old_path": "/lib/x86_64-linux-gnu/libpthread.so.0",
+        "new_path": "/lib/x86_64-linux-gnu/libpthread.so.0",
+        "path_changed": false,
+        "old": {
+          "bytes": 21448,
+          "sha256": "fdfd7d83a335ba12bd73e857f95a798dae0355f37935231966fd088647978e23",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        "new": {
+          "bytes": 21448,
+          "sha256": "fdfd7d83a335ba12bd73e857f95a798dae0355f37935231966fd088647978e23",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/libpthread.so.0"
+      },
+      {
+        "old_path": "/lib/x86_64-linux-gnu/libresolv.so.2",
+        "new_path": "/lib/x86_64-linux-gnu/libresolv.so.2",
+        "path_changed": false,
+        "old": {
+          "bytes": 68552,
+          "sha256": "cdacacfa8812fa80927a7b6e84ad7ac17047a7cd7885e6186eb455de0f729987",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libresolv.so.2"
+        },
+        "new": {
+          "bytes": 68552,
+          "sha256": "cdacacfa8812fa80927a7b6e84ad7ac17047a7cd7885e6186eb455de0f729987",
+          "realpath": "/usr/lib/x86_64-linux-gnu/libresolv.so.2"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/libresolv.so.2"
+      },
+      {
+        "old_path": "/lib/x86_64-linux-gnu/librt.so.1",
+        "new_path": "/lib/x86_64-linux-gnu/librt.so.1",
+        "path_changed": false,
+        "old": {
+          "bytes": 14664,
+          "sha256": "90fb160909274fd6e967ecded88653c1ceeec579b9e92bdada2e7a1d0ca04c69",
+          "realpath": "/usr/lib/x86_64-linux-gnu/librt.so.1"
+        },
+        "new": {
+          "bytes": 14664,
+          "sha256": "90fb160909274fd6e967ecded88653c1ceeec579b9e92bdada2e7a1d0ca04c69",
+          "realpath": "/usr/lib/x86_64-linux-gnu/librt.so.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib/x86_64-linux-gnu/librt.so.1"
+      },
+      {
+        "old_path": "/lib64/ld-linux-x86-64.so.2",
+        "new_path": "/lib64/ld-linux-x86-64.so.2",
+        "path_changed": false,
+        "old": {
+          "bytes": 240936,
+          "sha256": "35611512d50a8a878e1c2989685dbbf11c1ca53394825fca5f7debaf18add552",
+          "realpath": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        "new": {
+          "bytes": 240936,
+          "sha256": "35611512d50a8a878e1c2989685dbbf11c1ca53394825fca5f7debaf18add552",
+          "realpath": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/lib64/ld-linux-x86-64.so.2"
+      },
+      {
+        "old_path": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13",
+        "new_path": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13",
+        "path_changed": false,
+        "old": {
+          "bytes": 773920,
+          "sha256": "b91e6809ea37ba83705404974e3e2d1eb41a62d965f50fb0f6975153833576f3",
+          "realpath": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13.2.51"
+        },
+        "new": {
+          "bytes": 773920,
+          "sha256": "b91e6809ea37ba83705404974e3e2d1eb41a62d965f50fb0f6975153833576f3",
+          "realpath": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13.2.51"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libSvtAv1Enc.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libSvtAv1Enc.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 8042144,
+          "sha256": "ae7609c65c0acfaf6eb0a466c1c38845f9ce7c3fd231010cef9ce9c108a25a39",
+          "realpath": "/workspace/InferX/envs/build/lib/libSvtAv1Enc.so.2.3.0"
+        },
+        "new": {
+          "bytes": 8042144,
+          "sha256": "ae7609c65c0acfaf6eb0a466c1c38845f9ce7c3fd231010cef9ce9c108a25a39",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libSvtAv1Enc.so.2.3.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libSvtAv1Enc.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libX11-xcb.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libX11-xcb.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 14992,
+          "sha256": "c89b4356a5ea9832e4e9542e4fab5aa729a81f8cfec36663666d66ba34cdc805",
+          "realpath": "/workspace/InferX/envs/build/lib/libX11-xcb.so.1.0.0"
+        },
+        "new": {
+          "bytes": 14992,
+          "sha256": "c89b4356a5ea9832e4e9542e4fab5aa729a81f8cfec36663666d66ba34cdc805",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libX11-xcb.so.1.0.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libX11-xcb.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libX11.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libX11.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 1476144,
+          "sha256": "26c3f2e8cedf6a4fa85ff71f07192478e6fbd3a95731861ecd95b4732b987897",
+          "realpath": "/workspace/InferX/envs/build/lib/libX11.so.6.4.0"
+        },
+        "new": {
+          "bytes": 1476144,
+          "sha256": "8563aedc62e2cae7f3006474781dc39a13d198a611795fcd39d273eac2a4b898",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libX11.so.6.4.0"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libX11.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libXau.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXau.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 17144,
+          "sha256": "dcc7de4960c165b97b5faa8b3bdeb4dfc2439b5066f1f9b2f2e3aca9478267ff",
+          "realpath": "/workspace/InferX/envs/build/lib/libXau.so.6.0.0"
+        },
+        "new": {
+          "bytes": 17144,
+          "sha256": "dcc7de4960c165b97b5faa8b3bdeb4dfc2439b5066f1f9b2f2e3aca9478267ff",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXau.so.6.0.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libXau.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libXdmcp.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXdmcp.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 30144,
+          "sha256": "dcdabcb94e17c6b1057a751e43574882ba44bf9b0fa0ff0e75dbf7b30f9e3b63",
+          "realpath": "/workspace/InferX/envs/build/lib/libXdmcp.so.6.0.0"
+        },
+        "new": {
+          "bytes": 30144,
+          "sha256": "dcdabcb94e17c6b1057a751e43574882ba44bf9b0fa0ff0e75dbf7b30f9e3b63",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXdmcp.so.6.0.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libXdmcp.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libXext.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXext.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 96344,
+          "sha256": "c7fda8b9d4a5a444a0b5f8279754867c5a8df34305b7ffc0c08c630598573707",
+          "realpath": "/workspace/InferX/envs/build/lib/libXext.so.6.4.0"
+        },
+        "new": {
+          "bytes": 96344,
+          "sha256": "c7fda8b9d4a5a444a0b5f8279754867c5a8df34305b7ffc0c08c630598573707",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXext.so.6.4.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libXext.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libXfixes.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXfixes.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 34720,
+          "sha256": "c9576da345aec0b06ac54bb2589d001234d9993e6ffee13c239ceff27410e33c",
+          "realpath": "/workspace/InferX/envs/build/lib/libXfixes.so.3.1.0"
+        },
+        "new": {
+          "bytes": 34720,
+          "sha256": "c9576da345aec0b06ac54bb2589d001234d9993e6ffee13c239ceff27410e33c",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libXfixes.so.3.1.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libXfixes.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libaom.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libaom.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 7632336,
+          "sha256": "691b31194c942398cb63df59608a2ebfcf55a8c7bcefab5540f86e4a7bbceb51",
+          "realpath": "/workspace/InferX/envs/build/lib/libaom.so.3.9.1"
+        },
+        "new": {
+          "bytes": 7632336,
+          "sha256": "691b31194c942398cb63df59608a2ebfcf55a8c7bcefab5540f86e4a7bbceb51",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libaom.so.3.9.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libaom.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libavcodec.so.60",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavcodec.so.60",
+        "path_changed": true,
+        "old": {
+          "bytes": 15461096,
+          "sha256": "24ff15af74e8ec575c5a5920d3f5b0409ad426dab188e19b811f44a79bc3d1bf",
+          "realpath": "/workspace/InferX/envs/build/lib/libavcodec.so.60.31.102"
+        },
+        "new": {
+          "bytes": 15461096,
+          "sha256": "da6cf8e047b7c91c093742bdc440969ec2dd21940c51137cd5b14102a80b5a35",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavcodec.so.60.31.102"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libavcodec.so.60"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libavformat.so.60",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavformat.so.60",
+        "path_changed": true,
+        "old": {
+          "bytes": 2709392,
+          "sha256": "e65d751bd563c25f069fe6bcaf479909fb0af084d9465591122c5d820fe05b68",
+          "realpath": "/workspace/InferX/envs/build/lib/libavformat.so.60.16.100"
+        },
+        "new": {
+          "bytes": 2709392,
+          "sha256": "87685a8efc2c14f4611e6a956ae26baa7a97b7cdcb1c13e435fdbe4a45538e74",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavformat.so.60.16.100"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libavformat.so.60"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libavutil.so.58",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavutil.so.58",
+        "path_changed": true,
+        "old": {
+          "bytes": 985016,
+          "sha256": "5c521d8d156a95223116a3bbcf1d88312505a0872c081a7ee99b3b386a8734af",
+          "realpath": "/workspace/InferX/envs/build/lib/libavutil.so.58.29.100"
+        },
+        "new": {
+          "bytes": 985016,
+          "sha256": "7b1effd7802a2a2b71d56ff5aa223db2dfb3d7c92a1141f0192617ec5c83369a",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libavutil.so.58.29.100"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libavutil.so.58"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libbz2.so.1.0",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libbz2.so.1.0",
+        "path_changed": true,
+        "old": {
+          "bytes": 241912,
+          "sha256": "89167cfb36a81306dcf8f439436f46dda12f0bbf4877b9f87abfd079bf765c46",
+          "realpath": "/workspace/InferX/envs/build/lib/libbz2.so.1.0.8"
+        },
+        "new": {
+          "bytes": 241912,
+          "sha256": "89167cfb36a81306dcf8f439436f46dda12f0bbf4877b9f87abfd079bf765c46",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libbz2.so.1.0.8"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libbz2.so.1.0"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libcom_err.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcom_err.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 21952,
+          "sha256": "5788f4585d9d8febea117fc3d38fd52012af2e5167995603663dd708c75c57cb",
+          "realpath": "/workspace/InferX/envs/build/lib/libcom_err.so.3.0"
+        },
+        "new": {
+          "bytes": 21952,
+          "sha256": "5788f4585d9d8febea117fc3d38fd52012af2e5167995603663dd708c75c57cb",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcom_err.so.3.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libcom_err.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libcrypto.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcrypto.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 7252896,
+          "sha256": "2a03fc98b1fd7631d07727eea1dbcc3cf8a189fc68a2d6ea12de49674306ba21",
+          "realpath": "/workspace/InferX/envs/build/lib/libcrypto.so.3"
+        },
+        "new": {
+          "bytes": 7252896,
+          "sha256": "1d7208ae31854afc2619a311ed587606b6ac6feea571f709bdd1619fe2f42d75",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcrypto.so.3"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libcrypto.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libcurl.so.4",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcurl.so.4",
+        "path_changed": true,
+        "old": {
+          "bytes": 1091456,
+          "sha256": "8e1aeae870c1869777e5fe5dfc639c54ae94da56119e49d9aaf5f7df20e3a5d0",
+          "realpath": "/workspace/InferX/envs/build/lib/libcurl.so.4.8.0"
+        },
+        "new": {
+          "bytes": 1091456,
+          "sha256": "1358a87c17a13bf2812ebe9c360350b866b4b49e618f797a3f46a84a3989d502",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libcurl.so.4.8.0"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libcurl.so.4"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libdav1d.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libdav1d.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 2626568,
+          "sha256": "a038bbe046d0b2c1188432d0e3c454f2c665cb247d657a79e2ffb1c0d456f493",
+          "realpath": "/workspace/InferX/envs/build/lib/libdav1d.so.6.9.0"
+        },
+        "new": {
+          "bytes": 2626568,
+          "sha256": "a038bbe046d0b2c1188432d0e3c454f2c665cb247d657a79e2ffb1c0d456f493",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libdav1d.so.6.9.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libdav1d.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libdrm.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libdrm.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 110680,
+          "sha256": "79478753f163ce9757714c791bd2740dc59d6ed26222b629cc9c17910bdac18f",
+          "realpath": "/workspace/InferX/envs/build/lib/libdrm.so.2.129.0"
+        },
+        "new": {
+          "bytes": 110680,
+          "sha256": "79478753f163ce9757714c791bd2740dc59d6ed26222b629cc9c17910bdac18f",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libdrm.so.2.129.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libdrm.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libgcc_s.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libgcc_s.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 922624,
+          "sha256": "5444fbe71e8cfe3bd05cdf2b44bd8c2e553e6e7e276977089b5e4e1a1ceed531",
+          "realpath": "/workspace/InferX/envs/build/lib/libgcc_s.so.1"
+        },
+        "new": {
+          "bytes": 922624,
+          "sha256": "5444fbe71e8cfe3bd05cdf2b44bd8c2e553e6e7e276977089b5e4e1a1ceed531",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libgcc_s.so.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libgcc_s.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libgssapi_krb5.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libgssapi_krb5.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 400248,
+          "sha256": "04e09df891c1901c4ff6e79d41be809cf04c90671c2cb102d8812209d7f01701",
+          "realpath": "/workspace/InferX/envs/build/lib/libgssapi_krb5.so.2.2"
+        },
+        "new": {
+          "bytes": 400248,
+          "sha256": "605f293ee26e5d127feb9e63c81a6aea96a755a35e50f5b8c626a0251bc5fcea",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libgssapi_krb5.so.2.2"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libgssapi_krb5.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libiconv.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libiconv.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 1182640,
+          "sha256": "59b942b8a9dfabcfec7d65ff2be1de2e59902765837768ca37468cef5dca9571",
+          "realpath": "/workspace/InferX/envs/build/lib/libiconv.so.2.7.0"
+        },
+        "new": {
+          "bytes": 1182640,
+          "sha256": "59b942b8a9dfabcfec7d65ff2be1de2e59902765837768ca37468cef5dca9571",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libiconv.so.2.7.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libiconv.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libicudata.so.75",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libicudata.so.75",
+        "path_changed": true,
+        "old": {
+          "bytes": 30741448,
+          "sha256": "e065d9cbce8450291e1e8f9125f9a115a07b0181728217b7bf4e3db65c60a322",
+          "realpath": "/workspace/InferX/envs/build/lib/libicudata.so.75.1"
+        },
+        "new": {
+          "bytes": 30741448,
+          "sha256": "e065d9cbce8450291e1e8f9125f9a115a07b0181728217b7bf4e3db65c60a322",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libicudata.so.75.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libicudata.so.75"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libicuuc.so.75",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libicuuc.so.75",
+        "path_changed": true,
+        "old": {
+          "bytes": 2585632,
+          "sha256": "c9a25b3248c0b20fe3e2bf10042fba72009eed6d72422dca53c8ac169ca65d1b",
+          "realpath": "/workspace/InferX/envs/build/lib/libicuuc.so.75.1"
+        },
+        "new": {
+          "bytes": 2585632,
+          "sha256": "c9a25b3248c0b20fe3e2bf10042fba72009eed6d72422dca53c8ac169ca65d1b",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libicuuc.so.75.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libicuuc.so.75"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libk5crypto.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libk5crypto.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 112432,
+          "sha256": "73b90eff29b55af2317c17be164a36adab72db193d9b403974c39b5277999a13",
+          "realpath": "/workspace/InferX/envs/build/lib/libk5crypto.so.3.1"
+        },
+        "new": {
+          "bytes": 112432,
+          "sha256": "73b90eff29b55af2317c17be164a36adab72db193d9b403974c39b5277999a13",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libk5crypto.so.3.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libk5crypto.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libkeyutils.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkeyutils.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 39192,
+          "sha256": "bfe024accca85c9f39b7c0e5bf8f2e551f45989db6ea4de2d4cf5bd5319f8e9d",
+          "realpath": "/workspace/InferX/envs/build/lib/libkeyutils.so.1.10"
+        },
+        "new": {
+          "bytes": 39192,
+          "sha256": "bfe024accca85c9f39b7c0e5bf8f2e551f45989db6ea4de2d4cf5bd5319f8e9d",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkeyutils.so.1.10"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libkeyutils.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libkrb5.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkrb5.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 1064752,
+          "sha256": "a707d839cc9991d36c6bc13f48cfc189037970785db13fa6fe2eed7037060701",
+          "realpath": "/workspace/InferX/envs/build/lib/libkrb5.so.3.3"
+        },
+        "new": {
+          "bytes": 1064752,
+          "sha256": "a922d5b8dbd4b193d1d247a3f795e4ace5d9a114dedc7383315e5a6fc60e3365",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkrb5.so.3.3"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libkrb5.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libkrb5support.so.0",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkrb5support.so.0",
+        "path_changed": true,
+        "old": {
+          "bytes": 66072,
+          "sha256": "ecf1d6c0c918f694cc90d6c2d8497fc16ca82d7e79671590d183dd1a94b1ad76",
+          "realpath": "/workspace/InferX/envs/build/lib/libkrb5support.so.0.1"
+        },
+        "new": {
+          "bytes": 66072,
+          "sha256": "ecf1d6c0c918f694cc90d6c2d8497fc16ca82d7e79671590d183dd1a94b1ad76",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libkrb5support.so.0.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libkrb5support.so.0"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/liblzma.so.5",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/liblzma.so.5",
+        "path_changed": true,
+        "old": {
+          "bytes": 222712,
+          "sha256": "491c01c02da5a22f5825a7c05a561e175aa70c203d5e462dfe90b5040dbdaf50",
+          "realpath": "/workspace/InferX/envs/build/lib/liblzma.so.5"
+        },
+        "new": {
+          "bytes": 222712,
+          "sha256": "491c01c02da5a22f5825a7c05a561e175aa70c203d5e462dfe90b5040dbdaf50",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/liblzma.so.5"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/liblzma.so.5"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libmp3lame.so.0",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libmp3lame.so.0",
+        "path_changed": true,
+        "old": {
+          "bytes": 328552,
+          "sha256": "ee71cd2b3a432a27d688117984acc673fe9d397812789daf4ffbbf8622aabd6f",
+          "realpath": "/workspace/InferX/envs/build/lib/libmp3lame.so.0.0.0"
+        },
+        "new": {
+          "bytes": 328552,
+          "sha256": "ee71cd2b3a432a27d688117984acc673fe9d397812789daf4ffbbf8622aabd6f",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libmp3lame.so.0.0.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libmp3lame.so.0"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libnghttp2.so.14",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libnghttp2.so.14",
+        "path_changed": true,
+        "old": {
+          "bytes": 200576,
+          "sha256": "90ea9756606017da9b40f5ded6de140b98c3bbaac301a3c12f02ee2b15a204bd",
+          "realpath": "/workspace/InferX/envs/build/lib/libnghttp2.so.14.29.3"
+        },
+        "new": {
+          "bytes": 200576,
+          "sha256": "90ea9756606017da9b40f5ded6de140b98c3bbaac301a3c12f02ee2b15a204bd",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libnghttp2.so.14.29.3"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libnghttp2.so.14"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libopenh264.so.7",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libopenh264.so.7",
+        "path_changed": true,
+        "old": {
+          "bytes": 1368888,
+          "sha256": "f149bf604894786817ac5c39c2a66278c42dbc382ef4fe8c2d4ef3c008cd8618",
+          "realpath": "/workspace/InferX/envs/build/lib/libopenh264.so.2.4.1"
+        },
+        "new": {
+          "bytes": 1368888,
+          "sha256": "f149bf604894786817ac5c39c2a66278c42dbc382ef4fe8c2d4ef3c008cd8618",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libopenh264.so.2.4.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libopenh264.so.7"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libopus.so.0",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libopus.so.0",
+        "path_changed": true,
+        "old": {
+          "bytes": 532392,
+          "sha256": "292ff7b84cdb39dc5fc217801ea9cd8209b677461d97871794d0c938a7f106fb",
+          "realpath": "/workspace/InferX/envs/build/lib/libopus.so.0.11.1"
+        },
+        "new": {
+          "bytes": 532392,
+          "sha256": "292ff7b84cdb39dc5fc217801ea9cd8209b677461d97871794d0c938a7f106fb",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libopus.so.0.11.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libopus.so.0"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libssh2.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libssh2.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 351048,
+          "sha256": "3b209bcbd821d33e16776334b02194bc4cba05d1f412f6252aadbd8668c4c78d",
+          "realpath": "/workspace/InferX/envs/build/lib/libssh2.so.1.0.1"
+        },
+        "new": {
+          "bytes": 351048,
+          "sha256": "3b209bcbd821d33e16776334b02194bc4cba05d1f412f6252aadbd8668c4c78d",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libssh2.so.1.0.1"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libssh2.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libssl.so.3",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libssl.so.3",
+        "path_changed": true,
+        "old": {
+          "bytes": 1228008,
+          "sha256": "9f9fc1f5ab856181716b7dff697daf16aa5b0f47f7add572c491ac31a10ef8f4",
+          "realpath": "/workspace/InferX/envs/build/lib/libssl.so.3"
+        },
+        "new": {
+          "bytes": 1228008,
+          "sha256": "9f9fc1f5ab856181716b7dff697daf16aa5b0f47f7add572c491ac31a10ef8f4",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libssl.so.3"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libssl.so.3"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libstdc++.so.6",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libstdc++.so.6",
+        "path_changed": true,
+        "old": {
+          "bytes": 23874544,
+          "sha256": "10f0d3c46c070acd4abea2ccf2500ff0ec77e9b90154b82ea2720dba05510cb9",
+          "realpath": "/workspace/InferX/envs/build/lib/libstdc++.so.6.0.36"
+        },
+        "new": {
+          "bytes": 23874544,
+          "sha256": "10f0d3c46c070acd4abea2ccf2500ff0ec77e9b90154b82ea2720dba05510cb9",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libstdc++.so.6.0.36"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libstdc++.so.6"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libswresample.so.4",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libswresample.so.4",
+        "path_changed": true,
+        "old": {
+          "bytes": 133008,
+          "sha256": "9cf507ddc15b3a52b12c6c02e98fdb4c225aadc45a92a6c6b6863d3711564c36",
+          "realpath": "/workspace/InferX/envs/build/lib/libswresample.so.4.12.100"
+        },
+        "new": {
+          "bytes": 133008,
+          "sha256": "80447da994c22af8bd0b8445634c9d42c1edd1c261293b3db71b5f8c0d6e7665",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libswresample.so.4.12.100"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libswresample.so.4"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libswscale.so.7",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libswscale.so.7",
+        "path_changed": true,
+        "old": {
+          "bytes": 579472,
+          "sha256": "d3839b6713fdaec9410aba7d361218b39994951f10d84650a0e4db79e81c5ca4",
+          "realpath": "/workspace/InferX/envs/build/lib/libswscale.so.7.5.100"
+        },
+        "new": {
+          "bytes": 579472,
+          "sha256": "31d5c0a38bcedb91737d3550026db51964bab1e5904fde54dd208f5ac4f04461",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libswscale.so.7.5.100"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libswscale.so.7"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libva-drm.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva-drm.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 16688,
+          "sha256": "459f7a07f92d24799c11a22735d7d5346255910855f3822cc38772e60f32e05f",
+          "realpath": "/workspace/InferX/envs/build/lib/libva-drm.so.2.2400.0"
+        },
+        "new": {
+          "bytes": 16688,
+          "sha256": "459f7a07f92d24799c11a22735d7d5346255910855f3822cc38772e60f32e05f",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva-drm.so.2.2400.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libva-drm.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libva-x11.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva-x11.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 27952,
+          "sha256": "c72db4bdfcde78b066c5cf08a00f0a0779406796010558b0d3bced1ef1441d6f",
+          "realpath": "/workspace/InferX/envs/build/lib/libva-x11.so.2.2400.0"
+        },
+        "new": {
+          "bytes": 27952,
+          "sha256": "c72db4bdfcde78b066c5cf08a00f0a0779406796010558b0d3bced1ef1441d6f",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva-x11.so.2.2400.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libva-x11.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libva.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 247056,
+          "sha256": "3b40b1e43e4bc2082f081e63752a40c4754bdd0f8b40b6c635b1239708647b3b",
+          "realpath": "/workspace/InferX/envs/build/lib/libva.so.2.2400.0"
+        },
+        "new": {
+          "bytes": 247056,
+          "sha256": "600255113c1228efe8aa731ea2d1f3e314d235d8a0ce83b0774ef41508600c9d",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libva.so.2.2400.0"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libva.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libvpx.so.9",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libvpx.so.9",
+        "path_changed": true,
+        "old": {
+          "bytes": 2213864,
+          "sha256": "8d81d0efd8300570cd0cc2113c10e32ab33edefb0ad47e89f03ae148c7cd1ac3",
+          "realpath": "/workspace/InferX/envs/build/lib/libvpx.so.9.0.1"
+        },
+        "new": {
+          "bytes": 2213864,
+          "sha256": "d96b1852008f216e4d07f920333ec94f68149d71745d6a3bdeeb410346e9014c",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libvpx.so.9.0.1"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libvpx.so.9"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libx264.so.164",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libx264.so.164",
+        "path_changed": true,
+        "old": {
+          "bytes": 2090992,
+          "sha256": "d794f4d94dcb51d2facca4073ab1f881ff7212f44e05eaef994beef05764d5b6",
+          "realpath": "/workspace/InferX/envs/build/lib/libx264.so.164"
+        },
+        "new": {
+          "bytes": 2090992,
+          "sha256": "d794f4d94dcb51d2facca4073ab1f881ff7212f44e05eaef994beef05764d5b6",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libx264.so.164"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libx264.so.164"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libx265.so.199",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libx265.so.199",
+        "path_changed": true,
+        "old": {
+          "bytes": 23165472,
+          "sha256": "9ed0d2ab24a8c17e55f3bb1ca83ebef7631dadd05b61ab12db1af08c8984a34f",
+          "realpath": "/workspace/InferX/envs/build/lib/libx265.so.199"
+        },
+        "new": {
+          "bytes": 23165472,
+          "sha256": "9ed0d2ab24a8c17e55f3bb1ca83ebef7631dadd05b61ab12db1af08c8984a34f",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libx265.so.199"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libx265.so.199"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libxcb-dri3.so.0",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxcb-dri3.so.0",
+        "path_changed": true,
+        "old": {
+          "bytes": 27688,
+          "sha256": "eeae4c0815883ebb451dae3d48dde1ee2cecfa30a187b0a95531f37ad9823f0d",
+          "realpath": "/workspace/InferX/envs/build/lib/libxcb-dri3.so.0.1.0"
+        },
+        "new": {
+          "bytes": 27688,
+          "sha256": "eeae4c0815883ebb451dae3d48dde1ee2cecfa30a187b0a95531f37ad9823f0d",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxcb-dri3.so.0.1.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libxcb-dri3.so.0"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libxcb.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxcb.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 228648,
+          "sha256": "504faa0ca490d23e89505bb430892f18992979a7856869e776ae711fcaab79d7",
+          "realpath": "/workspace/InferX/envs/build/lib/libxcb.so.1.1.0"
+        },
+        "new": {
+          "bytes": 228648,
+          "sha256": "504faa0ca490d23e89505bb430892f18992979a7856869e776ae711fcaab79d7",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxcb.so.1.1.0"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libxcb.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libxml2.so.2",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxml2.so.2",
+        "path_changed": true,
+        "old": {
+          "bytes": 1598072,
+          "sha256": "1c2c6582f34fe3d03533f35699329f1642f91cc748f4c395928d9d2a3c27be27",
+          "realpath": "/workspace/InferX/envs/build/lib/libxml2.so.2.13.9"
+        },
+        "new": {
+          "bytes": 1598072,
+          "sha256": "090af1fc374de2ab15cb9549733130dc70be6955fa0177e1e2ec905d0034c8a8",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libxml2.so.2.13.9"
+        },
+        "same_bytes": false,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libxml2.so.2"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libz.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libz.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 117168,
+          "sha256": "3c6fd78e248a60e45081bcc77031204a7cb64a88ff2e27fc786ef12ae7e91fca",
+          "realpath": "/workspace/InferX/envs/build/lib/libz.so.1.3.2"
+        },
+        "new": {
+          "bytes": 117168,
+          "sha256": "3c6fd78e248a60e45081bcc77031204a7cb64a88ff2e27fc786ef12ae7e91fca",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libz.so.1.3.2"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libz.so.1"
+      },
+      {
+        "old_path": "/workspace/InferX/envs/build/lib/libzstd.so.1",
+        "new_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libzstd.so.1",
+        "path_changed": true,
+        "old": {
+          "bytes": 1198840,
+          "sha256": "b0e2bad8c117a3ad7d344d7924272d12b8e363956efb91b5074e43d4e201a08d",
+          "realpath": "/workspace/InferX/envs/build/lib/libzstd.so.1.5.7"
+        },
+        "new": {
+          "bytes": 1198840,
+          "sha256": "b0e2bad8c117a3ad7d344d7924272d12b8e363956efb91b5074e43d4e201a08d",
+          "realpath": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/lib/libzstd.so.1.5.7"
+        },
+        "same_bytes": true,
+        "actually_resolved_old_binary_path": "/workspace/InferX/envs/build/lib/libzstd.so.1"
+      }
+    ],
+    "library_count": 55,
+    "same_library_bytes": 42,
+    "relocated_paths": 47,
+    "evaluation_packages": {
+      "perf": {
+        "before_count": 138,
+        "after_count": 139,
+        "changed_or_missing": {},
+        "extra": {
+          "pip": "26.2.1"
+        },
+        "old_ready": true,
+        "new_ready": true,
+        "python_old": [
+          3,
+          12,
+          15
+        ],
+        "python_new": [
+          3,
+          12,
+          15
+        ]
+      },
+      "accuracy": {
+        "before_count": 123,
+        "after_count": 124,
+        "changed_or_missing": {},
+        "extra": {
+          "pip": "26.2.1"
+        },
+        "old_ready": true,
+        "new_ready": true,
+        "python_old": [
+          3,
+          12,
+          15
+        ],
+        "python_new": [
+          3,
+          12,
+          15
+        ]
+      }
+    }
+  },
+  "prefix_relocation": {
+    "method": "Replace only ASCII NUL-terminated strings containing the literal build-prefix; canonicalize their trailing NUL padding; all other bytes compared exactly. This is content analysis, not dynamic loading or a GPU test.",
+    "libraries": [
+      {
+        "library": "libX11.so.6",
+        "old_bytes": 1476144,
+        "new_bytes": 1476144,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 5,
+        "new_prefix_count": 5
+      },
+      {
+        "library": "libavcodec.so.60",
+        "old_bytes": 15461096,
+        "new_bytes": 15461096,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libavformat.so.60",
+        "old_bytes": 2709392,
+        "new_bytes": 2709392,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libavutil.so.58",
+        "old_bytes": 985016,
+        "new_bytes": 985016,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libcrypto.so.3",
+        "old_bytes": 7252896,
+        "new_bytes": 7252896,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 17,
+        "new_prefix_count": 17
+      },
+      {
+        "library": "libcurl.so.4",
+        "old_bytes": 1091456,
+        "new_bytes": 1091456,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 3,
+        "new_prefix_count": 3
+      },
+      {
+        "library": "libgssapi_krb5.so.2",
+        "old_bytes": 400248,
+        "new_bytes": 400248,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 3,
+        "new_prefix_count": 3
+      },
+      {
+        "library": "libkrb5.so.3",
+        "old_bytes": 1064752,
+        "new_bytes": 1064752,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 10,
+        "new_prefix_count": 10
+      },
+      {
+        "library": "libswresample.so.4",
+        "old_bytes": 133008,
+        "new_bytes": 133008,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libswscale.so.7",
+        "old_bytes": 579472,
+        "new_bytes": 579472,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libva.so.2",
+        "old_bytes": 247056,
+        "new_bytes": 247056,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 2,
+        "new_prefix_count": 2
+      },
+      {
+        "library": "libvpx.so.9",
+        "old_bytes": 2213864,
+        "new_bytes": 2213864,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      },
+      {
+        "library": "libxml2.so.2",
+        "old_bytes": 1598072,
+        "new_bytes": 1598072,
+        "same_after_strict_prefix_string_and_NUL_padding_normalization": true,
+        "old_prefix_count": 1,
+        "new_prefix_count": 1
+      }
+    ],
+    "all13_only_prefix_strings_and_padding": true
+  },
+  "installed_prefixes_are_new": true,
+  "engine_rebuilt_in_new_env": false,
+  "GPU_runs_in_new_env": 0,
+  "actual_terminal": true
+}

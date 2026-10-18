@@ -1,0 +1,312 @@
+{
+  "scope": "post-launch independent CPU read of original delegated selected-only gate; oldT4 FAILED preserved",
+  "registration": {
+    "registered_selected_layers": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      32,
+      33,
+      34,
+      36,
+      37,
+      38,
+      40,
+      41,
+      42,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50,
+      52,
+      53,
+      54,
+      56,
+      57,
+      58,
+      60,
+      61,
+      62
+    ],
+    "model_owned_registration": true,
+    "old_Q5_retained": 64,
+    "combined_owned_cache_bytes": 12081971200,
+    "free_device_bytes_after_model_load": 30297292800,
+    "total_device_bytes": 50894602240
+  },
+  "selected": {
+    "L1-T1-PF": {
+      "PASS": {
+        "layer": 1,
+        "T": 1,
+        "selected": true,
+        "capacity": 3328,
+        "peak_including_live512": 3632,
+        "nonzero_residual": true,
+        "eager_and_three_Graph_replays_exact": true,
+        "guards_immutable_finite": true
+      },
+      "graph": {
+        "nodes": 2,
+        "edges": 1,
+        "selected": true,
+        "kernels": [
+          {
+            "grid": [
+              1,
+              1,
+              1
+            ],
+            "block": [
+              256,
+              1,
+              1
+            ],
+            "shared": 24960
+          },
+          {
+            "grid": [
+              40,
+              1,
+              1
+            ],
+            "block": [
+              256,
+              1,
+              1
+            ],
+            "shared": 51200
+          }
+        ]
+      },
+      "actual_pointers": {
+        "codes": "0x7b5ea3640000",
+        "scales": "0x7b5ea4540000",
+        "scratch_codes": "0x7b5ed040f200",
+        "scratch_scales": "0x7b5ed040fe00",
+        "model_owned": true,
+        "code_scale_readback_exact": true
+      }
+    },
+    "L2-T2044-PF": {
+      "PASS": {
+        "layer": 2,
+        "T": 2044,
+        "selected": true,
+        "capacity": 13343232,
+        "peak_including_live512": 6377792,
+        "nonzero_residual": true,
+        "eager_and_three_Graph_replays_exact": true,
+        "guards_immutable_finite": true
+      },
+      "graph": {
+        "nodes": 2,
+        "edges": 1,
+        "selected": true,
+        "kernels": [
+          {
+            "grid": [
+              2044,
+              1,
+              1
+            ],
+            "block": [
+              256,
+              1,
+              1
+            ],
+            "shared": 24960
+          },
+          {
+            "grid": [
+              128,
+              1,
+              1
+            ],
+            "block": [
+              256,
+              1,
+              1
+            ],
+            "shared": 51200
+          }
+        ]
+      },
+      "actual_pointers": {
+        "codes": "0x7b5ea457c000",
+        "scales": "0x7b5ea547c000",
+        "scratch_codes": "0x7b5ed4401200",
+        "scratch_scales": "0x7b5ed49fe200",
+        "model_owned": true,
+        "code_scale_readback_exact": true
+      }
+    }
+  },
+  "original_failed_phase": "FAILED_PRESERVED",
+  "original_exit": 1,
+  "terminal": {
+    "observation": {
+      "at": "2026-10-17T11:47:28.340969+00:00",
+      "handles": [
+        {
+          "pid": 395665,
+          "expected_start_ticks": "45835907",
+          "actual": "missing"
+        },
+        {
+          "pid": 395671,
+          "expected_start_ticks": "45835984",
+          "actual": "missing"
+        }
+      ],
+      "compute_apps": "",
+      "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 450.00 W, 1 MiB, 0 %\n"
+    },
+    "state": {
+      "owner": {
+        "pid": 395665,
+        "start_ticks": "45835907",
+        "uid": 0,
+        "exe": "/usr/bin/python3.10",
+        "argv": [
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/run_owned.py"
+        ]
+      },
+      "started_at": "2026-10-17T11:41:25.848191+00:00",
+      "phase": "FAILED_PRESERVED",
+      "steps": [
+        {
+          "name": "actual_model_owned_output47_selected_Graph_seam",
+          "argv": [
+            "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe",
+            "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw"
+          ],
+          "started_at": "2026-10-17T11:41:26.580194+00:00",
+          "handle": {
+            "pid": 395671,
+            "start_ticks": "45835984",
+            "uid": 0,
+            "exe": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe",
+            "argv": [
+              "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe",
+              "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+              "/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw"
+            ]
+          },
+          "pidfd_open": true,
+          "exit_code": 1,
+          "pidfd_terminal": true,
+          "waited_reaped": true,
+          "finished_at": "2026-10-17T11:41:56.825413+00:00",
+          "log_SHA256": "c485422108cce95a2d115ce306c0e1b9d907515d18ef857914580899a0f6d685"
+        }
+      ],
+      "GPU_executions": 1,
+      "timeout_is_terminal": false,
+      "updated_at": "2026-10-17T11:41:56.826436+00:00",
+      "prior_handles": [
+        {
+          "handle": {
+            "pid": 394580,
+            "start_ticks": "45779837",
+            "uid": 0,
+            "exe": "/usr/bin/python3.10",
+            "argv": [
+              "/usr/bin/python3",
+              "/workspace/InferX/results/three-node-optimization/ucloud3/sparse-fullK-screen-052-owned-001/run_owned.py"
+            ]
+          },
+          "actual": "missing"
+        },
+        {
+          "handle": {
+            "pid": 394586,
+            "start_ticks": "45779861",
+            "uid": 0,
+            "exe": "/workspace/InferX/envs/build/bin/python3.12",
+            "argv": [
+              "/workspace/InferX/envs/vllm-0.31.0/bin/python",
+              "/workspace/InferX/results/three-node-optimization/ucloud3/sparse-fullK-screen-052-owned-001/source/screen_fullk.py",
+              "--inputs",
+              "/workspace/InferX/experiments/ucloud3-c32-tonight/lowrank-gate-r1024-001/input051/inputs",
+              "--dense025",
+              "/workspace/InferX/experiments/ucloud3-c32-tonight/fixtures036/true-int4-all-layer-GPTQ-025/weights-L31-gate",
+              "--out",
+              "/workspace/InferX/results/three-node-optimization/ucloud3/sparse-fullK-screen-052-owned-001/raw"
+            ]
+          },
+          "actual": "missing"
+        }
+      ],
+      "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 450.00 W, 1 MiB, 610.57.04\n",
+      "source_pre_match": true,
+      "actual_environment": {
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_VERIFY_Q5_A8": "1",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "LD_LIBRARY_PATH": "/workspace/InferX/envs/build/lib:/usr/local/cuda-13.2/lib64",
+        "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+        "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+        "NINFER_S4_ROUTE_LOG": "1",
+        "NINFER_S4_TARGET_FFN": "1",
+        "NINFER_S4_OMIT_LEGACY_FFN": "1",
+        "NINFER_INPUT_S4": "1",
+        "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+        "NINFER_INPUT_S4_ROUTE_LOG": "1",
+        "NINFER_OUTPUT_S4": "1",
+        "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047",
+        "NINFER_OUTPUT_S4_ROUTE_LOG": "1"
+      },
+      "binary_sha256": "6e50559e64859a001d6b2be28e0e3adae959044cc7ac590d7e403838838c2a8a",
+      "heartbeat_at": "2026-10-17T11:41:56.621224+00:00",
+      "elapsed_s": 30.038791563012637,
+      "error": "AssertionError({'name': 'actual_model_owned_output47_selected_Graph_seam', 'argv': ['/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', '/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer', '/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw'], 'started_at': '2026-10-17T11:41:26.580194+00:00', 'handle': {'pid': 395671, 'start_ticks': '45835984', 'uid': 0, 'exe': '/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', 'argv': ['/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', '/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer', '/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw']}, 'pidfd_open': True, 'exit_code': 1, 'pidfd_terminal': True, 'waited_reaped': True, 'finished_at': '2026-10-17T11:41:56.825413+00:00', 'log_SHA256': 'c485422108cce95a2d115ce306c0e1b9d907515d18ef857914580899a0f6d685'})",
+      "traceback": "Traceback (most recent call last):\n  File \"/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/run_owned.py\", line 44, in <module>\n    j['log_SHA256']=sha(P/'fit.log');save();assert j['exit_code']==0,j\nAssertionError: {'name': 'actual_model_owned_output47_selected_Graph_seam', 'argv': ['/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', '/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer', '/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw'], 'started_at': '2026-10-17T11:41:26.580194+00:00', 'handle': {'pid': 395671, 'start_ticks': '45835984', 'uid': 0, 'exe': '/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', 'argv': ['/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/seam9270/probe', '/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer', '/workspace/InferX/results/three-node-optimization/ucloud3/output47-model-seam-001/raw']}, 'pidfd_open': True, 'exit_code': 1, 'pidfd_terminal': True, 'waited_reaped': True, 'finished_at': '2026-10-17T11:41:56.825413+00:00', 'log_SHA256': 'c485422108cce95a2d115ce306c0e1b9d907515d18ef857914580899a0f6d685'}\n"
+    },
+    "log_tail": "es=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=32 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=33 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=34 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=36 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=37 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=38 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=40 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=41 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=42 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=44 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=45 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=46 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=48 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=49 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=50 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=52 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=53 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=54 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=56 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=57 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=58 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=60 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=61 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_readback layer=62 code_bytes=15728640 scale_bytes=245760 bitexact=1\nOUTPUT_S4_cache_load layers=47 appended_bytes=750796800 old_outputs_retained=64 phase=Prefill T=1..2048\nS4_GPTQ_cache_load layers=64 gate_codes_bytes=5704253440 gate_scales_bytes=89128960 allFFN_total_bytes=8690073600 free_before=42381082624 free_after=30297292800 elapsed_ms=28067.200\nOUTPUT_S4_ROUTE layer=1 phase=Prefill T=1 cache=0x7b5ea3640000 stream=0x5d125b091500\nOUTPUT_S4_ROUTE layer=1 phase=Prefill T=1 cache=0x7b5ea3640000 stream=0x5d125b091500\nOUTPUT_S4_ROUTE layer=1 phase=Prefill T=1 cache=0x7b5ea3640000 stream=0x5d125b091500\nL1-T1-PF PASS cap=3328 peak=3632\nOUTPUT_S4_ROUTE layer=2 phase=Prefill T=2044 cache=0x7b5ea457c000 stream=0x5d125b091500\nOUTPUT_S4_ROUTE layer=2 phase=Prefill T=2044 cache=0x7b5ea457c000 stream=0x5d125b091500\nOUTPUT_S4_ROUTE layer=2 phase=Prefill T=2044 cache=0x7b5ea457c000 stream=0x5d125b091500\nL2-T2044-PF PASS cap=13343232 peak=6377792\nreset Graph result differs from qualified helper/originalA16\n"
+  },
+  "evidence_sha256": {
+    "identity.json": "9d9b4df918eb6672f8e8113f6c21fcacfabb38255f9fcc33449622dbc76aad3d",
+    "caller-source-identity.json": "60bca4c0e0cc01b4d87ed5ff6e73ce5c379d159fda708791ee0cce4899decba5",
+    "actual-terminal-recovery-readback.json": "0ed88cbb2d4413202748d1af13f7aa610ab770c78efdd1bdb2fc14befced1b2b",
+    "environment.json": "3944cbde49d1f641659025ed3aef9ad9dd077e04819f80bdb0b136718646cdb8",
+    "remote-compact/identity.json": "9d9b4df918eb6672f8e8113f6c21fcacfabb38255f9fcc33449622dbc76aad3d",
+    "remote-compact/caller-source-identity.json": "60bca4c0e0cc01b4d87ed5ff6e73ce5c379d159fda708791ee0cce4899decba5",
+    "remote-compact/state.json": "3b8b3e930942825dfe5a6a93ce59e5c5aedde07a101649292656501988218ab0",
+    "remote-compact/launch.json": "d2718144e72d0b489f99f4827cf1206028905e16c681b224dac6f35dc1e7a742",
+    "remote-compact/environment.json": "3944cbde49d1f641659025ed3aef9ad9dd077e04819f80bdb0b136718646cdb8",
+    "remote-compact/raw/registration.json": "83ccb3c77914a6deffbbe0929384857570c45ae21d69ba8174502b1cae3f0d1b",
+    "remote-compact/raw/L2-T2044-PF/PASS.json": "777f7532b75e63ee5d8acc030d2ae33cb258c607e919f878035eee03c3e5dda5",
+    "remote-compact/raw/L2-T2044-PF/graph.json": "e460d16d60dc98a9b959eec0d2655eb311e6efe65f0bfb9dc97c20ac14822d53",
+    "remote-compact/raw/L2-T2044-PF/actual-pointers.json": "3a5e7391155c776042d03eea3de24adf0d6dcd41e830ccdeb39ea1452b96308b",
+    "remote-compact/raw/L0-T4-PF/graph.json": "ca9a797924187cd094468a1ebca6149e6578125d733beeb6dbf3ca2be87ce935",
+    "remote-compact/raw/L1-T1-PF/PASS.json": "58a2c24abba962f7bfe5b6cd9679c01c0f373f8d46f3921835d4f6dbcf24bbd0",
+    "remote-compact/raw/L1-T1-PF/graph.json": "8eb0166e4a60c7181132aed5b4726d6f4ce013ed063e21bc5cf35ebc5a548879",
+    "remote-compact/raw/L1-T1-PF/actual-pointers.json": "9a1d189add9420438ad9449b4ccb41a772356c3d81d5e5bcf2862ff13e232117"
+  }
+}

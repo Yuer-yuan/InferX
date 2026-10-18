@@ -1,0 +1,10 @@
+{
+  "source_aggregate_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "same_generic_input_route_as_performance": true,
+  "quality_only_switch": false,
+  "bounded_decode_membership_enabled": true,
+  "trace": "host scheduler rows only; no GPU profiler",
+  "exact_dynamic_route_counts_captured": false,
+  "note": "Actual decode_round/row B from scheduler trace can establish B>8/T>32 execution with frozen K3 route plus frozen100 source and prior native boundary evidence. Capture-only host output-route logs are not used as execution proof; no perrequest kernel count fabricated."
+}

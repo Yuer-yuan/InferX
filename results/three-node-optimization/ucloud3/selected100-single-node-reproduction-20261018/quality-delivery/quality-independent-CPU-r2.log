@@ -1,0 +1,89 @@
+{
+  "status": "COMPLETE_INDEPENDENTLY_RECOMPUTED_100",
+  "samples": 100,
+  "instructions": 111,
+  "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "recipe_sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb",
+  "profile": {
+    "client_concurrency": 13,
+    "kv_capacity": 532480,
+    "mode": "accuracy",
+    "name": "quality100",
+    "native_concurrency": 13
+  },
+  "metrics": {
+    "prompt_level_strict": {
+      "score": 0.9,
+      "numerator": 90,
+      "denominator": 100
+    },
+    "inst_level_strict": {
+      "score": 0.9009009009009009,
+      "numerator": 100,
+      "denominator": 111
+    },
+    "prompt_level_loose": {
+      "score": 0.96,
+      "numerator": 96,
+      "denominator": 100
+    },
+    "inst_level_loose": {
+      "score": 0.954954954954955,
+      "numerator": 106,
+      "denominator": 111
+    }
+  },
+  "errors": 0,
+  "native_started": 100,
+  "native_done": 100,
+  "all100cold": true,
+  "original_first100_metadata_all_match": true,
+  "original_verifier_recomputed_all100": true,
+  "all_native_scores_exact_match": true,
+  "empty_final": 1,
+  "reasoning_nonempty": 100,
+  "stop_reason_counts": {
+    "stop": 99,
+    "max_tokens": 1
+  },
+  "native_finish_reason_counts": {
+    "stop_token": 99,
+    "output_limit": 1
+  },
+  "length_stops": 1,
+  "sampling_values": [
+    {
+      "frequency_penalty": 0.0,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "seed": 42,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.949999988079071
+    }
+  ],
+  "verifier_files": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+    "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+    "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+    "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+    "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+  },
+  "raw_identity": {
+    "predictions": {
+      "path": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "4c5da4b7dc7173a78daff67098d540b1f53c72280d9a17582351a2f26e748bd8"
+    },
+    "reviews": {
+      "path": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "075141e1daeec6ec50b1c255b065990b2de78585689ecd06fd03db5d5a4f1e6e"
+    },
+    "native": {
+      "path": "/workspace/InferX/reproductions/selected100-single-node-20261018/service-quality100-002/requests.jsonl",
+      "sha256": "b4fd3a349680b0c102f8b36d4311c6dfb66c244b74c3a3fafd5ab422434fe8ec"
+    }
+  },
+  "scope": "Actual new clean build664/c976, source100 unchanged, portable repaired entrypoint. No inherited quality; no claim of model-wide quality guarantee or paired quantization attribution. Zero-question readiness failure001 retained separately."
+}

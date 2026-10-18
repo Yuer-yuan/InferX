@@ -1,0 +1,175 @@
+{
+  "reviewed_at": "2026-10-16T16:35:14.896270+00:00",
+  "source": "Independent read-only SQL over archived Nsight SQLite plus reviewed phase-partition source; no GPU workload launched",
+  "capture_window_ns": [
+    11430108447,
+    83014402591
+  ],
+  "capture_window_seconds": 71.584294144,
+  "kernel_event_count": 440032,
+  "graph_node_event_count": 353054,
+  "kernel_elapsed_sum_ms": 63790.830052,
+  "kernel_union_ms": 63743.715493,
+  "kernel_sum_over_union": 1.000739124769173,
+  "stream_event_counts": {
+    "13": 437936,
+    "17": 1152,
+    "19": 640,
+    "21": 304
+  },
+  "decode_graph": {
+    "marker_counts": {
+      "rounds": 434,
+      "target_head_calls": 434,
+      "next_round": 434,
+      "mtp_stems": 1736,
+      "draft_head_calls": 1736
+    },
+    "graph_gpu_ms": 27210.140876,
+    "phase_gpu_ms": {
+      "target_verify": 25215.546663,
+      "unattributed_graph_nodes": 87.322948,
+      "mtp_alignment": 531.159658,
+      "AR_draft": 1376.111607
+    },
+    "phase_share": {
+      "target_verify": 0.9266966598192338,
+      "unattributed_graph_nodes": 0.003209206023516804,
+      "mtp_alignment": 0.01952065079047406,
+      "AR_draft": 0.05057348336677535
+    },
+    "coverage_validation": {
+      "target_heads_equal_rounds": true,
+      "draft_heads_equal_4_rounds": true,
+      "stems_equal_4_rounds": true
+    }
+  },
+  "bottleneck_observation": "Within this capture graph-node kernel sum, target_verify92.67%, target dense GEMM81.06% of graph total; AR_draft5.06%. This is useful stage-cost evidence; not a wall-latency share, measured memory bandwidth, or proof that more drafting improves end-to-end.",
+  "target_dense_graph_share": 0.8105639920612663,
+  "graph_profiles": {
+    "89": {
+      "rounds": 72,
+      "gpu_ns": 1845591617,
+      "GDN_record_calls": 3456,
+      "record_gridY": 1,
+      "record_gridZ": 8,
+      "target_head_calls": 72,
+      "draft_head_calls": 288
+    },
+    "91": {
+      "rounds": 40,
+      "gpu_ns": 1179971125,
+      "GDN_record_calls": 1920,
+      "record_gridY": 2,
+      "record_gridZ": 8,
+      "target_head_calls": 40,
+      "draft_head_calls": 160
+    },
+    "93": {
+      "rounds": 19,
+      "gpu_ns": 661793167,
+      "GDN_record_calls": 912,
+      "record_gridY": 3,
+      "record_gridZ": 8,
+      "target_head_calls": 19,
+      "draft_head_calls": 76
+    },
+    "95": {
+      "rounds": 15,
+      "gpu_ns": 844876090,
+      "GDN_record_calls": 720,
+      "record_gridY": 4,
+      "record_gridZ": 8,
+      "target_head_calls": 15,
+      "draft_head_calls": 60
+    },
+    "97": {
+      "rounds": 31,
+      "gpu_ns": 1808282964,
+      "GDN_record_calls": 1488,
+      "record_gridY": 5,
+      "record_gridZ": 8,
+      "target_head_calls": 31,
+      "draft_head_calls": 124
+    },
+    "99": {
+      "rounds": 20,
+      "gpu_ns": 1214570705,
+      "GDN_record_calls": 960,
+      "record_gridY": 6,
+      "record_gridZ": 8,
+      "target_head_calls": 20,
+      "draft_head_calls": 80
+    },
+    "101": {
+      "rounds": 41,
+      "gpu_ns": 3370114765,
+      "GDN_record_calls": 1968,
+      "record_gridY": 7,
+      "record_gridZ": 8,
+      "target_head_calls": 41,
+      "draft_head_calls": 164
+    },
+    "103": {
+      "rounds": 196,
+      "gpu_ns": 16284940443,
+      "GDN_record_calls": 9408,
+      "record_gridY": 8,
+      "record_gridZ": 8,
+      "target_head_calls": 196,
+      "draft_head_calls": 784
+    }
+  },
+  "coverage_limits": [
+    "GPU kernel elapsed sum, not request wall time or measured DRAM bandwidth; no roofline conclusion",
+    "Warmup plus profiling requests included; initial non-graph bridge and non-graph Prefill excluded",
+    "Actual targeted zero-accept prompt was in spare dataset row16 and not consumed by AIPerf; no claim this trace captures that outlier",
+    "Initial inspection used a broad q4_small_t name classifier; superseded here by exact Q4SmallTGeometry131072x5120. GDN uses gated_delta_net namespace."
+  ],
+  "all_kernel_coverage_note": "Non-graph kernel sum36.581s includes prefill and bridge work and is excluded from decode graph share; no claim decode graph represents entire workload. Union here is within kernel-event window, not NVML or hardware occupancy.",
+  "actual_head_artifact_objects": [
+    {
+      "name": "text/output_head",
+      "kind": "tensor",
+      "shape": [
+        248320,
+        5120
+      ],
+      "format": "W8G32_F16S",
+      "layout": "row-split-k128-v1",
+      "offset": 15755467264,
+      "bytes": 1350860800
+    },
+    {
+      "name": "text/draft_head",
+      "kind": "tensor",
+      "shape": [
+        131072,
+        5120
+      ],
+      "format": "Q4G64_F16S",
+      "layout": "row-split-k128-v1",
+      "offset": 17106328064,
+      "bytes": 356515840
+    },
+    {
+      "name": "text/draft_head_token_ids",
+      "kind": "tensor",
+      "shape": [
+        131072
+      ],
+      "format": "I32",
+      "layout": "contiguous-le-v1",
+      "offset": 17462843904,
+      "bytes": 524288
+    }
+  ],
+  "correction": "Earlier coordinator note inferred full output-head Q6 from generic Python inventory. Actual v2 directory is W8G32_F16S full head versus Q4G64_F16S shortlisted head, consistent with actual W8 CUDA kernels. That earlier note is superseded.",
+  "hashes": {
+    "ucloud3/decode-profile-k4-refined.json": "cf5d1bf91f8c34fbbc8eea2c5c6aec378b648bebe943ff3bceaa28750770dde8",
+    "ucloud3/decode_trace_inspect.py": "2af20b957b4752cd8d55449d9751f96989eb45bc1de868abf6bbca57c17b50e2",
+    "ucloud3/refine_decode_trace.py": "2f5e9d7201c0b69b770dfe2e37fb8766e1d3c9752f4c955d246c1f39d6424897",
+    "ucloud3/artifact-v2-directory.raw.json": "45912dd83c71a1b3b3b644c15ce3ef83b0b60d77cd7c82a39b21d9ba6267d742",
+    "ucloud3/draft-head-token-ids.i32": "c348bf8d2e70d502718ebb8eeefdc794936dc8462ae357b802ba0a987fad756c"
+  }
+}

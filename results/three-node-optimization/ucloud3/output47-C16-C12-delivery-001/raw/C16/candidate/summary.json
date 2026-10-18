@@ -1,0 +1,192 @@
+{
+  "label": "PILOT",
+  "name": "candidate",
+  "command": [
+    "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18486",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "139264",
+    "--max-concurrency",
+    "16",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "int8",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "3",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/requests.jsonl",
+    "--no-prefix-reuse",
+    "--no-disk-cache"
+  ],
+  "concurrencies": [
+    16
+  ],
+  "started_at": "2026-10-17T11:57:10.740645+00:00",
+  "status": "complete",
+  "tiers": [
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 16,
+      "artifacts": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/c16",
+      "started_at": "2026-10-17T11:57:44.802493+00:00",
+      "meets_slo": false,
+      "issues": [],
+      "expected_requests": 128,
+      "records": 128,
+      "valid_records": 128,
+      "successful_requests": 128.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 7714.806736460938,
+          "p50": 8063.374970499999,
+          "p95": 9934.0843386,
+          "p99": 13533.150493620004
+        },
+        "inter_token_latency": {
+          "mean": 35.06616317300635,
+          "p50": 35.52565102446184,
+          "p95": 51.702542206849344,
+          "p99": 60.37508173739726
+        },
+        "request_latency": {
+          "mean": 25633.61611786719,
+          "p50": 25143.338584499998,
+          "p95": 35103.7588803,
+          "p99": 38413.02710569
+        }
+      },
+      "benchmark_duration": 213.365795584,
+      "request_throughput": 0.5998979572234366,
+      "output_token_throughput": 307.14775409839956,
+      "native_status": "完整",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-17T12:01:40.618744+00:00",
+      "elapsed_seconds": 235.81628028303385
+    }
+  ],
+  "server_log": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/server.log",
+  "cleanup": {
+    "reaped": true,
+    "exit_code": 0,
+    "lifecycle": "direct engine child held via pidfd; no process-group or global kill"
+  },
+  "port_preflight": {
+    "status": "unused",
+    "started_at": "2026-10-17T11:57:10.740897+00:00",
+    "timeout_seconds": 0,
+    "previous_owned_server": null,
+    "attempts": 1,
+    "waited_seconds": 0.0022233829949982464
+  },
+  "pid": 395970,
+  "start_ticks": 45930401,
+  "owned_identity": {
+    "pid": 395970,
+    "start_ticks": 45930401,
+    "uid": 0,
+    "executable": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+    "lifecycle": "pidfd held until reaped"
+  },
+  "ready_at": "2026-10-17T11:57:43.896226+00:00",
+  "numeric_gate": {
+    "status": "passed",
+    "receipt": {
+      "kind": "frozen_candidate_numeric_qualification",
+      "passed": true,
+      "binary": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+      "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "evidence": {
+        "runtime": {
+          "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/runtime-ready-compat.json",
+          "sha256": "ee5cb697a05e8eeac4305c8a5ed107bf728fd1932a812a17f5346043fc2da4f1"
+        },
+        "selected_model_seam": {
+          "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/model-seam-qualification.json",
+          "sha256": "176661ac088d312ce3fd8effa7147615df9d733248073ffb95816adbda6d2e42"
+        },
+        "authorization": {
+          "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/authorization.json",
+          "sha256": "9764c630027a98bfbf0da61693f79ceac3284e56652a6925ecdde0bd31d54165"
+        },
+        "quality_cancel_terminal": {
+          "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-current-official100-001/actual-user-cancel-terminal.json",
+          "sha256": "472a0d18f92f9d7aee7833c8353fb442463a70e1c34bc40fc631adb85db2a9bd"
+        }
+      },
+      "scope": "Root-authorized selected47 model-owned L1T1/L2T2044 PASS only; original oldT4 parity FAILED and separately diagnosed. Reuse exact9270 build/registration/helper gates, no full task quality claim."
+    },
+    "sha256": "9fd8e9ce0f5f3874bfcd9e18935704b6033647020a12b970c51e83fb923be5e6"
+  },
+  "candidate_build_qualification": {
+    "kind": "native32_s4_startup_qualification",
+    "passed": true,
+    "binary": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+    "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+    "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+    "evidence": {
+      "runtime": {
+        "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/runtime-ready-compat.json",
+        "sha256": "ee5cb697a05e8eeac4305c8a5ed107bf728fd1932a812a17f5346043fc2da4f1"
+      },
+      "selected_model_seam": {
+        "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/model-seam-qualification.json",
+        "sha256": "176661ac088d312ce3fd8effa7147615df9d733248073ffb95816adbda6d2e42"
+      },
+      "authorization": {
+        "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/authorization.json",
+        "sha256": "9764c630027a98bfbf0da61693f79ceac3284e56652a6925ecdde0bd31d54165"
+      },
+      "quality_cancel_terminal": {
+        "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-current-official100-001/actual-user-cancel-terminal.json",
+        "sha256": "472a0d18f92f9d7aee7833c8353fb442463a70e1c34bc40fc631adb85db2a9bd"
+      }
+    },
+    "scope": "CPU/source/cache build qualification only. GPU numeric gate is checked after startup and before any original probe/performance request.",
+    "receipt": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/qualification.json",
+    "receipt_sha256": "71b15de3e758c724414fdac0c54d237c5346040a5270688b6131d3c778e2cfce",
+    "freshservice_semantic_smoke_completed": false
+  },
+  "probe": {
+    "cache_salt": "18de2e9dc9594c0fbab11ec8c367a4cd:candidate:probe",
+    "status": "complete",
+    "excluded_from_metrics": true
+  },
+  "finished_at": "2026-10-17T12:01:41.235107+00:00",
+  "elapsed_seconds": 270.49449241999537
+}

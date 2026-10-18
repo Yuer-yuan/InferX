@@ -1,0 +1,31 @@
+{
+  "reviewed_at": "2026-10-16T20:36:17.280896+00:00",
+  "scope": "Source and CPU BF16 order counterexample only; no new GPU run, no cause established for observed300 output differences",
+  "source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "source_chain": [
+    "Q5 LinearAdd K6144 T2..13 and K17408 T2..16 route to Split2ExactResidual",
+    "Wrapper calls launch_q5_linear_add_small_t_mma",
+    "launch_residual_exact sets grid.y=2/KSplits2 with Q5SmallTMmaResidualAtomicEpilogue",
+    "Epilogue atomicAdd(dst, BF16(partial_fp32)); both split CTAs update the existing BF16 residual"
+  ],
+  "inference": "Addition order can change finalBF16 bits because residual is included in each atomic accumulation; greedy C1 MTP T4 can use this route. Route name exact does not imply run-to-run output determinism.",
+  "CPU_counterexample": {
+    "BF16_residual": 1.0,
+    "BF16_partial0": -1.0,
+    "BF16_partial1": 0.00390625,
+    "order0_then1": 0.00390625,
+    "order1_then0": 0.0
+  },
+  "qualification": [
+    "Actual atomic ordering was not captured.",
+    "Full300 graph-only traces hide decode node identity; source route applies if those executed T4 calls resolve normally, not an observed per-call proof.",
+    "No assertion that this is the sole or actual cause of214 differing texts; other numerical/scheduling/state mechanisms remain possible.",
+    "No production changes authorized by this review."
+  ],
+  "files": {
+    "src/ops/linear_add/q5/q5_linear_add_plan.cpp": "f0121886ff2bd38845b572a65295e550d125bbf314d8277668a68aed9d95e472",
+    "src/ops/linear_add/q5/q5_linear_add_gemm_simt.cu": "767f38bba872112a2190e091c027147f13e07e26c66ce54ddc729ec04b5d9ecf",
+    "src/ops/linear/q5/q5_small_t_mma.cu": "2eff131a49bdcd7721b4a2e8bd22f2d9bbd73fadb78ea7e3ff6d26053d0c6885",
+    "src/ops/linear/q5/q5_small_t_mma.cuh": "5f180e812dfc1dd207948bf8da828686b1d7299c8d1870e301b2e9de73efd833"
+  }
+}

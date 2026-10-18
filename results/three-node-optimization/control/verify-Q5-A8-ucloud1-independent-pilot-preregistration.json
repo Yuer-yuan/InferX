@@ -1,0 +1,16 @@
+{
+  "registered_at": "2026-10-16T23:11:19.374684+00:00",
+  "stage": "ucloud1_same_source9695_independent_binary_e7a98_perf_reproduction",
+  "binary": "e7a98c7d9515adf1eedbb627a3633934b81dd7bfe42ce092e978d47f8c490ec1",
+  "source": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "protocol": "Official unchanged cold8192/512/seed20261016/pilot24+4/450W; native8,K3,queue300,A8all,KV131072/context65536; traceOFF",
+  "arms": [
+    "OFF_C7",
+    "ON_C7"
+  ],
+  "conditional_next": "Only if both C7 pilots meet joint SLO OR have individual violations confined to initial7 with all later17 clean: one ON_C8 pilot. Otherwise stop. Root must review all raw before any100.",
+  "highest_capacity_rule": "Preserve original node3 C8FAIL and oldsource/node1 failures; independent source/build/card reproduction is not a repair or erasure.",
+  "future_heldout_seed_reserved": 59,
+  "no_automatic100": true,
+  "quality": "Root independently reran all48 original first24 verifiers: strict8/24→9/24 and10/26→11/26, broadCIs; qualityKV327680 is not perfKV."
+}

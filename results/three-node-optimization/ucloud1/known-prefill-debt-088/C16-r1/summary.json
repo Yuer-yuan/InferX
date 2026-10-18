@@ -1,0 +1,232 @@
+{
+  "status": "COMPLETE_JOINT_FAIL",
+  "source": "af3339c32388448ce51bea48122e82f8cd23f27f0830127a0ddd81095a1b08da",
+  "binary": "31a567e716091b95eada288ede7c47ed8e52554781e43eef6eeb9be6f1204e22",
+  "C": 16,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "all137cold": true,
+  "all_startup_retained": true,
+  "errors": 0,
+  "metrics": {
+    "TTFT_p95_ms": 11705.30344235,
+    "TPOT_p95_ms": 48.22186623943249,
+    "output_tokens_per_second": 381.95399958135437
+  },
+  "cohorts": {
+    "initial16": {
+      "count": 16,
+      "TTFT_violations": [
+        10,
+        13,
+        14,
+        15,
+        16
+      ],
+      "TPOT_violations": [
+        1,
+        7,
+        14
+      ]
+    },
+    "later112": {
+      "count": 112,
+      "TTFT_violations": [
+        27,
+        28,
+        40,
+        41,
+        42,
+        55,
+        56,
+        67,
+        78,
+        79,
+        90,
+        91,
+        118,
+        119,
+        120,
+        121
+      ],
+      "TPOT_violations": [
+        22,
+        25,
+        40,
+        45,
+        49,
+        50,
+        53,
+        59,
+        61,
+        70,
+        73,
+        86,
+        87,
+        106,
+        110
+      ]
+    }
+  },
+  "payload_same_as_parent_including_salt": true,
+  "unique_timing_join": 128,
+  "join_method": "Absolute first-token epoch and completion epoch within5ms, each unique; NOT exact header-ID match; no E2E/TTFT duration matching constraint; original128 P95 selected before association",
+  "P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 119,
+        "TTFT_ms": 11664.603224999999,
+        "TPOT_ms": 13.14013226810176,
+        "start_ns": 1792263116396746197,
+        "conversation_id": "session_000126",
+        "native_match_count": 1,
+        "native_id": 128,
+        "end_difference_ms": 2.195968,
+        "first_token_epoch_difference_ms": 0.726528,
+        "own_prefill_ms": 913.73432,
+        "native_TTFT_minus_own_prefill_ms": 10749.325162,
+        "native_shared_decode_per_output_ms": 9.54845070450098,
+        "postfirst_remainder_ms": 3.5916815636007815,
+        "rounds": 91,
+        "accepted": 420,
+        "drafted": 436,
+        "fallback": 0,
+        "committed_per_spec_round": 5.615384615384615,
+        "accepted_per_position": [
+          88,
+          86,
+          83,
+          82,
+          81
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 10,
+        "TTFT_ms": 11727.218944,
+        "TPOT_ms": 14.806452127201565,
+        "start_ns": 1792262976813545450,
+        "conversation_id": "session_000016",
+        "native_match_count": 1,
+        "native_id": 22,
+        "end_difference_ms": 0.975616,
+        "first_token_epoch_difference_ms": 0.566272,
+        "own_prefill_ms": 904.746125,
+        "native_TTFT_minus_own_prefill_ms": 10815.575995,
+        "native_shared_decode_per_output_ms": 9.480004902152645,
+        "postfirst_remainder_ms": 5.32644722504892,
+        "rounds": 89,
+        "accepted": 421,
+        "drafted": 431,
+        "fallback": 1,
+        "committed_per_spec_round": 5.730337078651686,
+        "accepted_per_position": [
+          88,
+          87,
+          82,
+          82,
+          82
+        ]
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 59,
+        "TTFT_ms": 3107.153064,
+        "TPOT_ms": 48.21477643248532,
+        "start_ns": 1792263047850963473,
+        "conversation_id": "session_000066",
+        "native_match_count": 1,
+        "native_id": 68,
+        "end_difference_ms": 1.061376,
+        "first_token_epoch_difference_ms": 0.646656,
+        "own_prefill_ms": 912.138845,
+        "native_TTFT_minus_own_prefill_ms": 2193.611266,
+        "native_shared_decode_per_output_ms": 12.477780896281796,
+        "postfirst_remainder_ms": 35.73699553620352,
+        "rounds": 117,
+        "accepted": 394,
+        "drafted": 569,
+        "fallback": 0,
+        "committed_per_spec_round": 4.367521367521367,
+        "accepted_per_position": [
+          115,
+          94,
+          87,
+          49,
+          49
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 70,
+        "TTFT_ms": 5819.730157999999,
+        "TPOT_ms": 48.22568382778865,
+        "start_ns": 1792263060206630975,
+        "conversation_id": "session_000077",
+        "native_match_count": 1,
+        "native_id": 79,
+        "end_difference_ms": 0.760064,
+        "first_token_epoch_difference_ms": 0.59264,
+        "own_prefill_ms": 912.727206,
+        "native_TTFT_minus_own_prefill_ms": 4905.588338,
+        "native_shared_decode_per_output_ms": 10.678527532289628,
+        "postfirst_remainder_ms": 37.54715629549902,
+        "rounds": 100,
+        "accepted": 411,
+        "drafted": 450,
+        "fallback": 0,
+        "committed_per_spec_round": 5.11,
+        "accepted_per_position": [
+          93,
+          89,
+          83,
+          73,
+          73
+        ]
+      }
+    ]
+  },
+  "native_yield_summary": {
+    "all": {
+      "requests": 128,
+      "committed_per_round": 5.114596370463079,
+      "median_rounds": 91.0,
+      "median_own_prefill_ms": 911.661137
+    },
+    "TPOT_fail": {
+      "requests": 18,
+      "committed_per_round": 3.5935912465806954,
+      "median_rounds": 148.5,
+      "median_own_prefill_ms": 910.6727189999999
+    },
+    "TPOT_pass": {
+      "requests": 110,
+      "committed_per_round": 5.495256723716381,
+      "median_rounds": 90.0,
+      "median_own_prefill_ms": 912.1036765
+    }
+  },
+  "limitations": [
+    "Same-card085 parent matched payload including salt; sole new mechanism is host known required FCFS prefill service debt policy; GPU archives and arithmetic unchanged. One selection run per candidate, not independent validation.",
+    "Native decode is shared batch participation elapsed, not exclusive GPU time. Post-first remainder is not uniquely prefill without scheduler/GPU trace.",
+    "Numerical/Graph qualification does not establish task quality or exact greedy.",
+    "One observed selection run; no independent validation."
+  ],
+  "actual_terminal": {
+    "all_missing": {
+      "503222": true,
+      "503237": true,
+      "503238": true,
+      "503241": true
+    },
+    "all_children_reaped": true,
+    "GPU_empty": true,
+    "at_ns": 1792263208863312865
+  },
+  "raw_SHA256": "c5a2f1ed97f521ed208dedb0b5348d0b94342b7313582f828baa8021a2283e2e"
+}

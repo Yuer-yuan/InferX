@@ -1,0 +1,260 @@
+--- /dev/null
++++ b/src/runtime/engine/slo_bounded_decode_membership.h
+@@ -0,0 +1,96 @@
++#pragma once
++
++#include "runtime/engine/slo_completion_policy.h"
++
++namespace ninfer::runtime {
++inline bool parse_bounded_decode_membership(const char* value) {
++    if (value == nullptr || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP supports 0/1");
++}
++
++inline bool bounded_decode_membership_enabled() {
++    static const bool enabled = parse_bounded_decode_membership(
++        std::getenv("NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP"));
++    return enabled;
++}
++
++struct BoundedDecodeView {
++    std::uint32_t lane = 0;
++    CompletionBudgetView completion;
++    bool live = true;
++};
++
++// Advance only after an actual decode round has completed. PF, a speculative
++// selection, and a failed/abandoned round must never consume this counter.
++class BoundedDecodeCadence {
++public:
++    [[nodiscard]] unsigned full_rounds_due() const { return full_rounds_due_; }
++    void record_completed_decode(bool was_subset) {
++        if (was_subset) { full_rounds_due_ = 2; }
++        else if (full_rounds_due_) { --full_rounds_due_; }
++    }
++private:
++    unsigned full_rounds_due_ = 0;
++};
++
++struct BoundedDecodeSelection {
++    bool use_subset = false;
++    // Indices into THIS full-ready snapshot, in the snapshot's original order.
++    // Never retain these across membership/cancellation/admission changes.
++    std::array<std::size_t, 9> indices{};
++};
++
++// Call only after the original full-membership policy has selected decode.
++// The caller must keep that PF decision and its full-B statistics unchanged.
++[[nodiscard]] inline BoundedDecodeSelection choose_bounded_decode_membership(
++    bool enabled, double now_ms, BatchCostBin full_bin,
++    std::span<const BoundedDecodeView> ready, const BoundedDecodeCadence& cadence) {
++    BoundedDecodeSelection result;
++    if (!enabled || cadence.full_rounds_due() || ready.size() < 10 || ready.size() > 14) {
++        return result;
++    }
++    if (!full_bin.observations || !std::isfinite(now_ms) || now_ms < 0 ||
++        !std::isfinite(full_bin.round_ms) || full_bin.round_ms <= 0 ||
++        !std::isfinite(full_bin.tokens_per_row_round) || full_bin.tokens_per_row_round <= 0) {
++        return result;
++    }
++    const double omitted_guard_ms = 3.0 * full_bin.round_ms;
++    if (!std::isfinite(omitted_guard_ms)) { return result; }
++
++    struct Ranked { std::size_t index; std::uint32_t lane; double laxity_ms; };
++    std::array<Ranked, 14> ranked{};
++    for (std::size_t i = 0; i < ready.size(); ++i) {
++        const auto& row = ready[i];
++        const auto& request = row.completion;
++        if (!row.live || !request.committed_tokens || !request.remaining_tokens ||
++            !std::isfinite(request.first_token_ms) || request.first_token_ms < 0 ||
++            request.first_token_ms > now_ms ||
++            request.remaining_tokens > std::numeric_limits<unsigned>::max() - request.committed_tokens) {
++            return result;
++        }
++        for (std::size_t j = 0; j < i; ++j) {
++            if (ready[j].lane == row.lane) { return result; }
++        }
++        // Exactly the existing completion policy's public-40ms arithmetic.
++        const unsigned total = request.committed_tokens + request.remaining_tokens;
++        const double deadline_ms = request.first_token_ms + (total - 1) * 40.0;
++        const double rounds = completion_remaining_rounds(request, full_bin.tokens_per_row_round);
++        const double laxity_ms = deadline_ms - now_ms - rounds * full_bin.round_ms;
++        if (!std::isfinite(laxity_ms)) { return result; }
++        ranked[i] = {i, row.lane, laxity_ms};
++    }
++    std::sort(ranked.begin(), ranked.begin() + ready.size(), [](const Ranked& a, const Ranked& b) {
++        if (a.laxity_ms != b.laxity_ms) { return a.laxity_ms < b.laxity_ms; }
++        return a.lane < b.lane;
++    });
++    if (!(ranked[0].laxity_ms < 0.0)) { return result; }
++    for (std::size_t i = result.indices.size(); i < ready.size(); ++i) {
++        if (ranked[i].laxity_ms < omitted_guard_ms) { return result; }
++    }
++    for (std::size_t i = 0; i < result.indices.size(); ++i) { result.indices[i] = ranked[i].index; }
++    std::sort(result.indices.begin(), result.indices.end());
++    result.use_subset = true;
++    return result;
++}
++} // namespace ninfer::runtime
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -333,6 +333,12 @@
+ ninfer_add_test(ninfer_slo_completion_policy_test SOURCES test_slo_completion_policy.cpp)
+ target_compile_options(ninfer_slo_completion_policy_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
+ 
++ninfer_add_test(ninfer_slo_bounded_decode_membership_test SOURCES test_slo_bounded_decode_membership.cpp)
++target_compile_options(ninfer_slo_bounded_decode_membership_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
++add_test(NAME ninfer_slo_bounded_decode_membership_off COMMAND ninfer_slo_bounded_decode_membership_test 0)
++add_test(NAME ninfer_slo_bounded_decode_membership_on COMMAND ninfer_slo_bounded_decode_membership_test 1)
++add_test(NAME ninfer_slo_bounded_decode_membership_invalid COMMAND ninfer_slo_bounded_decode_membership_test invalid)
++
+ ninfer_add_test(ninfer_slo_prefill_queue_policy_test SOURCES test_slo_prefill_queue_policy.cpp)
+ target_compile_options(ninfer_slo_prefill_queue_policy_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
+ 
+--- /dev/null
++++ b/tests/test_slo_bounded_decode_membership.cpp
+@@ -0,0 +1,143 @@
++#include "runtime/engine/slo_bounded_decode_membership.h"
++
++#include <cassert>
++#include <iostream>
++#include <vector>
++
++namespace {
++using namespace ninfer::runtime;
++constexpr double now = 10000;
++constexpr double infinity = std::numeric_limits<double>::infinity();
++constexpr double nan = std::numeric_limits<double>::quiet_NaN();
++constexpr BatchCostBin cost{100, 2, 1};
++
++BoundedDecodeView row(std::uint32_t lane, double laxity) {
++    // 100 total tokens, 20 remaining: 10 batch rounds; original deadline = first + 99*40.
++    return {lane, {7040 + laxity, 80, 20, 0}, true};
++}
++
++std::vector<BoundedDecodeView> eligible(unsigned count = 14) {
++    std::vector<BoundedDecodeView> rows;
++    for (unsigned i = 0; i < count; ++i) { rows.push_back(row(i, i < 9 ? -100.0 + i : 300.0)); }
++    return rows;
++}
++
++void set_flag(const char* value) {
++#ifdef _WIN32
++    assert(_putenv_s("NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP", value ? value : "") == 0);
++#else
++    if (value) { assert(setenv("NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP", value, 1) == 0); }
++    else { assert(unsetenv("NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP") == 0); }
++#endif
++}
++
++void contracts() {
++    BoundedDecodeCadence cadence;
++    auto rows = eligible();
++    auto select = [&](const auto& input, BatchCostBin bin = cost, double at = now) {
++        return choose_bounded_decode_membership(true, at, bin, input, cadence);
++    };
++    assert(!choose_bounded_decode_membership(false, now, cost, rows, cadence).use_subset);
++    assert(!choose_bounded_decode_membership(false, nan, {}, {}, cadence).use_subset);
++    for (unsigned count : {0U, 1U, 9U, 15U, 32U}) { assert(!select(eligible(count)).use_subset); }
++    for (unsigned count = 10; count <= 14; ++count) {
++        const auto chosen = select(eligible(count));
++        assert(chosen.use_subset);
++        for (std::size_t i = 0; i < 9; ++i) { assert(chosen.indices[i] == i); }
++    }
++    assert(!select(rows, {100, 2, 0}).use_subset);
++    for (double bad : {0.0, -1.0, infinity, -infinity, nan}) {
++        assert(!select(rows, {bad, 2, 1}).use_subset);
++        assert(!select(rows, {100, bad, 1}).use_subset);
++    }
++    for (double bad : {-1.0, infinity, -infinity, nan}) { assert(!select(rows, cost, bad).use_subset); }
++    assert(!select(rows, {std::numeric_limits<double>::max(), 2, 1}).use_subset);
++    rows = eligible();
++    for (auto& r : rows) { r = row(r.lane, 0); }
++    assert(!select(rows).use_subset); // No strictly negative laxity.
++    rows = eligible(); rows[9] = row(9, 299.999);
++    assert(!select(rows).use_subset); // Every omitted request must pass the guard.
++    rows[9] = row(9, 300);
++    assert(select(rows).use_subset); // Exact three-full-round boundary is allowed.
++
++    // Nine-way tie selection uses lane, then restores the original snapshot order.
++    rows.clear(); rows.push_back(row(99, -1));
++    for (unsigned lane = 9; lane; --lane) { rows.push_back(row(lane - 1, 500)); }
++    auto chosen = select(rows); assert(chosen.use_subset);
++    assert(chosen.indices[0] == 0);
++    for (std::size_t i = 1; i < 9; ++i) { assert(chosen.indices[i] == i + 1); }
++
++    rows = eligible();
++    for (std::size_t i = 0; i < rows.size(); ++i) {
++        auto invalid = rows; invalid[i].live = false; assert(!select(invalid).use_subset);
++        invalid = rows; invalid[i].completion.remaining_tokens = 0; assert(!select(invalid).use_subset);
++        invalid = rows; invalid[i].completion.committed_tokens = 0; assert(!select(invalid).use_subset);
++        invalid = rows; invalid[i].completion.remaining_tokens = std::numeric_limits<unsigned>::max();
++        assert(!select(invalid).use_subset);
++        for (double bad : {-1.0, now + 1, infinity, -infinity, nan}) {
++            invalid = rows; invalid[i].completion.first_token_ms = bad; assert(!select(invalid).use_subset);
++        }
++    }
++    rows[13].lane = rows[0].lane; assert(!select(rows).use_subset);
++
++    // Own-yield max, not the batch average alone, can establish urgency.
++    rows = eligible();
++    for (auto& r : rows) { r = row(r.lane, 500); }
++    assert(!select(rows).use_subset);
++    rows[13].completion.committed_decode_rounds = 158; // Own yield = 79/158; clamps to one.
++    chosen = select(rows); assert(chosen.use_subset && chosen.indices[8] == 13);
++    // Valid non-512 output budgets use the same original completion equation.
++    rows = eligible(); rows[0].completion = {8000, 50, 10, 0};
++    assert(select(rows).use_subset);
++
++    rows = eligible(); chosen = select(rows); assert(chosen.use_subset);
++    cadence.record_completed_decode(true); assert(cadence.full_rounds_due() == 2);
++    assert(!select(rows).use_subset); // Selection itself does not consume a round.
++    assert(cadence.full_rounds_due() == 2);
++    // An intervening PF calls no record_completed_decode; two full rounds remain due.
++    assert(!select(rows).use_subset && cadence.full_rounds_due() == 2);
++    cadence.record_completed_decode(false); assert(cadence.full_rounds_due() == 1);
++    rows.pop_back(); rows[0] = row(77, -50); // Completion/cancellation and lane reuse.
++    assert(!select(rows).use_subset);
++    cadence.record_completed_decode(false); assert(cadence.full_rounds_due() == 0);
++    assert(select(rows).use_subset);
++    cadence.record_completed_decode(false); assert(cadence.full_rounds_due() == 0);
++
++    // Integration contract: update only indices from the actual selected snapshot.
++    rows = eligible(); chosen = select(rows); assert(chosen.use_subset);
++    std::array<unsigned, 14> served{};
++    for (auto i : chosen.indices) { ++served[i]; }
++    for (std::size_t i = 0; i < served.size(); ++i) { assert(served[i] == (i < 9 ? 1U : 0U)); }
++    CompletionCostModel<32> observations;
++    observations.observe(chosen.indices.size(), 80, chosen.indices.size() * 3);
++    assert(observations.get(9).observations == 1);
++    assert(observations.get(14).observations == 0);
++}
++} // namespace
++
++int main(int argc, char** argv) {
++    assert(!parse_bounded_decode_membership(nullptr));
++    assert(!parse_bounded_decode_membership("0"));
++    assert(parse_bounded_decode_membership("1"));
++    for (const char* bad : {"", "2", "-1", "on", "true", " 1", "1 ", "nan"}) {
++        bool rejected = false;
++        try { (void)parse_bounded_decode_membership(bad); }
++        catch (const std::invalid_argument&) { rejected = true; }
++        assert(rejected);
++    }
++    assert(argc == 1 || argc == 2);
++    if (argc == 2 && std::string_view(argv[1]) == "invalid") {
++        set_flag("2"); bool rejected = false;
++        try { (void)bounded_decode_membership_enabled(); }
++        catch (const std::invalid_argument&) { rejected = true; }
++        assert(rejected); set_flag(nullptr); assert(!bounded_decode_membership_enabled());
++    } else {
++        set_flag(argc == 1 ? nullptr : argv[1]);
++        const bool expected = argc == 2 && std::string_view(argv[1]) == "1";
++        assert(bounded_decode_membership_enabled() == expected);
++        set_flag(expected ? "0" : "1");
++        assert(bounded_decode_membership_enabled() == expected);
++    }
++    contracts();
++    std::cout << "bounded membership selector/cadence CPU contracts passed; no performance claim\n";
++}

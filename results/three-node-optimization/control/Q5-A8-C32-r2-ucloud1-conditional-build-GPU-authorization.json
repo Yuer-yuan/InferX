@@ -1,0 +1,37 @@
+{
+  "authorized_at": "2026-10-17T02:45:39.069738+00:00",
+  "authorized_by": "Root existinguserperformanceoptimizationgoal",
+  "NVCC_compile_authorized": true,
+  "GPU_execution_authorized": true,
+  "source_freeze_sha256": "ff357f5004ea699e7989fa119015240267a4bd84822fe9cb8db6ed17d52a5e6e",
+  "machine": "ucloud1",
+  "worker_thread": "01a1453d-cff3-7682-b649-9fa653728c3f",
+  "GPU_UUID": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+  "authorization_is_conditional": true,
+  "conditions_before_CPU_staging": [
+    "Current final-defaults-capacity-r1 fixedC8ladder/C7fallback reaches complete and all its actual owned service/client/telemetry descendants terminal and reaped",
+    "Retain all raw capacity results and failures; do not truncate/interrupt or launch extra capacity stage",
+    "Only local ownnode ucloud1 and Root artifacts; nopeer contact"
+  ],
+  "conditions_before_NVCC_or_GPU": [
+    "All37frozen source files exact",
+    "All46actualweights/fixturefiles and136prefixes bytes/SHAexact, eitheroriginalstagingor Roothelper local regeneration",
+    "Originalmodel metadata and originalQ5planes exact; no weight re-encoding",
+    "GPUidle450W/noothercompiler/profile/archive, exactfuturecontroller frozen compileargv/toolchainSHAchecks"
+  ],
+  "CPU_staging_helper": {
+    "name": "stage-q5-c32-r2-inputs-cpu.py",
+    "SHA256": "d2f23f02393344f40d48f0e20ae109958bb4b501f8df62774ea344f8891be6f3",
+    "scope": "CPU only, derivefixedBF16inputs with unchangedgenerator into fresh local subdir, extract originalplanes then verifySHA; preserveoriginmetadata and all37frozen files"
+  },
+  "review_archive": {
+    "name": "q5-a8-c32-operator-r2-001-review.tgz",
+    "bytes": 99035,
+    "SHA256": "9ff2e28288083bbbff44e1dd756d804139c432b88c660d69c090b2c546e39651"
+  },
+  "fixed_execution": "one fresh executable compile -> all136numeric coldGraph gates -> conditional all12wholeOp fixedABBA timings -> original raw/archive andactual terminal; nomodel/integration/extra tile/profile sweep",
+  "production_source_binary_model_changes_authorized": false,
+  "on_failure": "Preserve first failure/raw/identities; do not launch timing on numeric failure or repeat GPU/retune. CPU launcher/path/manifest-observer fixes with recorded diff/identity can proceed, kernel/arithmetic/fixture edits require new review.",
+  "original_C8_source_binary_model_immutable": true,
+  "no_new_user_permission_required": true
+}

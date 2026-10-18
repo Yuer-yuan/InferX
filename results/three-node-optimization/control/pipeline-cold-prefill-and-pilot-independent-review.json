@@ -1,0 +1,129 @@
+{
+  "reviewed_at": "2026-10-16T17:25:28.363639+00:00",
+  "scope": "Independent raw percentile/cohort/cold8K1 recomputation, noGPUwork",
+  "cold8k1": [
+    {
+      "arm": "v1",
+      "n": 3,
+      "prefill_seconds": [
+        2.187198163,
+        2.184857326,
+        2.1896488840000004
+      ],
+      "client_seconds": [
+        2.1903318390250206,
+        2.187529443996027,
+        2.192277341033332
+      ],
+      "input_hashes": [
+        "1ae5be657c2aeb70a73cd29fb1f2a1092033f30d82d308805c8f01ba8c901f2a",
+        "f4c5e445e87919bbc62fb3d881ba28c4e5b686766f116553a78d8d3acc0ee962",
+        "30c53e53080cd74f1aa0c38b2ccf08dd620e5a12b3f301b5bce2c3dedae0a84d"
+      ],
+      "all_cold": true,
+      "binary_sha256": "13ab270d739111feaa53f5df9f34567269500014062004a73f3276abf8777281"
+    },
+    {
+      "arm": "pipeline",
+      "n": 3,
+      "prefill_seconds": [
+        1.68170691,
+        1.681325475,
+        1.686871594
+      ],
+      "client_seconds": [
+        1.685259010992013,
+        1.6842467510141432,
+        1.6909981310018338
+      ],
+      "input_hashes": [
+        "1ae5be657c2aeb70a73cd29fb1f2a1092033f30d82d308805c8f01ba8c901f2a",
+        "f4c5e445e87919bbc62fb3d881ba28c4e5b686766f116553a78d8d3acc0ee962",
+        "30c53e53080cd74f1aa0c38b2ccf08dd620e5a12b3f301b5bce2c3dedae0a84d"
+      ],
+      "all_cold": true,
+      "binary_sha256": "bd28d7388a6093259af6f0332aff6b46e5637ce708bc4d6cf1b8d94cb0d36481"
+    }
+  ],
+  "cold8k1_same_actual_input": true,
+  "isolated_prefill_speedup": 1.299372106932491,
+  "pilots": [
+    {
+      "C": 6,
+      "arms": [
+        {
+          "run": "a8-head-pilot-c6c8-seed42-001/a8_mtp4_optimized",
+          "n": 16,
+          "warmup": 4,
+          "all_8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 12398.78016875,
+          "tpot_p95_ms": 45.627730997064575,
+          "ttft_gt10000": 2,
+          "tpot_gt40": 4,
+          "output_tok_s": 138.73144010021232,
+          "summary_p95_match": true
+        },
+        {
+          "run": "pipeline-c6c8-pilot-001/pipeline_a8_all",
+          "n": 16,
+          "warmup": 4,
+          "all_8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 9642.027882249999,
+          "tpot_p95_ms": 48.793923315557734,
+          "ttft_gt10000": 1,
+          "tpot_gt40": 2,
+          "output_tok_s": 158.8295816024563,
+          "summary_p95_match": true
+        }
+      ],
+      "actual_phase_payloads_equal_ignoring_only_cache_salt": {
+        "warmup": true,
+        "profiling": true
+      },
+      "throughput_relative_gain": 0.14487084894185576
+    },
+    {
+      "C": 8,
+      "arms": [
+        {
+          "run": "a8-head-pilot-c6c8-seed42-001/a8_mtp4_optimized",
+          "n": 16,
+          "warmup": 4,
+          "all_8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 17509.2262725,
+          "tpot_p95_ms": 71.39791451418787,
+          "ttft_gt10000": 4,
+          "tpot_gt40": 8,
+          "output_tok_s": 138.00772642105522,
+          "summary_p95_match": true
+        },
+        {
+          "run": "pipeline-c6c8-pilot-001/pipeline_a8_all",
+          "n": 16,
+          "warmup": 4,
+          "all_8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 13684.268247,
+          "tpot_p95_ms": 58.720669383561635,
+          "ttft_gt10000": 3,
+          "tpot_gt40": 5,
+          "output_tok_s": 158.48777258006666,
+          "summary_p95_match": true
+        }
+      ],
+      "actual_phase_payloads_equal_ignoring_only_cache_salt": {
+        "warmup": true,
+        "profiling": true
+      },
+      "throughput_relative_gain": 0.14839782300686388
+    }
+  ],
+  "quality": "operatororacleandsimpletextchecks are notexpandedtaskqualification",
+  "initial_conclusion_superseded": "Pipeline raisesmatchedC6/C8outputthroughput~15% andisolatedprefill~30%, butboth16requestjointSLOs fail. Do not promote unchangedfrozenK4 configtoformalconfirmation. Tailacceptance/trajectorydiagnosis anducloud1 independentpipeline+scheduler/K3/verifykernel composition continue.",
+  "revised_at": "2026-10-16T17:46:48.298066+00:00",
+  "revised_promotion_rationale": "PilotC6all3violations belongfirst6arrivals; later10zero. This justified original100+8 withALLstartup retained, not trimming/warmup manipulation. FormalC6 nowfails43.094ms withlater94violations, so noC6heldout.",
+  "conclusion": "Matched~15% pilotthroughput gains valid. C5seed42 100passes3.809s/38.464ms/149.796tok/s, heldoutpending; C6 100fails5.784s/43.094ms/159.702tok/s. Frozenv1capacitynotyetconfirmedaboveC4."
+}

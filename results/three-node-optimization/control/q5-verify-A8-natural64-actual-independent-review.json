@@ -1,0 +1,88 @@
+{
+  "scope": "Root independent readonlyactualrawarray/quantization/sampledFP64 and384timing audit; noGPU requests",
+  "cases": 72,
+  "full_output_elements": 12779520,
+  "bitdiff": 9439781,
+  "pair_relL2_range": [
+    0.0049655132022074075,
+    0.015846586001322778
+  ],
+  "pair_maxabs": 128.0,
+  "full_quant_code_checks": 58785792,
+  "full_quant_scale_bit_checks": 918528,
+  "quant_mismatches": 0,
+  "FP64_represented_A8_sample_relL2_range": [
+    0.001617477752440624,
+    0.0018907164144160314
+  ],
+  "timing": [
+    {
+      "K": 6144,
+      "T": 20,
+      "old_median_us": 94.2080021,
+      "A8_median_us": 59.3920015,
+      "speedup": 1.5862068918488965,
+      "all48samples_retained": true
+    },
+    {
+      "K": 6144,
+      "T": 24,
+      "old_median_us": 91.1360011,
+      "A8_median_us": 58.3680011,
+      "speedup": 1.5614034981917515,
+      "all48samples_retained": true
+    },
+    {
+      "K": 6144,
+      "T": 28,
+      "old_median_us": 91.264002,
+      "A8_median_us": 58.3680011,
+      "speedup": 1.5635964960259707,
+      "all48samples_retained": true
+    },
+    {
+      "K": 6144,
+      "T": 32,
+      "old_median_us": 91.1360011,
+      "A8_median_us": 58.3680011,
+      "speedup": 1.5614034981917515,
+      "all48samples_retained": true
+    },
+    {
+      "K": 17408,
+      "T": 20,
+      "old_median_us": 318.464011,
+      "A8_median_us": 165.887997,
+      "speedup": 1.9197531874473113,
+      "all48samples_retained": true
+    },
+    {
+      "K": 17408,
+      "T": 24,
+      "old_median_us": 318.464011,
+      "A8_median_us": 165.887997,
+      "speedup": 1.9197531874473113,
+      "all48samples_retained": true
+    },
+    {
+      "K": 17408,
+      "T": 28,
+      "old_median_us": 319.487989,
+      "A8_median_us": 166.912004,
+      "speedup": 1.9141103176737368,
+      "all48samples_retained": true
+    },
+    {
+      "K": 17408,
+      "T": 32,
+      "old_median_us": 316.415995,
+      "A8_median_us": 166.912004,
+      "speedup": 1.8957054460864302,
+      "all48samples_retained": true
+    }
+  ],
+  "source_harness_SHA256": "a9f51955798b3cc23f6edd743f799a3bc0ba1d6b0c6c89b8db69a4757446bb40",
+  "raw_log_SHA256": "2339fd42af74dfbf4c66076910d1fb4bda3dab67d95841e2587aa8aade018d57",
+  "qualification": "Newactivationarithmetric differsfromA16; originalA16tolerance isnotmet bycrossprecisionpair andnotrelabelled. CorrectnessofrepresentedA8 isseparatefromtaskquality, whichremainsunproven.",
+  "reviewed_at": "2026-10-16T21:26:30.594472+00:00"
+}

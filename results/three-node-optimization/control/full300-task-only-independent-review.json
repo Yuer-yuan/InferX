@@ -1,0 +1,78 @@
+{
+  "reviewed_at": "2026-10-16T20:12:35.826929+00:00",
+  "scope": "Root independent EvalScope1.13.0 original600prediction task-only scoring; no GPU work; original coverage gate remains failed/pending repair",
+  "samples": 300,
+  "instruction_count": 344,
+  "metrics": {
+    "prompt_level_strict": {
+      "baseline": 0.38666666666666666,
+      "candidate": 0.38,
+      "delta": -0.006666666666666667,
+      "paired_prompt_cluster_95CI": [
+        -0.03,
+        0.016666666666666666
+      ],
+      "improved_prompts": 5,
+      "worsened_prompts": 7
+    },
+    "inst_level_strict": {
+      "baseline": 0.41569767441860467,
+      "candidate": 0.41569767441860467,
+      "delta": 0.0,
+      "paired_prompt_cluster_95CI": [
+        -0.020588235294117647,
+        0.020527859237536656
+      ],
+      "improved_prompts": 7,
+      "worsened_prompts": 7
+    },
+    "prompt_level_loose": {
+      "baseline": 0.42,
+      "candidate": 0.41,
+      "delta": -0.01,
+      "paired_prompt_cluster_95CI": [
+        -0.03333333333333333,
+        0.013333333333333334
+      ],
+      "improved_prompts": 5,
+      "worsened_prompts": 8
+    },
+    "inst_level_loose": {
+      "baseline": 0.45058139534883723,
+      "candidate": 0.44476744186046513,
+      "delta": -0.005813953488372093,
+      "paired_prompt_cluster_95CI": [
+        -0.03098810376382589,
+        0.019943019943019943
+      ],
+      "improved_prompts": 6,
+      "worsened_prompts": 8
+    }
+  },
+  "identical_texts": 86,
+  "finish_counts": {
+    "none": {
+      "stop": 295,
+      "length": 5
+    },
+    "all": {
+      "stop": 297,
+      "length": 3
+    }
+  },
+  "all_original_prompts_and_payloads_verified": true,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 42,
+  "actual_A8_coverage": "Unresolved per-request gate; separate root SQL found0quantizerkernels in both whole traces. No A8 quality claim.",
+  "qualifications": [
+    "All length-finished samples retained and scored.",
+    "Differences are not isolated activation effects while actual A8 is unverified/absent.",
+    "Same tokenizer/rendering metadata does not establish captured native output-token IDs."
+  ],
+  "hashes": {
+    "none": "2247b7545ef291d97ffc9cd416ac616d5f9ff2c66204dd2963c0b04929c82825",
+    "all": "3fab062494352f0f48ba085987cd14ad5545721e8a981b1ea7bb0298ae992575"
+  },
+  "temporary_output": "/tmp/inferx-root-ifbench300-task-only-fh2c34uf",
+  "per_sample_sha256": "cab6d4fd561428b066992b52b1870883a5ccdd63646e898081513ed5346a4197"
+}

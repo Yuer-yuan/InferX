@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-16T17:51:45.123600+00:00",
+  "scope": "Root independent zero-fuzz4fileTabbyAPI patch application, pre/posthashes and Python syntax; coldallocator/Job/source semantic review. Actualnative runtime proofs pending. No GPU work.",
+  "tabby_commit": "63860e697c87949c116992ec541f086268be9a8d",
+  "actual_runtime": {
+    "torch": "2.9.0+cu128",
+    "exllamav3": "1.6.2+cu128.torch2.9.0",
+    "triton": "3.5.0",
+    "flash-linear-attention": "0.5.2",
+    "fastapi": "0.143.3",
+    "pydantic": "2.14.1",
+    "tokenizers": "0.23.3",
+    "huggingface_hub": "2.2.0"
+  },
+  "actual_exl_wheel_sha256": "43df42958dd32904f2c8d03c2b268b4c213d29739c84c92845560b7f0ccd4a84",
+  "patch_sha256": "838da40e1eb3f765ce335d0251c19510b9f322aba6aebb71b1e12d04021b0e59",
+  "file_hash_matches": {
+    "endpoints/OAI/types/completion.py": true,
+    "endpoints/OAI/utils/completion.py": true,
+    "common/model.py": true,
+    "backends/exllamav3/model.py": true
+  },
+  "cold_bootstrap_hash_matches": true,
+  "source_findings": [
+    "Rawnonempty List[int] wrapped as one prompt and directlymade torch.long tensor; no BOS/template/tokenhealing/token ID nonce",
+    "ignore_eos removes EOS terminationIDs only; EOS logits notbanned, actualEOSruntimeproofrequired",
+    "Non-nullcache_salt sets nativejob all_unique_hashes empty andseq.max_cached_pages0 beforeallocator; nativepage_hashes sliceempty leadsnew allocation andno recurrentprefixlookup",
+    "Nativehost/KV/diskcache disabled independently; nofakecached/computedcounters andnoTTFTstatrewrite",
+    "Coldpolicy survives proofobserver restoration because restoredprepare wrapsoriginalcoldpolicy; ensureobserver-off beforeperformance",
+    "InstalledExL1.6.2+cu128.torch2.9.0 wheel source matchedofficialtag; separatelyreviewedmainpin isnot installedversion"
+  ],
+  "required_runtime_evidence": [
+    "Pinnedmodelbytes/revision/allSHA andsameGPU450W beforeloading",
+    "Pristine422preserved; sameactual8192 IDs/nativecomputed8192/cache0 output512 includinggenuineSSE/usage/EOSallowed",
+    "GenuineMTPtarget/draft/GDNshapes andresolvednativecapacities, not onlyCLIflags",
+    "Observeroff andoriginalrunner coldperformance; allstartup andfailure rows retained",
+    "Different5bpwweights/activation/KV configuration recorded; pairedtaskquality needed, nocausalframeworkranking"
+  ],
+  "conclusion": "Prepared adapter source passes review; notyet runtime/throughput/quality qualification. Existing downloadhandle andnewroute work continues."
+}

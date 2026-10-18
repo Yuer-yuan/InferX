@@ -1,0 +1,478 @@
+{
+  "scope": "Diagnostic traceON original128, same binary/config/cohort/salt. Not a new performance promotion or GPU kernel attribution.",
+  "clock": {
+    "start": {
+      "epoch_before_ns": 1792260727916817068,
+      "monotonic_ns": 481933193393278,
+      "epoch_after_ns": 1792260727916817208
+    },
+    "end": {
+      "epoch_before_ns": 1792260972714668174,
+      "monotonic_ns": 482177991244384,
+      "epoch_after_ns": 1792260972714668304
+    },
+    "offset_drift_ns": 0.0,
+    "start_bracket_ns": 140,
+    "end_bracket_ns": 130
+  },
+  "counts": {
+    "client": 128,
+    "unique_trace_join": 128,
+    "trace_first": 138,
+    "trace_finish": 138,
+    "all_prefill_units": 550,
+    "all_decode_units": 1275,
+    "unit_overlaps": 0
+  },
+  "metrics": {
+    "TTFT_ms": 10009.53391045,
+    "TPOT_ms": 49.39804157720154,
+    "throughput": 378.0812525550394
+  },
+  "original128_P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 42,
+        "conversation_id": "session_000049",
+        "client_start_ms": 38350.743901,
+        "client_first_ms": 48350.970362,
+        "client_end_ms": 63500.667265,
+        "TTFT_ms": 10000.226461,
+        "TPOT_ms": 29.646832774951072,
+        "trace_matches": 1,
+        "engine_id": 52,
+        "first_epoch_difference_ms": 0.1343940000006114,
+        "end_epoch_difference_ms": 0.29683299999305746,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 134,
+        "admission_queue_ms": 9089.830050999997,
+        "TTFT_stages": {
+          "own_prefill_ms": 910.1498879999926,
+          "competing_prefill_ms": 9088.197026999973,
+          "shared_decode_with_request_ms": 0.12492200000269804,
+          "decode_without_request_ms": 0.0,
+          "host_control_or_uninstrumented_wait_ms": 1.7546240000301623,
+          "total_ms": 10000.226460999998
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 7917.7374720000225,
+          "shared_decode_with_request_ms": 7227.7511740000555,
+          "decode_without_request_ms": 0.27660899999318644,
+          "host_control_or_uninstrumented_wait_ms": 3.7662929999260086,
+          "total_ms": 15149.531547999997
+        },
+        "postfirst_decisions": {
+          "completion_decode": 124,
+          "completion_prefill": 35
+        },
+        "postfirst_queue_latest_start": {
+          "count": 159,
+          "already_late": 0,
+          "min_laxity_ms": 802.953019,
+          "median_laxity_ms": 4643.070109
+        },
+        "actual_B_hist": {
+          "16": 10,
+          "15": 44,
+          "14": 16,
+          "13": 10,
+          "12": 10,
+          "11": 2,
+          "10": 27,
+          "9": 15
+        },
+        "client_metric_bookkeeping_correction_ms": -0.16535499999918102
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 27,
+        "conversation_id": "session_000034",
+        "client_start_ms": 19571.158576,
+        "client_first_ms": 29585.70419,
+        "client_end_ms": 38308.097599,
+        "TTFT_ms": 10014.545613999999,
+        "TPOT_ms": 17.069036684931508,
+        "trace_matches": 1,
+        "engine_id": 37,
+        "first_epoch_difference_ms": 0.19353400000181864,
+        "end_epoch_difference_ms": 0.39814299999852665,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 93,
+        "admission_queue_ms": 9106.417615999999,
+        "TTFT_stages": {
+          "own_prefill_ms": 907.770623999997,
+          "competing_prefill_ms": 9068.58111800001,
+          "shared_decode_with_request_ms": 0.0,
+          "decode_without_request_ms": 36.32225599999947,
+          "host_control_or_uninstrumented_wait_ms": 1.8716159999930824,
+          "total_ms": 10014.545613999999
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 3624.371714000001,
+          "shared_decode_with_request_ms": 5095.312383999997,
+          "decode_without_request_ms": 0.3687030000000959,
+          "host_control_or_uninstrumented_wait_ms": 2.224945000001753,
+          "total_ms": 8722.277746
+        },
+        "postfirst_decisions": {
+          "completion_conflict": 3,
+          "completion_decode": 90,
+          "completion_prefill": 12
+        },
+        "postfirst_queue_latest_start": {
+          "count": 105,
+          "already_late": 3,
+          "min_laxity_ms": -1160.987519,
+          "median_laxity_ms": 4745.373545
+        },
+        "actual_B_hist": {
+          "16": 3,
+          "15": 3,
+          "14": 20,
+          "13": 61,
+          "12": 1,
+          "10": 3,
+          "9": 2
+        },
+        "client_metric_bookkeeping_correction_ms": -0.11566300000049523
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 40,
+        "conversation_id": "session_000047",
+        "client_start_ms": 38313.009675,
+        "client_first_ms": 46530.653778,
+        "client_end_ms": 70984.019368,
+        "TTFT_ms": 8217.644102999999,
+        "TPOT_ms": 47.85373572798434,
+        "trace_matches": 1,
+        "engine_id": 50,
+        "first_epoch_difference_ms": 0.15931399999681162,
+        "end_epoch_difference_ms": 0.3426959999924293,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 184,
+        "admission_queue_ms": 7307.252980999998,
+        "TTFT_stages": {
+          "own_prefill_ms": 910.1201920000021,
+          "competing_prefill_ms": 7270.782033999967,
+          "shared_decode_with_request_ms": 0.0,
+          "decode_without_request_ms": 35.22379699999874,
+          "host_control_or_uninstrumented_wait_ms": 1.51808000003075,
+          "total_ms": 8217.644102999999
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 14536.887637999993,
+          "shared_decode_with_request_ms": 9910.511616000054,
+          "decode_without_request_ms": 0.0,
+          "host_control_or_uninstrumented_wait_ms": 5.859702999950969,
+          "total_ms": 24453.258957
+        },
+        "postfirst_decisions": {
+          "completion_conflict": 25,
+          "completion_decode": 173,
+          "completion_prefill": 39
+        },
+        "postfirst_queue_latest_start": {
+          "count": 237,
+          "already_late": 19,
+          "min_laxity_ms": -314.193229,
+          "median_laxity_ms": 2346.920637
+        },
+        "actual_B_hist": {
+          "16": 10,
+          "15": 44,
+          "14": 43,
+          "13": 15,
+          "12": 11,
+          "11": 2,
+          "10": 43,
+          "9": 16
+        },
+        "client_metric_bookkeeping_correction_ms": -0.10663299999578157
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 45,
+        "conversation_id": "session_000052",
+        "client_start_ms": 52305.172423,
+        "client_first_ms": 56002.812123,
+        "client_end_ms": 81670.133063,
+        "TTFT_ms": 3697.6396999999997,
+        "TPOT_ms": 50.22959088062622,
+        "trace_matches": 1,
+        "engine_id": 55,
+        "first_epoch_difference_ms": 0.14562700000533368,
+        "end_epoch_difference_ms": 0.613190999996732,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 170,
+        "admission_queue_ms": 2787.5797049999965,
+        "TTFT_stages": {
+          "own_prefill_ms": 909.8106880000123,
+          "competing_prefill_ms": 1812.1676430000007,
+          "shared_decode_with_request_ms": 0.0,
+          "decode_without_request_ms": 974.7886649999855,
+          "host_control_or_uninstrumented_wait_ms": 0.8727040000012494,
+          "total_ms": 3697.6396999999997
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 17277.53764400001,
+          "shared_decode_with_request_ms": 8383.753472000019,
+          "decode_without_request_ms": 0.0,
+          "host_control_or_uninstrumented_wait_ms": 6.029823999968357,
+          "total_ms": 25667.320939999998
+        },
+        "postfirst_decisions": {
+          "completion_prefill": 35,
+          "completion_decode": 170,
+          "completion_conflict": 41
+        },
+        "postfirst_queue_latest_start": {
+          "count": 246,
+          "already_late": 33,
+          "min_laxity_ms": -160.56699,
+          "median_laxity_ms": 985.6583069999999
+        },
+        "actual_B_hist": {
+          "12": 12,
+          "11": 2,
+          "10": 43,
+          "9": 39,
+          "14": 27,
+          "13": 5,
+          "8": 40,
+          "7": 1,
+          "6": 1
+        },
+        "client_metric_bookkeeping_correction_ms": 0.0
+      }
+    ]
+  },
+  "original128_weighted_stage_ms": {
+    "TTFT_ms": {
+      "own_prefill_ms": 908.6033663999955,
+      "competing_prefill_ms": 9075.446686149997,
+      "shared_decode_with_request_ms": 0.04372270000094538,
+      "decode_without_request_ms": 23.609466399999345,
+      "host_control_or_uninstrumented_wait_ms": 1.8306688000060594,
+      "total_ms": 10009.533910449998
+    },
+    "TPOT_ms": {
+      "own_prefill_ms": 0.0,
+      "competing_prefill_ms": 31.934070727788615,
+      "shared_decode_with_request_ms": 17.452287323679148,
+      "decode_without_request_ms": 0.0,
+      "host_control_or_uninstrumented_wait_ms": 0.011683525733781352,
+      "total_ms": 49.39804157720154
+    }
+  },
+  "formal_traceOFF_tail_in_diagnostic": [
+    {
+      "formal_traceOFF": {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 101,
+        "TTFT_ms": 5449.068442,
+        "TPOT_ms": 49.930983755381604,
+        "start_ns": 1792260089385253679,
+        "conversation_id": "session_000108",
+        "native_match_count": 1,
+        "native_id": 110,
+        "end_difference_ms": 1.135872,
+        "first_token_epoch_difference_ms": 0.969728,
+        "own_prefill_ms": 913.991994,
+        "native_TTFT_minus_own_prefill_ms": 4533.86801,
+        "native_shared_decode_per_output_ms": 10.615369825831701,
+        "postfirst_remainder_ms": 39.315613929549905,
+        "rounds": 99,
+        "accepted": 412,
+        "drafted": 473,
+        "fallback": 0,
+        "committed_per_spec_round": 5.161616161616162,
+        "accepted_per_position": [
+          93,
+          89,
+          83,
+          74,
+          73
+        ]
+      },
+      "diagnostic": {
+        "arrival_rank": 101,
+        "conversation_id": "session_000108",
+        "client_start_ms": 128122.739919,
+        "client_first_ms": 133522.185315,
+        "client_end_ms": 153025.463069,
+        "TTFT_ms": 5399.445396,
+        "TPOT_ms": 38.166256663405086,
+        "trace_matches": 1,
+        "engine_id": 111,
+        "first_epoch_difference_ms": 0.15702700000838377,
+        "end_epoch_difference_ms": 0.4687649999978021,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 100,
+        "admission_queue_ms": 4485.138480999987,
+        "TTFT_stages": {
+          "own_prefill_ms": 914.0482560000382,
+          "competing_prefill_ms": 1820.2712030000257,
+          "shared_decode_with_request_ms": 0.0,
+          "decode_without_request_ms": 2663.5955689999682,
+          "host_control_or_uninstrumented_wait_ms": 1.5303679999778979,
+          "total_ms": 5399.44539600001
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 14109.491386000096,
+          "shared_decode_with_request_ms": 5389.376000000077,
+          "decode_without_request_ms": 0.0,
+          "host_control_or_uninstrumented_wait_ms": 4.089768999827356,
+          "total_ms": 19502.957155
+        },
+        "postfirst_decisions": {
+          "completion_conflict": 31,
+          "completion_decode": 98,
+          "completion_prefill": 31
+        },
+        "postfirst_queue_latest_start": {
+          "count": 160,
+          "already_late": 31,
+          "min_laxity_ms": -276.987122,
+          "median_laxity_ms": 3410.463278
+        },
+        "actual_B_hist": {
+          "16": 1,
+          "15": 11,
+          "14": 18,
+          "13": 41,
+          "12": 18,
+          "9": 2,
+          "8": 9
+        },
+        "client_metric_bookkeeping_correction_ms": -0.32059899998057517
+      }
+    },
+    {
+      "formal_traceOFF": {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 45,
+        "TTFT_ms": 3694.621859,
+        "TPOT_ms": 50.32757131702544,
+        "start_ns": 1792260013669558104,
+        "conversation_id": "session_000052",
+        "native_match_count": 1,
+        "native_id": 54,
+        "end_difference_ms": 0.6976,
+        "first_token_epoch_difference_ms": 0.4032,
+        "own_prefill_ms": 909.503164,
+        "native_TTFT_minus_own_prefill_ms": 2783.8230270000004,
+        "native_shared_decode_per_output_ms": 16.507189275929544,
+        "postfirst_remainder_ms": 33.8203820410959,
+        "rounds": 171,
+        "accepted": 340,
+        "drafted": 517,
+        "fallback": 0,
+        "committed_per_spec_round": 2.9883040935672516,
+        "accepted_per_position": [
+          147,
+          112,
+          81,
+          0,
+          0
+        ]
+      },
+      "diagnostic": {
+        "arrival_rank": 45,
+        "conversation_id": "session_000052",
+        "client_start_ms": 52305.172423,
+        "client_first_ms": 56002.812123,
+        "client_end_ms": 81670.133063,
+        "TTFT_ms": 3697.6396999999997,
+        "TPOT_ms": 50.22959088062622,
+        "trace_matches": 1,
+        "engine_id": 55,
+        "first_epoch_difference_ms": 0.14562700000533368,
+        "end_epoch_difference_ms": 0.613190999996732,
+        "prefill_tokens": 8192,
+        "decode_committed": 511,
+        "decode_rounds": 170,
+        "admission_queue_ms": 2787.5797049999965,
+        "TTFT_stages": {
+          "own_prefill_ms": 909.8106880000123,
+          "competing_prefill_ms": 1812.1676430000007,
+          "shared_decode_with_request_ms": 0.0,
+          "decode_without_request_ms": 974.7886649999855,
+          "host_control_or_uninstrumented_wait_ms": 0.8727040000012494,
+          "total_ms": 3697.6396999999997
+        },
+        "postfirst_stages": {
+          "own_prefill_ms": 0.0,
+          "competing_prefill_ms": 17277.53764400001,
+          "shared_decode_with_request_ms": 8383.753472000019,
+          "decode_without_request_ms": 0.0,
+          "host_control_or_uninstrumented_wait_ms": 6.029823999968357,
+          "total_ms": 25667.320939999998
+        },
+        "postfirst_decisions": {
+          "completion_prefill": 35,
+          "completion_decode": 170,
+          "completion_conflict": 41
+        },
+        "postfirst_queue_latest_start": {
+          "count": 246,
+          "already_late": 33,
+          "min_laxity_ms": -160.56699,
+          "median_laxity_ms": 985.6583069999999
+        },
+        "actual_B_hist": {
+          "12": 12,
+          "11": 2,
+          "10": 43,
+          "9": 39,
+          "14": 27,
+          "13": 5,
+          "8": 40,
+          "7": 1,
+          "6": 1
+        },
+        "client_metric_bookkeeping_correction_ms": 0.0
+      }
+    }
+  ],
+  "all_decisions": {
+    "completion_prefill": 279,
+    "completion_decode": 897,
+    "completion_conflict": 257
+  },
+  "expired_completion_observations": {
+    "counts": {
+      "choices_with_active_fixed512": 1433,
+      "choices_with_at_least_one_expired_completion": 377
+    },
+    "choices_with_expired": {
+      "completion_conflict": 151,
+      "completion_decode": 226
+    },
+    "scope": "Observed lifecycle deadlines first+511*40ms only; not proof that expired row determined policy min-laxity."
+  },
+  "all_queue_latest_start": {
+    "count": 1433,
+    "already_late": 292
+  },
+  "limitations": [
+    "Unit intervals are synchronized executor host wall spans, not GPU-exclusive durations or occupancy.",
+    "Residual combines CPU/control/HTTP, uninstrumented waiting, and explicitly retained sub-ms client metadata-versus-latency-metric bookkeeping correction; physical unit spans and joins are unchanged.",
+    "completion_conflict/queue counts refer to global decisions during each request window, not a logged per-request cost-model view.",
+    "TraceON changes timing and closed-loop histories even with same inputs; formal_traceOFF tail comparisons are diagnostic only.",
+    "Only unique absolute first/end epochs within pre-existing5ms join threshold accepted; unknown retained."
+  ]
+}

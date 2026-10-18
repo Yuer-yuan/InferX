@@ -1,0 +1,44 @@
+{
+  "reviewed_at": "2026-10-16T19:33:22.017739+00:00",
+  "scope": "Root independent fixed-binary static K1 raw pilot and unchanged K3 input/config audit",
+  "run": "a8-v2-c8-native8-k1-r1",
+  "offered_C": 8,
+  "native_cap": 8,
+  "draft_tokens": 1,
+  "requests": 24,
+  "warmup": 4,
+  "dataset_seed": 20261016,
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "ttft_p95_ms": 11041.192780349995,
+  "tpot_p95_ms": 41.20958946712328,
+  "official_output_tok_s": 165.8686762604853,
+  "joint_slo": false,
+  "errors": 0,
+  "all8192_512": true,
+  "native29_cold": true,
+  "cleanup_reaped": true,
+  "generated_inputs_equal_except_only_cache_salt": true,
+  "argv_differences_only_draft_window_and_logpath": true,
+  "violations": [
+    {
+      "arrival_rank": 1,
+      "TTFT_ms": 1604.295402,
+      "TPOT_ms": 61.06144078473581
+    },
+    {
+      "arrival_rank": 6,
+      "TTFT_ms": 11263.974032999999,
+      "TPOT_ms": 41.599469667318985
+    },
+    {
+      "arrival_rank": 8,
+      "TTFT_ms": 12876.187278,
+      "TPOT_ms": 18.25920390998043
+    }
+  ],
+  "later16_individual_violations": 0,
+  "actual_committed_decode_per_round_mean": 1.8997999607329827,
+  "actual_committed_decode_per_round_min": 1.6590909090909092,
+  "qualification": "Failed24-request pilot retained. All violations are in initial8, insufficient to establish steady-state stability. A subsequently amended100+8 selection is distinct, with no parameter changes or discarded startup; independent seed51 required after pass."
+}

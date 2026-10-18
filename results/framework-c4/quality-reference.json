@@ -1,0 +1,110 @@
+{
+  "comparison_target": "Qwen3.8-27B基准测试.md",
+  "comparison_target_sha256": "fd4fd21834edba676d5a30f44e5e29cad37da5232ac42b594cd3b19e6052538d",
+  "question": "Compare our measured accuracy with the contest document reference, not general upstream model-card claims.",
+  "document_reference": {
+    "dataset": "IFBench",
+    "limit": 100,
+    "eval_batch_size": 2,
+    "explicit_generation_config": {
+      "max_tokens": 32768
+    },
+    "rows": [
+      {
+        "column": 1,
+        "label": "Qwen3.8-27B-FP8 (With MTP)",
+        "score": "encounter infinite thought loop"
+      },
+      {
+        "column": 2,
+        "label": "Qwen3.8-27B-FP8 (Without MTP)",
+        "score": 0.8
+      },
+      {
+        "column": 3,
+        "label": "Qwen3.8-27B (With MTP)",
+        "score": 0.76
+      },
+      {
+        "column": 4,
+        "label": "Qwen3.8-27B-FP8 (Without MTP)",
+        "score": 0.76
+      }
+    ],
+    "unresolved": [
+      "Columns2and4 have the same model/MTP label but different scores.",
+      "The score metric is not named strict/loose/prompt/instruction.",
+      "EvalScope version, exact dataset revision/input hashes, thinking setting and effective sampling defaults are not supplied.",
+      "The unqualified Qwen3.8-27B label does not by itself establish a weight precision."
+    ]
+  },
+  "our_frozen_baseline": {
+    "source": "results/ninfer-performance/official-r1/",
+    "quantization": "NInfer v2 mixed Q4/Q5",
+    "mtp_draft_tokens": 4,
+    "thinking": false,
+    "sampling": "greedy, temperature0",
+    "dataset": "IFBench",
+    "limit": 100,
+    "eval_batch_size": 2,
+    "explicit_generation_config": {
+      "max_tokens": 32768
+    },
+    "evalscope_version": "1.13.0",
+    "scores": {
+      "prompt_level_strict": {
+        "passed": 55,
+        "count": 100,
+        "value": 0.55
+      },
+      "inst_level_strict": {
+        "passed": 65,
+        "count": 111,
+        "value": 0.5855855855855856
+      },
+      "prompt_level_loose": {
+        "passed": 55,
+        "count": 100,
+        "value": 0.55
+      },
+      "inst_level_loose": {
+        "passed": 66,
+        "count": 111,
+        "value": 0.5945945945945946
+      }
+    }
+  },
+  "interpretation": {
+    "same_benchmark_and_explicit_settings": true,
+    "same_quantization_and_serving_configuration": false,
+    "same_reported_score": false,
+    "can_attribute_gap_to_quantization_or_mtp": false,
+    "can_assert_failure_of_a_published_numeric_accuracy_cutoff": false,
+    "reason": "Scoring-rules document requires acceptable output quality but does not specify a numeric IFBench cutoff or point-conversion formula."
+  },
+  "metric_definitions": {
+    "prompt_level_strict": "Fraction of prompts for which every tested instruction passes the strict verifier.",
+    "inst_level_strict": "Pooled fraction of all individual instructions passing the strict verifier.",
+    "prompt_level_loose": "Fraction of prompts for which all instructions pass the relaxed response-variant checks.",
+    "inst_level_loose": "Pooled fraction of individual instructions passing the relaxed checks.",
+    "category": "All four are answer-quality metrics on the same benchmark responses, distinct from serving latency/throughput."
+  },
+  "our_input_identity": {
+    "source": "results/ninfer-performance/official-r1/runs/official-r1/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl",
+    "source_sha256": "9cdd76859d768adeab4b880f30a574b756e3bc508d88c0ea62f4e6a4a8181e5a",
+    "canonical_sha256": "7f8b8adbf9b4234ac188cf62b52613e0068ca46eccaf1658cf550b234f4e4f04",
+    "canonicalization": "Sort by index; assert prediction messages roles=[user,assistant]; drop generated final assistant; retain index, input messages(role/content), full metadata; assert user content equals metadata.prompt; JSON ensure_ascii=False, sort_keys=True, separators comma/colon; UTF8 without newline.",
+    "samples": 100
+  },
+  "comparison_source": "Working copy rechecked at integration preparation; now byte-identical to committed source at 5285c54006310b693fc679a19ca979b74052b15e.",
+  "committed_source_reference": {
+    "commit": "5285c54006310b693fc679a19ca979b74052b15e",
+    "sha256": "fd4fd21834edba676d5a30f44e5e29cad37da5232ac42b594cd3b19e6052538d",
+    "difference": "None at latest capture. Earlier external whitespace-only difference preserved in earlier_capture."
+  },
+  "earlier_capture": {
+    "sha256": "2a932dfe7ff238daec9d92ad8d16c51a4030bbce30ca4c50e1b8b75b83a680d4",
+    "source": "Working copy at capture; existing external performance-table whitespace changes preserved.",
+    "change": "External whitespace-only edits subsequently disappeared; root never wrote the source document."
+  }
+}

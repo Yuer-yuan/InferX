@@ -1,0 +1,55 @@
+# 自动生成的成绩与证据索引
+
+更新时间：2026-10-17 22:25 +08:00。滚动材料快照，尚非最终发布冻结。
+
+| 配置/节点 | 版本 | N/预热 | TTFT P95(s) | TPOT P95(ms) | E2E P95(s) | tok/s | 两项SLO |
+|---|---|---:|---:|---:|---:|---:|---|
+| 旧ZIP C1/ucloud1 | b604d050 | 100/8 | 3.455 | 9.009 | 8.054 | 73.593 | 通过 |
+| 旧ZIP C2/ucloud1 | b604d050 | 100/8 | 3.562 | 22.506 | 15.048 | 92.089 | 通过 |
+| 旧ZIP C4/ucloud1 | b604d050 | 100/8 | 6.998 | 45.930 | 27.422 | 94.612 | 未通过 |
+| 旧ZIP C8/ucloud1 | b604d050 | 100/8 | 13.861 | 90.660 | 53.280 | 103.309 | 未通过 |
+| FFN S4 C8/ucloud3 | a3326323 | 128/8 | 7.532 | 33.309 | 23.018 | 223.454 | 通过 |
+| FFN S4 C32/ucloud1 | c3f48207 | 128/8 | 29.324 | 122.117 | 74.832 | 305.910 | 未通过 |
+| 加输入 S4 C32/ucloud1 | 40b3e867 | 128/8 | 24.887 | 109.107 | 67.263 | 352.410 | 未通过 |
+| 加输出 S4 C32/ucloud1 | 9270f73e | 128/8 | 23.695 | 101.157 | 64.528 | 363.577 | 未通过 |
+| output47 C12/ucloud3 | 9270f73e | 128/8 | 9.500 | 37.340 | 25.616 | 284.746 | 通过 |
+| output47 C16/ucloud3 | 9270f73e | 128/8 | 9.934 | 51.703 | 35.104 | 307.148 | 未通过 |
+| 加 down053 C16/ucloud3 | dc99ec83 | 128/8 | 9.908 | 54.113 | 34.878 | 311.478 | 未通过 |
+
+上表分组/版本不同；只有明确标注的同机同payload增量对照才支持该增量的描述，不作为普遍加速倍数。扩展128请求不是ZIP默认100请求。
+
+| 质量版本 | prompt strict | inst strict | prompt loose | inst loose | 错误/空final/length |
+|---|---:|---:|---:|---:|---|
+| 全FFN S4 / c3f48207 | 82.00% | 83.78% | 86.00% | 87.39% | 0/2/1 |
+| 加输入 S4 / 40b3e867 | 86.00% | 87.39% | 90.00% | 90.99% | 0/1/0 |
+
+均为IFBench原前100、111指令、C2、max32768、默认thinking及模型采样。质量不自动覆盖其他binary或高batch路由。
+
+## 工作量口径
+
+三个ledger共 347 条逐ledger去除完全重复行后的记录；包含CPU、算子、整模型和审计，不等于独立成功GPU实验次数。
+
+## 可追溯来源
+
+- zip-c1：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c1/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c2：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c2/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c4：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c4/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c8：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c8/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- s4-c8：[汇总](../../results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate/c8/summary.json)；binary `a33263234e03c0b3607136d9a4e8722fe71cb6978e4c1171ddaf9a0216ae6129`；original summary + all client records recomputed。
+- s4-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate/c32/summary.json)；binary `c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209`；original summary + all client records recomputed。
+- input-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-input-allphase-K3-n128-r1/summary.json)；binary `40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853`；original summary only。
+- output-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/run/candidate/c32/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- output-c12：[汇总](../../results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate/c12/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- output-c16：[汇总](../../results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate/c16/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- down-c16：[汇总](../../results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate/c16/summary.json)；binary `dc99ec83f504723667f03e06c732e01cae92d36e62b63d0e49f1ac79ad694424`；original summary + all client records recomputed。
+- ffn-quality：[汇总](../../results/three-node-optimization/ucloud3/c32-current-official100-001/final-raw/CPU-score-001/summary.json)；binary `c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209`；原版verifier复核汇总。
+- input-quality：[汇总](../../results/three-node-optimization/ucloud2/true-int4-input-allphase-quality-preparation-050/terminal-evidence-001/CPU-score-001/summary.json)；binary `40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853`；原版verifier复核汇总。
+
+## 本次整理的边界
+
+- 正在更新的材料快照，尚非最终提交版本；新结果须审阅后注册。
+- 最新完整质量为40b3的86/100；output47/9270质量取消时仅5条，不可拼成联合验收。
+- C12只有一次128请求通过证据；C16/C32延迟仍未达标。
+- input-c32当前注册来源只有原版汇总，本工具没有该条本地逐请求重算证据；其余有raw的行逐条重算。
+- 工作量为ledger记录口径，包含CPU/算子/整模/审计；不是独立GPU实验数。
+- 新增W4A4缓存与私有源码还需最终发布归档，旧baseline release包不覆盖本轮新增路径。

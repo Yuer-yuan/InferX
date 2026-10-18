@@ -1,0 +1,205 @@
+{
+  "strict_row_only": {
+    "framework": "sglang",
+    "folder": "results/framework-c4/sglang/official-performance/04-c8-n24-s45",
+    "status": "fail",
+    "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+    "issues": [
+      "formal endpoints not bracketed strictly before and after"
+    ],
+    "inputs": {
+      "profile": {
+        "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/profile_export.jsonl",
+        "stored_bytes": 244728,
+        "uncompressed_bytes": 244728,
+        "sha256_stored": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca",
+        "sha256_uncompressed": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca"
+      },
+      "gpu_csv": {
+        "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/gpu.csv.gz",
+        "stored_bytes": 2925,
+        "uncompressed_bytes": 40007,
+        "sha256_stored": "cee51ae5abec69c044337b746a723395b5bf8bae5295bb329053abe0f458f888",
+        "sha256_uncompressed": "94c07657606d39fbe1af0b905195691d256992e282861f85e3a01521240cc291"
+      }
+    },
+    "formal_window": {
+      "request_start_ns_min": 1792157318631291320,
+      "request_end_ns_max": 1792157529830973290,
+      "duration_s": 211.19968197,
+      "profiling_records": 24
+    },
+    "coverage": {
+      "total_samples": 293,
+      "formal_window_samples": 212,
+      "first_sample_ns": 1792157237658000000,
+      "last_sample_ns": 1792157529751000000,
+      "observed_uuids": [
+        "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+      ],
+      "timestamps_strictly_increasing": true,
+      "max_gap_s": 1.007,
+      "max_allowed_gap_s": 5,
+      "endpoint_brackets": {
+        "start": {
+          "before_ns": 1792157317693000000,
+          "after_ns": 1792157318693000000
+        },
+        "end": {
+          "before_ns": 1792157529751000000,
+          "after_ns": null
+        }
+      }
+    },
+    "observed_point_statistics": {
+      "memory_used_mib": {
+        "count": 212,
+        "min": 47229.0,
+        "max": 47229.0,
+        "point_mean": 47229.0
+      },
+      "gpu_utilization_percent": {
+        "count": 212,
+        "min": 95.0,
+        "max": 100.0,
+        "point_mean": 99.88679245283019
+      },
+      "power_w": {
+        "count": 212,
+        "min": 343.73,
+        "max": 450.68,
+        "point_mean": 366.89033018867923
+      },
+      "temperature_c": {
+        "count": 212,
+        "min": 61.0,
+        "max": 71.0,
+        "point_mean": 63.386792452830186
+      },
+      "sm_clock_mhz": {
+        "count": 212,
+        "min": 2445.0,
+        "max": 2670.0,
+        "point_mean": 2640.495283018868
+      }
+    }
+  },
+  "combined_existing_traces": {
+    "framework": "sglang",
+    "folder": "results/framework-c4/sglang/official-performance/04-c8-n24-s45",
+    "status": "pass",
+    "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+    "issues": [],
+    "inputs": {
+      "profile": {
+        "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/profile_export.jsonl",
+        "stored_bytes": 244728,
+        "uncompressed_bytes": 244728,
+        "sha256_stored": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca",
+        "sha256_uncompressed": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca"
+      },
+      "gpu_csv": {
+        "filename": "results/framework-c4/sglang-c8-gpu-boundary-union.csv",
+        "stored_bytes": 40140,
+        "uncompressed_bytes": 40140,
+        "sha256_stored": "1eb0af620e8af50b6132c8b2c9d889374916c87c4202fd31f6d019bedad1d892",
+        "sha256_uncompressed": "1eb0af620e8af50b6132c8b2c9d889374916c87c4202fd31f6d019bedad1d892"
+      }
+    },
+    "formal_window": {
+      "request_start_ns_min": 1792157318631291320,
+      "request_end_ns_max": 1792157529830973290,
+      "duration_s": 211.19968197,
+      "profiling_records": 24
+    },
+    "coverage": {
+      "total_samples": 294,
+      "formal_window_samples": 212,
+      "first_sample_ns": 1792157237658000000,
+      "last_sample_ns": 1792157531654000000,
+      "observed_uuids": [
+        "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+      ],
+      "timestamps_strictly_increasing": true,
+      "max_gap_s": 1.903,
+      "max_allowed_gap_s": 5,
+      "endpoint_brackets": {
+        "start": {
+          "before_ns": 1792157317693000000,
+          "after_ns": 1792157318693000000
+        },
+        "end": {
+          "before_ns": 1792157529751000000,
+          "after_ns": 1792157531654000000
+        }
+      }
+    },
+    "observed_point_statistics": {
+      "memory_used_mib": {
+        "count": 212,
+        "min": 47229.0,
+        "max": 47229.0,
+        "point_mean": 47229.0
+      },
+      "gpu_utilization_percent": {
+        "count": 212,
+        "min": 95.0,
+        "max": 100.0,
+        "point_mean": 99.88679245283019
+      },
+      "power_w": {
+        "count": 212,
+        "min": 343.73,
+        "max": 450.68,
+        "point_mean": 366.89033018867923
+      },
+      "temperature_c": {
+        "count": 212,
+        "min": 61.0,
+        "max": 71.0,
+        "point_mean": 63.386792452830186
+      },
+      "sm_clock_mhz": {
+        "count": 212,
+        "min": 2445.0,
+        "max": 2670.0,
+        "point_mean": 2640.495283018868
+      }
+    }
+  },
+  "original_sources": [
+    {
+      "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/gpu.csv.gz",
+      "stored_bytes": 2925,
+      "uncompressed_bytes": 40007,
+      "sha256_stored": "cee51ae5abec69c044337b746a723395b5bf8bae5295bb329053abe0f458f888",
+      "sha256_uncompressed": "94c07657606d39fbe1af0b905195691d256992e282861f85e3a01521240cc291"
+    },
+    {
+      "filename": "results/framework-c4/sglang/official-performance/05-c3-n24-s46/gpu.csv.gz",
+      "stored_bytes": 2681,
+      "uncompressed_bytes": 36471,
+      "sha256_stored": "3f0f936bbc0156ab53fd94a23e7ab27bdf5b55e397856ed33eed1596e6354243",
+      "sha256_uncompressed": "63bb5aa6fd96096c612ec012e98d282addd544aef68848c1465ccb78ad11d1a6"
+    },
+    {
+      "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/profile_export.jsonl",
+      "stored_bytes": 244728,
+      "uncompressed_bytes": 244728,
+      "sha256_stored": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca",
+      "sha256_uncompressed": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca"
+    }
+  ],
+  "missing_end_seconds": 0.07997329,
+  "adjacent_sample_gap_seconds": 1.903,
+  "supplemental_sample": {
+    "timestamp_ns": 1792157531654000000,
+    "uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+    "memory_used_mib": 47229.0,
+    "gpu_utilization_percent": 0.0,
+    "power_w": 135.57,
+    "temperature_c": 54.0,
+    "sm_clock_mhz": 2670.0
+  },
+  "interpretation": "Only the genuine first GPU sample from the next row is appended. No interpolation, synthetic sample, timing rerun or original-file edit. Strict row-only failure remains; union supplies the final boundary bracket without changing in-window point statistics."
+}

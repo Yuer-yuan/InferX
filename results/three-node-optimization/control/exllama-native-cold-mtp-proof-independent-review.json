@@ -1,0 +1,95 @@
+{
+  "reviewed_at": "2026-10-16T18:19:23.593843+00:00",
+  "scope": "Root independent raw nativeevents/sourcecaller review and coldID/cache/MTP/actualbatch checks; no GPU work",
+  "model_revision": "dfe2f4fd71bf9a1994051d4d47e6460fa96dd723",
+  "service_identity": {
+    "pid": 29869,
+    "proc_start_ticks": "39573274"
+  },
+  "proof_jobs": 10,
+  "all_exact_input_ids_8192": true,
+  "actual_input_sha256": "1ae5be657c2aeb70a73cd29fb1f2a1092033f30d82d308805c8f01ba8c901f2a",
+  "all_native_cached_tokens_and_pages_zero": true,
+  "native_output_counts": {
+    "16": 1,
+    "512": 1,
+    "256": 8
+  },
+  "actual_resolved_configuration": {
+    "max_batch": 8,
+    "token_capacity": 98304,
+    "num_draft_tokens": 4,
+    "mtp_draft": true,
+    "recurrent_cache_max_bytes": 0,
+    "cpu_kv_cache": false,
+    "disk_cache": false,
+    "target_cache_slots": 8,
+    "target_cache_layer_type": "CacheLayer_fp16",
+    "target_full_attention_layers": 16,
+    "target_recurrent_layers": 48,
+    "target_max_history": 4,
+    "target_recurrent": true,
+    "draft_caps": {
+      "supports_tp": false,
+      "attach_target": true,
+      "mtp_draft": true,
+      "default_draft_size": 4,
+      "autosplit_load_fwd": false
+    }
+  },
+  "actual_target_recurrent_batch_hist": {
+    "1": 194,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 1,
+    "8": 62
+  },
+  "firstjob_preanchor_target_forward_shapes": [
+    [
+      1,
+      2048
+    ],
+    [
+      1,
+      2048
+    ],
+    [
+      1,
+      2048
+    ],
+    [
+      1,
+      1792
+    ],
+    [
+      1,
+      255
+    ],
+    [
+      1,
+      5
+    ]
+  ],
+  "phase_accounting": {
+    "prefill_positions": 8191,
+    "initial_verify_width": 5,
+    "last_prompt_in_verify": 1,
+    "draft_verification_positions": 4,
+    "actual_prompt_total": 8192,
+    "all_target_positions_before_first_output": 8196
+  },
+  "phase_evidence": "Job.prefill writes through promptlen-1; Generator builds lastprompt+drafts from kv_position with recurrent_history. Actualnativeprefill progress2048/4096/6144/7936/8191 andwidth5firstverify confirmboundary. Positions are source+progress derived, notcaptured Model.forward kwargs.",
+  "original_failed_assertion_preserved": "sequence002 sum8196 incorrectlycounts4draftpositions asprompt; no cache/stat/modelchange inrecoverysequence003",
+  "observer_restored_before_performance": true,
+  "native_events_sha256": "cc6dc02cc14896a60ead6a90983151db325538af6baf19b2f76f2b977b467906",
+  "limitations": [
+    "Bounded10proofjobs only; not taskquality or formalcapacity",
+    "Raw SSE usage/realfirsttexttimestamps separately retained byworker; noTTFTrewrite",
+    "EOSallow supported byrawignore_eos payload andadapter/source stopcondition semantics; no claimthatallproofjobs emittedEOS",
+    "ChangedSC5bpwweights/activationarithmetic/FP16KV means candidatecombination comparison, notcausalframeworkranking"
+  ],
+  "conclusion": "Actualcold8192prompt, genuineMTP4 withrealB8 recurrentverify,512outputproofandobserveroff are supported. Original-helper pilots mayproceed on SAMEservice; C1/C4observed sofar do not establish betterSLOcapacity."
+}

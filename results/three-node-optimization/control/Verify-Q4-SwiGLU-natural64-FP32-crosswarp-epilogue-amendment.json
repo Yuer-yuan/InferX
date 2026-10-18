@@ -1,0 +1,9 @@
+{
+  "registered_at": "2026-10-16T23:45:48.631670+00:00",
+  "parent": "Verify-Q4-SwiGLU-natural64-A8-preregistration.json",
+  "observation": "OriginalSwiGluQ4Problem static_assertMT4 conflictsnatural64ConfigMT2. CPUsource barrier beforeanynewGPUdata. Preservefirstinstantiationfailureifalreadylaunched; no repeatunchangedbuild.",
+  "new_candidate": "Samegroup64A8matmulcore; opt-in math-closed cross-warp FP32 foldedSwiGLU epilogue fornatural64/nonpersistent only. NoBF16rawgate/uprounding, originalFP32SwiGLUfinalBF16 semantics.",
+  "design": "StageexactFP32raw128rowsx64tokens in releasedshared memory, barrier, pairrawrows separated32 withinfolded64rowgroups, computeSiLU(g)*u, vectorstoreBF16. LD132 consumes33792B, fits existing53760B nonpersistentshared aftermainloop complete; no prefetchnexttile. Thisrequiresproof, not currentGPUclaim.",
+  "phase": "CPUsource/layout/barrier/lifetime/capacity/exactoriginalpath proof only; Rootreviewbeforebuildnewkernel/GPU.",
+  "unchanged": "SingleT20/24/28/32candidate andoriginalnumeric/graphwholeOptiming/gaincriteria. NoC128/persistent/K7/fusiongrid orproductionedit."
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/post_install_owner.py", line 22, in <module>
+    run('old-vs-new-environment-comparison',[R/'envs/build/bin/python',R/'compare_environments.py'])
+  File "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/post_install_owner.py", line 12, in run
+    rc=active.child.returncode;cleanup=active.stop();active=None;j['steps'].append(dict(name=name,argv=[str(x)for x in argv],exit_code=rc,cleanup=cleanup));write_json(J,j);assert rc==0,name
+AssertionError: old-vs-new-environment-comparison

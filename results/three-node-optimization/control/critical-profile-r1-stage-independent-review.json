@@ -1,0 +1,360 @@
+{
+  "reviewed_at": "2026-10-16T17:06:28.813425+00:00",
+  "source_archive": "results/three-node-optimization/ucloud1/profiling/critical-r1-complete.tar.gz",
+  "archive_sha256": "ad3f8d37fe54898e651e0dbc2bfe37d74ce4a59724e7fdbf539332b5f338b59b",
+  "scope": "CPU-only archived actualrequest/scheduler/nsys review; reviewed worker parser re-executed in coordinator tmp copy, independent rowwork/weightedtails/SQLruntime-NVTX association recomputed",
+  "results": [
+    {
+      "C": 5,
+      "requests_uniquely_associated": 24,
+      "association_method": "reviewed end/duration/TTFT unique temporal match; not exactheader-ID equality",
+      "row_work511_recomputed": true,
+      "ttft_p95_same_requests": {
+        "native_requests": [
+          17,
+          13
+        ],
+        "arrival_ranks": [
+          9,
+          5
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.1339874999999998,
+          "queue": 8689.168976971503,
+          "own_prefill": 2250.5841448277233,
+          "interleaved_shared_decode": 0.0,
+          "control_residual": 0.16858576238155365
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 339.1307072997141,
+          "own_shared_decode_rounds": 8177.447988852854,
+          "control_or_nonmember_residual": 5.9788981437683,
+          "native_vs_trace_finish_residual": 0.006426203664977969
+        },
+        "client_percentile": 10942.819810449995
+      },
+      "tpot_p95_same_requests": {
+        "native_requests": [
+          9,
+          18
+        ],
+        "arrival_ranks": [
+          1,
+          10
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.07776649999999995,
+          "queue": 7673.893658345918,
+          "own_prefill": 2258.172806546092,
+          "interleaved_shared_decode": 0.0,
+          "control_residual": 0.14340250790119174
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 9041.443871629239,
+          "own_shared_decode_rounds": 9056.340356487035,
+          "control_or_nonmember_residual": 3.2481786578893708,
+          "native_vs_trace_finish_residual": 0.00457662583939964
+        },
+        "client_percentile": 35.422809610078275,
+        "after_first_parts_request_average_ms_per_token": {
+          "competing_prefill": 17.69362792882434,
+          "own_shared_decode_rounds": 17.722779562596937,
+          "control_or_nonmember_residual": 0.006356514007611293,
+          "native_vs_trace_finish_residual": 8.956214949901449e-06
+        }
+      },
+      "trace": {
+        "kernel_count": 262990,
+        "kernel_sum_ms": 29551.725581,
+        "kernel_union_ms": 29520.293431,
+        "runtime_correlation_match_counts": {
+          "1": 262990
+        },
+        "launch_correlated_stage_kernel_ms": {
+          "non_graph_other_or_unattributed": 391.62449,
+          "other_graph_nodes": 13806.175168,
+          "prefill_launch_in_matching_thread_NVTX": 15353.925923
+        },
+        "monotonic_window_ms": [
+          390463055.476224,
+          390492992.126208
+        ],
+        "mixed_committed_progress_rounds_in_window": 266,
+        "mixed_progress_definition": "At leasttwo current member requests have different cumulative committed tokens before round; warmup and measured native rows represented.",
+        "scope_matching": "NVTX exactphase names, matchingruntime globalTid, prefixmax intervalends handlesnestedscopes; true correlationId join, no walloverlap guessing.",
+        "kernel_union_fraction_of_kernel_span": 0.9860920793333718
+      },
+      "p95_host_phase_capture_coverage": [
+        {
+          "phase": "ttft",
+          "native_request_id": 17,
+          "arrival_rank": 9,
+          "host_phase_duration_ms": 9292.882610023022,
+          "overlap_with_GPU_kernel_window_ms": 9292.882610023022,
+          "overlap_fraction": 1.0
+        },
+        {
+          "phase": "ttft",
+          "native_request_id": 13,
+          "arrival_rank": 5,
+          "host_phase_duration_ms": 11230.575665950775,
+          "overlap_with_GPU_kernel_window_ms": 0,
+          "overlap_fraction": 0.0
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 9,
+          "arrival_rank": 1,
+          "host_phase_duration_ms": 17855.43512803316,
+          "overlap_with_GPU_kernel_window_ms": 7109.387121021748,
+          "overlap_fraction": 0.39816375630409356
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 18,
+          "arrival_rank": 10,
+          "host_phase_duration_ms": 18144.373103022575,
+          "overlap_with_GPU_kernel_window_ms": 11534.411369025707,
+          "overlap_fraction": 0.6357018400985289
+        }
+      ]
+    },
+    {
+      "C": 6,
+      "requests_uniquely_associated": 24,
+      "association_method": "reviewed end/duration/TTFT unique temporal match; not exactheader-ID equality",
+      "row_work511_recomputed": true,
+      "ttft_p95_same_requests": {
+        "native_requests": [
+          14,
+          20
+        ],
+        "arrival_ranks": [
+          6,
+          12
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.05543265000000006,
+          "queue": 11282.390236929059,
+          "own_prefill": 2259.4949840396644,
+          "interleaved_shared_decode": 0.0,
+          "control_residual": 0.13850401043891916
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 0.0,
+          "own_shared_decode_rounds": 7107.340256997947,
+          "control_or_nonmember_residual": 1.163612475991251,
+          "native_vs_trace_finish_residual": 0.004620626066207478
+        },
+        "client_percentile": 13543.386874999998
+      },
+      "tpot_p95_same_requests": {
+        "native_requests": [
+          21,
+          10
+        ],
+        "arrival_ranks": [
+          13,
+          1
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.06687450000000017,
+          "queue": 175.95759684145702,
+          "own_prefill": 2246.2687127411364,
+          "interleaved_shared_decode": 115.11188580393954,
+          "control_residual": 0.19407301247119962
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 11251.577688339352,
+          "own_shared_decode_rounds": 9277.228938984868,
+          "control_or_nonmember_residual": 6.803603848814966,
+          "native_vs_trace_finish_residual": 0.004882026961240627
+        },
+        "client_percentile": 40.18705745929549,
+        "after_first_parts_request_average_ms_per_token": {
+          "competing_prefill": 22.0187430300183,
+          "own_shared_decode_rounds": 18.15504684732851,
+          "control_or_nonmember_residual": 0.01331429324621324,
+          "native_vs_trace_finish_residual": 9.553868808690072e-06
+        }
+      },
+      "trace": {
+        "kernel_count": 271921,
+        "kernel_sum_ms": 29418.041158,
+        "kernel_union_ms": 29389.727652,
+        "runtime_correlation_match_counts": {
+          "1": 271921
+        },
+        "launch_correlated_stage_kernel_ms": {
+          "other_graph_nodes": 15493.591854,
+          "non_graph_other_or_unattributed": 488.162717,
+          "prefill_launch_in_matching_thread_NVTX": 13436.286587
+        },
+        "monotonic_window_ms": [
+          390656745.883136,
+          390686550.710784
+        ],
+        "mixed_committed_progress_rounds_in_window": 269,
+        "mixed_progress_definition": "At leasttwo current member requests have different cumulative committed tokens before round; warmup and measured native rows represented.",
+        "scope_matching": "NVTX exactphase names, matchingruntime globalTid, prefixmax intervalends handlesnestedscopes; true correlationId join, no walloverlap guessing.",
+        "kernel_union_fraction_of_kernel_span": 0.9860727261722354
+      },
+      "p95_host_phase_capture_coverage": [
+        {
+          "phase": "ttft",
+          "native_request_id": 14,
+          "arrival_rank": 6,
+          "host_phase_duration_ms": 13483.594792962074,
+          "overlap_with_GPU_kernel_window_ms": 0,
+          "overlap_fraction": 0.0
+        },
+        {
+          "phase": "ttft",
+          "native_request_id": 20,
+          "arrival_rank": 12,
+          "host_phase_duration_ms": 13552.334712982178,
+          "overlap_with_GPU_kernel_window_ms": 13552.334712982178,
+          "overlap_fraction": 1.0
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 21,
+          "arrival_rank": 13,
+          "host_phase_duration_ms": 19439.19794100523,
+          "overlap_with_GPU_kernel_window_ms": 0,
+          "overlap_fraction": 0.0
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 10,
+          "arrival_rank": 1,
+          "host_phase_duration_ms": 20729.094752967358,
+          "overlap_with_GPU_kernel_window_ms": 9482.292899012566,
+          "overlap_fraction": 0.4574388323279376
+        }
+      ]
+    },
+    {
+      "C": 8,
+      "requests_uniquely_associated": 24,
+      "association_method": "reviewed end/duration/TTFT unique temporal match; not exactheader-ID equality",
+      "row_work511_recomputed": true,
+      "ttft_p95_same_requests": {
+        "native_requests": [
+          16,
+          24
+        ],
+        "arrival_ranks": [
+          8,
+          16
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.05806600000000013,
+          "queue": 15803.091310325264,
+          "own_prefill": 2258.6773400098086,
+          "interleaved_shared_decode": 0.0,
+          "control_residual": 0.16707417368888858
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 0.0,
+          "own_shared_decode_rounds": 10656.376930347082,
+          "control_or_nonmember_residual": 1.4937065392732611,
+          "native_vs_trace_finish_residual": 0.005507813639815137
+        },
+        "client_percentile": 18063.3721158
+      },
+      "tpot_p95_same_requests": {
+        "native_requests": [
+          26,
+          10
+        ],
+        "arrival_ranks": [
+          18,
+          1
+        ],
+        "ttft_parts_ms": {
+          "prepare": 0.12654949999999984,
+          "queue": 2803.201841521271,
+          "own_prefill": 2247.9472276538613,
+          "interleaved_shared_decode": 0.0,
+          "control_residual": 0.1535306006669998
+        },
+        "after_first_parts_ms": {
+          "competing_prefill": 13514.427859604359,
+          "own_shared_decode_rounds": 11984.07057240009,
+          "control_or_nonmember_residual": 7.944922426342965,
+          "native_vs_trace_finish_residual": 0.004340619205504483
+        },
+        "client_percentile": 49.91477708816047,
+        "after_first_parts_request_average_ms_per_token": {
+          "competing_prefill": 26.447021251671934,
+          "own_shared_decode_rounds": 23.452192900978652,
+          "control_or_nonmember_residual": 0.015547793397931439,
+          "native_vs_trace_finish_residual": 8.494362437386463e-06
+        }
+      },
+      "trace": {
+        "kernel_count": 181435,
+        "kernel_sum_ms": 29307.873549,
+        "kernel_union_ms": 29293.459855,
+        "runtime_correlation_match_counts": {
+          "1": 181435
+        },
+        "launch_correlated_stage_kernel_ms": {
+          "non_graph_other_or_unattributed": 377.850808,
+          "prefill_launch_in_matching_thread_NVTX": 17366.913078,
+          "other_graph_nodes": 11563.109663
+        },
+        "monotonic_window_ms": [
+          390845459.05536,
+          390875087.5328
+        ],
+        "mixed_committed_progress_rounds_in_window": 154,
+        "mixed_progress_definition": "At leasttwo current member requests have different cumulative committed tokens before round; warmup and measured native rows represented.",
+        "scope_matching": "NVTX exactphase names, matchingruntime globalTid, prefixmax intervalends handlesnestedscopes; true correlationId join, no walloverlap guessing.",
+        "kernel_union_fraction_of_kernel_span": 0.9886927168067269
+      },
+      "p95_host_phase_capture_coverage": [
+        {
+          "phase": "ttft",
+          "native_request_id": 16,
+          "arrival_rank": 8,
+          "host_phase_duration_ms": 17989.70137298107,
+          "overlap_with_GPU_kernel_window_ms": 3962.84334897995,
+          "overlap_fraction": 0.22028399842877813
+        },
+        {
+          "phase": "ttft",
+          "native_request_id": 24,
+          "arrival_rank": 16,
+          "host_phase_duration_ms": 18074.68296301365,
+          "overlap_with_GPU_kernel_window_ms": 13581.298635005951,
+          "overlap_fraction": 0.7513989961980223
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 26,
+          "arrival_rank": 18,
+          "host_phase_duration_ms": 25061.87968301773,
+          "overlap_with_GPU_kernel_window_ms": 0,
+          "overlap_fraction": 0.0
+        },
+        {
+          "phase": "after_first",
+          "native_request_id": 10,
+          "arrival_rank": 1,
+          "host_phase_duration_ms": 25584.8957670331,
+          "overlap_with_GPU_kernel_window_ms": 16043.484023988247,
+          "overlap_fraction": 0.6270685708503356
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Profilelatenciesare diagnostic only andmayperturb scheduling; do notpromote as unprofiledperformance.",
+    "Synchronizedhoststageintervalsare distinctfromGPUkernel sum andexclusiveperrequestGPUtime.",
+    "Matching-thread runtimecorrelation scopes classifylaunch origin; kernelscanexecuteaftertheirCPUrangeends. Graph categorydoesnotreplaceverify/draft marker partition.",
+    "No DRAMhardwarecounter roofline; no individualrequestkernelassociation claimed bymere walltime overlap.",
+    "Fullhosttrace reconstructs24-requestP95;30sGPUcapture coverspartialorzero intervals ofsomeP95requests. Per-P95 requestcapture fractions are reported; window-levelkernelcostsnotclaimedasfulltailkernelbreakdown."
+  ]
+}

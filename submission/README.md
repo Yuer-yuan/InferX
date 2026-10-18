@@ -1,32 +1,37 @@
-# InferX · 赛道 A 提交材料
+# InferX · 赛道 A 参赛材料
 
-**当前状态：两机基线及原版完整评测已完成，最终提交验收仍有待办。最高吞吐103.31 tok/s；满足两项延迟SLO的最高吞吐92.09 tok/s；IFBench prompt strict/loose55%。**
+当前进展：100版本C4/C8/C12/C13及两轮C14通过联合延迟SLO；C14使用14客户端、13执行槽。同版独立评测105的原100题严格85/100、宽松88/100。最新[结果与配置](track-a/selected-results.md)和[100入口](../demo/selected100/README.md)独立于下面保留的历史证据索引；从完整源码构建并重新评测见[中文指南](track-a/reproduction.md) / [English guide](track-a/reproduction-en.md)。 独立源码重建664已完成旧缓存C14复验（9.896s / 38.286ms、304.897 tok/s）及原100质量（90/96，1个截断空回答）；历史成绩与新复验独立记录。所有包、结果与获取方式以[唯一交付入口](DELIVERY.md)为准。
 
-参赛方案：单卡 Qwen3.8-27B 推理部署、NInfer/MTP 调优及长上下文并发瓶颈分析。公共工具可用于类似 Linux/CUDA 机器；本轮节点名为 ucloud1/2，各单张 48GB RTX 4090，一台测评、一台备用。此前 vlm-server 的单卡 24GB 实验用于解释方案选择。仓库：https://github.com/Yuer-yuan/InferX ，统一开发分支为 `main`。
+**队名：你说啥都队。成员：陈文欣、张志雄、郭坤昌。**
 
-| 交付物 | 位置 | 当前状态 |
-|---|---|---|
-| 原始评分规则、参考基准、评测包 | 仓库根目录两份 MD、eval.zip；[输入校验清单](input-manifest.json) | 已归档，原文保留 |
-| 官方评测工具 | [原版说明](organizer/README.md)、[入口](organizer/run.sh)、[runner](organizer/runner.py) | 从 ZIP 原样提取，不修改 |
-| 模型选型与部署说明 | [复现说明](REPRODUCE.md)、[模型版本清单](model-manifest.json) | 两机相同冻结配置就绪，消融与完整评测已完成 |
-| Benchmark 与性能分析 | [证据及成绩表](BENCHMARK.md)、[评测口径](PROTOCOL.md) | 四档各100及IFBench100已补；GPU覆盖缺口明确保留 |
-| 优化方案、消融、失败案例 | [本轮性能与瓶颈](../docs/reports/2026-10-16-ninfer-performance.md)、[长上下文](../docs/reports/2026-10-14-concurrency-roofline.md)、[长短混合策略](../docs/reports/2026-10-15-pd-strategies.md) | 已有研究数据，适用范围见报告 |
-| 约 8 页答辩展示 | [离线 HTML 草稿](slides.html) | 正式数据已填；队员分工、投屏彩排待补 |
-| 现场 Demo、备用录屏 | [3 分钟演示步骤](REPRODUCE.md#现场-demo) | 步骤已备；实机彩排、录屏待做 |
-| 全部源码、配置及必要原始结果 | 本仓库固定提交；发布时生成 `artifacts/` 下源码快照与 Git bundle | 生成方法见复现说明；模型权重用精确下载方式交付 |
-| 节点与部署证据 | [两机盘点](../results/ninfer-performance/inventory/)、[构建及接口核验](../results/ninfer-performance/preparation/) | 相同权重/构建、完整客户端环境已就绪 |
-| 待办和提交验收 | [TODO](TODO.md)、[本轮检查记录](VALIDATION.md) | TODO 是提交前唯一验收清单 |
+InferX 面向单张 48GB RTX 4090 上的 Qwen3.8-27B 推理，基于 NInfer-4090 改进量化算子、批处理和调度，并结合上游 MTP 投机解码提升性能。测试同时记录请求延迟、输出吞吐与任务质量。
 
-按评分维度安排材料：
+建议先看[答辩 PDF](basic/presentation/main.pdf)了解整体方案，再读按相同八章组织的[技术报告](track-a/README.md)，需要核对结果时查看[Benchmark](track-a/benchmark.md)及[实验索引](track-a/experiment-index.md)。需要重新运行项目时，从[复验步骤](track-a/reproduction.md)开始，按所选结果恢复对应版本和配置。
 
-| 分项 | 分值 | 主要材料与补齐重点 |
-|---|---:|---|
-| 模型与方案选型 | 10 | 模型来源/量化精确版本、显存预算、48GB 上选择该方案的依据 |
-| 推理优化思路与创新性 | 40 | 瓶颈诊断、MTP/并发/上下文取舍、同条件消融；区分上游机制和本项目工程贡献 |
-| 推理结果评估 | 25 | UCloud 正式四档压测、IFBench 100、任务质量与失败案例、显存和稳定性 |
-| 工程与复现 | 10 | 从干净目录部署、锁定环境、源码快照、权重校验、原始结果 |
-| 答辩表现 | 15 | 5 分钟汇报、3 分钟真实 Demo、7 分钟问答与成员分工 |
+## 基础材料
 
-提交前先完成 [TODO 的 P0](TODO.md#p0正式提交前必须完成)。目录中的未测项目不填估算数；参考基准的 80%/76% 也不是本项目成绩。
+| 材料 | 文件 |
+|---|---|
+| 项目介绍 | [项目README](basic/README.md) |
+| 答辩展示 | [中文 PDF](basic/presentation/InferX-ZH.pdf) / [English PDF](basic/presentation/InferX-EN.pdf)、[Typst 与实时预览](basic/presentation/README.md) |
+| 运行演示 | [现场性能评测命令](basic/demo.md) |
+| 汇报与问答 | [讲稿与答辩准备](basic/defense-notes.md) |
+| 代码仓库 | [InferX](https://github.com/Yuer-yuan/InferX)、[代码README](../README.md) |
 
-评分规则写“本周日上午 10:30”，未给绝对日期。按本次整理日 2026-10-16 推算可能为 **2026-10-18 10:30（Asia/Shanghai）**，该日期仅为推断，须向主办方确认。
+## 赛道 A 专项材料
+
+| 材料 | 文件 |
+|---|---|
+| 模型选型说明 | [模型与方案选型](track-a/model-selection.md) |
+| 部署与配置说明 | [环境、参数与启动](track-a/deployment.md) |
+| Benchmark测试报告 | [测试报告](track-a/benchmark.md)、[成绩及原始证据](track-a/generated-results.md) |
+| 优化方案说明 | [核心机制与工程工作](track-a/optimization.md) |
+| 性能优化分析 | [前后对比、资源与取舍](track-a/performance-analysis.md) |
+| 完整复验说明 | [源码、模型、缓存与复测](track-a/reproduction.md) |
+| 评分维度映射 | [评分与证据对应表](track-a/scoring-matrix.md) |
+
+## 评测证据
+
+从[成绩与证据索引](track-a/generated-results.md)选择一项结果，可以找到其汇总与版本标识；[来源及配置清单](track-a/data/sources.json)进一步列出逐请求数据、运行配置和日志位置。[原版评测器](organizer/README.md)用于复测，[文件校验清单](track-a/evidence-manifest.json)用于检查材料引用的文件是否一致。
+
+各项性能与质量结果分别对应实际运行版本、协议和样本量。源码版本、模型版本及具体运行开关见[复验说明](track-a/reproduction.md)和[部署配置](track-a/deployment.md)。

@@ -1,0 +1,31 @@
+test_content_hash_is_new_not_old (test_bind_fresh_caches.BindingTests.test_content_hash_is_new_not_old) ... ok
+test_existing_output_cannot_be_overwritten (test_bind_fresh_caches.BindingTests.test_existing_output_cannot_be_overwritten) ... ok
+test_full_cli_fixture_generates_loadable_isolated_contract (test_bind_fresh_caches.BindingTests.test_full_cli_fixture_generates_loadable_isolated_contract) ... ERROR
+test_full_mask_not_allowed_for_other_caches (test_bind_fresh_caches.BindingTests.test_full_mask_not_allowed_for_other_caches) ... ok
+test_full_mask_projects_only_selected (test_bind_fresh_caches.BindingTests.test_full_mask_projects_only_selected) ... ok
+test_invalid_source_identity_rejected (test_bind_fresh_caches.BindingTests.test_invalid_source_identity_rejected) ... ok
+test_known_fit_auxiliaries_are_ignored (test_bind_fresh_caches.BindingTests.test_known_fit_auxiliaries_are_ignored) ... ok
+test_metadata_outside_weight_dirs_allowed (test_bind_fresh_caches.BindingTests.test_metadata_outside_weight_dirs_allowed) ... ok
+test_missing_file_rejected (test_bind_fresh_caches.BindingTests.test_missing_file_rejected) ... ok
+test_new_recipe_has_no_old_result_or_receipts (test_bind_fresh_caches.BindingTests.test_new_recipe_has_no_old_result_or_receipts) ... ok
+test_unknown_layer_rejected (test_bind_fresh_caches.BindingTests.test_unknown_layer_rejected) ... ok
+test_unknown_payload_rejected (test_bind_fresh_caches.BindingTests.test_unknown_payload_rejected) ... ok
+test_unsafe_recipe_id_rejected (test_bind_fresh_caches.BindingTests.test_unsafe_recipe_id_rejected) ... ok
+test_wrong_size_rejected (test_bind_fresh_caches.BindingTests.test_wrong_size_rejected) ... ok
+
+======================================================================
+ERROR: test_full_cli_fixture_generates_loadable_isolated_contract (test_bind_fresh_caches.BindingTests.test_full_cli_fixture_generates_loadable_isolated_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yuer/mypro/InferX/results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/test_bind_fresh_caches.py", line 86, in test_full_cli_fixture_generates_loadable_isolated_contract
+    b.main(args)
+  File "/home/yuer/mypro/InferX/results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/bind_fresh_caches.py", line 107, in main
+    require('qualification=recipe.get("qualification",' in (package/'candidate_common.py').read_text(), 'Template must support explicit unmeasured qualification metadata')
+  File "/home/yuer/mypro/InferX/results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/bind_fresh_caches.py", line 14, in require
+    raise ValueError(message)
+ValueError: Template must support explicit unmeasured qualification metadata
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.150s
+
+FAILED (errors=1)

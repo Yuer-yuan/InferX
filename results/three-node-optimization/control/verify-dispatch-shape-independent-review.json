@@ -1,0 +1,103 @@
+{
+  "reviewed_at": "2026-10-16T16:53:32.890306+00:00",
+  "scope": "Independent actualgraph-node aggregation plus pinnedsource dispatch review, diagnosticcaptureonly",
+  "rows": [
+    {
+      "graph_id": "89",
+      "batch_from_record_gridY": 1,
+      "draft_window": 4,
+      "flat_verify_columns": 5,
+      "captured_rounds": 72,
+      "mean_graph_kernel_ms_per_round": 25.63321690277778,
+      "swiglu_small_mean_ms_per_round": 7.022849416666666,
+      "q5_small_mean_ms_per_round": 10.191649513888889
+    },
+    {
+      "graph_id": "91",
+      "batch_from_record_gridY": 2,
+      "draft_window": 4,
+      "flat_verify_columns": 10,
+      "captured_rounds": 40,
+      "mean_graph_kernel_ms_per_round": 29.499278125,
+      "swiglu_small_mean_ms_per_round": 8.149864875,
+      "q5_small_mean_ms_per_round": 11.388293225000002
+    },
+    {
+      "graph_id": "93",
+      "batch_from_record_gridY": 3,
+      "draft_window": 4,
+      "flat_verify_columns": 15,
+      "captured_rounds": 19,
+      "mean_graph_kernel_ms_per_round": 34.831219315789475,
+      "swiglu_small_mean_ms_per_round": 9.19502647368421,
+      "q5_generic_mean_ms_per_round": 4.910797684210526,
+      "q5_small_mean_ms_per_round": 9.954313315789474
+    },
+    {
+      "graph_id": "95",
+      "batch_from_record_gridY": 4,
+      "draft_window": 4,
+      "flat_verify_columns": 20,
+      "captured_rounds": 15,
+      "mean_graph_kernel_ms_per_round": 56.325072666666664,
+      "swiglu_small_mean_ms_per_round": 10.500928666666665,
+      "q5_generic_mean_ms_per_round": 22.6417866
+    },
+    {
+      "graph_id": "97",
+      "batch_from_record_gridY": 5,
+      "draft_window": 4,
+      "flat_verify_columns": 25,
+      "captured_rounds": 31,
+      "mean_graph_kernel_ms_per_round": 58.331708516129034,
+      "swiglu_small_mean_ms_per_round": 12.472000806451613,
+      "q5_generic_mean_ms_per_round": 22.710525548387096
+    },
+    {
+      "graph_id": "99",
+      "batch_from_record_gridY": 6,
+      "draft_window": 4,
+      "flat_verify_columns": 30,
+      "captured_rounds": 20,
+      "mean_graph_kernel_ms_per_round": 60.72853525000001,
+      "swiglu_small_mean_ms_per_round": 13.759619449999999,
+      "q5_generic_mean_ms_per_round": 22.7826144
+    },
+    {
+      "graph_id": "101",
+      "batch_from_record_gridY": 7,
+      "draft_window": 4,
+      "flat_verify_columns": 35,
+      "captured_rounds": 41,
+      "mean_graph_kernel_ms_per_round": 82.19792109756096,
+      "swiglu_generic_mean_ms_per_round": 28.68507329268293,
+      "q5_generic_mean_ms_per_round": 28.158544585365856
+    },
+    {
+      "graph_id": "103",
+      "batch_from_record_gridY": 8,
+      "draft_window": 4,
+      "flat_verify_columns": 40,
+      "captured_rounds": 196,
+      "mean_graph_kernel_ms_per_round": 83.08643083163265,
+      "swiglu_generic_mean_ms_per_round": 28.275153071428573,
+      "q5_generic_mean_ms_per_round": 28.449958887755106
+    }
+  ],
+  "source_facts": [
+    "select_q5_a16_launch uses smallT<=16, generic r64c32 for17..64 on dominant27Bshapes.",
+    "Q4SwiGLU SmallTExact covers2..32;33..40 switchesMmaSplitHalfPairR32C40.",
+    "Q5smallTtemplate supportsTileCols8..32 atcompiletime butpublishedlaunchers instantiate1..16 only. WiderTileCols increasesstaticsharedmemory and canexceed48KiB/default orreducemultiprocessorresidentblocks; no blindthresholdchange."
+  ],
+  "interpretation": "Actual B4/T20 andB7/T35 graphcostjumps alignwithdispatchchanges. This is hypothesisprioritization, notproofthatgenericrouteiswrong orfullrequestlatencygain. Compareequalactualshape kernels withoracle, SMEM/register/spillresource evidence andwholemodel unprofiledvalidation.",
+  "candidate_probe": "Q5residual/GDN/input dominant family: focusedT15/16/17/20/24/25/30/32/35/40 diagnosticbaseline; chooseone feasible small/rowblock/ksplit variant withactualmathpreserved. KeepA8prefill andverifyarithmeticfixedinitially; no batch/Kworkload change.",
+  "limits": [
+    "Differentgraphbucketsoccuratdifferentrequestprogress; samecapturedoesnotconstitutecontrolledoperatorA/B.",
+    "GraphGPUkernel sumisnotrequestwalltime, computeoccupancy orDRAMcounter.",
+    "B mappingdependsactualGDNrecordgridYsource; flatT assumescurrentfixedK4verify layout and mustnotgeneralizetootherK."
+  ],
+  "hashes": {
+    "source/ninfer-ucloud1-a8-laxity/src/ops/linear/q5/q5_dispatch.cpp": "4b3d8522f35257c2b0022d278fb6dc9d64099ae78a874f2251a7e8d6a6561b80",
+    "source/ninfer-ucloud1-a8-laxity/src/ops/linear_swiglu/q4/q4_linear_swiglu_plan.cpp": "d6ce922de2e98c60342b4691c799a64eda23bd2fb7f07a428a77a906fc8986d3"
+  }
+}

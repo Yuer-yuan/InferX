@@ -1,0 +1,96 @@
+{
+  "label": "PILOT",
+  "status": "failed",
+  "started_at": "2026-10-17T12:01:44.006967+00:00",
+  "run_id": "40ef7635c5ad4d9c893e4cfe4c0f8bb0",
+  "runner": "/workspace/InferX/code/submission/organizer/runner.py",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "config_sha256": "dadd44cff5c1b69b61ce60b544eeed97dde2bb270cb99a3000d085b99ddc74ae",
+  "selected_cases": [
+    "candidate"
+  ],
+  "cases": [
+    {
+      "label": "PILOT",
+      "name": "candidate",
+      "command": [
+        "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18486",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "104448",
+        "--max-concurrency",
+        "12",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "concurrencies": [
+        12
+      ],
+      "started_at": "2026-10-17T12:01:46.180760+00:00",
+      "status": "failed",
+      "tiers": [],
+      "server_log": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/candidate/server.log",
+      "cleanup": {
+        "reaped": true,
+        "note": "no server started"
+      },
+      "port_preflight": {
+        "status": "failed",
+        "started_at": "2026-10-17T12:01:46.180995+00:00",
+        "timeout_seconds": 0,
+        "previous_owned_server": null,
+        "attempts": 1,
+        "waited_seconds": 0.003110877994913608,
+        "first_error": "destination port 18486 is occupied or unavailable: [Errno 98] Address already in use",
+        "last_error": "destination port 18486 is occupied or unavailable: [Errno 98] Address already in use",
+        "error": "destination port 18486 is occupied or unavailable: [Errno 98] Address already in use"
+      },
+      "error": "destination port 18486 is occupied or unavailable: [Errno 98] Address already in use",
+      "finished_at": "2026-10-17T12:01:46.184309+00:00",
+      "elapsed_seconds": 0.003561484976671636
+    }
+  ],
+  "any_slo_met": false,
+  "slo": {
+    "ttft_p95_max_ms": 10000,
+    "tpot_p95_max_ms": 40
+  },
+  "note": "PILOT only; no official score. Probe and warmup excluded; cache isolation not verified by telemetry.",
+  "dataset": {
+    "path": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/dataset.jsonl",
+    "metadata": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1/dataset.meta.json",
+    "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599"
+  },
+  "finished_at": "2026-10-17T12:01:46.184842+00:00",
+  "elapsed_seconds": 2.177542470046319
+}

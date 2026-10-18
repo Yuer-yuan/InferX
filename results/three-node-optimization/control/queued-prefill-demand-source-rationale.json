@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-10-16T17:56:57.199040+00:00",
+  "scope": "Root direct source review of live candidate policy; proposed nextmechanism, not measuredbenefit",
+  "source": "source/ninfer-ucloud1-decode-slices/src/runtime/engine/concurrent_executor.h",
+  "source_sha256": "4afeb87bd22afd4a04bebd8a336c521063a0b1a51fb8499c497171023da8e7d7",
+  "existing_behavior": "prefer_budget_decode selects currentprefill or pending_snapshot.front only; guard uses its submitted TTFTdeadline and ownremainingprefill cost. Pendingjobs behind it have no cumulative prefills reserved. Completion remainingrounds additionally use batch-conditioned globalyield, separatelyqualified.",
+  "hypothesis": "Servingfront nearitslateststart can leave laterqueuedrequests alreadyinfeasible, contributing later-arrival TTFTfailures under completionK3. Needactualevidence, not claimedcausalproof.",
+  "proposed_single_mechanism": "L=min_i(D_i-sum_{j<=i}P_j) over currentpartialprefill+FCFSpending; effectivefrontdeadline=L+P_front fedinto existing completion choice. Singlejob reduces tooldrule. Samepreparetimeaccounting/margin300; no queue reorder/output/cache/slot changes.",
+  "tests_required": [
+    "simultaneous/staggered ordereddeadlines",
+    "currentpartialprefill pluspending",
+    "single/empty queue, capacityblocked decoding",
+    "alreadyimpossible deadlines andfinitecost invariants",
+    "actualtrace burstcheck isdescriptive, notcounterfactualperformance"
+  ],
+  "promotion": "Isolatedoptin/source/binary, one matched24+4 C6 pipelineK3 comparison afterCPUchecks. No samecandidate100unlesspilotpass or genuinelystartup-onlyfail; allstartupretained. Selection20261016 andfresh45 afterselectionpass.",
+  "evidence_link": "docs/reports/2026-10-16-three-node-optimization.md",
+  "dispatch_task": "ucloud1-queued-prefill-demand-mechanism-source-review-20261017"
+}

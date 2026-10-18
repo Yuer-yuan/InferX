@@ -1,0 +1,31 @@
+{
+  "reviewed_at": "2026-10-16T17:19:54.558712+00:00",
+  "scope": "Coordinator zero-fuzz incrementalpatch application to two preimages from independentlybuilt ucloud1A8+scheduler source; threeaddedheadersabsent; inspectedadapter/headers/mathoracle and25+5shape results",
+  "patch_sha256": "d0ec55fd4aaa35c1678d5946618da3c89ee4c1f2e120694d445c1d1fe5402dfd",
+  "preimages": {
+    "src/ops/common/rowsplit_tall_mma.cuh": "absent",
+    "src/ops/common/rowsplit_tall_a8_mma.cuh": "absent",
+    "src/ops/common/jg_pipeline_adapter.cuh": "absent",
+    "src/ops/linear_swiglu/q4/q4_linear_swiglu_int8.cu": "9c477a5edf04082a27eb5b8518ded910d0fc07dc52983b0ed8f3398f25e429c1",
+    "src/ops/linear_add/q5/q5_linear_add_int8.cu": "ee0e39af32dddd34b0caa0313c08de0de7cca63759531920f8acbc6d347db746"
+  },
+  "post_hash_matches": {
+    "src/ops/common/rowsplit_tall_mma.cuh": true,
+    "src/ops/common/rowsplit_tall_a8_mma.cuh": true,
+    "src/ops/common/jg_pipeline_adapter.cuh": true,
+    "src/ops/linear_swiglu/q4/q4_linear_swiglu_int8.cu": true,
+    "src/ops/linear_add/q5/q5_linear_add_int8.cu": true
+  },
+  "source_review": [
+    "OnlytwoCUDAwrappersandthreeprivateheaders; v2reader/model/runtime untouched.",
+    "QType spelling adaptationonly in sharedA16header;A8header addsrequires-dispatched epilogue hook withsavedcurrenttilecoords.",
+    "Privateadapter restoresv1 BF16(residual+FP32projection), nonzeroresidualandindependentrepresentedA8CPUquant+FP64oracle checked.",
+    "SwiGLUpersistent128 andQ5nonpersistent64/128selected fromactualcost; no generalpersistenceclaim.",
+    "ExistingPrefillT>=256and4096workspacecap retained; newpublicwrappers useexistingquantizer/workspace."
+  ],
+  "operator_evidence": "30/30 sampledFP64oracle/wholeoutputfinite+pair checks; maxrepresentedNRMSE.00225005 andfullpairNRMSE<=2.31e-5. This doesnotprovegeneralmodelquality.",
+  "promotion": "Approvedforindependentucloud1candidate build andboundedunprofiledC6/C8 experiments; finalquality/formalcapacityunqualified.",
+  "candidate_binary_ucloud3": "bd28d7388a6093259af6f0332aff6b46e5637ce708bc4d6cf1b8d94cb0d36481",
+  "worker_application_note": "Remoteucloud1lacks patch utility; maymaterializeexactfiles onlyafterstrictpreimagehash+absentchecks,allposthashmatch.",
+  "raw_patch_apply_output": "patching file src/ops/common/rowsplit_tall_mma.cuh\npatching file src/ops/common/rowsplit_tall_a8_mma.cuh\npatching file src/ops/common/jg_pipeline_adapter.cuh\npatching file src/ops/linear_swiglu/q4/q4_linear_swiglu_int8.cu\npatching file src/ops/linear_add/q5/q5_linear_add_int8.cu\n"
+}

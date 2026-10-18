@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-16T20:37:52.035432+00:00",
+  "scope": "Root zero-fuzz additions-only staging, all992immutablepreimages, independent group/lane ownership and source+harness review; no CUDA compile/GPU/numerical/speed evidence",
+  "parent_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "parent992unchanged": true,
+  "prototype_only_adds2private_headers": true,
+  "zero_fuzz_apply_and_all_posthashes_match": true,
+  "independent_absolute_group_and_scale_alignment": true,
+  "independent_unique_lane_output_mapping_T17_32": true,
+  "candidate_CTA_grid": [
+    1,
+    80,
+    4
+  ],
+  "partial_format": "FP32[4,T,5120]",
+  "partial_bytes_T32": 2621440,
+  "F32_reduction_order_fixed": true,
+  "final_projection_BF16_then_residual_BF16": true,
+  "no_atomics_no_runtime_allocation": true,
+  "single_production_launch_grid_columns_correct": true,
+  "harness_two_nodes_and_dependency_or_old_one_node": true,
+  "harness_full_partial_poison_finite_graph_reset_gate": true,
+  "approved_next_stage": "One isolated standalone CUDA build/numeric then fixed whole-operator ABBA probe only; no model production route",
+  "hashes": {
+    "results/three-node-optimization/ucloud1/splitk4-probe/prototype-additions.patch": "d7e0c185390c6b9b1921668ae923c95c49a6697f53c6d193f13ebdbda5797558",
+    "results/three-node-optimization/ucloud1/splitk4-probe/probe.cu": "78866818062229940a6f328e918c668abb03c43364211f5b0644766f7004fc6a",
+    "results/three-node-optimization/ucloud1/splitk4-probe/layout_lifecycle_oracle.py": "d319dad277bdcfae93ee0e573b1a0d58bae3a8cb969e446ca8f53eac2d939652",
+    "results/three-node-optimization/ucloud1/splitk4-probe/cpu_boundary_test.cpp": "16bf9cb89c14642ab322cc020ebd11bd9d484f8abf858a3282837a277d665f7a",
+    "source/ninfer-ucloud1-q5-splitk4-prototype/src/ops/linear/q5/q5_splitk4_layout.h": "d8dbafa8eea00c3b3de8f42023b103b5fbf507adba347265670de2f21708539a",
+    "source/ninfer-ucloud1-q5-splitk4-prototype/src/ops/linear/q5/q5_splitk4_prototype.cuh": "7b2d0311fe7047814e686eb728e55c81d668a9476cb7f7f3b8b6e5306e4ec344"
+  },
+  "limitations": [
+    "CPU lifecycle oracle models barriers/async queue, not GPU race proof.",
+    "Old/new reduction order differs: bitwise equality reported, not required; original A16 numeric limits remain frozen.",
+    "Future model quality must actually exercise T17..32; C1 MTPK3 targets T4 and cannot qualify it.",
+    "Whole-operator medians include partial plus reduction; stage shares are not a promised end-to-end gain.",
+    "Any content change after these hashes requires a new review."
+  ],
+  "stage": "/tmp/inferx-root-splitk4-source-review-p1a20ll1"
+}

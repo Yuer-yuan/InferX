@@ -1,0 +1,44 @@
+{
+  "reviewed_at": "2026-10-17T02:47:09.406150+00:00",
+  "method": "Root direct read-only recomputation of every original100 client record and109 native done records",
+  "experiment": "final-defaults-c8-selection100-r1/on_c8/c8",
+  "machine": "ucloud1",
+  "samples": 100,
+  "warmup": 8,
+  "separate_probe": 1,
+  "seed": 20261016,
+  "service_defaults": "Same as completed default-thinking/default-sampling precision100; actual rawbenchmark requests override temp0 and no chat",
+  "TTFT_P95_s": 9.75621625185,
+  "TPOT_P95_ms": 41.36097717211349,
+  "output_token_throughput_from_original_report": 178.73075860986896,
+  "throughput_original_benchmark_duration_s": 286.46129408,
+  "throughput_recomputed_51200_div_duration": 178.73269812745235,
+  "joint_SLO": false,
+  "errors": 0,
+  "all109_native_cold8192": true,
+  "native_completion_counts": {
+    "one_token_probe": 1,
+    "512token": 108
+  },
+  "all100_client512": true,
+  "native_all_thinking_false_temp0_messagecount0": true,
+  "TTFT_violation_arrival_ranks": [
+    5,
+    8,
+    92
+  ],
+  "TPOT_violation_arrival_ranks": [
+    60,
+    63,
+    70,
+    78,
+    80,
+    86
+  ],
+  "initial8_and_later92_retained": true,
+  "original_wrapper_label": "PILOT legacy label; outer frozen protocol is original100+8",
+  "conditional_phase": "C7seed63 only now running; noC8fresh61/stress62 or failedC8retry",
+  "classification": "Valid full100 SLO fail atTPOT; previous C7 best remains. No causal defaults speed claim.",
+  "source_sha256": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "binary_sha256": "e7a98c7d9515adf1eedbb627a3633934b81dd7bfe42ce092e978d47f8c490ec1"
+}

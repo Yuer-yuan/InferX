@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/InferX/reproductions/selected100-single-node-20261018/score_quality_cpu.py", line 12, in <module>
+    verifiers={p.name:sha(p)for p in Path(evaluation_lib.__file__).parent.glob('*.py')};assert verifiers==load(R/'expected-verifier-files.json')
+                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/InferX/reproductions/selected100-single-node-20261018/score_quality_cpu.py", line 5, in <lambda>
+    load=lambda p:json.loads(p.read_text());rows=lambda p:[json.loads(l)for l in p.read_text().splitlines()if l.strip()];sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                             ^^^^^^^^^^^^^
+  File "/workspace/InferX/envs/build/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/InferX/envs/build/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/InferX/reproductions/selected100-single-node-20261018/expected-verifier-files.json'

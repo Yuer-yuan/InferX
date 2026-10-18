@@ -1,0 +1,910 @@
+{
+  "reviewed_at": "2026-10-16T20:47:44.672721+00:00",
+  "scope": "Root independently reconstructs all24 actual client/native/executor joins and511 committed rowtokens; actual remoteSQLite read-only phase/graph audit",
+  "diagnostic_only": true,
+  "numeric_pass_cannot_replace_original_traceoff_failure": true,
+  "binary_sha256": "d0188bcb848c78da5601689fe1b21dce16718ae46a97755bedf53e99c09bee28",
+  "same_request_weighted_tails": {
+    "TTFT": {
+      "value": 9767.035931549999,
+      "native_ids": [
+        11,
+        18
+      ],
+      "arrival_ranks": [
+        6,
+        13
+      ],
+      "weights": [
+        0.15000000000000213,
+        0.8499999999999979
+      ],
+      "before_ms": {
+        "prepare": 0.15198300000000006,
+        "queue": 8158.860518604516,
+        "own_prefill": 1604.824844789505,
+        "shared_decode_before_first": 0.0,
+        "control_residual": 0.17329635918140415,
+        "native_vs_trace_ttft_residual": 0.010776000001260402,
+        "client_vs_native_ttft_residual": 3.0145127999978354
+      },
+      "after_ms_per_token": {
+        "competing_prefill": 5.089463494371056,
+        "own_shared_decode": 18.213468436164867,
+        "control_nonmember_residual": 0.009076429399025657,
+        "native_vs_finish_residual": 9.018636473835903e-06,
+        "client_vs_native_after_residual": -0.00010039168297019373
+      },
+      "GPUcoverage": [
+        {
+          "native_id": 11,
+          "TTFT_fraction": 0.0,
+          "decode_fraction": 0.0
+        },
+        {
+          "native_id": 18,
+          "TTFT_fraction": 0.9035449093394219,
+          "decode_fraction": 1.0
+        }
+      ]
+    },
+    "TPOT": {
+      "value": 36.80188639951076,
+      "native_ids": [
+        15,
+        20
+      ],
+      "arrival_ranks": [
+        10,
+        15
+      ],
+      "weights": [
+        0.15000000000000213,
+        0.8499999999999979
+      ],
+      "before_ms": {
+        "prepare": 0.14417114999999983,
+        "queue": 1336.0309615373694,
+        "own_prefill": 1605.1871151059865,
+        "shared_decode_before_first": 584.5864299774155,
+        "control_residual": 0.41083902716636594,
+        "native_vs_trace_ttft_residual": 0.014303650000169931,
+        "client_vs_native_ttft_residual": 3.4443816499997366
+      },
+      "after_ms_per_token": {
+        "competing_prefill": 17.156703807200703,
+        "own_shared_decode": 19.621470304874524,
+        "control_nonmember_residual": 0.023685741167945622,
+        "native_vs_finish_residual": 1.0451062105879374e-05,
+        "client_vs_native_after_residual": 1.6095205479117432e-05
+      },
+      "GPUcoverage": [
+        {
+          "native_id": 15,
+          "TTFT_fraction": 0.6406746350635927,
+          "decode_fraction": 1.0
+        },
+        {
+          "native_id": 20,
+          "TTFT_fraction": 1.0,
+          "decode_fraction": 0.4630597211890523
+        }
+      ]
+    }
+  },
+  "gpu": {
+    "kernel_count": 211284,
+    "all_unique_runtime_pid_correlated": true,
+    "window_unix_ns": [
+      1792182999621537733,
+      1792183029742881498
+    ],
+    "window_mono_ms": [
+      404072890.031528,
+      404103011.375293
+    ],
+    "clock_anchor_vs_recorded_trigger_delta_ns": -1330,
+    "after_all_warmups": true,
+    "measured_arrivals_inside_window": 7,
+    "measured_lifecycle_overlaps": 14,
+    "kernel_sum_ms": 29692.01007300362,
+    "kernel_union_ms": 29672.55199,
+    "host_phase_kernel_sum_ms": {
+      "decode_round": 9826.41199300355,
+      "prefill_chunk": 19865.598080000073
+    },
+    "fully_captured_graph_rounds": 191,
+    "graph_phase_kernel_sum_ms": {
+      "target_verify": 8829.472017001754,
+      "mtp_alignment": 146.041221000002,
+      "AR_draft": 478.52367999999666
+    },
+    "full_graph_batch_bins": {
+      "7": {
+        "rounds": 39,
+        "mean_ms": 59.76798712820513
+      },
+      "6": {
+        "rounds": 93,
+        "mean_ms": 56.507091924731185
+      },
+      "5": {
+        "rounds": 2,
+        "mean_ms": 55.564327
+      },
+      "4": {
+        "rounds": 15,
+        "mean_ms": 33.9546664
+      },
+      "3": {
+        "rounds": 40,
+        "mean_ms": 29.9034374
+      },
+      "2": {
+        "rounds": 2,
+        "mean_ms": 25.6698625
+      }
+    },
+    "actual_gpu": {
+      "memoryBandwidth": 1008096000000,
+      "smCount": 128,
+      "uuid": "ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "maxShmemPerSm": 102400,
+      "maxRegistersPerSm": 65536,
+      "maxWarpsPerSm": 48
+    }
+  },
+  "all_request_host_parts": [
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.050537109375,
+        "latency": -2.243395999994391,
+        "ttft": -2.246386999999686
+      },
+      "rank": 1,
+      "native_id": 6,
+      "executor_id": 7,
+      "TTFT": 1587.4930379999998,
+      "TPOT": 56.82524301761252,
+      "before": {
+        "prepare": 0.091599,
+        "queue": 0.023059964179992676,
+        "own_prefill": 1584.9281939864159,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.19334805011749268,
+        "native_vs_trace_ttft_residual": 0.010450000000219006,
+        "client_vs_native_ttft_residual": 2.246386999999686
+      },
+      "after": {
+        "competing_prefill": 19197.16210991144,
+        "own_shared_decode": 9834.300510168076,
+        "control_nonmember_residual": 6.231732904911041,
+        "native_vs_finish_residual": 0.007820015573088313,
+        "client_vs_native_after_residual": -0.0029910000048403163
+      },
+      "submitted": 404051188.250198,
+      "first": 404052773.3948,
+      "finish": 404081811.089153
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.68017578125,
+        "latency": -4.000516999996762,
+        "ttft": -3.911576999999852
+      },
+      "rank": 2,
+      "native_id": 8,
+      "executor_id": 9,
+      "TTFT": 4773.44048,
+      "TPOT": 28.334291982387473,
+      "before": {
+        "prepare": 0.138339,
+        "queue": 3177.7526000142097,
+        "own_prefill": 1591.4464240074158,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.1740899682044983,
+        "native_vs_trace_ttft_residual": 0.017450000000280852,
+        "client_vs_native_ttft_residual": 3.911576999999852
+      },
+      "after": {
+        "competing_prefill": 6380.636308133602,
+        "own_shared_decode": 8088.754142940044,
+        "control_nonmember_residual": 9.3383629322052,
+        "native_vs_finish_residual": 0.005448994148537167,
+        "client_vs_native_after_residual": 0.08893999999600055
+      },
+      "submitted": 404051190.312566,
+      "first": 404055959.68568,
+      "finish": 404070438.414494
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.70751953125,
+        "latency": -2.1530279999969935,
+        "ttft": -2.236586999999872
+      },
+      "rank": 3,
+      "native_id": 7,
+      "executor_id": 8,
+      "TTFT": 3181.09046,
+      "TPOT": 31.872321659491192,
+      "before": {
+        "prepare": 0.068949,
+        "queue": 1584.1987590193748,
+        "own_prefill": 1594.2968379855156,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.28138798475265503,
+        "native_vs_trace_ttft_residual": 0.007939000000078522,
+        "client_vs_native_ttft_residual": 2.236586999999872
+      },
+      "after": {
+        "competing_prefill": 7972.082732141018,
+        "own_shared_decode": 8312.037551879883,
+        "control_nonmember_residual": 2.7138229608535767,
+        "native_vs_finish_residual": 0.005820018244776293,
+        "client_vs_native_after_residual": -0.08355900000060501
+      },
+      "submitted": 404051189.243151,
+      "first": 404054368.020136,
+      "finish": 404070654.854243
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.628173828125,
+        "latency": -2.371616999997059,
+        "ttft": -2.4025459999993473
+      },
+      "rank": 4,
+      "native_id": 9,
+      "executor_id": 10,
+      "TTFT": 6365.7807379999995,
+      "TPOT": 27.37656859099804,
+      "before": {
+        "prepare": 0.07120900000000001,
+        "queue": 4769.036485016346,
+        "own_prefill": 1594.0797990560532,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.1798689365386963,
+        "native_vs_trace_ttft_residual": 0.010830000000169093,
+        "client_vs_native_ttft_residual": 2.4025459999993473
+      },
+      "after": {
+        "competing_prefill": 4786.556509077549,
+        "own_shared_decode": 9194.605264246464,
+        "control_nonmember_residual": 8.291485667228699,
+        "native_vs_finish_residual": 0.0042200087609671755,
+        "client_vs_native_after_residual": -0.030929000004107365
+      },
+      "submitted": 404051190.690184,
+      "first": 404057553.986337,
+      "finish": 404071543.439596
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.778564453125,
+        "latency": -2.3701860000001034,
+        "ttft": -2.105226999999104
+      },
+      "rank": 5,
+      "native_id": 10,
+      "executor_id": 11,
+      "TTFT": 7961.496335999999,
+      "TPOT": 22.326527383561643,
+      "before": {
+        "prepare": 0.107569,
+        "queue": 6363.218455016613,
+        "own_prefill": 1595.8497770428658,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.20896893739700317,
+        "native_vs_trace_ttft_residual": 0.006339000000480155,
+        "client_vs_native_ttft_residual": 2.105226999999104
+      },
+      "after": {
+        "competing_prefill": 3190.7067320346832,
+        "own_shared_decode": 8212.228469014168,
+        "control_nonmember_residual": 5.649423956871033,
+        "native_vs_finish_residual": 0.005908994278797763,
+        "client_vs_native_after_residual": 0.2649589999982709
+      },
+      "submitted": 404051190.842811,
+      "first": 404059150.120012,
+      "finish": 404070558.704637
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.358642578125,
+        "latency": -5.616157000000385,
+        "ttft": -5.64887699999781
+      },
+      "rank": 6,
+      "native_id": 11,
+      "executor_id": 12,
+      "TTFT": 9554.187173999999,
+      "TPOT": 21.904051111545986,
+      "before": {
+        "prepare": 0.180679,
+        "queue": 7953.175346016884,
+        "own_prefill": 1594.981753051281,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.18919891119003296,
+        "native_vs_trace_ttft_residual": 0.011320000001433073,
+        "client_vs_native_ttft_residual": 5.64887699999781
+      },
+      "after": {
+        "competing_prefill": 1595.7249789834023,
+        "own_shared_decode": 9591.304337382317,
+        "control_nonmember_residual": 5.968751668930054,
+        "native_vs_finish_residual": 0.004769965349623817,
+        "client_vs_native_after_residual": -0.032719999997425475
+      },
+      "submitted": 404051196.985856,
+      "first": 404060745.332154,
+      "finish": 404071938.330222
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.27734375,
+        "latency": -4.3043240000006335,
+        "ttft": -4.124745000000985
+      },
+      "rank": 7,
+      "native_id": 12,
+      "executor_id": 13,
+      "TTFT": 11148.282812,
+      "TPOT": 16.1991435518591,
+      "before": {
+        "prepare": 0.187979,
+        "queue": 9548.066940009594,
+        "own_prefill": 1595.7249789834023,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.16609901189804077,
+        "native_vs_trace_ttft_residual": 0.012069999998857384,
+        "client_vs_native_ttft_residual": 4.124745000000985
+      },
+      "after": {
+        "competing_prefill": 0,
+        "own_shared_decode": 8274.164221286774,
+        "control_nonmember_residual": 3.4146646857261658,
+        "native_vs_finish_residual": 0.003890027499437565,
+        "client_vs_native_after_residual": 0.17957900000146765
+      },
+      "submitted": 404051197.294954,
+      "first": 404062341.252972,
+      "finish": 404070618.831858
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.258056640625,
+        "latency": -2.065258000002359,
+        "ttft": -2.1151080000004185
+      },
+      "rank": 8,
+      "native_id": 13,
+      "executor_id": 14,
+      "TTFT": 3274.46911,
+      "TPOT": 34.59727264774951,
+      "before": {
+        "prepare": 0.138689,
+        "queue": 1519.2983730435371,
+        "own_prefill": 1602.4085070490837,
+        "shared_decode_before_first": 150.24689292907715,
+        "control_residual": 0.25440001487731934,
+        "native_vs_trace_ttft_residual": 0.00713999999970838,
+        "client_vs_native_ttft_residual": 2.1151080000004185
+      },
+      "after": {
+        "competing_prefill": 9623.510771811008,
+        "own_shared_decode": 8045.1413559913635,
+        "control_nonmember_residual": 10.599115192890167,
+        "native_vs_finish_residual": 0.004930004735797411,
+        "client_vs_native_after_residual": -0.049849999999423744
+      },
+      "submitted": 404070444.905395,
+      "first": 404073717.113568,
+      "finish": 404091396.364811
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.35595703125,
+        "latency": -2.760765999999421,
+        "ttft": -2.7725949999994555
+      },
+      "rank": 9,
+      "native_id": 14,
+      "executor_id": 15,
+      "TTFT": 4759.561236,
+      "TPOT": 31.110661068493147,
+      "before": {
+        "prepare": 0.15690800000000002,
+        "queue": 3152.2330100536346,
+        "own_prefill": 1604.2256049513817,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.16120004653930664,
+        "native_vs_trace_ttft_residual": 0.011918000000150641,
+        "client_vs_native_ttft_residual": 2.7725949999994555
+      },
+      "after": {
+        "competing_prefill": 8019.285166859627,
+        "own_shared_decode": 7870.076721131802,
+        "control_nonmember_residual": 8.192807018756866,
+        "native_vs_finish_residual": 0.004939989814374712,
+        "client_vs_native_after_residual": -0.01182899999912479
+      },
+      "submitted": 404070564.91613793,
+      "first": 404075321.535953,
+      "finish": 404091219.090648
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.223876953125,
+        "latency": -1.633998999997857,
+        "ttft": -1.6720390000000407
+      },
+      "rank": 10,
+      "native_id": 15,
+      "executor_id": 16,
+      "TTFT": 6307.219649,
+      "TPOT": 35.84247533268101,
+      "before": {
+        "prepare": 0.07896,
+        "queue": 4697.239237070084,
+        "own_prefill": 1608.0510719418526,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.15546000003814697,
+        "native_vs_trace_ttft_residual": 0.022880999999870255,
+        "client_vs_native_ttft_residual": 1.6720390000000407
+      },
+      "after": {
+        "competing_prefill": 8397.961017847061,
+        "own_shared_decode": 9908.121868014336,
+        "control_nonmember_residual": 9.451759159564972,
+        "native_vs_finish_residual": 0.008289979043183848,
+        "client_vs_native_after_residual": -0.038040000003093155
+      },
+      "submitted": 404070624.32492596,
+      "first": 404076929.770695,
+      "finish": 404095245.30534
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.84228515625,
+        "latency": -2.408606000000873,
+        "ttft": -2.870313000000351
+      },
+      "rank": 11,
+      "native_id": 16,
+      "executor_id": 17,
+      "TTFT": 7875.840467,
+      "TPOT": 26.23054912328767,
+      "before": {
+        "prepare": 0.072149,
+        "queue": 6269.274777054787,
+        "own_prefill": 1603.453339934349,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.15855902433395386,
+        "native_vs_trace_ttft_residual": 0.011328999999932421,
+        "client_vs_native_ttft_residual": 2.870313000000351
+      },
+      "after": {
+        "competing_prefill": 4807.780754983425,
+        "own_shared_decode": 8590.100340723991,
+        "control_nonmember_residual": 6.386783301830292,
+        "native_vs_finish_residual": 0.004429990753124002,
+        "client_vs_native_after_residual": -0.4617070000003878
+      },
+      "submitted": 404070660.526858,
+      "first": 404078533.413534,
+      "finish": 404091937.681413
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.90234375,
+        "latency": -1.554770999995526,
+        "ttft": -1.5650709999990795
+      },
+      "rank": 12,
+      "native_id": 17,
+      "executor_id": 18,
+      "TTFT": 8592.999441,
+      "TPOT": 21.79882928375734,
+      "before": {
+        "prepare": 0.09339,
+        "queue": 6985.06104695797,
+        "own_prefill": 1606.082154929638,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.19076812267303467,
+        "native_vs_trace_ttft_residual": 0.0070100000011734664,
+        "client_vs_native_ttft_residual": 1.5650709999990795
+      },
+      "after": {
+        "competing_prefill": 3201.6986000537872,
+        "own_shared_decode": 7933.010150313377,
+        "control_nonmember_residual": 4.498993635177612,
+        "native_vs_finish_residual": 0.0043199976589676226,
+        "client_vs_native_after_residual": -0.010300000003553578
+      },
+      "submitted": 404071548.384297,
+      "first": 404080139.718267,
+      "finish": 404091278.926011
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.163818359375,
+        "latency": -2.495046000000002,
+        "ttft": -2.5496249999978318
+      },
+      "rank": 13,
+      "native_id": 18,
+      "executor_id": 19,
+      "TTFT": 9804.597477,
+      "TPOT": 23.560363906066534,
+      "before": {
+        "prepare": 0.146919,
+        "queue": 8195.157902002335,
+        "own_prefill": 1606.5618609786034,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.17049002647399902,
+        "native_vs_trace_ttft_residual": 0.010680000001229928,
+        "client_vs_native_ttft_residual": 2.5496249999978318
+      },
+      "after": {
+        "competing_prefill": 2778.0671750307083,
+        "own_shared_decode": 9256.925553262234,
+        "control_nonmember_residual": 4.403226673603058,
+        "native_vs_finish_residual": 0.004580033453748911,
+        "client_vs_native_after_residual": -0.05457899999782967
+      },
+      "submitted": 404071944.589315,
+      "first": 404081746.479568,
+      "finish": 404093785.875523
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.312744140625,
+        "latency": -1.5272809999987658,
+        "ttft": -1.5394009999990885
+      },
+      "rank": 14,
+      "native_id": 19,
+      "executor_id": 20,
+      "TTFT": 7069.5109489999995,
+      "TPOT": 32.488662195694715,
+      "before": {
+        "prepare": 0.103059,
+        "queue": 4453.858404994011,
+        "own_prefill": 1595.1367390751839,
+        "shared_decode_before_first": 1018.479709148407,
+        "control_residual": 0.3867657780647278,
+        "native_vs_trace_ttft_residual": 0.00687000000016269,
+        "client_vs_native_ttft_residual": 1.5394009999990885
+      },
+      "after": {
+        "competing_prefill": 9660.373742878437,
+        "own_shared_decode": 6938.064873099327,
+        "control_nonmember_residual": 3.274876058101654,
+        "native_vs_finish_residual": 0.005009964133932954,
+        "client_vs_native_after_residual": -0.012119999999413267
+      },
+      "submitted": 404081815.683535,
+      "first": 404088883.545154,
+      "finish": 404105485.258646
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.7041015625,
+        "latency": -3.7735370000009425,
+        "ttft": -3.757147999999688
+      },
+      "rank": 15,
+      "native_id": 20,
+      "executor_id": 21,
+      "TTFT": 3039.688535,
+      "TPOT": 36.97119423483365,
+      "before": {
+        "prepare": 0.155679,
+        "queue": 742.8765599727631,
+        "own_prefill": 1604.6817109584808,
+        "shared_decode_before_first": 687.7487411499023,
+        "control_residual": 0.4559059143066406,
+        "native_vs_trace_ttft_residual": 0.01279000000022279,
+        "client_vs_native_ttft_residual": 3.757147999999688
+      },
+      "after": {
+        "competing_prefill": 8832.213520944118,
+        "own_shared_decode": 10047.47417128086,
+        "control_nonmember_residual": 12.571352779865265,
+        "native_vs_finish_residual": 0.004819995152502088,
+        "client_vs_native_after_residual": 0.016389000000344822
+      },
+      "submitted": 404091227.368169,
+      "first": 404094263.131087,
+      "finish": 404113155.390132
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.954345703125,
+        "latency": -1.3901609999993525,
+        "ttft": -1.4590710000002218
+      },
+      "rank": 16,
+      "native_id": 21,
+      "executor_id": 22,
+      "TTFT": 5190.879817,
+      "TPOT": 30.77980201761252,
+      "before": {
+        "prepare": 0.09920999999999999,
+        "queue": 3421.056489944458,
+        "own_prefill": 1609.170203924179,
+        "shared_decode_before_first": 158.8730719089508,
+        "control_residual": 0.21439021825790405,
+        "native_vs_trace_ttft_residual": 0.007380000000011933,
+        "client_vs_native_ttft_residual": 1.4590710000002218
+      },
+      "after": {
+        "competing_prefill": 6825.1115000247955,
+        "own_shared_decode": 8895.092366218567,
+        "control_nonmember_residual": 8.339314758777618,
+        "native_vs_finish_residual": 0.004559997860269505,
+        "client_vs_native_after_residual": -0.06891000000359782
+      },
+      "submitted": 404091283.25703603,
+      "first": 404096472.571192,
+      "finish": 404112201.114373
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.741943359375,
+        "latency": -3.9656169999980193,
+        "ttft": -3.532368999999562
+      },
+      "rank": 17,
+      "native_id": 22,
+      "executor_id": 23,
+      "TTFT": 6685.041467,
+      "TPOT": 24.75216191780822,
+      "before": {
+        "prepare": 0.211568,
+        "queue": 5069.725241005421,
+        "own_prefill": 1611.4114210009575,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.1489189863204956,
+        "native_vs_trace_ttft_residual": 0.011949000000640808,
+        "client_vs_native_ttft_residual": 3.532368999999562
+      },
+      "after": {
+        "competing_prefill": 4835.11040699482,
+        "own_shared_decode": 7806.724865913391,
+        "control_nonmember_residual": 6.081909120082855,
+        "native_vs_finish_residual": 0.004309971707698423,
+        "client_vs_native_after_residual": 0.4332479999975476
+      },
+      "submitted": 404091402.874641,
+      "first": 404098084.160222,
+      "finish": 404110732.077404
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.2724609375,
+        "latency": -1.6022399999965273,
+        "ttft": -1.5181599999987156
+      },
+      "rank": 18,
+      "native_id": 23,
+      "executor_id": 24,
+      "TTFT": 7754.598709,
+      "TPOT": 23.51867486888454,
+      "before": {
+        "prepare": 0.09682,
+        "queue": 6141.768296062946,
+        "own_prefill": 1611.0447340011597,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.16413795948028564,
+        "native_vs_trace_ttft_residual": 0.006561000001056527,
+        "client_vs_native_ttft_residual": 1.5181599999987156
+      },
+      "after": {
+        "competing_prefill": 3224.06567299366,
+        "own_shared_decode": 8788.134440362453,
+        "control_nonmember_residual": 5.752824664115906,
+        "native_vs_finish_residual": 0.005839979770826176,
+        "client_vs_native_after_residual": 0.08407999999872118
+      },
+      "submitted": 404091942.43149596,
+      "first": 404099695.408664,
+      "finish": 404111713.361602
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.041259765625,
+        "latency": -4.204115000000456,
+        "ttft": -4.037936000000627
+      },
+      "rank": 19,
+      "native_id": 24,
+      "executor_id": 25,
+      "TTFT": 7516.695177,
+      "TPOT": 34.69601894520548,
+      "before": {
+        "prepare": 0.159049,
+        "queue": 5900.717142999172,
+        "own_prefill": 1611.6019290089607,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.16596001386642456,
+        "native_vs_trace_ttft_residual": 0.013159999998606509,
+        "client_vs_native_ttft_residual": 4.037936000000627
+      },
+      "after": {
+        "competing_prefill": 7626.956179022789,
+        "own_shared_decode": 10096.30399030447,
+        "control_nonmember_residual": 6.233131647109985,
+        "native_vs_finish_residual": 0.0062010256297071464,
+        "client_vs_native_after_residual": 0.1661789999998291
+      },
+      "submitted": 404093794.72152,
+      "first": 404101307.206552,
+      "finish": 404119036.699853
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.06103515625,
+        "latency": -1.457431999995606,
+        "ttft": -1.5339720000001762
+      },
+      "rank": 20,
+      "native_id": 25,
+      "executor_id": 26,
+      "TTFT": 7671.805842,
+      "TPOT": 18.162805906066534,
+      "before": {
+        "prepare": 0.09226899999999999,
+        "queue": 6057.545257985592,
+        "own_prefill": 1612.4637439846992,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.16410905122756958,
+        "native_vs_trace_ttft_residual": 0.006489999999757856,
+        "client_vs_native_ttft_residual": 1.5339720000001762
+      },
+      "after": {
+        "competing_prefill": 378.5896720290184,
+        "own_shared_decode": 8899.240832328796,
+        "control_nonmember_residual": 3.4357736110687256,
+        "native_vs_finish_residual": 0.004080031116245664,
+        "client_vs_native_after_residual": -0.07654000000184169
+      },
+      "submitted": 404095249.692814,
+      "first": 404102919.865925,
+      "finish": 404112201.132203
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.6630859375,
+        "latency": -3.9953759999989416,
+        "ttft": -4.029576000000816
+      },
+      "rank": 21,
+      "native_id": 26,
+      "executor_id": 27,
+      "TTFT": 8500.747442,
+      "TPOT": 19.00216795303327,
+      "before": {
+        "prepare": 0.213029,
+        "queue": 6220.619450986385,
+        "own_prefill": 1610.317675948143,
+        "shared_decode_before_first": 665.093093931675,
+        "control_residual": 0.46093612909317017,
+        "native_vs_trace_ttft_residual": 0.01367999999820313,
+        "client_vs_native_ttft_residual": 4.029576000000816
+      },
+      "after": {
+        "competing_prefill": 4830.267128050327,
+        "own_shared_decode": 4876.853421807289,
+        "control_nonmember_residual": 3.016814112663269,
+        "native_vs_finish_residual": 0.004660029720980674,
+        "client_vs_native_after_residual": -0.03420000000187429
+      },
+      "submitted": 404105492.818471,
+      "first": 404113989.309628,
+      "finish": 404123699.446992
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.497314453125,
+        "latency": -2.0325679999987187,
+        "ttft": -2.178456999999071
+      },
+      "rank": 22,
+      "native_id": 27,
+      "executor_id": 28,
+      "TTFT": 4860.336072,
+      "TPOT": 15.700306804305283,
+      "before": {
+        "prepare": 0.116539,
+        "queue": 3250.785192966461,
+        "own_prefill": 1607.1096640229225,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.13806003332138062,
+        "native_vs_trace_ttft_residual": 0.008159000000887318,
+        "client_vs_native_ttft_residual": 2.178456999999071
+      },
+      "after": {
+        "competing_prefill": 3223.157464027405,
+        "own_shared_decode": 4794.257164180279,
+        "control_nonmember_residual": 5.5829877853393555,
+        "native_vs_finish_residual": 0.00505000697739888,
+        "client_vs_native_after_residual": -0.1458890000012616
+      },
+      "submitted": 404110738.561845,
+      "first": 404115596.594762,
+      "finish": 404123619.592378
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -1.193359375,
+        "latency": -2.3310359999995853,
+        "ttft": -2.510153999999602
+      },
+      "rank": 23,
+      "native_id": 28,
+      "executor_id": 29,
+      "TTFT": 5492.763769,
+      "TPOT": 12.121255902152642,
+      "before": {
+        "prepare": 0.0885,
+        "queue": 3877.6703719496727,
+        "own_prefill": 1612.3337619900703,
+        "shared_decode_before_first": 0,
+        "control_residual": 0.14886105060577393,
+        "native_vs_trace_ttft_residual": 0.012120000000322761,
+        "client_vs_native_ttft_residual": 2.510153999999602
+      },
+      "after": {
+        "competing_prefill": 1610.8237020373344,
+        "own_shared_decode": 4579.919884264469,
+        "control_nonmember_residual": 3.3923986554145813,
+        "native_vs_finish_residual": 0.004899042781289609,
+        "client_vs_native_after_residual": -0.17911800000001676
+      },
+      "submitted": 404111718.969259,
+      "first": 404117209.122254,
+      "finish": 404123403.258239
+    },
+    {
+      "client_native_join_delta_ms": {
+        "end": -0.9853515625,
+        "latency": -2.051737999998295,
+        "ttft": -1.893378999999186
+      },
+      "rank": 24,
+      "native_id": 29,
+      "executor_id": 30,
+      "TTFT": 7258.097820999999,
+      "TPOT": 10.742059174168297,
+      "before": {
+        "prepare": 0.11733,
+        "queue": 5002.365042984486,
+        "own_prefill": 1610.8237020373344,
+        "shared_decode_before_first": 642.5329519510269,
+        "control_residual": 0.35879403352737427,
+        "native_vs_trace_ttft_residual": 0.0066210000004502945,
+        "client_vs_native_ttft_residual": 1.893378999999186
+      },
+      "after": {
+        "competing_prefill": 0,
+        "own_shared_decode": 5486.984976232052,
+        "control_nonmember_residual": 2.044182777404785,
+        "native_vs_finish_residual": 0.004719990542980668,
+        "client_vs_native_after_residual": 0.15835900000001857
+      },
+      "submitted": 404112206.782861,
+      "first": 404119462.863352,
+      "finish": 404124951.892511
+    }
+  ],
+  "qualifications": [
+    "Unique end/duration/TTFT temporal joins, not header-ID equality.",
+    "GPUwindow partial and late; sameP95request coverage explicit.",
+    "Instrumented schedule differs from failed originalpilot; no claim its pass establishes reproduction.",
+    "Source-pinned K3 markers establish target/alignment/draft phase, not arithmetic saturation.",
+    "No hardware-counter roofline, measured SMoccupancy or DRAMtraffic claim."
+  ]
+}

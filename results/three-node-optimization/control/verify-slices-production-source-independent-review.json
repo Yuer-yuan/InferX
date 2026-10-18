@@ -1,0 +1,47 @@
+{
+  "reviewed_at": "2026-10-16T17:46:48.298066+00:00",
+  "scope": "Root inspected exactproductionpatch, source guards, Tensor slice and actual helper launchers",
+  "tested_binary_sha256": "6b498b127b9d59875321e73a704f54616560a0828fdfccec934dd3b2893aae4a",
+  "file_sha256": {
+    "src/ops/common/verify_slices.h": "5ad3bf5ce343eb50f6443a5c91647b3a1f307a0bf57c504c6eb2d16db2a6966d",
+    "src/targets/qwen3_6_27b/impl/variant.cpp": "da0d923cad4854ffb2eb9cedbc19b49592e7aa473888a5617ed4bbae80db0f21",
+    "src/ops/linear_swiglu/q4/q4_linear_swiglu_gemv.cu": "4bab4350c9ac66b746a2c308acefb5d756e1ac522d2eb3f2ba698ee0bfbae26b",
+    "src/ops/linear/q5/q5_small_t_mma.cu": "2eff131a49bdcd7721b4a2e8bd22f2d9bbd73fadb78ea7e3ff6d26053d0c6885",
+    "src/core/tensor.cpp": "2601e178702db595e08471b7052368d4f3297ca715a785710b7a165ce82e572a"
+  },
+  "guard_review": [
+    "Verify phase only, processstatic optin defaultnone; no prefill/decode activationprecision change",
+    "BF16 2D contiguous disjoint storage,16bytealigned, actualweightshapes/RowSplit/group64/fp16 scales",
+    "Q5 splits16 to existing residual launchers andSwiGLU splits32 to existing exact helper; strided data fallback",
+    "Arithmetic reduction routes differ; BF16 label doesnot imply bitexactness or taskquality"
+  ],
+  "finding": {
+    "condition": "Q4SwiGLU T33 accepted byguard then split32+1; exactsmallT helper throws forT1",
+    "measured_K4_scope": "T35and40 supported, measuredK4 results unaffected",
+    "disposition": "Worker notified via acceptedsteer: preserve testedartifact/results; separate correctedexport T33fallback+CPU boundary test. No rejectedcandidate fullGPUrebuild."
+  },
+  "performance_worker_report": {
+    "C6_none": [
+      13503,
+      38.499,
+      132.444
+    ],
+    "C6_all": [
+      13270,
+      41.788,
+      127.366
+    ],
+    "C8_none": [
+      17925,
+      50.064,
+      130.701
+    ],
+    "C8_all": [
+      18096,
+      51.661,
+      131.843
+    ],
+    "units": "TTFTms,TPOTms,outputtok/s; rootrawperformanceaudit pending"
+  },
+  "promotion": "Rejected wholemodelperformance; no slicingcomposition into pipeline."
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Isolated static-style gate fixtures, using unchanged compiled PDF/preview and synthetic source SHA binding only to reach the lexical/style checks. This does not assert that mutated fixtures were compiled. Real current source/PDF check passed separately.",
+  "tests": [
+    {
+      "case": "default_theme_and_titles",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "case": "nondefault_theme",
+      "passed": true,
+      "actual": "presentation requires explicit default Beamer theme"
+    },
+    {
+      "case": "wrong_section_title",
+      "passed": true,
+      "actual": "presentation requires eight exact section titles in rule order"
+    },
+    {
+      "case": "custom_theme_color",
+      "passed": true,
+      "actual": "custom Beamer styling conflicts with default theme contract"
+    },
+    {
+      "case": "unknown_command",
+      "passed": true,
+      "actual": "TeX command requires review: ['unreviewedcommand']"
+    }
+  ]
+}

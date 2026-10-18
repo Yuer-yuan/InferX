@@ -1,0 +1,47 @@
+{
+  "reviewed_at": "2026-10-16T15:57:47.935172+00:00",
+  "protocol": "same-machine same-binary C4 100measured/8warmup seed42 cold8192/512 original runner; raw recomputation and actual conversation_id/payload join",
+  "results": {
+    "all": {
+      "ttft_p95_ms": 4177.291111249999,
+      "tpot_p95_ms": 36.93425852710371,
+      "output_tok_s": 121.7361337945293,
+      "raw_n": 100,
+      "all_8192_512": true,
+      "raw_errors": 0,
+      "p95_matches_summary": true,
+      "native_n": 109,
+      "native_all_cold": true
+    },
+    "none": {
+      "ttft_p95_ms": 7050.086697549999,
+      "tpot_p95_ms": 45.01190618346379,
+      "output_tok_s": 95.73180190843784,
+      "raw_n": 100,
+      "all_8192_512": true,
+      "raw_errors": 0,
+      "p95_matches_summary": true,
+      "native_n": 109,
+      "native_all_cold": true
+    }
+  },
+  "service_command_equal_except_port_log": true,
+  "actual_cohorts": {
+    "warmup": {
+      "payload_except_only_cache_salt_equal": true,
+      "prompt_tokens_equal": true,
+      "count": 8
+    },
+    "profiling": {
+      "payload_except_only_cache_salt_equal": true,
+      "prompt_tokens_equal": true,
+      "count": 100
+    }
+  },
+  "effect": {
+    "end_to_end_output_throughput_relative_gain": 0.27163733856136063,
+    "ttft_p95_relative_reduction": 0.40748372460417204,
+    "tpot_p95_relative_reduction": 0.1794558005039032
+  },
+  "interpretation": "Whole-run effect includes changed activation arithmetic, generated trajectories and MTP acceptance. Dedicated cold8192/1 ladder isolates prefill speed. Task quality pending."
+}

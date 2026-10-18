@@ -1,0 +1,109 @@
+{
+  "created_at": "2026-10-17T03:18:01.402963+00:00",
+  "status": "CPU_PLANNING_ONLY_NO_ALLOCATION_OR_SLO_PROOF",
+  "canonical_source_sha256": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "source_files_rehashed_equal_canonical": {
+    "include/ninfer/types.h": "bc3645d31b43e939e98ff266be56c7a72524250b7b52b3477ba5b1d7eef29708",
+    "src/targets/qwen3_6_27b/impl/config.h": "5ec436d2f34d3988a13350cd6de2f365507e1b93c58933c23582340f23e5dc04",
+    "src/targets/qwen3_6_27b/impl/verify_q5_a8.h": "eb98fbc313398ffb606aa9948d18237d75d76d9fa1d5fbd4c8d1f62ed4717d5c",
+    "src/targets/qwen3_6/impl/runtime/linear_state_slots.h": "b4342948b6192ad3ee40ef525b53c28dce63f8f4daf6db2372308fa9f8d5f807",
+    "src/targets/qwen3_6/impl/runtime/layouts_impl.h": "756ca02b2e033b29e9a67ba4231caa5c0a6516e695b230dd291004e132a1e1b6",
+    "src/targets/qwen3_6/impl/state/decoder_state.cpp": "c9376a976dcbd17b5c305b4ecb028cefaf5801afc24dbbb8a80ada1b151b8d4b",
+    "src/core/linear_attention_state.cpp": "cae1aa1274172913a04fe8df28dc3b99f1cd37e4198cc487cfdf3a64350f2d93",
+    "src/core/gdn_replay_records.cpp": "a85caa0ed0943a2403144491388d0d71209e1a393689d7f7b93234f885958b55",
+    "src/core/paged_kv_cache.h": "1facbd8f1b645c44a1f263531b813291b972b20ea6f16dfae18ce15a7fa63807",
+    "src/ops/linear_attention/gated_delta_net/replay.cpp": "5f0214cf39116e77f8ee68bbdc35a5d357fa4103167e3d2ccd2315339e0c337f",
+    "src/ops/linear_attention/gated_delta_net/launch.h": "45fdc94d16cffd5b091f84ce390aa5e6a268d132ddc3d53176c08843aadb8d10",
+    "src/ops/linear_attention/gated_delta_net/gated_delta_net.cpp": "1b28b3db933c7962d7aa384db8d4a875415ad27041aa3cd8f6e0ab8f5aaf34cb"
+  },
+  "artifact_directory_sha256": "45912dd83c71a1b3b3b644c15ce3ef83b0b60d77cd7c82a39b21d9ba6267d742",
+  "source_hard_limits": {
+    "public_maximum_concurrency": 8,
+    "GDN_replay_record_capacity": 8,
+    "GDN_replay_rows": 8,
+    "GDN_replay_fold_parameter_row_array": 8,
+    "GDN_batched_operator_validation": 8
+  },
+  "capacity_constants": {
+    "kv_heads": 4,
+    "head_dim": 256,
+    "full_attention_layers": 16,
+    "mtp_layers": 1,
+    "kv_group": 64,
+    "page_tokens": 64,
+    "kv_payload_bytes_per_token_text_plus_mtp": 35904,
+    "GDN_payload_bytes_per_slot": 153944064,
+    "GDN_slots_per_lane": 2,
+    "replay_bytes_per_lane_per_width": 1787904
+  },
+  "planning_rows": [
+    {
+      "hypothetical_native_batch": 8,
+      "all_sequences_8704_tokens": 69632,
+      "minimum_main_page_groups_for_8704_each": 1088,
+      "int8_text_plus_one_mtp_layer_KV_payload_bytes": 2500067328,
+      "GDN_current_and_checkpoint_bytes": 2463105024,
+      "K3_draft_window4_replay_width5_bytes": 71516160,
+      "model_file_plus_selected_state_planning_subtotal_bytes": 23245219840,
+      "planning_subtotal_GiB": 21.6487979888916,
+      "closed_loop_reference_output_tps_if_mean_E2E_equals_30_44s": 134.55978975032852,
+      "reference_GPU_service_budget_s_per_request": 3.805,
+      "profile_service_2_881s_divided_by_reference_budget": 0.757161629434954
+    },
+    {
+      "hypothetical_native_batch": 16,
+      "all_sequences_8704_tokens": 139264,
+      "minimum_main_page_groups_for_8704_each": 2176,
+      "int8_text_plus_one_mtp_layer_KV_payload_bytes": 5000134656,
+      "GDN_current_and_checkpoint_bytes": 4926210048,
+      "K3_draft_window4_replay_width5_bytes": 143032320,
+      "model_file_plus_selected_state_planning_subtotal_bytes": 28279908352,
+      "planning_subtotal_GiB": 26.337717056274414,
+      "closed_loop_reference_output_tps_if_mean_E2E_equals_30_44s": 269.11957950065704,
+      "reference_GPU_service_budget_s_per_request": 1.9025,
+      "profile_service_2_881s_divided_by_reference_budget": 1.514323258869908
+    },
+    {
+      "hypothetical_native_batch": 32,
+      "all_sequences_8704_tokens": 278528,
+      "minimum_main_page_groups_for_8704_each": 4352,
+      "int8_text_plus_one_mtp_layer_KV_payload_bytes": 10000269312,
+      "GDN_current_and_checkpoint_bytes": 9852420096,
+      "K3_draft_window4_replay_width5_bytes": 286064640,
+      "model_file_plus_selected_state_planning_subtotal_bytes": 38349285376,
+      "planning_subtotal_GiB": 35.71555519104004,
+      "closed_loop_reference_output_tps_if_mean_E2E_equals_30_44s": 538.2391590013141,
+      "reference_GPU_service_budget_s_per_request": 0.95125,
+      "profile_service_2_881s_divided_by_reference_budget": 3.028646517739816
+    }
+  ],
+  "dense_roofline_reference": {
+    "actual_decoder_dense_matrices": 416,
+    "actual_decoder_dense_parameter_elements": 24350556160,
+    "actual_decoder_dense_packed_payload_bytes": 14386462720,
+    "one_8192_prompt_logical_dense_operations": 398959512125440,
+    "nominal_4090_dense_INT8_TOPS": 660.6,
+    "nominal_4090_BF16_FP32_accumulation_TFLOPS": 165.2,
+    "nominal_4090_memory_bandwidth_bytes_per_s": 1008000000000.0,
+    "ideal_all_INT8_dense_only_8192_time_s": 0.6039350773924311,
+    "ideal_all_BF16_dense_only_8192_time_s": 2.415009153301695,
+    "one_decoder_dense_weight_payload_s_at_nominal_BW": 0.014272284444444444,
+    "limitations": [
+      "Nominal stock4090 peaks; modified48GB board bandwidth and sustained clocks have not been measured here.",
+      "These are operation-count/traffic references, not actual kernel throughput or measured roofline placement.",
+      "Dense logical operations exclude GDN, attention, quantization, group rescale, unpacking, sampling, LM-head and draft overhead.",
+      "BF16 and INT8 ceilings correspond to different arithmetic; neither is an achievable precision-preserving substitution claim.",
+      "Packed payload once is a streaming reference, not measured HBM traffic: real tile reuse/cache/reloads differ."
+    ],
+    "primary_hardware_source": "https://images.nvidia.com/aem-dam/Solutions/geforce/ada/nvidia-ada-gpu-architecture.pdf"
+  },
+  "important_limits": [
+    "HTTP concurrency and native GPU batch are different; C32 may schedule multiple smaller native batches.",
+    "P95 TTFT and P95 average TPOT do not bound mean E2E or jointly imply the reference throughput.",
+    "Model container size is not measured GPU resident allocation; subtotal is selected planning terms only.",
+    "Missing terms include planner/Graph arenas, sampling, KV tables, allocator overhead, draft transient pages and fragmentation.",
+    "KV reservations may exceed actual8192+512; actual entitlement/admission policy must be checked.",
+    "GDN/replay formulas describe an extrapolated extended implementation; current source rejects native B16/B32.",
+    "Reference capacity at B32 needs prefill service below0.95125s even with free decode, vs profile1.588s; not an SLO theorem."
+  ]
+}

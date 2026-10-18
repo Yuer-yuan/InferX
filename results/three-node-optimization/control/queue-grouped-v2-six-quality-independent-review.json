@@ -1,0 +1,402 @@
+{
+  "reviewed_at": "2026-10-16T19:21:18.678718+00:00",
+  "scope": "Root raw paired six-long-objective archive and independent CPU verifier audit",
+  "reference": "47d83e3a51618c585ac14f31ca791516500ea1663e45f76c639e22c23cc4d8f9",
+  "candidate": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "request_concurrency": 5,
+  "max_tokens": 256,
+  "reference_passes": 4,
+  "candidate_passes": 4,
+  "text_equal": 4,
+  "truncations": 0,
+  "pairs": [
+    {
+      "case_id": "retrieve-middle",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": false,
+      "reference_check": {
+        "passed": true,
+        "parsed": {
+          "answer": "VIOLET-7319"
+        },
+        "expected": "VIOLET-7319"
+      },
+      "candidate_check": {
+        "passed": true,
+        "parsed": {
+          "answer": "VIOLET-7319"
+        },
+        "expected": "VIOLET-7319"
+      }
+    },
+    {
+      "case_id": "retrieve-early",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": true,
+      "reference_check": {
+        "passed": true,
+        "parsed": {
+          "answer": "MAPLE-2047"
+        },
+        "expected": "MAPLE-2047"
+      },
+      "candidate_check": {
+        "passed": true,
+        "parsed": {
+          "answer": "MAPLE-2047"
+        },
+        "expected": "MAPLE-2047"
+      }
+    },
+    {
+      "case_id": "ledger-net",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": true,
+      "reference_check": {
+        "passed": false,
+        "parsed": {
+          "answer": 183
+        },
+        "expected": 257
+      },
+      "candidate_check": {
+        "passed": false,
+        "parsed": {
+          "answer": 183
+        },
+        "expected": 257
+      }
+    },
+    {
+      "case_id": "composed-transform",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": false,
+      "reference_check": {
+        "passed": false,
+        "parsed": {
+          "answer": 44
+        },
+        "expected": 81
+      },
+      "candidate_check": {
+        "passed": false,
+        "parsed": {
+          "answer": 20
+        },
+        "expected": 81
+      }
+    },
+    {
+      "case_id": "code-stable-unique",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": true,
+      "reference_check": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": [],
+            "actual": [],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              1,
+              2,
+              1,
+              3,
+              2
+            ],
+            "expected": [
+              1,
+              2,
+              3
+            ],
+            "actual": [
+              1,
+              2,
+              3
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -2,
+              0,
+              -2,
+              4,
+              0
+            ],
+            "expected": [
+              -2,
+              0,
+              4
+            ],
+            "actual": [
+              -2,
+              0,
+              4
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5
+            ],
+            "expected": [
+              5
+            ],
+            "actual": [
+              5
+            ],
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "candidate_check": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": [],
+            "actual": [],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              1,
+              2,
+              1,
+              3,
+              2
+            ],
+            "expected": [
+              1,
+              2,
+              3
+            ],
+            "actual": [
+              1,
+              2,
+              3
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -2,
+              0,
+              -2,
+              4,
+              0
+            ],
+            "expected": [
+              -2,
+              0,
+              4
+            ],
+            "actual": [
+              -2,
+              0,
+              4
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5
+            ],
+            "expected": [
+              5
+            ],
+            "actual": [
+              5
+            ],
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "case_id": "code-increasing-run",
+      "payload_equal_except_cache_salt": true,
+      "text_equal": true,
+      "reference_check": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": 0,
+            "actual": 0,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              2,
+              2,
+              3,
+              4
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5,
+              4,
+              3
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -3,
+              -2,
+              -1,
+              0
+            ],
+            "expected": 4,
+            "actual": 4,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              4,
+              1,
+              2,
+              3,
+              0,
+              1
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "candidate_check": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": 0,
+            "actual": 0,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              2,
+              2,
+              3,
+              4
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5,
+              4,
+              3
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -3,
+              -2,
+              -1,
+              0
+            ],
+            "expected": 4,
+            "actual": 4,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              4,
+              1,
+              2,
+              3,
+              0,
+              1
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      }
+    }
+  ],
+  "native": {
+    "none": {
+      "n": 6,
+      "min_prompt": 8203,
+      "max_prompt": 8204,
+      "cold_full_reset": true
+    },
+    "all": {
+      "n": 6,
+      "min_prompt": 8203,
+      "max_prompt": 8204,
+      "cold_full_reset": true
+    }
+  },
+  "archive_sha256": "a3920192e0d80aa666ce9feaa8bf345e9aae34bcf86a0332003cefd2bffdb00c",
+  "qualification": "Curated six long tasks; bundle comparison changes activation arithmetic/prefill kernels/scheduler, not isolated A8 and not broad-quality qualification. Both arithmetic reference failures retained; native output-ID equality not established."
+}

@@ -1,0 +1,116 @@
+{
+  "layer": 26,
+  "kind": "gdn",
+  "N": 5120,
+  "K": 6144,
+  "H": 512,
+  "group": 512,
+  "row_order": [
+    "output0:5120, original output row order; residual not part of offline linear fit"
+  ],
+  "sources": [
+    {
+      "key": "model.language_model.layers.26.linear_attn.out_proj.weight",
+      "shape": [
+        5120,
+        6144
+      ],
+      "shard": "layers-26.safetensors",
+      "sha256": "ad8c3e3d4b79dfedad674318ee4b150b2cd78b56747c7c8d88a65818109a545d",
+      "scale_shard": "layers-26.safetensors",
+      "scale_sha256": "ad8c3e3d4b79dfedad674318ee4b150b2cd78b56747c7c8d88a65818109a545d",
+      "logical_profile": "FP32(E4M3*BF16scale), no extraBF16 cast"
+    }
+  ],
+  "training_files": [
+    {
+      "name": "L26-chunk0-output-input.bf16",
+      "sha256": "8c9c4c906b490cf7322059db8d51ffe56c7923569d92c94c5a228d93b29e3299"
+    },
+    {
+      "name": "L26-chunk1-output-input.bf16",
+      "sha256": "d90b1a8c6926fa6218f4829c9c3474aed50aad98df6ce779fc9f178d42ee6788"
+    },
+    {
+      "name": "L26-chunk2-output-input.bf16",
+      "sha256": "cacb535f8d3d097830a93e19a0df3b5f185fddb20d8e35f42eff256806219464"
+    },
+    {
+      "name": "L26-chunk3-output-input.bf16",
+      "sha256": "cbbf09e46ae1d45b3687f9f0c50b58473eede55158e8d9138903c668d25bc0f6"
+    },
+    {
+      "name": "L26-chunk4-output-input.bf16",
+      "sha256": "58f8d230650a486d0cff022273c09e83228599133ff9673fc220b77d08e0dd93"
+    },
+    {
+      "name": "L26-chunk5-output-input.bf16",
+      "sha256": "a47e9fce7938cd0fa754b7ad4aec4bd9ba73c30c759c700688f0e62640a0fe43"
+    },
+    {
+      "name": "L26-chunk6-output-input.bf16",
+      "sha256": "7d70e6060735d2a246ffc61db346f692e9d6310c6e9aae0ddadd2b110d36af0d"
+    },
+    {
+      "name": "L26-chunk7-output-input.bf16",
+      "sha256": "3dc3e81189589a95cd860d0bd0add73b08a9559e64ccc2e3439104ddf3203410"
+    },
+    {
+      "name": "L26-chunk8-output-input.bf16",
+      "sha256": "545f0fd653cc7dacb721d88dd6b2c2c98df1f45cabdea9495cb1dcbf23e56b73"
+    },
+    {
+      "name": "L26-chunk9-output-input.bf16",
+      "sha256": "b6a0bd15ac77d5163b9bc967992dddfed201468c1b04b731209e827066978823"
+    },
+    {
+      "name": "L26-chunk10-output-input.bf16",
+      "sha256": "59896659cb0a2a29a7d125b8cfb2bbb7d14b256dcccda66d147a381170067359"
+    },
+    {
+      "name": "L26-chunk11-output-input.bf16",
+      "sha256": "46fc37bb37fc3580eb4205dfd3b89d7b13792faf8aada40e345ab6e47db40688"
+    },
+    {
+      "name": "L26-chunk12-output-input.bf16",
+      "sha256": "7427576d51c9894de661b02a71fd46113c94144808e82a6355dc9ca89549e2ea"
+    },
+    {
+      "name": "L26-chunk13-output-input.bf16",
+      "sha256": "748f7b6d89a412e0f1342bc9e10186a6426bc927c69c8ef90277bd464560e0dd"
+    },
+    {
+      "name": "L26-chunk14-output-input.bf16",
+      "sha256": "41f97915214f7a268bec5a38058f76954a80802b92add3c404f2482038da3b2e"
+    },
+    {
+      "name": "L26-chunk15-output-input.bf16",
+      "sha256": "87b9f7d2eda2645f7139e149b223fae5065a0f7a5e936713b6dd45cabc999cee"
+    }
+  ],
+  "heldout_values_read": false,
+  "files": {
+    "fit-equivalence.json": {
+      "bytes": 2610,
+      "sha256": "13c536f1b116d53a3fcd247d004369960f158a830ce0b35a96c5df73a7d3bed5"
+    },
+    "expanded.i8": {
+      "bytes": 31457280,
+      "sha256": "7f6c791dc0244d14ca9daee131859f784abf24a976d131fa7e25fd63648fd97a"
+    },
+    "packed.bin": {
+      "bytes": 15728640,
+      "sha256": "bb01233c9af7c7ad747ebffe02ffdbe3a4be5532fcdb4406eaf8934474f7bdf2"
+    },
+    "scales.f32": {
+      "bytes": 245760,
+      "sha256": "3d74667a3f6587870c3b42afcc3e3b3dd40ab0adfbbac94ad99ebe2b860199b0"
+    },
+    "hessians.json": {
+      "bytes": 933,
+      "sha256": "188e1b6ab9e7c4fdd9b3ea234400cde898372ce2a5cb193b63fddaec16ea9875"
+    }
+  },
+  "profile": "same015/025 fixedGPTQ; new projection data only",
+  "fit_seconds": 5.8275977239827625
+}

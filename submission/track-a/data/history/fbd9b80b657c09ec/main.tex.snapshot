@@ -1,0 +1,457 @@
+% !TeX program = xelatex
+% Overleaf: XeLaTeX. Native editable TikZ/PGFPlots; no external assets.
+% Authoritative template: refresh from the reviewed evidence registry.
+\documentclass[11pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath,booktabs,array,tikz,pgfplots}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\pgfplotsset{compat=1.18,
+ ixaxis/.style={axis lines=left,axis line style={gray},
+ ticklabel style={font=\footnotesize},label style={font=\small},
+ ymajorgrids=true,grid style={gray!15},scaled ticks=false,
+ xtick style={draw=none},ytick style={draw=none},
+ nodes near coords style={font=\footnotesize,/pgf/number format/fixed,
+ /pgf/number format/precision=1}}}
+\definecolor{Ink}{HTML}{333333}
+\definecolor{Guide}{HTML}{777777}
+\definecolor{State}{HTML}{315B7D}
+\definecolor{Work}{HTML}{9A5A16}
+\definecolor{Pass}{HTML}{23734B}
+\definecolor{Fail}{HTML}{AE3F36}
+\tikzset{component/.style={draw=Guide,align=center,font=\small,
+ inner sep=5pt,minimum height=9mm},
+ state/.style={component,draw=State,fill=State!6},
+ change/.style={component,draw=Work,fill=Work!6},
+ flow/.style={-{Latex[length=2mm]},semithick,draw=Ink},
+ feedback/.style={flow,dashed,draw=State},
+ token/.style={draw=Guide,minimum width=7mm,minimum height=7mm,font=\small}}
+\newcommand{\ixclaim}[1]{\par\noindent{\large\bfseries #1\par}\vspace{3mm}}
+\newcommand{\ixnote}[1]{\par\noindent{\scriptsize\color{Ink} #1\par}}
+\title{InferX}
+\author{你说啥都队}
+\date{2026-10-18}
+\begin{document}
+
+% 1. Deliverable and conflict; the result is tied to one performance version.
+\begin{frame}{项目概述}
+\ixclaim{InferX：让单卡27B模型服务更多按时完成的请求}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\small] at (1.4,1.45) {长输入、并发请求};
+\node[component,text width=2.0cm] (requests) at (1.4,.45) {8192-token输入\\多个请求同时到达};
+\node[change,text width=4.1cm,minimum height=1.45cm] (service) at (6.3,.45)
+ {Qwen3.8-27B + NInfer\\单张48GB RTX 4090\\计算路径 / 状态 / 调度};
+\node[font=\small,align=left] (response) at (11.2,.45) {首字及时出现\\回答持续生成};
+\draw[flow] (requests)--(service);
+\draw[flow] (service)--(response);
+\end{tikzpicture}\par}
+\vspace{3mm}
+\begin{columns}[T]
+\begin{column}{.46\textwidth}
+{\Large\color{Pass}\textbf{12 并发}}\par
+\vspace{2mm}
+单轮同时满足首字、生成延迟目标
+\end{column}
+\begin{column}{.46\textwidth}
+{\Large\textbf{284.75 tok/s}}\par
+\vspace{2mm}
+对应通过配置的总输出吞吐
+\end{column}
+\end{columns}
+\vspace{5mm}
+\small 你说啥都队\quad 陈文欣、张志雄、郭坤昌\par
+\href{https://github.com/Yuer-yuan/InferX}{github.com/Yuer-yuan/InferX}\quad 代码 / README / 部署 / Demo
+\vspace{3mm}
+\ixnote{输出投影量化版9270f73e；冷8192输入/512输出，128正式+8预热，零错误。质量按对应版本另测。}
+\end{frame}
+
+% 2. A real observation motivates the question; no cross-protocol speedup.
+\begin{frame}{问题与目标}
+\ixclaim{旧基线增加并发后，吞吐接近饱和，生成等待却不断增加}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+\centering
+\small 总输出吞吐（tok/s，越高越好）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=3.8cm,
+ xmin=.6,xmax=4.5,ymin=0,ymax=130,xtick={1,2,3,4},
+ xticklabels={1,2,4,8},ytick={0,40,80,120},xlabel={客户端并发}]
+\addplot[Ink,thick,mark=*,nodes near coords] coordinates {(1,73.592962) (2,92.089488) (3,94.612183) (4,103.309039)};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering
+\small 生成延迟P95（ms/token，越低越好）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=3.8cm,
+ xmin=.6,xmax=4.5,ymin=0,ymax=110,xtick={1,2,3,4},
+ xticklabels={1,2,4,8},ytick={0,40,80},xlabel={客户端并发}]
+\addplot[Fail,thick,mark=*,nodes near coords] coordinates {(1,9.009001) (2,22.506397) (3,45.929756) (4,90.659709)};
+\addplot[Pass,dashed,thick] coordinates {(.6,40)(4.5,40)};
+\node[font=\footnotesize,text=Pass,anchor=south east] at (axis cs:4.5,40) {目标40ms};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\textbf{成功标准：}首字P95 $\leq$ 10s，生成P95 $\leq$ 40ms。\par
+\small 首字计入排队和输入处理；生成计入首字之后的等待。质量另用IFBench检查。
+\vspace{3mm}
+\ixnote{旧NInfer b604d050，同机单卡、冷8192/512、100正式+8预热。P95表示95\%请求不超过该值；后续扩展评测为128+8，不计算跨协议加速比。}
+\end{frame}
+
+% 3. One architecture, with actual deployment and contribution boundaries.
+\begin{frame}{整体方案}
+\ixclaim{选用可改CUDA的NInfer，同时优化计算、状态与调度}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\small,align=center] (api) at (.15,.7) {API\\请求};
+\node[component,text width=1.25cm] (queue) at (1.9,.7) {等待队列};
+\node[change,text width=2.1cm] (sched) at (4.65,.7) {调度器\\选择输入块 / 生成};
+\draw[Guide] (6.45,-1.8) rectangle (10.55,1.8);
+\node[font=\small,anchor=west] at (6.55,1.52) {单张48GB 4090};
+\node[component,text width=3.05cm,minimum height=1.1cm] (exec) at (8.5,.55)
+ {输入预填充 / 生成验证\\INT4计算 + 上游MTP};
+\node[state,text width=3.05cm] (st) at (8.5,-1.1) {每请求的KV / 递推状态\\已提交token / 槽位};
+\node[change,text width=2.1cm] (cache) at (4.65,-1.1) {离线校准\\4bit权重缓存};
+\node[font=\small,align=center] (out) at (12.15,.7) {流式\\回答};
+\draw[flow] (api)--(queue);
+\draw[flow] (queue)--(sched);
+\draw[flow] (sched.east)--(exec.west);
+\draw[flow] (exec.east)--(out);
+\draw[flow] (cache.east)--(6.1,-1.1)--(6.1,-.25)--(exec.south west);
+\draw[{Latex[length=2mm]}-{Latex[length=2mm]},draw=State,semithick] (exec.south)--(st.north);
+\draw[feedback] (st.south)--(8.5,-2.15)--(2.9,-2.15)--(2.9,-.15)--(sched.south west);
+\node[font=\footnotesize,text=State,fill=white] at (4.35,-2.15) {按请求反馈生成进度};
+\end{tikzpicture}\par}
+\vspace{2mm}
+\small \textbf{计算：}4bit降低大矩阵开销。\quad \textbf{MTP：}提议多个token后统一验证。\par
+\small \textbf{调度：}协调长输入与生成。\quad \textbf{状态：}保证并发接受、回滚互不串扰。
+\vspace{3mm}
+\ixnote{部署：最大上下文65536、输入块2048、INT8 KV、MTP K3。棕色为团队改造机制，蓝色为状态；NInfer与基础MTP来自上游，团队另改批执行与状态管理。}
+\end{frame}
+
+% 4. Quantization is a complete computation path, not a file-size claim.
+\begin{frame}{核心实现}
+\ixclaim{量化落到计算路径：权重和激活都进入INT4矩阵指令}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\small,align=right] (w) at (.5,1.2) {模型权重\\离线处理};
+\node[change,text width=2.25cm] (wq) at (3.1,1.2) {变换 + GPTQ校准\\4bit权重};
+\node[font=\small,align=right] (x) at (.5,-.6) {输入激活\\在线处理};
+\node[change,text width=2.25cm] (xq) at (3.1,-.6) {变换 + 动态量化\\4bit激活};
+\node[change,text width=2.1cm,minimum height=1.2cm] (mma) at (6.8,.3) {INT4整数点积\\真正执行计算};
+\node[component,text width=1.6cm] (scale) at (9.8,.3) {缩放与累加};
+\node[font=\small,align=center] (out) at (12.1,.3) {BF16\\输出};
+\draw[flow] (w)--(wq);
+\draw[flow] (x)--(xq);
+\draw[flow] (wq.east)--(mma.north west);
+\draw[flow] (xq.east)--(mma.south west);
+\draw[flow] (mma)--(scale);
+\draw[flow] (scale)--(out);
+\draw[flow] (wq.north)--(3.1,2.2)--(9.8,2.2)--(scale.north);
+\node[font=\footnotesize,fill=white] at (6.5,2.2) {权重缩放值};
+\draw[flow] (xq.south)--(3.1,-1.6)--(9.8,-1.6)--(scale.south);
+\node[font=\footnotesize,fill=white] at (6.5,-1.6) {激活缩放值};
+\end{tikzpicture}\par}
+\vspace{3mm}
+\textbf{覆盖路线：}64层、128个前馈矩阵 $\rightarrow$ 输入投影 $\rightarrow$ 输出投影。\par
+\small 校准降低量化误差；数值、真实模型路由和任务输出分层检查。
+\vspace{3mm}
+\ixnote{H512变换、G512分组。校准使用独立文本，不用IFBench答案。归一化、残差和递推状态保留各自格式；不宣称全模型4bit或量化无损。方法参考GPTQ/QuaRot/Atom。}
+\end{frame}
+
+% 5. Concurrency changes execution and state, rather than just an HTTP limit.
+\begin{frame}{核心实现}
+\ixclaim{并发扩容的关键：每个请求只提交自己通过验证的部分}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\small] at (3.8,1.8) {MTP提议3个token};
+\node[font=\small] at (9.8,1.8) {目标模型验证后，独立提交状态};
+\node[font=\small] (a) at (.4,.75) {请求A};
+\node[font=\small] (b) at (.4,-.85) {请求B};
+\node[token,fill=Work!12] (aone) at (2.6,.75) {a1};
+\node[token,fill=Work!12] at (3.8,.75) {a2};
+\node[token,dashed,text=Guide] (athree) at (5,.75) {a3};
+\node[token,fill=Work!12] (bone) at (2.6,-.85) {b1};
+\node[token,dashed,text=Guide] at (3.8,-.85) {b2};
+\node[token,dashed,text=Guide] (bthree) at (5,-.85) {b3};
+\node[state,text width=3.55cm] (sa) at (10.1,.75) {A：提交2个，恢复未接受部分\\KV / 递推状态 / 进度A};
+\node[state,text width=3.55cm] (sb) at (10.1,-.85) {B：提交1个，恢复未接受部分\\KV / 递推状态 / 进度B};
+\draw[flow] (a)--(aone);
+\draw[flow] (b)--(bone);
+\draw[flow] (athree.east)--node[above,font=\small]{接受前缀2}(sa.west);
+\draw[flow] (bthree.east)--node[above,font=\small]{接受前缀1}(sb.west);
+\node[font=\footnotesize,text=Guide] at (3.8,-1.65) {实框：接受；虚框：未接受（机制示意）};
+\end{tikzpicture}\par}
+\vspace{3mm}
+\textbf{从8扩到16/32批执行：}同步扩槽位、工作区和CUDA Graph。\par
+\small 状态隔离、部分提交与回滚验证通过，才有资格进入服务压测。
+\vspace{3mm}
+\ixnote{示例不代表实际接受率。MTP为上游机制；团队改造批执行和状态生命周期。融合阶段2013条配对记录无差异，包含层/槽位状态及执行事件，并非2013项独立测试。}
+\end{frame}
+
+% 6. Scheduling mechanism and a bounded, real end-to-end observation.
+\begin{frame}{核心实现}
+\ixclaim{长输入分块提供切换机会，再按每个请求的进度安排生成}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\small,anchor=west] at (0,1.55) {8192-token新输入};
+\foreach \i in {0,1,2,3}{
+ \draw[Guide,fill=Guide!6] (4.4+\i*1.6,1.1) rectangle (5.95+\i*1.6,1.85);
+ \node[font=\small] at (5.175+\i*1.6,1.475) {2048};
+}
+\node[font=\small,anchor=west] at (0,-.05) {一张GPU的执行顺序};
+\draw[flow] (4.2,-.2)--(12.6,-.2);
+\foreach \i in {0,1,2,3}{
+ \draw[Guide,fill=Guide!6] (4.4+\i*2,-.6) rectangle (5.5+\i*2,.2);
+ \node[font=\small] at (4.95+\i*2,-.2) {输入块};
+ \draw[Work,fill=Work!10] (5.55+\i*2,-.6) rectangle (6.35+\i*2,.2);
+ \node[font=\small,text=Work] at (5.95+\i*2,-.2) {生成};
+}
+\draw[flow] (7.6,1.1)--node[right,font=\footnotesize]{块间重新选择下一段工作}(7.6,.35);
+\node[state,text width=8.5cm] (budget) at (7.5,-1.65)
+ {按各请求真正提交的token，估计剩余工作；避免批次平均数掩盖慢请求};
+\end{tikzpicture}\par}
+\vspace{3mm}
+\textbf{同机16并发：}生成P95\quad 48.78 $\rightarrow$ 45.74 ms。\par
+\small 下降6.23\%，仍高于40ms；继续优化慢请求的等待。
+\vspace{3mm}
+\ixnote{时间块仅示意可调度顺序，长度不表示耗时。2362→837f调度对照：相同payload、128+8、冷8192/512、K3/KV139264，单轮；首字9.856→9.838s，吞吐311.77→315.73 tok/s。}
+\end{frame}
+
+% 7. Historical progression: no claim of an isolated causal speedup.
+\begin{frame}{结果与证据}
+\ixclaim{量化覆盖扩展后吞吐上升，32并发仍未满足生成延迟目标}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+\centering
+\small 总输出吞吐（tok/s，越高越好）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=4.1cm,
+ xmin=.5,xmax=3.5,ymin=0,ymax=420,xtick={1,2,3},
+ xticklabels={前馈,加输入,加输出},ytick={0,100,200,300,400}]
+\addplot[ybar,bar width=19pt,draw=Work,fill=Work!15,nodes near coords]
+ coordinates {(1,305.910173) (2,352.410492) (3,363.576857)};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering
+\small 生成延迟P95（ms/token，越低越好）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=4.1cm,
+ xmin=.5,xmax=3.5,ymin=0,ymax=145,xtick={1,2,3},
+ xticklabels={前馈,加输入,加输出},ytick={0,40,80,120}]
+\addplot[only marks,mark=*,mark size=3pt,Fail,nodes near coords]
+ coordinates {(1,122.117458) (2,109.107220) (3,101.157387)};
+\addplot[Pass,dashed,thick] coordinates {(.5,40)(3.5,40)};
+\node[font=\footnotesize,text=Pass,anchor=south east] at (axis cs:3.5,40) {目标40ms};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\textbf{下一问：}降低并发后，能否同时满足首字与生成延迟？
+\vspace{3mm}
+\ixnote{历史三版：c3f4 / 40b3 / 9270，均同节点单卡、C32/K3/KV278528、128+8、冷8192/512；首字P95依次29.32 / 24.89 / 23.69s，零错误。输入版仅有汇总；不作单因素净加速归因。}
+\end{frame}
+
+% 8. Capacity is the intersection of two latency constraints.
+\begin{frame}{结果与证据}
+\ixclaim{同一量化版本：12并发单轮达标，16/32并发仍超限}
+\begin{columns}[c]
+\begin{column}{.59\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=8.5cm,height=4.7cm,
+ xmin=0,xmax=28,ymin=0,ymax=125,xtick={0,10,20},
+ ytick={0,40,80,120},xlabel={首字延迟P95（s）},
+ ylabel={生成延迟P95（ms/token）}]
+\path[fill=Pass!7] (axis cs:0,0) rectangle (axis cs:10,40);
+\addplot[Pass,dashed,thick] coordinates {(0,40)(28,40)};
+\addplot[Pass,dashed,thick] coordinates {(10,0)(10,125)};
+\node[font=\small,text=Pass] at (axis cs:4.4,15) {双目标区};
+\addplot[only marks,Pass,mark=*,mark size=3.3pt] coordinates {(9.499646,37.340162)};
+\addplot[only marks,Fail,mark=x,mark size=4pt,thick] coordinates {(9.934084,51.702542) (23.694501,101.157387)};
+\node[font=\small,anchor=north west,text=Pass] at (axis cs:10.4,36) {12并发};
+\node[font=\small,anchor=south west,text=Fail] at (axis cs:10.6,53) {16并发};
+\node[font=\small,anchor=south east,text=Fail] at (axis cs:25,105) {32并发};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{.37\textwidth}
+{\Large\color{Pass}\textbf{284.75 tok/s}}\par
+\vspace{2mm}
+\textbf{12并发的通过配置}\par
+\vspace{3mm}
+\small 首字P95\quad 9.50s / 10s\par
+生成P95\quad 37.34ms / 40ms\par
+\vspace{4mm}
+16 / 32并发吞吐更高，\par
+但用户等待超过目标。\par
+\vspace{2mm}
+\textbf{吞吐不能代替延迟达标。}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\ixnote{9270f73e；各128正式+8预热、冷8192/512、零错误。12/16同机，32另一同规格节点；KV随并发调整。C16/C32吞吐307.15/363.58 tok/s。单轮结果，不代表稳定容量上限。}
+\end{frame}
+
+% 9. Show what failed, rather than only a decorative accuracy percentage.
+\begin{frame}{结果与证据}
+\ixclaim{完整100题：84题严格通过，失败题也计入结果}
+{\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\fill[Pass!12] (0,0) rectangle (10.08,.9);
+\fill[Fail!12] (10.08,0) rectangle (12,.9);
+\draw[Guide] (0,0) rectangle (12,.9);
+\draw[Guide] (10.08,0)--(10.08,.9);
+\node[font=\small,text=Pass] at (5.04,.45) {严格通过：84题};
+\node[font=\small,text=Fail] at (11.04,.45) {失败：16题};
+\end{tikzpicture}\par}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{.44\textwidth}
+\textbf{测的是指令是否全部遵循}\par
+\vspace{2mm}
+\small 每题所有约束通过，才算该题通过。\par
+宽松评分87/100；指令级95/111。\par
+\vspace{2mm}
+错误 / 空回答 / 截断：\textbf{0 / 0 / 0}
+\end{column}
+\begin{column}{.50\textwidth}
+\textbf{真实失败例：标点覆盖约束}\par
+\vspace{2mm}
+\small 样本key37要求覆盖全部标准标点。\par
+回答自然结束，原评分器仍判失败。\par
+\vspace{2mm}
+说明：正常生成不等于约束全部满足。
+\end{column}
+\end{columns}
+\vspace{4mm}
+\textcolor{Work}{\textbf{这是验证扩展版的质量；与上一页性能分别报告。}}
+\vspace{3mm}
+\ixnote{66328f67；C16/活动16、K3、KV532480，原前100、默认thinking/采样、max32768，原评分器复核。性能页为9270；同配置性能与质量联合验证尚未完成。}
+\end{frame}
+
+% 10. An actual log excerpt is evidence, explicitly not a simulated terminal.
+\begin{frame}{工程化设计}
+\ixclaim{从版本到逐请求日志，再到独立复算，让每个成绩有出处}
+\begin{columns}[T]
+\begin{column}{.49\textwidth}
+\textbf{真实运行记录节选}\par
+\vspace{3mm}
+\begin{tabular}{lr}
+\toprule
+\small 原生JSONL字段 & \small 实际值\\
+\midrule
+\footnotesize\texttt{computed\_prefill\_tokens} & 8192\\
+\footnotesize\texttt{prefix\_cache\_hit\_tokens} & 0\\
+\footnotesize\texttt{completion\_tokens} & 512\\
+\footnotesize\texttt{prefix\_reuse\_path} & \footnotesize\texttt{full\_reset}\\
+\bottomrule
+\end{tabular}
+\vspace{3mm}
+\small 证明实际冷输入与固定输出长度；\par
+客户端记录另用于重算P95。
+\end{column}
+\begin{column}{.46\textwidth}
+\textbf{可核验的交付链}\par
+\vspace{3mm}
+固定源码、模型、缓存、启动配置\par
+\vspace{2mm}
+$\rightarrow$ 接口检查与原版评测\par
+\vspace{2mm}
+$\rightarrow$ 逐请求计时、异常、GPU记录\par
+\vspace{2mm}
+$\rightarrow$ 复算延迟，对照原始汇总\par
+\vspace{3mm}
+\small OOM、超时、空输出与截断均保留；\par
+更改配置后重新标记测试范围。
+\end{column}
+\end{columns}
+\vspace{5mm}
+\small \href{https://github.com/Yuer-yuan/InferX}{仓库 README}\quad
+提供部署、原始记录与复验步骤；现场用真实请求展示服务与日志。
+\vspace{3mm}
+\ixnote{字段来自9270 C12原生request\_done；客户端逐条重算与原汇总一致。文档和旧版构建不替代当前版本的完整源码/缓存交付及干净环境复验。}
+\end{frame}
+
+% 11. The failed design exposes a real resource tradeoff.
+\begin{frame}{成本、性能与取舍}
+\ixclaim{只减少活动请求，会把生成阶段的竞争转移成首字前排队}
+\small 固定16个客户端请求；仅把引擎活动容量从16降到12。\par
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+\centering
+\small 首字P95（s，目标$\leq$10）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=3.4cm,
+ xmin=.5,xmax=2.5,ymin=0,ymax=18,xtick={1,2},
+ xticklabels={活动16,活动12},ytick={0,5,10,15}]
+\addplot[ybar,bar width=22pt,draw=State,fill=State!12,nodes near coords]
+ coordinates {(1,9.855908) (2,14.426440)};
+\addplot[Pass,dashed,thick] coordinates {(.5,10)(2.5,10)};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering
+\small 生成P95（ms/token，目标$\leq$40）\par
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=6.7cm,height=3.4cm,
+ xmin=.5,xmax=2.5,ymin=0,ymax=60,xtick={1,2},
+ xticklabels={活动16,活动12},ytick={0,20,40,60}]
+\addplot[ybar,bar width=22pt,draw=Work,fill=Work!12,nodes near coords]
+ coordinates {(1,48.784071) (2,43.719738)};
+\addplot[Pass,dashed,thick] coordinates {(.5,40)(2.5,40)};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\textbf{生成改善10.38\%，首字恶化46.37\%；两组都未达标。}\par
+\small 资源固定为单卡48GB；下一步需要减少实际执行与等待开销。
+\vspace{3mm}
+\ixnote{2362fc01同机、同payload、K3/KV139264、128+8，单次顺序对照；吞吐311.77→306.84 tok/s。450W是功率上限；未测完整能耗和单位token费用。活动12仍是客户端16并发。}
+\end{frame}
+
+% 12. Close the argument and move to the live demonstration.
+\begin{frame}{总结与不足}
+\ixclaim{已经做到12并发单轮达标，下一关是更高并发的尾延迟}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{.47\textwidth}
+\textbf{从问题到交付}\par
+\vspace{4mm}
+旧基线：并发上升，吞吐接近饱和\par
+\vspace{3mm}
+$\rightarrow$ INT4计算、批执行与独立状态\par
+\vspace{3mm}
+$\rightarrow$ 分块和逐请求进度调度\par
+\vspace{3mm}
+$\rightarrow$ 12并发，284.75 tok/s，单轮通过
+\end{column}
+\begin{column}{.46\textwidth}
+\textbf{还差什么，接着做什么}\par
+\vspace{4mm}
+16/32并发生成延迟仍超限\par
+\vspace{3mm}
+$\rightarrow$ 用实际GPU时间线定位等待\par
+\vspace{3mm}
+$\rightarrow$ 同一配置完成性能与质量验证\par
+\vspace{3mm}
+$\rightarrow$ 重复测试，确认稳定服务容量
+\end{column}
+\end{columns}
+\vspace{6mm}
+\textbf{现场Demo：}确认单卡与版本 $\rightarrow$ 真实流式请求 $\rightarrow$ 查看输出与日志。\par
+\small \href{https://github.com/Yuer-yuan/InferX}{github.com/Yuer-yuan/InferX}\quad README / 部署 / Benchmark / Demo
+\vspace{3mm}
+\ixnote{12并发仅单轮性能证据；独立验证扩展版IFBench严格84/100。性能、质量与稳定性按各自验证范围陈述。}
+\end{frame}
+\end{document}

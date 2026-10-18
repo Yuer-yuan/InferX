@@ -1,0 +1,90 @@
+{
+  "status": "CONFIGURATION_REJECTED_BEFORE_MODEL_OR_REQUESTS",
+  "error": "--kv-capacity must be at least --max-context",
+  "KV": 34816,
+  "max_context": 65536,
+  "client": 4,
+  "native": 4,
+  "measured": 0,
+  "native_done": 0,
+  "performance_slo_evaluated": false,
+  "actual_terminal": {
+    "at": "2026-10-17T21:27:51.708984+00:00",
+    "all_owned_nonrunning": true,
+    "handles": [
+      {
+        "identity": {
+          "pid": 530998,
+          "start_ticks": "49349299",
+          "uid": 0,
+          "executable": "/usr/bin/python3.10",
+          "state": "R"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531019,
+          "start_ticks": "49349392",
+          "uid": 0,
+          "executable": "/usr/bin/nvidia-smi",
+          "state": "R",
+          "command": [
+            "nvidia-smi",
+            "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+            "--format=csv",
+            "-l",
+            "1"
+          ],
+          "host": "ucloud3",
+          "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100/C4-gpu.csv",
+          "role": "1Hz power/memory, not occupancy",
+          "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531020,
+          "start_ticks": "49349392",
+          "uid": 0,
+          "executable": "/usr/bin/python3.10",
+          "state": "R",
+          "command": [
+            "/usr/bin/python3",
+            "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100/run_candidate_sweep.py",
+            "--runner",
+            "/workspace/InferX/code/submission/organizer/runner.py",
+            "--config",
+            "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100/C4-config.json",
+            "--output-dir",
+            "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C4-native4-bounded100"
+          ],
+          "host": "ucloud3",
+          "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100/C4-driver.log",
+          "role": "original128+8+1 C4",
+          "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531027,
+          "start_ticks": 49349652
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      }
+    ],
+    "GPU_compute": "",
+    "job_status": "failed"
+  },
+  "archive_SHA256": "5ecbda3f0129eec1f1fa8f16811ce6bc7fd840eccab3662975fe041bc991303b"
+}

@@ -1,0 +1,1729 @@
+{
+  "status": "complete",
+  "stage": "terminal",
+  "owner": {
+    "pid": 451006,
+    "start_ticks": "45878586",
+    "uid": 0,
+    "executable": "/usr/bin/python3.10",
+    "state": "R"
+  },
+  "handles": [
+    {
+      "pid": 451012,
+      "start_ticks": "45878639",
+      "uid": 0,
+      "executable": "/usr/bin/nvidia-smi",
+      "state": "R",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+        "--format=csv",
+        "-l",
+        "1"
+      ],
+      "host": "ucloud",
+      "log_path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/gpu.csv",
+      "role": "memory/power1Hz not occupancy",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 451013,
+      "start_ticks": "45878639",
+      "uid": 0,
+      "executable": "/usr/bin/python3.10",
+      "state": "R",
+      "command": [
+        "/usr/bin/python3",
+        "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/run_candidate_sweep.py",
+        "--runner",
+        "/workspace/InferX/code/submission/organizer/runner.py",
+        "--config",
+        "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/config.json",
+        "--output-dir",
+        "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1"
+      ],
+      "host": "ucloud",
+      "log_path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/driver.log",
+      "role": "C32 startup then exact GPU gate then original128+8",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    }
+  ],
+  "started_ns": 1792237580633447785,
+  "scope": "C32/K3 fixed47 Prefill output S4 atop qualified40b3; fixed128+8 official runner; exact model-owned seam required; no rejected gate changes",
+  "model_seam_receipt": {
+    "kind": "root_authorized_selected47_execution",
+    "passed": true,
+    "selected_child_reaped": true,
+    "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+    "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+    "scope": "Selected47 new path execution only. Original protected T4 failed and is not claimed passed. Root explicitly authorizes performance now; no task-quality qualification.",
+    "evidence": {
+      "Root-selected-only-authorization.json": {
+        "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/evidence/Root-selected-only-authorization.json",
+        "sha256": "b83fc34f6f67fa226a8d291a8013a4ec98823ddb3f49f51aa72675d9c98b6d72"
+      },
+      "ucloud3-selected-execution-report.json": {
+        "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/evidence/ucloud3-selected-execution-report.json",
+        "sha256": "4a473dc9ba8c79112302f885cd048a9ad773c260f6c4d2e580c5d8ba1fb691cf"
+      }
+    }
+  },
+  "protected_T4_diagnostic_pending": true,
+  "task_quality_qualified": false,
+  "cache_ready_receipt": {
+    "status": "complete",
+    "owner": {
+      "pid": 439015,
+      "start_ticks": "44794796"
+    },
+    "destination": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025",
+    "source": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-layer-GPTQ-025",
+    "started_unix": 1792226744.0733309,
+    "children": [
+      {
+        "pid": 439016,
+        "start_ticks": "44794936"
+      },
+      {
+        "pid": 439017,
+        "start_ticks": "44794936"
+      }
+    ],
+    "bytes_present": 8302794240,
+    "updated_unix": 1792226770.1782658,
+    "copy_finished_unix": 1792226772.1808074,
+    "verified_files": 256,
+    "files_verified": 256,
+    "bytes_verified": 8690073600,
+    "finished_unix": 1792226778.9321713
+  },
+  "cache_manifest_sha256": "8c671336473a9b8f80b465eb387b7b9a35b3877b50d811b1bcc5ef4133e42c1b",
+  "cache_SHA_scope": "Root direct transfer already verified all256 destination hashes; this preflight rechecks file count and exact sizes, preserving original receipt.",
+  "input_cache_ready_sha256": "0db4525550143b2628a354ce22ceac78d1ec743f0d667984b179aec1ff025336",
+  "input_cache_manifest_sha256": "c57f49ec4ec8f3bfea799dd866168c6605c6f06735b1e07142e322e48c00e325",
+  "output_cache_ready": {
+    "status": "complete",
+    "owner": {
+      "pid": 442276,
+      "start_ticks": "45440129"
+    },
+    "destination": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights047",
+    "source": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-output-GPTQ-047",
+    "started_unix": 1792233201.6834617,
+    "children": [
+      {
+        "pid": 442279,
+        "start_ticks": "45440696"
+      },
+      {
+        "pid": 442280,
+        "start_ticks": "45440696"
+      }
+    ],
+    "bytes_present": 1023842337,
+    "updated_unix": 1792233205.7067022,
+    "copy_finished_unix": 1792233207.7091436,
+    "verified_files": 397,
+    "files_verified": 397,
+    "bytes_verified": 1023842337,
+    "finished_unix": 1792233208.9642956,
+    "weight_files_verified": 128,
+    "weight_bytes_verified": 1022361600,
+    "scope": "all64 output047 frozen weights and identities only; no expanded or activations or GPU execution"
+  },
+  "output_manifest_sha256": "7ba28722cd09aa2c4cd4357ca2fa1ceda14728294a6575160f6a4b3732da6df9",
+  "selected_layers": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    24,
+    25,
+    26,
+    28,
+    29,
+    30,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    44,
+    45,
+    46,
+    48,
+    49,
+    50,
+    52,
+    53,
+    54,
+    56,
+    57,
+    58,
+    60,
+    61,
+    62
+  ],
+  "runtime": {
+    "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+    "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+    "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc"
+  },
+  "expected_env": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights047"
+  },
+  "GPU_preflight": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353, 1 MiB, 450.00 W\n",
+  "command": [
+    "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18484",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "278528",
+    "--max-concurrency",
+    "32",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "int8",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "3",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl",
+    "--no-prefix-reuse",
+    "--no-disk-cache"
+  ],
+  "native_done": 137,
+  "native_errors": 0,
+  "heartbeat_ns": 1792237824031139547,
+  "case_status": "running",
+  "numeric_gate": {
+    "status": "passed",
+    "receipt": {
+      "kind": "frozen_candidate_numeric_qualification",
+      "passed": true,
+      "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+      "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "evidence": {
+        "build": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/build-state.json",
+          "sha256": "6b3ad962cf17001a49c79a21120942ca974c1546f37b3a318489537bb8463c95"
+        },
+        "source": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/source-identity.json",
+          "sha256": "73c1e8576db83cdecb796032c0dc04631fce29b90b8c32f1ebc60e78d8dfe5f8"
+        },
+        "cache": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025/cache025-ready.json",
+          "sha256": "00494909e18f0cd5d938edc05e0f4eabe685e07694f9a8879b8f63a15e60bcda"
+        },
+        "model_owned_47_seam": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/model-seam-qualification.json",
+          "sha256": "6485d79a652c5dbc99b38a2f550446a2b7a818337d6946e5699e0236bd94f449"
+        }
+      },
+      "scope": "Frozen025/041 parent retained; exact9270 selected L1T1/L2T2044 model-owned registration/Prefill/Graph reported PASS by ucloud3 and accepted by Root. Protected oldT4 parity failed and diagnostic remains pending; Root explicitly permits this performance run. No task-quality claim."
+    },
+    "sha256": "b2d003693850e2ed5e85d5dc02aabcc1b87a06801a534fd4120e2cdd4ce29c5a"
+  },
+  "tiers": [
+    {
+      "label": "PILOT",
+      "status": "complete",
+      "concurrency": 32,
+      "artifacts": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/c32",
+      "started_at": "2026-10-17T11:47:00.951754+00:00",
+      "meets_slo": false,
+      "issues": [],
+      "expected_requests": 128,
+      "records": 128,
+      "valid_records": 128,
+      "successful_requests": 128.0,
+      "error_requests": 0,
+      "lengths_verified": true,
+      "osl_verified": true,
+      "input_length_basis": "model",
+      "actual_input_tokens": {
+        "min": 8192,
+        "max": 8192,
+        "mean": 8192.0
+      },
+      "metrics": {
+        "time_to_first_token": {
+          "mean": 9496.666763312507,
+          "p50": 8254.96207,
+          "p95": 23694.500605100005,
+          "p99": 28406.197854280003
+        },
+        "inter_token_latency": {
+          "mean": 65.88644720347665,
+          "p50": 65.5010724001957,
+          "p95": 101.15738747495108,
+          "p99": 115.71145693506848
+        },
+        "request_latency": {
+          "mean": 43164.64128428907,
+          "p50": 42214.015146,
+          "p95": 64528.09229555,
+          "p99": 66461.20223267001
+        }
+      },
+      "benchmark_duration": 180.250304768,
+      "request_throughput": 0.710111048895557,
+      "output_token_throughput": 363.5768570345252,
+      "native_status": "\u5b8c\u6574",
+      "failed_input_length_records": 0,
+      "failed_output_length_records": 0,
+      "missing_profiling_records": 0,
+      "finished_at": "2026-10-17T11:50:24.009165+00:00",
+      "elapsed_seconds": 203.05742857902078
+    }
+  ],
+  "service": {
+    "pid": 451016,
+    "start_ticks": 45878884
+  },
+  "actual_proc_env": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights047"
+  },
+  "actual_proc_argv": [
+    "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+    "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18484",
+    "--model-id",
+    "qwen38-27b",
+    "--max-context",
+    "65536",
+    "--kv-capacity",
+    "278528",
+    "--max-concurrency",
+    "32",
+    "--max-pending-requests",
+    "32",
+    "--pending-timeout-ms",
+    "600000",
+    "--prefill-chunk",
+    "2048",
+    "--kv-dtype",
+    "int8",
+    "--presence-penalty",
+    "0",
+    "--frequency-penalty",
+    "0",
+    "--seed",
+    "42",
+    "--no-ui",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "3",
+    "--lm-head-draft",
+    "--request-log-jsonl",
+    "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl",
+    "--no-prefix-reuse",
+    "--no-disk-cache"
+  ],
+  "startup": {
+    "argv": [
+      "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+      "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "18484",
+      "--model-id",
+      "qwen38-27b",
+      "--max-context",
+      "65536",
+      "--kv-capacity",
+      "278528",
+      "--max-concurrency",
+      "32",
+      "--max-pending-requests",
+      "32",
+      "--pending-timeout-ms",
+      "600000",
+      "--prefill-chunk",
+      "2048",
+      "--kv-dtype",
+      "int8",
+      "--presence-penalty",
+      "0",
+      "--frequency-penalty",
+      "0",
+      "--seed",
+      "42",
+      "--no-ui",
+      "--spec",
+      "mtp",
+      "--draft-tokens",
+      "3",
+      "--lm-head-draft",
+      "--request-log-jsonl",
+      "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl",
+      "--no-prefix-reuse",
+      "--no-disk-cache"
+    ],
+    "artifact": {
+      "bytes_read": 8110698809,
+      "host_to_device_bytes": 8097606656,
+      "load_seconds": 34.968081027,
+      "path": "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "peak_staging_bytes": 268435456,
+      "resource_count": 6,
+      "size_bytes": 18210531328,
+      "target": "qwen3_8_27b",
+      "tensor_count": 657,
+      "upload_seconds": 1.917032609,
+      "weights_id": "groupwise-int"
+    },
+    "artifact_type": "ninfer_serve_request_log",
+    "engine": {
+      "cuda_graph": true,
+      "device": 0,
+      "kv_cache": "int8-group64",
+      "kv_capacity": 278528,
+      "kv_capacity_max_page_groups": 32768,
+      "kv_capacity_mode": "explicit",
+      "kv_capacity_page_groups": 4352,
+      "log_stats_interval_ms": 5000,
+      "max_concurrency": 32,
+      "max_context": 65536,
+      "max_pending_requests": 32,
+      "pending_timeout_ms": 600000,
+      "prefill_chunk": 2048,
+      "prefix_reuse": false,
+      "proposal_head": "optimized",
+      "speculative_backend": "mtp",
+      "speculative_draft_window": 3,
+      "vision": false
+    },
+    "environment": {
+      "compute_capability_major": 8,
+      "compute_capability_minor": 9,
+      "cuda_compile_version": "13.2",
+      "cuda_driver_version": "13.3",
+      "cuda_runtime_version": "13.2",
+      "device": 0,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+      "total_device_memory_bytes": 50894602240
+    },
+    "event": "server_start",
+    "memory": {
+      "available_after_startup_bytes": 9418047488,
+      "available_after_weights_bytes": 30297292800,
+      "cuda_graph_allowance_bytes": 8589934592,
+      "cuda_graph_observed_bytes": 287309824,
+      "kv_capacity_headroom_bytes": 0,
+      "kv_capacity_increment_bytes": 2297856,
+      "kv_payload_bytes": 10004594688,
+      "minimum_runtime_reservation_bytes": 21528670208,
+      "planned_slack_bytes": 1121357824,
+      "request_transient": {
+        "capacity_bytes": 0,
+        "peak_used_bytes": 0,
+        "used_bytes": 0
+      },
+      "runtime_reservation_bytes": 29175934976,
+      "sequence": {
+        "capacity_bytes": 20224094208,
+        "peak_used_bytes": 20224094208,
+        "used_bytes": 20224094208
+      },
+      "weights": {
+        "capacity_bytes": 8097612800,
+        "peak_used_bytes": 8097612800,
+        "used_bytes": 8097612800
+      },
+      "workspace": {
+        "capacity_bytes": 361906176,
+        "peak_used_bytes": 0,
+        "used_bytes": 0
+      }
+    },
+    "sampling_defaults": {
+      "greedy": false,
+      "non_thinking": {
+        "frequency_penalty": 0.0,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "temperature": 0.699999988079071,
+        "top_k": 20,
+        "top_p": 0.800000011920929
+      },
+      "omitted_seed": "random",
+      "server_overrides": {
+        "frequency_penalty": 0.0,
+        "min_p": null,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "temperature": null,
+        "top_k": null,
+        "top_p": null
+      },
+      "thinking": {
+        "frequency_penalty": 0.0,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.949999988079071
+      }
+    },
+    "schema_version": 8,
+    "server": {
+      "api_key_configured": false,
+      "cors_enabled": false,
+      "default_output_tokens": 65536,
+      "default_preserve_thinking": false,
+      "default_reasoning_effort": null,
+      "default_thinking": true,
+      "host": "127.0.0.1",
+      "max_request_bytes": 402653184,
+      "port": 18484,
+      "public_model_id": "qwen38-27b",
+      "request_log_jsonl": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl"
+    },
+    "server_instance_id": "serve-451016-1792237583586465",
+    "timestamp_unix_ms": 1792237618857
+  },
+  "driver_cleanup": {
+    "reaped": true,
+    "exit_code": 0
+  },
+  "telemetry_cleanup": {
+    "reaped": true,
+    "exit_code": 0
+  },
+  "manifest_status": "complete",
+  "case": {
+    "label": "PILOT",
+    "name": "candidate",
+    "command": [
+      "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+      "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "18484",
+      "--model-id",
+      "qwen38-27b",
+      "--max-context",
+      "65536",
+      "--kv-capacity",
+      "278528",
+      "--max-concurrency",
+      "32",
+      "--max-pending-requests",
+      "32",
+      "--pending-timeout-ms",
+      "600000",
+      "--prefill-chunk",
+      "2048",
+      "--kv-dtype",
+      "int8",
+      "--presence-penalty",
+      "0",
+      "--frequency-penalty",
+      "0",
+      "--seed",
+      "42",
+      "--no-ui",
+      "--spec",
+      "mtp",
+      "--draft-tokens",
+      "3",
+      "--lm-head-draft",
+      "--request-log-jsonl",
+      "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/requests.jsonl",
+      "--no-prefix-reuse",
+      "--no-disk-cache"
+    ],
+    "concurrencies": [
+      32
+    ],
+    "started_at": "2026-10-17T11:46:23.567589+00:00",
+    "status": "complete",
+    "tiers": [
+      {
+        "label": "PILOT",
+        "status": "complete",
+        "concurrency": 32,
+        "artifacts": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/c32",
+        "started_at": "2026-10-17T11:47:00.951754+00:00",
+        "meets_slo": false,
+        "issues": [],
+        "expected_requests": 128,
+        "records": 128,
+        "valid_records": 128,
+        "successful_requests": 128.0,
+        "error_requests": 0,
+        "lengths_verified": true,
+        "osl_verified": true,
+        "input_length_basis": "model",
+        "actual_input_tokens": {
+          "min": 8192,
+          "max": 8192,
+          "mean": 8192.0
+        },
+        "metrics": {
+          "time_to_first_token": {
+            "mean": 9496.666763312507,
+            "p50": 8254.96207,
+            "p95": 23694.500605100005,
+            "p99": 28406.197854280003
+          },
+          "inter_token_latency": {
+            "mean": 65.88644720347665,
+            "p50": 65.5010724001957,
+            "p95": 101.15738747495108,
+            "p99": 115.71145693506848
+          },
+          "request_latency": {
+            "mean": 43164.64128428907,
+            "p50": 42214.015146,
+            "p95": 64528.09229555,
+            "p99": 66461.20223267001
+          }
+        },
+        "benchmark_duration": 180.250304768,
+        "request_throughput": 0.710111048895557,
+        "output_token_throughput": 363.5768570345252,
+        "native_status": "\u5b8c\u6574",
+        "failed_input_length_records": 0,
+        "failed_output_length_records": 0,
+        "missing_profiling_records": 0,
+        "finished_at": "2026-10-17T11:50:24.009165+00:00",
+        "elapsed_seconds": 203.05742857902078
+      }
+    ],
+    "server_log": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/server.log",
+    "cleanup": {
+      "reaped": true,
+      "exit_code": 0,
+      "lifecycle": "direct engine child held via pidfd; no process-group or global kill"
+    },
+    "port_preflight": {
+      "status": "unused",
+      "started_at": "2026-10-17T11:46:23.567807+00:00",
+      "timeout_seconds": 0,
+      "previous_owned_server": null,
+      "attempts": 1,
+      "waited_seconds": 0.00188632303616032
+    },
+    "pid": 451016,
+    "start_ticks": 45878884,
+    "owned_identity": {
+      "pid": 451016,
+      "start_ticks": 45878884,
+      "uid": 0,
+      "executable": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+      "lifecycle": "pidfd held until reaped"
+    },
+    "ready_at": "2026-10-17T11:47:00.029837+00:00",
+    "numeric_gate": {
+      "status": "passed",
+      "receipt": {
+        "kind": "frozen_candidate_numeric_qualification",
+        "passed": true,
+        "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+        "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+        "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+        "evidence": {
+          "build": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/build-state.json",
+            "sha256": "6b3ad962cf17001a49c79a21120942ca974c1546f37b3a318489537bb8463c95"
+          },
+          "source": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/source-identity.json",
+            "sha256": "73c1e8576db83cdecb796032c0dc04631fce29b90b8c32f1ebc60e78d8dfe5f8"
+          },
+          "cache": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025/cache025-ready.json",
+            "sha256": "00494909e18f0cd5d938edc05e0f4eabe685e07694f9a8879b8f63a15e60bcda"
+          },
+          "model_owned_47_seam": {
+            "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/model-seam-qualification.json",
+            "sha256": "6485d79a652c5dbc99b38a2f550446a2b7a818337d6946e5699e0236bd94f449"
+          }
+        },
+        "scope": "Frozen025/041 parent retained; exact9270 selected L1T1/L2T2044 model-owned registration/Prefill/Graph reported PASS by ucloud3 and accepted by Root. Protected oldT4 parity failed and diagnostic remains pending; Root explicitly permits this performance run. No task-quality claim."
+      },
+      "sha256": "b2d003693850e2ed5e85d5dc02aabcc1b87a06801a534fd4120e2cdd4ce29c5a"
+    },
+    "candidate_build_qualification": {
+      "kind": "native32_s4_startup_qualification",
+      "passed": true,
+      "binary": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/ninfer-serve",
+      "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "evidence": {
+        "build": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/build-state.json",
+          "sha256": "6b3ad962cf17001a49c79a21120942ca974c1546f37b3a318489537bb8463c95"
+        },
+        "source": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/output47-prefill-on-allphase-r1/source-identity.json",
+          "sha256": "73c1e8576db83cdecb796032c0dc04631fce29b90b8c32f1ebc60e78d8dfe5f8"
+        },
+        "cache": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/weights025/cache025-ready.json",
+          "sha256": "00494909e18f0cd5d938edc05e0f4eabe685e07694f9a8879b8f63a15e60bcda"
+        },
+        "model_owned_47_seam": {
+          "path": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/model-seam-qualification.json",
+          "sha256": "6485d79a652c5dbc99b38a2f550446a2b7a818337d6946e5699e0236bd94f449"
+        }
+      },
+      "scope": "CPU/source/cache build qualification only. GPU numeric gate is checked after startup and before any original probe/performance request.",
+      "receipt": "/workspace/InferX/experiments/ucloud1-c32-tonight/C32-output47-on-allphase-K3-n128-r1/qualification.json",
+      "receipt_sha256": "ed487baeb67748e32f405aacad99e7fde9f595001cc79460d6e8945a4ae5dda5",
+      "freshservice_semantic_smoke_completed": false
+    },
+    "probe": {
+      "cache_salt": "903c8cd2ed124b729190d1e7a488e694:candidate:probe",
+      "status": "complete",
+      "excluded_from_metrics": true
+    },
+    "finished_at": "2026-10-17T11:50:24.825689+00:00",
+    "elapsed_seconds": 241.25813151500188
+  },
+  "tier": {
+    "label": "PILOT",
+    "status": "complete",
+    "concurrency": 32,
+    "artifacts": "/workspace/InferX/runs/ucloud1-slo/c32-tonight-output47-on-allphase-K3-n128-r1/candidate/c32",
+    "started_at": "2026-10-17T11:47:00.951754+00:00",
+    "meets_slo": false,
+    "issues": [],
+    "expected_requests": 128,
+    "records": 128,
+    "valid_records": 128,
+    "successful_requests": 128.0,
+    "error_requests": 0,
+    "lengths_verified": true,
+    "osl_verified": true,
+    "input_length_basis": "model",
+    "actual_input_tokens": {
+      "min": 8192,
+      "max": 8192,
+      "mean": 8192.0
+    },
+    "metrics": {
+      "time_to_first_token": {
+        "mean": 9496.666763312507,
+        "p50": 8254.96207,
+        "p95": 23694.500605100005,
+        "p99": 28406.197854280003
+      },
+      "inter_token_latency": {
+        "mean": 65.88644720347665,
+        "p50": 65.5010724001957,
+        "p95": 101.15738747495108,
+        "p99": 115.71145693506848
+      },
+      "request_latency": {
+        "mean": 43164.64128428907,
+        "p50": 42214.015146,
+        "p95": 64528.09229555,
+        "p99": 66461.20223267001
+      }
+    },
+    "benchmark_duration": 180.250304768,
+    "request_throughput": 0.710111048895557,
+    "output_token_throughput": 363.5768570345252,
+    "native_status": "\u5b8c\u6574",
+    "failed_input_length_records": 0,
+    "failed_output_length_records": 0,
+    "missing_profiling_records": 0,
+    "finished_at": "2026-10-17T11:50:24.009165+00:00",
+    "elapsed_seconds": 203.05742857902078
+  },
+  "client_rows": [
+    {
+      "arrival_rank": 1,
+      "ttft_s": 1.838077728,
+      "tpot_ms": 75.60858715459884,
+      "start_ns": 1792237640806849814
+    },
+    {
+      "arrival_rank": 2,
+      "ttft_s": 0.917500437,
+      "tpot_ms": 101.07409716438355,
+      "start_ns": 1792237640806987414
+    },
+    {
+      "arrival_rank": 3,
+      "ttft_s": 2.758693819,
+      "tpot_ms": 74.11453818590998,
+      "start_ns": 1792237640807901036
+    },
+    {
+      "arrival_rank": 4,
+      "ttft_s": 4.602592712,
+      "tpot_ms": 71.23664488454013,
+      "start_ns": 1792237640808517107
+    },
+    {
+      "arrival_rank": 5,
+      "ttft_s": 3.6799402,
+      "tpot_ms": 97.7826663072407,
+      "start_ns": 1792237640808627137
+    },
+    {
+      "arrival_rank": 6,
+      "ttft_s": 5.523740101,
+      "tpot_ms": 115.8443667514677,
+      "start_ns": 1792237640809514048
+    },
+    {
+      "arrival_rank": 7,
+      "ttft_s": 7.368905369,
+      "tpot_ms": 64.61959219373777,
+      "start_ns": 1792237640809751699
+    },
+    {
+      "arrival_rank": 8,
+      "ttft_s": 6.444898137,
+      "tpot_ms": 115.35210817221136,
+      "start_ns": 1792237640810712610
+    },
+    {
+      "arrival_rank": 9,
+      "ttft_s": 11.987616247,
+      "tpot_ms": 56.49191979647749,
+      "start_ns": 1792237640810753181
+    },
+    {
+      "arrival_rank": 10,
+      "ttft_s": 9.214384513999999,
+      "tpot_ms": 62.350119285714285,
+      "start_ns": 1792237640811583542
+    },
+    {
+      "arrival_rank": 11,
+      "ttft_s": 14.760607670999999,
+      "tpot_ms": 50.14989858121331,
+      "start_ns": 1792237640812049503
+    },
+    {
+      "arrival_rank": 12,
+      "ttft_s": 8.289318243,
+      "tpot_ms": 84.32267259295499,
+      "start_ns": 1792237640812659444
+    },
+    {
+      "arrival_rank": 13,
+      "ttft_s": 10.13686868,
+      "tpot_ms": 81.50628267906066,
+      "start_ns": 1792237640813149405
+    },
+    {
+      "arrival_rank": 14,
+      "ttft_s": 13.834581105,
+      "tpot_ms": 98.81161292954991,
+      "start_ns": 1792237640813561975
+    },
+    {
+      "arrival_rank": 15,
+      "ttft_s": 12.909451829,
+      "tpot_ms": 54.08443522309197,
+      "start_ns": 1792237640814060666
+    },
+    {
+      "arrival_rank": 16,
+      "ttft_s": 11.059401984,
+      "tpot_ms": 109.19386087671235,
+      "start_ns": 1792237640814399777
+    },
+    {
+      "arrival_rank": 17,
+      "ttft_s": 16.608408953999998,
+      "tpot_ms": 47.14780054207437,
+      "start_ns": 1792237640815095968
+    },
+    {
+      "arrival_rank": 18,
+      "ttft_s": 17.534607477999998,
+      "tpot_ms": 44.54940220939335,
+      "start_ns": 1792237640815148798
+    },
+    {
+      "arrival_rank": 19,
+      "ttft_s": 19.386244170999998,
+      "tpot_ms": 63.55527993542074,
+      "start_ns": 1792237640815974950
+    },
+    {
+      "arrival_rank": 20,
+      "ttft_s": 15.682008149,
+      "tpot_ms": 124.02748359491193,
+      "start_ns": 1792237640816077010
+    },
+    {
+      "arrival_rank": 21,
+      "ttft_s": 18.459172318,
+      "tpot_ms": 90.36600912133072,
+      "start_ns": 1792237640816893911
+    },
+    {
+      "arrival_rank": 22,
+      "ttft_s": 21.239394973,
+      "tpot_ms": 59.60721457534246,
+      "start_ns": 1792237640816974552
+    },
+    {
+      "arrival_rank": 23,
+      "ttft_s": 20.311785049999997,
+      "tpot_ms": 85.34273718395302,
+      "start_ns": 1792237640817910563
+    },
+    {
+      "arrival_rank": 24,
+      "ttft_s": 26.804194441,
+      "tpot_ms": 71.84423555577298,
+      "start_ns": 1792237640818114623
+    },
+    {
+      "arrival_rank": 25,
+      "ttft_s": 22.165276330999998,
+      "tpot_ms": 83.25980278669275,
+      "start_ns": 1792237640818671895
+    },
+    {
+      "arrival_rank": 26,
+      "ttft_s": 24.020113779,
+      "tpot_ms": 55.98452125831702,
+      "start_ns": 1792237640819126655
+    },
+    {
+      "arrival_rank": 27,
+      "ttft_s": 25.875045373,
+      "tpot_ms": 75.23654741095892,
+      "start_ns": 1792237640819699326
+    },
+    {
+      "arrival_rank": 28,
+      "ttft_s": 24.946036023,
+      "tpot_ms": 54.024746185909976,
+      "start_ns": 1792237640820652938
+    },
+    {
+      "arrival_rank": 29,
+      "ttft_s": 29.586827533,
+      "tpot_ms": 44.04731155968689,
+      "start_ns": 1792237640820701428
+    },
+    {
+      "arrival_rank": 30,
+      "ttft_s": 23.089790425,
+      "tpot_ms": 33.990993821917804,
+      "start_ns": 1792237640821693190
+    },
+    {
+      "arrival_rank": 31,
+      "ttft_s": 28.657094716,
+      "tpot_ms": 47.04649493737769,
+      "start_ns": 1792237640821734810
+    },
+    {
+      "arrival_rank": 32,
+      "ttft_s": 27.72784708,
+      "tpot_ms": 48.132361185909986,
+      "start_ns": 1792237640822638511
+    },
+    {
+      "arrival_rank": 33,
+      "ttft_s": 1.695551538,
+      "tpot_ms": 75.9757936223092,
+      "start_ns": 1792237681117414110
+    },
+    {
+      "arrival_rank": 34,
+      "ttft_s": 2.539918915,
+      "tpot_ms": 72.781249888454,
+      "start_ns": 1792237681201668953
+    },
+    {
+      "arrival_rank": 35,
+      "ttft_s": 3.467589133,
+      "tpot_ms": 71.11779390215263,
+      "start_ns": 1792237681202741795
+    },
+    {
+      "arrival_rank": 36,
+      "ttft_s": 4.317225125999999,
+      "tpot_ms": 73.18470064383561,
+      "start_ns": 1792237681282969002
+    },
+    {
+      "arrival_rank": 37,
+      "ttft_s": 5.246846025,
+      "tpot_ms": 96.57605893933463,
+      "start_ns": 1792237681283160122
+    },
+    {
+      "arrival_rank": 38,
+      "ttft_s": 6.097032757,
+      "tpot_ms": 91.84173240508807,
+      "start_ns": 1792237681362660977
+    },
+    {
+      "arrival_rank": 39,
+      "ttft_s": 6.948065431999999,
+      "tpot_ms": 90.18047709197653,
+      "start_ns": 1792237681441250841
+    },
+    {
+      "arrival_rank": 40,
+      "ttft_s": 7.800939336,
+      "tpot_ms": 63.99502187475537,
+      "start_ns": 1792237681518285643
+    },
+    {
+      "arrival_rank": 41,
+      "ttft_s": 8.580786266999999,
+      "tpot_ms": 59.89023274755381,
+      "start_ns": 1792237681667796888
+    },
+    {
+      "arrival_rank": 42,
+      "ttft_s": 9.362954439,
+      "tpot_ms": 108.30587233659492,
+      "start_ns": 1792237681815389189
+    },
+    {
+      "arrival_rank": 43,
+      "ttft_s": 10.218726418000001,
+      "tpot_ms": 84.15902510958904,
+      "start_ns": 1792237681889130094
+    },
+    {
+      "arrival_rank": 44,
+      "ttft_s": 2.750255218,
+      "tpot_ms": 104.20595108610567,
+      "start_ns": 1792237692194886459
+    },
+    {
+      "arrival_rank": 45,
+      "ttft_s": 3.3574550519999997,
+      "tpot_ms": 79.73204051272015,
+      "start_ns": 1792237692519063537
+    },
+    {
+      "arrival_rank": 46,
+      "ttft_s": 4.205576392999999,
+      "tpot_ms": 52.79131401174168,
+      "start_ns": 1792237692602326008
+    },
+    {
+      "arrival_rank": 47,
+      "ttft_s": 5.056926918,
+      "tpot_ms": 73.14146584148727,
+      "start_ns": 1792237692681079471
+    },
+    {
+      "arrival_rank": 48,
+      "ttft_s": 5.749866264,
+      "tpot_ms": 46.888099976516635,
+      "start_ns": 1792237692918008852
+    },
+    {
+      "arrival_rank": 49,
+      "ttft_s": 6.44953433,
+      "tpot_ms": 69.5013390039139,
+      "start_ns": 1792237693148410141
+    },
+    {
+      "arrival_rank": 50,
+      "ttft_s": 7.150010547999999,
+      "tpot_ms": 69.47751566731898,
+      "start_ns": 1792237693378931551
+    },
+    {
+      "arrival_rank": 51,
+      "ttft_s": 8.079495431,
+      "tpot_ms": 68.38150369863014,
+      "start_ns": 1792237693380056713
+    },
+    {
+      "arrival_rank": 52,
+      "ttft_s": 8.940206257,
+      "tpot_ms": 40.8932273737769,
+      "start_ns": 1792237693450278472
+    },
+    {
+      "arrival_rank": 53,
+      "ttft_s": 9.79910189,
+      "tpot_ms": 64.45008385322896,
+      "start_ns": 1792237693522193533
+    },
+    {
+      "arrival_rank": 54,
+      "ttft_s": 9.794039160999999,
+      "tpot_ms": 36.25125938356164,
+      "start_ns": 1792237694458207295
+    },
+    {
+      "arrival_rank": 55,
+      "ttft_s": 5.127657081,
+      "tpot_ms": 82.57869134637966,
+      "start_ns": 1792237704337642509
+    },
+    {
+      "arrival_rank": 56,
+      "ttft_s": 5.654273738999999,
+      "tpot_ms": 80.04575804305284,
+      "start_ns": 1792237704742908209
+    },
+    {
+      "arrival_rank": 57,
+      "ttft_s": 6.183956422,
+      "tpot_ms": 98.79669369275929,
+      "start_ns": 1792237705144794453
+    },
+    {
+      "arrival_rank": 58,
+      "ttft_s": 7.1144434059999995,
+      "tpot_ms": 67.99928079060666,
+      "start_ns": 1792237705145475975
+    },
+    {
+      "arrival_rank": 59,
+      "ttft_s": 7.73592023,
+      "tpot_ms": 65.70421558708415,
+      "start_ns": 1792237705455578175
+    },
+    {
+      "arrival_rank": 60,
+      "ttft_s": 8.590223786000001,
+      "tpot_ms": 67.13650950489236,
+      "start_ns": 1792237705532181143
+    },
+    {
+      "arrival_rank": 61,
+      "ttft_s": 9.519637975,
+      "tpot_ms": 69.63779107240704,
+      "start_ns": 1792237705533568805
+    },
+    {
+      "arrival_rank": 62,
+      "ttft_s": 9.780705114,
+      "tpot_ms": 65.29792921330724,
+      "start_ns": 1792237706203535789
+    },
+    {
+      "arrival_rank": 63,
+      "ttft_s": 9.723824773,
+      "tpot_ms": 64.60649852054793,
+      "start_ns": 1792237707676097526
+    },
+    {
+      "arrival_rank": 64,
+      "ttft_s": 4.620967207,
+      "tpot_ms": 78.32491829354207,
+      "start_ns": 1792237719879197411
+    },
+    {
+      "arrival_rank": 65,
+      "ttft_s": 4.576569738,
+      "tpot_ms": 72.7823324892368,
+      "start_ns": 1792237720854796392
+    },
+    {
+      "arrival_rank": 66,
+      "ttft_s": 5.426901427,
+      "tpot_ms": 77.01443117221135,
+      "start_ns": 1792237720935510496
+    },
+    {
+      "arrival_rank": 67,
+      "ttft_s": 6.2791710069999995,
+      "tpot_ms": 101.20223610371819,
+      "start_ns": 1792237721014629187
+    },
+    {
+      "arrival_rank": 68,
+      "ttft_s": 6.585226979,
+      "tpot_ms": 73.36964574951075,
+      "start_ns": 1792237721639736325
+    },
+    {
+      "arrival_rank": 69,
+      "ttft_s": 7.132983311,
+      "tpot_ms": 65.18336812720158,
+      "start_ns": 1792237722023069371
+    },
+    {
+      "arrival_rank": 70,
+      "ttft_s": 7.457383012999999,
+      "tpot_ms": 64.57218940508805,
+      "start_ns": 1792237722629900947
+    },
+    {
+      "arrival_rank": 71,
+      "ttft_s": 8.239815263,
+      "tpot_ms": 61.53856541682974,
+      "start_ns": 1792237722778811064
+    },
+    {
+      "arrival_rank": 72,
+      "ttft_s": 8.949390739999998,
+      "tpot_ms": 60.024863205479456,
+      "start_ns": 1792237723000840693
+    },
+    {
+      "arrival_rank": 73,
+      "ttft_s": 9.592703808,
+      "tpot_ms": 92.37807857534246,
+      "start_ns": 1792237723289167380
+    },
+    {
+      "arrival_rank": 74,
+      "ttft_s": 10.027482679999999,
+      "tpot_ms": 62.28807874363992,
+      "start_ns": 1792237723786663255
+    },
+    {
+      "arrival_rank": 75,
+      "ttft_s": 3.653564188,
+      "tpot_ms": 80.00583902348338,
+      "start_ns": 1792237734393387419
+    },
+    {
+      "arrival_rank": 76,
+      "ttft_s": 4.506171128,
+      "tpot_ms": 78.1802941663405,
+      "start_ns": 1792237734473752851
+    },
+    {
+      "arrival_rank": 77,
+      "ttft_s": 4.796431590999999,
+      "tpot_ms": 76.3556535401174,
+      "start_ns": 1792237735115840908
+    },
+    {
+      "arrival_rank": 78,
+      "ttft_s": 5.727905839999999,
+      "tpot_ms": 48.67262812720156,
+      "start_ns": 1792237735116957619
+    },
+    {
+      "arrival_rank": 79,
+      "ttft_s": 6.660022507,
+      "tpot_ms": 46.847245604696674,
+      "start_ns": 1792237735117942951
+    },
+    {
+      "arrival_rank": 80,
+      "ttft_s": 6.827183604999999,
+      "tpot_ms": 78.0489016927593,
+      "start_ns": 1792237735882948700
+    },
+    {
+      "arrival_rank": 81,
+      "ttft_s": 7.607934692999999,
+      "tpot_ms": 90.53949573189824,
+      "start_ns": 1792237736034481259
+    },
+    {
+      "arrival_rank": 82,
+      "ttft_s": 8.317015301,
+      "tpot_ms": 41.51656687279843,
+      "start_ns": 1792237736257517906
+    },
+    {
+      "arrival_rank": 83,
+      "ttft_s": 9.102213144,
+      "tpot_ms": 39.691933812133065,
+      "start_ns": 1792237736404838028
+    },
+    {
+      "arrival_rank": 84,
+      "ttft_s": 9.81698406,
+      "tpot_ms": 64.19242980626221,
+      "start_ns": 1792237736622576636
+    },
+    {
+      "arrival_rank": 85,
+      "ttft_s": 6.565540736999999,
+      "tpot_ms": 80.77224220156555,
+      "start_ns": 1792237746525690247
+    },
+    {
+      "arrival_rank": 86,
+      "ttft_s": 7.255791187999999,
+      "tpot_ms": 79.67102906849316,
+      "start_ns": 1792237746768947615
+    },
+    {
+      "arrival_rank": 87,
+      "ttft_s": 7.947845662,
+      "tpot_ms": 68.5533833444227,
+      "start_ns": 1792237747009648018
+    },
+    {
+      "arrival_rank": 88,
+      "ttft_s": 7.691780616999999,
+      "tpot_ms": 67.94334618590997,
+      "start_ns": 1792237748197964208
+    },
+    {
+      "arrival_rank": 89,
+      "ttft_s": 8.390178318999999,
+      "tpot_ms": 65.21377317221135,
+      "start_ns": 1792237748432199110
+    },
+    {
+      "arrival_rank": 90,
+      "ttft_s": 8.400738698,
+      "tpot_ms": 72.08385665557729,
+      "start_ns": 1792237749354025904
+    },
+    {
+      "arrival_rank": 91,
+      "ttft_s": 8.270108876999998,
+      "tpot_ms": 97.1971912074364,
+      "start_ns": 1792237750416885638
+    },
+    {
+      "arrival_rank": 92,
+      "ttft_s": 8.978354674,
+      "tpot_ms": 59.89351119178082,
+      "start_ns": 1792237750640632092
+    },
+    {
+      "arrival_rank": 93,
+      "ttft_s": 9.248540635,
+      "tpot_ms": 64.835490518591,
+      "start_ns": 1792237751303283853
+    },
+    {
+      "arrival_rank": 94,
+      "ttft_s": 9.818379794999998,
+      "tpot_ms": 91.0123067925636,
+      "start_ns": 1792237751666212013
+    },
+    {
+      "arrival_rank": 95,
+      "ttft_s": 4.901759513,
+      "tpot_ms": 84.83386599021526,
+      "start_ns": 1792237761817147047
+    },
+    {
+      "arrival_rank": 96,
+      "ttft_s": 5.181284031000001,
+      "tpot_ms": 54.00047348336595,
+      "start_ns": 1792237762469180712
+    },
+    {
+      "arrival_rank": 97,
+      "ttft_s": 6.113117472999999,
+      "tpot_ms": 76.53341052837574,
+      "start_ns": 1792237762470048744
+    },
+    {
+      "arrival_rank": 98,
+      "ttft_s": 6.890933926,
+      "tpot_ms": 74.24129906262232,
+      "start_ns": 1792237762625374035
+    },
+    {
+      "arrival_rank": 99,
+      "ttft_s": 7.823380107999999,
+      "tpot_ms": 48.38027852054795,
+      "start_ns": 1792237762625997636
+    },
+    {
+      "arrival_rank": 100,
+      "ttft_s": 8.295671675,
+      "tpot_ms": 71.78688092172212,
+      "start_ns": 1792237763086701382
+    },
+    {
+      "arrival_rank": 101,
+      "ttft_s": 7.788698429,
+      "tpot_ms": 69.07532411937376,
+      "start_ns": 1792237764526582119
+    },
+    {
+      "arrival_rank": 102,
+      "ttft_s": 7.6021151499999995,
+      "tpot_ms": 42.903239060665356,
+      "start_ns": 1792237765645933247
+    },
+    {
+      "arrival_rank": 103,
+      "ttft_s": 8.461267771,
+      "tpot_ms": 65.72854448336595,
+      "start_ns": 1792237765720104957
+    },
+    {
+      "arrival_rank": 104,
+      "ttft_s": 9.393714768,
+      "tpot_ms": 39.39341607827789,
+      "start_ns": 1792237765720832448
+    },
+    {
+      "arrival_rank": 105,
+      "ttft_s": 10.325814346,
+      "tpot_ms": 62.07530041682975,
+      "start_ns": 1792237765722125421
+    },
+    {
+      "arrival_rank": 106,
+      "ttft_s": 11.258417362,
+      "tpot_ms": 76.8520624109589,
+      "start_ns": 1792237765723061822
+    },
+    {
+      "arrival_rank": 107,
+      "ttft_s": 12.122971607,
+      "tpot_ms": 58.274654322896275,
+      "start_ns": 1792237765791631373
+    },
+    {
+      "arrival_rank": 108,
+      "ttft_s": 13.055661283,
+      "tpot_ms": 55.9797578962818,
+      "start_ns": 1792237765792380284
+    },
+    {
+      "arrival_rank": 109,
+      "ttft_s": 6.227192029,
+      "tpot_ms": 62.457983669275926,
+      "start_ns": 1792237778933932384
+    },
+    {
+      "arrival_rank": 110,
+      "ttft_s": 7.159573977,
+      "tpot_ms": 53.19767351272015,
+      "start_ns": 1792237778935606837
+    },
+    {
+      "arrival_rank": 111,
+      "ttft_s": 8.091887823999999,
+      "tpot_ms": 50.0310222113503,
+      "start_ns": 1792237778936455178
+    },
+    {
+      "arrival_rank": 112,
+      "ttft_s": 8.949943751,
+      "tpot_ms": 54.26474417808219,
+      "start_ns": 1792237779011191448
+    },
+    {
+      "arrival_rank": 113,
+      "ttft_s": 9.649387415,
+      "tpot_ms": 52.43558820743641,
+      "start_ns": 1792237779244327531
+    },
+    {
+      "arrival_rank": 114,
+      "ttft_s": 9.736354175,
+      "tpot_ms": 44.8263391369863,
+      "start_ns": 1792237780090135966
+    },
+    {
+      "arrival_rank": 115,
+      "ttft_s": 9.701329466999999,
+      "tpot_ms": 46.75550672015656,
+      "start_ns": 1792237782595894905
+    },
+    {
+      "arrival_rank": 116,
+      "ttft_s": 6.262402161999999,
+      "tpot_ms": 40.326465841487284,
+      "start_ns": 1792237789912021547
+    },
+    {
+      "arrival_rank": 117,
+      "ttft_s": 7.115970324999999,
+      "tpot_ms": 37.82600042074364,
+      "start_ns": 1792237789990509422
+    },
+    {
+      "arrival_rank": 118,
+      "ttft_s": 7.8895347199999994,
+      "tpot_ms": 39.60247199804305,
+      "start_ns": 1792237790149402095
+    },
+    {
+      "arrival_rank": 119,
+      "ttft_s": 8.744459474,
+      "tpot_ms": 34.401330138943244,
+      "start_ns": 1792237790227027338
+    },
+    {
+      "arrival_rank": 120,
+      "ttft_s": 9.293104338,
+      "tpot_ms": 32.46495756360078,
+      "start_ns": 1792237790611538401
+    },
+    {
+      "arrival_rank": 121,
+      "ttft_s": 7.152927879999999,
+      "tpot_ms": 30.637754436399216,
+      "start_ns": 1792237793685358717
+    },
+    {
+      "arrival_rank": 122,
+      "ttft_s": 7.40281401,
+      "tpot_ms": 37.74079363405088,
+      "start_ns": 1792237794368794993
+    },
+    {
+      "arrival_rank": 123,
+      "ttft_s": 8.112981901,
+      "tpot_ms": 27.20289119569472,
+      "start_ns": 1792237794591925777
+    },
+    {
+      "arrival_rank": 124,
+      "ttft_s": 8.898621161,
+      "tpot_ms": 24.8102583816047,
+      "start_ns": 1792237794739260271
+    },
+    {
+      "arrival_rank": 125,
+      "ttft_s": 9.397052424,
+      "tpot_ms": 24.954580093933462,
+      "start_ns": 1792237795173801341
+    },
+    {
+      "arrival_rank": 126,
+      "ttft_s": 10.329986456999999,
+      "tpot_ms": 21.899704835616436,
+      "start_ns": 1792237795174150841
+    },
+    {
+      "arrival_rank": 127,
+      "ttft_s": 11.189717893,
+      "tpot_ms": 22.040329144814088,
+      "start_ns": 1792237795247870029
+    },
+    {
+      "arrival_rank": 128,
+      "ttft_s": 12.122845502999999,
+      "tpot_ms": 19.393042045009786,
+      "start_ns": 1792237795248531070
+    }
+  ],
+  "all137cold": true,
+  "all_startup_retained": true,
+  "TTFT_violations": [
+    9,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    43,
+    74,
+    105,
+    106,
+    107,
+    108,
+    126,
+    127,
+    128
+  ],
+  "TPOT_violations": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116
+  ],
+  "actual_batch_coverage_limit": "Native cap32 and MTP stats retained; no exact B histogram is inferred from5second means. Startup Graph and operator gate are distinct from actual task coverage.",
+  "source_unchanged": true,
+  "finished_ns": 1792237825608529129
+}

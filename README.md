@@ -1,14 +1,27 @@
 # InferX
 
-**比赛材料入口：[submission/README.md](submission/README.md) · [提交 TODO](submission/TODO.md) · [部署与官方评测](submission/REPRODUCE.md) · [8 页答辩草稿](submission/slides.html)。**
+InferX 面向单张 **48GB RTX 4090** 上的 Qwen3.8-27B 推理，基于 NInfer-4090 优化量化算子、批处理、状态管理和调度。测试同时报告吞吐、请求延迟与任务质量，并保留对应版本和原始结果。
 
-公共部署和评测工具面向类似的单卡 Linux/CUDA 机器；数据目录、CUDA 和下载源可配置。本轮使用两台命名为 `ucloud1/2` 的单张 **48GB RTX 4090** 节点，一台测评、一台备用。正式成绩见提交报告，旧服务器数据用于工程佐证。开发统一在 `main`，交付以固定提交和源码快照为准。
+队名：**你说啥都队**。成员：**陈文欣、张志雄、郭坤昌**。
 
-单 RTX 4090 上的 Qwen3.8-27B 部署及代码生成—CPU 验证反馈实验。HumanEval 阶段用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于 GPU 1 的同一服务会话，每个试验只使用一张卡。
+| 你想了解什么 | 从这里开始 |
+|---|---|
+| 项目与答辩内容 | [材料总览](submission/README.md)、[中文 PDF](submission/basic/presentation/InferX-ZH.pdf) / [English PDF](submission/basic/presentation/InferX-EN.pdf)、[Typst 与实时预览](submission/basic/presentation/README.md)、[技术报告](submission/track-a/README.md) |
+| 性能、精度和原始证据 | [Benchmark 报告](submission/track-a/benchmark.md)、[成绩与证据索引](submission/track-a/generated-results.md) |
+| 如何部署和复测 | [部署配置](submission/track-a/deployment.md)、[复验步骤](submission/track-a/reproduction.md) |
+| 如何现场演示 | [现场性能评测](submission/basic/demo.md) |
+| 团队提交前需要准备什么 | [提交清单](submission/records/2026-10-18-submission-checklist.md) |
 
-- [可迁移 NInfer 部署、配置模板和原版评测](submission/REPRODUCE.md)
+当前推理服务为 `ninfer-serve`。项目在开源 NInfer-4090 基础上修改；上游实现、团队优化及适用版本见[优化说明](submission/track-a/optimization.md)。复测时应使用成绩对应的源码、权重、量化缓存和配置，不能仅以主仓 `main` 的当前内容代替实验版本。
+
+## 部署与研究记录
+
+公共工具适用于单卡 Linux/CUDA 环境，数据目录、CUDA 和下载源可配置。`ucloud1/2/3` 是实验节点名称，每次测试各使用一张卡，具体硬件和客户端位置随结果记录。早期部署和研究记录按日期保留，适用版本以各报告为准。
+
+- [基础 NInfer 部署与早期评测](submission/REPRODUCE.md)
 - [NInfer 基线节点使用与后续实验](docs/ninfer-operations.md)
 - [本轮 NInfer/MTP 消融、正式评测进展与瓶颈](docs/reports/2026-10-16-ninfer-performance.md)
+- [官方参考配置复现与 vLLM / SGLang 基线](docs/reports/2026-10-16-framework-c4.md)
 - [OpenCode、Pi、Claude Code 直接接入 Qwen](docs/agent-quickstart.md)（已配置，GPU1 的 18081 服务，256K 后端）
 - [256K 上下文与三个 Agent 的验证结果](docs/reports/2026-10-14-context-agents.md)
 - [长上下文、并发与 Roofline 验证](docs/reports/2026-10-14-concurrency-roofline.md)（48K–248K 输入；长预填充准入阻塞与 MTP 对照）
@@ -20,9 +33,13 @@
 - [仓库补全与多会话实验设计](docs/superpowers/specs/2026-10-14-repository-branches-design.md)
 - [仓库实验报告与复现方法](docs/reports/2026-10-14-repository-pilot.md)
 
-模型、数据、缓存、构建及原始生成记录在 vlm-server 的 HDD 目录 `/home/guokc/mypro/gnn-mount-sda1/InferX`。本仓库保存代码、计划及轻量结果；模型/数据下载使用 hf-mirror。
+## 早期代码生成与验证实验
 
-核心代码：`inferx/scheduler.py` 管理候选并发、截止时间与取消，`inferx/llama_client.py` 调用本机 llama.cpp，`inferx/verifier.py` 和 `sandbox_worker.py` 执行受限验证，`scripts/analyze.py` 检查实验网格并汇总指标。
+仓库也保留基于 llama.cpp 的代码生成—CPU 验证反馈实验。HumanEval 阶段使用两张卡独立重复；仓库补全阶段的两组 seed 交错运行于同一服务，每次试验只用一张卡。
+
+这些实验的模型、缓存和完整原始记录曾保存在 vlm-server 的 `/home/guokc/mypro/gnn-mount-sda1/InferX`。这是历史运行路径，当前材料的获取与复测入口见上方表格。
+
+早期实验代码：`inferx/scheduler.py` 管理候选并发、截止时间与取消，`inferx/llama_client.py` 调用 llama.cpp，`inferx/verifier.py` 和 `sandbox_worker.py` 执行受限验证，`scripts/analyze.py` 汇总指标。以下测试命令用于这部分 Python 工具：
 
 ```bash
 python3 -m unittest discover -s tests -v

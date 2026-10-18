@@ -1,0 +1,45 @@
+{
+  "reviewed_at": "2026-10-16T17:46:48.298066+00:00",
+  "scope": "Root raw client percentile, TPOT formula, native cache/length audit. Actualphase payload hash computed by independent root read-only SSH script on immutable remote files; local inputs were being refreshed by worker sync. No GPU work.",
+  "run": "pipeline-confirm-c6-seed42-001",
+  "configuration": "bd28 frozen scheduler MTP4 A8all, originalcold8192/512 singleGPU450W",
+  "warmup": 8,
+  "all8192_512": true,
+  "errors": 0,
+  "n": 100,
+  "ttft_p95_ms": 5784.0750688,
+  "tpot_p95_ms": 43.09449175665362,
+  "ttft_gt10000": 1,
+  "tpot_gt40": 14,
+  "official_output_tok_s": 159.70167893263638,
+  "summary_p95_match": true,
+  "native_long_done": 109,
+  "native_all_cold": true,
+  "actual_phase_payload_equal_except_only_cache_salt_to_C5_seed42": {
+    "warmup": true,
+    "profiling": true
+  },
+  "canonical_phase_payload_sha256": {
+    "warmup": "e0c3e0d882eef5082458fd0db2a3cc2ff6fe697b875cb631ac63aa2445f69819",
+    "profiling": "7b96719df3e117a3ce3b98c83d3d75d72a2281e9e7547646efae979d2750e3fc"
+  },
+  "arrival_rank_first6_diagnostic": {
+    "n": 6,
+    "ttft_p95_ms": 10632.99476075,
+    "tpot_p95_ms": 38.78765847162426,
+    "ttft_gt10000": 1,
+    "tpot_gt40": 0
+  },
+  "arrival_rank_later94_diagnostic": {
+    "n": 94,
+    "ttft_p95_ms": 3873.7446588,
+    "tpot_p95_ms": 43.24725693062622,
+    "ttft_gt10000": 0,
+    "tpot_gt40": 14
+  },
+  "hashes": {
+    "profile_export": "e3d66a70f0b3df1fc27d99d113db41ffa2a258908183a36e3982cfec8b180a33",
+    "inputs_remote": "709f498f3cd84dddee4840349878d70974939d83488d19696d9a190a371bec0c"
+  },
+  "conclusion": "C6 formal-length selection failsTPOT despite159.70tok/s. Smallpilot startup-only violation pattern does not persist; all100 retained. No unchangedC6heldout; C5heldout appropriate. Expandedqualitypending."
+}

@@ -1,0 +1,198 @@
+{
+  "scope": "Offline reanalysis of all 400 formal requests; no new GPU runs or service changes.",
+  "selection": "Client profiling windows, 512-token native completions, +100ms native end-log tolerance; no exact client/native ID join.",
+  "definitions": {
+    "tpot_ms": "1000 * (total - ttft) / 511",
+    "decode_component_ms": "1000 * decode_counter / 511",
+    "residual_component_ms": "1000 * (total - ttft - decode_counter) / 511",
+    "p95_components": "Both components interpolated at the same two requests ranked by native TPOT; NOT sum of component P95s."
+  },
+  "limits": [
+    "Decode counter includes full shared-batch duration for each participating request and MTP tails; not exclusive GPU kernel time.",
+    "Residual includes other work and control/publication overhead; formal logs have no per-chunk intervals to assign every residual millisecond to prefill.",
+    "Time before first token outside own prefill/prepare also includes intervening decode; it is NOT a pure admission-queue timer.",
+    "A before-first-token queue delay contributes to TTFT and cancels from total-minus-TTFT, although its scheduling can affect other requests."
+  ],
+  "rows": [
+    {
+      "concurrency": 1,
+      "requests": 100,
+      "client_tpot_p95_ms": 9.009001065949118,
+      "native_p95_components_ms": {
+        "native_tpot_ms": 9.009033509197655,
+        "decode_component_ms": 9.006266875048922,
+        "residual_component_ms": 0.0027666341487329296
+      },
+      "native_minus_client_p95_ms": 3.24432485374615e-05,
+      "p95_bracketing_native_requests": [
+        {
+          "native_request_id": 90,
+          "native_tpot_ms": 9.009000880626227,
+          "decode_component_ms": 9.006228998043051,
+          "residual_component_ms": 0.0027718825831756226,
+          "residual_s": 0.001416432000002743,
+          "residual_fraction": 0.0003076792443362427,
+          "ttft_s": 3.449250103,
+          "prefill_s": 3.4490922920000004,
+          "prepare_s": 6.139e-05,
+          "pre_first_outside_own_prefill_prepare_s": 9.642099999934157e-05
+        },
+        {
+          "native_request_id": 92,
+          "native_tpot_ms": 9.00965345205479,
+          "decode_component_ms": 9.006986538160469,
+          "residual_component_ms": 0.0026669138943217594,
+          "residual_s": 0.001362792999998419,
+          "residual_fraction": 0.0002960062680006331,
+          "ttft_s": 3.4491470310000003,
+          "prefill_s": 3.44901014,
+          "prepare_s": 5.214e-05,
+          "pre_first_outside_own_prefill_prepare_s": 8.475100000036092e-05
+        }
+      ],
+      "p95_upper_rank_weight": 0.04999999999999716,
+      "median_residual_s": 0.0012046795000009158,
+      "median_residual_fraction": 0.00031057339723791435,
+      "median_prepare_s": 7.338e-05,
+      "median_pre_first_outside_own_prefill_prepare_s": 9.999000000002179e-05,
+      "weighted_draft_acceptance": 0.6795257089776515
+    },
+    {
+      "concurrency": 2,
+      "requests": 100,
+      "client_tpot_p95_ms": 22.50639731242661,
+      "native_p95_components_ms": {
+        "native_tpot_ms": 22.506164079647753,
+        "decode_component_ms": 8.99046413776908,
+        "residual_component_ms": 13.51569994187867
+      },
+      "native_minus_client_p95_ms": -0.0002332327788572286,
+      "p95_bracketing_native_requests": [
+        {
+          "native_request_id": 167,
+          "native_tpot_ms": 22.497535109589045,
+          "decode_component_ms": 8.983280682974561,
+          "residual_component_ms": 13.514254426614484,
+          "residual_s": 6.905784012000001,
+          "residual_fraction": 0.6006993370955714,
+          "ttft_s": 3.544035149,
+          "prefill_s": 3.4495368840000005,
+          "prepare_s": 0.000125042,
+          "pre_first_outside_own_prefill_prepare_s": 0.09437322299999946
+        },
+        {
+          "native_request_id": 177,
+          "native_tpot_ms": 22.670114510763213,
+          "decode_component_ms": 9.12694977886498,
+          "residual_component_ms": 13.543164731898232,
+          "residual_s": 6.920557177999997,
+          "residual_fraction": 0.597401690470874,
+          "ttft_s": 3.551128191,
+          "prefill_s": 3.4532615840000003,
+          "prepare_s": 8.8111e-05,
+          "pre_first_outside_own_prefill_prepare_s": 0.09777849599999983
+        }
+      ],
+      "p95_upper_rank_weight": 0.04999999999999716,
+      "median_residual_s": 3.455638410500001,
+      "median_residual_fraction": 0.4571689853357006,
+      "median_prepare_s": 9.96165e-05,
+      "median_pre_first_outside_own_prefill_prepare_s": 0.0978383530000001,
+      "weighted_draft_acceptance": 0.6922522988293511
+    },
+    {
+      "concurrency": 4,
+      "requests": 100,
+      "client_tpot_p95_ms": 45.92975632348337,
+      "native_p95_components_ms": {
+        "native_tpot_ms": 45.92886980909981,
+        "decode_component_ms": 18.955676126516625,
+        "residual_component_ms": 26.973193682583183
+      },
+      "native_minus_client_p95_ms": -0.0008865143835592448,
+      "p95_bracketing_native_requests": [
+        {
+          "native_request_id": 289,
+          "native_tpot_ms": 45.92220938551859,
+          "decode_component_ms": 18.95018358904109,
+          "residual_component_ms": 26.972025796477507,
+          "residual_s": 13.782705182000004,
+          "residual_fraction": 0.5873416405131203,
+          "ttft_s": 3.584622141,
+          "prefill_s": 3.4437268889999997,
+          "prepare_s": 6.003e-05,
+          "pre_first_outside_own_prefill_prepare_s": 0.14083522200000043
+        },
+        {
+          "native_request_id": 255,
+          "native_tpot_ms": 46.05541785714286,
+          "decode_component_ms": 19.06003433855187,
+          "residual_component_ms": 26.99538351859099,
+          "residual_s": 13.794640977999995,
+          "residual_fraction": 0.586150007417731,
+          "ttft_s": 3.58527293,
+          "prefill_s": 3.449214164,
+          "prepare_s": 6.8211e-05,
+          "pre_first_outside_own_prefill_prepare_s": 0.1359905550000001
+        }
+      ],
+      "p95_upper_rank_weight": 0.04999999999999716,
+      "median_residual_s": 10.341532196499998,
+      "median_residual_fraction": 0.5716704860141757,
+      "median_prepare_s": 6.37405e-05,
+      "median_pre_first_outside_own_prefill_prepare_s": 0.1416501404999998,
+      "weighted_draft_acceptance": 0.6844629975465963
+    },
+    {
+      "concurrency": 8,
+      "requests": 100,
+      "client_tpot_p95_ms": 90.65970908228962,
+      "native_p95_components_ms": {
+        "native_tpot_ms": 90.65939114099805,
+        "decode_component_ms": 30.180454194911924,
+        "residual_component_ms": 60.47893694608611
+      },
+      "native_minus_client_p95_ms": -0.0003179412915699231,
+      "p95_bracketing_native_requests": [
+        {
+          "native_request_id": 345,
+          "native_tpot_ms": 90.63782271232877,
+          "decode_component_ms": 30.243066101761237,
+          "residual_component_ms": 60.394756610567526,
+          "residual_s": 30.861720628000008,
+          "residual_fraction": 0.666330620079563,
+          "ttft_s": 4.647765660999999,
+          "prefill_s": 3.427423663,
+          "prepare_s": 6.2341e-05,
+          "pre_first_outside_own_prefill_prepare_s": 1.2202796569999994
+        },
+        {
+          "native_request_id": 363,
+          "native_tpot_ms": 91.0691912857143,
+          "decode_component_ms": 28.99082796477495,
+          "residual_component_ms": 62.07836332093935,
+          "residual_s": 31.722043657000007,
+          "residual_fraction": 0.6816615196041316,
+          "ttft_s": 3.7682874290000004,
+          "prefill_s": 3.428695603,
+          "prepare_s": 5.763e-05,
+          "pre_first_outside_own_prefill_prepare_s": 0.3395341960000004
+        }
+      ],
+      "p95_upper_rank_weight": 0.04999999999999716,
+      "median_residual_s": 20.6303826525,
+      "median_residual_fraction": 0.6581276379895734,
+      "median_prepare_s": 5.9991e-05,
+      "median_pre_first_outside_own_prefill_prepare_s": 0.33848954649999985,
+      "weighted_draft_acceptance": 0.6839139344262295
+    }
+  ],
+  "source_sha256": {
+    "official-r1/analysis.json": "4029ec7975ea2d5559b4d01e7c4685fb44287483da71ac4cce18a11fe4ab71a8",
+    "official-r1/runs/official-r1-service/requests.jsonl": "cb7bbad1e713a03f2985726ee593d6a89c2012f66dd53fa2a71101631d2c2ce1",
+    "official-r1/runs/official-r1/performance/c1/profile_export.jsonl": "fadcdbe9d757f6e224c9b85e59704bf0cd305cd69c6b5c4f78187f27fadcf7ed",
+    "official-r1/runs/official-r1/performance/c2/profile_export.jsonl": "3720b315d051686056a240b76f90afbe25d8202dd9f4e4904884bb9bcbf76d61",
+    "official-r1/runs/official-r1/performance/c4/profile_export.jsonl": "c06eeeb6a237fddebfd5d06054e18554c828dcceeb7876885674604fe04b7591",
+    "official-r1/runs/official-r1/performance/c8/profile_export.jsonl": "6d2722209c969d8e7195db3d0eecc1697adc21f2f681fd9fe18e14e9072c2b2c"
+  }
+}

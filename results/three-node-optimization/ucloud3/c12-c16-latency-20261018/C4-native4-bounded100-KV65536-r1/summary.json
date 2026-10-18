@@ -1,0 +1,404 @@
+{
+  "status": "COMPLETE_JOINT_PASS",
+  "at": "2026-10-17T21:35:52.531793+00:00",
+  "machine": "ucloud3",
+  "version": "100-bounded-ordinaryK3-client4-native4",
+  "runtime": {
+    "binary": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+    "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+    "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8"
+  },
+  "client_C": 4,
+  "native_C": 4,
+  "K": 3,
+  "ordinary_proposal": 3,
+  "lookup_override": null,
+  "KV": 65536,
+  "measured": 128,
+  "warmup": 8,
+  "excluded_probe": 1,
+  "seed": 20261016,
+  "errors": 0,
+  "all137cold": true,
+  "all_startup_retained": true,
+  "metrics": {
+    "TTFT_p95_ms": 2269.1167129999985,
+    "TPOT_p95_ms": 22.891142452641876,
+    "output_tokens_per_second": 205.8182287742613
+  },
+  "actual_input_payloads_equal_parent_including_salt": true,
+  "input_SHA256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+  "dataset_SHA256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+  "salt_namespace": "8a90faa7364b4a6aad73eac63d71d369:candidate:c12",
+  "unique_client_native_join": 128,
+  "P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 110,
+        "conversation_id": "session_000117",
+        "start_ns": 1792272846710308650,
+        "TTFT_ms": 2168.11346,
+        "TPOT_ms": 15.813753187866924,
+        "native_match_count": 1,
+        "native_id": 119,
+        "end_difference_ms": 0.62848,
+        "first_token_epoch_difference_ms": 0.264448,
+        "own_prefill_ms": 898.877964,
+        "native_TTFT_minus_own_prefill_ms": 1267.48591,
+        "native_shared_decode_per_output_ms": 10.526863894324856,
+        "postfirst_remainder_ms": 5.2868892935420675,
+        "rounds": 137,
+        "accepted": 374,
+        "drafted": 410,
+        "fallback": 0,
+        "committed_per_spec_round": 3.72992700729927,
+        "accepted_per_position": [
+          134,
+          122,
+          118
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 127,
+        "conversation_id": "session_000134",
+        "start_ns": 1792272890114391081,
+        "TTFT_ms": 2323.50308,
+        "TPOT_ms": 11.056849027397261,
+        "native_match_count": 1,
+        "native_id": 136,
+        "end_difference_ms": 1.0496,
+        "first_token_epoch_difference_ms": 0.59264,
+        "own_prefill_ms": 899.598919,
+        "native_TTFT_minus_own_prefill_ms": 1422.2788440000002,
+        "native_shared_decode_per_output_ms": 9.276489939334637,
+        "postfirst_remainder_ms": 1.7803590880626246,
+        "rounds": 131,
+        "accepted": 380,
+        "drafted": 392,
+        "fallback": 0,
+        "committed_per_spec_round": 3.900763358778626,
+        "accepted_per_position": [
+          129,
+          127,
+          124
+        ]
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 57,
+        "conversation_id": "session_000064",
+        "start_ns": 1792272715789650238,
+        "TTFT_ms": 932.6962159999999,
+        "TPOT_ms": 22.828764761252444,
+        "native_match_count": 1,
+        "native_id": 66,
+        "end_difference_ms": 1.079808,
+        "first_token_epoch_difference_ms": 0.880384,
+        "own_prefill_ms": 898.9375499999999,
+        "native_TTFT_minus_own_prefill_ms": 32.31838700000023,
+        "native_shared_decode_per_output_ms": 15.77637861839531,
+        "postfirst_remainder_ms": 7.052386142857134,
+        "rounds": 201,
+        "accepted": 309,
+        "drafted": 603,
+        "fallback": 1,
+        "committed_per_spec_round": 2.537313432835821,
+        "accepted_per_position": [
+          143,
+          99,
+          67
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 91,
+        "conversation_id": "session_000098",
+        "start_ns": 1792272798412331577,
+        "TTFT_ms": 934.310878,
+        "TPOT_ms": 22.92473044031311,
+        "native_match_count": 1,
+        "native_id": 100,
+        "end_difference_ms": 0.399104,
+        "first_token_epoch_difference_ms": 0.27648,
+        "own_prefill_ms": 900.4225329999999,
+        "native_TTFT_minus_own_prefill_ms": 32.41077599999998,
+        "native_shared_decode_per_output_ms": 15.87429343639922,
+        "postfirst_remainder_ms": 7.050437003913888,
+        "rounds": 204,
+        "accepted": 307,
+        "drafted": 610,
+        "fallback": 0,
+        "committed_per_spec_round": 2.5049019607843137,
+        "accepted_per_position": [
+          153,
+          124,
+          30
+        ]
+      }
+    ]
+  },
+  "TTFT_violation_ranks": [],
+  "TPOT_violation_ranks": [],
+  "native_lookup": {
+    "attempts": 0,
+    "overrides": 0,
+    "drafted": 0,
+    "target_accepted": 0,
+    "full_accepts": 0,
+    "records": 0,
+    "scope": "All terminal runtime summaries including startup internal health, excluded probe and warmup; not measured-only attribution"
+  },
+  "startup": {
+    "argv": [
+      "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C14-native13-bounded100/candidate/ninfer-serve",
+      "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "18527",
+      "--model-id",
+      "qwen38-27b",
+      "--max-context",
+      "65536",
+      "--kv-capacity",
+      "65536",
+      "--max-concurrency",
+      "4",
+      "--max-pending-requests",
+      "32",
+      "--pending-timeout-ms",
+      "600000",
+      "--prefill-chunk",
+      "2048",
+      "--kv-dtype",
+      "int8",
+      "--presence-penalty",
+      "0",
+      "--frequency-penalty",
+      "0",
+      "--seed",
+      "42",
+      "--no-ui",
+      "--spec",
+      "mtp",
+      "--draft-tokens",
+      "3",
+      "--lm-head-draft",
+      "--request-log-jsonl",
+      "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C4-native4-bounded100-KV65536-r1/candidate/requests.jsonl",
+      "--no-prefix-reuse",
+      "--no-disk-cache"
+    ],
+    "artifact": {
+      "bytes_read": 8110698809,
+      "host_to_device_bytes": 8097606656,
+      "load_seconds": 31.139577844,
+      "path": "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+      "peak_staging_bytes": 268435456,
+      "resource_count": 6,
+      "size_bytes": 18210531328,
+      "target": "qwen3_8_27b",
+      "tensor_count": 657,
+      "upload_seconds": 1.149917895,
+      "weights_id": "groupwise-int"
+    },
+    "artifact_type": "ninfer_serve_request_log",
+    "engine": {
+      "cuda_graph": true,
+      "device": 0,
+      "kv_cache": "int8-group64",
+      "kv_capacity": 65536,
+      "kv_capacity_max_page_groups": 4096,
+      "kv_capacity_mode": "explicit",
+      "kv_capacity_page_groups": 1024,
+      "log_stats_interval_ms": 5000,
+      "max_concurrency": 4,
+      "max_context": 65536,
+      "max_pending_requests": 32,
+      "pending_timeout_ms": 600000,
+      "prefill_chunk": 2048,
+      "prefix_reuse": false,
+      "proposal_head": "optimized",
+      "speculative_backend": "mtp",
+      "speculative_draft_window": 3,
+      "vision": false
+    },
+    "environment": {
+      "compute_capability_major": 8,
+      "compute_capability_minor": 9,
+      "cuda_compile_version": "13.2",
+      "cuda_driver_version": "13.3",
+      "cuda_runtime_version": "13.2",
+      "device": 0,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "total_device_memory_bytes": 50894602240
+    },
+    "event": "server_start",
+    "memory": {
+      "available_after_startup_bytes": 26230915072,
+      "available_after_weights_bytes": 30297292800,
+      "cuda_graph_allowance_bytes": 1073741824,
+      "cuda_graph_observed_bytes": 35651584,
+      "kv_capacity_headroom_bytes": 0,
+      "kv_capacity_increment_bytes": 2297856,
+      "kv_payload_bytes": 2353545216,
+      "minimum_runtime_reservation_bytes": 5098316032,
+      "planned_slack_bytes": 25198976768,
+      "request_transient": {
+        "capacity_bytes": 0,
+        "peak_used_bytes": 0,
+        "used_bytes": 0
+      },
+      "runtime_reservation_bytes": 5098316032,
+      "sequence": {
+        "capacity_bytes": 3662668032,
+        "peak_used_bytes": 3662668032,
+        "used_bytes": 3662668032
+      },
+      "weights": {
+        "capacity_bytes": 8097612800,
+        "peak_used_bytes": 8097612800,
+        "used_bytes": 8097612800
+      },
+      "workspace": {
+        "capacity_bytes": 361906176,
+        "peak_used_bytes": 0,
+        "used_bytes": 0
+      }
+    },
+    "sampling_defaults": {
+      "greedy": false,
+      "non_thinking": {
+        "frequency_penalty": 0.0,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "temperature": 0.699999988079071,
+        "top_k": 20,
+        "top_p": 0.800000011920929
+      },
+      "omitted_seed": "random",
+      "server_overrides": {
+        "frequency_penalty": 0.0,
+        "min_p": null,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "temperature": null,
+        "top_k": null,
+        "top_p": null
+      },
+      "thinking": {
+        "frequency_penalty": 0.0,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.949999988079071
+      }
+    },
+    "schema_version": 8,
+    "server": {
+      "api_key_configured": false,
+      "cors_enabled": false,
+      "default_output_tokens": 65536,
+      "default_preserve_thinking": false,
+      "default_reasoning_effort": null,
+      "default_thinking": true,
+      "host": "127.0.0.1",
+      "max_request_bytes": 402653184,
+      "port": 18527,
+      "public_model_id": "qwen38-27b",
+      "request_log_jsonl": "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C4-native4-bounded100-KV65536-r1/candidate/requests.jsonl"
+    },
+    "server_instance_id": "serve-531291-1792272521248820",
+    "timestamp_unix_ms": 1792272552681
+  },
+  "actual_terminal": {
+    "at": "2026-10-17T21:35:36.556640+00:00",
+    "all_owned_nonrunning": true,
+    "handles": [
+      {
+        "identity": {
+          "pid": 531262,
+          "start_ticks": "49359090",
+          "uid": 0,
+          "executable": "/usr/bin/python3.10",
+          "state": "R"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531279,
+          "start_ticks": "49359188",
+          "uid": 0,
+          "executable": "/usr/bin/nvidia-smi",
+          "state": "R",
+          "command": [
+            "nvidia-smi",
+            "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+            "--format=csv",
+            "-l",
+            "1"
+          ],
+          "host": "ucloud3",
+          "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/C4-gpu.csv",
+          "role": "1Hz power/memory, not occupancy",
+          "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531280,
+          "start_ticks": "49359188",
+          "uid": 0,
+          "executable": "/usr/bin/python3.10",
+          "state": "R",
+          "command": [
+            "/usr/bin/python3",
+            "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/run_candidate_sweep.py",
+            "--runner",
+            "/workspace/InferX/code/submission/organizer/runner.py",
+            "--config",
+            "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/C4-config.json",
+            "--output-dir",
+            "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C4-native4-bounded100-KV65536-r1"
+          ],
+          "host": "ucloud3",
+          "log_path": "/workspace/InferX/experiments/u3-c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/C4-driver.log",
+          "role": "original128+8+1 C4",
+          "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      },
+      {
+        "identity": {
+          "pid": 531291,
+          "start_ticks": 49359450
+        },
+        "identity_matches": false,
+        "state": null,
+        "nonrunning": true
+      }
+    ],
+    "GPU_compute": "",
+    "job_status": "complete"
+  },
+  "limitations": [
+    "Single frozen100 normal rebuild bounded membership ordinaryK3 matching-client/native low-concurrency run on ucloud3; payloads including salt match original9270C12. All client queue wait retained in TTFT. Native capacity equals requested client concurrency. This is one performance run, not a same-card causal comparison against older versions. Single-run PASS does not establish stable nonregression or task quality.",
+    "Original128 linearP95, probe/warmup excluded and initial burst retained.",
+    "Native shared decode participation is not exclusive GPU time; traceOFF remainder is unassigned.",
+    "New100 is a fresh normal rebuild; original080 GPU cubin equality not established, so compared gains cannot be attributed purely to host selection. No new task accuracy or exact-greedy qualification claimed."
+  ]
+}

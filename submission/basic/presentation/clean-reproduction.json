@@ -1,0 +1,866 @@
+{
+  "status": "complete_rebuild664_evidence_with_separate_portable116_workflow",
+  "commands": {
+    "obtain": "export INFERX_REPRO=/workspace/InferX/reproductions/rerun01\nmkdir -p /workspace/InferX/reproductions\nmkdir \"$INFERX_REPRO\"\ntar -xzf reproduction-kit-v1.tar.gz \\\n  -C \"$INFERX_REPRO\" --strip-components=1\ncd \"$INFERX_REPRO\"\nsha256sum -c SHA256SUMS",
+    "build": "python3 build_owner.py\npython3 bind_rebuilt_recipe.py\npython3 -B -m unittest discover \\\n  -s entrypoint/tests -p \"test_*.py\" -v",
+    "serve_performance": "python3 -B entrypoint/serve_candidate.py \\\n  --recipe entrypoint/candidate_recipes/100-k3-u3-47-rebuilt-20261018.json \\\n  --profile perf-c14 --root \"$PWD\" --port 18540 \\\n  --log-dir \"$PWD/service-perf-c14-001\"",
+    "performance": "OPENAI_API_KEY=EMPTY python3 -B entrypoint/perf_candidate.py \\\n  --recipe entrypoint/candidate_recipes/100-k3-u3-47-rebuilt-20261018.json \\\n  --concurrency 14 --root \"$PWD\" \\\n  --service-launch \"$PWD/service-perf-c14-001/launch.json\" \\\n  --base-url http://127.0.0.1:18540/v1 \\\n  --output-dir \"$PWD/performance-C14-001\"\ncat performance-C14-001/summary.json",
+    "serve_quality": "python3 -B entrypoint/serve_candidate.py \\\n  --recipe entrypoint/candidate_recipes/100-k3-u3-47-rebuilt-20261018.json \\\n  --profile quality100 --root \"$PWD\" --port 18541 \\\n  --log-dir \"$PWD/service-quality100-002\"",
+    "quality": "OPENAI_API_KEY=EMPTY python3 -B entrypoint/accuracy_candidate.py \\\n  --recipe entrypoint/candidate_recipes/100-k3-u3-47-rebuilt-20261018.json \\\n  --root \"$PWD\" \\\n  --service-launch \"$PWD/service-quality100-002/launch.json\" \\\n  --base-url http://127.0.0.1:18541/v1 \\\n  --output-dir \"$PWD/quality100-002\"",
+    "quantization": "python3 \"$INFERX_Q/reproduce.py\" \\\n  --work-dir \"$INFERX_W\" --fp8 \"$INFERX_FP8\" \\\n  --model \"$INFERX_M\" --tokenizer \"$INFERX_T\" \\\n  --fit-python \"$FIT_PY\" --build-env \"$INFERX_B\" \\\n  --cuda-root \"$INFERX_C\" --xgrammar \"$INFERX_X\" \\\n  --eval-envs \"$INFERX_E\" --tools \"$INFERX_U\""
+  },
+  "performance_json": "{\n  \"concurrency\": 14,\n  \"records\": 128,\n  \"error_requests\": 0,\n  \"metrics\": {\n    \"time_to_first_token\": {\"p95\": 9896.41735465},\n    \"inter_token_latency\": {\"p95\": 38.28584995440313}\n  },\n  \"output_token_throughput\": 304.89665937584215\n}",
+  "quality_json": "{\n  \"accuracy\": {\n    \"status\": \"完整\",\n    \"generated_samples\": 100,\n    \"metrics\": {\n      \"prompt_level_strict\": {\"score\": 0.9, \"num\": 100},\n      \"inst_level_strict\": {\"score\": 0.9009, \"num\": 111},\n      \"prompt_level_loose\": {\"score\": 0.96, \"num\": 100},\n      \"inst_level_loose\": {\"score\": 0.955, \"num\": 111}\n    }\n  }\n}",
+  "performance_note_zh": "TTFT 9.896s、TPOT 38.286ms：本轮两项SLO通过；吞吐304.90 tok/s。",
+  "performance_note_en": "TTFT 9.896 s and TPOT 38.286 ms pass both SLOs in this run; throughput 304.90 tok/s.",
+  "quality_note_zh": "严格90/100、宽松96/100；指令100/111、106/111。1个空回答、1次长度截断均计入，错误0。",
+  "quality_note_en": "Strict 90/100, loose 96/100; instructions 100/111 and 106/111. One empty final and one length stop included; 0 errors.",
+  "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "performance_audit": {
+    "status": "PASS",
+    "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+    "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+    "recipe_sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb",
+    "client_concurrency": 14,
+    "native_concurrency": 13,
+    "kv": 121856,
+    "measured": 128,
+    "warmup": 8,
+    "probe": 1,
+    "ttft_p95_ms": 9896.417354649999,
+    "tpot_p95_ms": 38.28584995440313,
+    "output_tokens": 65536,
+    "phase_seconds": 214.944959168,
+    "output_token_throughput": 304.89665937584215,
+    "derived_meets_slo": true,
+    "parser_has_meets_slo": false,
+    "entrypoint_meets_slo": null,
+    "original_payload_verified": true,
+    "service_reaped": true,
+    "performance_json": "{\n  \"concurrency\": 14,\n  \"records\": 128,\n  \"error_requests\": 0,\n  \"metrics\": {\n    \"time_to_first_token\": {\"p95\": 9896.41735465},\n    \"inter_token_latency\": {\"p95\": 38.28584995440313}\n  },\n  \"output_token_throughput\": 304.89665937584215\n}",
+    "sources": {
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/summary.json": {
+        "sha256": "08b84fcd0afdea44d3e76d331b42aafe405db53df868413e425c76548a0392f0",
+        "bytes": 1093
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/evaluation-identity.json": {
+        "sha256": "2706b127b375eac7157137855c66ad4c48495f2c7e965ed078bc272062e22924",
+        "bytes": 347
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/launch.json": {
+        "sha256": "44afb2e2c73466abe0d93ef2ff46f52536ba04898c0c5ee2b77ca9178538c918",
+        "bytes": 8815
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phases/profiling/profile_export_aiperf.json": {
+        "sha256": "afd35bece843dcf9c04158cc1427896016096d64b045938ff45b727ce54cdca5",
+        "bytes": 22035
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phase_manifest.json": {
+        "sha256": "a6397cd1d0103adfe5ee823d63eb1adf58a05d0961fb2b15fbc41bc331cce3bd",
+        "bytes": 1174
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/profile_export.jsonl": {
+        "sha256": "44769bda6bc968d2037baa113f164273d2889dd09ea5c61d2c737493575c0fa9",
+        "bytes": 616682
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/requests.jsonl": {
+        "sha256": "5ef34e7f57a75eeb19902caa4447b4807ac1fa809c1814070acbf4aa51f5f97a",
+        "bytes": 280984
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/inputs.json": {
+        "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+        "bytes": 22001612
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-terminal-snapshot.json": {
+        "sha256": "6c3682da0e9a49dc74828b0fae8537204b55d4abba7d44060cfb0c81970ca81e",
+        "bytes": 14649
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-summary.json": {
+        "sha256": "2eec651e2f1c940d36c88252a14f631ed2380c2f11603badfecf0d234d6a7ac6",
+        "bytes": 2862
+      }
+    },
+    "scope": "One independent clean-source rebuild run with existing read-only model/caches and environments. Not quantization regeneration or a fresh operating-system installation."
+  },
+  "quality_audit": {
+    "status": "PASS",
+    "scope": "CPU aggregation and input/output cross-check. Original verifier rerun is a separate receipt; no inference executed here.",
+    "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+    "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+    "samples": 100,
+    "instructions": 111,
+    "metrics": {
+      "prompt_level_strict": {
+        "numerator": 90,
+        "denominator": 100,
+        "score": 0.9,
+        "reported_score": 0.9
+      },
+      "inst_level_strict": {
+        "numerator": 100,
+        "denominator": 111,
+        "score": 0.9009009009009009,
+        "reported_score": 0.9009
+      },
+      "prompt_level_loose": {
+        "numerator": 96,
+        "denominator": 100,
+        "score": 0.96,
+        "reported_score": 0.96
+      },
+      "inst_level_loose": {
+        "numerator": 106,
+        "denominator": 111,
+        "score": 0.954954954954955,
+        "reported_score": 0.955
+      }
+    },
+    "empty_final": 1,
+    "errors": 0,
+    "length_stops": 1,
+    "native_finish_reasons": {
+      "stop_token": 99,
+      "output_limit": 1
+    },
+    "original_first100_verified": true,
+    "service_reaped": true,
+    "archive_files_verified": 54,
+    "quality_json": "{\n  \"accuracy\": {\n    \"status\": \"完整\",\n    \"generated_samples\": 100,\n    \"metrics\": {\n      \"prompt_level_strict\": {\"score\": 0.9, \"num\": 100},\n      \"inst_level_strict\": {\"score\": 0.9009, \"num\": 111},\n      \"prompt_level_loose\": {\"score\": 0.96, \"num\": 100},\n      \"inst_level_loose\": {\"score\": 0.955, \"num\": 111}\n    }\n  }\n}",
+    "sources": {
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-delivery-manifest.json": {
+        "sha256": "631a25757b764071d133d54423292ba47eb5f054fe96508ad2eb233abe8f4d2d",
+        "bytes": 8675
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/configuration.json": {
+        "bytes": 668,
+        "sha256": "f12f1c927929120d57b1dc352e57bc55defeafc2eb20be02c7a709b1e745d76a"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/environment.json": {
+        "bytes": 4862,
+        "sha256": "f201534e44ceb3539002d3d7c1374ef4dafb8f5b507f16f3617ff9039303b69c"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/report.md": {
+        "bytes": 1703,
+        "sha256": "7e4c914f47039c22824226d8a2bea9fd24bc14fae49819ccc55494e99cfe5861"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/summary.json": {
+        "bytes": 923,
+        "sha256": "dba2a4d8d39cf7438479740ee6c492f8113a56145b4881f76053dcde047c72c4"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation-identity.json": {
+        "bytes": 238,
+        "sha256": "fa13066ce50a6ae0e3f65d3f2c1dc9817beacfda529d878576045a4021517d5c"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/plan.json": {
+        "bytes": 1353,
+        "sha256": "3e986574408328fb66fcd2d0076bc760abe349e9aad44d77d624261ce7a214e4"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/recipe.json": {
+        "bytes": 4484,
+        "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/service-launch.json": {
+        "bytes": 8825,
+        "sha256": "b7f95e5df993f7d50e16c2c57d31774962a508f16f8a0913bc8d158ea18d28af"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/command.json": {
+        "bytes": 305,
+        "sha256": "2154407d6f4f87fcd0e68e9a7455b2f8d2db7eaa890e7c70c8093ceb3841610f"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/console.log": {
+        "bytes": 28635,
+        "sha256": "36a4048244100034cf930468d708f8b0dc0a0419ba79c00717d40cb369fd04c2"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/configs/task_config.yaml": {
+        "bytes": 2231,
+        "sha256": "f1f5fbdeebd72fdf36d671cb5160e99f8f896d9b525251210309e1c47fd1a373"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/logs/eval_log.log": {
+        "bytes": 11930,
+        "sha256": "c798b9746dff832922d9a74059e062440259af4d358bca6e91f70e1e5f25cdfd"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl": {
+        "sha256": "4c5da4b7dc7173a78daff67098d540b1f53c72280d9a17582351a2f26e748bd8",
+        "bytes": 4549652
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json": {
+        "bytes": 13262,
+        "sha256": "04bcf946005db06dd2e66e8bf0a94597964a4193956850db7a9bd56596e7ebd7"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reports/report.html": {
+        "bytes": 89745,
+        "sha256": "8857beea7b2183b77b5e0bfc4a463b5481c003328575b526ab15b4a13c79f260"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl": {
+        "sha256": "075141e1daeec6ec50b1c255b065990b2de78585689ecd06fd03db5d5a4f1e6e",
+        "bytes": 2567905
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/resolved_config.json": {
+        "bytes": 2414,
+        "sha256": "115c5e49e3f7515aa3f53e73f87f73d0588fdbe426426ba30da67e36d149da4f"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/summary.json": {
+        "sha256": "a603b3125fbeed92da9d48eea1ec520e0211b9c2579606bf1ef8a3c9b73ee728",
+        "bytes": 899
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/task_config.json": {
+        "sha256": "239c9015bf540960c64aef361e2f6a5f34ad1a323b66ae280d54587fb776fb56",
+        "bytes": 412
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/configuration.json": {
+        "bytes": 668,
+        "sha256": "82694097e219496a9b0a41bf264dc129eb9796ccf66d7fac23f85cb60846e2e7"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/environment.json": {
+        "bytes": 4862,
+        "sha256": "2ee56f290deecb63eced05cf02879eb00ec6781eac4079a109d9c1dc4fa3253b"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/model_info.json": {
+        "bytes": 272,
+        "sha256": "9efce4370551b3a2b8e5ba0745558f9e15cf5b10e5ca8421579e9563b0a84fa7"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/report.md": {
+        "bytes": 2046,
+        "sha256": "698d8079a45de19b016ba8089275430b05190d13ef2ebd9e81dbcfc932ed1e49"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/summary.json": {
+        "sha256": "c5937d2b39b8e3af94036d49c742b1607774db349ce87d43816caf0582f1749e",
+        "bytes": 1873
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation-identity.json": {
+        "sha256": "5087e6f6a6b78125f68ec212dc26cc0004e05f4be58a8fb13d8b7cede443a24f",
+        "bytes": 240
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/model-readiness.json": {
+        "sha256": "b94e727183f48c7343d46eb89e00b76e3c407eff42be1da638240e67325da3b1",
+        "bytes": 420
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/plan.json": {
+        "bytes": 1353,
+        "sha256": "85ed303dbf38a0b25138bde994a6384c680036ac2bb9b17e40a547afb3152b3a"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/recipe.json": {
+        "bytes": 4484,
+        "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/service-launch.json": {
+        "bytes": 8825,
+        "sha256": "ccefaf9b639fd9b2f76bc94b0916c026f2acc92f732bbe271635261a0586e3c6"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/launch.json": {
+        "bytes": 8825,
+        "sha256": "b7f95e5df993f7d50e16c2c57d31774962a508f16f8a0913bc8d158ea18d28af"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/recipe.json": {
+        "bytes": 4484,
+        "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/requests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/launch.json": {
+        "sha256": "ccefaf9b639fd9b2f76bc94b0916c026f2acc92f732bbe271635261a0586e3c6",
+        "bytes": 8825
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/recipe.json": {
+        "bytes": 4484,
+        "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/requests.jsonl": {
+        "sha256": "b4fd3a349680b0c102f8b36d4311c6dfb66c244b74c3a3fafd5ab422434fe8ec",
+        "bytes": 298315
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/actual-first100-metadata.json": {
+        "bytes": 185118,
+        "sha256": "a00408742c9c4cf1c7d542a0359a0b36e6cd1cbc13e9d7c8d2aebb5769ee7514"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/all100.jsonl": {
+        "bytes": 71351,
+        "sha256": "4de3685bc235e1205cc9fbd351c6726191c2fb7f581afef6ed058c7d8a55a01e"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/summary.json": {
+        "sha256": "af8661060cd619f5d105fadf5de166705d12df854763d6e6d7cde7c136fb6534",
+        "bytes": 3276
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU.log": {
+        "bytes": 1373,
+        "sha256": "5c995ce22eee0e275dfa598ee0f69e89092edb41be64147b8cd72a1381348519"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2.log": {
+        "bytes": 3276,
+        "sha256": "af8661060cd619f5d105fadf5de166705d12df854763d6e6d7cde7c136fb6534"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-r2-job.json": {
+        "bytes": 19450,
+        "sha256": "6047388cb872a580fdb6462c75caece564d17a418d7115ea8d96c2a534a82ea7"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality_r2_owner.py": {
+        "bytes": 4821,
+        "sha256": "16694f634bb371e1fe9b2864017b7e5227ec0fe6e80704e56ba52364fa419a1f"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality002-actual-terminal.json": {
+        "sha256": "f20a462f2bce22d3a11968fdd7940ed990ea4c07692cc8f8eda17c232461e3bc",
+        "bytes": 562
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality001-failed-actual-terminal.json": {
+        "bytes": 5834,
+        "sha256": "fb5fc66382479b56cc27c0a0f0e61f7f455958718a10bc8fb988c14bf0a88746"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/evaluate-r2-quality100.log": {
+        "bytes": 583,
+        "sha256": "90628869cbab59b2397051a2e595af38421ddaead1fe914df299ee5312940f0a"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002.log": {
+        "bytes": 115585,
+        "sha256": "448be076460068e49dc3bf3c6e2dea57a4ae0083c2148a963dbd0dfa112c5452"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001.log": {
+        "bytes": 11956,
+        "sha256": "e90fafcf905a7accb8de9a2f9da11e60c46e274df685f5a9b1195337d52e5a78"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/evaluation-job.json": {
+        "bytes": 37011,
+        "sha256": "002ee295275c1b9d7efcef7e2fb8269dc05800b096b2735072401ac879b457f5"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/score_quality_cpu.py": {
+        "bytes": 5992,
+        "sha256": "bf694299becb7430c7558458e9478db4bddc3574c68bf8a81d901a3fda94b872"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/first100-frozen-cohort.jsonl": {
+        "bytes": 220497,
+        "sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/expected-verifier-files.json": {
+        "bytes": 552,
+        "sha256": "c64e3482375e49773689fa4f2382567ac318cb39dfec17b1d9daf1f5cd6657c4"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/entrypoint-r2-runtime-freeze.json": {
+        "bytes": 4623,
+        "sha256": "c3d5b8f30a7382046d7f75a777e984e21004b02a974d25b7d9fcd655edd2ce03"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/portable-entrypoint-r2-CPU.log": {
+        "bytes": 2689,
+        "sha256": "7e5b90ec74f11b782cfbd42b7eaf1bb313c66c23bb8f18ebc634239483a509dd"
+      },
+      "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/rebuilt-recipe-binding.json": {
+        "bytes": 678,
+        "sha256": "3accf165b39da8578c43080e9e6341f508f0c61fe11886e1a2dbb60641001410"
+      },
+      "submission/track-a/data/selected-quality-sources.json": {
+        "sha256": "63b1889690f9f13e14793e029b37d45f0c9dffd32e7ca1bf02a5ecfd4c4d3314",
+        "bytes": 873
+      },
+      "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/first100-frozen-cohort.jsonl": {
+        "sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824",
+        "bytes": 220497
+      }
+    }
+  },
+  "commands_scope": "Portable kit commands, with the exact tested r2 executable entrypoints under entrypoint/. The recorded C14 used the prior wrapper; quality002 used entrypoint-r2/. The r2 change only adds read-only model readiness before the unchanged runner. New directories and recipe binding produce a new run, not inherited results.",
+  "sources": {
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit-v1.tar.gz": {
+      "sha256": "62fc432a278f2b7f8c60472c173929fc1f537ea2785908207e8b1ce7703ed545",
+      "bytes": 40181061
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit-v1-receipt.json": {
+      "sha256": "38c29f9f9d672449393a94b1cdabc3ae2675b4d49d38c434cf61245732c4bf06",
+      "bytes": 501
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit/MANIFEST.json": {
+      "sha256": "eea03cd2f87c8e261399ae8e941c1c1c8af063ec8a597b4956d628b97d93c1c0",
+      "bytes": 201836
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit/SHA256SUMS": {
+      "sha256": "0b7aebbccb4239c7bf70efc0d931378ad0b48023b55f56085ff4dd23933f318c",
+      "bytes": 136335
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/kit-entrypoint-CPU-tests.log": {
+      "sha256": "ac7a4b63c83fc5507118cea1b4799ba5e4deb21392b4fcf38b2ef181b83fb181",
+      "bytes": 2689
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit-v1-complete-content-manifest.json": {
+      "sha256": "9001c7adbb05d2ce63aa43b15e9590becfafc4eaf63ef4ecc8dbd97a3571638a",
+      "bytes": 203053
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/summary.json": {
+      "sha256": "08b84fcd0afdea44d3e76d331b42aafe405db53df868413e425c76548a0392f0",
+      "bytes": 1093
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/evaluation-identity.json": {
+      "sha256": "2706b127b375eac7157137855c66ad4c48495f2c7e965ed078bc272062e22924",
+      "bytes": 347
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/launch.json": {
+      "sha256": "44afb2e2c73466abe0d93ef2ff46f52536ba04898c0c5ee2b77ca9178538c918",
+      "bytes": 8815
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "afd35bece843dcf9c04158cc1427896016096d64b045938ff45b727ce54cdca5",
+      "bytes": 22035
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phase_manifest.json": {
+      "sha256": "a6397cd1d0103adfe5ee823d63eb1adf58a05d0961fb2b15fbc41bc331cce3bd",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/profile_export.jsonl": {
+      "sha256": "44769bda6bc968d2037baa113f164273d2889dd09ea5c61d2c737493575c0fa9",
+      "bytes": 616682
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/requests.jsonl": {
+      "sha256": "5ef34e7f57a75eeb19902caa4447b4807ac1fa809c1814070acbf4aa51f5f97a",
+      "bytes": 280984
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-terminal-snapshot.json": {
+      "sha256": "6c3682da0e9a49dc74828b0fae8537204b55d4abba7d44060cfb0c81970ca81e",
+      "bytes": 14649
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-summary.json": {
+      "sha256": "2eec651e2f1c940d36c88252a14f631ed2380c2f11603badfecf0d234d6a7ac6",
+      "bytes": 2862
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-delivery-manifest.json": {
+      "sha256": "631a25757b764071d133d54423292ba47eb5f054fe96508ad2eb233abe8f4d2d",
+      "bytes": 8675
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/configuration.json": {
+      "bytes": 668,
+      "sha256": "f12f1c927929120d57b1dc352e57bc55defeafc2eb20be02c7a709b1e745d76a"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/environment.json": {
+      "bytes": 4862,
+      "sha256": "f201534e44ceb3539002d3d7c1374ef4dafb8f5b507f16f3617ff9039303b69c"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/report.md": {
+      "bytes": 1703,
+      "sha256": "7e4c914f47039c22824226d8a2bea9fd24bc14fae49819ccc55494e99cfe5861"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation/summary.json": {
+      "bytes": 923,
+      "sha256": "dba2a4d8d39cf7438479740ee6c492f8113a56145b4881f76053dcde047c72c4"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/evaluation-identity.json": {
+      "bytes": 238,
+      "sha256": "fa13066ce50a6ae0e3f65d3f2c1dc9817beacfda529d878576045a4021517d5c"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/plan.json": {
+      "bytes": 1353,
+      "sha256": "3e986574408328fb66fcd2d0076bc760abe349e9aad44d77d624261ce7a214e4"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/recipe.json": {
+      "bytes": 4484,
+      "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-001/service-launch.json": {
+      "bytes": 8825,
+      "sha256": "b7f95e5df993f7d50e16c2c57d31774962a508f16f8a0913bc8d158ea18d28af"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/command.json": {
+      "bytes": 305,
+      "sha256": "2154407d6f4f87fcd0e68e9a7455b2f8d2db7eaa890e7c70c8093ceb3841610f"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/console.log": {
+      "bytes": 28635,
+      "sha256": "36a4048244100034cf930468d708f8b0dc0a0419ba79c00717d40cb369fd04c2"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/configs/task_config.yaml": {
+      "bytes": 2231,
+      "sha256": "f1f5fbdeebd72fdf36d671cb5160e99f8f896d9b525251210309e1c47fd1a373"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/logs/eval_log.log": {
+      "bytes": 11930,
+      "sha256": "c798b9746dff832922d9a74059e062440259af4d358bca6e91f70e1e5f25cdfd"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl": {
+      "sha256": "4c5da4b7dc7173a78daff67098d540b1f53c72280d9a17582351a2f26e748bd8",
+      "bytes": 4549652
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reports/qwen38-27b/ifbench.json": {
+      "bytes": 13262,
+      "sha256": "04bcf946005db06dd2e66e8bf0a94597964a4193956850db7a9bd56596e7ebd7"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reports/report.html": {
+      "bytes": 89745,
+      "sha256": "8857beea7b2183b77b5e0bfc4a463b5481c003328575b526ab15b4a13c79f260"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl": {
+      "sha256": "075141e1daeec6ec50b1c255b065990b2de78585689ecd06fd03db5d5a4f1e6e",
+      "bytes": 2567905
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/resolved_config.json": {
+      "bytes": 2414,
+      "sha256": "115c5e49e3f7515aa3f53e73f87f73d0588fdbe426426ba30da67e36d149da4f"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/summary.json": {
+      "sha256": "a603b3125fbeed92da9d48eea1ec520e0211b9c2579606bf1ef8a3c9b73ee728",
+      "bytes": 899
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/accuracy/task_config.json": {
+      "sha256": "239c9015bf540960c64aef361e2f6a5f34ad1a323b66ae280d54587fb776fb56",
+      "bytes": 412
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/configuration.json": {
+      "bytes": 668,
+      "sha256": "82694097e219496a9b0a41bf264dc129eb9796ccf66d7fac23f85cb60846e2e7"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/environment.json": {
+      "bytes": 4862,
+      "sha256": "2ee56f290deecb63eced05cf02879eb00ec6781eac4079a109d9c1dc4fa3253b"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/model_info.json": {
+      "bytes": 272,
+      "sha256": "9efce4370551b3a2b8e5ba0745558f9e15cf5b10e5ca8421579e9563b0a84fa7"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/report.md": {
+      "bytes": 2046,
+      "sha256": "698d8079a45de19b016ba8089275430b05190d13ef2ebd9e81dbcfc932ed1e49"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation/summary.json": {
+      "sha256": "c5937d2b39b8e3af94036d49c742b1607774db349ce87d43816caf0582f1749e",
+      "bytes": 1873
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/evaluation-identity.json": {
+      "sha256": "5087e6f6a6b78125f68ec212dc26cc0004e05f4be58a8fb13d8b7cede443a24f",
+      "bytes": 240
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/model-readiness.json": {
+      "sha256": "b94e727183f48c7343d46eb89e00b76e3c407eff42be1da638240e67325da3b1",
+      "bytes": 420
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/plan.json": {
+      "bytes": 1353,
+      "sha256": "85ed303dbf38a0b25138bde994a6384c680036ac2bb9b17e40a547afb3152b3a"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/recipe.json": {
+      "bytes": 4484,
+      "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality100-002/service-launch.json": {
+      "bytes": 8825,
+      "sha256": "ccefaf9b639fd9b2f76bc94b0916c026f2acc92f732bbe271635261a0586e3c6"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/launch.json": {
+      "bytes": 8825,
+      "sha256": "b7f95e5df993f7d50e16c2c57d31774962a508f16f8a0913bc8d158ea18d28af"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/recipe.json": {
+      "bytes": 4484,
+      "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001/requests.jsonl": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/launch.json": {
+      "sha256": "ccefaf9b639fd9b2f76bc94b0916c026f2acc92f732bbe271635261a0586e3c6",
+      "bytes": 8825
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/recipe.json": {
+      "bytes": 4484,
+      "sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002/requests.jsonl": {
+      "sha256": "b4fd3a349680b0c102f8b36d4311c6dfb66c244b74c3a3fafd5ab422434fe8ec",
+      "bytes": 298315
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/actual-first100-metadata.json": {
+      "bytes": 185118,
+      "sha256": "a00408742c9c4cf1c7d542a0359a0b36e6cd1cbc13e9d7c8d2aebb5769ee7514"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/all100.jsonl": {
+      "bytes": 71351,
+      "sha256": "4de3685bc235e1205cc9fbd351c6726191c2fb7f581afef6ed058c7d8a55a01e"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2/summary.json": {
+      "sha256": "af8661060cd619f5d105fadf5de166705d12df854763d6e6d7cde7c136fb6534",
+      "bytes": 3276
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU.log": {
+      "bytes": 1373,
+      "sha256": "5c995ce22eee0e275dfa598ee0f69e89092edb41be64147b8cd72a1381348519"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-independent-CPU-r2.log": {
+      "bytes": 3276,
+      "sha256": "af8661060cd619f5d105fadf5de166705d12df854763d6e6d7cde7c136fb6534"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality-r2-job.json": {
+      "bytes": 19450,
+      "sha256": "6047388cb872a580fdb6462c75caece564d17a418d7115ea8d96c2a534a82ea7"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality_r2_owner.py": {
+      "bytes": 4821,
+      "sha256": "16694f634bb371e1fe9b2864017b7e5227ec0fe6e80704e56ba52364fa419a1f"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality002-actual-terminal.json": {
+      "sha256": "f20a462f2bce22d3a11968fdd7940ed990ea4c07692cc8f8eda17c232461e3bc",
+      "bytes": 562
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/quality001-failed-actual-terminal.json": {
+      "bytes": 5834,
+      "sha256": "fb5fc66382479b56cc27c0a0f0e61f7f455958718a10bc8fb988c14bf0a88746"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/evaluate-r2-quality100.log": {
+      "bytes": 583,
+      "sha256": "90628869cbab59b2397051a2e595af38421ddaead1fe914df299ee5312940f0a"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-002.log": {
+      "bytes": 115585,
+      "sha256": "448be076460068e49dc3bf3c6e2dea57a4ae0083c2148a963dbd0dfa112c5452"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/service-quality100-001.log": {
+      "bytes": 11956,
+      "sha256": "e90fafcf905a7accb8de9a2f9da11e60c46e274df685f5a9b1195337d52e5a78"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/evaluation-job.json": {
+      "bytes": 37011,
+      "sha256": "002ee295275c1b9d7efcef7e2fb8269dc05800b096b2735072401ac879b457f5"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/score_quality_cpu.py": {
+      "bytes": 5992,
+      "sha256": "bf694299becb7430c7558458e9478db4bddc3574c68bf8a81d901a3fda94b872"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/first100-frozen-cohort.jsonl": {
+      "bytes": 220497,
+      "sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/expected-verifier-files.json": {
+      "bytes": 552,
+      "sha256": "c64e3482375e49773689fa4f2382567ac318cb39dfec17b1d9daf1f5cd6657c4"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/entrypoint-r2-runtime-freeze.json": {
+      "bytes": 4623,
+      "sha256": "c3d5b8f30a7382046d7f75a777e984e21004b02a974d25b7d9fcd655edd2ce03"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/portable-entrypoint-r2-CPU.log": {
+      "bytes": 2689,
+      "sha256": "7e5b90ec74f11b782cfbd42b7eaf1bb313c66c23bb8f18ebc634239483a509dd"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/quality-delivery/rebuilt-recipe-binding.json": {
+      "bytes": 678,
+      "sha256": "3accf165b39da8578c43080e9e6341f508f0c61fe11886e1a2dbb60641001410"
+    },
+    "submission/track-a/data/selected-quality-sources.json": {
+      "sha256": "63b1889690f9f13e14793e029b37d45f0c9dffd32e7ca1bf02a5ecfd4c4d3314",
+      "bytes": 873
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/first100-frozen-cohort.jsonl": {
+      "sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824",
+      "bytes": 220497
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/entrypoint-r2-runtime-freeze.json": {
+      "sha256": "c3d5b8f30a7382046d7f75a777e984e21004b02a974d25b7d9fcd655edd2ce03",
+      "bytes": 4623
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/portable-entrypoint-r2-CPU.log": {
+      "sha256": "7e5b90ec74f11b782cfbd42b7eaf1bb313c66c23bb8f18ebc634239483a509dd",
+      "bytes": 2689
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/quality100-002/model-readiness.json": {
+      "sha256": "b94e727183f48c7343d46eb89e00b76e3c407eff42be1da638240e67325da3b1",
+      "bytes": 420
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/quality001-failed-actual-terminal.json": {
+      "sha256": "fb5fc66382479b56cc27c0a0f0e61f7f455958718a10bc8fb988c14bf0a88746",
+      "bytes": 5834
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/quality100-001/evaluation/summary.json": {
+      "sha256": "dba2a4d8d39cf7438479740ee6c492f8113a56145b4881f76053dcde047c72c4",
+      "bytes": 923
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/readiness-repair-delivery/service-quality100-001/requests.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/source-and-entrypoint-stage.tgz": {
+      "sha256": "3a08b0688f1138f310b03f9d27d7307215f0bad5593021fdfc64c9ca8980dbff",
+      "bytes": 8495044
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/source-identity.json": {
+      "sha256": "dec66067bddd23ecc6721efe3ed1c755d6d2339bf3ec2dba22e0afe7704174b4",
+      "bytes": 115453
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build_owner.py": {
+      "sha256": "b3b4b21acee638749f0f8022488ece60d388ed17d218343970519d0da8cb4ed6",
+      "bytes": 5739
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/owned_process.py": {
+      "sha256": "f10d949e74df328895949f2a7baf49d02303e3e4642ce4ae892125e7ce9102b6",
+      "bytes": 2415
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/prepare_assets.py": {
+      "sha256": "62765ff284903b0884b5841996da7cafb1f9c97413b52667a721aa86db910ccc",
+      "bytes": 3465
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/bind_rebuilt_recipe.py": {
+      "sha256": "79b5ac75bca51db1cb19a6a78aed6bb36ea30ee1e5b70de73ecf924a4abfaee3",
+      "bytes": 3888
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/evaluation_owner.py": {
+      "sha256": "9570385e9e4c730cfff5b5a09781c8b4bcee23856f876985da8d9f7a24e3ec58",
+      "bytes": 4817
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/preflight-delivery/asset-verification.json": {
+      "sha256": "6627e453bd5f12b844aaf149bdfc5b0221b22b67ae91eb6838fbbcf14fbdd11c",
+      "bytes": 78325
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/preflight-delivery/model-verification.json": {
+      "sha256": "3a9c60421a275d195e9e1d638f26928cf6079cb10cc1e3278117d295a6205009",
+      "bytes": 457
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/preflight-delivery/evaluation-dependency-check.json": {
+      "sha256": "88e56ed8725c8942968f4bda3f18b3f93674b7fa5db95a054b696b7aa4c26ccd",
+      "bytes": 9548
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/preflight-delivery/tokenizer-manifest.json": {
+      "sha256": "8d6caffcec429f17f95638e018c906063bd19f9f898bc83a30b468e2af9a016c",
+      "bytes": 1115
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/preflight-delivery/xgrammar-manifest.json": {
+      "sha256": "eb76951674b4fb462e3481983ecfb54963bebab65e9ea0523b9020e3692b034d",
+      "bytes": 42751
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/build-job.json": {
+      "sha256": "88a9726a8f5183d736f063348a87dd176790731a5bd3795623ae1e299f37866a",
+      "bytes": 8016
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/runtime-identity.json": {
+      "sha256": "64aadb95c4cbe394c9790be73a2800a1d400200c2fafb9553d76690eb3f4147a",
+      "bytes": 13697
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/actual-source-before.json": {
+      "sha256": "79cb02a5ca069e820a3401c53b3996be0296c67a6c68aaf6a1ae9b4a95b3f72a",
+      "bytes": 115385
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/actual-source-after.json": {
+      "sha256": "a1e065be6f1f523f5b373ded25ca059b137724b050d65de213aff8e42432fbbe",
+      "bytes": 115385
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/registered-CPU-CTest.log": {
+      "sha256": "02dd501f69eb5056cfdb0e08a1730f09034520d2db0f79298971df75285ee93d",
+      "bytes": 1231
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/rebuilt-recipe-binding.json": {
+      "sha256": "3accf165b39da8578c43080e9e6341f508f0c61fe11886e1a2dbb60641001410",
+      "bytes": 678
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/entrypoint-runtime-freeze.json": {
+      "sha256": "5800ffbb58e98684050f3aa448e009cf5152ea955bba709a9fc1b0a3723f78a6",
+      "bytes": 4472
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/entrypoint-qualification.patch": {
+      "sha256": "a5eef8de163f3c4ad6966d021925e3b6d425621f9df4dba0d7ed7127e99f68aa",
+      "bytes": 793
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/toolchain-explicit.txt": {
+      "sha256": "bb89f78e44ec2ccf4ba48ef9428649f0b8d27cb8977e7b5d7a0e61ebedf48a8e",
+      "bytes": 14633
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/build-delivery/xgrammar-provenance.json": {
+      "sha256": "681898c6c65e35160dab25874203490b3217a1309c1ede018e610e0f77cb16cb",
+      "bytes": 337
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/PACKAGE-MANIFEST.json": {
+      "sha256": "80c69602113710e88a5127e9b9d3803d6ff11b7791e6b51a436a4d53ead2a68d",
+      "bytes": 106549
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/QUANTIZATION-HANDOFF.md": {
+      "sha256": "edf6b4f0df9bcbd61ea2bff2db0dfd2a0477042fd4e82f84556b39e7378b2afd",
+      "bytes": 5889
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/FP8-acquisition-manifest.json": {
+      "sha256": "36a8bd88a9262fe004313ade8ae52bf232479fa45126f451ae8f1c99e10ddbcb",
+      "bytes": 17167
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/fetch_fp8.py": {
+      "sha256": "93c8bd7988ea4d46b518b5a4ad0aabda61fcb52c9228f2ac76c2378ffe8808f9",
+      "bytes": 1728
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/source-verification.json": {
+      "sha256": "9349e628e27ec75ec061b90a57d9205d8f81e91e2b8b20cd8a279f06bf869b97",
+      "bytes": 117688
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/selected100-source.tar.gz": {
+      "sha256": "9fae3ed7cbfc8e2dfbce46caa58da392db0b99409f0b4275aa61618bd3a1b0dc",
+      "bytes": 6668935
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/output-capture-parent-source-verification.json": {
+      "sha256": "b7a82b94f11ef9417c2d92ae8dadce1b1daa2d9afa0531ceff52381d67b12559",
+      "bytes": 342
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/output-capture-parent-9f5a-source.tar.gz": {
+      "sha256": "2e4c43b93f26034478e84598455afa94ba3b14c45fb5d0adf0d310f09f12d9c8",
+      "bytes": 6627524
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/CPU-final-validation.json": {
+      "sha256": "00f340de33a1442d182bc6b20a47f74f9c86d6627d0dfcdb6a7e8c8a851bda6a",
+      "bytes": 718
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/selected100-u3-47-caches.tar.sha256": {
+      "sha256": "c31863a6bb257c6510b086071cd18da1391c28bba3315199063792832a21e133",
+      "bytes": 95
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/calibration/original/true-int4-input-projections-038/requests.json": {
+      "sha256": "f93b4d2b44c9ca642277f14c9260e64d8c95be2858b6c4e4b1db16874381481a",
+      "bytes": 278815
+    },
+    "results/three-node-optimization/ucloud1/selected100-reproduction-chain-CPU/calibration/original/true-int4-independent-calibration-014/prepare.py": {
+      "sha256": "6613ef2bcb7097f32773a764a3540328472a4cb0a5c853c88057a17eec84e49a",
+      "bytes": 2445
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/README.md": {
+      "bytes": 4320,
+      "sha256": "1e95a676be83f8ce9f61d5e09836773360ad49b40d8647606964a17e453c7571"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/test_bind_fresh_caches.py": {
+      "bytes": 7765,
+      "sha256": "3f111d9132b88dcb5180ee82a105d19646b528ccd4af928759410e8558c20b82"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/CPU-tests-receipt.json": {
+      "bytes": 492,
+      "sha256": "1fe106007c575848857a9edbf019daf98b784da7761786fe06e66f72bf33efd5"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/CPU-tests.log": {
+      "bytes": 2335,
+      "sha256": "66d3e8842d866049b489d14a593b82a1f2f6387fd4435a704fd86154cc03f1ba"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/bind_fresh_caches.py": {
+      "bytes": 11442,
+      "sha256": "c93f81df7ca43ee8655a22964e693e0b1e0fd4be31b22c4c884609b2ac47bd5a"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/fresh-cache-binding-tool/CPU-tests-failed-template-selection.log": {
+      "bytes": 3042,
+      "sha256": "79da872af29325e6461b285fd8f8d06f113262364889d2fff6445a4fd64bf1db"
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit/evidence/actual-COMMANDS.md": {
+      "sha256": "cd9d715ded543e7b8635cfa05bf9ddbc8649f93e62d78ee13bbd4a695e47d963",
+      "bytes": 6468
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116-portable-source-002.tar.gz": {
+      "sha256": "7300c70a5857221537b878046d8c869ce640c788de4773d91d4e523b6bb41f9e",
+      "bytes": 38965052
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/root-portable-source-002-archive-audit.json": {
+      "sha256": "31cadd2aea0b613f7fb76670538fe046e89d480830125ed5adb11bf77c4445d8",
+      "bytes": 728
+    }
+  },
+  "quantization_note_zh": "路径变量见复验指南；116新量化阶段与最终回执见独立附件。以下664复验使用旧缓存。",
+  "quantization_note_en": "Set paths as in the guide; run 116 stages and final receipts are separate. The following 664 tests use old caches.",
+  "source_pin_changes": [
+    {
+      "path": "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/COMMANDS.md",
+      "previous_pin": {
+        "sha256": "2d54977d4fb7e30be2a53ff7d5d461a836437e3f8df279fb1be2346464cacbc6",
+        "bytes": 5613
+      },
+      "reason": "The top-level operation document evolved after build preflight. Pin the immutable v1 evidence copy for final command provenance.",
+      "replacement": "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/reproduction-kit/evidence/actual-COMMANDS.md"
+    }
+  ],
+  "quantization_scope": "Frozen source-only portable002 workflow:025 all64 layers/128 matrices;041 all64/64;047 selected47/47.239 matrices and478 serving files. Archive integrity is independently audited; actual fresh-cache completion/loading/performance/quality is separate in DELIVERY and116 receipts. The664 results use old caches."
+}

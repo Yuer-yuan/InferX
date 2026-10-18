@@ -1,0 +1,36 @@
+{
+  "reviewed_at": "2026-10-16T17:33:49.358104+00:00",
+  "configuration": "pipeline-v1 frozen scheduler MTP4 A8all; singleGPU450W; originalcold8192/512",
+  "requests": 100,
+  "warmup": 8,
+  "all8192_512": true,
+  "errors": 0,
+  "ttft_p95_ms": 3808.6075742,
+  "tpot_p95_ms": 38.46358839598826,
+  "official_output_tok_s": 149.79634812566584,
+  "ttft_gt10000": 0,
+  "tpot_gt40": 3,
+  "summary_p95_match": true,
+  "native_long_done": 109,
+  "native_all_cold": true,
+  "native_length_counts": [
+    {
+      "out": 1,
+      "n": 1
+    },
+    {
+      "out": 512,
+      "n": 108
+    }
+  ],
+  "actual_phase_payload_equal_except_only_cache_salt_to_seed42_100": {
+    "warmup": true,
+    "profiling": true
+  },
+  "binary_sha256": "bd28d7388a6093259af6f0332aff6b46e5637ce708bc4d6cf1b8d94cb0d36481",
+  "hashes": {
+    "profile_export": "fedd2f4c4f112697048f85f972b1e7ce83f1533ec7f73aa5106fc608ca05ec94",
+    "native_log": "881d1e955a06bee9a0e4ce4862921013ec0bdc5eef2fe2b172bec47c36d466f7"
+  },
+  "conclusion": "Numeric C5jointSLO passes on100selectionseed42; independent seed remainsrequired. Absolute/relativetaskqualityqualification incomplete."
+}

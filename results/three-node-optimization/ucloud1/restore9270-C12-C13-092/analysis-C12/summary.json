@@ -1,0 +1,194 @@
+{
+  "status": "COMPLETE_JOINT_PASS",
+  "source": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+  "binary": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+  "C": 12,
+  "native_cap": 12,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "all137cold": true,
+  "all_startup_retained": true,
+  "errors": 0,
+  "metrics": {
+    "TTFT_p95_ms": 9600.90890035,
+    "TPOT_p95_ms": 38.74924188052837,
+    "output_tokens_per_second": 284.95523513210765
+  },
+  "cohorts": {
+    "initial12": {
+      "count": 12,
+      "TTFT_violations": [
+        10,
+        12
+      ],
+      "TPOT_violations": []
+    },
+    "later116": {
+      "count": 116,
+      "TTFT_violations": [],
+      "TPOT_violations": [
+        19,
+        85,
+        86,
+        106,
+        109
+      ]
+    }
+  },
+  "payload_same_as_parent_including_salt": true,
+  "unique_timing_join": 128,
+  "join_method": "Absolute first-token epoch and completion epoch within5ms, each unique; NOT exact header-ID match; no E2E/TTFT duration matching constraint; original128 P95 selected before association",
+  "P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 98,
+        "TTFT_ms": 9590.703991999999,
+        "TPOT_ms": 18.741917131115464,
+        "start_ns": 1792266640469474607,
+        "conversation_id": "session_000105",
+        "native_match_count": 1,
+        "native_id": 107,
+        "end_difference_ms": 0.545792,
+        "first_token_epoch_difference_ms": 0.225024,
+        "own_prefill_ms": 929.1116139999999,
+        "native_TTFT_minus_own_prefill_ms": 8660.190432,
+        "native_shared_decode_per_output_ms": 13.284861201565562,
+        "postfirst_remainder_ms": 5.457055929549902,
+        "rounds": 129,
+        "accepted": 382,
+        "drafted": 385,
+        "fallback": 0,
+        "committed_per_spec_round": 3.9612403100775193,
+        "accepted_per_position": [
+          128,
+          127,
+          127
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 21,
+        "TTFT_ms": 9606.403851,
+        "TPOT_ms": 23.32867087866928,
+        "start_ns": 1792266502280764522,
+        "conversation_id": "session_000028",
+        "native_match_count": 1,
+        "native_id": 30,
+        "end_difference_ms": 0.29952,
+        "first_token_epoch_difference_ms": 0.10624,
+        "own_prefill_ms": 927.894043,
+        "native_TTFT_minus_own_prefill_ms": 8677.165482,
+        "native_shared_decode_per_output_ms": 17.890714540117425,
+        "postfirst_remainder_ms": 5.437956338551853,
+        "rounds": 183,
+        "accepted": 328,
+        "drafted": 548,
+        "fallback": 0,
+        "committed_per_spec_round": 2.7923497267759565,
+        "accepted_per_position": [
+          144,
+          109,
+          75
+        ]
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 57,
+        "TTFT_ms": 7292.010649999999,
+        "TPOT_ms": 38.50052870058708,
+        "start_ns": 1792266569040283312,
+        "conversation_id": "session_000064",
+        "native_match_count": 1,
+        "native_id": 66,
+        "end_difference_ms": 0.201728,
+        "first_token_epoch_difference_ms": -0.060928,
+        "own_prefill_ms": 925.2483360000001,
+        "native_TTFT_minus_own_prefill_ms": 6365.503739,
+        "native_shared_decode_per_output_ms": 20.82107472407046,
+        "postfirst_remainder_ms": 17.679453976516623,
+        "rounds": 210,
+        "accepted": 301,
+        "drafted": 629,
+        "fallback": 0,
+        "committed_per_spec_round": 2.433333333333333,
+        "accepted_per_position": [
+          141,
+          98,
+          62
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 7,
+        "TTFT_ms": 6435.908007999999,
+        "TPOT_ms": 38.883164362035224,
+        "start_ns": 1792266482668267143,
+        "conversation_id": "session_000015",
+        "native_match_count": 1,
+        "native_id": 16,
+        "end_difference_ms": 0.596224,
+        "first_token_epoch_difference_ms": -0.017152,
+        "own_prefill_ms": 922.227273,
+        "native_TTFT_minus_own_prefill_ms": 5512.3777,
+        "native_shared_decode_per_output_ms": 18.573451121330724,
+        "postfirst_remainder_ms": 20.3097132407045,
+        "rounds": 181,
+        "accepted": 330,
+        "drafted": 541,
+        "fallback": 0,
+        "committed_per_spec_round": 2.8232044198895028,
+        "accepted_per_position": [
+          166,
+          161,
+          3
+        ]
+      }
+    ]
+  },
+  "native_yield_summary": {
+    "all": {
+      "requests": 128,
+      "committed_per_round": 3.329022403258656,
+      "median_rounds": 140.0,
+      "median_own_prefill_ms": 926.7786510000001
+    },
+    "TPOT_fail": {
+      "requests": 5,
+      "committed_per_round": 2.378026070763501,
+      "median_rounds": 204,
+      "median_own_prefill_ms": 930.127073
+    },
+    "TPOT_pass": {
+      "requests": 123,
+      "committed_per_round": 3.384035333405149,
+      "median_rounds": 139,
+      "median_own_prefill_ms": 926.614603
+    }
+  },
+  "limitations": [
+    "Frozen9270/source91621 and original12env reused; C12, K3, KV104448. Exact historical C12 actualpayload including salt unchanged. Single128 selection run; not independent validation. No new build or numerical change.",
+    "Native decode is shared batch participation elapsed, not exclusive GPU time. Post-first remainder is not uniquely prefill without scheduler/GPU trace.",
+    "Numerical/Graph qualification does not establish task quality or exact greedy.",
+    "One observed selection run; no independent validation."
+  ],
+  "actual_terminal": {
+    "all_missing": {
+      "505027": true,
+      "505043": true,
+      "505044": true,
+      "506570": true,
+      "506571": true,
+      "505048": true,
+      "506577": true
+    },
+    "all_children_reaped": true,
+    "GPU_empty": true,
+    "at_ns": 1792267132903951691
+  },
+  "raw_SHA256": "270800460cef9675ee889293620bb15c93738c9e6f2fe5142dee9388a863d329"
+}

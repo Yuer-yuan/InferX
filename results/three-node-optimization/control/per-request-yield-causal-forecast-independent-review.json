@@ -1,0 +1,54 @@
+{
+  "reviewed_at": "2026-10-16T20:41:31.123589+00:00",
+  "scope": "Root independently reconstructs every saved forecast from actual prior row/round events; CPU only",
+  "fixed_alpha": 0.2,
+  "runs": [
+    {
+      "cap": 7,
+      "forecasts": 1100,
+      "requests": 22,
+      "metrics": {
+        "batch": {
+          "MAE_rounds": 21.276363636363637,
+          "RMSE_rounds": 34.99046623400047,
+          "bias_rounds": 1.0327272727272727,
+          "request_macro_MAE": 19.166993447097813
+        },
+        "row": {
+          "MAE_rounds": 28.20909090909091,
+          "RMSE_rounds": 65.0789590350899,
+          "bias_rounds": 25.958181818181817,
+          "request_macro_MAE": 21.01475968984977
+        }
+      }
+    },
+    {
+      "cap": 8,
+      "forecasts": 2662,
+      "requests": 23,
+      "metrics": {
+        "batch": {
+          "MAE_rounds": 13.505634861006762,
+          "RMSE_rounds": 18.453120492150404,
+          "bias_rounds": 2.0255447032306537,
+          "request_macro_MAE": 14.594284570203703
+        },
+        "row": {
+          "MAE_rounds": 16.192712246431256,
+          "RMSE_rounds": 44.58054360951546,
+          "bias_rounds": 11.555597295266717,
+          "request_macro_MAE": 16.424012647514633
+        }
+      }
+    }
+  ],
+  "next_decision": "Do not prioritize implementation/GPU policy trial for this exact per-row EWMA; overall and macro MAE worsen in both observed traces.",
+  "qualification": [
+    "No fresh51 or heldout tuning.",
+    "Future trajectory used only as scoring target, not prediction input.",
+    "Logged round elapsed is common proxy, not bit-identical source observation timing.",
+    "This is historical forecast error, not counterfactual schedule simulation or speedup.",
+    "Repeated forecasts are correlated; no confidence interval using forecast count as independent samples."
+  ],
+  "input_sha256": "4a779fd2ec7671c62e04ebbb59d659f0129c7ad7ceeffd94b4797d6a366e95e7"
+}

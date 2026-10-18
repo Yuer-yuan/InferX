@@ -102,6 +102,69 @@ GPU采样目标1Hz，共2747点，约为目标点数99.46%。严格覆盖校验�
 
 此简单求和只适用于本轮8请求/8槽批次，不能直接套用到有持续补充请求的100请求闭环负载或活动上限4的情形。剩余毫秒差包含未单独计时的控制/发布及计时边界。尚无逐kernel时间线或带宽计数器，不能据此断言GPU空闲、纯CPU阻塞、DRAM roofline，或预测新调度机制的收益。源码定位为固定引擎revision下的`concurrent_executor.h`调度循环、`text_context_impl.h`预填充同步，以及`program_impl.h`的decode与MTP尾部计时。
 
+## TPOT 超标的进一步归因
+
+2026-10-16补充离线复核，没有新发模型请求或修改服务。新脚本[TPOT分解](../../results/ninfer-performance/analysis/tpot_attribution.py)读取原版400条正式请求和冻结原生日志，输出[逐档结果](../../results/ninfer-performance/analysis/tpot-attribution.json)。按原生TPOT排序，在构成P95的同两条请求上使用相同插值权重分解；不是分别取两个分量的P95再相加。客户端与原生只按阶段窗口筛选，不声称request ID一一对应；重算P95差值各档均小于0.001ms。
+
+`TPOT = (首token之后的decode计时 + 首token之后的其余墙钟时间) / 511`。
+
+| 并发 | 客户端TPOT P95(ms/token) | 对应原生P95的decode分量(ms/token) | 对应原生P95的剩余分量(ms/token) |
+|---:|---:|---:|---:|
+| 1 | 9.009 | 9.006 | 0.003 |
+| 2 | 22.506 | 8.990 | 13.516 |
+| 4 | 45.930 | 18.956 | 26.973 |
+| 8 | 90.660 | 30.180 | 60.479 |
+
+C4尾部约58.7%的首token后耗时落在decode计时之外；C8约66.7%。这不是这些请求的独占GPU时间，也不意味着去掉等待后就能得到表中decode分量对应的性能。批次大小、准入时机和执行效率会随策略改变。C2的decode分量小于C1也不代表C2的整体decode更快：这里比较的是各档TPOT尾部的不同请求。
+
+正式日志没有逐chunk起止事件，不能把全部剩余时间逐毫秒归给prefill；它还包含控制/发布等开销。但固定源码、8请求/8槽短批次中约7ms的残差解释误差，以及正式并发下秒级剩余耗时，共同支持“其他请求prefill占用执行线程/GPU期间，已开始输出的请求等待”为主要原因。并发decode批次自身耗时也增加，MTP接受率约68–69%则基本稳定。
+
+需要区分两种等待：新请求在首token之前的准入、排队和预填充都计入TTFT，它们对该请求的`E2E-TTFT`相减会抵消；新请求的prefill占用执行资源，会增加已经输出首token的其他请求的TPOT。因此“新请求排队”和“老请求被新请求的prefill拖慢”可以同时发生。原生`prepare`中位数各档约0.06–0.10ms，不过它只覆盖其定义的前端准备区间，不能当作整个HTTP/分词链路耗时。`ttft-prefill-prepare`还包含穿插decode，不能命名为纯准入排队时间。
+
+### 当前确实已经使用 chunked prefill
+
+冻结参数为`--prefill-chunk 2048`，8192-token冷输入通常分成4个名义分块。固定版本执行循环的行为是：
+
+```text
+某请求prefill块 → 当前所有decode-ready请求的一轮decode批次
+               → 下一prefill块 → 下一轮decode批次 → …
+```
+
+同一时刻只有一个`prefill_lane_`；该请求的prefill完成后才能准入下一条冷prefill。即使还有活动槽，新请求也可能等待已有prefill完成。每块结束有设备同步，prefill与decode是串行交替，未合成一个混合forward批次。有decode工作时，两种执行单元基本按1:1交替；这个比例没有使用TTFT/TPOT目标，且“一块prefill”和“一轮decode”耗时相差很大。分块提供切换机会，不能自动消除全部prefill计算或让decode获得足够执行时间。
+
+本次从GitHub固定revision下载并逐字节核对以下本地文件，全部一致：
+
+| 固定引擎`5c60b7c9b455231795c09da21a9fbb6aa53f08e5`源码 | SHA256 |
+|---|---|
+| `src/runtime/engine/concurrent_executor.h` | `96ad2eb15cb9536b3a62817b8adec95b98536b7fde94ed5020c426c90feeb3ae` |
+| `src/targets/qwen3_6/impl/runtime/text_context_impl.h` | `732e3305f8ddc82165a0a2718740bc9a4ecef6ec51fc2b691a6a384f2093340b` |
+| `src/targets/qwen3_6/impl/runtime/program_impl.h` | `7b15df0fa61ed2e2eb58ac6a29f19a0e79802c23c6698df48d49975ce7beff71` |
+| `CMakeLists.txt` | `82254177d767d4c6a3eab3c4483a2d3a06b2a182e3567035f15f047fc2a2564f` |
+| `cmake/ninfer_ui.cmake` | `12b305b59feda483204e666f825667b259a5b9b68c1296f8bf1230ad3160bd96` |
+
+对应源码：[调度循环L1168](https://github.com/UDPSendToFailed/ninfer-4090/blob/5c60b7c9b455231795c09da21a9fbb6aa53f08e5/src/runtime/engine/concurrent_executor.h#L1168)、[分块返回前同步L1292](https://github.com/UDPSendToFailed/ninfer-4090/blob/5c60b7c9b455231795c09da21a9fbb6aa53f08e5/src/targets/qwen3_6/impl/runtime/text_context_impl.h#L1292)、[MTP批次计时](https://github.com/UDPSendToFailed/ninfer-4090/blob/5c60b7c9b455231795c09da21a9fbb6aa53f08e5/src/targets/qwen3_6/impl/runtime/program_impl.h#L2080)。
+
+### TTFT预算与其他框架
+
+C4 TTFT P95约7.00s，对10s目标有约3s的统计余量；TPOT从45.93降至40ms约需12.9%改善。可以验证的方向是调整prefill/decode执行时间分配，在新请求实际完成prefill之前给已有decode更多轮次，同时限制新请求TTFT。两个P95对应的请求未必相同，不能将3s余量直接扣到TPOT尾部；任何改动须按原版100请求重测两项SLO和吞吐。已有1024/2048/8192的少样本C8筛选都未同时达标，不能把“开启chunked prefill”当作一个尚未尝试的修复，也不能断言所有小分块方案已经无效。
+
+当前推理路径是NInfer自己的C++/CUDA程序与调度器。构建中的llama.cpp引用用于下载WebUI资产，见[固定版本UI构建](https://github.com/UDPSendToFailed/ninfer-4090/blob/5c60b7c9b455231795c09da21a9fbb6aa53f08e5/cmake/ninfer_ui.cmake#L39)。因此不能把本轮调度等待归因于“底层使用llama.cpp”。
+
+对照上游文档/源码（2026-10-16读取，以下是机制比较，未在本轮机器测出跨框架成绩）：
+
+- [vLLM V1](https://docs.vllm.ai/en/latest/configuration/optimization/#chunked-prefill)在支持时默认开启chunked prefill，优先安排decode，再用`max_num_batched_tokens`剩余预算安排prefill，并支持在同一批次中混合两者。官方明确说明预算小倾向改善ITL、预算大倾向改善TTFT/吞吐，具体效果需测。
+- [SGLang参数](https://docs.sglang.io/docs/advanced_features/server_arguments)分别提供`--chunked-prefill-size`和`--enable-mixed-chunk`；CPU调度/GPU执行overlap与prefill/decode混合是不同机制。当前[调度参数源码](https://github.com/sgl-project/sglang/blob/main/python/sglang/srt/arg_groups/fields/schedule.py)还提供`prefill_decode_interval`，控制prefill后运行多少轮decode再安排下一prefill。模型、注意力后端、MTP组合的兼容性仍须在固定版本核验，参数存在不等于默认开启或比赛负载必然达标。
+
+优先以同机8192/512、同一质量要求、明确量化格式/MTP设置做比较；当前`.ninfer`制品及其专用实现不能直接视作与另一框架同配置。框架调度更灵活不等于共享GPU没有资源竞争，也不能仅从NInfer结果断言vLLM/SGLang无法解决。
+
+### IFBench prompt strict 的含义
+
+`prompt_level_strict`是“一个prompt里所有可验证指令都严格满足”的样本占比。某题有多个约束，任一个失败，该题prompt-level得0；`inst_level_strict`则按每条指令累计通过数。我们100个prompt共111条指令，prompt strict为55/100，instruction strict为65/111≈58.56%。例如“恰好三个数字”的答案只出现一个数字，即使语句通顺也不通过。
+
+`loose`会额外尝试去掉星号、首行、末行等有限变体后检查，以降低格式包装对判定的影响；仍为规则校验。strict也不是和唯一标准答案逐字匹配。我们prompt loose仍为55%，说明这些宽松处理没有增加完整通过的题数。本轮没有同条件MTP0/高精度质量对照，55%不能归因于MTP或量化，也不等于模型所有任务的正确率。
+
+赛题使用的[EvalScope1.13.0适配器](https://github.com/modelscope/evalscope/blob/v1.13.0/evalscope/benchmarks/ifbench/ifbench_adapter.py)将prompt strict设为主指标，并以指令数加权汇总instruction-level分数；[固定版本评分实现](https://github.com/modelscope/evalscope/blob/v1.13.0/evalscope/benchmarks/ifbench/evaluation_lib.py)可直接核验strict/loose区别。[IFBench官方说明](https://github.com/allenai/IFBench/blob/main/README.md)称论文通常报告prompt loose，不能仅因都叫IFBench就直接对比不同口径。
+
 ## 实验工具与部署问题
 
 原版服务缺少raw completions协议，已以CPU原生契约测试和真实GPU探针验证适配；没有伪造token/usage或添加计时用的假SSE首块。完成请求可以把多个MTP token放在同一个事件内，TPOT仍按服务真实token计数的原版公式计算。

@@ -1,0 +1,81 @@
+{
+  "metrics": {
+    "prompt_level_strict": {
+      "OFF": 0.3333333333333333,
+      "ON": 0.375,
+      "delta": 0.041666666666666664,
+      "ci": [
+        0.0,
+        0.125
+      ]
+    },
+    "inst_level_strict": {
+      "OFF": 0.38461538461538464,
+      "ON": 0.4230769230769231,
+      "delta": 0.038461538461538464,
+      "ci": [
+        0.0,
+        0.1111111111111111
+      ]
+    },
+    "prompt_level_loose": {
+      "OFF": 0.375,
+      "ON": 0.375,
+      "delta": 0.0,
+      "ci": [
+        -0.125,
+        0.125
+      ]
+    },
+    "inst_level_loose": {
+      "OFF": 0.4230769230769231,
+      "ON": 0.4230769230769231,
+      "delta": 0.0,
+      "ci": [
+        -0.12,
+        0.10714285714285714
+      ]
+    }
+  },
+  "original_verifier_sources": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+    "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+    "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+    "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+    "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+  },
+  "all48_original_verifier_calls_match": true,
+  "all_4_bootstrap_CIs_match": true,
+  "text_equal": 7,
+  "original_owners": {
+    "310928": {
+      "expected": "41312443",
+      "status": "missing"
+    }
+  },
+  "raw_response_files": {
+    "OFF": {
+      "sha256": "7155329df64fcd05af527f89651e5a7c02df698f5a9fc921de1663180a9e5818",
+      "bytes": 194768
+    },
+    "ON": {
+      "sha256": "8429cb15b5d483c39f2e6bffe8bc421eca75009be3db8b24dca1f50419c5a98e",
+      "bytes": 161931
+    }
+  },
+  "reviewed_at": "2026-10-16T23:10:19.686911+00:00",
+  "method": "Root independently executes pinned original EvalScope1.13 on all48 full predictions and recomputes fixed10k/seed42 paired prompt-cluster bootstrap, no GPU work.",
+  "samples": 24,
+  "instructions": 26,
+  "quality_KV": 327680,
+  "official_perf_KV": 131072,
+  "source_sha256": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "binary_sha256": "e7a98c7d9515adf1eedbb627a3633934b81dd7bfe42ce092e978d47f8c490ec1",
+  "limits": [
+    "First24/C7 only; B8/taskquality gap remains.",
+    "Quality latencies profiled/expandedKV and not official SLO.",
+    "Small paired cohort does not establish broad equivalence/noninferiority or causal quality improvement.",
+    "Actual B5..7 per-task route coverage worker completed, independent physical corroboration separate."
+  ]
+}

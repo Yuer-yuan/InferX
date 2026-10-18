@@ -1,0 +1,159 @@
+{
+  "at": "2026-10-17T03:20:27.560523+00:00",
+  "status": "ALL_2400_TIMING_SAMPLES_INDEPENDENTLY_RECOMPUTED",
+  "raw_csv_sha256": "cd6600b41db9bbc68a9b95aec9c59a9ac1ace70901cfd253fdbb096c2f3092f0",
+  "shape_count": 12,
+  "samples": 2400,
+  "ABBA_order_and_10blocks_verified": true,
+  "bootstrap_10000_seed42_matches": true,
+  "numeric_case_PASS_records": 136,
+  "post_timing_bitcheck_records": 12,
+  "numerical_scope": "Reads all136 original PASS records and12 posttiming records; no re-download/recomparison of large remote output arrays in this audit. Frozen operator source already separately reviewed.",
+  "results": [
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 20,
+      "baseline_median_ms": 0.122879996896,
+      "candidate_median_ms": 0.114688001573,
+      "latency_reduction": 0.06666663028917008,
+      "paired_block_bootstrap95CI": [
+        0.06666663028917005,
+        0.07318335957854782
+      ]
+    },
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 24,
+      "baseline_median_ms": 0.123855996877,
+      "candidate_median_ms": 0.114688001573,
+      "latency_reduction": 0.07402140820928216,
+      "paired_block_bootstrap95CI": [
+        0.07342297272503057,
+        0.07438013199041518
+      ]
+    },
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 28,
+      "baseline_median_ms": 0.123903997242,
+      "candidate_median_ms": 0.114688001573,
+      "latency_reduction": 0.07438013199041515,
+      "paired_block_bootstrap95CI": [
+        0.07438013199041518,
+        0.07438013199041518
+      ]
+    },
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 32,
+      "baseline_median_ms": 0.123903997242,
+      "candidate_median_ms": 0.114688001573,
+      "latency_reduction": 0.07438013199041515,
+      "paired_block_bootstrap95CI": [
+        0.07438013199041518,
+        0.07438013199041518
+      ]
+    },
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 256,
+      "baseline_median_ms": 0.228351995349,
+      "candidate_median_ms": 0.400384008884,
+      "latency_reduction": -0.7533633033163394,
+      "paired_block_bootstrap95CI": [
+        -0.7578475119760228,
+        -0.7533633033163394
+      ]
+    },
+    {
+      "operator": "down",
+      "K": 17408,
+      "T": 2048,
+      "baseline_median_ms": 1.30355203152,
+      "candidate_median_ms": 3.068848013875,
+      "latency_reduction": -1.3542198083927541,
+      "paired_block_bootstrap95CI": [
+        -1.359559387712842,
+        -1.3452697396747106
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 20,
+      "baseline_median_ms": 0.0459839999676,
+      "candidate_median_ms": 0.0419519990683,
+      "latency_reduction": 0.0876826918524034,
+      "paired_block_bootstrap95CI": [
+        0.08507670828206854,
+        0.09173033778387475
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 24,
+      "baseline_median_ms": 0.0460480004549,
+      "candidate_median_ms": 0.0419839993119,
+      "latency_reduction": 0.08825575709808142,
+      "paired_block_bootstrap95CI": [
+        0.08698679233034033,
+        0.0888889176345964
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 28,
+      "baseline_median_ms": 0.0460800006986,
+      "candidate_median_ms": 0.0419839993119,
+      "latency_reduction": 0.08888891763459639,
+      "paired_block_bootstrap95CI": [
+        0.08698679233034033,
+        0.0888889176345964
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 32,
+      "baseline_median_ms": 0.0460800006986,
+      "candidate_median_ms": 0.0419839993119,
+      "latency_reduction": 0.08888891763459639,
+      "paired_block_bootstrap95CI": [
+        0.0888889176345964,
+        0.0888889176345964
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 256,
+      "baseline_median_ms": 0.07969600334765001,
+      "candidate_median_ms": 0.138239994645,
+      "latency_reduction": -0.7345913074457362,
+      "paired_block_bootstrap95CI": [
+        -0.7532467544734273,
+        -0.732504517832848
+      ]
+    },
+    {
+      "operator": "gdn_output",
+      "K": 6144,
+      "T": 2048,
+      "baseline_median_ms": 0.48281601071400004,
+      "candidate_median_ms": 1.0715200304999999,
+      "latency_reduction": -1.2193133755349375,
+      "paired_block_bootstrap95CI": [
+        -1.2218683213035086,
+        -1.2122753986545531
+      ]
+    }
+  ],
+  "conclusion": "LowT20..32 reductions6.7\u20138.9%; PrefillT256/2048 substantial regressions. Do not promote uniform C32 Prefill or infer whole-model/SLO gain. LowT integration deferred for C16/C32 mechanism work."
+}

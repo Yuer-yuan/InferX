@@ -1,0 +1,21 @@
+--- r1/prepare.py
++++ r2/prepare.py
+@@ -9,7 +9,7 @@
+ for n in ['recording_entry.py','checkpoints.py','client-environment.json','first100-frozen-cohort.jsonl','audit_http_native_join.py']:
+  shutil.copyfile(P/n,R/n)
+ s=(P/'preflight.py').read_text().replace("raw['eval_batch_size']==16","raw['eval_batch_size']==13").replace("resolved['generation_config']['batch_size']==16","resolved['generation_config']['batch_size']==13");(R/'preflight.py').write_text(s)
+-s=(P/'score_first100_cpu.py').read_text().replace('same6632/3a7','frozen100 e4ed/c976 flag1').replace('batch16/max32768','batch13/max32768').replace('Same frozen6632/3a7 binary','Same frozen100 e4ed/c976 flag1 binary').replace('corresponding C16 performance candidate (qualityKV532480,performanceKV139264)','corresponding native13 performance candidate (qualityKV532480,performanceKV113152; client14/native13 performance uses113152 too)')
++s=(P/'score_first100_cpu.py').read_text().replace('same6632/3a7','frozen100 e4ed/c976 flag1').replace('batch16/max32768','batch13/max32768').replace('Same frozen6632/3a7 binary','Same frozen100 e4ed/c976 flag1 binary').replace('corresponding C16 performance candidate (qualityKV532480,performanceKV139264)','corresponding native13 performance candidate (qualityKV532480,performanceKV113152; client14/native13 performance uses121856)')
+ (R/'score_first100_cpu.py').write_text(s)
+ cfg=json.loads((P/'server-config.json').read_text());cfg['name']='frozen100_e4ed_flag1_native13_K3_original100_defaultsampling_qualityKV532480';cmd=cfg['command'];cmd[0]=BINARY;cmd[cmd.index('--port')+1]='18505';cmd[cmd.index('--max-concurrency')+1]='13';cmd[cmd.index('--request-log-jsonl')+1]=REMOTE+'/service/native.jsonl'
+ cfg['environment']=json.loads((U/'frozen100-flag1-lowC-preparation-102/environment.json').read_text());cfg['environment'].update(LD_LIBRARY_PATH='/workspace/InferX/envs/build/lib:/usr/local/cuda-13.2/lib64',NINFER_SCHED_TRACE=REMOTE+'/scheduler.jsonl');write('server-config.json',cfg)
+--- r1/score_first100_cpu.py
++++ r2/score_first100_cpu.py
+@@ -107,6 +107,6 @@
+     original_verifier_recomputed_all100=True,all_native_score_values_match=True,
+     verifier_files=actual_verifiers,predictions=dict(path=str(predfiles[0]),sha256=sha(predfiles[0])),
+     reviews=dict(path=str(reviewfiles[0]),sha256=sha(reviewfiles[0])),
+-    qualification='Candidate quality observation; no paired OFF arm and no pure quantization attribution. Same frozen100 e4ed/c976 flag1 binary and generic input routing as the corresponding native13 performance candidate (qualityKV532480,performanceKV113152; client14/native13 performance uses113152 too); no quality-only switch. Four original verifier metrics and all failures/empty/length retained. Not the published79.5 recipe reproduction or first100 representativeness claim.')
++    qualification='Candidate quality observation; no paired OFF arm and no pure quantization attribution. Same frozen100 e4ed/c976 flag1 binary and generic input routing as the corresponding native13 performance candidate (qualityKV532480,performanceKV113152; client14/native13 performance uses121856); no quality-only switch. Four original verifier metrics and all failures/empty/length retained. Not the published79.5 recipe reproduction or first100 representativeness claim.')
+ dump(OUT/'summary.json',summary)
+ print(json.dumps(summary,ensure_ascii=False),flush=True)

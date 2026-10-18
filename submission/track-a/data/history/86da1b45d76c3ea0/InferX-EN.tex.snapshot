@@ -1,0 +1,415 @@
+% !TeX program = xelatex
+% InferX research deck language: en
+% One geometry, two language selections. All figures remain editable vectors.
+\documentclass[11pt,aspectratio=169]{beamer}
+\usetheme{default}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath,tikz,pgfplots,sansmath}
+\usetikzlibrary{arrows.meta,calc}
+\setsansfont{Liberation Sans}
+\setmonofont{Liberation Mono}
+\sansmath
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\setbeamersize{text margin left=7.5mm,text margin right=7.5mm}
+\definecolor{Ink}{HTML}{20252C}
+\definecolor{Muted}{HTML}{657180}
+\definecolor{Line}{HTML}{CCD3DB}
+\definecolor{Blue}{HTML}{32649A}
+\definecolor{Work}{HTML}{A76B2D}
+\definecolor{Pass}{HTML}{287657}
+\definecolor{Fail}{HTML}{B44B45}
+\newcommand{\ixlang}[2]{#2}
+\tikzset{
+ txt/.style={font=\fontsize{11}{14}\selectfont,text=Ink,align=left},
+ sm/.style={font=\fontsize{10}{12}\selectfont,text=Ink,align=center},
+ box/.style={sm,draw=Line,line width=.6pt,fill=white,inner sep=5pt},
+ mechanism/.style={box,draw=Work,fill=Work!5},
+ state/.style={box,draw=Blue,fill=Blue!5},
+ flow/.style={-{Latex[length=1.6mm]},draw=Muted,line width=.8pt},
+ feed/.style={flow,dashed,draw=Blue},
+ token/.style={sm,draw=Line,minimum width=7mm,minimum height=7mm},
+ toptext/.style={txt,anchor=north west},
+ caption/.style={font=\fontsize{8}{10}\selectfont,text=Muted,align=left,anchor=north west},
+ value/.style={font=\fontsize{33}{36}\selectfont,text=Ink,anchor=north west},
+ takeaway/.style={font=\fontsize{12}{15}\selectfont,text=Ink,align=left,anchor=north west}}
+\pgfplotsset{compat=1.18,
+ ixaxis/.style={axis lines=left,axis line style={Line},
+ ticklabel style={font=\fontsize{10}{12}\selectfont},
+ label style={font=\fontsize{10}{12}\selectfont},
+ xtick style={draw=none},ytick style={draw=none},
+ ymajorgrids=true,grid style={Line!45},scaled ticks=false,
+ nodes near coords style={font=\fontsize{10}{12}\selectfont,
+ /pgf/number format/fixed,/pgf/number format/precision=1}}}
+\newcommand{\ixheader}[2]{
+ \node[anchor=north west,font=\fontsize{9}{11}\selectfont,text=Muted] at (.75,.32) {\insertframetitle};
+ \node[anchor=north west,font=\fontsize{18}{21}\selectfont\bfseries,text=Ink,
+ text width=14.5cm,align=left] at (.75,.92) {\ixlang{#1}{#2}};
+ \draw[Line!60,line width=.4pt] (.75,8.65)--(15.25,8.65);
+ \node[anchor=north west,font=\fontsize{7.5}{9}\selectfont,text=Muted] at (.75,8.72) {InferX\quad Track A};
+ \node[anchor=north east,font=\fontsize{7.5}{9}\selectfont,text=Muted] at (15.25,8.72) {\insertframenumber\ / 12};
+}
+\newcommand{\ixsource}[2]{\node[caption,text width=14.5cm] at (.75,7.94) {\ixlang{#1}{#2}};}
+\title{InferX}
+\author{你说啥都队}
+\date{2026-10-18}
+\begin{document}
+
+\begin{frame}{Project overview}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{InferX：一张卡，更多及时响应的请求}{InferX: More requests. One GPU.}
+\node[toptext,text=Muted] at (.85,1.92) {Qwen3.8-27B\quad / \quad \ixlang{8k长输入}{8k-token inputs}\quad / \quad 1$\times$48GB RTX 4090};
+\node[box,text width=2.0cm,minimum height=1.2cm] (req) at (2.0,3.75)
+ {\ixlang{并发请求\\长输入}{Concurrent\\long inputs}};
+\node[mechanism,text width=4.1cm,minimum height=1.45cm] (gpu) at (7.45,3.75)
+ {\textbf{InferX / NInfer}\\\ixlang{INT4计算 + 并发状态 + 调度}{INT4 + request state + scheduling}};
+\node[sm,text width=2.5cm] (ans) at (13.3,3.75)
+ {\ixlang{及时出现首字\\持续生成回答}{Timely first token\\Continuous generation}};
+\draw[flow] (req)--(gpu);
+\draw[flow] (gpu)--(ans);
+\node[value,text=Pass] at (.85,5.45) {\textbf{12}};
+\node[toptext] at (.85,6.85) {\ixlang{并发，单轮满足两项延迟目标}{concurrent requests; both targets met}};
+\node[value] at (8.4,5.45) {\textbf{284.75}};
+\node[toptext] at (8.4,6.85) {\ixlang{tok/s，达标配置的总输出吞吐}{tok/s aggregate output at the passing load}};
+\node[toptext,font=\fontsize{10}{12}\selectfont] at (.85,7.42)
+ {\ixlang{你说啥都队\quad 陈文欣、张志雄、郭坤昌}{Wenxin Chen, Zhixiong Zhang, Kunchang Guo}};
+\ixsource{性能版9270；128正式+8预热，冷8192/512，零错误，单轮结果。github.com/Yuer-yuan/InferX}
+ {Performance build 9270; 128 measured + 8 warmup, cold 8192/512, zero errors, one run. github.com/Yuer-yuan/InferX}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Problem and goals}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{并发增加，吞吐饱和，等待上升}{Throughput saturates. Latency grows.}
+\node[toptext] at (.95,2.0) {\ixlang{总输出吞吐（tok/s）}{Aggregate output (tok/s)}};
+\node[toptext] at (8.5,2.0) {\ixlang{生成延迟P95（ms/token）}{TPOT P95 (ms/token)}};
+\node[anchor=north west,inner sep=0pt] at (.7,2.55) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7.0cm,height=3.8cm,xmin=.6,xmax=4.5,ymin=0,ymax=130,
+ xtick={1,2,3,4},xticklabels={1,2,4,8},ytick={0,40,80,120},
+ xlabel={\ixlang{客户端并发}{Client concurrency}}]
+\addplot[Muted,thick,mark=*,nodes near coords] coordinates {(1,73.592962) (2,92.089488) (3,94.612183) (4,103.309039)};
+\end{axis}\end{tikzpicture}};
+\node[anchor=north west,inner sep=0pt] at (8.25,2.55) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7.0cm,height=3.8cm,xmin=.6,xmax=4.5,ymin=0,ymax=110,
+ xtick={1,2,3,4},xticklabels={1,2,4,8},ytick={0,40,80},
+ xlabel={\ixlang{客户端并发}{Client concurrency}}]
+\addplot[Blue,thick,mark=*,nodes near coords] coordinates {(1,9.009001) (2,22.506397) (3,45.929756) (4,90.659709)};
+\addplot[Pass,dashed,thick] coordinates {(.6,40)(4.5,40)};
+\node[font=\fontsize{9}{11}\selectfont,text=Pass,anchor=south east] at (axis cs:4.5,40) {40ms};
+\end{axis}\end{tikzpicture}};
+\node[takeaway] at (.85,6.92)
+ {\textbf{\ixlang{成功标准：首字P95}{Targets: TTFT P95}} $\leq$ 10s\qquad \textbf{TPOT P95} $\leq$ 40ms};
+\node[toptext,font=\fontsize{10}{12}\selectfont] at (.85,7.45)
+ {\ixlang{首字计入排队和输入处理；生成延迟计入首字后的等待。}{TTFT includes queueing and prefill; TPOT includes waiting after the first token.}};
+\ixsource{旧基线b604，同机单卡，冷8192/512，100正式+8预热；新版128+8，不计算跨协议加速比。}
+ {Baseline b604: same node, one GPU, cold 8192/512, 100+8. New runs use 128+8; no cross-protocol speedup claim.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{System design}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{同时减少执行开销与请求等待}{Optimize execution and waiting together}
+\node[sm] (api) at (.95,3.65) {API};
+\node[box,text width=1.1cm] (queue) at (2.65,3.65) {\ixlang{等待\\队列}{Request\\queue}};
+\node[mechanism,text width=2.25cm] (sched) at (5.3,3.65) {\ixlang{调度器\\输入 / 生成}{Scheduler\\Prefill / decode}};
+\draw[Line,line width=.7pt] (7.5,2.25) rectangle (12.15,6.35);
+\node[toptext,font=\fontsize{10}{12}\selectfont,text=Muted] at (7.75,2.48) {1$\times$48GB RTX 4090};
+\node[box,text width=3.55cm,minimum height=1.25cm] (exec) at (9.8,3.75)
+ {\ixlang{分块输入处理\\INT4计算 / MTP验证}{Chunked prefill\\INT4 kernels / MTP verification}};
+\node[state,text width=3.55cm,minimum height=.95cm] (state) at (9.8,5.6)
+ {\ixlang{每请求独立状态\\KV / 递推状态 / 进度}{Per-request state\\KV / recurrent state / progress}};
+\node[mechanism,text width=2.25cm] (weights) at (5.3,5.6)
+ {\ixlang{离线校准\\4bit权重缓存}{Offline calibration\\4-bit weight cache}};
+\node[sm,text width=1.65cm] (out) at (14.15,3.75) {\ixlang{流式\\回答}{Streamed\\responses}};
+\draw[flow] (api)--(queue);
+\draw[flow] (queue)--(sched);
+\draw[flow] (sched)--(exec);
+\draw[flow] (exec)--(out);
+\draw[flow] (weights.east)--(7.1,5.6)--(7.1,4.4)--(exec.south west);
+\draw[{Latex[length=1.3mm]}-{Latex[length=1.3mm]},draw=Blue,line width=.8pt] (exec.south)--(state.north);
+\draw[feed] (state.south)--(9.8,6.75)--(3.65,6.75)--(3.65,4.45)--(sched.south west);
+\node[sm,text=Blue,fill=white] at (5.4,6.75) {\ixlang{实际提交进度}{Committed progress}};
+\node[toptext,text width=14.3cm,font=\fontsize{10}{12}\selectfont] at (.85,7.2)
+ {\ixlang{NInfer便于直接修改C++/CUDA；上游MTP减少生成轮次，本组改造量化、批执行、状态与调度。}
+ {NInfer exposes C++/CUDA execution. MTP is upstream; our work targets quantization, batching, state and scheduling.}};
+\ixsource{部署：上下文65536，输入块2048，INT8 KV，MTP K3。实线：执行/数据；虚线：进度反馈。}
+ {Deployment: context 65536, prefill chunks 2048, INT8 KV, MTP K3. Solid: execution/data. Dashed: progress feedback.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Implementation}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{让4bit真正进入矩阵计算}{INT4 computation, beyond compact weights}
+\node[sm] (w) at (1.2,3.0) {\ixlang{模型权重\\离线}{Weights\\Offline}};
+\node[sm] (x) at (1.2,5.25) {\ixlang{输入激活\\在线}{Activations\\Online}};
+\node[mechanism,text width=2.5cm] (wq) at (4.05,3.0) {\ixlang{GPTQ校准\\4bit权重}{GPTQ calibration\\4-bit weights}};
+\node[mechanism,text width=2.5cm] (aq) at (4.05,5.25) {\ixlang{动态量化\\4bit激活}{Dynamic quantization\\4-bit activations}};
+\node[mechanism,text width=2.3cm,minimum height=1.25cm] (mma) at (7.75,4.1) {\ixlang{INT4点积\\矩阵指令}{INT4 dot products\\Matrix instructions}};
+\node[box,text width=1.6cm,minimum height=.9cm] (rescale) at (11,4.1) {\ixlang{缩放\\累加}{Rescale\\Accumulate}};
+\node[sm] (out) at (14.1,4.1) {\ixlang{BF16\\输出}{BF16\\output}};
+\draw[flow] (w)--(wq);
+\draw[flow] (x)--(aq);
+\draw[flow] (wq.east)--(mma.north west);
+\draw[flow] (aq.east)--(mma.south west);
+\draw[flow] (mma)--(rescale);
+\draw[flow] (rescale)--(out);
+\draw[flow] (wq.north)--(4.05,2.15)--(11,2.15)--(rescale.north);
+\node[sm,fill=white] at (7.9,2.15) {\ixlang{权重缩放值}{Weight scales}};
+\draw[flow] (aq.south)--(4.05,6.1)--(11,6.1)--(rescale.south);
+\node[sm,fill=white] at (7.9,6.1) {\ixlang{激活缩放值}{Activation scales}};
+\node[takeaway,text width=14.3cm] at (.85,7.0)
+ {\ixlang{64层、128个前馈矩阵 $\rightarrow$ 输入投影 $\rightarrow$ 输出投影}
+ {64 layers / 128 FFN matrices $\rightarrow$ input $\rightarrow$ output projections}};
+\ixsource{H512变换、G512分组，独立文本校准；其余算子/状态保留原格式，量化仍有误差。参考GPTQ/QuaRot/Atom。}
+ {H512 transform, G512 groups, independent calibration text. Other operators/states retain their formats; quantization is lossy. GPTQ/QuaRot/Atom.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Implementation}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{扩展并发，先保证每份状态正确}{More requests need independent state}
+\node[sm] at (4.2,2.2) {\ixlang{MTP提议3个候选}{MTP proposes three draft tokens}};
+\node[sm] at (11.7,2.2) {\ixlang{按实际提交独立更新}{Independent state at commit}};
+\node[sm] (a) at (1.05,3.45) {\ixlang{请求A}{Request A}};
+\node[sm] (b) at (1.05,5.15) {\ixlang{请求B}{Request B}};
+\node[token,fill=Work!10] (a1) at (3.1,3.45) {a1};
+\node[token,fill=Work!10] at (4.25,3.45) {a2};
+\node[token,dashed,text=Muted] at (5.4,3.45) {a3};
+\node[token,fill=Work!10] (b1) at (3.1,5.15) {b1};
+\node[token,dashed,text=Muted] at (4.25,5.15) {b2};
+\node[token,dashed,text=Muted] at (5.4,5.15) {b3};
+\node[box,text width=1.2cm] (va) at (7.35,3.45) {\ixlang{验证}{Verify}};
+\node[box,text width=1.2cm] (vb) at (7.35,5.15) {\ixlang{验证}{Verify}};
+\node[state,text width=4.0cm,minimum height=.9cm] (sa) at (11.7,3.45)
+ {\ixlang{A：接受前2个候选\\更新自己的KV与递推状态}{A: accept two draft tokens\\Update own KV and recurrent state}};
+\node[state,text width=4.0cm,minimum height=.9cm] (sb) at (11.7,5.15)
+ {\ixlang{B：接受前1个候选\\更新自己的KV与递推状态}{B: accept one draft token\\Update own KV and recurrent state}};
+\draw[flow] (a)--(a1);
+\draw[flow] (b)--(b1);
+\draw[flow] (5.9,3.45)--(va);
+\draw[flow] (5.9,5.15)--(vb);
+\draw[flow] (va)--(sa);
+\draw[flow] (vb)--(sb);
+\node[sm,text=Muted] at (4.25,6.2) {\ixlang{实框：接受；虚框：拒绝（示意）}{Solid: accepted. Dashed: rejected. Illustration only.}};
+\node[takeaway,text width=14.3cm] at (.85,7.0)
+ {\ixlang{16/32批执行：同时扩展槽位、回滚、工作区与CUDA Graph。}{16/32-way execution needs slots, rollback, workspace and CUDA Graph.}};
+\ixsource{省略目标回退token，接受数不等于总提交数；每请求状态按实际提交推进。MTP来自上游，本组改造批执行及生命周期。}
+ {Target fallback tokens omitted; accepted drafts are not total commits. State follows actual commits. MTP is upstream; batching/lifecycle are extended.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Implementation}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{按请求实际进度安排下一轮工作}{Schedule by each request's progress}
+\node[toptext] at (.85,2.48) {\ixlang{8192-token新输入}{New 8192-token input}};
+\foreach \i in {0,1,2,3}{
+ \draw[Line,fill=Line!10] (4.4+\i*2.4,2.3) rectangle (6.7+\i*2.4,3.05);
+ \node[sm] at (5.55+\i*2.4,2.675) {2048};
+}
+\node[toptext,text width=3.2cm] at (.85,4.2) {\ixlang{单卡执行顺序\\（机制示意）}{One GPU\\Illustrative schedule}};
+\foreach \i in {0,1,2,3}{
+ \draw[Line,fill=Line!10] (4.4+\i*2.4,4.15) rectangle (5.7+\i*2.4,4.95);
+ \node[sm] at (5.05+\i*2.4,4.55) {\ixlang{输入}{PF}};
+ \draw[Work,fill=Work!8] (5.8+\i*2.4,4.15) rectangle (6.75+\i*2.4,4.95);
+ \node[sm,text=Work] at (6.275+\i*2.4,4.55) {\ixlang{生成}{Gen}};
+}
+\draw[flow] (9.15,3.05)--(9.15,4.05);
+\node[sm,anchor=west] at (9.35,3.55) {\ixlang{块间重新调度}{Reschedule between chunks}};
+\node[mechanism,text width=9.7cm] (budget) at (9.2,5.95)
+ {\ixlang{根据各请求已提交token，估计剩余工作}{Estimate remaining work from each request's committed tokens}};
+\draw[flow] (budget.north)--(9.2,4.95);
+\node[takeaway,text width=14.3cm] at (.85,7.0)
+ {\textbf{C16 TPOT P95: 48.78 $\rightarrow$ 45.74 ms}\quad
+ \ixlang{降低6.23\%，仍未达标}{6.23\% lower; still above 40ms}};
+\ixsource{2362→837f，同机同payload，K3/KV139264，128+8，冷8192/512，单轮。首字9.856→9.838s，吞吐311.77→315.73。时间块无耗时比例。}
+ {2362→837f, same node/payload, K3/KV139264, 128+8, cold 8192/512, one run. TTFT 9.856→9.838s; tok/s 311.77→315.73. Widths are schematic.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Results and evidence}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{吞吐提高之后，还要过延迟门槛}{Higher throughput is only half the story}
+\node[toptext] at (.95,2.0) {\ixlang{总输出吞吐（tok/s）}{Aggregate output (tok/s)}};
+\node[toptext] at (8.5,2.0) {\ixlang{生成延迟P95（ms/token）}{TPOT P95 (ms/token)}};
+\node[anchor=north west,inner sep=0pt] at (.7,2.55) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7cm,height=3.8cm,xmin=.5,xmax=3.5,ymin=0,ymax=420,
+ xtick={1,2,3},xticklabels={\ixlang{前馈}{FFN},\ixlang{加输入}{+ Input},\ixlang{加输出}{+ Output}},
+ ytick={0,100,200,300,400}]
+\addplot[ybar,bar width=22pt,draw=Blue,fill=Blue!12,nodes near coords] coordinates {(1,305.910173) (2,352.410492) (3,363.576857)};
+\end{axis}\end{tikzpicture}};
+\node[anchor=north west,inner sep=0pt] at (8.25,2.55) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7cm,height=3.8cm,xmin=.5,xmax=3.5,ymin=0,ymax=145,
+ xtick={1,2,3},xticklabels={\ixlang{前馈}{FFN},\ixlang{加输入}{+ Input},\ixlang{加输出}{+ Output}},
+ ytick={0,40,80,120}]
+\addplot[only marks,mark=*,mark size=3pt,Fail,nodes near coords] coordinates {(1,122.117458) (2,109.107220) (3,101.157387)};
+\addplot[Pass,dashed,thick] coordinates {(.5,40)(3.5,40)};
+\node[font=\fontsize{9}{11}\selectfont,text=Pass,anchor=south east] at (axis cs:3.5,40) {40ms};
+\end{axis}\end{tikzpicture}};
+\node[takeaway,text width=14.3cm] at (.85,7.02)
+ {\ixlang{32并发始终未达标；继续寻找两项延迟都通过的负载范围。}
+ {C32 misses both targets; identify the feasible load range.}};
+\ixsource{历史三版c3f4/40b3/9270，同节点C32/K3/KV278528，128+8，冷8192/512；首字P95为29.32 / 24.89 / 23.69s。输入版仅汇总；不作单因素归因。}
+ {Historical builds c3f4/40b3/9270: same node, C32/K3/KV278528, 128+8, cold 8192/512. TTFT P95: 29.32 / 24.89 / 23.69s. Input build has summary only; no single-factor attribution.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Results and evidence}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{12并发单轮通过，两项延迟同时达标}{12 concurrent requests meet both targets}
+\node[anchor=north west,inner sep=0pt] at (.55,2.05) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=9cm,height=4.9cm,xmin=0,xmax=28,ymin=0,ymax=125,
+ xtick={0,10,20},ytick={0,40,80,120},
+ xlabel={\ixlang{首字P95（s）}{TTFT P95 (s)}},
+ ylabel={\ixlang{生成P95（ms/token）}{TPOT P95 (ms/token)}}]
+\path[fill=Pass!7] (axis cs:0,0) rectangle (axis cs:10,40);
+\addplot[Pass,dashed,thick] coordinates {(0,40)(28,40)};
+\addplot[Pass,dashed,thick] coordinates {(10,0)(10,125)};
+\node[font=\fontsize{10}{12}\selectfont,text=Pass] at (axis cs:4.5,15) {\ixlang{双目标区}{Both met}};
+\addplot[only marks,Pass,mark=*,mark size=3.2pt] coordinates {(9.499646,37.340162)};
+\addplot[only marks,Fail,mark=x,mark size=4pt,thick] coordinates {(9.934084,51.702542) (23.694501,101.157387)};
+\node[font=\fontsize{10}{12}\selectfont,text=Pass,anchor=north west] at (axis cs:10.5,34) {C12};
+\node[font=\fontsize{10}{12}\selectfont,text=Fail,anchor=south west] at (axis cs:10.5,53) {C16};
+\node[font=\fontsize{10}{12}\selectfont,text=Fail,anchor=south east] at (axis cs:25,105) {C32};
+\end{axis}\end{tikzpicture}};
+\node[value,text=Pass,font=\fontsize{30}{33}\selectfont] at (10.0,2.3) {\textbf{284.75}};
+\node[toptext] at (10.0,3.65) {\ixlang{tok/s，12并发达标配置}{tok/s at the passing C12 load}};
+\node[toptext,text width=4.9cm] at (10.0,4.55) {TTFT P95\quad 9.50s\\[2mm]TPOT P95\quad 37.34ms};
+\node[takeaway,text width=4.8cm] at (10.0,6.1)
+ {\ixlang{更高吞吐\\不等于延迟达标}{Higher throughput\\does not ensure low latency}};
+\ixsource{同一9270版本；各128+8、冷8192/512、零错误。12/16同机，32另一同规格节点，KV随并发调整；16/32吞吐307.15/363.58。单轮，非稳定上限。}
+ {Same build 9270; 128+8, cold 8192/512, zero errors. C12/16 share a node; C32 uses an equivalent node. KV scales with concurrency. C16/32: 307.15/363.58 tok/s. One run, not a stable limit.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Results and evidence}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{100题完整评测，84题严格通过}{84 of 100 prompts pass strict checks}
+\foreach \x/\y in {0/0,1/0,2/0,3/0,4/0,5/0,6/0,7/0,8/0,9/0,0/1,1/1,2/1,3/1,4/1,5/1,6/1,7/1,8/1,9/1,0/2,1/2,2/2,3/2,4/2,5/2,6/2,7/2,8/2,9/2,0/3,1/3,2/3,3/3,4/3,5/3,6/3,7/3,8/3,9/3,0/4,1/4,2/4,3/4,4/4,5/4,6/4,7/4,8/4,9/4,0/5,1/5,2/5,3/5,4/5,5/5,6/5,7/5,8/5,9/5,0/6,1/6,2/6,3/6,4/6,5/6,6/6,7/6,8/6,9/6,0/7,1/7,2/7,3/7,4/7,5/7,6/7,7/7,8/7,9/7,0/8,1/8,2/8,3/8}{
+ \draw[Pass!35,fill=Pass!14] (1.0+\x*.5,2.65+\y*.37) rectangle +(.44,.31);
+}
+\foreach \x/\y in {4/8,5/8,6/8,7/8,8/8,9/8,0/9,1/9,2/9,3/9,4/9,5/9,6/9,7/9,8/9,9/9}{
+ \draw[Fail!40,fill=Fail!12] (1.0+\x*.5,2.65+\y*.37) rectangle +(.44,.31);
+}
+\node[sm,text=Muted] at (3.45,6.65) {\ixlang{按结果分组，非原题顺序}{Grouped by outcome, not prompt order}};
+\node[value,text=Pass,font=\fontsize{30}{33}\selectfont] at (7.4,2.25) {\textbf{84 / 100}};
+\node[toptext,text width=7.5cm] at (7.45,3.6)
+ {\ixlang{每题所有约束都通过，才计为通过。}{A prompt passes only if all constraints pass.}};
+\node[toptext,text width=7.5cm] at (7.45,4.45)
+ {\ixlang{错误 / 空回答 / 截断：0 / 0 / 0}{Errors / empty / truncated: 0 / 0 / 0}};
+\node[toptext,text width=7.5cm,font=\fontsize{10}{13}\selectfont] at (7.45,5.45)
+ {\textbf{\ixlang{真实失败：样本key37，标点覆盖约束}{Failure: key37, punctuation coverage}}\\[2mm]
+ \ixlang{回答自然结束，原评分器仍判失败。}{The response ends normally; the original verifier still rejects it.}};
+\node[takeaway,text width=14.3cm,text=Work] at (.85,7.12)
+ {\ixlang{独立质量配置；尚未完成同配置的性能与质量联合验证。}{Separate quality setup; joint validation remains.}};
+\ixsource{质量6632，C16/K3/KV532480，原前100，默认thinking/采样，max32768，原评分器。宽松87/100；指令级95/111。性能页为9270。}
+ {Quality build 6632, C16/K3/KV532480, original first 100, default thinking/sampling, max32768, original verifier. Loose: 87/100; instruction strict: 95/111. Performance uses 9270.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Engineering}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{每个成绩都能追到真实运行}{Trace each score back to a real run}
+\node[toptext] at (.95,2.1) {\textbf{\ixlang{真实原生JSONL节选}{Actual native JSONL excerpt}}};
+\node[toptext] at (8.6,2.1) {\textbf{\ixlang{证据链}{Evidence chain}}};
+\draw[Line,line width=.7pt] (.95,2.85) rectangle (7.05,6.25);
+\node[toptext,font=\fontsize{9}{11}\selectfont] at (1.15,3.15) {\texttt{computed\_prefill\_tokens}};
+\node[txt,anchor=north east] at (6.8,3.15) {8192};
+\node[toptext,font=\fontsize{9}{11}\selectfont] at (1.15,3.9) {\texttt{prefix\_cache\_hit\_tokens}};
+\node[txt,anchor=north east] at (6.8,3.9) {0};
+\node[toptext,font=\fontsize{9}{11}\selectfont] at (1.15,4.65) {\texttt{completion\_tokens}};
+\node[txt,anchor=north east] at (6.8,4.65) {512};
+\node[toptext,font=\fontsize{9}{11}\selectfont] at (1.15,5.4) {\texttt{prefix\_reuse\_path}};
+\node[txt,anchor=north east,font=\fontsize{9}{11}\selectfont] at (6.8,5.4) {\texttt{full\_reset}};
+\node[toptext,text width=6.0cm] at (8.75,2.85) {\ixlang{固定源码 / 模型 / 缓存 / 配置}{Source / model / cache / configuration}};
+\node[toptext,text width=6.0cm] at (8.75,3.95) {\ixlang{真实运行与逐请求记录}{Actual run and per-request records}};
+\node[toptext,text width=6.0cm] at (8.75,5.05) {\ixlang{用客户端计时独立复算P95}{Recompute P95 from client timings}};
+\node[toptext,text width=6.0cm] at (8.75,6.15) {\ixlang{与原版汇总交叉核验}{Cross-check the original summaries}};
+\draw[flow] (8.45,3.25)--(8.45,3.8);
+\draw[flow] (8.45,4.35)--(8.45,4.9);
+\draw[flow] (8.45,5.45)--(8.45,6.0);
+\node[takeaway,text width=14.3cm] at (.85,7.15)
+ {\ixlang{保留OOM、超时、空输出与截断；配置变化后重新验证。}{Keep all failures; retest every configuration change.}};
+\ixsource{节选自9270 C12日志；证明冷输入与输出长度，P95由客户端记录重算。README提供部署/复验/Demo；文档不替代干净环境复验。}
+ {Excerpt: 9270 C12 native log; verifies cold inputs and output lengths. P95 is recomputed from client records. README links deployment/reproduction/demo; documentation is not a clean rebuild.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Cost, performance and tradeoffs}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{减少生成竞争，也会增加首字排队}{Less contention can mean more queueing}
+\node[toptext,text=Muted] at (.85,1.95)
+ {\ixlang{固定16个客户端；仅将活动容量从16降至12。}{Fixed client concurrency 16; reduce active capacity from 16 to 12.}};
+\node[toptext] at (.95,2.65) {\ixlang{首字P95（s，目标$\leq$10）}{TTFT P95 (s), target $\leq$10}};
+\node[toptext] at (8.5,2.65) {\ixlang{生成P95（ms，目标$\leq$40）}{TPOT P95 (ms), target $\leq$40}};
+\node[anchor=north west,inner sep=0pt] at (.7,3.2) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7cm,height=3.2cm,xmin=.5,xmax=2.5,ymin=0,ymax=18,
+ xtick={1,2},xticklabels={\ixlang{活动16}{Active 16},\ixlang{活动12}{Active 12}},ytick={0,5,10,15}]
+\addplot[ybar,bar width=25pt,draw=Muted,fill=Muted!12,nodes near coords] coordinates {(1,9.855908) (2,14.426440)};
+\addplot[Pass,dashed,thick] coordinates {(.5,10)(2.5,10)};
+\end{axis}\end{tikzpicture}};
+\node[anchor=north west,inner sep=0pt] at (8.25,3.2) {
+\begin{tikzpicture}
+\begin{axis}[ixaxis,width=7cm,height=3.2cm,xmin=.5,xmax=2.5,ymin=0,ymax=60,
+ xtick={1,2},xticklabels={\ixlang{活动16}{Active 16},\ixlang{活动12}{Active 12}},ytick={0,20,40,60}]
+\addplot[ybar,bar width=25pt,draw=Work,fill=Work!12,nodes near coords] coordinates {(1,48.784071) (2,43.719738)};
+\addplot[Pass,dashed,thick] coordinates {(.5,40)(2.5,40)};
+\end{axis}\end{tikzpicture}};
+\node[takeaway,text width=14.3cm] at (.85,7.02)
+ {\ixlang{生成改善10.38\%，首字恶化46.37\%；两组均未达标。}
+ {TPOT -10.38\%; TTFT +46.37\%. Neither setup passes.}};
+\ixsource{2362同机同payload，K3/KV139264，128+8，单轮；吞吐311.77→306.84。单卡48GB，450W为功率上限；未测单位token费用。活动12仍是客户端16。}
+ {2362: same node/payload, K3/KV139264, 128+8, one paired sequence; tok/s 311.77→306.84. One 48GB GPU, 450W limit; no cost/token measurement. Active12 is still client16.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Conclusions and limitations}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1cm,y=-1cm]
+\ixheader{已完成什么，下一步解决什么}{What works. What remains.}
+\node[toptext,font=\fontsize{15}{18}\selectfont\bfseries,text=Blue] at (.95,2.25) {\ixlang{已经完成}{Delivered}};
+\node[toptext,font=\fontsize{15}{18}\selectfont\bfseries] at (8.5,2.25) {\ixlang{下一步}{Next}};
+\node[toptext,text width=6.0cm] at (.95,3.25) {\ixlang{INT4执行、并发状态与调度改造}{INT4 execution, request state\\and scheduling changes}};
+\node[toptext,text width=6.0cm] at (.95,4.6) {\ixlang{12并发性能单轮通过\\284.75 tok/s}{C12 meets both latency targets\\284.75 tok/s in one run}};
+\node[toptext,text width=6.0cm] at (.95,5.95) {\ixlang{独立版本完整质量评测\\IFBench严格84/100}{Complete quality evaluation\\84/100 strict on a separate build}};
+\node[toptext,text width=6.0cm] at (8.5,3.25) {\ixlang{定位16/32并发的尾延迟\\获取实际GPU时间线}{Locate C16/C32 tail latency\\with actual GPU timelines}};
+\node[toptext,text width=6.0cm] at (8.5,4.6) {\ixlang{同一配置联合验证\\性能与质量}{Validate performance and quality\\under one configuration}};
+\node[toptext,text width=6.0cm] at (8.5,5.95) {\ixlang{重复测试与干净环境复验\\确认稳定服务容量}{Repeat runs and clean rebuilds\\to establish stable capacity}};
+\node[takeaway,text width=14.3cm] at (.85,7.22)
+ {\textbf{\ixlang{现场Demo：单卡与版本 $\rightarrow$ 真实流式请求 $\rightarrow$ 输出与日志}
+ {Live demo: GPU/build $\rightarrow$ real streamed request $\rightarrow$ output and logs}}};
+\ixsource{github.com/Yuer-yuan/InferX\quad README / 部署 / Benchmark / Demo。性能9270与质量6632分别报告，不宣称同配置联合达标。}
+ {github.com/Yuer-yuan/InferX\quad README / deployment / benchmark / demo. Performance 9270 and quality 6632 are separate; no joint-pass claim.}
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+\end{document}

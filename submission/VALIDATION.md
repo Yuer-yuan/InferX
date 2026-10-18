@@ -1,12 +1,14 @@
 # 材料与部署检查记录
 
+当前100性能的六轮原始请求与数据核验、运行配置和精度状态见[当前结果](track-a/selected-results.md)。以下记录保留早期基线及其验收范围；历史55%质量不代表当前100。
+
 本轮已完成两机NInfer/MTP基线与第一台原版完整评测；正式数字见[BENCHMARK.md](BENCHMARK.md)，原始记录见[official-r1](../results/ninfer-performance/official-r1/)。此处区分请求完整性、GPU采样覆盖和最终提交验收。
 
 - 原版性能C1/C2/C4/C8各100正式+8预热，全部8192/512、零请求错误；原版runner退出0，独立解析复核通过。C1/C2满足两项延迟SLO，C4/C8未满足。
 - IFBench100预测、100review、100个prompt评分完整；strict/loose prompt55%，指令65/111与66/111。原生100chat均stop_token，无32768截断，输出4–2362 tokens。保留参数展开、原生报告和全部失败输出。
 - 目标1Hz采样2747点：两处8.402/6.682秒间隔使全程及C1/C8覆盖partial，C2/C4通过。保留严格阈值及首次拒绝诊断；分析程序完成不代表GPU覆盖完整。GPU数值只作为已记录点统计。
 - 远端冻结归档SHA256为`2639defbd36ae0ddd1fc7c925335bb87d118524533657b8cd5565e1c02df877f`；113个原始文件逐字节哈希验证通过，41个原生文本/数据文件无损gzip，原始/存储SHA分别保留。原版解析器使用的JSON/JSONL保留明文格式。
-- 两机模型SHA与二进制SHA一致，精确内嵌tokenizer核验；原生构建、真实raw/chat/流式/ignore_eos/usage/缓存隔离和工具调用已验证。第二台仅做功能与重启检查，没有重复正式压测。当前进程/健康与构建核验见[交接快照](../results/ninfer-performance/handoff/)。
+- 两机模型SHA与二进制SHA一致，精确内嵌tokenizer核验；原生构建、真实raw/chat/流式/ignore_eos/usage/缓存隔离和工具调用已验证。该冻结批次中第二台仅做功能与重启检查，没有重复正式压测；后续框架对照另列。当前进程/健康与构建核验见[交接快照](../results/ninfer-performance/handoff/)。
 - 通用命名与路径参数化已落实：scripts/configs以NInfer/功能命名，机器名仅用于清单和运行归属。隔离依赖锁保存；第二台复制已核验构建，explicit锁只做了重放dry-run，不宣称完成全新环境二次重建。
 - 本轮最终运行代码的CPU测试为**384 passed,44 skipped，124.54秒**，见[日志及核验](../results/ninfer-performance/analysis/verification-pilot.json)；之后只有材料、配置模板及离线分析追加。44个skip不作为原生外部环境通过。API原生契约/GPU实测另有证据，不能用CPU测试替代。
 - 19个PILOT档共152正式+38预热，独立原版解析及输入哈希核验通过；PILOT不混入100请求正式结果。计时与prefill归因的解释边界见性能报告。
@@ -19,6 +21,14 @@
 两机已实际同步main `2d8dc2c7aad0d87bbb352455aae654669723a089`，各3067个跟踪文件完整SHA核验，原版runner哈希一致；[两机同步记录](../results/ninfer-performance/handoff/)已保留。该版本源码归档的6个输入SHA和Git bundle验证通过，忽略的本地skills/状态不在源码包中。最终记录补充也同步到两机，实际最终提交由外部release-manifest记录，避免在版本内自引用。
 
 最终main源码同步和归档以`artifacts/release-manifest.json`的实际版本/校验和为准；正式测量时运行主仓快照为8e974a9，引擎/API补丁未在正式运行中切换。主办方差异口径、持久存储、干净重建、成员分工、投屏/录屏和提交回执仍依[TODO](TODO.md)验收，不能将本轮测量完成当作最终比赛提交完成。
+
+## 后续框架对照检查（进行中）
+
+vLLM/SGLang各六档参考MD性能测量已完成，另有vLLM8活动槽C4/C8对照。两框架各216正式+28预热，补充68条含预热；独立核验完整响应、8192/512、实际输入集合和原版解析结果。SGLang首档52文件快照及后续各档/完整性能清单均逐字节校验通过。
+
+GPU覆盖为参考12组中11组单独CSV通过；SGLangC8末端缺约0.080秒，保留严格失败，通过相邻下一档的真实首条采样补齐，间隔1.903秒，窗口内统计不变。8槽补充两组覆盖通过。两机时区与GPU身份分别记录，资源值只作采样点统计。
+
+[详细报告](../docs/reports/2026-10-16-framework-c4.md)明确FP8计算后端差异、32K性能与64K精度的配置区别、SGLang请求准入候选原因及其证据限制。两框架IFBench100、最终恢复交接及整批独立审阅仍待完成；旧release-manifest只代表此前冻结版本。
 
 ## 此前材料整理记录
 

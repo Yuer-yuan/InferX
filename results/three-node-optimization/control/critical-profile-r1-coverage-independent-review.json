@@ -1,0 +1,148 @@
+{
+  "reviewed_at": "2026-10-16T17:03:14.937047+00:00",
+  "scope": "Independent read-only SSH queries of archivedr1 SQLite and actualclientphase records; no newGPUwork",
+  "remote_root": "ucloud:/workspace/InferX/runs/ucloud1-slo/a8-profile-critical-r1",
+  "original_driver": {
+    "pid": 149082,
+    "state": "missing after complete",
+    "manifest_terminal": "complete",
+    "finished_at": "2026-10-16T16:55:24.507292+00:00",
+    "all_case_cleanup_reaped": true
+  },
+  "coverage": [
+    {
+      "C": 5,
+      "session_epoch_ns": 1792169257715320905,
+      "kernel_absolute_window_ns": [
+        1792169257778899641,
+        1792169287715549769
+      ],
+      "kernel_events": 262990,
+      "span_seconds": 29.936650128,
+      "warmup_lifecycle_overlap": 0,
+      "measured_request_lifecycle_overlap": 14,
+      "measured_started_before_window": 5,
+      "measured_started_during_window": 9,
+      "actual_record_kernel_batch_counts": [
+        [
+          1,
+          480
+        ],
+        [
+          2,
+          1296
+        ],
+        [
+          3,
+          2592
+        ],
+        [
+          4,
+          288
+        ],
+        [
+          5,
+          8640
+        ]
+      ],
+      "max_record_batch": 5
+    },
+    {
+      "C": 6,
+      "session_epoch_ns": 1792169451273906637,
+      "kernel_absolute_window_ns": [
+        1792169451469306534,
+        1792169481274134364
+      ],
+      "kernel_events": 271921,
+      "span_seconds": 29.80482783,
+      "warmup_lifecycle_overlap": 0,
+      "measured_request_lifecycle_overlap": 13,
+      "measured_started_before_window": 6,
+      "measured_started_during_window": 7,
+      "actual_record_kernel_batch_counts": [
+        [
+          1,
+          1152
+        ],
+        [
+          2,
+          1584
+        ],
+        [
+          3,
+          1056
+        ],
+        [
+          4,
+          192
+        ],
+        [
+          5,
+          129
+        ],
+        [
+          6,
+          10032
+        ]
+      ],
+      "max_record_batch": 6
+    },
+    {
+      "C": 8,
+      "session_epoch_ns": 1792169639811716986,
+      "kernel_absolute_window_ns": [
+        1792169640182478779,
+        1792169669810956342
+      ],
+      "kernel_events": 181435,
+      "span_seconds": 29.628477563,
+      "warmup_lifecycle_overlap": 0,
+      "measured_request_lifecycle_overlap": 16,
+      "measured_started_before_window": 8,
+      "measured_started_during_window": 8,
+      "actual_record_kernel_batch_counts": [
+        [
+          1,
+          816
+        ],
+        [
+          2,
+          672
+        ],
+        [
+          3,
+          336
+        ],
+        [
+          4,
+          1200
+        ],
+        [
+          5,
+          48
+        ],
+        [
+          6,
+          48
+        ],
+        [
+          7,
+          96
+        ],
+        [
+          8,
+          5040
+        ]
+      ],
+      "max_record_batch": 8
+    }
+  ],
+  "classification": "All3captures containactualmeasurement andlaterarrivals, actualmaxbatch C5/C6/C8. Sufficientwindowcoverage; request-to-kernel/mixedprogress/stage attribution still required.",
+  "limitations": [
+    "Lifecycletime-overlap isnot individualkernel-request correspondence.",
+    "Clipboundaries can capturepartialrounds, so recordkernelcounts notalwaysmultiplesof48.",
+    "Profiledlatenciesexcludedfromunprofiledperformanceledger."
+  ],
+  "coordinator_correction": "Initialriskinference incorrectlyusedoutercase startupasappstartbasis forNsight delay; actualsessionepoch andkernelabsoluteUTCdisprove. Retractedviaacceptedsteer; no additionalcapture requiredforthisreason."
+}

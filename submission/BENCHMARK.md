@@ -1,8 +1,10 @@
 # Benchmark 报告与证据索引
 
+当前100版本的C4/C8/C12/C13及两轮C14均通过联合延迟SLO；配置和原始证据见[当前结果](track-a/selected-results.md)。以下各节保留历史版本与协议，不能当作100的结果。
+
 ## 单卡原版完整评测结果（本轮节点 ucloud1）
 
-2026-10-16完成一轮；原版runner退出0，四档各100正式+8预热、seed42、精确模型tokenizer8192/512，同机回环。第二台只做部署与功能核验，不重复评测或合并成绩。该结果按eval.zip执行，主办方参考MD与ZIP差异仍见[协议说明](PROTOCOL.md)。
+2026-10-16完成一轮；原版runner退出0，四档各100正式+8预热、seed42、精确模型tokenizer8192/512，同机回环。该NInfer冻结批次中，第二台只做部署与功能核验，没有合并成绩；后续两框架并行对照独立列于下节。该结果按eval.zip执行，主办方参考MD与ZIP差异仍见[协议说明](PROTOCOL.md)。
 
 固定：单张49,140MiB RTX4090、450W；NInfer v2混合Q4/Q5、MTP4/lm-head-draft、活动上限8、prefill2048、int8 KV、64K上下文、KV容量131072、greedy/no-thinking、presence/frequency penalty0。[完整版本清单](model-manifest.json)、[机器盘点](../results/ninfer-performance/inventory/)、[配置](../configs/ninfer/qwen38-27b-baseline.template.json)。主仓运行快照8e974a9；后续只追加材料与离线分析，原版runner、引擎/API补丁和二进制未变。
 
@@ -31,6 +33,14 @@
 - [备用机最终工具调用](../results/ninfer-performance/ready-baseline/final-tool-probe/)：与正式服务相同MTP4配置，只做短功能检查。
 
 独立GPU采样目标1Hz，共2747点。C1/C8分别存在8.402/6.682秒间隔，严格覆盖状态partial；C2/C4覆盖通过。显存已记录点最大24836MiB，温度最大85°C；所有已记录点中power-cap Active为1957/2747，软/硬thermal均Not Active。只能报告采样点统计，不能声称完整时间平均、连续峰值或已达到带宽roofline。缺口诊断和原始CSV（无损gzip）完整保留；先前113个快照文件SHA均可通过解压字节验证。
+
+## 参考MD的FP8无MTP对照（两节点并行）
+
+后续对照按参考MD的32K服务窗口、4活动槽及六档请求数执行，均为8192输入/512输出；第一台vLLM0.31.0，第二台SGLang0.5.19。每框架216正式+28预热，请求/输入集合/原版解析核验通过。不同于上面的ZIP100请求、NInfer混合Q4/Q5与MTP4配置，因此分别报告。
+
+vLLM六档TPOT与文档参考相差约0.15%–0.25%，C1/C2通过SLO，C3/C4/C8未通过。SGLang单请求TPOT43.33ms已超40ms；C4为56.83 tok/s、TTFT P95 30.07s、TPOT P95 47.67ms。追加vLLM8活动槽后，C8吞吐90.11 tok/s、TTFT25.17s、TPOT79.22ms，仍未达标。
+
+完整数据、实际计算后端、缓存与GPU覆盖边界见[框架基线报告](../docs/reports/2026-10-16-framework-c4.md)。FP8 IFBench100使用独立64K配置，仍在运行；不以旧NInfer质量分数代替。
 
 ## 已有优化与工程证据（vlm-server，24GB 卡）
 

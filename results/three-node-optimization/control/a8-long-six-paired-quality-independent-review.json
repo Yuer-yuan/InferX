@@ -1,0 +1,149 @@
+{
+  "reviewed_at": "2026-10-16T16:49:00.856697+00:00",
+  "scope": "Independent read-only archive review and CPU re-evaluation of saved answers; no new GPU generation",
+  "run": "quality-paired-r1",
+  "configuration": {
+    "same_binary_sha256": "47d83e3a51618c585ac14f31ca791516500ea1663e45f76c639e22c23cc4d8f9",
+    "candidate_change": "NINFER_PREFILL_A8 none/all only",
+    "request_concurrency": 5,
+    "max_output_tokens": 256,
+    "greedy": true,
+    "ignore_eos": false,
+    "label": "supplementary fixed six long-input tasks, not IFBench or random sample"
+  },
+  "pairs": [
+    {
+      "case_id": "retrieve-middle",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": true,
+      "candidate_pass": true,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": "Objective checks reproduced; code tests include empty/duplicate/negative cases and no-input-mutation."
+    },
+    {
+      "case_id": "retrieve-early",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": true,
+      "candidate_pass": true,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": "Objective checks reproduced; code tests include empty/duplicate/negative cases and no-input-mutation."
+    },
+    {
+      "case_id": "ledger-net",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": false,
+      "candidate_pass": false,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": [
+        {
+          "passed": false,
+          "parsed": {
+            "answer": 183
+          },
+          "expected": 257
+        },
+        {
+          "passed": false,
+          "parsed": {
+            "answer": 183
+          },
+          "expected": 257
+        }
+      ]
+    },
+    {
+      "case_id": "composed-transform",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": false,
+      "candidate_pass": false,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": [
+        {
+          "passed": false,
+          "parsed": {
+            "answer": 44
+          },
+          "expected": 81
+        },
+        {
+          "passed": false,
+          "parsed": {
+            "answer": 44
+          },
+          "expected": 81
+        }
+      ]
+    },
+    {
+      "case_id": "code-stable-unique",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": true,
+      "candidate_pass": true,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": "Objective checks reproduced; code tests include empty/duplicate/negative cases and no-input-mutation."
+    },
+    {
+      "case_id": "code-increasing-run",
+      "payload_exact_equal": true,
+      "text_equal": true,
+      "reference_pass": true,
+      "candidate_pass": true,
+      "truncations": [
+        false,
+        false
+      ],
+      "check_details": "Objective checks reproduced; code tests include empty/duplicate/negative cases and no-input-mutation."
+    }
+  ],
+  "native": {
+    "none": {
+      "n": 6,
+      "min_prompt": 8203,
+      "max_prompt": 8204,
+      "all_prefill_equals_prompt": true,
+      "all_cache0_full_reset": true
+    },
+    "all": {
+      "n": 6,
+      "min_prompt": 8203,
+      "max_prompt": 8204,
+      "all_prefill_equals_prompt": true,
+      "all_cache0_full_reset": true
+    }
+  },
+  "reference_passes": 4,
+  "candidate_passes": 4,
+  "all_pair_text_equal": true,
+  "all_pair_payload_equal": true,
+  "truncations": 0,
+  "coverage": "Actual8203-8204token cold prefill exceeds A8T>=256 guard and uses2048 chunks; actual kernel-route launch correlation remains a separate profiling check.",
+  "limitations": [
+    "Six curated cases do not establish task-quality equivalence or acceptable global score.",
+    "Both arithmetic tasks fail identically; preserve reference failures and do not reinterpret equal pass counts as allanswerscorrect.",
+    "Native output-token IDs unavailable; equal text is not proof of equalnativeIDs."
+  ],
+  "hashes": {
+    "archive": "732ed66c19b3d5e0e37f8fb8e65979a5d2dc2c8a7eb439372aaf7a03e03b1ed3",
+    "checker_source": "75ccba62d7065b481f6d333a79aa177d1e1ae96a2cc39ec886fa8b889d546270"
+  }
+}

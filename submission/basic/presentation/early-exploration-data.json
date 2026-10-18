@@ -1,0 +1,88 @@
+{
+  "scope": "Early C2 deployment observations, not a matched framework-only experiment; not later team W4A4 results.",
+  "common": {
+    "model": "Qwen3.8-27B",
+    "gpu": "1 x RTX 4090 48GB",
+    "concurrency": 2,
+    "input_tokens": 8192,
+    "output_tokens": 512,
+    "formal_requests": 100,
+    "prefix_hit_tokens": 0,
+    "runs": 1
+  },
+  "rows": [
+    {
+      "id": "ninfer",
+      "label": "NInfer",
+      "version": "5c60b7c",
+      "weight": "mixed Q4/Q5",
+      "kv": "INT8",
+      "mtp_draft_tokens": 4,
+      "configured_active_limit": 8,
+      "context_limit": 65536,
+      "prefill_chunk": 2048,
+      "warmup": 8,
+      "seed": 42,
+      "node": "ucloud1",
+      "ttft_s": 3.5622561655,
+      "tpot_ms": 22.506397312426614,
+      "tps": 92.0894884040625
+    },
+    {
+      "id": "vllm",
+      "label": "vLLM",
+      "version": "0.31.0",
+      "weight": "FP8",
+      "kv": "FP8",
+      "mtp_draft_tokens": 0,
+      "configured_active_limit": 4,
+      "context_limit": 32768,
+      "prefill_chunk": 2048,
+      "warmup": 4,
+      "seed": 47,
+      "node": "ucloud1",
+      "ttft_s": 5.1088599009,
+      "tpot_ms": 37.978005383561644,
+      "tps": 42.89190931225251
+    },
+    {
+      "id": "sglang",
+      "label": "SGLang",
+      "version": "0.5.19",
+      "weight": "FP8",
+      "kv": "FP8",
+      "mtp_draft_tokens": 0,
+      "configured_active_limit": 4,
+      "context_limit": 32768,
+      "prefill_chunk": 4096,
+      "warmup": 4,
+      "seed": 47,
+      "node": "ucloud2",
+      "ttft_s": 3.81400462915,
+      "tpot_ms": 43.56665186819961,
+      "tps": 42.135823659964466
+    }
+  ],
+  "provenance": {
+    "results/ninfer-performance/official-r1/runs/official-r1/performance/c2/summary.json": {
+      "sha256": "b64f98b22433b596338971cc3dcd0bd5f76a153f196323a7d013bb183dc53e86"
+    },
+    "results/framework-c4/reference-row-verification.json": {
+      "sha256": "8d3d9e531b17da6c2b98f0fa973943484eb4bceedb4908d74da6249482e3d4bb"
+    },
+    "docs/reports/2026-10-16-ninfer-performance.md": {
+      "sha256": "cec82f6674fa6606e81c14f16b5e8732a5be811b3c2612b200aa4f20ebd43903"
+    },
+    "docs/reports/2026-10-16-framework-c4.md": {
+      "sha256": "f2df37ff6f03a7a94693123216773d53a70cacb72eb421d55fd5ada9d02109d5"
+    },
+    "results/framework-c4/vllm/document-literal-launch.json": {
+      "sha256": "bfe26267f043a137447e238bd9019ea3271e44fd1adf2625dda2989226639c9d"
+    },
+    "results/framework-c4/sglang/official-native-32k/command.json": {
+      "sha256": "27ce6b4cc9a62b4563e5475c578ced38bdcd3fc73963f13d52147c2206a809c8"
+    }
+  },
+  "upstream_readme": "https://github.com/UDPSendToFailed/ninfer-4090/blob/5c60b7c9b455231795c09da21a9fbb6aa53f08e5/README.md",
+  "comparability": "Different quantization, MTP, KV dtype, context limit, configured active limit, prefill chunk, warmup, seed and partly nodes. Only vLLM and SGLang use the identical input cohort. Neither 4 nor 8 is a universal framework capacity claim."
+}

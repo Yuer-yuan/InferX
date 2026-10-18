@@ -1,0 +1,283 @@
+% !TeX program = xelatex
+% Overleaf: XeLaTeX. Single file; editable native TikZ/PGFPlots.
+% Authoritative template: edit here, then run refresh.
+\documentclass[11pt,aspectratio=169]{beamer}
+\usetheme{default}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath,booktabs,array,tikz,pgfplots}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\pgfplotsset{compat=1.18}
+% Colors belong only to technical figures, never to Beamer theme elements.
+\definecolor{State}{HTML}{315B7D}
+\definecolor{Work}{HTML}{9A5A16}
+\definecolor{Guide}{HTML}{666666}
+\tikzset{component/.style={draw=Guide,align=center,font=\footnotesize,
+ inner sep=4pt,minimum height=8mm},
+ state/.style={component,draw=State,fill=State!7},
+ flow/.style={-{Latex[length=1.8mm]},semithick},
+ feedback/.style={flow,dashed,draw=State}}
+\pgfplotsset{every axis/.append style={tick label style={font=\scriptsize},
+ label style={font=\scriptsize},title style={font=\footnotesize},
+ legend style={font=\scriptsize,draw=none},grid=major,
+ grid style={gray!20},nodes near coords style={font=\scriptsize}}}
+\newcommand{\ixnote}[1]{\par\noindent{\scriptsize #1\par}}
+\title{InferX}
+\author{你说啥都队 / A / B / C}
+\date{2026-10-17 23:37 +08:00}
+\begin{document}
+
+\begin{frame}{项目概述}
+InferX 在单张48GB RTX 4090上部署并优化 Qwen3.8-27B。
+\vspace{4mm}
+\begin{itemize}
+\item 面向长文本、逻辑推理和代码任务，测量冷8192输入 / 512输出。
+\item 以 NInfer / MTP 为基础，实现真W4A4投影、原生高批执行和调度适配。
+\item 用原版评测、逐请求重算与任务质量记录验证效果。
+\end{itemize}
+\vspace{3mm}
+\begin{tabular}{lll}
+\toprule
+证据范围 & 实际版本 & 观测结果\\
+\midrule
+性能：C12，128正式+8预热 & 9270 & 284.75 tok/s，两项P95通过\\
+质量：IFBench原前100，C2 & 40b3 & prompt strict 86\%\\
+\bottomrule
+\end{tabular}
+\vspace{3mm}
+\ixnote{性能与质量来自不同binary，分别验收；C12为固定seed单轮结果。}
+\vspace{3mm}
+你说啥都队\quad 成员 A / B / C\par
+\small github.com/Yuer-yuan/InferX
+\end{frame}
+
+\begin{frame}{问题与目标}
+提高吞吐还不够：Prefill 与 Decode 竞争会拉长请求等待。
+\vspace{3mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\small 旧 NInfer / b604：ZIP 100+8、K4
+\par\vspace{2mm}
+\begin{tabular}{lrrr}
+\toprule
+并发 & TTFT/s & TPOT/ms & tok/s\\
+\midrule
+C2 & 3.56 & 22.51 & 92.09 \\
+C8 & 13.86 & 90.66 & 103.31 \\
+\bottomrule
+\end{tabular}
+\vspace{4mm}
+\begin{tikzpicture}[x=.76cm,y=.78cm]
+\node[anchor=east,font=\scriptsize] at (0,.2) {请求1};
+\node[anchor=east,font=\scriptsize] at (0,-.7) {请求2};
+\node[anchor=east,font=\scriptsize] at (0,-1.6) {请求3};
+\fill[Work!30] (.1,0) rectangle (2.3,.4);
+\fill[State!35] (2.3,0) rectangle (2.9,.4);
+\draw[Guide] (2.9,0) rectangle (4.8,.4);
+\fill[State!35] (4.8,0) rectangle (5.4,.4);
+\draw[Guide] (.1,-.9) rectangle (2.9,-.5);
+\fill[Work!30] (2.9,-.9) rectangle (4.8,-.5);
+\fill[State!35] (4.8,-.9) rectangle (5.4,-.5);
+\draw[Guide] (.1,-1.8) rectangle (5.4,-1.4);
+\node[font=\scriptsize] at (1.2,.2) {Prefill};
+\node[font=\scriptsize] at (3.85,-.7) {Prefill};
+\node[font=\scriptsize] at (2.7,-1.6) {等待准入 / 计算机会};
+\draw[flow] (.1,.8)--(5.6,.8) node[right,font=\scriptsize]{时间};
+\end{tikzpicture}
+\ixnote{时间比例为示意；蓝色短段为Decode，空段为等待。原生计时及Nsight支持竞争诊断。}
+\end{column}
+\begin{column}{.47\textwidth}
+\begin{itemize}
+\item TTFT P95 $\leq 10$s。
+\item TPOT P95 $\leq 40$ms。
+\item 逐请求计算，再取线性P95：
+\end{itemize}
+\[\mathrm{TPOT}_i=\dfrac{\mathrm{E2E}_i-\mathrm{TTFT}_i}{512-1}\]
+\small 客户端计时包含排队和网络；吞吐保留原phase分母。
+\par\vspace{3mm}
+\ixnote{后续扩展为128+8、K3，与旧ZIP分列。FP8框架参考另有后端、槽位和样本差异，不计算跨栈净加速。}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{整体方案}
+保留上游模型与 MTP，在调度、投影计算和状态接缝中实现优化。
+\vspace{3mm}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\footnotesize,align=center] (req) at (.5,1.2) {API请求\\8192 / 512};
+\node[component,text width=1.5cm] (queue) at (2.7,1.2) {准入队列};
+\node[component,text width=2.1cm] (sched) at (5.7,1.2) {完成预算调度\\chunk / 时限};
+\node[component,text width=2.2cm] (pf) at (10,2.15) {Prefill\\S4投影};
+\node[component,text width=2.2cm] (dec) at (10,.2) {Decode / Verify\\MTP K3，B16/B32};
+\node[font=\footnotesize] (out) at (13.6,1.2) {响应};
+\node[state,text width=3.8cm] (st) at (7.9,-1.5) {逐请求 KV / GDN 状态\\slot / bank / accepted / rollback};
+\node[component,text width=3.1cm,align=left] (cache) at (4.1,3.1) {离线：FP8逻辑权重\\H512/G512 + GPTQ\\025 / 041 / 047缓存};
+\draw[flow] (req)--(queue);
+\draw[flow] (queue)--(sched);
+\draw[flow] (sched.east)--(pf.west);
+\draw[flow] (sched.east)--(dec.west);
+\draw[flow] (pf.east)--(out);
+\draw[flow] (dec.east)--(out);
+\draw[flow] (cache.east)--(pf.north west) node[midway,above,font=\scriptsize]{加载权重};
+\draw[flow] (cache.south east)--(dec.north west);
+\draw[{Latex[length=1.8mm]}-{Latex[length=1.8mm]},draw=State] (pf.east)--(11.8,2.15)--(11.8,-1.5)--(st.east);
+\draw[{Latex[length=1.8mm]}-{Latex[length=1.8mm]},draw=State] (dec.south)--(10,-1.5);
+\draw[feedback] (st.west)-|(sched.south) node[pos=.2,below,font=\scriptsize]{提交进度反馈};
+\end{tikzpicture}
+\ixnote{实线：请求、执行、权重加载；双向蓝线：状态读写；虚线：进度反馈。缓存与状态是独立对象，非在线串行阶段。}
+\vspace{2mm}
+\small 选择 NInfer：紧凑权重、原生MTP与可修改CUDA路由。新增量化和批扩容需共同验证Graph、工作区及回滚；Norm与递推状态仍保留浮点语义。
+\end{frame}
+
+\begin{frame}{核心实现}
+先定位热点，再扩大真实计算覆盖；端到端结果决定候选是否晋级。
+\vspace{3mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\small
+\textbf{dense热点 $\rightarrow$ 旋转/GPTQ + S4 MMA}\par
+025校准64层gate/up与down，共128矩阵；扩展041输入及047的47层GDN输出。保留scale、SiLU和残差。
+\par\vspace{3mm}
+\textbf{高批执行 $\rightarrow$ 状态与Graph共同扩容}\par
+B16/B32验证slot、KV/GDN回滚及工作区；调度兼顾首token欠账和完成预算。能运行不等于延迟通过。
+\par\vspace{3mm}
+\textbf{状态开销 $\rightarrow$ GDN fold+record}\par
+native生命周期2013条配对无差异；属补充数值证据。C32吞吐略升但尾延迟恶化，未晋级。
+\end{column}
+\begin{column}{.47\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.6cm,height=4cm,ybar,bar width=17pt,ymin=0,ymax=430,
+ xtick={1,2,3},xticklabels={FFN S4,加输入,加输出},ylabel={输出 tok/s},
+ title={u1 C32：累计版本历史},nodes near coords]
+\addplot[fill=State!35,draw=State] coordinates {(1,305.910173) (2,352.410492) (3,363.576857)};
+\end{axis}
+\end{tikzpicture}
+\ixnote{c3f482 / 40b3 / 9270；128+8、K3、冷8192/512。表示与覆盖同时变化，不归因单项优化；三轮C32均未通过。40b3仅有本地汇总。}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\ixnote{上游：模型、NInfer基础引擎及MTP。团队：校准缓存、算子/路由、批扩容、状态/调度接入和证据核验。}
+\end{frame}
+
+\begin{frame}{结果与证据}
+C12 / 9270 单轮通过；新增2362的 C16、C32仍未同时满足延迟门槛。
+\vspace{2mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.47\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.6cm,height=4.6cm,xmin=0,xmax=29,ymin=0,ymax=120,
+ xlabel={TTFT P95 / s},ylabel={TPOT P95 / ms}]
+\path[fill=State!6] (axis cs:0,0) rectangle (axis cs:10,40);
+\draw[dashed] (axis cs:10,0)--(axis cs:10,120);
+\draw[dashed] (axis cs:0,40)--(axis cs:29,40);
+\addplot[only marks,mark=square*,mark size=2.5pt,color=Guide] coordinates {(7.531604,33.308551)};
+\addplot[only marks,mark=triangle*,mark size=3pt,color=Work] coordinates {(9.499646,37.340162)};
+\addplot[only marks,mark=*,mark size=2.5pt,color=State] coordinates {(9.855908,48.784071) (23.088049,96.319341)};
+\node[font=\scriptsize,anchor=east] at(axis cs:7.531604,33.308551){C8 };
+\node[font=\scriptsize,anchor=west] at(axis cs:9.499646,37.340162){ C12};
+\node[font=\scriptsize,anchor=west] at(axis cs:9.855908,48.784071){ C16};
+\node[font=\scriptsize,anchor=east] at(axis cs:23.088049,96.319341){C32 };
+\end{axis}
+\end{tikzpicture}
+\ixnote{方形a332，三角9270，圆形2362；均u3独立单轮。点不连线，不作同版本容量曲线。左下区域为联合SLO。}
+\end{column}
+\begin{column}{.50\textwidth}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrl}
+\toprule
+并发 & binary & TTFT/s & TPOT/ms & tok/s & SLO\\
+\midrule
+C8 & a332 & 7.53 & 33.31 & 223.45 & 通过 \\
+C12 & 9270 & 9.50 & 37.34 & 284.75 & 通过 \\
+C16 & 2362 & 9.86 & 48.78 & 311.77 & 未过 \\
+C32 & 2362 & 23.09 & 96.32 & 375.71 & 未过 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2mm}
+\ixnote{每项128正式+8预热，零错误；保留全部开场请求。扩展协议与旧ZIP独立。}
+\vspace{3mm}
+\small IFBench 原前100：质量独立列示\par
+\scriptsize
+\begin{tabular}{lrr}
+\toprule
+binary & prompt strict / \% & 错误/空final/length\\
+\midrule
+c3f4 & 82 & 0/2/1 \\
+40b3 & 86 & 0/1/0 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2mm}
+\ixnote{111指令、C2、max32768、默认thinking/采样。82与86是版本观测，不作配对非劣或纯量化提升；不覆盖9270、8b20、2362。}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{工程化设计}
+将实际运行身份、配置与原始记录绑定，才有可复算的成绩。
+\vspace{3mm}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\footnotesize,align=left] (src) at (1.8,1.1) {源码 / binary SHA\\模型 / tokenizer};
+\node[font=\footnotesize,align=left] (cfg) at (1.8,-.1) {缓存025/041/047\\实际argv / env};
+\node[font=\footnotesize,align=left] (raw) at (1.8,-1.3) {client / native\\GPU及进程终态};
+\node[state,text width=3.8cm,align=left] (record) at (6.4,-.1) {证据记录\\binary + source + cache\\配置 + payload + cohort\\原始长度 / 错误 / 时间};
+\node[component,text width=3.5cm,align=left] (verify) at (11.7,-.1) {原版解析 + 独立复算\\逐请求TPOT再取P95\\吞吐保留phase分母\\质量按实际版本计分};
+\draw[flow] (src.east)--(record.west);
+\draw[flow] (cfg.east)--(record.west);
+\draw[flow] (raw.east)--(record.west);
+\draw[flow] (record.east)--(verify.west);
+\end{tikzpicture}
+\vspace{3mm}
+\begin{itemize}
+\item 数值门覆盖量化码、scale、非线性、BF16舍入及独立oracle。
+\item 模型门覆盖Graph、slot/bank、部分提交、回滚和状态生命周期。
+\item 原始失败、取消、截断和复验范围随版本保留；不把算子通过当任务通过。
+\end{itemize}
+\ixnote{复验输入：所选源码、完整依赖、模型/全部缓存、启动配置与原始数据。准确路径和构建/复测步骤见reproduction.md。}
+\end{frame}
+
+\begin{frame}{成本、性能与取舍}
+GDN 融合改善部分 Decode 时间，但同payload的 C32 尾延迟仍恶化。
+\vspace{3mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.47\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.5cm,height=4.1cm,ybar,bar width=22pt,ymin=0,ymax=120,
+ xtick={1,2},xticklabels={8b20,2362 + GDN},ylabel={C32 TPOT P95 / ms},nodes near coords]
+\addplot[fill=State!35,draw=State] coordinates {(1,92.109025) (2,96.319341)};
+\draw[dashed] (axis cs:.5,40)--(axis cs:2.5,40);
+\end{axis}
+\end{tikzpicture}
+\ixnote{u3同137payload/cohort，128+8、K3、450W，单次顺序对照。吞吐374.05$\rightarrow$375.71（+0.45\%）；TPOT +4.57\%，未晋级。}
+\end{column}
+\begin{column}{.49\textwidth}
+\small
+\textbf{收益与代价}\par
+GDN融合的共同执行Decode均值下降，PF服务成本接近；无新trace，不能把nondecode余量全部归为PF。额外持久状态约103MB。
+\par\vspace{3mm}
+\textbf{其他未晋级路线}\par
+\begin{itemize}
+\item down053：同机C16吞吐+1.41\%，TPOT反而+4.66\%。
+\item W2：小T算子有潜力，大Prefill负收益；重建误差仍须单独验收。
+\item FP16 GDN状态：B32算子近2倍，长递推精度门失败。
+\end{itemize}
+\ixnote{450W为功率上限；无完整能耗积分与账单，不报告节能或每token成本。}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{总结与不足}
+已形成单卡推理优化与可追溯评测闭环，后续重点是尾延迟与同版质量。
+\vspace{4mm}
+\begin{itemize}
+\item 已实现：64层FFN量化、输入/输出投影扩展、原生批执行与状态验证。
+\item 已观测：C12 / 9270 的 284.75 tok/s 单轮SLO通过；40b3独立质量 86\%。
+\item 未解决：2362 C16/C32尾延迟仍超限；完整同版质量与跨seed稳定性证据不足。
+\item 下一步：围绕实际关键路径优化Prefill服务和Decode机会，逐项检验收益、数值与任务质量。
+\end{itemize}
+\vspace{4mm}
+\small 现场Demo：核对单卡与版本 $\rightarrow$ 真实流式请求 $\rightarrow$ 输出和日志 $\rightarrow$ 定位原始评测记录。
+\par\vspace{3mm}
+你说啥都队\quad A / B / C\par
+\small github.com/Yuer-yuan/InferX\quad 材料入口：submission/README.md
+\end{frame}
+\end{document}

@@ -1,0 +1,64 @@
+{
+  "reviewed_at": "2026-10-16T18:50:31.896214+00:00",
+  "scope": "Root independent read-only actualSQLite/runtime/NVTX/native/client-window audit fromSHA-verifiedimmutable3rawfiles; no GPU work",
+  "binary_sha256": "6937c71e9995c1d3636cb402e08675018db83a5b18ede58de92c3232f716eb99",
+  "join_strength": "Dedicated C1 sequential2requests andnonoverlappingclientwindows/nativeordinal; exactactualruntimecorrelation+launchthread+enclosingPrefill NVTX. Notheader-IDjoin.",
+  "all_kernel_rows": 6583,
+  "all_kernels_have_unique_runtime": true,
+  "graph_runtime_calls": 111,
+  "graph_trace_events": 111,
+  "requests": [
+    {
+      "case": "original_ifbench_first_short",
+      "native_request_id": 1,
+      "native_prompt_tokens": 143,
+      "chunks": [
+        {
+          "computed_tokens": 139,
+          "direct_correlated_kernels": 989,
+          "quantizer_launches": 0,
+          "grouped_pipeline_launches": 0
+        },
+        {
+          "computed_tokens": 4,
+          "direct_correlated_kernels": 903,
+          "quantizer_launches": 0,
+          "grouped_pipeline_launches": 0
+        }
+      ],
+      "actual_A8_tokens": 0,
+      "graph_node_kernel_rows_in_client_window": 0
+    },
+    {
+      "case": "long_arithmetic_exact",
+      "native_request_id": 2,
+      "native_prompt_tokens": 1835,
+      "chunks": [
+        {
+          "computed_tokens": 1831,
+          "direct_correlated_kernels": 1229,
+          "quantizer_launches": 256,
+          "grouped_pipeline_launches": 64
+        },
+        {
+          "computed_tokens": 4,
+          "direct_correlated_kernels": 903,
+          "quantizer_launches": 0,
+          "grouped_pipeline_launches": 0
+        }
+      ],
+      "actual_A8_tokens": 1831,
+      "graph_node_kernel_rows_in_client_window": 0
+    }
+  ],
+  "startup_prefill_chunks_outside_client_scopes": [
+    9,
+    4
+  ],
+  "hashes": {
+    "trace.sqlite": "33d25842d966fef8770812ac91a35820d9291d6c2259ec4057fd3569210eab50",
+    "requests.jsonl": "33ca98193e36279cbf5cb9020460ba418b18f9ea609f6e72f4428d34b969ba44",
+    "responses.json": "2edcd9f51fe403e8be36cc2ffd10bb41f84758f50daed6fbf53314cc11c33c57"
+  },
+  "conclusion": "Graph-leveltracing keepsactualdirectPrefill/A8kernelcoverage whilesuppressingdecodedgraphnodes; supportspracticalfull300routecollection. Doesnotprovideverify/draftkernelbreakdown or performance/roofline. Actualfull300scorespending."
+}

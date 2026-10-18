@@ -1,0 +1,165 @@
+{
+  "reviewed_at": "2026-10-16T16:47:11.819923+00:00",
+  "protocol": "OnephysicalGPU, identicalbinary/A8/MTP4/450W/totalKV131072, originalrunner24+4cold8192/512 C6/C8, sameproxy; max8single versus2max4privateMPS replicas",
+  "archive_sha256": "2d904551cc244659bf459d6def3718ddd03b79ddc992c7f3156ece308880b824",
+  "results": {
+    "single8_proxy": {
+      "native_long_done": 57,
+      "native_all_cold": true,
+      "6": {
+        "measured_requests": 24,
+        "warmup": 4,
+        "all_exact8192_512": true,
+        "errors": 0,
+        "ttft_p95_ms": 11560.4791373,
+        "tpot_p95_ms": 51.34119982426614,
+        "official_output_tok_s": 132.8182859578881,
+        "summary_p95_match": true,
+        "joint_slo": false
+      },
+      "8": {
+        "measured_requests": 24,
+        "warmup": 4,
+        "all_exact8192_512": true,
+        "errors": 0,
+        "ttft_p95_ms": 16615.197564050002,
+        "tpot_p95_ms": 74.08580686966732,
+        "official_output_tok_s": 131.8899805791089,
+        "summary_p95_match": true,
+        "joint_slo": false
+      }
+    },
+    "dual4_mps": {
+      "native_long_done": 57,
+      "native_all_cold": true,
+      "6": {
+        "measured_requests": 24,
+        "warmup": 4,
+        "all_exact8192_512": true,
+        "errors": 0,
+        "ttft_p95_ms": 12921.91329075,
+        "tpot_p95_ms": 47.11867818052837,
+        "official_output_tok_s": 132.17838951778663,
+        "summary_p95_match": true,
+        "joint_slo": false
+      },
+      "8": {
+        "measured_requests": 24,
+        "warmup": 4,
+        "all_exact8192_512": true,
+        "errors": 0,
+        "ttft_p95_ms": 17708.11293145,
+        "tpot_p95_ms": 78.01429218786693,
+        "official_output_tok_s": 122.37579977816848,
+        "summary_p95_match": true,
+        "joint_slo": false
+      }
+    }
+  },
+  "actual_phase_payloads_equal_ignoring_only_cache_salt": {
+    "6": {
+      "warmup": true,
+      "profiling": true
+    },
+    "8": {
+      "warmup": true,
+      "profiling": true
+    }
+  },
+  "mps_client_list": {
+    "command": "get_client_list 148108",
+    "returncode": 0,
+    "stdout": "148106\n148160\n",
+    "stderr": ""
+  },
+  "same_binary_sha256": true,
+  "dual_startup_memory": [
+    {
+      "time_ns": 1792168510277357879,
+      "used_mib": 1.0,
+      "free_mib": 48536.0,
+      "utilization": 0.0,
+      "power_limit_w": 450.0
+    },
+    {
+      "time_ns": 1792168518510624993,
+      "used_mib": 21366.0,
+      "free_mib": 27172.0,
+      "utilization": 0.0,
+      "power_limit_w": 450.0
+    },
+    {
+      "time_ns": 1792168525505236490,
+      "used_mib": 42692.0,
+      "free_mib": 5846.0,
+      "utilization": 63.0,
+      "power_limit_w": 450.0
+    }
+  ],
+  "cleanup": {
+    "single8_proxy": {
+      "status": "complete",
+      "cleanup": [
+        {
+          "role": "least-inflight SSE proxy",
+          "reaped": true,
+          "exit_code": 0
+        },
+        {
+          "role": "NInfer replica0",
+          "reaped": true,
+          "exit_code": 0
+        }
+      ],
+      "final_memory": {
+        "time_ns": 1792169016353773495,
+        "used_mib": 1.0,
+        "free_mib": 48536.0,
+        "utilization": 89.0,
+        "power_limit_w": 450.0
+      }
+    },
+    "dual4_mps": {
+      "status": "complete",
+      "cleanup": [
+        {
+          "role": "least-inflight SSE proxy",
+          "reaped": true,
+          "exit_code": 0
+        },
+        {
+          "role": "NInfer replica1",
+          "reaped": true,
+          "exit_code": 0
+        },
+        {
+          "role": "NInfer replica0",
+          "reaped": true,
+          "exit_code": 0
+        }
+      ],
+      "mps_cleanup": {
+        "quit": {
+          "command": "quit",
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "controller_cleanup": {
+          "reaped": true,
+          "exit_code": 0
+        },
+        "remaining_mps_processes": []
+      },
+      "final_memory": {
+        "time_ns": 1792168769774586449,
+        "used_mib": 1.0,
+        "free_mib": 48536.0,
+        "utilization": 100.0,
+        "power_limit_w": 450.0
+      }
+    }
+  },
+  "c8_throughput_relative_change": -0.07213725227015044,
+  "conclusion": "InitialsameGPUdualreplication doesnotimprovejointSLO oraggregateperformance; allfourrowsfail andC8throughputregresses. Rejectpromotionandbroaderreplica/quota grid. Noactualkernel-overlaporresourcebottleneckclaimwithouttimeline."
+}

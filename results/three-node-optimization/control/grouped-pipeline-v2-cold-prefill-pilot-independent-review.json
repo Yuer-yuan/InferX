@@ -1,0 +1,144 @@
+{
+  "reviewed_at": "2026-10-16T18:18:48.918814+00:00",
+  "scope": "Root independent production-wrapper oracle consistency, coldprefill and rawmatchedpilot audit. No GPU work.",
+  "binary_sha256": "6937c71e9995c1d3636cb402e08675018db83a5b18ede58de92c3232f716eb99",
+  "production_wrapper_numeric": {
+    "cases": 4,
+    "underlying_operator_probe_cases": 10,
+    "T": [
+      257,
+      4097
+    ],
+    "families": [
+      "attn",
+      "gdn"
+    ],
+    "all_guards_finite_pass": true,
+    "all_outputs_equal_prequalified_vector_control": true,
+    "represented_A8_sample_nrmse_recomputed": {
+      "attn-T257": 0.001543155494483705,
+      "gdn-T257": 0.0015713177485958813,
+      "attn-T4097": 0.0016912095602077684,
+      "gdn-T4097": 0.002054022276242937
+    },
+    "note": "Numerical-only, zero timingfields; not a speed measurement."
+  },
+  "cold8k1": {
+    "arms": [
+      {
+        "arm": "v1",
+        "prefill_seconds": [
+          1.669656035,
+          1.671620656,
+          1.67486808
+        ],
+        "input_hashes": [
+          "1ae5be657c2aeb70a73cd29fb1f2a1092033f30d82d308805c8f01ba8c901f2a",
+          "f4c5e445e87919bbc62fb3d881ba28c4e5b686766f116553a78d8d3acc0ee962",
+          "30c53e53080cd74f1aa0c38b2ccf08dd620e5a12b3f301b5bce2c3dedae0a84d"
+        ],
+        "first_output_texts": [
+          " ",
+          "\n",
+          "agem"
+        ],
+        "binary_sha256": "bd28d7388a6093259af6f0332aff6b46e5637ce708bc4d6cf1b8d94cb0d36481"
+      },
+      {
+        "arm": "v2",
+        "prefill_seconds": [
+          1.5707821030000002,
+          1.5740613079999999,
+          1.5736002
+        ],
+        "input_hashes": [
+          "1ae5be657c2aeb70a73cd29fb1f2a1092033f30d82d308805c8f01ba8c901f2a",
+          "f4c5e445e87919bbc62fb3d881ba28c4e5b686766f116553a78d8d3acc0ee962",
+          "30c53e53080cd74f1aa0c38b2ccf08dd620e5a12b3f301b5bce2c3dedae0a84d"
+        ],
+        "first_output_texts": [
+          " ",
+          "\n",
+          "agem"
+        ],
+        "binary_sha256": "6937c71e9995c1d3636cb402e08675018db83a5b18ede58de92c3232f716eb99"
+      }
+    ],
+    "same_actual_input": true,
+    "same_first_output_texts": true,
+    "mean_speedup": 1.0630930841911466
+  },
+  "pilots": [
+    {
+      "C": 5,
+      "arms": [
+        {
+          "run": "grouped-v2-baseline-c5-pilot-001",
+          "C": 5,
+          "requests": 16,
+          "warmup": 4,
+          "all8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 7702.62120525,
+          "tpot_p95_ms": 41.65151754011742,
+          "output_tok_s": 150.61556431383627,
+          "joint_slo": false,
+          "later_after_first_C_violations": 0,
+          "profile_sha256": "c941320aa38a50190c36e41705703cf5bff7e7781800b406c29b036c3b666996"
+        },
+        {
+          "run": "grouped-v2-c5c6-pilot-001",
+          "C": 5,
+          "requests": 16,
+          "warmup": 4,
+          "all8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 7281.570498499999,
+          "tpot_p95_ms": 35.14756826712328,
+          "output_tok_s": 155.40571998734546,
+          "joint_slo": true,
+          "later_after_first_C_violations": 0,
+          "profile_sha256": "9202abb8a6627c581df58e14919e7ef6b6990755dabced8a8256359a5ea1db2e"
+        }
+      ],
+      "actual_phase_payloads_equal_except_only_cache_salt": true,
+      "throughput_relative_gain": 0.03180385569932187
+    },
+    {
+      "C": 6,
+      "arms": [
+        {
+          "run": "pipeline-c6c8-pilot-001",
+          "C": 6,
+          "requests": 16,
+          "warmup": 4,
+          "all8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 9642.027882249999,
+          "tpot_p95_ms": 48.79392331555773,
+          "output_tok_s": 158.8295816024563,
+          "joint_slo": false,
+          "later_after_first_C_violations": 0,
+          "profile_sha256": "f16aceea1277ddc87095e90315a58294a1159904610b5c3dd7be089d9a0e4c8e"
+        },
+        {
+          "run": "grouped-v2-c5c6-pilot-001",
+          "C": 6,
+          "requests": 16,
+          "warmup": 4,
+          "all8192_512": true,
+          "errors": 0,
+          "ttft_p95_ms": 9141.923397749999,
+          "tpot_p95_ms": 43.699560755381604,
+          "output_tok_s": 161.99005302495803,
+          "joint_slo": false,
+          "later_after_first_C_violations": 0,
+          "profile_sha256": "bda819786d2656266baba95c245f9d9291798f2ceb1e07f0b3c8df3fef948dff"
+        }
+      ],
+      "actual_phase_payloads_equal_except_only_cache_salt": true,
+      "throughput_relative_gain": 0.019898506251891046
+    }
+  ],
+  "conclusion": "Cold8K1 improves~6%elapsed, matchedC5/C6pilotthroughputgains modest. C5pilotjointpass, C6pilotfailsbutalllater10pass; normal100+8 withALLstartupretained isjustified, notstablecapacityproof. Fresh44validationonlyafterselectionpass; broaderqualitypending."
+}

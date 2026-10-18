@@ -1,0 +1,104 @@
+{
+  "status": "pass",
+  "cases": 8,
+  "method": "Compare each saved sampler first timestamp against independently saved time.time() epoch run start, testing UTC offsets-12h through+14h in15minute increments. Every case uniquely matches UTC within5seconds. Raw request epoch/GPU full-window boundary checks are separate.",
+  "limitation": "Historical clock alignment evidence, not a contemporaneous saved timezone environment for exited document samplers.",
+  "rows": [
+    {
+      "case": "results/framework-c4/vllm/document-performance/row01-c1-seed42",
+      "gpu_csv_sha256": "11b45951457891959e2f2e9c52be12e45b10ac0fdcbe1dea9e8f05934fb3e049",
+      "saved_started_unix": 1792156046.1849356,
+      "first_csv_timestamp": "2026/10/16 13:07:26.298",
+      "first_csv_interpreted_utc_unix": 1792156046.298,
+      "first_sample_minus_saved_start_seconds": 0.11306452751159668,
+      "first_request_unix": 1792156050.2831457,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/document-performance/row02-c2-seed43",
+      "gpu_csv_sha256": "0c00b755937b83e70404bf522927376d35d794d02f6825b9d331329f3cc0b727",
+      "saved_started_unix": 1792156460.4004862,
+      "first_csv_timestamp": "2026/10/16 13:14:20.480",
+      "first_csv_interpreted_utc_unix": 1792156460.48,
+      "first_sample_minus_saved_start_seconds": 0.0795137882232666,
+      "first_request_unix": 1792156464.3860476,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/document-performance/row03-c4-seed44",
+      "gpu_csv_sha256": "919c3319836493dc5caa030b865c256974fd44a1c6c0ba789e42613fd50f1118",
+      "saved_started_unix": 1792156806.3002696,
+      "first_csv_timestamp": "2026/10/16 13:20:06.390",
+      "first_csv_interpreted_utc_unix": 1792156806.39,
+      "first_sample_minus_saved_start_seconds": 0.08973050117492676,
+      "first_request_unix": 1792156810.2896914,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/document-performance/row04-c8-seed45",
+      "gpu_csv_sha256": "2b5d5395499f9e4b814f13518b97c63bc1e921e4723a6e971ab26b9400166942",
+      "saved_started_unix": 1792157099.221347,
+      "first_csv_timestamp": "2026/10/16 13:24:59.348",
+      "first_csv_interpreted_utc_unix": 1792157099.348,
+      "first_sample_minus_saved_start_seconds": 0.12665295600891113,
+      "first_request_unix": 1792157103.220216,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/document-performance/row05-c3-seed46",
+      "gpu_csv_sha256": "2bd6c58f37d9bbf6e1bb36c364636bdc37f03687f1794b9cba1cc9432f2b1a65",
+      "saved_started_unix": 1792157361.1724699,
+      "first_csv_timestamp": "2026/10/16 13:29:21.263",
+      "first_csv_interpreted_utc_unix": 1792157361.263,
+      "first_sample_minus_saved_start_seconds": 0.0905301570892334,
+      "first_request_unix": 1792157365.1541095,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/document-performance/row06-c2-seed47",
+      "gpu_csv_sha256": "7409ad2aa8cc061f428844368aa223cee8f6f237b3286cdc3d352ba9904936a8",
+      "saved_started_unix": 1792157641.1523955,
+      "first_csv_timestamp": "2026/10/16 13:34:01.245",
+      "first_csv_interpreted_utc_unix": 1792157641.245,
+      "first_sample_minus_saved_start_seconds": 0.09260439872741699,
+      "first_request_unix": 1792157645.2205477,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44",
+      "gpu_csv_sha256": "95b1e2a59b265a9e89b88aea7ab27375d514e206195d2c93d8c5cfe522384abc",
+      "saved_started_unix": 1792158992.9183714,
+      "first_csv_timestamp": "2026/10/16 13:56:33.022",
+      "first_csv_interpreted_utc_unix": 1792158993.022,
+      "first_sample_minus_saved_start_seconds": 0.10362863540649414,
+      "first_request_unix": 1792158996.9114683,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    },
+    {
+      "case": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45",
+      "gpu_csv_sha256": "3cd38516dd21089a3f87204d68c20bef0e8553936178d2c5adf39276f23fde22",
+      "saved_started_unix": 1792159286.0868416,
+      "first_csv_timestamp": "2026/10/16 14:01:26.197",
+      "first_csv_interpreted_utc_unix": 1792159286.197,
+      "first_sample_minus_saved_start_seconds": 0.11015844345092773,
+      "first_request_unix": 1792159290.064193,
+      "plausible_quarter_hour_offsets_minutes_matching_within5seconds": [
+        0
+      ]
+    }
+  ]
+}

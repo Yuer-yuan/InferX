@@ -1,0 +1,5812 @@
+{
+  "scope": "085 C16/K5 traceON diagnostic; measured cohort only; engine lifecycles, not exclusive GPU spans",
+  "selection": "First 8 measured requests sorted by engine admission time",
+  "identity": {
+    "binary": "/workspace/InferX/experiments/ucloud1-verify-w2-gate-085-build-r1/candidate/ninfer-serve",
+    "binary_sha256": "14d32144a2a4dbbbcc80cf5cfd93ad249ca00a0187164e57e2f203ae0616415c",
+    "source_sha256": "b2343da21e453acf981a90788e0505925feb761e1e1fbc5e5db24eaad48cbbb6"
+  },
+  "audit": {
+    "measured": 128,
+    "uniquely_joined": 128,
+    "clock_bridge_drift_ms": 0.0,
+    "match_tolerance_ms": 5,
+    "max_first_token_error_ms": 0.5224009999947157,
+    "max_finish_error_ms": 2.424994000000879
+  },
+  "origin_monotonic_ms": 481999184.272775,
+  "selected_ids": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "requests": [
+    {
+      "request_id": 11,
+      "conversation_id": "session_000009",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 481999184.272775,
+          "end_ms": 481999184.272895,
+          "request_id": 11,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482000077.026506,
+          "end_ms": 482000077.027026,
+          "request_id": 11,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 892.835874
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482033519.942557,
+          "end_ms": 482033519.942586,
+          "request_id": 11,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17585599999995338,
+        "request_finish": -0.33621499999571824
+      },
+      "times_s": {
+        "admission": 0.0,
+        "first_token": 0.8927537310123443,
+        "request_finish": 34.3356697819829
+      }
+    },
+    {
+      "request_id": 12,
+      "conversation_id": "session_000008",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482000077.059267,
+          "end_ms": 482000077.059298,
+          "request_id": 12,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482000978.616983,
+          "end_ms": 482000978.617483,
+          "request_id": 12,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 1793.965405
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018434.01887,
+          "end_ms": 482018434.01889,
+          "request_id": 12,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1901749999999538,
+        "request_finish": -0.6034580000014103
+      },
+      "times_s": {
+        "admission": 0.8927864919900894,
+        "first_token": 1.7943442080020904,
+        "request_finish": 19.249746095001697
+      }
+    },
+    {
+      "request_id": 13,
+      "conversation_id": "session_000011",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482000978.654664,
+          "end_ms": 482000978.654694,
+          "request_id": 13,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482001880.866948,
+          "end_ms": 482001880.867218,
+          "request_id": 13,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2695.480126
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018434.02827,
+          "end_ms": 482018434.0283,
+          "request_id": 13,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19634700000005978,
+        "request_finish": -0.27217499999824213
+      },
+      "times_s": {
+        "admission": 1.7943818889856338,
+        "first_token": 2.696594173014164,
+        "request_finish": 19.249755495011808
+      }
+    },
+    {
+      "request_id": 14,
+      "conversation_id": "session_000010",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482001880.90233,
+          "end_ms": 482001880.902359,
+          "request_id": 14,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482002783.259906,
+          "end_ms": 482002783.259956,
+          "request_id": 14,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3597.065576
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018543.965241,
+          "end_ms": 482018543.965271,
+          "request_id": 14,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15872099999933198,
+        "request_finish": -0.6253219999998691
+      },
+      "times_s": {
+        "admission": 2.696629554986954,
+        "first_token": 3.598987130999565,
+        "request_finish": 19.359692466020583
+      }
+    },
+    {
+      "request_id": 15,
+      "conversation_id": "session_000013",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482002783.290777,
+          "end_ms": 482002783.290807,
+          "request_id": 15,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482003685.201935,
+          "end_ms": 482003685.201985,
+          "request_id": 15,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4498.84587
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018543.979172,
+          "end_ms": 482018543.979202,
+          "request_id": 15,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15421400000013818,
+        "request_finish": -0.598850999998831
+      },
+      "times_s": {
+        "admission": 3.5990180020332336,
+        "first_token": 4.500929159998893,
+        "request_finish": 19.359706396996977
+      }
+    },
+    {
+      "request_id": 16,
+      "conversation_id": "session_000012",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482003685.228366,
+          "end_ms": 482003685.228396,
+          "request_id": 16,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482004587.156702,
+          "end_ms": 482004587.156732,
+          "request_id": 16,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5400.655582
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018790.125573,
+          "end_ms": 482018790.125602,
+          "request_id": 16,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19750699999895005,
+        "request_finish": -0.5040650000009919
+      },
+      "times_s": {
+        "admission": 4.500955591022969,
+        "first_token": 5.402883926987648,
+        "request_finish": 19.605852797985076
+      }
+    },
+    {
+      "request_id": 17,
+      "conversation_id": "session_000015",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482004587.189323,
+          "end_ms": 482004587.189353,
+          "request_id": 17,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482005489.846861,
+          "end_ms": 482005489.846901,
+          "request_id": 17,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6302.72158
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482029834.944237,
+          "end_ms": 482029834.944257,
+          "request_id": 17,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.18351699999948323,
+        "request_finish": -0.4169980000006035
+      },
+      "times_s": {
+        "admission": 5.402916548013687,
+        "first_token": 6.305574086010456,
+        "request_finish": 30.650671461999416
+      }
+    },
+    {
+      "request_id": 18,
+      "conversation_id": "session_000014",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482005489.873611,
+          "end_ms": 482005489.873642,
+          "request_id": 18,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482006392.696702,
+          "end_ms": 482006392.696842,
+          "request_id": 18,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7205.024683
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018751.433469,
+          "end_ms": 482018751.433499,
+          "request_id": 18,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16339500000049156,
+        "request_finish": -0.36516300000221236
+      },
+      "times_s": {
+        "admission": 6.305600835978985,
+        "first_token": 7.208423927009106,
+        "request_finish": 19.567160694003107
+      }
+    },
+    {
+      "request_id": 19,
+      "conversation_id": "session_000021",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482006392.723203,
+          "end_ms": 482006392.723233,
+          "request_id": 19,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482007296.879575,
+          "end_ms": 482007296.879645,
+          "request_id": 19,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8104.543118
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018375.583591,
+          "end_ms": 482018375.583611,
+          "request_id": 19,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.10976599999958125,
+        "request_finish": -0.4714220000023488
+      },
+      "times_s": {
+        "admission": 7.208450428009034,
+        "first_token": 8.11260680001974,
+        "request_finish": 19.191310815989972
+      }
+    },
+    {
+      "request_id": 20,
+      "conversation_id": "session_000023",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482007296.908826,
+          "end_ms": 482007296.908856,
+          "request_id": 20,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482008201.395302,
+          "end_ms": 482008201.395452,
+          "request_id": 20,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9008.954932
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482030565.442194,
+          "end_ms": 482030565.442214,
+          "request_id": 20,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1266909999994823,
+        "request_finish": -0.440429000002041
+      },
+      "times_s": {
+        "admission": 8.112636050999164,
+        "first_token": 9.017122527003288,
+        "request_finish": 31.381169418990613
+      }
+    },
+    {
+      "request_id": 21,
+      "conversation_id": "session_000019",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482008201.421633,
+          "end_ms": 482008201.421663,
+          "request_id": 21,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482009105.953027,
+          "end_ms": 482009105.953067,
+          "request_id": 21,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9913.31323
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018543.940471,
+          "end_ms": 482018543.9405,
+          "request_id": 21,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15773199999784993,
+        "request_finish": -1.7695700000003853
+      },
+      "times_s": {
+        "admission": 9.017148858010769,
+        "first_token": 9.921680252015591,
+        "request_finish": 19.359667695999146
+      }
+    },
+    {
+      "request_id": 22,
+      "conversation_id": "session_000017",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482009105.980308,
+          "end_ms": 482009105.980338,
+          "request_id": 22,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482010010.398825,
+          "end_ms": 482010010.399005,
+          "request_id": 22,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 10817.53912
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018375.605102,
+          "end_ms": 482018375.605132,
+          "request_id": 22,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14247400000022026,
+        "request_finish": -1.3058960000016668
+      },
+      "times_s": {
+        "admission": 9.9217075330019,
+        "first_token": 10.826126049995421,
+        "request_finish": 19.191332327008247
+      }
+    },
+    {
+      "request_id": 23,
+      "conversation_id": "session_000018",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482010010.456047,
+          "end_ms": 482010010.456077,
+          "request_id": 23,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482010915.71307,
+          "end_ms": 482010915.71312,
+          "request_id": 23,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 11722.280036
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018628.833554,
+          "end_ms": 482018628.833584,
+          "request_id": 23,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12972400000035123,
+        "request_finish": -0.34611299999960465
+      },
+      "times_s": {
+        "admission": 10.826183272004128,
+        "first_token": 11.731440294981002,
+        "request_finish": 19.44456077903509
+      }
+    },
+    {
+      "request_id": 24,
+      "conversation_id": "session_000016",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482010915.738521,
+          "end_ms": 482010915.738551,
+          "request_id": 24,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482011820.934239,
+          "end_ms": 482011820.934289,
+          "request_id": 24,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 12626.862274
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018489.201892,
+          "end_ms": 482018489.201922,
+          "request_id": 24,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15936499999952503,
+        "request_finish": -0.5040340000014112
+      },
+      "times_s": {
+        "admission": 11.731465745985508,
+        "first_token": 12.636661463975907,
+        "request_finish": 19.304929117023946
+      }
+    },
+    {
+      "request_id": 25,
+      "conversation_id": "session_000020",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482011820.96191,
+          "end_ms": 482011820.96194,
+          "request_id": 25,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482012726.057442,
+          "end_ms": 482012726.057492,
+          "request_id": 25,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 13531.614874
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482030007.041192,
+          "end_ms": 482030007.041222,
+          "request_id": 25,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.29140300000108255,
+        "request_finish": -0.4467799999983981
+      },
+      "times_s": {
+        "admission": 12.636689135015011,
+        "first_token": 13.541784667015076,
+        "request_finish": 30.82276841700077
+      }
+    },
+    {
+      "request_id": 26,
+      "conversation_id": "session_000022",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482012726.082553,
+          "end_ms": 482012726.082583,
+          "request_id": 26,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482013630.923475,
+          "end_ms": 482013630.923515,
+          "request_id": 26,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 14436.351252
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482018375.657393,
+          "end_ms": 482018375.657413,
+          "request_id": 26,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1342929999991611,
+        "request_finish": -0.457059999997
+      },
+      "times_s": {
+        "admission": 13.541809778034686,
+        "first_token": 14.446650700032711,
+        "request_finish": 19.191384617984294
+      }
+    },
+    {
+      "request_id": 27,
+      "conversation_id": "session_000024",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482018790.152443,
+          "end_ms": 482018790.152483,
+          "request_id": 27,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482019692.359264,
+          "end_ms": 482019692.359314,
+          "request_id": 27,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 1312.569886
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482036857.871525,
+          "end_ms": 482036857.871555,
+          "request_id": 27,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1811359999992419,
+        "request_finish": -0.6255640000017593
+      },
+      "times_s": {
+        "admission": 19.60587966799736,
+        "first_token": 20.508086489021778,
+        "request_finish": 37.67359874999523
+      }
+    },
+    {
+      "request_id": 28,
+      "conversation_id": "session_000025",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482019692.388605,
+          "end_ms": 482019692.388635,
+          "request_id": 28,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482020599.145962,
+          "end_ms": 482020599.146122,
+          "request_id": 28,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2218.768404
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482036333.467504,
+          "end_ms": 482036333.467534,
+          "request_id": 28,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1276159999979427,
+        "request_finish": -0.8070220000008703
+      },
+      "times_s": {
+        "admission": 20.508115830004215,
+        "first_token": 21.41487318700552,
+        "request_finish": 37.149194729030135
+      }
+    },
+    {
+      "request_id": 29,
+      "conversation_id": "session_000026",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482020599.179313,
+          "end_ms": 482020599.179343,
+          "request_id": 29,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482021506.821756,
+          "end_ms": 482021506.822287,
+          "request_id": 29,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3125.671583
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482036333.482345,
+          "end_ms": 482036333.482365,
+          "request_id": 29,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.45853300000089803,
+        "request_finish": -1.547367999999551
+      },
+      "times_s": {
+        "admission": 21.414906538009642,
+        "first_token": 22.322548981010915,
+        "request_finish": 37.14920956999063
+      }
+    },
+    {
+      "request_id": 30,
+      "conversation_id": "session_000027",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482021506.850887,
+          "end_ms": 482021506.850917,
+          "request_id": 30,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482022414.765158,
+          "end_ms": 482022414.765188,
+          "request_id": 30,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3977.818793
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482037440.666522,
+          "end_ms": 482037440.666542,
+          "request_id": 30,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.18663200000082725,
+        "request_finish": -0.27988100000220584
+      },
+      "times_s": {
+        "admission": 22.322578112006187,
+        "first_token": 23.230492383003234,
+        "request_finish": 38.25639374703169
+      }
+    },
+    {
+      "request_id": 31,
+      "conversation_id": "session_000028",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482022414.793059,
+          "end_ms": 482022414.793089,
+          "request_id": 31,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482023322.103598,
+          "end_ms": 482023322.103848,
+          "request_id": 31,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4884.203741
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482036333.495925,
+          "end_ms": 482036333.495955,
+          "request_id": 31,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19945699999880162,
+        "request_finish": -1.698355000000447
+      },
+      "times_s": {
+        "admission": 23.23052028399706,
+        "first_token": 24.137830823004247,
+        "request_finish": 37.149223150014876
+      }
+    },
+    {
+      "request_id": 32,
+      "conversation_id": "session_000029",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482023322.133239,
+          "end_ms": 482023322.133279,
+          "request_id": 32,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482024229.771925,
+          "end_ms": 482024229.771965,
+          "request_id": 32,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5737.064198
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482050585.876826,
+          "end_ms": 482050585.876846,
+          "request_id": 32,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13692099999752827,
+        "request_finish": -0.4506780000010622
+      },
+      "times_s": {
+        "admission": 24.13786046397686,
+        "first_token": 25.04549914997816,
+        "request_finish": 51.40160405099392
+      }
+    },
+    {
+      "request_id": 33,
+      "conversation_id": "session_000031",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482024229.805866,
+          "end_ms": 482024229.805896,
+          "request_id": 33,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482025136.619971,
+          "end_ms": 482025136.620131,
+          "request_id": 33,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6588.315938
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482036333.509846,
+          "end_ms": 482036333.509876,
+          "request_id": 33,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11889599999994971,
+        "request_finish": -0.2617099999988568
+      },
+      "times_s": {
+        "admission": 25.045533091008664,
+        "first_token": 25.952347195982934,
+        "request_finish": 37.14923707097769
+      }
+    },
+    {
+      "request_id": 34,
+      "conversation_id": "session_000030",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482025136.646881,
+          "end_ms": 482025136.646912,
+          "request_id": 34,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482026044.028293,
+          "end_ms": 482026044.028343,
+          "request_id": 34,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7495.367798
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482037530.873191,
+          "end_ms": 482037530.873221,
+          "request_id": 34,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13988600000084261,
+        "request_finish": -0.3022969999947236
+      },
+      "times_s": {
+        "admission": 25.952374105989932,
+        "first_token": 26.8597555180192,
+        "request_finish": 38.346600416004655
+      }
+    },
+    {
+      "request_id": 35,
+      "conversation_id": "session_000032",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482026044.063844,
+          "end_ms": 482026044.063884,
+          "request_id": 35,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482026951.661662,
+          "end_ms": 482026951.661692,
+          "request_id": 35,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8402.094708
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482048065.978776,
+          "end_ms": 482048065.978806,
+          "request_id": 35,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12576200000330573,
+        "request_finish": -0.6856709999992745
+      },
+      "times_s": {
+        "admission": 26.859791069030763,
+        "first_token": 27.76738888698816,
+        "request_finish": 48.88170600098371
+      }
+    },
+    {
+      "request_id": 36,
+      "conversation_id": "session_000033",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482026951.688953,
+          "end_ms": 482026951.688983,
+          "request_id": 36,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482027860.193207,
+          "end_ms": 482027860.193247,
+          "request_id": 36,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9227.961772
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482037490.339486,
+          "end_ms": 482037490.339517,
+          "request_id": 36,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12789600000178325,
+        "request_finish": -1.240615999995498
+      },
+      "times_s": {
+        "admission": 27.767416177988054,
+        "first_token": 28.675920432031155,
+        "request_finish": 38.30606671100855
+      }
+    },
+    {
+      "request_id": 37,
+      "conversation_id": "session_000034",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482027860.225619,
+          "end_ms": 482027860.225648,
+          "request_id": 37,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482028768.160054,
+          "end_ms": 482028768.160314,
+          "request_id": 37,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 10013.279202
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482037490.348717,
+          "end_ms": 482037490.348747,
+          "request_id": 37,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19353400000181864,
+        "request_finish": -0.39814299999852665
+      },
+      "times_s": {
+        "admission": 28.675952844023705,
+        "first_token": 29.58388727903366,
+        "request_finish": 38.306075941979884
+      }
+    },
+    {
+      "request_id": 38,
+      "conversation_id": "session_000035",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482028768.189124,
+          "end_ms": 482028768.189155,
+          "request_id": 38,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482029676.593953,
+          "end_ms": 482029676.594223,
+          "request_id": 38,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 10882.833062
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482037490.357617,
+          "end_ms": 482037490.357637,
+          "request_id": 38,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16186299999753828,
+        "request_finish": -2.424994000000879
+      },
+      "times_s": {
+        "admission": 29.583916348993778,
+        "first_token": 30.492321178019047,
+        "request_finish": 38.30608484202623
+      }
+    },
+    {
+      "request_id": 39,
+      "conversation_id": "session_000036",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482033576.592614,
+          "end_ms": 482033576.592644,
+          "request_id": 39,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482034480.483399,
+          "end_ms": 482034480.483439,
+          "request_id": 39,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4642.029459
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482051485.195521,
+          "end_ms": 482051485.195551,
+          "request_id": 39,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1285900000075344,
+        "request_finish": -0.46617999999580206
+      },
+      "times_s": {
+        "admission": 34.3923198390007,
+        "first_token": 35.29621062397957,
+        "request_finish": 52.300922746002676
+      }
+    },
+    {
+      "request_id": 40,
+      "conversation_id": "session_000037",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482034480.537351,
+          "end_ms": 482034480.537381,
+          "request_id": 40,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482035771.747414,
+          "end_ms": 482035771.747464,
+          "request_id": 40,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5761.111787
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482051978.894933,
+          "end_ms": 482051978.894953,
+          "request_id": 40,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16517499999463325,
+        "request_finish": -0.3958710000006249
+      },
+      "times_s": {
+        "admission": 35.296264576017855,
+        "first_token": 36.58747463899851,
+        "request_finish": 52.79462215799093
+      }
+    },
+    {
+      "request_id": 41,
+      "conversation_id": "session_000038",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482036384.0444,
+          "end_ms": 482036384.04443,
+          "request_id": 41,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482037390.119109,
+          "end_ms": 482037390.119139,
+          "request_id": 41,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6821.004717
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482053312.732788,
+          "end_ms": 482053312.732818,
+          "request_id": 41,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13367999999900348,
+        "request_finish": -0.3800019999980577
+      },
+      "times_s": {
+        "admission": 37.199771624982354,
+        "first_token": 38.20584633398056,
+        "request_finish": 54.12846001303196
+      }
+    },
+    {
+      "request_id": 42,
+      "conversation_id": "session_000039",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482037530.907083,
+          "end_ms": 482037530.907112,
+          "request_id": 42,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482038435.615636,
+          "end_ms": 482038435.615876,
+          "request_id": 42,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4911.399943
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482053366.831611,
+          "end_ms": 482053366.831661,
+          "request_id": 42,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15002000000094995,
+        "request_finish": -0.3377489999984391
+      },
+      "times_s": {
+        "admission": 38.34663430798054,
+        "first_token": 39.25134286099672,
+        "request_finish": 54.18255883598328
+      }
+    },
+    {
+      "request_id": 43,
+      "conversation_id": "session_000041",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482038435.651647,
+          "end_ms": 482038435.651677,
+          "request_id": 43,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482039345.570334,
+          "end_ms": 482039345.570384,
+          "request_id": 43,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3007.239535
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482053366.846031,
+          "end_ms": 482053366.846061,
+          "request_id": 43,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13797799999883864,
+        "request_finish": -0.29522200000064913
+      },
+      "times_s": {
+        "admission": 39.25137887197733,
+        "first_token": 40.161297559022906,
+        "request_finish": 54.18257325601578
+      }
+    },
+    {
+      "request_id": 44,
+      "conversation_id": "session_000040",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482039345.595055,
+          "end_ms": 482039345.595085,
+          "request_id": 44,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482040255.226651,
+          "end_ms": 482040255.226681,
+          "request_id": 44,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3916.675346
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482057618.854896,
+          "end_ms": 482057618.854916,
+          "request_id": 44,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15318600000318838,
+        "request_finish": -0.3231579999992391
+      },
+      "times_s": {
+        "admission": 40.16132227998972,
+        "first_token": 41.07095387601852,
+        "request_finish": 58.43458212101459
+      }
+    },
+    {
+      "request_id": 45,
+      "conversation_id": "session_000043",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482040255.256552,
+          "end_ms": 482040255.256582,
+          "request_id": 45,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482041165.3568,
+          "end_ms": 482041165.35694,
+          "request_id": 45,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4826.494534
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482056630.55962,
+          "end_ms": 482056630.55965,
+          "request_id": 45,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.22656999999890104,
+        "request_finish": -0.43660300000192365
+      },
+      "times_s": {
+        "admission": 41.0709837769866,
+        "first_token": 41.98108402502537,
+        "request_finish": 57.4462868450284
+      }
+    },
+    {
+      "request_id": 46,
+      "conversation_id": "session_000042",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482041165.38519,
+          "end_ms": 482041165.38522,
+          "request_id": 46,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482042074.775125,
+          "end_ms": 482042074.775155,
+          "request_id": 46,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5735.450704
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482057314.853515,
+          "end_ms": 482057314.853575,
+          "request_id": 46,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.115881999998237,
+        "request_finish": -0.8175429999973858
+      },
+      "times_s": {
+        "admission": 41.981112415015694,
+        "first_token": 42.89050235003233,
+        "request_finish": 58.13058074003458
+      }
+    },
+    {
+      "request_id": 47,
+      "conversation_id": "session_000044",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482042074.803816,
+          "end_ms": 482042074.803846,
+          "request_id": 47,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482042984.362795,
+          "end_ms": 482042984.362845,
+          "request_id": 47,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6122.70353
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482057214.478139,
+          "end_ms": 482057214.478159,
+          "request_id": 47,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11331000000063796,
+        "request_finish": -0.40345499999966705
+      },
+      "times_s": {
+        "admission": 42.890531041026115,
+        "first_token": 43.80009002000094,
+        "request_finish": 58.03020536398888
+      }
+    },
+    {
+      "request_id": 48,
+      "conversation_id": "session_000045",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482042984.423507,
+          "end_ms": 482042984.423537,
+          "request_id": 48,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482043893.749808,
+          "end_ms": 482043893.749858,
+          "request_id": 48,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6449.220223
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482060030.758121,
+          "end_ms": 482060030.758151,
+          "request_id": 48,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16406699999788543,
+        "request_finish": -0.3351309999998193
+      },
+      "times_s": {
+        "admission": 43.8001507319808,
+        "first_token": 44.70947703301906,
+        "request_finish": 60.84648534601927
+      }
+    },
+    {
+      "request_id": 49,
+      "conversation_id": "session_000046",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482043893.777589,
+          "end_ms": 482043893.777629,
+          "request_id": 49,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482044802.886483,
+          "end_ms": 482044802.886513,
+          "request_id": 49,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7306.863037
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482056630.590751,
+          "end_ms": 482056630.590781,
+          "request_id": 49,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1674429999984568,
+        "request_finish": -1.2396029999945313
+      },
+      "times_s": {
+        "admission": 44.70950481402874,
+        "first_token": 45.618613708019254,
+        "request_finish": 57.44631797599793
+      }
+    },
+    {
+      "request_id": 50,
+      "conversation_id": "session_000047",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482044802.912004,
+          "end_ms": 482044802.912044,
+          "request_id": 50,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482045713.143694,
+          "end_ms": 482045713.144134,
+          "request_id": 50,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8216.416064
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482070166.325968,
+          "end_ms": 482070166.325998,
+          "request_id": 50,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15931399999681162,
+        "request_finish": -0.3426959999924293
+      },
+      "times_s": {
+        "admission": 45.61863922899961,
+        "first_token": 46.528870918989185,
+        "request_finish": 70.98205319303274
+      }
+    },
+    {
+      "request_id": 51,
+      "conversation_id": "session_000048",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482045713.175004,
+          "end_ms": 482045713.175044,
+          "request_id": 51,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482046623.197297,
+          "end_ms": 482046623.197347,
+          "request_id": 51,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9125.627252
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482053366.914613,
+          "end_ms": 482053366.914643,
+          "request_id": 51,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13816100000258302,
+        "request_finish": -0.6305670000001555
+      },
+      "times_s": {
+        "admission": 46.52890222901106,
+        "first_token": 47.43892452198267,
+        "request_finish": 54.18264183801413
+      }
+    },
+    {
+      "request_id": 52,
+      "conversation_id": "session_000049",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482046623.223268,
+          "end_ms": 482046623.223298,
+          "request_id": 52,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482047533.485417,
+          "end_ms": 482047533.485568,
+          "request_id": 52,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9998.9663
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482062683.019826,
+          "end_ms": 482062683.019846,
+          "request_id": 52,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1343940000006114,
+        "request_finish": -0.29683299999305746
+      },
+      "times_s": {
+        "admission": 47.438950492978094,
+        "first_token": 48.349212642014024,
+        "request_finish": 63.49874705100059
+      }
+    },
+    {
+      "request_id": 53,
+      "conversation_id": "session_000050",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482051978.999226,
+          "end_ms": 482051978.999256,
+          "request_id": 53,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482053257.777688,
+          "end_ms": 482053257.777718,
+          "request_id": 53,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5187.789707
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482069032.634779,
+          "end_ms": 482069032.634809,
+          "request_id": 53,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13897399999405025,
+        "request_finish": -0.46858800000336487
+      },
+      "times_s": {
+        "admission": 52.79472645097971,
+        "first_token": 54.07350491303205,
+        "request_finish": 69.84836200398206
+      }
+    },
+    {
+      "request_id": 54,
+      "conversation_id": "session_000051",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482053366.950505,
+          "end_ms": 482053366.950534,
+          "request_id": 54,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482054275.36532,
+          "end_ms": 482054275.36537,
+          "request_id": 54,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3685.942283
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482070062.481927,
+          "end_ms": 482070062.481956,
+          "request_id": 54,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14009200000145938,
+        "request_finish": -0.3810620000003837
+      },
+      "times_s": {
+        "admission": 54.18267773002386,
+        "first_token": 55.0910925450325,
+        "request_finish": 70.87820915198326
+      }
+    },
+    {
+      "request_id": 55,
+      "conversation_id": "session_000052",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482054275.401371,
+          "end_ms": 482054275.401401,
+          "request_id": 55,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482055185.315749,
+          "end_ms": 482055185.315799,
+          "request_id": 55,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3696.269018
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482080852.169185,
+          "end_ms": 482080852.169205,
+          "request_id": 55,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14562700000533368,
+        "request_finish": -0.613190999996732
+      },
+      "times_s": {
+        "admission": 55.09112859600783,
+        "first_token": 56.00104297399521,
+        "request_finish": 81.6678964099884
+      }
+    },
+    {
+      "request_id": 56,
+      "conversation_id": "session_000053",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482055185.34217,
+          "end_ms": 482055185.3422,
+          "request_id": 56,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482056095.785035,
+          "end_ms": 482056095.785065,
+          "request_id": 56,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4113.611611
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482069790.250207,
+          "end_ms": 482069790.250237,
+          "request_id": 56,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1437630000000354,
+        "request_finish": -0.5505180000036489
+      },
+      "times_s": {
+        "admission": 56.0010693950057,
+        "first_token": 56.91151226001978,
+        "request_finish": 70.60597743201255
+      }
+    },
+    {
+      "request_id": 57,
+      "conversation_id": "session_000054",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482056095.809066,
+          "end_ms": 482056095.809096,
+          "request_id": 57,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482057110.788208,
+          "end_ms": 482057110.788268,
+          "request_id": 57,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3794.244481
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482070116.021031,
+          "end_ms": 482070116.021071,
+          "request_id": 57,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13236000000324566,
+        "request_finish": -0.3106919999991078
+      },
+      "times_s": {
+        "admission": 56.91153629100323,
+        "first_token": 57.92651543301344,
+        "request_finish": 70.9317482560277
+      }
+    },
+    {
+      "request_id": 58,
+      "conversation_id": "session_000055",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482057314.920408,
+          "end_ms": 482057314.920437,
+          "request_id": 58,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482058318.792459,
+          "end_ms": 482058318.792709,
+          "request_id": 58,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4948.026077
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482070116.037732,
+          "end_ms": 482070116.037752,
+          "request_id": 58,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.18097100000159116,
+        "request_finish": -0.2715719999978319
+      },
+      "times_s": {
+        "admission": 58.13064763301611,
+        "first_token": 59.1345196840167,
+        "request_finish": 70.93176495701074
+      }
+    },
+    {
+      "request_id": 59,
+      "conversation_id": "session_000056",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482058318.82297,
+          "end_ms": 482058318.823,
+          "request_id": 59,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482059422.696316,
+          "end_ms": 482059422.696576,
+          "request_id": 59,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6051.790099
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482070567.029769,
+          "end_ms": 482070567.029798,
+          "request_id": 59,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.09700200000224868,
+        "request_finish": -0.35155399999348447
+      },
+      "times_s": {
+        "admission": 59.134550194978715,
+        "first_token": 60.238423541009425,
+        "request_finish": 71.38275699400901
+      }
+    },
+    {
+      "request_id": 60,
+      "conversation_id": "session_000057",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482059572.836025,
+          "end_ms": 482059572.836065,
+          "request_id": 60,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482061171.513748,
+          "end_ms": 482061171.513798,
+          "request_id": 60,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7800.027173
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482072184.380514,
+          "end_ms": 482072184.380544,
+          "request_id": 60,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11304000000382075,
+        "request_finish": -0.6860520000045653
+      },
+      "times_s": {
+        "admission": 60.38856325000525,
+        "first_token": 61.98724097299576,
+        "request_finish": 73.00010773903132
+      }
+    },
+    {
+      "request_id": 61,
+      "conversation_id": "session_000058",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482061472.7122,
+          "end_ms": 482061472.71223,
+          "request_id": 61,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482062981.746033,
+          "end_ms": 482062981.746083,
+          "request_id": 61,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6346.603432
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482085327.713843,
+          "end_ms": 482085327.713894,
+          "request_id": 61,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12110099998972146,
+        "request_finish": -0.2856840000022203
+      },
+      "times_s": {
+        "admission": 62.28843942499161,
+        "first_token": 63.79747325801849,
+        "request_finish": 86.14344106799363
+      }
+    },
+    {
+      "request_id": 62,
+      "conversation_id": "session_000059",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482063181.984787,
+          "end_ms": 482063181.984818,
+          "request_id": 62,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482064639.49771,
+          "end_ms": 482064639.49776,
+          "request_id": 62,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8003.246355
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482075028.10071,
+          "end_ms": 482075028.10073,
+          "request_id": 62,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15715100000670645,
+        "request_finish": -0.2705040000000736
+      },
+      "times_s": {
+        "admission": 63.99771201199293,
+        "first_token": 65.45522493499517,
+        "request_finish": 75.8438279349804
+      }
+    },
+    {
+      "request_id": 63,
+      "conversation_id": "session_000060",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482064639.525811,
+          "end_ms": 482064639.525841,
+          "request_id": 63,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482065552.503214,
+          "end_ms": 482065552.503265,
+          "request_id": 63,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8334.697793
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482075070.394526,
+          "end_ms": 482075070.394556,
+          "request_id": 63,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1342269999877317,
+        "request_finish": -0.2894339999911608
+      },
+      "times_s": {
+        "admission": 65.45525303602219,
+        "first_token": 66.36823043900728,
+        "request_finish": 75.88612175101042
+      }
+    },
+    {
+      "request_id": 64,
+      "conversation_id": "session_000061",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482065552.529795,
+          "end_ms": 482065552.529825,
+          "request_id": 64,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482066464.746357,
+          "end_ms": 482066464.746387,
+          "request_id": 64,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9145.593639
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482074648.964065,
+          "end_ms": 482074648.964095,
+          "request_id": 64,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15319599999929778,
+        "request_finish": -0.36317399999825284
+      },
+      "times_s": {
+        "admission": 66.36825701999665,
+        "first_token": 67.28047358202934,
+        "request_finish": 75.46469129002094
+      }
+    },
+    {
+      "request_id": 65,
+      "conversation_id": "session_000062",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482066464.772688,
+          "end_ms": 482066464.772718,
+          "request_id": 65,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482067376.359872,
+          "end_ms": 482067376.359912,
+          "request_id": 65,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9754.170344
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482087801.476746,
+          "end_ms": 482087801.476766,
+          "request_id": 65,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1734849999920698,
+        "request_finish": -0.40667799999937415
+      },
+      "times_s": {
+        "admission": 67.28049991297722,
+        "first_token": 68.19208709698916,
+        "request_finish": 88.61720397102833
+      }
+    },
+    {
+      "request_id": 66,
+      "conversation_id": "session_000063",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482068770.400319,
+          "end_ms": 482068770.400348,
+          "request_id": 66,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482069734.213857,
+          "end_ms": 482069734.213897,
+          "request_id": 66,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9699.777724
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482085496.070896,
+          "end_ms": 482085496.070916,
+          "request_id": 66,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15265800000634044,
+        "request_finish": -0.5847159999975702
+      },
+      "times_s": {
+        "admission": 69.58612754398584,
+        "first_token": 70.54994108200073,
+        "request_finish": 86.3117981210351
+      }
+    },
+    {
+      "request_id": 67,
+      "conversation_id": "session_000064",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482070166.37807,
+          "end_ms": 482070166.3781,
+          "request_id": 67,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482071309.491982,
+          "end_ms": 482071309.492142,
+          "request_id": 67,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8622.209805
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482085932.696121,
+          "end_ms": 482085932.696152,
+          "request_id": 67,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17770300000847783,
+        "request_finish": -0.43139399999927264
+      },
+      "times_s": {
+        "admission": 70.98210529500246,
+        "first_token": 72.12521920698882,
+        "request_finish": 86.74842334598303
+      }
+    },
+    {
+      "request_id": 68,
+      "conversation_id": "session_000065",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482073003.431423,
+          "end_ms": 482073003.431453,
+          "request_id": 68,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482074600.213436,
+          "end_ms": 482074600.213486,
+          "request_id": 68,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5564.03259
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482089244.035071,
+          "end_ms": 482089244.035101,
+          "request_id": 68,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12765999999828637,
+        "request_finish": -0.3341130000044359
+      },
+      "times_s": {
+        "admission": 73.81915864801407,
+        "first_token": 75.41594066101312,
+        "request_finish": 90.05976229602098
+      }
+    },
+    {
+      "request_id": 69,
+      "conversation_id": "session_000066",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482074691.90133,
+          "end_ms": 482074691.90136,
+          "request_id": 69,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482075811.102255,
+          "end_ms": 482075811.102295,
+          "request_id": 69,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6016.710092
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482090471.552785,
+          "end_ms": 482090471.552814,
+          "request_id": 69,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14339599998493213,
+        "request_finish": -1.6140169999998761
+      },
+      "times_s": {
+        "admission": 75.50762855499983,
+        "first_token": 76.6268294799924,
+        "request_finish": 91.28728000998497
+      }
+    },
+    {
+      "request_id": 70,
+      "conversation_id": "session_000067",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482075811.131076,
+          "end_ms": 482075811.131106,
+          "request_id": 70,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482076725.630408,
+          "end_ms": 482076725.630448,
+          "request_id": 70,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6659.700898
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482090471.568365,
+          "end_ms": 482090471.568395,
+          "request_id": 70,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11572100000921637,
+        "request_finish": -0.5665010000084294
+      },
+      "times_s": {
+        "admission": 76.62685830098391,
+        "first_token": 77.54135763299465,
+        "request_finish": 91.28729558998346
+      }
+    },
+    {
+      "request_id": 71,
+      "conversation_id": "session_000068",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482076725.657689,
+          "end_ms": 482076725.657719,
+          "request_id": 71,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482077638.554365,
+          "end_ms": 482077638.554485,
+          "request_id": 71,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7518.037628
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482106533.637475,
+          "end_ms": 482106533.637504,
+          "request_id": 71,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15913600000203587,
+        "request_finish": -0.3966540000110399
+      },
+      "times_s": {
+        "admission": 77.54138491398096,
+        "first_token": 78.45428158998489,
+        "request_finish": 107.34936470001936
+      }
+    },
+    {
+      "request_id": 72,
+      "conversation_id": "session_000069",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482077638.583996,
+          "end_ms": 482077638.584026,
+          "request_id": 72,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482078551.142924,
+          "end_ms": 482078551.142974,
+          "request_id": 72,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8429.899995
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482089920.811451,
+          "end_ms": 482089920.81148,
+          "request_id": 72,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.5224009999947157,
+        "request_finish": -0.30258299999695737
+      },
+      "times_s": {
+        "admission": 78.45431122100354,
+        "first_token": 79.36687014901638,
+        "request_finish": 90.73653867602349
+      }
+    },
+    {
+      "request_id": 73,
+      "conversation_id": "session_000070",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482078551.168485,
+          "end_ms": 482078551.168514,
+          "request_id": 73,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482079464.021493,
+          "end_ms": 482079464.021743,
+          "request_id": 73,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9293.608321
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482106211.014522,
+          "end_ms": 482106211.014551,
+          "request_id": 73,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17231800001172815,
+        "request_finish": -1.4164160000073025
+      },
+      "times_s": {
+        "admission": 79.36689570999145,
+        "first_token": 80.2797487180233,
+        "request_finish": 107.02674174702167
+      }
+    },
+    {
+      "request_id": 74,
+      "conversation_id": "session_000071",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482079464.057054,
+          "end_ms": 482079464.057094,
+          "request_id": 74,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482080376.711029,
+          "end_ms": 482080376.711169,
+          "request_id": 74,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9806.421213
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482090770.76408,
+          "end_ms": 482090770.764109,
+          "request_id": 74,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16162600000097882,
+        "request_finish": -0.3455720000056317
+      },
+      "times_s": {
+        "admission": 80.27978427898884,
+        "first_token": 81.19243825399876,
+        "request_finish": 91.58649130499363
+      }
+    },
+    {
+      "request_id": 75,
+      "conversation_id": "session_000072",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482080852.253037,
+          "end_ms": 482080852.253067,
+          "request_id": 75,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482081760.328537,
+          "end_ms": 482081760.328907,
+          "request_id": 75,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9572.027185
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482092066.45831,
+          "end_ms": 482092066.45834,
+          "request_id": 75,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1375969999935478,
+        "request_finish": -0.29797499999403954
+      },
+      "times_s": {
+        "admission": 81.66798026198148,
+        "first_token": 82.57605576199293,
+        "request_finish": 92.88218553501368
+      }
+    },
+    {
+      "request_id": 76,
+      "conversation_id": "session_000073",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482081867.296833,
+          "end_ms": 482081867.296873,
+          "request_id": 76,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482082987.044107,
+          "end_ms": 482082987.044267,
+          "request_id": 76,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8334.233916
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482092707.063164,
+          "end_ms": 482092707.063184,
+          "request_id": 76,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19180000001506414,
+        "request_finish": -0.5690440000034869
+      },
+      "times_s": {
+        "admission": 82.68302405798435,
+        "first_token": 83.80277133202553,
+        "request_finish": 93.52279038900137
+      }
+    },
+    {
+      "request_id": 77,
+      "conversation_id": "session_000074",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482082987.084878,
+          "end_ms": 482082987.084908,
+          "request_id": 77,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482083901.874336,
+          "end_ms": 482083901.874387,
+          "request_id": 77,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8870.313893
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482092622.335638,
+          "end_ms": 482092622.335658,
+          "request_id": 77,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.19197399998665787,
+        "request_finish": -0.37579900000127964
+      },
+      "times_s": {
+        "admission": 83.80281210303306,
+        "first_token": 84.71760156100989,
+        "request_finish": 93.43806286299228
+      }
+    },
+    {
+      "request_id": 78,
+      "conversation_id": "session_000075",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482083901.925068,
+          "end_ms": 482083901.925108,
+          "request_id": 78,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482084815.509393,
+          "end_ms": 482084815.509633,
+          "request_id": 78,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9741.975124
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482093700.092725,
+          "end_ms": 482093700.092755,
+          "request_id": 78,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17359900001611095,
+        "request_finish": -0.4075790000060806
+      },
+      "times_s": {
+        "admission": 84.71765229302645,
+        "first_token": 85.63123661798238,
+        "request_finish": 94.51581994998455
+      }
+    },
+    {
+      "request_id": 79,
+      "conversation_id": "session_000076",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482087801.512027,
+          "end_ms": 482087801.512067,
+          "request_id": 79,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482088709.803877,
+          "end_ms": 482088709.803917,
+          "request_id": 79,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7853.288564
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482104834.880952,
+          "end_ms": 482104834.880982,
+          "request_id": 79,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11936900000728201,
+        "request_finish": -0.516646000003675
+      },
+      "times_s": {
+        "admission": 88.61723925203086,
+        "first_token": 89.52553110200166,
+        "request_finish": 105.65060817700625
+      }
+    },
+    {
+      "request_id": 80,
+      "conversation_id": "session_000077",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482089453.386154,
+          "end_ms": 482089453.386194,
+          "request_id": 80,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482090721.844601,
+          "end_ms": 482090721.844651,
+          "request_id": 80,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5390.024786
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482106210.97138,
+          "end_ms": 482106210.97141,
+          "request_id": 80,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14815000000817236,
+        "request_finish": -0.6471210000017891
+      },
+      "times_s": {
+        "admission": 90.26911337900162,
+        "first_token": 91.53757182598115,
+        "request_finish": 107.02669860500097
+      }
+    },
+    {
+      "request_id": 81,
+      "conversation_id": "session_000078",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482090813.847047,
+          "end_ms": 482090813.847077,
+          "request_id": 81,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482091724.07685,
+          "end_ms": 482091724.0771,
+          "request_id": 81,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6224.113419
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482106154.076627,
+          "end_ms": 482106154.076657,
+          "request_id": 81,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12597799999639392,
+        "request_finish": -0.48110299999825656
+      },
+      "times_s": {
+        "admission": 91.62957427197695,
+        "first_token": 92.53980407500266,
+        "request_finish": 106.9698038520217
+      }
+    },
+    {
+      "request_id": 82,
+      "conversation_id": "session_000079",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482092066.535012,
+          "end_ms": 482092066.535042,
+          "request_id": 82,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482093188.107413,
+          "end_ms": 482093188.107453,
+          "request_id": 82,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7251.878698
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482108733.26816,
+          "end_ms": 482108733.26818,
+          "request_id": 82,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14351199999509845,
+        "request_finish": -0.33168899999873247
+      },
+      "times_s": {
+        "admission": 92.88226223701238,
+        "first_token": 94.00383463799953,
+        "request_finish": 109.54899538499117
+      }
+    },
+    {
+      "request_id": 83,
+      "conversation_id": "session_000080",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482093188.167735,
+          "end_ms": 482093188.167765,
+          "request_id": 83,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482094424.52611,
+          "end_ms": 482094424.52637,
+          "request_id": 83,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6618.551882
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482110287.639038,
+          "end_ms": 482110287.639068,
+          "request_id": 83,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1624489999958314,
+        "request_finish": -0.5121669999934966
+      },
+      "times_s": {
+        "admission": 94.00389495998621,
+        "first_token": 95.24025333499908,
+        "request_finish": 111.10336626303196
+      }
+    },
+    {
+      "request_id": 84,
+      "conversation_id": "session_000081",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482094550.546837,
+          "end_ms": 482094550.546877,
+          "request_id": 84,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482096088.325358,
+          "end_ms": 482096088.325418,
+          "request_id": 84,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6840.811655
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112833.509717,
+          "end_ms": 482112833.509746,
+          "request_id": 84,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17307099999743514,
+        "request_finish": -0.39314900001045316
+      },
+      "times_s": {
+        "admission": 95.36627406197786,
+        "first_token": 96.9040525829792,
+        "request_finish": 113.64923694199324
+      }
+    },
+    {
+      "request_id": 85,
+      "conversation_id": "session_000082",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482096088.36079,
+          "end_ms": 482096088.360819,
+          "request_id": 85,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482097044.840434,
+          "end_ms": 482097044.840494,
+          "request_id": 85,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7120.650305
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482115578.671274,
+          "end_ms": 482115578.671324,
+          "request_id": 85,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1458450000063749,
+        "request_finish": -0.25724500000069384
+      },
+      "times_s": {
+        "admission": 96.9040880150199,
+        "first_token": 97.86056765902042,
+        "request_finish": 116.394398499012
+      }
+    },
+    {
+      "request_id": 86,
+      "conversation_id": "session_000083",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482097044.866725,
+          "end_ms": 482097044.866755,
+          "request_id": 86,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482097959.217093,
+          "end_ms": 482097959.217133,
+          "request_id": 86,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7482.440256
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112934.897408,
+          "end_ms": 482112934.897428,
+          "request_id": 86,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14886899998236913,
+        "request_finish": -0.39001499999722
+      },
+      "times_s": {
+        "admission": 97.86059395003319,
+        "first_token": 98.7749443179965,
+        "request_finish": 113.7506246330142
+      }
+    },
+    {
+      "request_id": 87,
+      "conversation_id": "session_000084",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482097959.254684,
+          "end_ms": 482097959.254724,
+          "request_id": 87,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482098872.457502,
+          "end_ms": 482098872.457542,
+          "request_id": 87,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8394.771739
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112833.534107,
+          "end_ms": 482112833.534127,
+          "request_id": 87,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14934899999934714,
+        "request_finish": -0.3244729999860283
+      },
+      "times_s": {
+        "admission": 98.77498190897703,
+        "first_token": 99.68818472701311,
+        "request_finish": 113.64926133203507
+      }
+    },
+    {
+      "request_id": 88,
+      "conversation_id": "session_000085",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482098872.512414,
+          "end_ms": 482098872.512444,
+          "request_id": 88,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482099785.221871,
+          "end_ms": 482099785.221921,
+          "request_id": 88,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9010.195917
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482114692.182931,
+          "end_ms": 482114692.182961,
+          "request_id": 88,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14847100000770297,
+        "request_finish": -0.30797399999573827
+      },
+      "times_s": {
+        "admission": 99.6882396389842,
+        "first_token": 100.60094909602404,
+        "request_finish": 115.50791015601158
+      }
+    },
+    {
+      "request_id": 89,
+      "conversation_id": "session_000086",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482099785.259972,
+          "end_ms": 482099785.260002,
+          "request_id": 89,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482100698.667913,
+          "end_ms": 482100698.667963,
+          "request_id": 89,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8628.441813
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482114417.118351,
+          "end_ms": 482114417.118381,
+          "request_id": 89,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12832800000614952,
+        "request_finish": -0.25816800000029616
+      },
+      "times_s": {
+        "admission": 100.6009871969819,
+        "first_token": 101.51439513802528,
+        "request_finish": 115.23284557598829
+      }
+    },
+    {
+      "request_id": 90,
+      "conversation_id": "session_000087",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482100698.729325,
+          "end_ms": 482100698.729355,
+          "request_id": 90,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482101611.184032,
+          "end_ms": 482101611.184062,
+          "request_id": 90,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8985.194879
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112778.050431,
+          "end_ms": 482112778.050481,
+          "request_id": 90,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1420619999844348,
+        "request_finish": -0.5817870000028051
+      },
+      "times_s": {
+        "admission": 101.5144565500021,
+        "first_token": 102.42691125702858,
+        "request_finish": 113.59377765601873
+      }
+    },
+    {
+      "request_id": 91,
+      "conversation_id": "session_000088",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482101611.211702,
+          "end_ms": 482101611.211733,
+          "request_id": 91,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482102524.037784,
+          "end_ms": 482102524.037824,
+          "request_id": 91,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9812.915983
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112833.563268,
+          "end_ms": 482112833.563288,
+          "request_id": 91,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16149600000062492,
+        "request_finish": -1.3590389999881154
+      },
+      "times_s": {
+        "admission": 102.4269389269948,
+        "first_token": 103.33976500898599,
+        "request_finish": 113.64929049301148
+      }
+    },
+    {
+      "request_id": 92,
+      "conversation_id": "session_000089",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482102524.078125,
+          "end_ms": 482102524.078155,
+          "request_id": 92,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482103437.406735,
+          "end_ms": 482103437.406765,
+          "request_id": 92,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9733.714675
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482112934.923509,
+          "end_ms": 482112934.923569,
+          "request_id": 92,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1466329999966547,
+        "request_finish": -1.152314999999362
+      },
+      "times_s": {
+        "admission": 103.33980535000563,
+        "first_token": 104.25313396000863,
+        "request_finish": 113.75065073400737
+      }
+    },
+    {
+      "request_id": 93,
+      "conversation_id": "session_000090",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482106533.755228,
+          "end_ms": 482106533.755258,
+          "request_id": 93,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482107442.449885,
+          "end_ms": 482107442.449945,
+          "request_id": 93,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2603.707234
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482125619.285512,
+          "end_ms": 482125619.285532,
+          "request_id": 93,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.157653999995091,
+        "request_finish": -0.4247739999991609
+      },
+      "times_s": {
+        "admission": 107.34948245298862,
+        "first_token": 108.25817711001635,
+        "request_finish": 126.43501273697615
+      }
+    },
+    {
+      "request_id": 94,
+      "conversation_id": "session_000091",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482107442.495337,
+          "end_ms": 482107442.495377,
+          "request_id": 94,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482108623.475772,
+          "end_ms": 482108623.475802,
+          "request_id": 94,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2465.170995
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482126074.378776,
+          "end_ms": 482126074.378816,
+          "request_id": 94,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14690799999516457,
+        "request_finish": -0.3740490000054706
+      },
+      "times_s": {
+        "admission": 108.25822256201505,
+        "first_token": 109.43920299702883,
+        "request_finish": 126.89010600101948
+      }
+    },
+    {
+      "request_id": 95,
+      "conversation_id": "session_000092",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482108947.564996,
+          "end_ms": 482108947.565036,
+          "request_id": 95,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482109856.574755,
+          "end_ms": 482109856.574805,
+          "request_id": 95,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3640.17849
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482140517.200864,
+          "end_ms": 482140517.200894,
+          "request_id": 95,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12956299999495968,
+        "request_finish": -0.5116350000025705
+      },
+      "times_s": {
+        "admission": 109.76329222100973,
+        "first_token": 110.67230198001862,
+        "request_finish": 141.33292808902263
+      }
+    },
+    {
+      "request_id": 96,
+      "conversation_id": "session_000093",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482109856.616316,
+          "end_ms": 482109856.616347,
+          "request_id": 96,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482110987.923395,
+          "end_ms": 482110987.923445,
+          "request_id": 96,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4770.859051
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482128270.970139,
+          "end_ms": 482128270.97017,
+          "request_id": 96,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14341699999931734,
+        "request_finish": -0.3933120000001509
+      },
+      "times_s": {
+        "admission": 110.67234354102611,
+        "first_token": 111.80365061998367,
+        "request_finish": 129.08669736403226
+      }
+    },
+    {
+      "request_id": 97,
+      "conversation_id": "session_000094",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482111372.499379,
+          "end_ms": 482111372.499409,
+          "request_id": 97,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482112608.976149,
+          "end_ms": 482112608.976399,
+          "request_id": 97,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6071.453843
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482127302.558401,
+          "end_ms": 482127302.558431,
+          "request_id": 97,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12655799998901784,
+        "request_finish": -0.5039749999996275
+      },
+      "times_s": {
+        "admission": 112.18822660398483,
+        "first_token": 113.42470337402821,
+        "request_finish": 128.11828562599422
+      }
+    },
+    {
+      "request_id": 98,
+      "conversation_id": "session_000095",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482112978.435327,
+          "end_ms": 482112978.435357,
+          "request_id": 98,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482113887.666515,
+          "end_ms": 482113887.666545,
+          "request_id": 98,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5150.68996
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482127685.319511,
+          "end_ms": 482127685.319541,
+          "request_id": 98,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11482000001706183,
+        "request_finish": -0.3315300000103889
+      },
+      "times_s": {
+        "admission": 113.7941625519991,
+        "first_token": 114.70339373999835,
+        "request_finish": 128.50104673600197
+      }
+    },
+    {
+      "request_id": 99,
+      "conversation_id": "session_000096",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482113887.691966,
+          "end_ms": 482113887.691996,
+          "request_id": 99,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482115026.816528,
+          "end_ms": 482115026.816668,
+          "request_id": 99,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4735.202658
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482128218.515962,
+          "end_ms": 482128218.515992,
+          "request_id": 99,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.2090160000079777,
+        "request_finish": -0.45288100000470877
+      },
+      "times_s": {
+        "admission": 114.70341919100285,
+        "first_token": 115.84254375302791,
+        "request_finish": 129.03424318701028
+      }
+    },
+    {
+      "request_id": 100,
+      "conversation_id": "session_000097",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482115112.634853,
+          "end_ms": 482115112.634883,
+          "request_id": 100,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482116279.062703,
+          "end_ms": 482116279.062843,
+          "request_id": 100,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3496.348231
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482142106.143467,
+          "end_ms": 482142106.143487,
+          "request_id": 100,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13232800000696443,
+        "request_finish": -0.7711840000119992
+      },
+      "times_s": {
+        "admission": 115.92836207801103,
+        "first_token": 117.09478992801904,
+        "request_finish": 142.9218706920147
+      }
+    },
+    {
+      "request_id": 101,
+      "conversation_id": "session_000098",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482116279.091414,
+          "end_ms": 482116279.091444,
+          "request_id": 101,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482117195.979167,
+          "end_ms": 482117195.979217,
+          "request_id": 101,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4358.338523
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482128723.852886,
+          "end_ms": 482128723.852916,
+          "request_id": 101,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11152999999467283,
+        "request_finish": -0.35043999999470543
+      },
+      "times_s": {
+        "admission": 117.09481863898039,
+        "first_token": 118.01170639199019,
+        "request_finish": 129.53958011102677
+      }
+    },
+    {
+      "request_id": 102,
+      "conversation_id": "session_000099",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482117196.009468,
+          "end_ms": 482117196.009498,
+          "request_id": 102,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482118539.219116,
+          "end_ms": 482118539.219166,
+          "request_id": 102,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5700.805741
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482128773.170065,
+          "end_ms": 482128773.170115,
+          "request_id": 102,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11457299999892712,
+        "request_finish": -0.3993239999981597
+      },
+      "times_s": {
+        "admission": 118.01173669302463,
+        "first_token": 119.35494634097815,
+        "request_finish": 129.58889728999137
+      }
+    },
+    {
+      "request_id": 103,
+      "conversation_id": "session_000100",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482118539.245587,
+          "end_ms": 482118539.245617,
+          "request_id": 103,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482119550.417117,
+          "end_ms": 482119550.417167,
+          "request_id": 103,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6711.191199
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482128902.94745,
+          "end_ms": 482128902.94747,
+          "request_id": 103,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1707239999959711,
+        "request_finish": -0.7770569999993313
+      },
+      "times_s": {
+        "admission": 119.35497281199693,
+        "first_token": 120.36614434200526,
+        "request_finish": 129.7186746749878
+      }
+    },
+    {
+      "request_id": 104,
+      "conversation_id": "session_000101",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482119550.446438,
+          "end_ms": 482119550.446478,
+          "request_id": 104,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482120466.913975,
+          "end_ms": 482120466.914304,
+          "request_id": 104,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7527.503749
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482142052.300022,
+          "end_ms": 482142052.300052,
+          "request_id": 104,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.2036260000022594,
+        "request_finish": -0.3663539999979548
+      },
+      "times_s": {
+        "admission": 120.36617366302013,
+        "first_token": 121.28264120000601,
+        "request_finish": 142.86802724701167
+      }
+    },
+    {
+      "request_id": 105,
+      "conversation_id": "session_000102",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482120466.945155,
+          "end_ms": 482120466.945185,
+          "request_id": 105,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482121798.617927,
+          "end_ms": 482121798.618077,
+          "request_id": 105,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8858.497421
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482129323.640788,
+          "end_ms": 482129323.640808,
+          "request_id": 105,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1458589999965625,
+        "request_finish": -0.34780899999896064
+      },
+      "times_s": {
+        "admission": 121.28267238003015,
+        "first_token": 122.61434515202045,
+        "request_finish": 130.13936801302432
+      }
+    },
+    {
+      "request_id": 106,
+      "conversation_id": "session_000103",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482121961.208724,
+          "end_ms": 482121961.208754,
+          "request_id": 106,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482123140.330467,
+          "end_ms": 482123140.330497,
+          "request_id": 106,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8719.016988
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482140405.671546,
+          "end_ms": 482140405.671636,
+          "request_id": 106,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12982800000463612,
+        "request_finish": -0.3753560000041034
+      },
+      "times_s": {
+        "admission": 122.77693594902753,
+        "first_token": 123.95605769199133,
+        "request_finish": 141.22139877098797
+      }
+    },
+    {
+      "request_id": 107,
+      "conversation_id": "session_000104",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482123306.933217,
+          "end_ms": 482123306.933247,
+          "request_id": 107,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482124382.088817,
+          "end_ms": 482124382.089237,
+          "request_id": 107,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9686.17935
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482130138.013088,
+          "end_ms": 482130138.013118,
+          "request_id": 107,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.207351999997627,
+        "request_finish": -0.9303939999954309
+      },
+      "times_s": {
+        "admission": 124.12266044199467,
+        "first_token": 125.19781604200601,
+        "request_finish": 130.95374031299352
+      }
+    },
+    {
+      "request_id": 108,
+      "conversation_id": "session_000105",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482124382.131218,
+          "end_ms": 482124382.131248,
+          "request_id": 108,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482125296.703245,
+          "end_ms": 482125296.703405,
+          "request_id": 108,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9713.521924
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482140066.868642,
+          "end_ms": 482140066.868682,
+          "request_id": 108,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1379809999925783,
+        "request_finish": -0.4251909999875352
+      },
+      "times_s": {
+        "admission": 125.19785844302177,
+        "first_token": 126.11243046998977,
+        "request_finish": 140.88259586697816
+      }
+    },
+    {
+      "request_id": 109,
+      "conversation_id": "session_000106",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482129728.692579,
+          "end_ms": 482129728.692609,
+          "request_id": 109,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482130875.363635,
+          "end_ms": 482130875.363665,
+          "request_id": 109,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5252.491014
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148816.609284,
+          "end_ms": 482148816.609314,
+          "request_id": 109,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13724899999215268,
+        "request_finish": -0.4893410000076983
+      },
+      "times_s": {
+        "admission": 130.544419803977,
+        "first_token": 131.69109086000918,
+        "request_finish": 149.63233650898934
+      }
+    },
+    {
+      "request_id": 110,
+      "conversation_id": "session_000107",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482130875.391746,
+          "end_ms": 482130875.391786,
+          "request_id": 110,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482131790.500148,
+          "end_ms": 482131790.500308,
+          "request_id": 110,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5711.998257
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148766.961217,
+          "end_ms": 482148766.961247,
+          "request_id": 110,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15288199999486096,
+        "request_finish": -0.3825399999914225
+      },
+      "times_s": {
+        "admission": 131.69111897099017,
+        "first_token": 132.60622737300395,
+        "request_finish": 149.58268844199182
+      }
+    },
+    {
+      "request_id": 111,
+      "conversation_id": "session_000108",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482131790.527859,
+          "end_ms": 482131790.527889,
+          "request_id": 111,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482132704.677681,
+          "end_ms": 482132704.677831,
+          "request_id": 111,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5398.067588
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482152207.643606,
+          "end_ms": 482152207.643636,
+          "request_id": 111,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15702700000838377,
+        "request_finish": -0.4687649999978021
+      },
+      "times_s": {
+        "admission": 132.60625508397817,
+        "first_token": 133.52040490603446,
+        "request_finish": 153.02337083101273
+      }
+    },
+    {
+      "request_id": 112,
+      "conversation_id": "session_000109",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482132704.713932,
+          "end_ms": 482132704.713962,
+          "request_id": 112,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482133617.931034,
+          "end_ms": 482133617.931084,
+          "request_id": 112,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5929.26988
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148657.794069,
+          "end_ms": 482148657.794089,
+          "request_id": 112,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12758299999404699,
+        "request_finish": -0.3487439999880735
+      },
+      "times_s": {
+        "admission": 133.52044115698337,
+        "first_token": 134.43365825903416,
+        "request_finish": 149.47352129399778
+      }
+    },
+    {
+      "request_id": 113,
+      "conversation_id": "session_000110",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482133617.958264,
+          "end_ms": 482133617.958294,
+          "request_id": 113,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482134531.186172,
+          "end_ms": 482134531.186222,
+          "request_id": 113,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6309.208583
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482151604.339542,
+          "end_ms": 482151604.339572,
+          "request_id": 113,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.23443699997733347,
+        "request_finish": -0.37862000000313856
+      },
+      "times_s": {
+        "admission": 134.4336854889989,
+        "first_token": 135.34691339701413,
+        "request_finish": 152.4200667669773
+      }
+    },
+    {
+      "request_id": 114,
+      "conversation_id": "session_000111",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482134531.215133,
+          "end_ms": 482134531.215173,
+          "request_id": 114,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482135445.26882,
+          "end_ms": 482135445.26887,
+          "request_id": 114,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7170.969769
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148712.868681,
+          "end_ms": 482148712.868701,
+          "request_id": 114,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.10717999999178573,
+        "request_finish": -0.4077779999934137
+      },
+      "times_s": {
+        "admission": 135.34694235801697,
+        "first_token": 136.2609960449934,
+        "request_finish": 149.5285959060192
+      }
+    },
+    {
+      "request_id": 115,
+      "conversation_id": "session_000112",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482135445.304011,
+          "end_ms": 482135445.30404,
+          "request_id": 115,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482136359.439205,
+          "end_ms": 482136359.439245,
+          "request_id": 115,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7632.343989
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148816.646735,
+          "end_ms": 482148816.646755,
+          "request_id": 115,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.11762799997814,
+        "request_finish": -0.37555300001986325
+      },
+      "times_s": {
+        "admission": 136.2610312359929,
+        "first_token": 137.1751664299965,
+        "request_finish": 149.63237396001816
+      }
+    },
+    {
+      "request_id": 116,
+      "conversation_id": "session_000113",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482136359.466116,
+          "end_ms": 482136359.466146,
+          "request_id": 116,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482137273.35488,
+          "end_ms": 482137273.35491,
+          "request_id": 116,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8496.892185
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148657.84667,
+          "end_ms": 482148657.846701,
+          "request_id": 116,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.18963099998654798,
+        "request_finish": -0.35101000001304783
+      },
+      "times_s": {
+        "admission": 137.17519334101678,
+        "first_token": 138.08908210498095,
+        "request_finish": 149.47357389497756
+      }
+    },
+    {
+      "request_id": 117,
+      "conversation_id": "session_000114",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482137273.384761,
+          "end_ms": 482137273.38479,
+          "request_id": 117,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482138187.02127,
+          "end_ms": 482138187.0213,
+          "request_id": 117,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9280.030548
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148767.015819,
+          "end_ms": 482148767.015848,
+          "request_id": 117,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15496700000949204,
+        "request_finish": -1.0032239999854937
+      },
+      "times_s": {
+        "admission": 138.08911198598148,
+        "first_token": 139.0027484949827,
+        "request_finish": 149.58274304401874
+      }
+    },
+    {
+      "request_id": 118,
+      "conversation_id": "session_000115",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482138187.04756,
+          "end_ms": 482138187.047591,
+          "request_id": 118,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482139100.570423,
+          "end_ms": 482139100.570463,
+          "request_id": 118,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9773.666776
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148816.668866,
+          "end_ms": 482148816.668896,
+          "request_id": 118,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14934400000493042,
+        "request_finish": -0.31129100001999177
+      },
+      "times_s": {
+        "admission": 139.0027747849822,
+        "first_token": 139.91629764801263,
+        "request_finish": 149.63239609098434
+      }
+    },
+    {
+      "request_id": 119,
+      "conversation_id": "session_000116",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482139100.596234,
+          "end_ms": 482139100.596264,
+          "request_id": 119,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482140014.473992,
+          "end_ms": 482140014.474042,
+          "request_id": 119,
+          "lane": 14,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9872.237808
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482148767.06063,
+          "end_ms": 482148767.06066,
+          "request_id": 119,
+          "lane": 14,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1741770000080578,
+        "request_finish": -0.26143499999307096
+      },
+      "times_s": {
+        "admission": 139.9163234590292,
+        "first_token": 140.8302012169957,
+        "request_finish": 149.5827878550291
+      }
+    },
+    {
+      "request_id": 120,
+      "conversation_id": "session_000117",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482142106.233699,
+          "end_ms": 482142106.233729,
+          "request_id": 120,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482143015.304276,
+          "end_ms": 482143015.304326,
+          "request_id": 120,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2944.739924
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482160012.531764,
+          "end_ms": 482160012.531794,
+          "request_id": 120,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17611299999407493,
+        "request_finish": -0.603612000006251
+      },
+      "times_s": {
+        "admission": 142.92196092402935,
+        "first_token": 143.83103150099515,
+        "request_finish": 160.82825898897647
+      }
+    },
+    {
+      "request_id": 121,
+      "conversation_id": "session_000118",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482143820.147862,
+          "end_ms": 482143820.147902,
+          "request_id": 121,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482144783.484257,
+          "end_ms": 482144783.484306,
+          "request_id": 121,
+          "lane": 7,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4374.316415
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482163543.342247,
+          "end_ms": 482163543.342277,
+          "request_id": 121,
+          "lane": 7,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14335500000743195,
+        "request_finish": -0.48768799999379553
+      },
+      "times_s": {
+        "admission": 144.63587508702278,
+        "first_token": 145.59921148198842,
+        "request_finish": 164.3590694720149
+      }
+    },
+    {
+      "request_id": 122,
+      "conversation_id": "session_000119",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482144783.508727,
+          "end_ms": 482144783.508757,
+          "request_id": 122,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482146352.342129,
+          "end_ms": 482146352.342159,
+          "request_id": 122,
+          "lane": 11,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5829.807701
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482166098.201122,
+          "end_ms": 482166098.201142,
+          "request_id": 122,
+          "lane": 11,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.2474229999934323,
+        "request_finish": -0.2779349999909755
+      },
+      "times_s": {
+        "admission": 145.59923595201968,
+        "first_token": 147.1680693539977,
+        "request_finish": 166.91392834699153
+      }
+    },
+    {
+      "request_id": 123,
+      "conversation_id": "session_000120",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482146634.120154,
+          "end_ms": 482146634.120183,
+          "request_id": 123,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482148162.761762,
+          "end_ms": 482148162.761822,
+          "request_id": 123,
+          "lane": 13,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6106.183564
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482163991.86837,
+          "end_ms": 482163991.86839,
+          "request_id": 123,
+          "lane": 13,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1173209999979008,
+        "request_finish": -0.7469080000009853
+      },
+      "times_s": {
+        "admission": 147.4498473790288,
+        "first_token": 148.9784889870286,
+        "request_finish": 164.80759559500217
+      }
+    },
+    {
+      "request_id": 124,
+      "conversation_id": "session_000121",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482148393.160645,
+          "end_ms": 482148393.160675,
+          "request_id": 124,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482149517.023857,
+          "end_ms": 482149517.024017,
+          "request_id": 124,
+          "lane": 15,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7406.80808
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482165174.481856,
+          "end_ms": 482165174.481876,
+          "request_id": 124,
+          "lane": 15,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.26406499999575317,
+        "request_finish": -0.5683660000213422
+      },
+      "times_s": {
+        "admission": 149.2088878700137,
+        "first_token": 150.3327510820031,
+        "request_finish": 165.99020908099413
+      }
+    },
+    {
+      "request_id": 125,
+      "conversation_id": "session_000122",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482149517.059018,
+          "end_ms": 482149517.059048,
+          "request_id": 125,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482150432.840854,
+          "end_ms": 482150432.840894,
+          "request_id": 125,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 1769.520377
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482164594.684074,
+          "end_ms": 482164594.684104,
+          "request_id": 125,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.21454400001675822,
+        "request_finish": -0.45683999999891967
+      },
+      "times_s": {
+        "admission": 150.3327862430215,
+        "first_token": 151.24856807899477,
+        "request_finish": 165.41041129899025
+      }
+    },
+    {
+      "request_id": 126,
+      "conversation_id": "session_000123",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482150432.873515,
+          "end_ms": 482150432.873545,
+          "request_id": 126,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482151348.120354,
+          "end_ms": 482151348.120394,
+          "request_id": 126,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 2684.673504
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482167169.320881,
+          "end_ms": 482167169.320901,
+          "request_id": 126,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.179532999987714,
+        "request_finish": -0.27651199998217635
+      },
+      "times_s": {
+        "admission": 151.24860074001552,
+        "first_token": 152.16384757900238,
+        "request_finish": 167.98504810601472
+      }
+    },
+    {
+      "request_id": 127,
+      "conversation_id": "session_000124",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482151348.149295,
+          "end_ms": 482151348.149325,
+          "request_id": 127,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482152689.40775,
+          "end_ms": 482152689.4079,
+          "request_id": 127,
+          "lane": 4,
+          "rows": 1,
+          "tokens": 1,
+          "value": 3972.692796
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482164808.764021,
+          "end_ms": 482164808.764081,
+          "request_id": 127,
+          "lane": 4,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.20616500001051463,
+        "request_finish": -0.46295300000929274
+      },
+      "times_s": {
+        "admission": 152.16387651997803,
+        "first_token": 153.50513497501612,
+        "request_finish": 165.62449124598504
+      }
+    },
+    {
+      "request_id": 128,
+      "conversation_id": "session_000126",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482152689.443271,
+          "end_ms": 482152689.443301,
+          "request_id": 128,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482153605.372754,
+          "end_ms": 482153605.372805,
+          "request_id": 128,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4834.349699
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482166016.270607,
+          "end_ms": 482166016.270627,
+          "request_id": 128,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1436999999859836,
+        "request_finish": -0.2938060000014957
+      },
+      "times_s": {
+        "admission": 153.50517049598693,
+        "first_token": 154.4210999789834,
+        "request_finish": 166.83199783200027
+      }
+    },
+    {
+      "request_id": 129,
+      "conversation_id": "session_000125",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482153847.070747,
+          "end_ms": 482153847.070777,
+          "request_id": 129,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482154755.825408,
+          "end_ms": 482154755.825458,
+          "request_id": 129,
+          "lane": 5,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5984.627698
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482170058.325989,
+          "end_ms": 482170058.326009,
+          "request_id": 129,
+          "lane": 5,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.13121799999498762,
+        "request_finish": -0.35951700000441633
+      },
+      "times_s": {
+        "admission": 154.6627979720235,
+        "first_token": 155.5715526329875,
+        "request_finish": 170.87405321401357
+      }
+    },
+    {
+      "request_id": 130,
+      "conversation_id": "session_000127",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482154755.850299,
+          "end_ms": 482154755.850329,
+          "request_id": 130,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482155670.585515,
+          "end_ms": 482155670.585575,
+          "request_id": 130,
+          "lane": 6,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6898.684317
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482165509.86867,
+          "end_ms": 482165509.86869,
+          "request_id": 130,
+          "lane": 6,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.17024400003720075,
+        "request_finish": -0.44501100000343286
+      },
+      "times_s": {
+        "admission": 155.57157752400636,
+        "first_token": 156.4863127400279,
+        "request_finish": 166.32559589499235
+      }
+    },
+    {
+      "request_id": 131,
+      "conversation_id": "session_000129",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482155722.16555,
+          "end_ms": 482155722.16558,
+          "request_id": 131,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482156735.750963,
+          "end_ms": 482156735.750993,
+          "request_id": 131,
+          "lane": 8,
+          "rows": 1,
+          "tokens": 1,
+          "value": 7915.721947
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482165422.938794,
+          "end_ms": 482165422.938814,
+          "request_id": 131,
+          "lane": 8,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1407889999973122,
+        "request_finish": -0.4486599999945611
+      },
+      "times_s": {
+        "admission": 156.53789277499914,
+        "first_token": 157.55147818797826,
+        "request_finish": 166.23866601902247
+      }
+    },
+    {
+      "request_id": 132,
+      "conversation_id": "session_000128",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482156735.773913,
+          "end_ms": 482156735.773944,
+          "request_id": 132,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482157651.562137,
+          "end_ms": 482157651.562177,
+          "request_id": 132,
+          "lane": 9,
+          "rows": 1,
+          "tokens": 1,
+          "value": 8830.406301
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482169578.214932,
+          "end_ms": 482169578.214952,
+          "request_id": 132,
+          "lane": 9,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.12840400001732633,
+        "request_finish": -0.2889209999993909
+      },
+      "times_s": {
+        "admission": 157.55150113803148,
+        "first_token": 158.46728936201333,
+        "request_finish": 170.3939421570301
+      }
+    },
+    {
+      "request_id": 133,
+      "conversation_id": "session_000130",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482157651.588497,
+          "end_ms": 482157651.588527,
+          "request_id": 133,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482158566.966856,
+          "end_ms": 482158566.966996,
+          "request_id": 133,
+          "lane": 10,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9744.624959
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482165275.921563,
+          "end_ms": 482165275.921583,
+          "request_id": 133,
+          "lane": 10,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15634999997564591,
+        "request_finish": -0.4504550000128802
+      },
+      "times_s": {
+        "admission": 158.46731572198868,
+        "first_token": 159.38269408100842,
+        "request_finish": 166.09164878803492
+      }
+    },
+    {
+      "request_id": 134,
+      "conversation_id": "session_000131",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482160012.644117,
+          "end_ms": 482160012.644147,
+          "request_id": 134,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482161030.567873,
+          "end_ms": 482161030.567933,
+          "request_id": 134,
+          "lane": 2,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9422.497753
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482168713.105549,
+          "end_ms": 482168713.105579,
+          "request_id": 134,
+          "lane": 2,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15118499999516644,
+        "request_finish": -0.2949570000055246
+      },
+      "times_s": {
+        "admission": 160.82837134200335,
+        "first_token": 161.84629509800672,
+        "request_finish": 169.52883277398348
+      }
+    },
+    {
+      "request_id": 135,
+      "conversation_id": "session_000132",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482161030.603884,
+          "end_ms": 482161030.603914,
+          "request_id": 135,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482161945.288202,
+          "end_ms": 482161945.288232,
+          "request_id": 135,
+          "lane": 12,
+          "rows": 1,
+          "tokens": 1,
+          "value": 9733.694091
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482169022.026864,
+          "end_ms": 482169022.026894,
+          "request_id": 135,
+          "lane": 12,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.16301899999962188,
+        "request_finish": -0.4962890000024345
+      },
+      "times_s": {
+        "admission": 161.84633110898733,
+        "first_token": 162.76101542699337,
+        "request_finish": 169.83775408899785
+      }
+    },
+    {
+      "request_id": 136,
+      "conversation_id": "session_000133",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482166098.236313,
+          "end_ms": 482166098.236353,
+          "request_id": 136,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482167007.159781,
+          "end_ms": 482167007.159811,
+          "request_id": 136,
+          "lane": 0,
+          "rows": 1,
+          "tokens": 1,
+          "value": 6990.844348
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482172074.700054,
+          "end_ms": 482172074.700074,
+          "request_id": 136,
+          "lane": 0,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.14519099998869933,
+        "request_finish": -0.40065700002014637
+      },
+      "times_s": {
+        "admission": 166.91396353799104,
+        "first_token": 167.8228870059848,
+        "request_finish": 172.8904272789955
+      }
+    },
+    {
+      "request_id": 137,
+      "conversation_id": "session_000134",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482167169.371642,
+          "end_ms": 482167169.371682,
+          "request_id": 137,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482168078.054966,
+          "end_ms": 482168078.055096,
+          "request_id": 137,
+          "lane": 1,
+          "rows": 1,
+          "tokens": 1,
+          "value": 4530.969191
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482172175.688283,
+          "end_ms": 482172175.688313,
+          "request_id": 137,
+          "lane": 1,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.15252200001850724,
+        "request_finish": -0.30004299999563955
+      },
+      "times_s": {
+        "admission": 167.98509886699915,
+        "first_token": 168.89378219097853,
+        "request_finish": 172.99141550803185
+      }
+    },
+    {
+      "request_id": 138,
+      "conversation_id": "session_000135",
+      "raw_events": [
+        {
+          "event": "admission",
+          "start_ms": 482168078.085777,
+          "end_ms": 482168078.085807,
+          "request_id": 138,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 8192,
+          "value": 0.0
+        },
+        {
+          "event": "first_token",
+          "start_ms": 482169272.442351,
+          "end_ms": 482169272.442611,
+          "request_id": 138,
+          "lane": 3,
+          "rows": 1,
+          "tokens": 1,
+          "value": 5276.233748
+        },
+        {
+          "event": "request_finish",
+          "start_ms": 482172517.539393,
+          "end_ms": 482172517.539423,
+          "request_id": 138,
+          "lane": 3,
+          "rows": 0,
+          "tokens": 512,
+          "value": 0.0
+        }
+      ],
+      "client_match_error_ms": {
+        "first_token": -0.1634009999979753,
+        "request_finish": -0.35563799997908063
+      },
+      "times_s": {
+        "admission": 168.8938130019903,
+        "first_token": 170.08816957598924,
+        "request_finish": 173.33326661801337
+      }
+    }
+  ],
+  "sources": {
+    "results/three-node-optimization/ucloud1/verify-w2-gate-085/trace-r1/delivery/control/scheduler.jsonl": {
+      "sha256": "335e4695747e4eae8aee1a7faa7c2d9da89d7bb39a3667b64e7e636194bd211c",
+      "bytes": 2684977
+    },
+    "results/three-node-optimization/ucloud1/verify-w2-gate-085/trace-r1/delivery/raw/candidate/c16/profile_export.jsonl": {
+      "sha256": "0cbd6b245f780e9495fa7027ca017391b9639f99016ef162bb8335a93ac67c0c",
+      "bytes": 520137
+    },
+    "results/three-node-optimization/ucloud1/verify-w2-gate-085/trace-r1/delivery/control/clock-anchor-start.json": {
+      "sha256": "d6eef054837c554063ad41b2c28e83e56c405f0fefa2d8550dad7eb36fa36be8",
+      "bytes": 1102
+    },
+    "results/three-node-optimization/ucloud1/verify-w2-gate-085/trace-r1/delivery/control/clock-anchor-end.json": {
+      "sha256": "9e56a7db29a23b5b227d363d139ceafd8d3d7b0be98749c32a2fc39190611de1",
+      "bytes": 1102
+    },
+    "results/three-node-optimization/ucloud1/verify-w2-gate-085/trace-r1/delivery/raw/candidate-identity.json": {
+      "sha256": "425838f04ea417aad01c29994b987ed687b48823e2e817c976d32e6286cf896b",
+      "bytes": 281
+    }
+  }
+}

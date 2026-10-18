@@ -1,0 +1,960 @@
+{
+  "schema_version": 1,
+  "campaign": "100-bounded-decode-membership",
+  "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "pending": [],
+  "excluded_attempts": [
+    {
+      "path": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100",
+      "reason": "KV capacity below max-context: rejected by CLI before model loading/requests; native_done=0. Not a measured performance failure. The legal run uses KV65536.",
+      "evidence_status": "Audited original exclusion summary and server CLI error log; 0 measured requests.",
+      "sources": {
+        "summary": {
+          "path": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100/summary.json",
+          "sha256": "2948b6c17f203e5bc1d992fdd37236c35ce94b27b61ec73effe93ddc8303a4cc"
+        },
+        "server_log": {
+          "path": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100/delivery/raw/candidate/server.log",
+          "sha256": "dd2445ce4dc69517f2e01e33ce3ad7518eff149d069a87c489cc75c1c90f2b25"
+        }
+      }
+    }
+  ],
+  "quality_status": "MEASURED_SEPARATELY_IN_EVALUATION105_ORIGINAL100; see selected-quality.json for raw-audited quality scores and distinct configuration.",
+  "scope": "Campaign configurations on two nodes; C14 client14/native13, including admission waiting, two separate runs; KV=max(65536,8704*client_c). No same-node concurrency-only effect or stable-capacity guarantee.",
+  "performance": [
+    {
+      "id": "100-ucloud3-c4-native4-kv65536-r1",
+      "node": "ucloud3",
+      "client_c": 4,
+      "native_c": 4,
+      "repeat": 1,
+      "kv": 65536,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 2.2691167129999985,
+      "tpot_ms": 22.891142452641876,
+      "tps": 205.8182287742613,
+      "joint_slo": true,
+      "TTFT_margin_ms": 7730.8832870000015,
+      "TPOT_margin_ms": 17.108857547358124,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 318.416888486,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/phase_manifest.json",
+      "throughput_phase_start_ns": 1792272579706184019,
+      "throughput_phase_end_ns": 1792272898123072505,
+      "reported_phase_benchmark_duration_s": 318.413022464,
+      "summary_benchmark_duration_s": 318.413022464,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/phases/profiling/profile_export_aiperf.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/phase_manifest.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/control/environment.json"
+      }
+    },
+    {
+      "id": "100-ucloud3-c8-native8-r1",
+      "node": "ucloud3",
+      "client_c": 8,
+      "native_c": 8,
+      "repeat": 1,
+      "kv": 69632,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 5.921628373799999,
+      "tpot_ms": 29.532079870352245,
+      "tps": 274.20384732555976,
+      "joint_slo": true,
+      "TTFT_margin_ms": 4078.3716262000007,
+      "TPOT_margin_ms": 10.467920129647755,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 239.004669844,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/phase_manifest.json",
+      "throughput_phase_start_ns": 1792272112731536532,
+      "throughput_phase_end_ns": 1792272351736206376,
+      "reported_phase_benchmark_duration_s": 239.00118400000002,
+      "summary_benchmark_duration_s": 239.00118400000002,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/phase_manifest.json"
+      }
+    },
+    {
+      "id": "100-ucloud1-c12-native12-r1",
+      "node": "ucloud1",
+      "client_c": 12,
+      "native_c": 12,
+      "repeat": 1,
+      "kv": 104448,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.59367056675,
+      "tpot_ms": 36.23464702925636,
+      "tps": 299.75715781506375,
+      "joint_slo": true,
+      "TTFT_margin_ms": 406.3294332500009,
+      "TPOT_margin_ms": 3.765352970743642,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 218.630308873,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/phase_manifest.json",
+      "throughput_phase_start_ns": 1792272163239671275,
+      "throughput_phase_end_ns": 1792272381869980148,
+      "reported_phase_benchmark_duration_s": 218.62713216,
+      "summary_benchmark_duration_s": 218.62713216,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/analysis-C12/summary.json",
+        "summary": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/summary.json",
+        "records": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/command.json",
+        "identity": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/phase_manifest.json"
+      }
+    },
+    {
+      "id": "100-ucloud1-c13-native13-r1",
+      "node": "ucloud1",
+      "client_c": 13,
+      "native_c": 13,
+      "repeat": 1,
+      "kv": 113152,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.7060680633,
+      "tpot_ms": 38.18116718571429,
+      "tps": 302.96810100156847,
+      "joint_slo": true,
+      "TTFT_margin_ms": 293.93193670000073,
+      "TPOT_margin_ms": 1.818832814285713,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 216.313201896,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/phase_manifest.json",
+      "throughput_phase_start_ns": 1792271729944053471,
+      "throughput_phase_end_ns": 1792271946257255367,
+      "reported_phase_benchmark_duration_s": 216.309277696,
+      "summary_benchmark_duration_s": 216.309277696,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/analysis-C13/summary.json",
+        "summary": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/summary.json",
+        "records": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/command.json",
+        "identity": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/phase_manifest.json"
+      }
+    },
+    {
+      "id": "100-ucloud3-c14-native13-r1",
+      "node": "ucloud3",
+      "client_c": 14,
+      "native_c": 13,
+      "repeat": 1,
+      "kv": 121856,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.89364278495,
+      "tpot_ms": 39.92924192739725,
+      "tps": 306.03880297063995,
+      "joint_slo": true,
+      "TTFT_margin_ms": 106.35721505000038,
+      "TPOT_margin_ms": 0.07075807260275013,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 214.142779817,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/phase_manifest.json",
+      "throughput_phase_start_ns": 1792271200387591265,
+      "throughput_phase_end_ns": 1792271414530371082,
+      "reported_phase_benchmark_duration_s": 214.138342144,
+      "summary_benchmark_duration_s": 214.138342144,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/phase_manifest.json"
+      }
+    },
+    {
+      "id": "100-ucloud3-c14-native13-r2",
+      "node": "ucloud3",
+      "client_c": 14,
+      "native_c": 13,
+      "repeat": 2,
+      "kv": 121856,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.821661092449999,
+      "tpot_ms": 39.141798364187856,
+      "tps": 309.95174208460963,
+      "joint_slo": true,
+      "TTFT_margin_ms": 178.33890755000175,
+      "TPOT_margin_ms": 0.8582016358121436,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 211.439366526,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/phase_manifest.json",
+      "throughput_phase_start_ns": 1792271562170347393,
+      "throughput_phase_end_ns": 1792271773609713919,
+      "reported_phase_benchmark_duration_s": 211.436353536,
+      "summary_benchmark_duration_s": 211.436353536,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/phase_manifest.json"
+      }
+    }
+  ],
+  "comparison_runs": [
+    {
+      "id": "100-ucloud1-c14-native14-r1",
+      "node": "ucloud1",
+      "client_c": 14,
+      "native_c": 14,
+      "repeat": 1,
+      "kv": 121856,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.724916387699999,
+      "tpot_ms": 41.02234213816047,
+      "tps": 306.06352809341354,
+      "joint_slo": false,
+      "TTFT_margin_ms": 275.0836123000008,
+      "TPOT_margin_ms": -1.022342138160468,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 214.125480446,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/phase_manifest.json",
+      "throughput_phase_start_ns": 1792271162168512057,
+      "throughput_phase_end_ns": 1792271376293992503,
+      "reported_phase_benchmark_duration_s": 214.121784832,
+      "summary_benchmark_duration_s": 214.121784832,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/analysis-C14/summary.json",
+        "summary": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/summary.json",
+        "records": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/phases/profiling/profile_export_aiperf.json",
+        "phase_manifest": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/phase_manifest.json",
+        "command": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/command.json",
+        "identity": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/control/environment.json"
+      }
+    },
+    {
+      "id": "100-ucloud1-c15-native13-r1",
+      "node": "ucloud1",
+      "client_c": 15,
+      "native_c": 13,
+      "repeat": 1,
+      "kv": 130560,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.96020872945,
+      "tpot_ms": 41.881277424755375,
+      "tps": 309.66179224381347,
+      "joint_slo": false,
+      "TTFT_margin_ms": 39.79127055000026,
+      "TPOT_margin_ms": -1.8812774247553747,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 211.637346426,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/phase_manifest.json",
+      "throughput_phase_start_ns": 1792273500869903495,
+      "throughput_phase_end_ns": 1792273712507249921,
+      "reported_phase_benchmark_duration_s": 211.63422848000002,
+      "summary_benchmark_duration_s": 211.63422848000002,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/analysis-C15/summary.json",
+        "summary": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/summary.json",
+        "records": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/phases/profiling/profile_export_aiperf.json",
+        "phase_manifest": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/phase_manifest.json",
+        "command": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/command.json",
+        "identity": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/control/environment.json"
+      }
+    },
+    {
+      "id": "100-ucloud3-c16-native16-r1",
+      "node": "ucloud3",
+      "client_c": 16,
+      "native_c": 16,
+      "repeat": 1,
+      "kv": 139264,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 9.967465981999998,
+      "tpot_ms": 51.22064640479451,
+      "tps": 316.7429641972238,
+      "joint_slo": false,
+      "TTFT_margin_ms": 32.534018000002106,
+      "TPOT_margin_ms": -11.220646404794508,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 206.905937646,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/phase_manifest.json",
+      "throughput_phase_start_ns": 1792273794315398968,
+      "throughput_phase_end_ns": 1792274001221336614,
+      "reported_phase_benchmark_duration_s": 206.90223155200002,
+      "summary_benchmark_duration_s": 206.90223155200002,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/phase_manifest.json"
+      }
+    },
+    {
+      "id": "100-ucloud3-c16-native13-r1",
+      "node": "ucloud3",
+      "client_c": 16,
+      "native_c": 13,
+      "repeat": 1,
+      "kv": 139264,
+      "k": 3,
+      "n": 128,
+      "warmup": 8,
+      "excluded_probe": 1,
+      "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "ttft_s": 13.275426042049977,
+      "tpot_ms": 42.327509391585124,
+      "tps": 310.62980402774474,
+      "joint_slo": false,
+      "TTFT_margin_ms": -3275.4260420499777,
+      "TPOT_margin_ms": -2.3275093915851244,
+      "throughput_numerator_tokens": 65536,
+      "throughput_phase_duration_s": 210.977823603,
+      "throughput_denominator_source": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/phase_manifest.json",
+      "throughput_phase_start_ns": 1792273387986795115,
+      "throughput_phase_end_ns": 1792273598964618718,
+      "reported_phase_benchmark_duration_s": 210.97422131200003,
+      "summary_benchmark_duration_s": 210.97422131200003,
+      "payload_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "dataset_sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "source_paths": {
+        "analysis": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/summary.json",
+        "summary": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/summary.json",
+        "records": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/profile_export.jsonl",
+        "phase": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/phases/profiling/profile_export_aiperf.json",
+        "command": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/command.json",
+        "identity": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate-identity.json",
+        "config": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/config.json",
+        "payload": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/inputs.json",
+        "dataset": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/dataset.jsonl",
+        "native": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/requests.jsonl",
+        "environment": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/control/environment.json",
+        "phase_manifest": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/phase_manifest.json"
+      }
+    }
+  ],
+  "sources": {
+    "submission/track-a/data/selected-campaign-sources.json": {
+      "sha256": "137a4adabe845e81d78b0c7d257597c3f11a37e13379c808d05450dbd8aec661"
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100/summary.json": {
+      "sha256": "2948b6c17f203e5bc1d992fdd37236c35ce94b27b61ec73effe93ddc8303a4cc",
+      "bytes": 2904
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100/delivery/raw/candidate/server.log": {
+      "sha256": "dd2445ce4dc69517f2e01e33ce3ad7518eff149d069a87c489cc75c1c90f2b25",
+      "bytes": 5861
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/summary.json": {
+      "sha256": "82dee85a85f26fec2ba53a6a97110673cbc93f1458317b517be59c68673c2c7d",
+      "bytes": 1423
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/summary.json": {
+      "sha256": "5555f6ae7882a7db027d16944f289dc6adacebf34b9ddb495f24eafcbe62b963",
+      "bytes": 13384
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "81639ddf5c7d492e60ff2ec7028f96b70418c6803d33ad4bd8e0e0814d5a0861",
+      "bytes": 21758
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/config.json": {
+      "sha256": "7af4f0e01f7d939df33186b7a3afba1338b287d1cfb962ee27b3f6b7c87a6cda",
+      "bytes": 2028
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/command.json": {
+      "sha256": "141844ef5e0cf9507825457fa240282af4025525482f8eac577b0a22f9fa2c5c",
+      "bytes": 1115
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/profile_export.jsonl": {
+      "sha256": "97a56aa6f091bc0755851286bee9c1456f5d763ef9dedf09016cf946ee329e0c",
+      "bytes": 601034
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "41d7e82ac645222e0bc9162de4c17895a8792c17b5f36df56bb24db512c26746",
+      "bytes": 292343
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C4-native4-bounded100-KV65536-r1/delivery/raw/candidate/c4/phase_manifest.json": {
+      "sha256": "1439cc4fe9d80e2858a01a84294cb189a2fd892cdd2e1123724f56fa140074b0",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/summary.json": {
+      "sha256": "cdbebc429846bdba2470b14dcb0fd34da6fa632e2a0d3786b5925d356118058c",
+      "bytes": 1417
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/summary.json": {
+      "sha256": "d8dc9efef8b280a8237aaae2c59305cf98861434467eccbc90a07f9faa7e0189",
+      "bytes": 13304
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "3d47129644437195c223c4ae26533315a53dc63e4c25bd86a1c4a793f4e04e77",
+      "bytes": 21828
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/config.json": {
+      "sha256": "7577d24d450cd0ece8d78de523788c6c33e8bfff4e1378ccc99810d75c2df70b",
+      "bytes": 1984
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/command.json": {
+      "sha256": "4187dbec4b3d32556b1bb173a36959bf4e527e39408accfc54d848cfacc45af5",
+      "bytes": 1093
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/profile_export.jsonl": {
+      "sha256": "da652bc6de6af8b3076030ce3cb4a7c9ae8807a70c7392cdc744481560df079b",
+      "bytes": 607468
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "2f1afa0d7e0de397e36f7661e5ec30860fa1789805b3eef275747035d86ca6a5",
+      "bytes": 283497
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C8-native8-bounded100/delivery/raw/candidate/c8/phase_manifest.json": {
+      "sha256": "30e3723b693772514f92118b13adbcf4efaf46084129b9900c632e96d0fd78e7",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/summary.json": {
+      "sha256": "a0e5ab234a72047e7b66bea768ebd53ba0c27de525a34bc06867c935d672fed4",
+      "bytes": 1407
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/analysis-C12/summary.json": {
+      "sha256": "1b23a02b12234536d6de849e69ebee11a908fb7c62b6d90ea9342dd067e82c80",
+      "bytes": 6906
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "ba69c8953ae810f8380267ba4ad2060a38e6a3abbbf2d4e98ab0c7ee87469f6a",
+      "bytes": 22012
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate-identity.json": {
+      "sha256": "d301774d433fac422053ecf299fd3182e08e9c137f4960b94324421085cf9734",
+      "bytes": 279
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/config.json": {
+      "sha256": "6390cdb917e0591c2f0b8c4fc9779b0a372697be005b43147fe08aa3322f656e",
+      "bytes": 2356
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/control/environment.json": {
+      "sha256": "01d586d9893bacd45209b79e6211f962a4da9630c5febdb149029bb88da14305",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/command.json": {
+      "sha256": "bd84f09492e577adbd73f05d2f8ad5f7eb6f565dae8716ac1261634c643d4fec",
+      "bytes": 1079
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/profile_export.jsonl": {
+      "sha256": "368183c66e9f1d84523a6aa578cc0a1bb85bbcf1da99f2fbbf0925d21e0b87f0",
+      "bytes": 608394
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/requests.jsonl": {
+      "sha256": "29743a3d301e6d922df9d869a913c30b7538a633dd171f6da2fd585bf853f4a5",
+      "bytes": 281284
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C12-098/delivery/C12/raw/candidate/c12/phase_manifest.json": {
+      "sha256": "af781771a354962d86bec68fec9b59d65917268f67c665be80a00823d396e4fc",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/summary.json": {
+      "sha256": "8a77be019932f4ee21be59272296da658a7b3761bcf3a7e03497864267b39d75",
+      "bytes": 1408
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/analysis-C13/summary.json": {
+      "sha256": "20c6034b332505e902ea783db4fbcac2cd915bb193474fc2cda7d4b274a40be1",
+      "bytes": 6932
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "6619ed0bd9fdbf220849f05d0179b6e6ec4cfb6a8afa5fe1a221ea6579f5c433",
+      "bytes": 21935
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate-identity.json": {
+      "sha256": "d301774d433fac422053ecf299fd3182e08e9c137f4960b94324421085cf9734",
+      "bytes": 279
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/config.json": {
+      "sha256": "5f383e7647f1eb5846de108db1827c8c1b30055513007c40691fc343d461bc17",
+      "bytes": 2356
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/control/environment.json": {
+      "sha256": "01d586d9893bacd45209b79e6211f962a4da9630c5febdb149029bb88da14305",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/command.json": {
+      "sha256": "39e0b1510d4b94911dc75ffa95f14eeda7b0645a1420a3f88915c4ce164c561b",
+      "bytes": 1079
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/profile_export.jsonl": {
+      "sha256": "3690353fa7364d50fa407a2258fb19a07266446530ffcf657195c5d72cafc9d1",
+      "bytes": 611792
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/requests.jsonl": {
+      "sha256": "1bc5bff31ec870466ceaff35765689af7bce11706310e5e1fe8c765e6b6a4a85",
+      "bytes": 281241
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C13-097/delivery/C13/raw/candidate/c13/phase_manifest.json": {
+      "sha256": "6fee37cf77e954d8d0405ffd4b5a8d86e1208634ee1df4f4b1f682582bf7e5d4",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/summary.json": {
+      "sha256": "32f0df0793594e1ad14d14e390a857b6b1fc13eacf2283154819249ffafd5095",
+      "bytes": 1410
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/summary.json": {
+      "sha256": "eaacbf37b2c209775e110eadb3a807636a8d7e3566e1cdc1af37fbc9c6373264",
+      "bytes": 13372
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "270efa182b961938e14d419d7483ea8ef868761d8aaa72595113dd7c10e10aef",
+      "bytes": 22092
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/config.json": {
+      "sha256": "280e7b7865d3eb3faa73048f3755ed827d20fb345a0b9b6cac9534ecc4f284da",
+      "bytes": 1995
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/command.json": {
+      "sha256": "ed8e9c43f27972416f0be5f133df715ef04cf662d04efa4c098fcccae3466dcc",
+      "bytes": 1099
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/profile_export.jsonl": {
+      "sha256": "2a03f910e58df93d90d27110041741cc551527c9e4c4633431c83786c998d119",
+      "bytes": 618758
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "0a53fd44a81fa271448831ce4d3f6115a277db0e282ad08d793fd8fdc59b2a48",
+      "bytes": 281403
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/phase_manifest.json": {
+      "sha256": "68ea8a98197a78fd0042e575b681f2f94942b92ef99d118dce383c45f9617c3a",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/summary.json": {
+      "sha256": "0a63e55c3d903d2a962d69e3c12f55a01b686d47a183d16aafb8c5beaae9fa30",
+      "bytes": 1421
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/summary.json": {
+      "sha256": "373cceb83b103061662fedf6a1336cfa7d95b3363cba26b07fc93b9b9cbbca1c",
+      "bytes": 13377
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "725ef33fd07098a8d4b0e0dd4ad9950f5cbc853046ba3dd02fe1965751f80410",
+      "bytes": 22038
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/config.json": {
+      "sha256": "0cfeec2561dc079502e44b7b40a7a5b55e32657682503307e7ce29610452a31e",
+      "bytes": 2007
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/command.json": {
+      "sha256": "a3e023108cd98002dd1991499d54feeaf607b98a83be026b819caf40d2f4640b",
+      "bytes": 1105
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/profile_export.jsonl": {
+      "sha256": "ab392dce1f592dce0eac0189a5c244799677d0b91dbadc201a95515088118681",
+      "bytes": 615332
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "c67f306baf9b642689b31e7bc26b6230ff820d4d4caad5d7452912b2aad8109c",
+      "bytes": 280832
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/phase_manifest.json": {
+      "sha256": "18152bf8b207bfaa8bed1524acadba3300b2024a33458f9a0ca685002cc08e54",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/summary.json": {
+      "sha256": "c0ce7030243466a640fc05b59af3528a1bafced7a7c7ad770bd4c63a9387e7b0",
+      "bytes": 1413
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/analysis-C14/summary.json": {
+      "sha256": "8fc8e771e3157fc467b61e02c59bdad92910c2eb98769d837c294862f02604ef",
+      "bytes": 6993
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "abaa2890dbfc257da26b68fd931c21625dbd946b6ac296f00072e12c44d10145",
+      "bytes": 21958
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate-identity.json": {
+      "sha256": "d301774d433fac422053ecf299fd3182e08e9c137f4960b94324421085cf9734",
+      "bytes": 279
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/config.json": {
+      "sha256": "50ffcdf64157d04f73ff7b36e9f39437a58fc098f3fc20ea2921646c908d1493",
+      "bytes": 2356
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/control/environment.json": {
+      "sha256": "01d586d9893bacd45209b79e6211f962a4da9630c5febdb149029bb88da14305",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/command.json": {
+      "sha256": "bacf39ad600db42cb77161b1916b0675646938314b395ac79678b879d5cb8cd2",
+      "bytes": 1079
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/profile_export.jsonl": {
+      "sha256": "008dfea4d594bf85a8856cf2252b580b3ecefea66718cb468a05c6751d88a950",
+      "bytes": 616911
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/requests.jsonl": {
+      "sha256": "d98fb07a590c2fbfaf3a83c719561c90303debe94d82a98ab0ff9da13dd10ef9",
+      "bytes": 280912
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C14-096/delivery/C14/raw/candidate/c14/phase_manifest.json": {
+      "sha256": "a77226ebac9de2eab372f9ffe2838c17aa3cb440d98c753afceaa69d33c33e31",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/summary.json": {
+      "sha256": "9ebdd7b3af35c44c1622fb993d7e1b70981f66822100508d02c34b48df03b4ce",
+      "bytes": 1426
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/analysis-C15/summary.json": {
+      "sha256": "359ac0f218cdc08afeec4de7fad1245a4c6ff86b6f3ea92f1c3780278b6b9e89",
+      "bytes": 8857
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "dc4bb0b041779688a9bc7187776063e8d58692fbbbeb435ca259693780d2f899",
+      "bytes": 22114
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate-identity.json": {
+      "sha256": "d301774d433fac422053ecf299fd3182e08e9c137f4960b94324421085cf9734",
+      "bytes": 279
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/config.json": {
+      "sha256": "3d19da1c42bd2be95a40850c66d5826d6e861873f3c4320afb8eaae37121641e",
+      "bytes": 2410
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/control/environment.json": {
+      "sha256": "01d586d9893bacd45209b79e6211f962a4da9630c5febdb149029bb88da14305",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/command.json": {
+      "sha256": "02e9f49df41be2049dc4e7bf70d84cbca12bfeeb2b7bc5883b8da66409487a3d",
+      "bytes": 1097
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/profile_export.jsonl": {
+      "sha256": "6b2f9a64aa519f1fc7e2f9ce9ccaa71b14b9884d5ebf8671e4f37adc8c00e77c",
+      "bytes": 614727
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/requests.jsonl": {
+      "sha256": "8504541a81bd7d3e77d99dba5cfb1aac9562cdcea9f78bd137283972a7e0fab5",
+      "bytes": 281027
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud1/bounded-decode-C15-native13-099/delivery/C15/raw/candidate/c15/phase_manifest.json": {
+      "sha256": "a5ca4e33b968becf2efa24f130c38a4105f75213a37be66091047c5b6290440d",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/summary.json": {
+      "sha256": "8dcf627f8f7d8d98b6a7bf68aed8fccd145fae134fb746112f4f09c282992562",
+      "bytes": 1415
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/summary.json": {
+      "sha256": "765e5e68f60a73eec143ab443cc49d8feba92ba98b9f8ce1680cc46eaa55e3cd",
+      "bytes": 13484
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "cfb38182acc13c6e22da318bdc8a6a5fba1128d0f03f70fb6ebbafa1ef0ffbe5",
+      "bytes": 22038
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/config.json": {
+      "sha256": "b55340d1616ed510e6472773ed894b8e678eb68526ad2931022ce67896cc2698",
+      "bytes": 1995
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/command.json": {
+      "sha256": "5c7cb0e54b8422da755f1b5d69ac3dabd283c3660b3829bdbf31acc7ff782646",
+      "bytes": 1099
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/profile_export.jsonl": {
+      "sha256": "2d5fc264e80459e8f384936344e8eca1e0968ab3546beb17902b759ccbe1784f",
+      "bytes": 615617
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "90150eae34a3148f6b9699e0189298b4ccc0270e324f25234f4808adb07a59a2",
+      "bytes": 280238
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native16-bounded100/delivery/raw/candidate/c16/phase_manifest.json": {
+      "sha256": "53df2e7cb5d0e59b2a2f3a755cc7c963267ba81fe1f7afb17e1141dd3ca7d5e2",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/summary.json": {
+      "sha256": "b45198c4a19e3725b69de754ee4e87cbbf02984b31f2a43b129cee63a8d2b27d",
+      "bytes": 1423
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/summary.json": {
+      "sha256": "2f7c8c4f876753260111550d7de8b7266327a9378cf61823e986c76fab1c372b",
+      "bytes": 13564
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "2e8d2dac5b9965910d1002292a2e7008b0913623d015a9d1b9712e461f5741e7",
+      "bytes": 22095
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate-identity.json": {
+      "sha256": "9ec849d590f7083e9d9e1cd117f4439170acc8a8dbb2c6a7c24c298ee4ee549c",
+      "bytes": 297
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/config.json": {
+      "sha256": "ab55eeb72be431225db5227b76520da3c8bae7829854bcf6e495a9ee47cec0ff",
+      "bytes": 1995
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/control/environment.json": {
+      "sha256": "c5d9747c8ab813ad0aac4726e730261ea933cd64fa57546dd8553d7c6d7f9d21",
+      "bytes": 868
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/command.json": {
+      "sha256": "067689861d9ca5bd28115bfc8ebc5df3f3d4570910427f2be221192dbe993d64",
+      "bytes": 1099
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/profile_export.jsonl": {
+      "sha256": "34b242b0791a25f54e2c25ef8369f236a8850169f63649e6460c5d5d23403a59",
+      "bytes": 615363
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/requests.jsonl": {
+      "sha256": "58ce97b23797a06c1a01c4751cf9b0f991608302f70d0b34b64b2633d322984a",
+      "bytes": 281069
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/dataset.jsonl": {
+      "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599",
+      "bytes": 7366021
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C16-native13-bounded100/delivery/raw/candidate/c16/phase_manifest.json": {
+      "sha256": "cfb173863e6e7c509313555e14fc62933c82f5e012c35fcf51cfcd47794b1d16",
+      "bytes": 1174
+    }
+  },
+  "validation": {
+    "P95": "Linear quantile over all original 128 profiling requests; TPOT=(E2E-TTFT)/(512-1). Warmup and one probe excluded.",
+    "throughput": "65536 output tokens divided by (profiling end_ns-start_ns)/1e9 from phase_manifest.json; matched raw phase output_token_throughput, parser summary, and audited analysis. Neither the nearby benchmark_duration metric nor the request timestamp span is substituted for this denominator.",
+    "comparability": "Same binary/source, exact actual payload including salt, normalized route flags and runtime arguments; node, client/native capacity, KV and repetition explicitly retained. Cache path basenames are normalized, not a claim of freshly hashing all cache bytes.",
+    "C14": "Both measured runs shown separately. No mean/error-bar substitution, no long-run guarantee, no claim that native14 passed.",
+    "quality": "No quality inference from build6632 or any earlier build."
+  }
+}

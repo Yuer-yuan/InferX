@@ -1,0 +1,2633 @@
+{
+  "schema_version": 1,
+  "campaign": "100-quality-105",
+  "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "samples": 100,
+  "instructions": 111,
+  "counts": {
+    "prompt_strict": 85.0,
+    "prompt_loose": 88.0,
+    "instruction_strict": 96.0,
+    "instruction_loose": 99.0
+  },
+  "metrics": {
+    "prompt_level_strict": {
+      "score": 0.85,
+      "prompt_cluster_95ci": [
+        0.78,
+        0.92
+      ]
+    },
+    "inst_level_strict": {
+      "score": 0.8648648648648649,
+      "prompt_cluster_95ci": [
+        0.8,
+        0.9238095238095239
+      ]
+    },
+    "prompt_level_loose": {
+      "score": 0.88,
+      "prompt_cluster_95ci": [
+        0.81,
+        0.94
+      ]
+    },
+    "inst_level_loose": {
+      "score": 0.8918918918918919,
+      "prompt_cluster_95ci": [
+        0.8303571428571429,
+        0.944954128440367
+      ]
+    }
+  },
+  "failures": 0,
+  "empty_final": 1,
+  "length": 0,
+  "attempts": 100,
+  "finish_reason_counts": {
+    "stop": 100
+  },
+  "cases": [
+    {
+      "key": "80",
+      "prompt": "Create stairs by incrementally indenting each new line. Respond with three sentences, all containing the same number of characters but using all different words. What if Arya could disguise others as herself?",
+      "final": "She swapped faces with ease.\n    Her mimicry took all shapes.\n        Every mask looked like hers.",
+      "instruction_ids": [
+        "format:line_indent",
+        "ratio:sentence_words"
+      ],
+      "kwargs": [
+        {
+          "N": null,
+          "capital_frequency": null,
+          "capital_relation": null,
+          "end_phrase": null,
+          "first_word": null,
+          "forbidden_words": null,
+          "frequency": null,
+          "keyword": null,
+          "keyword1": null,
+          "keyword2": null,
+          "keyword3": null,
+          "keyword4": null,
+          "keyword5": null,
+          "keywords": null,
+          "language": null,
+          "let_frequency": null,
+          "let_relation": null,
+          "letter": null,
+          "m": null,
+          "max_words": null,
+          "min_words": null,
+          "n": null,
+          "n_end": null,
+          "n_start": null,
+          "nth_paragraph": null,
+          "num_bullets": null,
+          "num_highlights": null,
+          "num_paragraphs": null,
+          "num_placeholders": null,
+          "num_sections": null,
+          "num_sentences": null,
+          "num_words": null,
+          "options": null,
+          "percentage": null,
+          "postscript_marker": null,
+          "prompt_to_repeat": null,
+          "reference_text": null,
+          "relation": null,
+          "section_spliter": null,
+          "sep": null,
+          "small_n": null,
+          "word": null
+        },
+        {
+          "N": null,
+          "capital_frequency": null,
+          "capital_relation": null,
+          "end_phrase": null,
+          "first_word": null,
+          "forbidden_words": null,
+          "frequency": null,
+          "keyword": null,
+          "keyword1": null,
+          "keyword2": null,
+          "keyword3": null,
+          "keyword4": null,
+          "keyword5": null,
+          "keywords": null,
+          "language": null,
+          "let_frequency": null,
+          "let_relation": null,
+          "letter": null,
+          "m": null,
+          "max_words": null,
+          "min_words": null,
+          "n": null,
+          "n_end": null,
+          "n_start": null,
+          "nth_paragraph": null,
+          "num_bullets": null,
+          "num_highlights": null,
+          "num_paragraphs": null,
+          "num_placeholders": null,
+          "num_sections": null,
+          "num_sentences": null,
+          "num_words": null,
+          "options": null,
+          "percentage": null,
+          "postscript_marker": null,
+          "prompt_to_repeat": null,
+          "reference_text": null,
+          "relation": null,
+          "section_spliter": null,
+          "sep": null,
+          "small_n": null,
+          "word": null
+        }
+      ],
+      "scores": {
+        "prompt_level_strict": 1.0,
+        "inst_level_strict": 1.0,
+        "prompt_level_loose": 1.0,
+        "inst_level_loose": 1.0
+      },
+      "final_sha256": "e44913494ea312a8ffbe873fc2ee5a46c597f60f6450da43abd9f6d06a2e76b7",
+      "prompt_sha256": "1dd926ecb1a4b296b3f53b48a29c5cb5283630c43c25b6c88fa2fe25a7a25917",
+      "finish_reason": "stop",
+      "truncated": false
+    },
+    {
+      "key": "88",
+      "prompt": "Answer with a list of items, instead of bullet points use !?!?. No two consecutive words can share the same first letter.  For axisymmetric free-boundary flow, a similar solution of the boundary layer equations results for I\" - I~ = Nx\". Determine the range in n for which physically reasonable formulations arise for transport of boundary region form.",
+      "final": "!?? 0 < n < 1\n!?? valid range",
+      "instruction_ids": [
+        "format:list",
+        "words:no_consecutive"
+      ],
+      "kwargs": [
+        {
+          "N": null,
+          "capital_frequency": null,
+          "capital_relation": null,
+          "end_phrase": null,
+          "first_word": null,
+          "forbidden_words": null,
+          "frequency": null,
+          "keyword": null,
+          "keyword1": null,
+          "keyword2": null,
+          "keyword3": null,
+          "keyword4": null,
+          "keyword5": null,
+          "keywords": null,
+          "language": null,
+          "let_frequency": null,
+          "let_relation": null,
+          "letter": null,
+          "m": null,
+          "max_words": null,
+          "min_words": null,
+          "n": null,
+          "n_end": null,
+          "n_start": null,
+          "nth_paragraph": null,
+          "num_bullets": null,
+          "num_highlights": null,
+          "num_paragraphs": null,
+          "num_placeholders": null,
+          "num_sections": null,
+          "num_sentences": null,
+          "num_words": null,
+          "options": null,
+          "percentage": null,
+          "postscript_marker": null,
+          "prompt_to_repeat": null,
+          "reference_text": null,
+          "relation": null,
+          "section_spliter": null,
+          "sep": "!?!?",
+          "small_n": null,
+          "word": null
+        },
+        {
+          "N": null,
+          "capital_frequency": null,
+          "capital_relation": null,
+          "end_phrase": null,
+          "first_word": null,
+          "forbidden_words": null,
+          "frequency": null,
+          "keyword": null,
+          "keyword1": null,
+          "keyword2": null,
+          "keyword3": null,
+          "keyword4": null,
+          "keyword5": null,
+          "keywords": null,
+          "language": null,
+          "let_frequency": null,
+          "let_relation": null,
+          "letter": null,
+          "m": null,
+          "max_words": null,
+          "min_words": null,
+          "n": null,
+          "n_end": null,
+          "n_start": null,
+          "nth_paragraph": null,
+          "num_bullets": null,
+          "num_highlights": null,
+          "num_paragraphs": null,
+          "num_placeholders": null,
+          "num_sections": null,
+          "num_sentences": null,
+          "num_words": null,
+          "options": null,
+          "percentage": null,
+          "postscript_marker": null,
+          "prompt_to_repeat": null,
+          "reference_text": null,
+          "relation": null,
+          "section_spliter": null,
+          "sep": null,
+          "small_n": null,
+          "word": null
+        }
+      ],
+      "scores": {
+        "prompt_level_strict": 0.0,
+        "inst_level_strict": 0.5,
+        "prompt_level_loose": 0.0,
+        "inst_level_loose": 0.5
+      },
+      "final_sha256": "d116aa8eceb62dab7fcafc0c748bae592b95056ecf94ae294258fd51ddc70692",
+      "prompt_sha256": "02a017d7d94d5711fc68322150b6c78f66b326c8e40ddb1ac6474f687878b49c",
+      "finish_reason": "stop",
+      "truncated": false
+    }
+  ],
+  "configuration": {
+    "client_c": 13,
+    "native_c": 13,
+    "kv": 532480,
+    "k": 3,
+    "max_tokens": 32768,
+    "actual_temperature": 1,
+    "actual_top_k": 20,
+    "actual_top_p": 0.95,
+    "request_generation_override": "max_tokens only; server seed42"
+  },
+  "scope": "Candidate quality observation; no paired OFF arm and no pure quantization attribution. Same frozen100 e4ed/c976 flag1 binary and generic input routing as the corresponding native13 performance candidate (qualityKV532480,performanceKV113152; client14/native13 performance uses121856); no quality-only switch. Four original verifier metrics and all failures/empty/length retained. Not the published79.5 recipe reproduction or first100 representativeness claim.",
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 42,
+    "unit": "prompt cluster",
+    "percentile": "linear 2.5/97.5"
+  },
+  "summary_source": "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-score-001/summary.json",
+  "sources": {
+    "submission/track-a/data/selected-quality-sources.json": {
+      "sha256": "63b1889690f9f13e14793e029b37d45f0c9dffd32e7ca1bf02a5ecfd4c4d3314",
+      "bytes": 873
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/delivery/raw-manifest.json": {
+      "sha256": "114642eee26539bd6f073916b43fddef3c8b43611478d71502dcf20a398f946f",
+      "bytes": 89838
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-http-native-join-001/per-completion.jsonl": {
+      "bytes": 216204,
+      "sha256": "1ff850af3f4efd17b55bfbd8221e8bbbb1d2a84d453afa4493b8e3e3f6321ded"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-http-native-join-001/summary.json": {
+      "bytes": 679,
+      "sha256": "71dbfa931a5e4507854e8092151a5e293d43c2b5fcbe3a726f4bbe36b94be5fb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-preflight.json": {
+      "bytes": 346,
+      "sha256": "03e13da68727c0a1a0fee71e93d73592487615e36a954563b80c6043981365dc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-score-001/all-http-attempts.jsonl": {
+      "bytes": 179375,
+      "sha256": "0f069e705d07ff4a39751ebfa3734a541b53393791d42a1caf80ee5afa0343ce"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-score-001/failures-empty-length-strictfail.jsonl": {
+      "bytes": 16437,
+      "sha256": "8bcd7a740768e6cefaafe8467557fe2786a59d2e90aab992e6e9f2a913178caf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-score-001/per-sample.jsonl": {
+      "bytes": 109625,
+      "sha256": "4f9ddb1a9931696a73ebe78e052d87af11b010c691127e411848b47623a7b347"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/CPU-score-001/summary.json": {
+      "bytes": 3032,
+      "sha256": "3a6687827cb280a28df14f4db6479a7b8cc8471d846a813ff10ddcaa0afe5db9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/GPU-before.json": {
+      "bytes": 74,
+      "sha256": "1689bf857c7c0f239b1ca3363c013dde20a5ed8b16af36e29084bc2f44eab2bb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/KV-label-only-r2-receipt.json": {
+      "bytes": 533,
+      "sha256": "e38d2b21286e8d81e7a3ca8cf84ef4d429ffa2cc2eaa7667bb70247fb390aef9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/KV-label-only-r2.patch": {
+      "bytes": 3384,
+      "sha256": "b4a440af4f891979fbd3c025e91e97c11f37ed3196a49335cb09f2b414d99fec"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/PLAN.json": {
+      "bytes": 1357,
+      "sha256": "4311ffdb00e2e584cf650e3198becf867b7bdff9cf06d7581dd6d751bfd21c2a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/Root-execution-release.json": {
+      "bytes": 756,
+      "sha256": "bc4ba0f1fc0f92e7036ccb65d636445b6ae995640402709c86afbc3fd3d2b932"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/configs/task_config.yaml": {
+      "bytes": 2215,
+      "sha256": "02c431a53e3037a63c898a202ff7985e0ae46324440ef3f6063f1019b8760de5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/logs/eval_log.log": {
+      "bytes": 11926,
+      "sha256": "408110620e4efda1000f0af832c6a04babbd06ccbfb3f25b090817f9394e51f5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl": {
+      "bytes": 4489180,
+      "sha256": "cafad7e1643282c4b3e91a32884df537dd577aeddb615bcbd7debd627c90f36e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/reports/qwen38-27b/ifbench.json": {
+      "bytes": 13272,
+      "sha256": "bc7a8e198957c5e432d9e6661a940835696811a211ec96f19a1e9e25fb5f0edf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/reports/report.html": {
+      "bytes": 89749,
+      "sha256": "1af07d589eb3d3477a3d6d457aa111e252587c6de90b96b2be866a7a113f379c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl": {
+      "bytes": 2525525,
+      "sha256": "f44312b98b01299e08bb903ecd62a3caffb2a152953579083cae6ddcae3bb85c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/actual-GPU.json": {
+      "bytes": 104,
+      "sha256": "e5e987d135e1bc6036fcd01a5b8f93382cfe55854418cb9bb7b3bcb0121ddc4a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/actual-binary-identity.json": {
+      "bytes": 226,
+      "sha256": "5aa7b63c947492cf5be066922508fab20c45751ed4a4bae77e873db6dfbf9dc7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/adapter-first100-actual-inputs.json": {
+      "bytes": 246106,
+      "sha256": "fa90592cf453af809a121533656966d4bbefb7a5d57a24651c07fef41c8826ba"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/audit_http_native_join.py": {
+      "bytes": 3706,
+      "sha256": "2bbd18481bfd8d62615d9692460874a2833a69f515c282250f662849eadbaad7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/checkpoints.py": {
+      "bytes": 3119,
+      "sha256": "11f15bf1ec9e27ef848a784062a1141dec6a88e5ae5f68e1ef9e2e2b6f465c42"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/client-environment.json": {
+      "bytes": 614,
+      "sha256": "f9bac8a9d69128b33ca294833ca183f423e4bb29ab03d1e80f28a712bdf47518"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/client-identity.json": {
+      "bytes": 261,
+      "sha256": "015a2dad3cdba6909d56f46538e1532f815b8587e12736fdb39e1fc8a0b2bede"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/client-terminal.json": {
+      "bytes": 220,
+      "sha256": "3108e6ca66eb3fa12592623735a04b4c74ca909a27df078f880b5f793e6d2df4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/client.log": {
+      "bytes": 29007,
+      "sha256": "79be41e799ee191d42f937c1faa7dd70731ed8a36040ccd95531591a31835827"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/executed-release.json": {
+      "bytes": 756,
+      "sha256": "bc4ba0f1fc0f92e7036ccb65d636445b6ae995640402709c86afbc3fd3d2b932"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/execution-freeze.json": {
+      "bytes": 2382,
+      "sha256": "eb599cf9d0d8e05774c80273c6d36ea3714b54fa44a7f620fd4687a0a9f0d223"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/expanded-defaults-preflight.json": {
+      "bytes": 2398,
+      "sha256": "1307b3dc30996ca08b41b9116e262dd44244dc92b3e395fe96acf6a9af8efa2d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/expected-runtime.json": {
+      "bytes": 339,
+      "sha256": "a8b3183b938a108704b0f73594b9f0dec6503aead4cfbe7c836b2025e96785fd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/first100-frozen-cohort.jsonl": {
+      "bytes": 220497,
+      "sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix030/predictions-original-lines.jsonl": {
+      "bytes": 1183580,
+      "sha256": "336e2a1ac46227f8947a6294f80a1b69908b4cc7706c4ab8d505ba5cab230965"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix030/reviews-original-lines.jsonl": {
+      "bytes": 659386,
+      "sha256": "9f7e1c7d2b821a9b62d7f0ed3ccbae161309245bcde55e77e8d6303715dd8025"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix030/snapshot.json": {
+      "bytes": 7778,
+      "sha256": "d76ccf93e5bbeef01aa632cb41f09a5c2b916b95fcf312f32da104b66df6d4a0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix060/predictions-original-lines.jsonl": {
+      "bytes": 2892382,
+      "sha256": "574b6d02be7938e4a30d385cfd13549d3358c5eb602b0e333fe5373391e34a71"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix060/reviews-original-lines.jsonl": {
+      "bytes": 1639193,
+      "sha256": "6f442ae52cb3f6d010560c60465785c539ca08289c6936759ca28f28c2006cc9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix060/snapshot.json": {
+      "bytes": 14715,
+      "sha256": "4b312d674e46456fe533dcdb16c1defefc82eb263a00e1dd55325703859ccf24"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix100/predictions-original-lines.jsonl": {
+      "bytes": 4489180,
+      "sha256": "3472388255a25ec9790154af8a948c3dd2f9461cafa3a7315393b16ed8d0280b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix100/reviews-original-lines.jsonl": {
+      "bytes": 2525525,
+      "sha256": "6e52a138e8b1e2c93df226c98219c8dc596c668dfa98a62f700361bab409f233"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/fixed-checkpoints/prefix100/snapshot.json": {
+      "bytes": 24063,
+      "sha256": "22b1045b712d2807eae83e989cd6a128c33647f29a26cc234c5b7fbedd876c9a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00001/attempt.json": {
+      "bytes": 1756,
+      "sha256": "d421183facdd8f5059ac498d5cbb85f50d14a1374b50106ddbd9b0f881bcea10"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00001/payload.json": {
+      "bytes": 796,
+      "sha256": "e982c758edf8b0f9e40940f5df39e7f8432dec8cf556723a524d7f74c05bd2f8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00001/request.raw.bin": {
+      "bytes": 753,
+      "sha256": "ce395884d602be449badf57bef90c3a0ebca134ac72c5a0d98bf0b7861abeaac"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00001/response.json": {
+      "bytes": 27921,
+      "sha256": "c9c4f07c20d7ee0fd7a3e64e751c507c58ce92e81bba600332b16f338393dc97"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00001/response.raw.bin": {
+      "bytes": 27732,
+      "sha256": "9ff83c0a524b8db102be35ad0015a99827fe5b5f54033aca862734112f83b5ae"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00002/attempt.json": {
+      "bytes": 1756,
+      "sha256": "2fd83e6d53ee67697a6d3a2f54cb33f6a9c81ef2da40e713dc3321cfc1884ae1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00002/payload.json": {
+      "bytes": 597,
+      "sha256": "0802c1d5d42db4f4b0804e77067135acbedeb76026ebf8e7d682a0fed113ef6f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00002/request.raw.bin": {
+      "bytes": 554,
+      "sha256": "9e15bca230797a0a14de9bdf4b9ccb776dcf70b4ae9a203b82ce788c09a32a53"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00002/response.json": {
+      "bytes": 23012,
+      "sha256": "48406bb9dfc11c432636c62594b34c7b13d46494cc8680bb89bfc9fb2013df58"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00002/response.raw.bin": {
+      "bytes": 22823,
+      "sha256": "d73c3b44199a463f847b5bd3df3881e18356f2e7e97e81d3dd5ee293faac52b0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00003/attempt.json": {
+      "bytes": 1756,
+      "sha256": "d03558cd2556782be6b0f959a8d00d6929f159386c0c850b024bbef33ad593f8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00003/payload.json": {
+      "bytes": 1030,
+      "sha256": "8b1afc7cf5a390b81882e40fdcb359760b03703f1fb4afe681ab3aa7c265d970"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00003/request.raw.bin": {
+      "bytes": 987,
+      "sha256": "4ec8599db2a9f7c06a7c4f1805572836e8b206e56127c9b7ba6872fff0982335"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00003/response.json": {
+      "bytes": 33954,
+      "sha256": "1362f1166930867171d54282833bf65ebf9720b775cc527487df75c8bbd8adbb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00003/response.raw.bin": {
+      "bytes": 33765,
+      "sha256": "904064bff267326361754274af0e2f5a77ee57b8c428abeaa3edf812bd069ac7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00004/attempt.json": {
+      "bytes": 1756,
+      "sha256": "19d8c0028fb744ff85dc5f84a9cffceb5c6ff6cb6eed1264f118ebe091ac2c64"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00004/payload.json": {
+      "bytes": 685,
+      "sha256": "d805e6a0702e4fdb55722aeb5fde92051b18736a9142fc97be39b419bb99023c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00004/request.raw.bin": {
+      "bytes": 642,
+      "sha256": "fcb0b69225782497958652899acbc80e008911b394592eddc44f676b541f7c47"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00004/response.json": {
+      "bytes": 22847,
+      "sha256": "25521bef1cafede86720500c823cae9295323300f05acd47e4536c11b0e69223"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00004/response.raw.bin": {
+      "bytes": 22658,
+      "sha256": "f90d35085c9764537fd64febae1cb782a22708dd18b831bbd9dc9e1956f1bc0b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00005/attempt.json": {
+      "bytes": 1756,
+      "sha256": "f6751fd2849754a9bc581f58bf1523219da54dab360bf2924e702f122b8e1596"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00005/payload.json": {
+      "bytes": 714,
+      "sha256": "ac892e27f3fa8393dc6a87a2b21699241863dda19af51133d6eb50e4766903c7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00005/request.raw.bin": {
+      "bytes": 671,
+      "sha256": "02b38f799b1b54d9e53337fa72902495d957f9e4fe856b033e48f4c3ed3b9197"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00005/response.json": {
+      "bytes": 11573,
+      "sha256": "249c06525397bfe93e614fdcced6aea7e0eee1ca27c8b8fa2cc0cac28295b2b0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00005/response.raw.bin": {
+      "bytes": 11384,
+      "sha256": "b4cf06a6e8476e63e94b0a266407e5e43433ea183080a53b0875c4a8ce57e4b4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00006/attempt.json": {
+      "bytes": 1756,
+      "sha256": "c10f04cbeebf441ddb7f3bad873f7a2e8b426907c7c0b1c5512816aef1a71981"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00006/payload.json": {
+      "bytes": 455,
+      "sha256": "3c55a357f5e38583ebfcd129a738723aadb3e1dacb5c2bfcbeaff247c42be5a3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00006/request.raw.bin": {
+      "bytes": 412,
+      "sha256": "2cf3b98f8dba2dc888efb47594ad1cf38ac2a8b3a6807657b498f7ee52eba1f7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00006/response.json": {
+      "bytes": 15138,
+      "sha256": "3f5fa46d230d814800b9f5bb36c23b847d97079aa9289cc3f0c5a8776781e899"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00006/response.raw.bin": {
+      "bytes": 14949,
+      "sha256": "35c46a3010376d8465258a3e728e6ba32b69a5178988819764492bfac1f79baf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00007/attempt.json": {
+      "bytes": 1758,
+      "sha256": "5a424d73cf28c284d8a7489d1c946863a29cccd25b6e48c9e362f7b46b5c7446"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00007/payload.json": {
+      "bytes": 723,
+      "sha256": "8fa167aa489129e0039b086507c435dbd1f2264bea11518e1e024c665517372d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00007/request.raw.bin": {
+      "bytes": 680,
+      "sha256": "2e7b19e954594fe2b39c89a29ad51c5f8eb7731971adb94b1c8edc23a9dec3ff"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00007/response.json": {
+      "bytes": 44822,
+      "sha256": "dadeb5252d692cfd3c028477efd7ba35bf5e69535fbbb24247e852585cf91e43"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00007/response.raw.bin": {
+      "bytes": 44633,
+      "sha256": "21d845e26e89953646c615fc6d1a449a6608b06f1a9cd817d3686b8830f46d9a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00008/attempt.json": {
+      "bytes": 1754,
+      "sha256": "9a59428cf152bcc3d66414bae3dbd88ce44952dabe9f5e0e7a1c29e02ae6b530"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00008/payload.json": {
+      "bytes": 400,
+      "sha256": "6ea732b09ac571e063980e035975482d70618b5a81900843092c9bf6f9a828a0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00008/request.raw.bin": {
+      "bytes": 357,
+      "sha256": "f8ce2e37449a3158d3abe93a8420c3f038b0ecf056365635eb39ffc59f385b11"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00008/response.json": {
+      "bytes": 8591,
+      "sha256": "542a1b574ddfe64d0db86daf07cfaefb3ce905ca61b8c15fb6b31da0598d7f87"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00008/response.raw.bin": {
+      "bytes": 8402,
+      "sha256": "919f7c2d09df31ca7d372345d5989f826ee610a749e94fe5d9bb409eb7cf122a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00009/attempt.json": {
+      "bytes": 1754,
+      "sha256": "d39847086992f1b501e7d4a1057e2ed5e47109038dd229f1c455965ae11997bb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00009/payload.json": {
+      "bytes": 794,
+      "sha256": "801b7cdcb2918f91392003e5df226cd3b5009c0eb4edd7e380284088ad3f09f3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00009/request.raw.bin": {
+      "bytes": 751,
+      "sha256": "5cf9092dbb9fd0d38e10595babde0c1da1b3cb221ec2136e540f026f9a925787"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00009/response.json": {
+      "bytes": 9101,
+      "sha256": "db975dbaf2f04a6a4b50c669eb5bb8e17caf7c4e76af9dfa4410c399324363b9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00009/response.raw.bin": {
+      "bytes": 8912,
+      "sha256": "4b0c30f8a0f9a4a1e4a2c0abe37ff9b3fe5a28397623d6649caf71866c2ceb20"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00010/attempt.json": {
+      "bytes": 1757,
+      "sha256": "01c8089acc2bd172033f98950dc0b0f7460b8a0b2d6aae5e91ef668c8230863b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00010/payload.json": {
+      "bytes": 738,
+      "sha256": "55c122bf08f21f3cd66204da76c27c56de7c6367c5bc1ff3f8e4d6161b06263e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00010/request.raw.bin": {
+      "bytes": 695,
+      "sha256": "51d56ae669fa3c4e312df30ce1a12e3f7b320245881456d3cca095f216ea4da3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00010/response.json": {
+      "bytes": 13138,
+      "sha256": "93b4b496047b19ea5e3a0d264e194c0dfd9e8355c13ff4356c47dae160f99b87"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00010/response.raw.bin": {
+      "bytes": 12949,
+      "sha256": "bc4aa03f7e93e808b1aa229eeed2203c8c4ea4508fa6712c7d2ca45e8dc7bf8a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00011/attempt.json": {
+      "bytes": 1757,
+      "sha256": "37e52ff5c4dc0ba48a7e28616f25061bb0e6ef9274676339aab1a4ced37c8f96"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00011/payload.json": {
+      "bytes": 339,
+      "sha256": "da7d517009a9d5cbd2bee7a111059805da1fa80c3abbf6b1b1bc980853bdf7ca"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00011/request.raw.bin": {
+      "bytes": 296,
+      "sha256": "ec7a17ddaded4b7c905735412f926af3118e52118bc7b9df81da19dcd9b249d4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00011/response.json": {
+      "bytes": 36117,
+      "sha256": "8a4216645f3dea06937d702788276554d50fa45e6dba596671a0770fc0596b52"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00011/response.raw.bin": {
+      "bytes": 35928,
+      "sha256": "9244aa0326874839d49abfca481c13e45b7e6793a3a5cfbd6c7604452a2d2359"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00012/attempt.json": {
+      "bytes": 1757,
+      "sha256": "104f204bd611ef66d816355f44ab0ce31569234d64914229b68bf7bbb6b38b6e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00012/payload.json": {
+      "bytes": 845,
+      "sha256": "174bb0814fb570dc20a145eaa4868a6b1aef1128fbb5744c8438aa64a4d44390"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00012/request.raw.bin": {
+      "bytes": 802,
+      "sha256": "e6a6e44d8590ca9e3d51125e49dd03e0d492d632efea84d3c14f4f55cd230d50"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00012/response.json": {
+      "bytes": 33149,
+      "sha256": "110cc5b7a8d40d60781d3ab95001934146e774357c1f0ca9392bdf9fb3197e61"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00012/response.raw.bin": {
+      "bytes": 32960,
+      "sha256": "2560e7ccb3b7c1476137b5ab258bf5cc753829a668b887bbba3a9ee2474b0ca4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00013/attempt.json": {
+      "bytes": 1759,
+      "sha256": "4cd39fcf1f89012345c785abd46a2518b6591825d98f6db898ddf00b7b51f516"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00013/payload.json": {
+      "bytes": 352,
+      "sha256": "a2fb4e82cc276a72044ae0a4e5198958274147db3e344497d890bad667a71616"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00013/request.raw.bin": {
+      "bytes": 309,
+      "sha256": "f9b317aa8aed2d61b4baf9ca8b175216264136a2e2dbeb5732da122c184e3e5e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00013/response.json": {
+      "bytes": 65287,
+      "sha256": "20afff16f0e8bb5c45208a32db7a7ce1d4ff7c25c9135ddad015033f7c5255e8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00013/response.raw.bin": {
+      "bytes": 65098,
+      "sha256": "e4db6699705848bc9c6b95a64f52a72136be4c24377efae66ebeb84a1c7a2bf7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00014/attempt.json": {
+      "bytes": 1757,
+      "sha256": "1b77b953dfaccb9f067d116bc219f5d6e80998f9ef1d086d61446b1c96820600"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00014/payload.json": {
+      "bytes": 606,
+      "sha256": "b71e622e79c79f77af8e9085238d9088b7a8989b142373a484881e27d6f025c0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00014/request.raw.bin": {
+      "bytes": 563,
+      "sha256": "a81dd63675d906520cf011f39d1cb81d5e15f2440c99d555efef5d260dd0ceea"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00014/response.json": {
+      "bytes": 16636,
+      "sha256": "24e3a602dbd64453a554c5a5e140b076e7c6940327d3f34ccbcf1d2a17f1299f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00014/response.raw.bin": {
+      "bytes": 16447,
+      "sha256": "31283de810938920e46933c3c6fb12aa5f6afd2959ab3ddcf2fbe08fda2c819e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00015/attempt.json": {
+      "bytes": 1757,
+      "sha256": "c3bc23162018333693b83f17ab210395c3de2142477d4c10facc9c22b28994df"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00015/payload.json": {
+      "bytes": 754,
+      "sha256": "102cebfbd0367af7002fa31db292f4b482beba8f1445fa08e600637278a0d720"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00015/request.raw.bin": {
+      "bytes": 711,
+      "sha256": "45e325d386860de1c8e2549e53b700810ef056de061f0e96cddb0d2e7052523d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00015/response.json": {
+      "bytes": 19940,
+      "sha256": "3a96b9891516baae86570c2e37dcf33e00aea1dfb6e7486a4ee4d7f5d4bb19ca"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00015/response.raw.bin": {
+      "bytes": 19751,
+      "sha256": "b38b91de8b1bea93e3723a873bcb0248895f3b6bc4acdfb50aed0539f52d7549"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00016/attempt.json": {
+      "bytes": 1753,
+      "sha256": "9b983caf4b1d39778855190e942dd558d595eed9d9527516a75e9bf6def509eb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00016/payload.json": {
+      "bytes": 751,
+      "sha256": "c71327527908eecf5f12381630682e8d0db98921e7d4d1cd308aa4879acb9f9b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00016/request.raw.bin": {
+      "bytes": 708,
+      "sha256": "df821c4396e0f399a8c946fd9f531f1231461d813907ea02d54160e490f19ce4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00016/response.json": {
+      "bytes": 3585,
+      "sha256": "4eec52360613765d271a71fbb87045eecf9aec04c3dfa480bbc95e08527590c8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00016/response.raw.bin": {
+      "bytes": 3396,
+      "sha256": "cd485a341fdb937035833f81a32746f3d083bc0ce0460b6565cbd300a227e92d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00017/attempt.json": {
+      "bytes": 1752,
+      "sha256": "947c73fbfa704efaea7c8e4c9e547c33d7378a720d48f5dbbe09f58d29fa2842"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00017/payload.json": {
+      "bytes": 358,
+      "sha256": "9e45f8dfa6ab0751706787ce963459c5b13625f1ca63c3b55b16f99146c5139b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00017/request.raw.bin": {
+      "bytes": 315,
+      "sha256": "e4c953fb71a9af90d7657aa1523923f84e7b3551a22408e7eeaeb28fc160f25a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00017/response.json": {
+      "bytes": 3979,
+      "sha256": "66e39b0e3317861da6a54c462ad69c1b3d3e499930a215684f8a9fe8475ff495"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00017/response.raw.bin": {
+      "bytes": 3790,
+      "sha256": "ebc9088c3504e318b89fee9b7dd49fcb1c802b49801be373d97b4d4de452149a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00018/attempt.json": {
+      "bytes": 1752,
+      "sha256": "afaf5d6074ff0087fdff9c2431a15e0d9dfa143fcfd71f9ac129d8240eb5256c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00018/payload.json": {
+      "bytes": 242,
+      "sha256": "6c3d00d62f0aef788819a799490935c776dd234ade523c7742a1235215ec1533"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00018/request.raw.bin": {
+      "bytes": 199,
+      "sha256": "fd8d09da17239134418e6f673ad8e321f1b5be1f667d12b62dd612733bb0732d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00018/response.json": {
+      "bytes": 4054,
+      "sha256": "0e6134c5c1fe6a657cff5bb227dbd6f3d219e63efdc3732a6fe9eb0977b2249f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00018/response.raw.bin": {
+      "bytes": 3865,
+      "sha256": "bd1ed782f65f1de0fcf080250e2c55ead325c00aa11a0917c457516378b4e97c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00019/attempt.json": {
+      "bytes": 1753,
+      "sha256": "abdcd39afaff230e615671541f39ffd822cf21d870c05d7ebde919cd37ddfc15"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00019/payload.json": {
+      "bytes": 780,
+      "sha256": "1caff0c548035ae51324cb9c110d43c60a61e9d9d5daa27aeb55d0078baba1e1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00019/request.raw.bin": {
+      "bytes": 737,
+      "sha256": "e16ca2ead00518f5c011e7a5c2aab48b3f83521b06815f100e5c2ad8ad200375"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00019/response.json": {
+      "bytes": 3921,
+      "sha256": "de5801b0a3ae0dcae3e81146af9c42f028dedc84319391d1d97798ca3a55c03e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00019/response.raw.bin": {
+      "bytes": 3732,
+      "sha256": "dc8b2b882131585fe7ff9301d1a110f1e1d196807851d1a4f292c5111016a0b5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00020/attempt.json": {
+      "bytes": 1759,
+      "sha256": "53cb3a71c94b7fa17cf36cc9ed61af151a4a97cad269badc5db8e1fa7f0c0c5b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00020/payload.json": {
+      "bytes": 471,
+      "sha256": "ddeb602c88c8afc4f7fde2260ef5c4aa8624191989d949390238d082c314c44c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00020/request.raw.bin": {
+      "bytes": 428,
+      "sha256": "c04da862d2df6b336dd815718f672f570885d139cb5cdf37492bfc7010d7667c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00020/response.json": {
+      "bytes": 32675,
+      "sha256": "b7aa8681efacd0b67441bc78a5a7f81a7771fa67cae2ff92160fda8f11e44d35"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00020/response.raw.bin": {
+      "bytes": 32486,
+      "sha256": "3fd5f4042e3faf5aecef9a2cf0a4d530a317826f3761d6e5fdac0c54d13176ae"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00021/attempt.json": {
+      "bytes": 1753,
+      "sha256": "6b1909374e333caeeb93b3482e83b1e810b3141b9610240988f243cec19392df"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00021/payload.json": {
+      "bytes": 536,
+      "sha256": "50fecdd6f85a8f6c51974d0085d00de836e0d87ca1dc6df22a321fc63462672d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00021/request.raw.bin": {
+      "bytes": 493,
+      "sha256": "f0fec7db2e9265f97e4c684c0c8911835e166c2c3d92c23b450993dc6a282a89"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00021/response.json": {
+      "bytes": 2306,
+      "sha256": "25483063503abf32590a6184972fbe64d4c29494c955e1de0e7a229e773085ce"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00021/response.raw.bin": {
+      "bytes": 2117,
+      "sha256": "f121749cd822898e8cb430d543c55ae1f5d6bc2c4ba83b3c8077d118a7ff2df4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00022/attempt.json": {
+      "bytes": 1752,
+      "sha256": "5f58cf6625f1addf8c06e2cc2522465c7700c28fd1b280ff1db0b14dbd2a2692"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00022/payload.json": {
+      "bytes": 346,
+      "sha256": "301acd21c9f524844b4f953ef969274b5aee2970fbab115b11afebf57beabf59"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00022/request.raw.bin": {
+      "bytes": 303,
+      "sha256": "5c8fa6d783835322bc0f1c9d76c14e4503bf311652b84190f5b290d095b0d2a5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00022/response.json": {
+      "bytes": 3289,
+      "sha256": "f8350624d1ac85291cc5f400f292a4f889be95e9aeb09a8f972044d665b3f0cb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00022/response.raw.bin": {
+      "bytes": 3100,
+      "sha256": "1b5028dd88903703cde372a1a6779732907bf2f748ab982a98e2ab90c2d573d1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00023/attempt.json": {
+      "bytes": 1756,
+      "sha256": "abdd5a59e2d2ce68fb4df588b1c480b77fd7c24e5956d0f1cd6f7c85e7ca6b03"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00023/payload.json": {
+      "bytes": 266,
+      "sha256": "2ab730c18294229ca39439a5c176a62c833d408a5594a8d05109d0cb1186de02"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00023/request.raw.bin": {
+      "bytes": 223,
+      "sha256": "f0b207e3572afee0279eeb7711a669fcd8feaed4d321bb4b8c9b674f207a7765"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00023/response.json": {
+      "bytes": 20519,
+      "sha256": "0d22a0e898f0f26b4ef3e0ac3d208e162d7c822126a00944d59241645330cf3a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00023/response.raw.bin": {
+      "bytes": 20330,
+      "sha256": "1cce8818ad7ee654fda6685bbc3c32e0760310180645a186200e80867a820c7a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00024/attempt.json": {
+      "bytes": 1754,
+      "sha256": "00a9e4ad211b1f72da9f64403f4da835db24be416fb3ad7c8878d3d21e381ceb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00024/payload.json": {
+      "bytes": 270,
+      "sha256": "03ae9de525d4eeec1390818471775a307d95d861e09de939c5d29fdb507c006e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00024/request.raw.bin": {
+      "bytes": 227,
+      "sha256": "9d0c0141697570477635566a30ba818366739253f0deb39d1524583952923e6f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00024/response.json": {
+      "bytes": 5227,
+      "sha256": "13e51d97d2c5ac087080d8ec6ad7c87c2250d147ec576509bc59d6432fa61854"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00024/response.raw.bin": {
+      "bytes": 5038,
+      "sha256": "e843757b3d1c9c198be15fefcb8b6accb01d44b523be1b948594e37637a0cd24"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00025/attempt.json": {
+      "bytes": 1756,
+      "sha256": "8d697a69262ce4a6f737c806d109d2b211953abec282a076616b1a170756476f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00025/payload.json": {
+      "bytes": 327,
+      "sha256": "66e36bda65dd18c84097cbe719bc5f68460b8203d221263556d2152a7bda86bf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00025/request.raw.bin": {
+      "bytes": 284,
+      "sha256": "a3074298b6cc6bd6c0f61a89d8be9c62135a5e8ad7fc2540bf969260c713e335"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00025/response.json": {
+      "bytes": 25664,
+      "sha256": "62d1889530a88e6c0d900aef06a740018607e96684820100527b2943723f0fe3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00025/response.raw.bin": {
+      "bytes": 25475,
+      "sha256": "9aaa51ecad39c776f5dc546034dd590d30f68eb107afb657b2cd1a4870f73cd8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00026/attempt.json": {
+      "bytes": 1753,
+      "sha256": "d4d71d86ef54c2a47688c0aade0b7f1159d800416c43a4265d3f636d2f7c825d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00026/payload.json": {
+      "bytes": 866,
+      "sha256": "b8b484801bbd65ea06a889c706c03bc713e7087a51ea593aee2a3ba38c024cf8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00026/request.raw.bin": {
+      "bytes": 823,
+      "sha256": "488bfe33d625ae3e8f1a70c003c93ec89f13f1031bc2e9b51261f8ac4b32d507"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00026/response.json": {
+      "bytes": 2863,
+      "sha256": "86c78fe1e3e24e70fa0c21fab57f2a0b33633a509db72f7a9f9e6e94479fe76d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00026/response.raw.bin": {
+      "bytes": 2674,
+      "sha256": "b0bfdd42d56d32cf762e29ae992d4fdd5bbae36a64f5e5949962787cf1ee9566"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00027/attempt.json": {
+      "bytes": 1755,
+      "sha256": "7d3ba269ca2b9d8c266cf4455f00ea3c8d7b8b95c0fc58352a0a7c9f5c0f8644"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00027/payload.json": {
+      "bytes": 890,
+      "sha256": "37762cd51eb0276c2bace7f00002d441f651af909f5058d18c5ce41224841a27"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00027/request.raw.bin": {
+      "bytes": 847,
+      "sha256": "8994e3f508548adbb1fd076a1007370ba67ec95151b502f0c2112daa09b70e0c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00027/response.json": {
+      "bytes": 9813,
+      "sha256": "33baa2a2b443c86cdad735176aa2c1682bc2d3385f04b008966bb346b0f3c16f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00027/response.raw.bin": {
+      "bytes": 9624,
+      "sha256": "d989864a22326b974354fdb547e39842d5f9bc450cfb377c565ff1debe19f7d6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00028/attempt.json": {
+      "bytes": 1753,
+      "sha256": "f7225f04fda024e39bbe9532b7859ecf78c766b0d4c1a1ce7a09d9006f6b3a0f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00028/payload.json": {
+      "bytes": 838,
+      "sha256": "6114ef9754f5825bca4d14a21b20bf63afc56f407c3425d6daa5934e30a9584c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00028/request.raw.bin": {
+      "bytes": 795,
+      "sha256": "ccbf74ed643ddf6020d26f8b4c80d578af3c578a43627d4b98a8ddc78bd93075"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00028/response.json": {
+      "bytes": 2914,
+      "sha256": "2504f0a842aa614c1407ca1ec342290ee4cd5520bdab735f0ec8e6e9c11819b0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00028/response.raw.bin": {
+      "bytes": 2725,
+      "sha256": "f420d5f711b1798b8204e6ec70bec6701de87ef493c2f7ef9fd0f19f2d5478c1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00029/attempt.json": {
+      "bytes": 1755,
+      "sha256": "51affc311532b8e5e04562eb63d1703ca2558d8421523c366ddefcf34ef50c8d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00029/payload.json": {
+      "bytes": 690,
+      "sha256": "2adf740c323f1f7bcd3b3ce487020064b0de75682ccd3b2ae549d752857da904"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00029/request.raw.bin": {
+      "bytes": 647,
+      "sha256": "11ee88e2927cf8f5e3dc5520a5ac7b1612b980c7d3abb1d3cb941462c7f072cd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00029/response.json": {
+      "bytes": 7178,
+      "sha256": "3a1144af0fc09e685739646505484699c7463e390b328a59c292fa7dbd83275b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00029/response.raw.bin": {
+      "bytes": 6989,
+      "sha256": "a3d40a4c1ec22d9be79b92ef5bf42afb70a35acf20e21ba292bed539c055a8ac"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00030/attempt.json": {
+      "bytes": 1759,
+      "sha256": "c11fd5008112ba18a1f4a1502a1c27c164efcc6308e4a5bc6a9f71b77baf0b69"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00030/payload.json": {
+      "bytes": 973,
+      "sha256": "c1fa290bb38e133461b61b5254669fae7b39cccee96e28b28019af96d9da9cd1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00030/request.raw.bin": {
+      "bytes": 930,
+      "sha256": "b98b76e624c573eb9cc1703af1ef76e3785cce6c906c0bed5fb4f6be4ce85d11"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00030/response.json": {
+      "bytes": 49762,
+      "sha256": "f89244e844af1bf4495ad3165c3c0062f79bd4cd0a11d5736e15973f8989aec3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00030/response.raw.bin": {
+      "bytes": 49573,
+      "sha256": "61bda90cf1d6f0482d2f8601643e92515aec23c4509fae154b8d2232ce3c2380"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00031/attempt.json": {
+      "bytes": 1754,
+      "sha256": "3398a21d52b6aecfe872e97243460df22cb69b1821da3a5a60aa3e3049253bc5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00031/payload.json": {
+      "bytes": 219,
+      "sha256": "1856470c770c4181e6d98cc8f6b3feb2c2bfdeb7cc622d653690da0ee9c53175"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00031/request.raw.bin": {
+      "bytes": 176,
+      "sha256": "5d0261c62d4d905109aefc97f9a28eb4e238eb400e0710b2368d8fbb3f754bef"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00031/response.json": {
+      "bytes": 7135,
+      "sha256": "f0120e7146a305c0c44ae51b0e967b1e7c28e8fcfc5d6abb21223c461298b1c1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00031/response.raw.bin": {
+      "bytes": 6946,
+      "sha256": "91eb7ddeda174d0c6dcb911760b684a6015c4fe971fe0108249644c5469315a2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00032/attempt.json": {
+      "bytes": 1756,
+      "sha256": "207b7ffa050e287bad2b1fbb4afbc2012a61184db0744b3630494e061754454e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00032/payload.json": {
+      "bytes": 305,
+      "sha256": "c7c52ac40af709ac58f0b00e555223039c3bafa822dc241cff1478e86737ddbb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00032/request.raw.bin": {
+      "bytes": 262,
+      "sha256": "370937efa8648fe7a611c3022f4d71c17228769ee0044956581bc079a9cdbba6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00032/response.json": {
+      "bytes": 28212,
+      "sha256": "bd7c919b61846ec04d128c5a92bbf35908c270b04e38a4f48bb6a634a603a721"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00032/response.raw.bin": {
+      "bytes": 28023,
+      "sha256": "0e6c1b12c96f7f8ab793abbe10a7d635797d9e876a460ae9c1af7aef266e30ab"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00033/attempt.json": {
+      "bytes": 1755,
+      "sha256": "4a8b8d4129ba935f04f35500a6c73066bee1c59291a2a54c452b70624cd3aecd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00033/payload.json": {
+      "bytes": 565,
+      "sha256": "e4791797533aab402803b54ddc97dd3f82f5f193a03854c17a13990fb27ea698"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00033/request.raw.bin": {
+      "bytes": 522,
+      "sha256": "4aaf94b5ee0f1446bdde16a1065aac7f878fddea4aebaaea3d4fd0129af20d72"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00033/response.json": {
+      "bytes": 6953,
+      "sha256": "51a307a3c19ac317362bfe7a1dce5f68040af879f577dd6cd0753ad5effbac5e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00033/response.raw.bin": {
+      "bytes": 6764,
+      "sha256": "44e81d5c9fdcaf140134f53323964d1dbccfc857ddc911c1b7a20ad58e63699c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00034/attempt.json": {
+      "bytes": 1753,
+      "sha256": "d5991dcc9749a92bed19863a6bb0b1e9ea3026ceb723e1b491146db5d3c70fbe"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00034/payload.json": {
+      "bytes": 634,
+      "sha256": "4dd4118f3b8a73f2de057fcff3ca7ff8b7de1a98552f9e60bc761b5bc725b0f9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00034/request.raw.bin": {
+      "bytes": 591,
+      "sha256": "18673736982560d114fb486537c6d6d0752e4259f7b56dbf0b12250cefeda416"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00034/response.json": {
+      "bytes": 3174,
+      "sha256": "3474e818e18f0e3d82bff539d436d48a41488beebfca3eee5edcb3abd155382d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00034/response.raw.bin": {
+      "bytes": 2985,
+      "sha256": "0091efbbf8a33cdbe34758b016d00eef586f5193893397c45a2d463a6cfdc0e5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00035/attempt.json": {
+      "bytes": 1756,
+      "sha256": "9e20c229057e717440618039165182c73195a9e24a3f630304f5607e1e39116d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00035/payload.json": {
+      "bytes": 274,
+      "sha256": "5f93225722d5c2cb43470283b938981c9f7a258416d4b7bb3bbc781079cf513c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00035/request.raw.bin": {
+      "bytes": 231,
+      "sha256": "2f03d860de5392fd27e90a3c06c1fbe29b311ffbf4b6d4a13b467c575e94223e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00035/response.json": {
+      "bytes": 26617,
+      "sha256": "86f8ad5532416644889be039d273508f64cffc21a9f3f92067ac3d2f7a3b1a8a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00035/response.raw.bin": {
+      "bytes": 26428,
+      "sha256": "179fe01b6c20df8989c3aa7692a9e1a93d046bb3dfe7707406372fa2a4a9caca"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00036/attempt.json": {
+      "bytes": 1759,
+      "sha256": "f833390a2eb45431203d3bccb90f34d7a42b2a46c85cba8fc2858302ecd1fb3f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00036/payload.json": {
+      "bytes": 703,
+      "sha256": "7686b7d35cabd0be22a968a379cca37b5131d34860ae9dd39368df08e3ff44b4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00036/request.raw.bin": {
+      "bytes": 660,
+      "sha256": "0735400586698b9ec3238282f6e677f6b8bdb87c0e60930c964cb6a0bab66c8f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00036/response.json": {
+      "bytes": 53619,
+      "sha256": "eae9756ac63575f28f771c73ab849c8e8fbd640f148e9316e9dedc9e09460cd3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00036/response.raw.bin": {
+      "bytes": 53430,
+      "sha256": "a14bb0789365a1a0c853bea745980387b71655212e21a7ba2d724d30e667aa3a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00037/attempt.json": {
+      "bytes": 1759,
+      "sha256": "d8d61db6ab4ad615ce36b590eb859e6de91704597a57834d954e9ac9108c14e0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00037/payload.json": {
+      "bytes": 821,
+      "sha256": "5b59f51f89d5adaa11cb129f19c95435b92cccd583fd20d8ca192e9790a83bb6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00037/request.raw.bin": {
+      "bytes": 778,
+      "sha256": "b8641e4e980d17d44d65d3bc90e34563d7ae8c5433d8d3932189f05c9f8a1aa8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00037/response.json": {
+      "bytes": 64492,
+      "sha256": "3c8804d53e4a0abc074a30407fd41df4fd6af5b55eb14c0f06945e22223f62b6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00037/response.raw.bin": {
+      "bytes": 64303,
+      "sha256": "def7f2c340488a7184ada50b2be532c9476c11819a890b9de16e51bde70aa424"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00038/attempt.json": {
+      "bytes": 1757,
+      "sha256": "3094c2164aa548230695f8f4019e05df85e3dffe1acc5006def934bd8a4e8d5e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00038/payload.json": {
+      "bytes": 575,
+      "sha256": "5cea8fa55e9bc45d293a8427c11ed2f803cda134486b2ff9124a060e4bb3cfd5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00038/request.raw.bin": {
+      "bytes": 532,
+      "sha256": "de5e7fb52a53dd29f6229c1cf82a3e2d501d4685c68f1b99641a10019bc461db"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00038/response.json": {
+      "bytes": 30672,
+      "sha256": "9ce5d8459dca82dc2d83f645b641fb7b53381aa9fab370004bf1023ee6816587"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00038/response.raw.bin": {
+      "bytes": 30483,
+      "sha256": "1001c8f7ecc78f808ccd79de7dd063aa9d1e4f9e5621bf55b8b4089dddba8de1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00039/attempt.json": {
+      "bytes": 1759,
+      "sha256": "b2e2ce4dea3d9a0b8a16edbf0cb705b2cda0df8cf7c071153836d8823b5476a1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00039/payload.json": {
+      "bytes": 463,
+      "sha256": "0993c2d17ede8e188e909b050dcf917ccab8be23bee2f250f872bea1b775c57c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00039/request.raw.bin": {
+      "bytes": 420,
+      "sha256": "bedd561f381bd78c30b4dd0abd9fc5ae7542ff5595e4da2b69125949dbb380f2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00039/response.json": {
+      "bytes": 42501,
+      "sha256": "3d2a2cfd980bd9e93fa2cd6691816088d33a630250758cd7d0d032e91744e8aa"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00039/response.raw.bin": {
+      "bytes": 42312,
+      "sha256": "d6dede2e2adbcef7a169598ea91214fc7852c7015ea5b0a73660041e59b40bdc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00040/attempt.json": {
+      "bytes": 1757,
+      "sha256": "ebbf966f69dfd6568bdfa2ef8d6e3b8f89568fb81de1600c647e30b98c4a6b96"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00040/payload.json": {
+      "bytes": 357,
+      "sha256": "ef83c267759fab6fc4f556cbaae0df83de8b081bd98ee5037cf888d072b91913"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00040/request.raw.bin": {
+      "bytes": 314,
+      "sha256": "2e1adfb9ad3c17758e0a32716ccf0b31b2169311e099f586aee309a893fa6a0e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00040/response.json": {
+      "bytes": 28627,
+      "sha256": "16b6d89b9fa74b00e8e4e96bae41c61db6b78e868bdda024d58d9adb0c777534"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00040/response.raw.bin": {
+      "bytes": 28438,
+      "sha256": "9fef3b4a9ce5f2274e8a6a6a603edb153d590dc2466c2ed124d262e7d8455d0c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00041/attempt.json": {
+      "bytes": 1759,
+      "sha256": "b655bc8e99640e4fd62cc38c2dcedc584b35594275b399802ad1b6eb6398adce"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00041/payload.json": {
+      "bytes": 525,
+      "sha256": "421f08077342a349b41b8c9e3ae9f93e9380c8a99df126c2e558bcec6dfd9ee4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00041/request.raw.bin": {
+      "bytes": 482,
+      "sha256": "b8e1e703fd7d7232bde99ed4323ae5f64a9118ddadb5039477c0daaa7777a906"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00041/response.json": {
+      "bytes": 58118,
+      "sha256": "a4573b64572633334082ed366924cd9f46ca012ff5a495778ca30d00e1630b29"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00041/response.raw.bin": {
+      "bytes": 57929,
+      "sha256": "d9c6a4b03b56b73450f0b5319f303b54c6606d577397b14f7588cdc632e30cd9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00042/attempt.json": {
+      "bytes": 1755,
+      "sha256": "b49964503332815b02c998c4730599cd7dfddd2cd4df2178377b2b536f4495e7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00042/payload.json": {
+      "bytes": 850,
+      "sha256": "179101a9f3181d30bf8f632a7bd5c5ae7da341360343ea1f16df60b39725181c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00042/request.raw.bin": {
+      "bytes": 807,
+      "sha256": "1a07a7c93bf3cbac6e6c166516e04b96451efb5c7a872ebebb22fdfde3113f2b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00042/response.json": {
+      "bytes": 7840,
+      "sha256": "4022a116d524926e40c3d5d437e74a36d50aafa02071a6526cc5cf3e5d04670c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00042/response.raw.bin": {
+      "bytes": 7651,
+      "sha256": "5f45a42c2d8d85f44cf1588f869e2c6bf56abe2443b91d4faa09d05d45825d38"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00043/attempt.json": {
+      "bytes": 1754,
+      "sha256": "5a5d89b3b848e9760a2af2ad9890183c92822fe8699728862e1e49e92a724501"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00043/payload.json": {
+      "bytes": 278,
+      "sha256": "21f1ddd8d8a6ca01e1ef5503cdbd9a50d3048b89a3979e6c2d107ff3490ff275"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00043/request.raw.bin": {
+      "bytes": 235,
+      "sha256": "c7c5f178d14895461b1c7c09e5e392c19cd927cd4cc7fed0de69b8d9aafe067a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00043/response.json": {
+      "bytes": 6047,
+      "sha256": "80033de1bf05e4895267b78ff9e7376cf98b4726a97eb49c1c542d09336e35c6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00043/response.raw.bin": {
+      "bytes": 5858,
+      "sha256": "6c1a579e0008894aca377273f0cca25ca5846ee97bda65dcca1a8a47b79eb712"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00044/attempt.json": {
+      "bytes": 1759,
+      "sha256": "45d8b194dd8ccac48b6a6d6578da85f06be39fc2e7ba010901a25d03a12a6dd9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00044/payload.json": {
+      "bytes": 673,
+      "sha256": "35455e830895a8fa243343fff6a92295b623a8e1fe0196d2a43f854705487106"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00044/request.raw.bin": {
+      "bytes": 630,
+      "sha256": "95b65f6c165ed792e4f954f95b7822ee1121250520a2f4b51f348db32f4029c5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00044/response.json": {
+      "bytes": 49336,
+      "sha256": "cb01e419ea21840d8b3b0f4d94918ef3ed89409e911f9a03b22fff43e9bbee00"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00044/response.raw.bin": {
+      "bytes": 49147,
+      "sha256": "125cf44af52301c8c84cc53b0cb9c7e41d21877fce9ea4d6b539a381ff8d2e2f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00045/attempt.json": {
+      "bytes": 1755,
+      "sha256": "417005be42f37d7e9ac935d0f1d5311e4f224aa82f09a51223aed1a3633e3928"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00045/payload.json": {
+      "bytes": 426,
+      "sha256": "b2f7cee2fd274e10c21d02b19720b329021d4774cf8b6656d398535c62b28694"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00045/request.raw.bin": {
+      "bytes": 383,
+      "sha256": "062dadfabca1df77268b5eb2a6b1729f4a864b84b8293041257b9a9a5da161e8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00045/response.json": {
+      "bytes": 5512,
+      "sha256": "5bc5f10d6d38001abd49a8d3fb4ee9a9e664a4fb8eed729665d2550f909b5428"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00045/response.raw.bin": {
+      "bytes": 5323,
+      "sha256": "af31587e13ea9548b3c6febbec901bd56d545bb1a3d13a614169144174d3b662"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00046/attempt.json": {
+      "bytes": 1752,
+      "sha256": "73b1288e545888ebf9de3b3675de2ed4feedb01db7c82bbaec9c38d4da8af643"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00046/payload.json": {
+      "bytes": 255,
+      "sha256": "f8048e2062c556a8b50f979fa6973a99dc4abe8cee72c66e82071023195c934f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00046/request.raw.bin": {
+      "bytes": 212,
+      "sha256": "cfeba7b9832f89f3eec6a515f348a7d0df4328fdb10cfb134150dcd5ad4f2426"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00046/response.json": {
+      "bytes": 3865,
+      "sha256": "41df1c8eb6689620efe89a4130657a158dffa924705a8a2cdf2a0a897eaff9bf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00046/response.raw.bin": {
+      "bytes": 3684,
+      "sha256": "ba5f10ab40cc3f77ebe083c8d491d5d985347548a1bfa0847044c6d4f60342f3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00047/attempt.json": {
+      "bytes": 1757,
+      "sha256": "395bfaea105ac18b83a76fe57b41929fd87a97a25fc25cfbf515c0751f444036"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00047/payload.json": {
+      "bytes": 476,
+      "sha256": "e4f0f679cc2dd5a75ea6e371f2e482ad6ad21625df0cc31f92b44470cac253cd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00047/request.raw.bin": {
+      "bytes": 433,
+      "sha256": "678a9560280a2ceb727122d965ce080be2f3390fbc8d172944ea427de51b7ee3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00047/response.json": {
+      "bytes": 26235,
+      "sha256": "ce7ac20d6633b2a97c6070c5e1ece2e0126be45d8bb7a1b3ca82eda21a4f3459"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00047/response.raw.bin": {
+      "bytes": 26046,
+      "sha256": "4f1c2a67f0e807a56cd878a787583be2c03ea75d8fe643eeccd40eb5ffa2f920"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00048/attempt.json": {
+      "bytes": 1757,
+      "sha256": "86afe6c3d7527d254301cd491c5d449aeae2451c26c8cb7fb5a7f8707f3b5700"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00048/payload.json": {
+      "bytes": 370,
+      "sha256": "ad13c9985b2bb6e94f6028906ceb4eac047d7fce1bfc2bcb834c369b0379f390"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00048/request.raw.bin": {
+      "bytes": 327,
+      "sha256": "4c8ef649f03ca292a6f0c9f3dcdfa0b7f6b4e5367dad0685bdfb0804d0d40da0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00048/response.json": {
+      "bytes": 18791,
+      "sha256": "10929d3adf8d9d98d3e410b1e604ba14ecfa59d9497446097ffd1c616c465d52"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00048/response.raw.bin": {
+      "bytes": 18602,
+      "sha256": "4cabdbad124c45cc7be4726536af258a7676106f4c75029b819d4369618a9b92"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00049/attempt.json": {
+      "bytes": 1759,
+      "sha256": "f1a21338dc0d79b8ee6f2493a206678ca0440b2c8705ce4b72a5131203f6de11"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00049/payload.json": {
+      "bytes": 409,
+      "sha256": "35686dcad294a4d5712ec445ea9d3dd8818b6d0cf81c9c98dd81097034051b84"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00049/request.raw.bin": {
+      "bytes": 366,
+      "sha256": "4da00632494f932ef2f77abb2e4a00b2f898063299a88df713fde155a8885ece"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00049/response.json": {
+      "bytes": 43589,
+      "sha256": "e29d3b1244de1b97a5262fc1b5e1d56b0323dacdc3ecb48ecd2c1c50424b084c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00049/response.raw.bin": {
+      "bytes": 43400,
+      "sha256": "e647b4182d3cd8ab8f28552d0d888cd01e9ba7470b3276f70437d4052b289259"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00050/attempt.json": {
+      "bytes": 1756,
+      "sha256": "e44e05888179d0f98f1ff59c3db8a9e2e6a803aaefefdf5e1c31fd7b0a324f17"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00050/payload.json": {
+      "bytes": 290,
+      "sha256": "bc10da649f27abe189155c8fbfedb55f6c8ac90a4ea0396adaaf54b1cfb5d723"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00050/request.raw.bin": {
+      "bytes": 247,
+      "sha256": "3aee53f81ac37424e2998cd7f83285f4ea78d3a269738eb94a821bf2f6befb4a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00050/response.json": {
+      "bytes": 29212,
+      "sha256": "a42a01ce583f10e1f47f39c6d96f335d1e9b74636d6bb2c4d5abab2065d162e7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00050/response.raw.bin": {
+      "bytes": 29023,
+      "sha256": "ac94a79bfd84533f8c6027ec3ac617644bd485634ce8acedaffde7131ddfb3c2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00051/attempt.json": {
+      "bytes": 1758,
+      "sha256": "2b9275b2e637ace6c0da38cfa533d361f60d1d846febb0a8e0b48618b95ac536"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00051/payload.json": {
+      "bytes": 284,
+      "sha256": "c6bd981239c364f76f14e1b86a348f8684b7dc81d80bff9a6226b72f023fd3b3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00051/request.raw.bin": {
+      "bytes": 241,
+      "sha256": "7ba6d7e641bff3c86e22fb5cae66d36c4c066fc8809d7f230c47955d650c3594"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00051/response.json": {
+      "bytes": 61829,
+      "sha256": "95c41e83ad4a38f083f3d4513f2e8d60a54e3468837d8a1fa9d27364edaf0893"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00051/response.raw.bin": {
+      "bytes": 61640,
+      "sha256": "881c620067776dce90995035eaa31e34c18ebf8b962a5f53487accd860451f2a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00052/attempt.json": {
+      "bytes": 1757,
+      "sha256": "cff121500009c47e5fda83655c109520d46d6d6dc3817144168dafff8c72e9ef"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00052/payload.json": {
+      "bytes": 338,
+      "sha256": "124cd298445a8ed995f2db194c0beae0be313ca315270b2d91231560f4663f73"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00052/request.raw.bin": {
+      "bytes": 295,
+      "sha256": "fb13ad925b86b46e2bd5f9302ba8f4b298e0b9b4ca304777c2b59d65dd0e6ed1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00052/response.json": {
+      "bytes": 19722,
+      "sha256": "b2489a38a8fcd0e23bce45a7ab4cbc40eb0a99cb14da3b1e29230ba488b07147"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00052/response.raw.bin": {
+      "bytes": 19533,
+      "sha256": "5720f85412663b00efba7ef69e58099da3cc54e124fa3dc88b6d0b49f63580ac"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00053/attempt.json": {
+      "bytes": 1757,
+      "sha256": "7fc3218427d6fd4f9e547ba120704d9c48245cc7a46f31c34ee2620ae2cefa63"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00053/payload.json": {
+      "bytes": 774,
+      "sha256": "312a723ea3637889e6e105909008a4fb852ed3338fc69b5b80e25d361d6cb9f0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00053/request.raw.bin": {
+      "bytes": 731,
+      "sha256": "c3dbe1a2817373648608ce432c77ca239ac556715025061a34fb429b832841f3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00053/response.json": {
+      "bytes": 28737,
+      "sha256": "14680f872db37ed63ee972a174f387f53e9ea4bd291fc52ab698982deb835946"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00053/response.raw.bin": {
+      "bytes": 28548,
+      "sha256": "5146ad1f07ed25333a0cd00c095fd3644c46fa6d6664eef9792430835f05a77a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00054/attempt.json": {
+      "bytes": 1757,
+      "sha256": "71834a39271069e7b0229345c6b5a19b5eb3e5dd5185f546c22ffe3f7ffe9a38"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00054/payload.json": {
+      "bytes": 693,
+      "sha256": "4166fe7d0614dd3a4a7b5e5eeeb699370227ebb357a5bb622fc4fb8dc39e6259"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00054/request.raw.bin": {
+      "bytes": 650,
+      "sha256": "105350d742307e10152e7326dfa30931c189e17bebed53504e52514d26f970e3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00054/response.json": {
+      "bytes": 16257,
+      "sha256": "353625197d20d92a3083408be278d19a9e90e35ab414245c6cb8562fc0e2dfd6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00054/response.raw.bin": {
+      "bytes": 16068,
+      "sha256": "ea65fd9aa5c69624967718a04e5034cf04bce7772de9c8c18a6fca2c94a70ae6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00055/attempt.json": {
+      "bytes": 1756,
+      "sha256": "b13ef99e9b9946c7e49e31fc8f9c3ceb84284c8b07699f81e3146390259e6680"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00055/payload.json": {
+      "bytes": 189,
+      "sha256": "418b729cd519ea8b74afc0259f7238278e5cf68dad3e6f66fc2d3cf8a03ece3a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00055/request.raw.bin": {
+      "bytes": 146,
+      "sha256": "687f9b584bd194d71becbc3dac674904cda16f7f13a8e9b52cf1a9c361b79bd1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00055/response.json": {
+      "bytes": 16221,
+      "sha256": "1574a58365bbc06867503718ab88547d8cfb7a9dc26f695c5d6aebd34d520440"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00055/response.raw.bin": {
+      "bytes": 16032,
+      "sha256": "49c19e874ab2a6c0969921a6cc998d6a5305548504282fc066ac71c271ac3676"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00056/attempt.json": {
+      "bytes": 1756,
+      "sha256": "383e80dd3dd4d3f74f6fdf20f8f2e1b796db57c47cb597f7f65bf1b5271027f1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00056/payload.json": {
+      "bytes": 217,
+      "sha256": "67993680273fb6f3eb6e00a77596bb65be2e6e60ba530aba1ac70c92f0885d09"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00056/request.raw.bin": {
+      "bytes": 174,
+      "sha256": "dc8a7c324cd8a74429546461c8b73ceba9533675acbaadd88bbbca5150071869"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00056/response.json": {
+      "bytes": 21786,
+      "sha256": "4a06884790d237fb5f7d65c13416bdcdc9d02cb9b1fc8ecef8c6e181a00fea48"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00056/response.raw.bin": {
+      "bytes": 21597,
+      "sha256": "18215ce94a4f630e77809d1e797a35ad8571d742cad094d64af9a82656f0978d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00057/attempt.json": {
+      "bytes": 1757,
+      "sha256": "557877790bd302d41d62294c7cc1541ac9a3b7b2e24f12eeb17f6e775977dbb2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00057/payload.json": {
+      "bytes": 768,
+      "sha256": "210638d43d8b9889b80f9162624381fa0efd857a7879671c1040fae1bd4d2017"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00057/request.raw.bin": {
+      "bytes": 725,
+      "sha256": "7a9465b63d97e4e4ac16e93c0751f29a5fd6a5a59a328ad1c6ed05295f4c905b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00057/response.json": {
+      "bytes": 10490,
+      "sha256": "81def2f00b88197ce262c72f97e08724c0513f24b7795c56ded1b3bf975ddde0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00057/response.raw.bin": {
+      "bytes": 10301,
+      "sha256": "85e953b0bde0a5f84f5511d8765b27d9cfa44293b24dc716261b9d76234e2f89"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00058/attempt.json": {
+      "bytes": 1758,
+      "sha256": "f0f1b3d9793f0cfb70ab5ebba089cfd585dfbbb83147516a4f2c679d3170a194"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00058/payload.json": {
+      "bytes": 225,
+      "sha256": "8d58bb56716f79aa1e6b744399d9d9dca9e4322a647a6be53638c98e86828b01"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00058/request.raw.bin": {
+      "bytes": 182,
+      "sha256": "c743d594098783f0514ea36033e4c23950994140977182d78930931e4beff93d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00058/response.json": {
+      "bytes": 48944,
+      "sha256": "009db33a2342c892db968524f5aa1478bc9ef0ac6e77c0f3d048bf5e30328a23"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00058/response.raw.bin": {
+      "bytes": 48755,
+      "sha256": "5d6399c04271c446a79ede52b5beee04a7228f40c57ec8ef114b20d6c5cfdc5b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00059/attempt.json": {
+      "bytes": 1758,
+      "sha256": "88783990449ec2f2b42f35a866f2f7b3dd2487151b6adb4ee277f190199d4cdc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00059/payload.json": {
+      "bytes": 203,
+      "sha256": "bc37eb7bde883a61d241ab548e1869a60c245b2ea9870ed4ce3616ae78cb8ce4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00059/request.raw.bin": {
+      "bytes": 160,
+      "sha256": "0140145ef155c9c1abb23250540449cda4dc7473aebd4edc9e91923d189c0f66"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00059/response.json": {
+      "bytes": 43418,
+      "sha256": "dfaf4f1404750c2554f63b46ca8a98a5211d9e6cedaed36af82c15ee470446ae"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00059/response.raw.bin": {
+      "bytes": 43229,
+      "sha256": "54d61cf1f11d2e924212b728cd5196bbf3df7e91339642227c63ed0cac26403d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00060/attempt.json": {
+      "bytes": 1757,
+      "sha256": "f15807652e9c64f1f353d6521dadf0f8b94d3f145e11c47f072bc248d25c6a43"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00060/payload.json": {
+      "bytes": 763,
+      "sha256": "87401928a33951889fa384bd79ef87adc9e253d7817439b7eb22b45c83f50497"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00060/request.raw.bin": {
+      "bytes": 720,
+      "sha256": "169625eb810476d9d961b0ac9c9fc5f3b1ccb3da12d5c49c5d3256b5d0f536e9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00060/response.json": {
+      "bytes": 18995,
+      "sha256": "fbaa273db0ab997dc3399992ade6ede0a45556f6c77f7e3fd6fb477850f90816"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00060/response.raw.bin": {
+      "bytes": 18806,
+      "sha256": "48b475bef2fd85075e4484312f49ecbef8a4f76f37dfe9c58bc3d928d6c94dcd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00061/attempt.json": {
+      "bytes": 1753,
+      "sha256": "74720bae2800902ec113bc9f32ab05a2f431cee0d914cc48ccff23f801bdaf9f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00061/payload.json": {
+      "bytes": 440,
+      "sha256": "c356d04c8e565923bf778cff716214a7ccbdbfe8865f63463a6b5592d6076180"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00061/request.raw.bin": {
+      "bytes": 397,
+      "sha256": "3fb5a5f4d0e8ab97802c1135511ffd2800e20881b0f49e1ab56ad4931054bad6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00061/response.json": {
+      "bytes": 2303,
+      "sha256": "93968b9c785c17b246e4f89d600eec96d7535ec615c5e8a92aeef93c001fc8f5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00061/response.raw.bin": {
+      "bytes": 2114,
+      "sha256": "dcd8d994807525cd83796631f023d7ff167faad29374c7db9591c4b8318b1985"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00062/attempt.json": {
+      "bytes": 1753,
+      "sha256": "b63161d3852bf6a87402d153ecd96aa7f47cba831530fa31d4a9ba305a5f3232"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00062/payload.json": {
+      "bytes": 469,
+      "sha256": "1af32c714f5b73029218a4a39e278cc29bc9908e5435522d53a4bb78aea09e0e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00062/request.raw.bin": {
+      "bytes": 426,
+      "sha256": "a2bc93423fae67409b1402b3c460e7c532e54f59de8e1fa41cfa684e4c46df44"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00062/response.json": {
+      "bytes": 1984,
+      "sha256": "7547789fe14321114ccb750ae751c73b9d588042d3145d7da4948c98821a27fa"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00062/response.raw.bin": {
+      "bytes": 1795,
+      "sha256": "9194017d59b15d9ed208129e2add1b6620c08afb2be24d3952bbef3edc6fc80f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00063/attempt.json": {
+      "bytes": 1753,
+      "sha256": "a4bcbe074a7cc49c93eea4f511da57fb12d08dadd48b70ea1b54fd86b499a74a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00063/payload.json": {
+      "bytes": 741,
+      "sha256": "b2febd9ac704c1b788ac370d675cfde2972a5f57fc5752448f988715332f9529"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00063/request.raw.bin": {
+      "bytes": 698,
+      "sha256": "0a29f44affe84478cea91d96e82379eabb702dc7e88a2c39754f725ad5e6fd2c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00063/response.json": {
+      "bytes": 3440,
+      "sha256": "9c66eb3a0fb5db40104d8968206151fe4c1d00a39644cacbfc4e62016a031534"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00063/response.raw.bin": {
+      "bytes": 3251,
+      "sha256": "e132fd55a1f22e94a3324c108446fbe3f2b642abbc3c82782d7f0c468735f364"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00064/attempt.json": {
+      "bytes": 1754,
+      "sha256": "1fe5de5d34319de480f9fb26a54846d8f638f632f95ff6ab3b5bb4f649bbf5a2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00064/payload.json": {
+      "bytes": 997,
+      "sha256": "88a887867d7bd22e3ec355e4422f474a20b6c9ea3bad636d0069f44938d138d9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00064/request.raw.bin": {
+      "bytes": 954,
+      "sha256": "198758752b076ad026410116a320fc979eaaf19cb32b51e887149136aa3b162c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00064/response.json": {
+      "bytes": 5632,
+      "sha256": "7d94faaea448065f25cd9d230fbb94351fb399416cf36f8eabd5785e8b5cd237"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00064/response.raw.bin": {
+      "bytes": 5443,
+      "sha256": "87ff980b472f36a6e89a1461f2f1030db8b0915f721d629ad2038ac96c989f01"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00065/attempt.json": {
+      "bytes": 1752,
+      "sha256": "da4b7e6985a3c359ee8453f8fabd4567d5a406df9a85b61f1c73bae94cf52756"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00065/payload.json": {
+      "bytes": 239,
+      "sha256": "c8f75db7e21ac69b054bc03eb1fc7563eb7db7ef619f0395158b1276fa7ce1f1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00065/request.raw.bin": {
+      "bytes": 196,
+      "sha256": "fbba9ac0932bf24215bb535b2ada95b3d53eadb0d3ff5bfedc0ba029eabb1cc0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00065/response.json": {
+      "bytes": 2634,
+      "sha256": "62cc5cb4f8b244a33eeaafe26671e908018e6b39e0a6aec0c4472247270e1e49"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00065/response.raw.bin": {
+      "bytes": 2445,
+      "sha256": "06f2b2d4a0f783b0f424b06b3c863c6bc54f749e521aefdc8d41cc68793b287f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00066/attempt.json": {
+      "bytes": 1753,
+      "sha256": "637eb7b05d6b41450a2f5bc7a2dd5b778b1de56073ea090fa2a1adf98f97c35b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00066/payload.json": {
+      "bytes": 750,
+      "sha256": "d510ad40c60472c7647b47ee95c37ca89a7506dc86b5962406e8d97bffadef51"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00066/request.raw.bin": {
+      "bytes": 707,
+      "sha256": "81e247a92ec55b060d3173917936e4d133ab3ad264cecb414c6bd2c01eb1f19f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00066/response.json": {
+      "bytes": 4015,
+      "sha256": "8fe3b40aa360e2c71a32e7629c20ab15840d047cc594521b8a2c285ff406e5e7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00066/response.raw.bin": {
+      "bytes": 3826,
+      "sha256": "9a1a68206143a520305f4ab5264990528ffc5bb11472e7baa36f3e69cecf2da7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00067/attempt.json": {
+      "bytes": 1755,
+      "sha256": "88a4b6af75684cfde3895f346532c136461eb15f2545a9af2cfafe55c58bc13f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00067/payload.json": {
+      "bytes": 461,
+      "sha256": "b783ddc82a4751ba754d8e99e01f8a8d0b225f5fd6bfcc6c3292937dd4aa883b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00067/request.raw.bin": {
+      "bytes": 418,
+      "sha256": "60724fabd56542e316b471932ee0f664582218eb34cfcd4f74feaac099ec40f6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00067/response.json": {
+      "bytes": 6212,
+      "sha256": "ce868ce585c22f685e881b8d7d0f20cb756439a36c4e8ded5ed876df3a5f3903"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00067/response.raw.bin": {
+      "bytes": 6023,
+      "sha256": "16d47f01a886b59b87cf04cac0cda270eb1cacc991bef1011b25c085d9cd282c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00068/attempt.json": {
+      "bytes": 1757,
+      "sha256": "60af2c29c0e82aff7d5f51d810374d45d2a2793a7167fb54402cb3bcee67f6a4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00068/payload.json": {
+      "bytes": 549,
+      "sha256": "d8084b168d756fd4a67ec35fc40785f367662637bd4b11dc84c76c096f65fcd7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00068/request.raw.bin": {
+      "bytes": 506,
+      "sha256": "433861cb21eff5e94fbb79c04f479df8493645dcbaa21437f00ffc9baa27498d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00068/response.json": {
+      "bytes": 23828,
+      "sha256": "64a7b37567fe34f625de5665b1bde3c8ef1a0b4a04924ea5306a6721e48b4ce9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00068/response.raw.bin": {
+      "bytes": 23639,
+      "sha256": "3914f9c066ca44bc6d3527b00d82600048f902af6e15e0a1adda73518d8f990b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00069/attempt.json": {
+      "bytes": 1755,
+      "sha256": "9f3462a2a82b4bf84faddd3dfe6f2eaaecc8ec37e44af4c38ee383ec48d3060e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00069/payload.json": {
+      "bytes": 676,
+      "sha256": "eb7a814462b35e8b1178b64ca086f8acdcd2368702877b2cc6496b82941c21f8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00069/request.raw.bin": {
+      "bytes": 633,
+      "sha256": "57cc5184bfac38c41c61ac2dcc9956ea0c09ce6b006131e6d491c42cb1353e54"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00069/response.json": {
+      "bytes": 7251,
+      "sha256": "aba822de20fbc4985f4987e340f7d381819d6fd4f37c8e5135ed768496e341ba"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00069/response.raw.bin": {
+      "bytes": 7062,
+      "sha256": "b1e1c09c6637a23d2d71cc9a289d6ff638ac4eafb81d474fcb7d603253850fff"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00070/attempt.json": {
+      "bytes": 1757,
+      "sha256": "0031fa394a268f4ae2ecc404a326d4c837100db78b30e747242f6e3273ff6fe0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00070/payload.json": {
+      "bytes": 529,
+      "sha256": "fb12c2472a18c8b36dd75b821bc10f3048e89c6940a31a7fea073fb8a619bfee"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00070/request.raw.bin": {
+      "bytes": 486,
+      "sha256": "24819771e1e6566cfcc2332b087c34aa3cb9ff3cf4f5f83a59f5c017c396da51"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00070/response.json": {
+      "bytes": 15271,
+      "sha256": "04eeea99f06912d0313bab3ff51b4200cb33299c776d8f862538761a92cf9174"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00070/response.raw.bin": {
+      "bytes": 15082,
+      "sha256": "076a6d72cd2936b0ad26bd9d67a59d31a2d3807c0a247187c3ebde950f4d8809"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00071/attempt.json": {
+      "bytes": 1754,
+      "sha256": "e1d09898252e817aed650d9b33f17ef7b49ee7d09ccfd97f74cfc4cf0fbc1de3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00071/payload.json": {
+      "bytes": 202,
+      "sha256": "4dec692c30c1313ae05f8cb57ba92cd7a8416c8aa50cd160a669b91d169975fc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00071/request.raw.bin": {
+      "bytes": 159,
+      "sha256": "1e69fd8e192a65535416922f2edb3850fd8e1f0e33544dde70c3981e0c69e0b8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00071/response.json": {
+      "bytes": 6204,
+      "sha256": "83c40e370a76175b3b6bd07dc082870c074b0473cfa2e0766b2d451697454c33"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00071/response.raw.bin": {
+      "bytes": 6015,
+      "sha256": "1fbab499be4d82d0650068ec45b8194ea48ab40d87f7cf7b8fd58ed7e625ed68"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00072/attempt.json": {
+      "bytes": 1757,
+      "sha256": "791fdeac5b02954451fdedfdd9c9a7bd97ece7e8bd6d9266cb250edefb45dde0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00072/payload.json": {
+      "bytes": 647,
+      "sha256": "edd75cc714f205b44e361e79f2f2c989def6dec699d3695e79b6bc8586476dfc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00072/request.raw.bin": {
+      "bytes": 604,
+      "sha256": "e0037baa39517c5a8c7008027fd98b207b3789ec5d12b7dde356d8bfb2d8edbd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00072/response.json": {
+      "bytes": 15391,
+      "sha256": "3733772745787d8a5c42122ba5ef01bbc1334ca4b0caaec700671bc5450d16ca"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00072/response.raw.bin": {
+      "bytes": 15202,
+      "sha256": "cea370eb061fe8f7039a2944a20b3a7462b72d25089fc6122426fb0af945eb04"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00073/attempt.json": {
+      "bytes": 1755,
+      "sha256": "d543bd631ab31a630b94b9b2a518f1b90b98f89d26777d15b133acc5882903bb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00073/payload.json": {
+      "bytes": 517,
+      "sha256": "c1de1fc5aff15638f2c10007acaedbfb090d120e55c2351601302f4521efc375"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00073/request.raw.bin": {
+      "bytes": 474,
+      "sha256": "dc7fea8e72dd91c8779e1b11284e94a3dda23210f31c525f477f30a7339970e6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00073/response.json": {
+      "bytes": 9993,
+      "sha256": "a92f790d99a1d67a3b99f0655b3cf07f8ced2d6d9aa6edf6a11c9b5a63a8183d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00073/response.raw.bin": {
+      "bytes": 9804,
+      "sha256": "e1f665677cb11079f798cac6b12c5f3a8dc77000194c46265452d38589f558e4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00074/attempt.json": {
+      "bytes": 1756,
+      "sha256": "61a2fe3f57bb0e62b64f17620de3557c19f7a9d3d3a4f8b4813d0ecb095b42d3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00074/payload.json": {
+      "bytes": 274,
+      "sha256": "4f9d4df068cb9b8738f15a336eb6dfeaf37913e4bfa58326a9e4dc4527e5cfb0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00074/request.raw.bin": {
+      "bytes": 231,
+      "sha256": "bd6d45f9fe02ec944cc6575eebe16350a519a4f95083ca52af20b3572600b969"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00074/response.json": {
+      "bytes": 29634,
+      "sha256": "fc9a3af1a59e1f2d5547e3a355129de30874cc58b5520333a0dc61ee8091f4fc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00074/response.raw.bin": {
+      "bytes": 29445,
+      "sha256": "e644224fecf0f38cf335e000b952580d5276f2bb5e425da05b90111479835fd3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00075/attempt.json": {
+      "bytes": 1754,
+      "sha256": "2fccdbc53a7e12da09997e432a42b5a0d6517fb6b79d2e5eb846ccb8be3c130e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00075/payload.json": {
+      "bytes": 263,
+      "sha256": "b1bcac66b6f3189cc1a9fb4c28d3bea391a09224c72cb9bc141493b5a09353d3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00075/request.raw.bin": {
+      "bytes": 220,
+      "sha256": "775a11f55142a29f442eddfc4981a70f824bc7fe0f0094c817704e108e399424"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00075/response.json": {
+      "bytes": 5849,
+      "sha256": "87010a2868c93cf8768c6221c8448e3b7612d48162f01c97385b6ed1cadae86c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00075/response.raw.bin": {
+      "bytes": 5660,
+      "sha256": "4a6800e31e6f318a70669fb6b8dc4e3c98cb9bf27028b3845c9dcf999c667a65"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00076/attempt.json": {
+      "bytes": 1756,
+      "sha256": "3bd4c12dfcbdfc64635b035a5bcf243f0a3911d575ccef03d63b5a01e614dc75"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00076/payload.json": {
+      "bytes": 295,
+      "sha256": "e9d6e7aa6c60f87ed01e63992e2c0047dd1a65b52bc288e9b696a0dbedada926"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00076/request.raw.bin": {
+      "bytes": 252,
+      "sha256": "078b79740ac13e4406ec7b736ccf14c627bbadf37d56245ea4e5a4b79128cf31"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00076/response.json": {
+      "bytes": 22162,
+      "sha256": "e4d93d4b6db41ce9d6a4697403315bcf87fd8c941768ce0317b8cabff2be139d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00076/response.raw.bin": {
+      "bytes": 21973,
+      "sha256": "147a3ce294db998ca56ff1fa8a0fd44f61fba5465c3d3f95bb54d6c3e5d8e2af"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00077/attempt.json": {
+      "bytes": 1757,
+      "sha256": "d4dd74a872c7e69ac9a98774e833f0d0dee65cf6ea51dc61159bd397891db84d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00077/payload.json": {
+      "bytes": 471,
+      "sha256": "4180de1bcc2bf1a3c723ed82f18646036468e6b1b49eb84a8d11393ebae8e489"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00077/request.raw.bin": {
+      "bytes": 428,
+      "sha256": "3f4e319403a036fa242db4be14c2ce586d2297c3aa0baadbc9c31597871fc4f0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00077/response.json": {
+      "bytes": 18206,
+      "sha256": "a4ceb6f89a57f4660c30e4d209e9196e3ff0bacfde77e1a4fd5ddcc2387ec8de"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00077/response.raw.bin": {
+      "bytes": 18017,
+      "sha256": "6788dd7d1d76b62bbd416dcae31227fc20c406034fd57b5024df8c265f0995cc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00078/attempt.json": {
+      "bytes": 1756,
+      "sha256": "4d4478c9f465e85673b009edff92b14d663ead9ebc9aa5f03a8e1752aa2edc9e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00078/payload.json": {
+      "bytes": 341,
+      "sha256": "63181aeb777836719510b263e285a18432f0d32cb03326e4717089231b6f13a3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00078/request.raw.bin": {
+      "bytes": 298,
+      "sha256": "064a9817c802e333d2942a736fa3e9b5aa3f94b37b2ba788f53b2286b763489a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00078/response.json": {
+      "bytes": 22242,
+      "sha256": "b12a18edf6951cc235288e21b95ff3aa749b73f990924768c05913b0f91b24ef"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00078/response.raw.bin": {
+      "bytes": 22053,
+      "sha256": "8a0856c4632533dcce04f4c79218ab359c3bbf5418f3f23f0dca950b8bc47d82"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00079/attempt.json": {
+      "bytes": 1757,
+      "sha256": "d0455a3b11ce310012bfcd09b546b6796a12d423d470ed99f907fd576749c38d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00079/payload.json": {
+      "bytes": 503,
+      "sha256": "e630989222a778eb5204754ca5f7c2468a499f9ac7fcd1a65e48288c16e1e54e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00079/request.raw.bin": {
+      "bytes": 460,
+      "sha256": "50caa77e987c11ec4b4a3bf0c310c5242db4863ae2e71f89ae5ef41b0e448499"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00079/response.json": {
+      "bytes": 28593,
+      "sha256": "85ed9cb3dff628bb1b7a7d525a1c35d0e4fdff90124c772954a2d0c42de20eab"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00079/response.raw.bin": {
+      "bytes": 28404,
+      "sha256": "f93eab48765b34c5cf87575edb32fd1ac65224f1c7162f599f064f3827c30139"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00080/attempt.json": {
+      "bytes": 1757,
+      "sha256": "ec3e0cafa1a7fef00ab9c243b40410cf220b8ca58c3321e7b33e7f38459c82e6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00080/payload.json": {
+      "bytes": 498,
+      "sha256": "864fbb941b0721f03b89c84fcda8280d37fe84fe8033e5419af57cce6263a7d0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00080/request.raw.bin": {
+      "bytes": 455,
+      "sha256": "e71ec3ac6f0233fab7a0914fa5783ef185c508923621bda9e957c123d2b33e18"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00080/response.json": {
+      "bytes": 24169,
+      "sha256": "b4006e2a57309eb28db7c93e8a50735c26146208dba1cc24c0c31e6ba4320df8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00080/response.raw.bin": {
+      "bytes": 23980,
+      "sha256": "9f40b79df741b86677d6705c70932627df22c06ea8349c4a5a02ce7e62660c97"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00081/attempt.json": {
+      "bytes": 1756,
+      "sha256": "223c3a2a95c04fbcd1606f6409355bd496201c95158612e90c243161b6525991"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00081/payload.json": {
+      "bytes": 334,
+      "sha256": "a3e7af36464c45bfb0963c09b54f70466afddc4f0468f4b1c2b264e51d236c13"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00081/request.raw.bin": {
+      "bytes": 291,
+      "sha256": "816c87cb66dced10d208e7d79e165b8abab58407db955dbc5ef5337832243ac1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00081/response.json": {
+      "bytes": 15304,
+      "sha256": "9908a8ae0add088fb4bdb49d41b1be2b24c2ff561bb2e15c45079d156cc4de23"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00081/response.raw.bin": {
+      "bytes": 15115,
+      "sha256": "3e3cec9800364d80060a76a0fd7c18687afda306948468052483ba3b3106c136"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00082/attempt.json": {
+      "bytes": 1759,
+      "sha256": "766efca1c4b698fe977a03311eb00a0732ee6192ca1fd07e86eff629836addd3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00082/payload.json": {
+      "bytes": 531,
+      "sha256": "d808f8921aa1cec29116fbadb5be9638175db87db63a5b87b7b0399fec2a3348"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00082/request.raw.bin": {
+      "bytes": 488,
+      "sha256": "2a3a8bbda56af9cd6e43d966693632c9143c3253f86af5f191dfa6bacc0628c3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00082/response.json": {
+      "bytes": 56550,
+      "sha256": "abffb58e5c68f24a15f8bfb4e6befa3231eaadb4146f1ed4551a636624652d30"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00082/response.raw.bin": {
+      "bytes": 56361,
+      "sha256": "d091ddb6e387fca0e595a5fdca89aa46997db31be18d8a2a0baa3541090f7c91"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00083/attempt.json": {
+      "bytes": 1759,
+      "sha256": "6eb4aa0b6c8cafa88d4a4e1cdcfc1feb1246eb95933c30ea647a7b2afc7b2c26"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00083/payload.json": {
+      "bytes": 531,
+      "sha256": "3d277d688f62d00c54a3a2c36a0af6e95f2b4c5d94b5720415347fe6b2e52880"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00083/request.raw.bin": {
+      "bytes": 488,
+      "sha256": "3066cc84a8ec2b196de46590ec1df5842ec068c2910b22d27fdd5ad9d02bbf65"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00083/response.json": {
+      "bytes": 51793,
+      "sha256": "e8b1c0cb042fa296c9de8ae9146252891fd133d3ec03a9f7cf19826a9bdf895c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00083/response.raw.bin": {
+      "bytes": 51604,
+      "sha256": "61eb41439b5dc7dd01b8b204f8022fb5f1c283860135385e0a25d3a8a5f754c9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00084/attempt.json": {
+      "bytes": 1753,
+      "sha256": "9aee14454828291e4edba6ab7ff12f0107aa64e027c9e80246e628771507cc9a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00084/payload.json": {
+      "bytes": 246,
+      "sha256": "8762605038486e52682e70a7f9993f041f11fdf14d4d5eab17ceb8105b05c136"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00084/request.raw.bin": {
+      "bytes": 203,
+      "sha256": "7f322cde1167cd2b6aa6d5f051b20921abf231c9c42993094d1eddc026274e06"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00084/response.json": {
+      "bytes": 4843,
+      "sha256": "66a0042b5ff78e971ae041ca207a93c87e38cda9f94a28bcd101edbd1f72850a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00084/response.raw.bin": {
+      "bytes": 4654,
+      "sha256": "bc34067f3e7e0bbdf9d62b87e9b2ce34f169f7b0f65c66713f1defcc71325cf4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00085/attempt.json": {
+      "bytes": 1756,
+      "sha256": "a383eb17b6abf3b7b38cec68707d5241ab52f5d4b0b1fde108bccdfd11f733ba"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00085/payload.json": {
+      "bytes": 349,
+      "sha256": "54f8bdbcb85816dcb80d94376fdf3d86dfd5c230e6f8a056607f247c4b548a48"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00085/request.raw.bin": {
+      "bytes": 306,
+      "sha256": "201878099440df8590a9fcf6d065e454c217b292b2a741b1297d0ee723fd52c6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00085/response.json": {
+      "bytes": 16317,
+      "sha256": "1a5abee6da82b3714c5cb5fadafee6e37c5c96a50b9a4e615becfe6be9eab9e2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00085/response.raw.bin": {
+      "bytes": 16128,
+      "sha256": "5443ee593dcc80a92d1df3f72c17a0b4b8523228deac50d72d0d9eab96cf2b83"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00086/attempt.json": {
+      "bytes": 1755,
+      "sha256": "6f713c652f708b6e6feaba869483de4b4a6670a4ed3508153080291e81308550"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00086/payload.json": {
+      "bytes": 454,
+      "sha256": "d675ed1b8a3f38d96961f12cd4e2a09593e886dbe7e8083b2b4573ef200afef3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00086/request.raw.bin": {
+      "bytes": 411,
+      "sha256": "cd02f839ce52056cc5c4d54c5522f6168e12c325936f3d23cb29eb6def08476b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00086/response.json": {
+      "bytes": 10137,
+      "sha256": "c59f27ac6a63bedc589d78951a4dada176c55ed46789429a75394beff5a96c1c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00086/response.raw.bin": {
+      "bytes": 9948,
+      "sha256": "b3e78f414c5183dfad0ec67b498ea91626ef1e79fc184950095d77415f77b036"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00087/attempt.json": {
+      "bytes": 1752,
+      "sha256": "ea127d5e068b4216468b29d2b077584b75131089187025539a49e9aac8b2766a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00087/payload.json": {
+      "bytes": 289,
+      "sha256": "608ce9483026e0632f7839c94e63f5a8d8d00a2fffc6ff699f98c259ce5716e4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00087/request.raw.bin": {
+      "bytes": 246,
+      "sha256": "a898051ef44fed7dc54afe0b9614ab7d732cb12b463f1fbce6c7eed03fd7cf44"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00087/response.json": {
+      "bytes": 3429,
+      "sha256": "c4435b0858b1abf7c04283177a61ec423f95987f29ebb25b48b4505f4db7f140"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00087/response.raw.bin": {
+      "bytes": 3240,
+      "sha256": "9ac4971b5f9573a0f69244c3f31e79bc7c224ae3c298ad631056833971ffbea4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00088/attempt.json": {
+      "bytes": 1758,
+      "sha256": "421626bca105e7b8b66e1a7567298f17b83417e2e29702dfe5230879872951f9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00088/payload.json": {
+      "bytes": 754,
+      "sha256": "7dae611706e20bcbf5aacc62e6d3edc0e932a2c155a5336a16a6277a03e9b042"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00088/request.raw.bin": {
+      "bytes": 711,
+      "sha256": "e63ee22b285de89668618597b346bbca37c2048d083ddac96172b58e5205e87a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00088/response.json": {
+      "bytes": 34068,
+      "sha256": "04a93d5f7e87a10d48ded98eb65495eb12227640122686f91680530c6de0ddcd"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00088/response.raw.bin": {
+      "bytes": 33879,
+      "sha256": "1844c167f418404dfcb5981f48e98a1090f206646b76ce59f35875dd52a57979"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00089/attempt.json": {
+      "bytes": 1761,
+      "sha256": "36680e56c1138b9b0d5fd191e5698e3d590f969d45b42c6515ba2e741936119d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00089/payload.json": {
+      "bytes": 480,
+      "sha256": "0ef578673a2f073c99b1ede76916a1bee4623cb5a1cc83d7dedccc6742801dc8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00089/request.raw.bin": {
+      "bytes": 437,
+      "sha256": "5842cfe8fbcf34b89d337e56ea7aa282cda170d6793d68e407f3c371d50caa91"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00089/response.json": {
+      "bytes": 109935,
+      "sha256": "9ec4a7ca6e87f88e7edb42f32a6283301cab93f99bd60821160ec6908b015bc0"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00089/response.raw.bin": {
+      "bytes": 109746,
+      "sha256": "508acd5cb8e088d10a74348201e024c7aea3750fc7d90ea939c55b0c0275a085"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00090/attempt.json": {
+      "bytes": 1756,
+      "sha256": "aeabd789a87a57a9a9675b30f107883632861430f6d218bfdc06d21183e988c1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00090/payload.json": {
+      "bytes": 320,
+      "sha256": "2d2aa23921d441e7fcf999847b150fc062e5cc5e814983a520f918090ba9498e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00090/request.raw.bin": {
+      "bytes": 277,
+      "sha256": "e729af9180bcde59681d8a2b5aab8e4a9eff3bd4293f6ff5c1f0e13030f3b13c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00090/response.json": {
+      "bytes": 11998,
+      "sha256": "c02f694d3fdd1516330049a572b5ad64eae049a233ca159456fb2d907f856188"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00090/response.raw.bin": {
+      "bytes": 11809,
+      "sha256": "7736f7b91287128f5355968c0ab8ab8aa4a9adc24bd215f24226fba7ed56c71a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00091/attempt.json": {
+      "bytes": 1758,
+      "sha256": "49b93a3c603d0c62ccb07b56a94b5e535d06ea58a4386dcb1ffb840515b27a87"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00091/payload.json": {
+      "bytes": 296,
+      "sha256": "e8f18d84b4c163e47b6018c17b705bdb04adc8e736054c6fe42024a5f25ae75d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00091/request.raw.bin": {
+      "bytes": 253,
+      "sha256": "476b9bd9f5668587f15b3acd2a1cd4b63585d5d5d8916df95630d76c998e387a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00091/response.json": {
+      "bytes": 40909,
+      "sha256": "b336e32c5a5c355a15c5bb047089093745c04a0e330f749e37c7818d9f0f276f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00091/response.raw.bin": {
+      "bytes": 40720,
+      "sha256": "2f266a83a28bc2fe45986ba8dd0a2f2dcde5910b7bba7ce102b8adac1f028d90"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00092/attempt.json": {
+      "bytes": 1757,
+      "sha256": "28e5d410ccb0f136f00dba03fc20268503137c3694537b8e1d7537174851cc88"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00092/payload.json": {
+      "bytes": 475,
+      "sha256": "a596fff440774af8bd2c1347678a9194998f8c4ca32613470374d5aca315ee8f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00092/request.raw.bin": {
+      "bytes": 432,
+      "sha256": "84eb38c4d86eb8af94f30f24581e3dc2a9a0b24d0762d4a96b972d0f4c05a40e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00092/response.json": {
+      "bytes": 30956,
+      "sha256": "195a3d552807721c447143dec94245f7a1abcbb801afc7fb59f1dda0280b8be5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00092/response.raw.bin": {
+      "bytes": 30767,
+      "sha256": "3ef7aedb17a2122e75ff90ef8e44080ab802db8fddfe892a96c1974148a339a5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00093/attempt.json": {
+      "bytes": 1757,
+      "sha256": "9ebfc938fb4e1ff2c90e3361bfd11d7e4b4d5c95f8612d09d8561a522638ef52"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00093/payload.json": {
+      "bytes": 378,
+      "sha256": "4980f1946c76aef6382ca6ffd281a1a87fd456fdbebab81c56652c916386b05d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00093/request.raw.bin": {
+      "bytes": 335,
+      "sha256": "919dad992f15004ef93125b78b3a99a645794011d580f427e8c70a10ee431469"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00093/response.json": {
+      "bytes": 23905,
+      "sha256": "ef9cbbf4f49f738732cb74edad6ba6216e9f3d816ba4af254a0ffdaa01a842ba"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00093/response.raw.bin": {
+      "bytes": 23716,
+      "sha256": "f252609d7c3172af9e6e4868507d3de2ff825e572c93ead127a83bb93e29e126"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00094/attempt.json": {
+      "bytes": 1757,
+      "sha256": "52e7482d1bfe4c94d5197ce6ad8ef24d33a867212c578aa3da204bfa37aa9ec5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00094/payload.json": {
+      "bytes": 451,
+      "sha256": "11957c7726c0f16ef8704f77cce1c4d5434e679216e17829ce04c530c8623ae5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00094/request.raw.bin": {
+      "bytes": 408,
+      "sha256": "1e490b0ad4f94e3a74133df360410cfe3e1897d61640f6996a753f000b2fc68a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00094/response.json": {
+      "bytes": 21987,
+      "sha256": "81c34a20b3fc665415847f2868015cf472adff99357874d143acc406245a46dc"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00094/response.raw.bin": {
+      "bytes": 21798,
+      "sha256": "207525c1f4fac905b72b43d64edca7614eaba846a21f5af7bf123892c89f3ae9"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00095/attempt.json": {
+      "bytes": 1753,
+      "sha256": "f80cfd1f86832db982ef194a1ac73b1bd9055e4bb8312f7711ae7c8c234bb2cb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00095/payload.json": {
+      "bytes": 674,
+      "sha256": "c262b82041d82689a47120affc1f47d869d2ff1c60f503df6d8f2ef662d2f9a3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00095/request.raw.bin": {
+      "bytes": 631,
+      "sha256": "2d4be19810ae2e2ebc27d6dbb47fa0ed0d265acafa861380eb943077b3817d31"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00095/response.json": {
+      "bytes": 3156,
+      "sha256": "4f1e39ef0488c2c6e8abc8fbd9d4631c51fc3ee0685fc57c9649b3a1517f4ab3"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00095/response.raw.bin": {
+      "bytes": 2967,
+      "sha256": "79834402f394923c9e6d8c699ba2fd6561623c5acdf98c6bed15f29567400181"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00096/attempt.json": {
+      "bytes": 1757,
+      "sha256": "a37e4abbcec0e841c769aacc14b4650856983c729059279279697c12cf21d1a2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00096/payload.json": {
+      "bytes": 384,
+      "sha256": "cb73755ace7d90af77eb338a4b5c7909953143707d6e37201947ba1513999783"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00096/request.raw.bin": {
+      "bytes": 341,
+      "sha256": "2dd51826d24c3484e43c5c0f7e1d74e957756d7cbd5327eb51d09940c3e6ca95"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00096/response.json": {
+      "bytes": 18173,
+      "sha256": "5ab0dec1c4f70fbeb632f345e371e97d79ba6983128cd1d60be2ecf4431ee722"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00096/response.raw.bin": {
+      "bytes": 17984,
+      "sha256": "42b39ed04fc253b11ac961c9e19ccb0d10ecb3fe2a481d3eba9520d071e41c11"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00097/attempt.json": {
+      "bytes": 1757,
+      "sha256": "1294aad08f2a981aa98d578f5349d85fc5d7000e5220e1da8622d7065fe73ce6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00097/payload.json": {
+      "bytes": 331,
+      "sha256": "0ac756ad56d8e82a1c8a937fb0f092e37ff2b9c63f7361361ff607aa3967de10"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00097/request.raw.bin": {
+      "bytes": 288,
+      "sha256": "60cd1baaabc116d36df62a00ed78473ff4deec2baedac36fd4753a0172fdb679"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00097/response.json": {
+      "bytes": 16819,
+      "sha256": "7c8269d44f09435d3039f6968b8fbe1ea57a821095fb17e2ee4bc13ef47c5152"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00097/response.raw.bin": {
+      "bytes": 16630,
+      "sha256": "af19927fc67a16beb4300a216f160cd6d3a95f9fa688ac807364a74ed62b1097"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00098/attempt.json": {
+      "bytes": 1753,
+      "sha256": "17b00e550aa0a2d8465c3dc9f8a6a329869adac9874829e81a738668dabf1bc5"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00098/payload.json": {
+      "bytes": 716,
+      "sha256": "a37309596795b487ef5da9bca107eb7b1b39e355ffe5c2e3e700df849b44e41d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00098/request.raw.bin": {
+      "bytes": 673,
+      "sha256": "ab4cab62a25439289f928d7cceceb2667c3fc16c7a6ea1f3b55b40cb395cd409"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00098/response.json": {
+      "bytes": 4354,
+      "sha256": "a14a8ba357a30ec54ad3833c6d2c9a2390d00cbf2d9f5e10043a96e946f1cb1b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00098/response.raw.bin": {
+      "bytes": 4165,
+      "sha256": "43362ff619c281b37dba65041ab645a8816b5d48b867686039c1bac12b0e610c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00099/attempt.json": {
+      "bytes": 1752,
+      "sha256": "0a4c221784690e4ba82446c66be9b9bf6d391d4e6829a6d1aa0d3f9b4b219b2b"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00099/payload.json": {
+      "bytes": 306,
+      "sha256": "d6c282befd39b761ab8c92b35586f53170ac5b84c1cc3bb90cc47dad040ee453"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00099/request.raw.bin": {
+      "bytes": 263,
+      "sha256": "2c38b409ea94bb31cf528e5ef3793e324295b89776cbb2337043f4e91409b738"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00099/response.json": {
+      "bytes": 3952,
+      "sha256": "83586b58982771dd48ca63042f0574e31cf8d8985f99fc2361213519e5315c18"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00099/response.raw.bin": {
+      "bytes": 3763,
+      "sha256": "add4669ec63bf1b2482276e42567c3293954e8d538b955bd573beaec9a58dcb7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00100/attempt.json": {
+      "bytes": 1758,
+      "sha256": "4b3e55314cdb794e607ff22ee0c96c55bad2e929fdc1cb4b110f64c236d855a4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00100/payload.json": {
+      "bytes": 783,
+      "sha256": "0a94a1a7f1a6670eb19103ff39e58251f0a695952e294be70545088a4f6ff7d1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00100/request.raw.bin": {
+      "bytes": 740,
+      "sha256": "f7329c0fa8cde900d641826f80f3d5d8a47f6be972eccca8aa651bda6315321a"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00100/response.json": {
+      "bytes": 25208,
+      "sha256": "f3db5b6516378e2176c0f09dd8f2be777b4c58527f82e1557d50bb3fa143c825"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/http-attempts/00100/response.raw.bin": {
+      "bytes": 25019,
+      "sha256": "0f0ac684f48c81231a2c3d64e595e85a8ea77949062973a2f7dba1bd51bfdc67"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/job.json": {
+      "bytes": 1030,
+      "sha256": "0c140b19b368e05b54b86db00776536d157c66fef284265d3f7831d798ba24f6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-CPU-score.command.json": {
+      "bytes": 185,
+      "sha256": "3eccab6769cd311cb5f29b8114124ae739bd0c9551e976874a84f4472a1a0497"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-CPU-score.log": {
+      "bytes": 2714,
+      "sha256": "ba24cdf4646335928b0914d9a8459b62fea251bd7e91c072c0b3dff00e3a5fe6"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-CPU-score.terminal.json": {
+      "bytes": 220,
+      "sha256": "716d3ecc907c253a629d3b044394e40d3863d214938371d6e746c5498297b8b8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-native-join.command.json": {
+      "bytes": 189,
+      "sha256": "96e18e20631651a25b8b4cc96485d22e6378cc9d45c0990faee7ac7f0a31d574"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-native-join.log": {
+      "bytes": 589,
+      "sha256": "d120e662371d07200039f3bf2528084c39b1ae871433c803875d6c83ceb12a5d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/original-all100-native-join.terminal.json": {
+      "bytes": 220,
+      "sha256": "a12f418c2fcd43e619c0ab6c3cf40b38e4151c95956258f1ab79e04e1bc8c93e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/owned_process.py": {
+      "bytes": 2415,
+      "sha256": "197a3a171ea9229adad73a55df0b107aeebd72f459b686541ac6fcc3a3df72e8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/owner-from076.patch": {
+      "bytes": 9090,
+      "sha256": "35ffb632421ae055552f4d5ceb5dc514f3f861db64613a4ecf45b6a1e6ea3963"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/owner.log": {
+      "bytes": 40874,
+      "sha256": "99652677ac685448c5734499412f6c70f6b4fe96ef8a6af253d83ec499c406eb"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/owner.py": {
+      "bytes": 9670,
+      "sha256": "19f262fb07c4671c9dc443b333ff585062157aad3b94e9f20ea95dcc4e91abc4"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/preflight-execution.command.json": {
+      "bytes": 176,
+      "sha256": "434a82363194519af0bf5a588ed2fd42a0759f38a602705f43a4e34d67eefdf7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/preflight-execution.log": {
+      "bytes": 1267,
+      "sha256": "90ffa13b12bb490fc87db63ffad1938a9a71186a0039a4f94c21b6e57dd86826"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/preflight-execution.terminal.json": {
+      "bytes": 220,
+      "sha256": "5f51ff286a85b1caae1614e191490b9a3d5b2d3bbe96cd6ade18f104c2c18f49"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/preflight.json": {
+      "bytes": 1279,
+      "sha256": "61e1bbcd727e595a72ebef0926ca5e8dab1dbbe973556ead45b9a43e54b3df48"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/preflight.py": {
+      "bytes": 2868,
+      "sha256": "58996b0995864f2ee7874bcb2c2d90eff553f47cecd6210eb518635b52b672d1"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/prepare.py": {
+      "bytes": 7552,
+      "sha256": "181e73f6c3b90c60e5684c9badf0fceeaf5de6fd7a58b295f804b668a1eb8401"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/qualification-evidence.json": {
+      "bytes": 18124,
+      "sha256": "d7b09adb5899db541228eb122381e321394c82f4dd8538d7d02c925da920c46f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/queue-job.json": {
+      "bytes": 1462,
+      "sha256": "c8c5da2a915981cf4ab07239ca8240bae6c57e386fcc6f2ccc2b5185542eca5d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/recording_entry.py": {
+      "bytes": 3989,
+      "sha256": "88c7d0a1ce45e57297ace51b6d7493b9dc2a898320e8920793b6177d1b595979"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/resolved_config.json": {
+      "bytes": 2398,
+      "sha256": "1307b3dc30996ca08b41b9116e262dd44244dc92b3e395fe96acf6a9af8efa2d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/route-evidence-scope.json": {
+      "bytes": 699,
+      "sha256": "7f29a8e3c21fcdd6c6d92aaa11c12df585978bb95cd62830ddea4eaf92e36123"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/scheduler.jsonl": {
+      "bytes": 32593935,
+      "sha256": "9d07e2275ca9e195792fffe43c69f9e3fe6d78a325b0527270c89fda53f08584"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/score_first100_cpu.py": {
+      "bytes": 8141,
+      "sha256": "dd1fe59850c383f1a22aea81a2f876b09d6ad31331aa90d31834cd539eb2c23f"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/server-config.json": {
+      "bytes": 2229,
+      "sha256": "fd06c6df029c0d05c52e1b7e785b881eb0550decc8d93ccbcef47672c0d07c17"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/GPU-released.json": {
+      "bytes": 74,
+      "sha256": "98c6fe640c2c781a656966a031e6ed7d49986e247f01d2592e4f96280fb20a0e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/actual-process.json": {
+      "bytes": 2253,
+      "sha256": "aef94e52980fceb456dc4f0bf1c7eaa9ba51c62d9263257e04d31c6f0282e9c8"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/actual-startup.json": {
+      "bytes": 4568,
+      "sha256": "06cd23722fa58eff0cfab5e524af77ac1f69e2cf8b5f4975d23c51c8e20f6225"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/command.json": {
+      "bytes": 838,
+      "sha256": "3113a78694507d80b65e328fdc059c78c8711618165674acc325c2223ec375c2"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/environment.json": {
+      "bytes": 1060,
+      "sha256": "82272c64b9a4acc5109733cff61d44b036f395693e2729906d416ec34dc4151d"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/models.json": {
+      "bytes": 368,
+      "sha256": "871bbdb259c52767c3f56effca47bb894b1e6ec30f662d6306ca8dd144f05900"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/native.jsonl": {
+      "bytes": 298308,
+      "sha256": "c398a349a4a60d4bbbb0ff4a60ad1d9b3e2710e7662f6dd889406e5c6bac2bd7"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/server.log": {
+      "bytes": 109217,
+      "sha256": "28a95e5c43a84ee016554a181af5ee7c6a066a7cd918446bb92fd7283cc85065"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/service-identity.json": {
+      "bytes": 175,
+      "sha256": "b092ab96e8b1dd2b2d3eb0fffbc288c4f0d0dbe1cd40408db7d5e01672210e45"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/service/service-terminal.json": {
+      "bytes": 284,
+      "sha256": "70387f86436aeb2e13b848e9f59897b0262a51af12b2d6e45f652f20f1df8f3c"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/source-freeze-r1.json": {
+      "bytes": 2400,
+      "sha256": "ef05ac0ac196ea2092d8bbc29d021f9402a7f7db1d8642c1d7d46dfdb475e781"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/source-freeze.json": {
+      "bytes": 2523,
+      "sha256": "cf6b0f4bd5fb76f5f19d27a71ff1f786d411b6962d879ff7ad3c50d5a06a4131"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/source-reuse.json": {
+      "bytes": 1191,
+      "sha256": "053d5fe0a8254e57a72f912f9d8d72923de6ac7e80f265100201b0c5cb1b0066"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/task_config.json": {
+      "bytes": 422,
+      "sha256": "c0f37c0e26641e4b46129ee5ea14430a7ecad4eed889bcbc2014f569409b7bdf"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/waiter-launch.json": {
+      "bytes": 116,
+      "sha256": "0d4010a27cc6954d6da531cddc1a99ae4ca13894aad9a025bf99ca34a221471e"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/waiter.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "results/three-node-optimization/ucloud2/frozen100-flag1-C13-quality-preparation-105/delivery/waiter.py": {
+      "bytes": 2722,
+      "sha256": "ed843185035740f7e41e8ad331cb38320c8aef805f9184dc74c074e70711a978"
+    }
+  },
+  "validation": "All 583 archive members hashed; all 100 original prompt/prediction/review/HTTP records cross-checked; original verifier scores aggregated; one empty final retained. Native joins match worker-provided exact usage/timing associations, not a shared exported request ID. No new GPU run."
+}

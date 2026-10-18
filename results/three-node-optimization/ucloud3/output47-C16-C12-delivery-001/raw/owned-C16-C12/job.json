@@ -1,0 +1,1302 @@
+{
+  "status": "failed",
+  "stage": "FAILURE_preserved",
+  "owner": {
+    "pid": 395958,
+    "start_ticks": "45930083",
+    "uid": 0,
+    "executable": "/usr/bin/python3.10",
+    "state": "R"
+  },
+  "handles": [
+    {
+      "pid": 395966,
+      "start_ticks": "45930143",
+      "uid": 0,
+      "executable": "/usr/bin/nvidia-smi",
+      "state": "R",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+        "--format=csv",
+        "-l",
+        "1"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C16-gpu.csv",
+      "role": "1Hz power/memory, not occupancy",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 395967,
+      "start_ticks": "45930144",
+      "uid": 0,
+      "executable": "/usr/bin/python3.10",
+      "state": "R",
+      "command": [
+        "/usr/bin/python3",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/run_candidate_sweep.py",
+        "--runner",
+        "/workspace/InferX/code/submission/organizer/runner.py",
+        "--config",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C16-config.json",
+        "--output-dir",
+        "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C16-driver.log",
+      "role": "original128+8+1 C16",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 396154,
+      "start_ticks": "45957687",
+      "uid": 0,
+      "executable": "/usr/bin/nvidia-smi",
+      "state": "R",
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=timestamp,uuid,memory.used,power.draw,clocks.sm,temperature.gpu",
+        "--format=csv",
+        "-l",
+        "1"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C12-gpu.csv",
+      "role": "1Hz power/memory, not occupancy",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 396155,
+      "start_ticks": "45957687",
+      "uid": 0,
+      "executable": "/usr/bin/python3.10",
+      "state": "R",
+      "command": [
+        "/usr/bin/python3",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/run_candidate_sweep.py",
+        "--runner",
+        "/workspace/InferX/code/submission/organizer/runner.py",
+        "--config",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C12-config.json",
+        "--output-dir",
+        "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/C12-driver.log",
+      "role": "original128+8+1 C12",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    }
+  ],
+  "runs": [
+    {
+      "concurrency": 16,
+      "KV": 139264,
+      "run_dir": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1",
+      "started_ns": 1792238228169941679,
+      "status": "complete",
+      "native_done": 137,
+      "case_status": "running",
+      "tiers": [
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 16,
+          "artifacts": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/c16",
+          "started_at": "2026-10-17T11:57:44.802493+00:00",
+          "meets_slo": false,
+          "issues": [],
+          "expected_requests": 128,
+          "records": 128,
+          "valid_records": 128,
+          "successful_requests": 128.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 7714.806736460938,
+              "p50": 8063.374970499999,
+              "p95": 9934.0843386,
+              "p99": 13533.150493620004
+            },
+            "inter_token_latency": {
+              "mean": 35.06616317300635,
+              "p50": 35.52565102446184,
+              "p95": 51.702542206849344,
+              "p99": 60.37508173739726
+            },
+            "request_latency": {
+              "mean": 25633.61611786719,
+              "p50": 25143.338584499998,
+              "p95": 35103.7588803,
+              "p99": 38413.02710569
+            }
+          },
+          "benchmark_duration": 213.365795584,
+          "request_throughput": 0.5998979572234366,
+          "output_token_throughput": 307.14775409839956,
+          "native_status": "\u5b8c\u6574",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-17T12:01:40.618744+00:00",
+          "elapsed_seconds": 235.81628028303385
+        }
+      ],
+      "service": {
+        "pid": 395970,
+        "start_ticks": 45930401
+      },
+      "actual_env": {
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_VERIFY_Q5_A8": "1",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+        "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+        "NINFER_S4_TARGET_FFN": "1",
+        "NINFER_S4_OMIT_LEGACY_FFN": "1",
+        "NINFER_INPUT_S4": "1",
+        "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+        "NINFER_OUTPUT_S4": "1",
+        "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047"
+      },
+      "actual_argv": [
+        "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18486",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "139264",
+        "--max-concurrency",
+        "16",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "startup": {
+        "argv": [
+          "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+          "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18486",
+          "--model-id",
+          "qwen38-27b",
+          "--max-context",
+          "65536",
+          "--kv-capacity",
+          "139264",
+          "--max-concurrency",
+          "16",
+          "--max-pending-requests",
+          "32",
+          "--pending-timeout-ms",
+          "600000",
+          "--prefill-chunk",
+          "2048",
+          "--kv-dtype",
+          "int8",
+          "--presence-penalty",
+          "0",
+          "--frequency-penalty",
+          "0",
+          "--seed",
+          "42",
+          "--no-ui",
+          "--spec",
+          "mtp",
+          "--draft-tokens",
+          "3",
+          "--lm-head-draft",
+          "--request-log-jsonl",
+          "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/requests.jsonl",
+          "--no-prefix-reuse",
+          "--no-disk-cache"
+        ],
+        "artifact": {
+          "bytes_read": 8110698809,
+          "host_to_device_bytes": 8097606656,
+          "load_seconds": 32.142793508,
+          "path": "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+          "peak_staging_bytes": 268435456,
+          "resource_count": 6,
+          "size_bytes": 18210531328,
+          "target": "qwen3_8_27b",
+          "tensor_count": 657,
+          "upload_seconds": 1.19026352,
+          "weights_id": "groupwise-int"
+        },
+        "artifact_type": "ninfer_serve_request_log",
+        "engine": {
+          "cuda_graph": true,
+          "device": 0,
+          "kv_cache": "int8-group64",
+          "kv_capacity": 139264,
+          "kv_capacity_max_page_groups": 16384,
+          "kv_capacity_mode": "explicit",
+          "kv_capacity_page_groups": 2176,
+          "log_stats_interval_ms": 5000,
+          "max_concurrency": 16,
+          "max_context": 65536,
+          "max_pending_requests": 32,
+          "pending_timeout_ms": 600000,
+          "prefill_chunk": 2048,
+          "prefix_reuse": false,
+          "proposal_head": "optimized",
+          "speculative_backend": "mtp",
+          "speculative_draft_window": 3,
+          "vision": false
+        },
+        "environment": {
+          "compute_capability_major": 8,
+          "compute_capability_minor": 9,
+          "cuda_compile_version": "13.2",
+          "cuda_driver_version": "13.3",
+          "cuda_runtime_version": "13.2",
+          "device": 0,
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+          "total_device_memory_bytes": 50894602240
+        },
+        "event": "server_start",
+        "memory": {
+          "available_after_startup_bytes": 19662635008,
+          "available_after_weights_bytes": 30297292800,
+          "cuda_graph_allowance_bytes": 4294967296,
+          "cuda_graph_observed_bytes": 144703488,
+          "kv_capacity_headroom_bytes": 0,
+          "kv_capacity_increment_bytes": 2297856,
+          "kv_payload_bytes": 5002297344,
+          "minimum_runtime_reservation_bytes": 12132537344,
+          "planned_slack_bytes": 15517625344,
+          "request_transient": {
+            "capacity_bytes": 0,
+            "peak_used_bytes": 0,
+            "used_bytes": 0
+          },
+          "runtime_reservation_bytes": 14779667456,
+          "sequence": {
+            "capacity_bytes": 10122793984,
+            "peak_used_bytes": 10122793984,
+            "used_bytes": 10122793984
+          },
+          "weights": {
+            "capacity_bytes": 8097612800,
+            "peak_used_bytes": 8097612800,
+            "used_bytes": 8097612800
+          },
+          "workspace": {
+            "capacity_bytes": 361906176,
+            "peak_used_bytes": 0,
+            "used_bytes": 0
+          }
+        },
+        "sampling_defaults": {
+          "greedy": false,
+          "non_thinking": {
+            "frequency_penalty": 0.0,
+            "min_p": 0.0,
+            "presence_penalty": 1.5,
+            "temperature": 0.699999988079071,
+            "top_k": 20,
+            "top_p": 0.800000011920929
+          },
+          "omitted_seed": "random",
+          "server_overrides": {
+            "frequency_penalty": 0.0,
+            "min_p": null,
+            "presence_penalty": 0.0,
+            "seed": 42,
+            "temperature": null,
+            "top_k": null,
+            "top_p": null
+          },
+          "thinking": {
+            "frequency_penalty": 0.0,
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.949999988079071
+          }
+        },
+        "schema_version": 8,
+        "server": {
+          "api_key_configured": false,
+          "cors_enabled": false,
+          "default_output_tokens": 65536,
+          "default_preserve_thinking": false,
+          "default_reasoning_effort": null,
+          "default_thinking": true,
+          "host": "127.0.0.1",
+          "max_request_bytes": 402653184,
+          "port": 18486,
+          "public_model_id": "qwen38-27b",
+          "request_log_jsonl": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/requests.jsonl"
+        },
+        "server_instance_id": "serve-395970-1792238230760691",
+        "timestamp_unix_ms": 1792238263195
+      },
+      "driver_cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      },
+      "telemetry_cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      },
+      "manifest_status": "complete",
+      "tier": {
+        "label": "PILOT",
+        "status": "complete",
+        "concurrency": 16,
+        "artifacts": "/workspace/InferX/runs/ucloud3-slo/output47-C16-K3-n128-r1/candidate/c16",
+        "started_at": "2026-10-17T11:57:44.802493+00:00",
+        "meets_slo": false,
+        "issues": [],
+        "expected_requests": 128,
+        "records": 128,
+        "valid_records": 128,
+        "successful_requests": 128.0,
+        "error_requests": 0,
+        "lengths_verified": true,
+        "osl_verified": true,
+        "input_length_basis": "model",
+        "actual_input_tokens": {
+          "min": 8192,
+          "max": 8192,
+          "mean": 8192.0
+        },
+        "metrics": {
+          "time_to_first_token": {
+            "mean": 7714.806736460938,
+            "p50": 8063.374970499999,
+            "p95": 9934.0843386,
+            "p99": 13533.150493620004
+          },
+          "inter_token_latency": {
+            "mean": 35.06616317300635,
+            "p50": 35.52565102446184,
+            "p95": 51.702542206849344,
+            "p99": 60.37508173739726
+          },
+          "request_latency": {
+            "mean": 25633.61611786719,
+            "p50": 25143.338584499998,
+            "p95": 35103.7588803,
+            "p99": 38413.02710569
+          }
+        },
+        "benchmark_duration": 213.365795584,
+        "request_throughput": 0.5998979572234366,
+        "output_token_throughput": 307.14775409839956,
+        "native_status": "\u5b8c\u6574",
+        "failed_input_length_records": 0,
+        "failed_output_length_records": 0,
+        "missing_profiling_records": 0,
+        "finished_at": "2026-10-17T12:01:40.618744+00:00",
+        "elapsed_seconds": 235.81628028303385
+      },
+      "joint_PASS": false,
+      "independent_metrics": {
+        "TTFT_p95_ms": 9934.084338599998,
+        "TPOT_p95_ms": 51.70254220684927
+      },
+      "all137cold": true,
+      "all_startup_retained": true,
+      "native_errors": 0,
+      "client_rows": [
+        {
+          "arrival_rank": 1,
+          "TTFT_ms": 912.48289,
+          "TPOT_ms": 45.670817254403126,
+          "start_ns": 1792238284342493606
+        },
+        {
+          "arrival_rank": 2,
+          "TTFT_ms": 1829.3064709999999,
+          "TPOT_ms": 41.174484146771036,
+          "start_ns": 1792238284342541525
+        },
+        {
+          "arrival_rank": 3,
+          "TTFT_ms": 2746.362611,
+          "TPOT_ms": 39.611682115459885,
+          "start_ns": 1792238284343494178
+        },
+        {
+          "arrival_rank": 4,
+          "TTFT_ms": 4586.112167,
+          "TPOT_ms": 36.551229790606655,
+          "start_ns": 1792238284343517108
+        },
+        {
+          "arrival_rank": 5,
+          "TTFT_ms": 3665.200331,
+          "TPOT_ms": 60.676893389432486,
+          "start_ns": 1792238284344266432
+        },
+        {
+          "arrival_rank": 6,
+          "TTFT_ms": 5504.702463,
+          "TPOT_ms": 33.85751202935421,
+          "start_ns": 1792238284344585880
+        },
+        {
+          "arrival_rank": 7,
+          "TTFT_ms": 6423.617219,
+          "TPOT_ms": 57.17089451076321,
+          "start_ns": 1792238284344969397
+        },
+        {
+          "arrival_rank": 8,
+          "TTFT_ms": 7342.790784999999,
+          "TPOT_ms": 57.314197131115456,
+          "start_ns": 1792238284345523223
+        },
+        {
+          "arrival_rank": 9,
+          "TTFT_ms": 10102.609059,
+          "TPOT_ms": 25.536109612524463,
+          "start_ns": 1792238284345813971
+        },
+        {
+          "arrival_rank": 10,
+          "TTFT_ms": 12863.384696,
+          "TPOT_ms": 20.45401366340509,
+          "start_ns": 1792238284346615915
+        },
+        {
+          "arrival_rank": 11,
+          "TTFT_ms": 8261.677575,
+          "TPOT_ms": 28.456554221135026,
+          "start_ns": 1792238284346759334
+        },
+        {
+          "arrival_rank": 12,
+          "TTFT_ms": 11941.623625999999,
+          "TPOT_ms": 22.76272789041096,
+          "start_ns": 1792238284347763956
+        },
+        {
+          "arrival_rank": 13,
+          "TTFT_ms": 14704.387100999998,
+          "TPOT_ms": 16.9352188630137,
+          "start_ns": 1792238284347958545
+        },
+        {
+          "arrival_rank": 14,
+          "TTFT_ms": 9179.730244,
+          "TPOT_ms": 26.89710499217221,
+          "start_ns": 1792238284348719429
+        },
+        {
+          "arrival_rank": 15,
+          "TTFT_ms": 11019.684078999999,
+          "TPOT_ms": 47.58717967906067,
+          "start_ns": 1792238284349072176
+        },
+        {
+          "arrival_rank": 16,
+          "TTFT_ms": 13780.872089999999,
+          "TPOT_ms": 45.14198428962818,
+          "start_ns": 1792238284350285327
+        },
+        {
+          "arrival_rank": 17,
+          "TTFT_ms": 2186.574086,
+          "TPOT_ms": 34.21485754207436,
+          "start_ns": 1792238307152637214
+        },
+        {
+          "arrival_rank": 18,
+          "TTFT_ms": 3110.1960529999997,
+          "TPOT_ms": 33.348707749510766,
+          "start_ns": 1792238307154767878
+        },
+        {
+          "arrival_rank": 19,
+          "TTFT_ms": 3975.986321,
+          "TPOT_ms": 70.15206974168298,
+          "start_ns": 1792238307214088569
+        },
+        {
+          "arrival_rank": 20,
+          "TTFT_ms": 4839.988923,
+          "TPOT_ms": 37.90976793737769,
+          "start_ns": 1792238307274812680
+        },
+        {
+          "arrival_rank": 21,
+          "TTFT_ms": 5705.887565,
+          "TPOT_ms": 39.54100757534246,
+          "start_ns": 1792238307333322086
+        },
+        {
+          "arrival_rank": 22,
+          "TTFT_ms": 6463.754448,
+          "TPOT_ms": 34.063647403131114,
+          "start_ns": 1792238307499463536
+        },
+        {
+          "arrival_rank": 23,
+          "TTFT_ms": 7275.901271,
+          "TPOT_ms": 35.069379943248535,
+          "start_ns": 1792238307611087620
+        },
+        {
+          "arrival_rank": 24,
+          "TTFT_ms": 8144.883726999999,
+          "TPOT_ms": 32.84199314090019,
+          "start_ns": 1792238307666110562
+        },
+        {
+          "arrival_rank": 25,
+          "TTFT_ms": 9024.966500999999,
+          "TPOT_ms": 32.30774398630137,
+          "start_ns": 1792238307710407284
+        },
+        {
+          "arrival_rank": 26,
+          "TTFT_ms": 9736.329276999999,
+          "TPOT_ms": 28.261178984344426,
+          "start_ns": 1792238307923365218
+        },
+        {
+          "arrival_rank": 27,
+          "TTFT_ms": 9987.159243,
+          "TPOT_ms": 28.342635614481406,
+          "start_ns": 1792238308597023512
+        },
+        {
+          "arrival_rank": 28,
+          "TTFT_ms": 7246.956493,
+          "TPOT_ms": 42.781294242661446,
+          "start_ns": 1792238319017955866
+        },
+        {
+          "arrival_rank": 29,
+          "TTFT_ms": 8484.545445,
+          "TPOT_ms": 41.104531727984345,
+          "start_ns": 1792238319690352958
+        },
+        {
+          "arrival_rank": 30,
+          "TTFT_ms": 9115.83915,
+          "TPOT_ms": 41.587599039138944,
+          "start_ns": 1792238319985863619
+        },
+        {
+          "arrival_rank": 31,
+          "TTFT_ms": 9048.379909,
+          "TPOT_ms": 34.71706040508806,
+          "start_ns": 1792238320978872630
+        },
+        {
+          "arrival_rank": 32,
+          "TTFT_ms": 9750.020509,
+          "TPOT_ms": 38.822092745596876,
+          "start_ns": 1792238321201743848
+        },
+        {
+          "arrival_rank": 33,
+          "TTFT_ms": 7924.830699,
+          "TPOT_ms": 36.037107804305286,
+          "start_ns": 1792238326825503406
+        },
+        {
+          "arrival_rank": 34,
+          "TTFT_ms": 8366.782066,
+          "TPOT_ms": 29.78103114481409,
+          "start_ns": 1792238327310501229
+        },
+        {
+          "arrival_rank": 35,
+          "TTFT_ms": 5231.561952999999,
+          "TPOT_ms": 30.731719344422697,
+          "start_ns": 1792238331372218159
+        },
+        {
+          "arrival_rank": 36,
+          "TTFT_ms": 6040.439925,
+          "TPOT_ms": 37.00125172407046,
+          "start_ns": 1792238331488895293
+        },
+        {
+          "arrival_rank": 37,
+          "TTFT_ms": 6350.989649,
+          "TPOT_ms": 48.2265168258317,
+          "start_ns": 1792238332103549429
+        },
+        {
+          "arrival_rank": 38,
+          "TTFT_ms": 6782.223137,
+          "TPOT_ms": 35.42552345596868,
+          "start_ns": 1792238332597782221
+        },
+        {
+          "arrival_rank": 39,
+          "TTFT_ms": 7493.639021,
+          "TPOT_ms": 34.374967718199606,
+          "start_ns": 1792238332811842689
+        },
+        {
+          "arrival_rank": 40,
+          "TTFT_ms": 8161.025051,
+          "TPOT_ms": 26.52748884148728,
+          "start_ns": 1792238333070382921
+        },
+        {
+          "arrival_rank": 41,
+          "TTFT_ms": 8909.479514999999,
+          "TPOT_ms": 16.999397790606654,
+          "start_ns": 1792238333247553341
+        },
+        {
+          "arrival_rank": 42,
+          "TTFT_ms": 9835.516658999999,
+          "TPOT_ms": 48.38905526810175,
+          "start_ns": 1792238333247757429
+        },
+        {
+          "arrival_rank": 43,
+          "TTFT_ms": 4774.797861,
+          "TPOT_ms": 41.87231688258316,
+          "start_ns": 1792238347043046679
+        },
+        {
+          "arrival_rank": 44,
+          "TTFT_ms": 5289.0313989999995,
+          "TPOT_ms": 45.96287994716242,
+          "start_ns": 1792238347772066623
+        },
+        {
+          "arrival_rank": 45,
+          "TTFT_ms": 5960.968264,
+          "TPOT_ms": 41.73368205870841,
+          "start_ns": 1792238348128805588
+        },
+        {
+          "arrival_rank": 46,
+          "TTFT_ms": 6089.257454,
+          "TPOT_ms": 36.512942363992174,
+          "start_ns": 1792238349184050962
+        },
+        {
+          "arrival_rank": 47,
+          "TTFT_ms": 6657.385813,
+          "TPOT_ms": 37.06427119765166,
+          "start_ns": 1792238350355768798
+        },
+        {
+          "arrival_rank": 48,
+          "TTFT_ms": 8000.259072999999,
+          "TPOT_ms": 30.99652799412916,
+          "start_ns": 1792238350794000360
+        },
+        {
+          "arrival_rank": 49,
+          "TTFT_ms": 8877.037913,
+          "TPOT_ms": 32.1685991037182,
+          "start_ns": 1792238350845780952
+        },
+        {
+          "arrival_rank": 50,
+          "TTFT_ms": 9751.550521,
+          "TPOT_ms": 39.20736792563601,
+          "start_ns": 1792238350898181380
+        },
+        {
+          "arrival_rank": 51,
+          "TTFT_ms": 9637.70352,
+          "TPOT_ms": 48.73871062426614,
+          "start_ns": 1792238352310050230
+        },
+        {
+          "arrival_rank": 52,
+          "TTFT_ms": 9707.239595,
+          "TPOT_ms": 24.75539029941292,
+          "start_ns": 1792238353167784064
+        },
+        {
+          "arrival_rank": 53,
+          "TTFT_ms": 9722.549839,
+          "TPOT_ms": 44.76994808023483,
+          "start_ns": 1792238354791330078
+        },
+        {
+          "arrival_rank": 54,
+          "TTFT_ms": 9332.630059,
+          "TPOT_ms": 20.33416134246575,
+          "start_ns": 1792238356439368611
+        },
+        {
+          "arrival_rank": 55,
+          "TTFT_ms": 9213.00115,
+          "TPOT_ms": 42.897712091976516,
+          "start_ns": 1792238357486890401
+        },
+        {
+          "arrival_rank": 56,
+          "TTFT_ms": 9752.283043,
+          "TPOT_ms": 41.30139159686888,
+          "start_ns": 1792238357875154544
+        },
+        {
+          "arrival_rank": 57,
+          "TTFT_ms": 9687.197051,
+          "TPOT_ms": 39.43936295499021,
+          "start_ns": 1792238363101206444
+        },
+        {
+          "arrival_rank": 58,
+          "TTFT_ms": 9653.037852,
+          "TPOT_ms": 38.96074752446184,
+          "start_ns": 1792238367818062363
+        },
+        {
+          "arrival_rank": 59,
+          "TTFT_ms": 5182.656037,
+          "TPOT_ms": 36.386072129158514,
+          "start_ns": 1792238373217094789
+        },
+        {
+          "arrival_rank": 60,
+          "TTFT_ms": 5394.420013,
+          "TPOT_ms": 38.72105277103718,
+          "start_ns": 1792238373934181434
+        },
+        {
+          "arrival_rank": 61,
+          "TTFT_ms": 5621.932167,
+          "TPOT_ms": 39.93683935812133,
+          "start_ns": 1792238374635684672
+        },
+        {
+          "arrival_rank": 62,
+          "TTFT_ms": 6029.690659,
+          "TPOT_ms": 36.2802740332681,
+          "start_ns": 1792238375418358374
+        },
+        {
+          "arrival_rank": 63,
+          "TTFT_ms": 7059.079750999999,
+          "TPOT_ms": 35.37976364579256,
+          "start_ns": 1792238375527129507
+        },
+        {
+          "arrival_rank": 64,
+          "TTFT_ms": 7561.759457,
+          "TPOT_ms": 32.02161133072407,
+          "start_ns": 1792238375955404616
+        },
+        {
+          "arrival_rank": 65,
+          "TTFT_ms": 8282.150748,
+          "TPOT_ms": 27.50214090802348,
+          "start_ns": 1792238376164627641
+        },
+        {
+          "arrival_rank": 66,
+          "TTFT_ms": 9210.734403999999,
+          "TPOT_ms": 37.40210687475538,
+          "start_ns": 1792238376165716973
+        },
+        {
+          "arrival_rank": 67,
+          "TTFT_ms": 9752.506571,
+          "TPOT_ms": 37.71609225048923,
+          "start_ns": 1792238376553130109
+        },
+        {
+          "arrival_rank": 68,
+          "TTFT_ms": 9567.126897,
+          "TPOT_ms": 42.70150575342466,
+          "start_ns": 1792238380688750092
+        },
+        {
+          "arrival_rank": 69,
+          "TTFT_ms": 7011.46822,
+          "TPOT_ms": 38.01832466731898,
+          "start_ns": 1792238386855904000
+        },
+        {
+          "arrival_rank": 70,
+          "TTFT_ms": 7735.4287269999995,
+          "TPOT_ms": 38.97296793542074,
+          "start_ns": 1792238387394037567
+        },
+        {
+          "arrival_rank": 71,
+          "TTFT_ms": 8189.652209999999,
+          "TPOT_ms": 36.24932470058708,
+          "start_ns": 1792238388624147804
+        },
+        {
+          "arrival_rank": 72,
+          "TTFT_ms": 9354.332253999999,
+          "TPOT_ms": 34.621917418786694,
+          "start_ns": 1792238388736933251
+        },
+        {
+          "arrival_rank": 73,
+          "TTFT_ms": 8647.162869,
+          "TPOT_ms": 57.48484605088062,
+          "start_ns": 1792238392944647805
+        },
+        {
+          "arrival_rank": 74,
+          "TTFT_ms": 5525.202756,
+          "TPOT_ms": 53.29845152054794,
+          "start_ns": 1792238396995390877
+        },
+        {
+          "arrival_rank": 75,
+          "TTFT_ms": 6067.788103999999,
+          "TPOT_ms": 29.16152336399217,
+          "start_ns": 1792238397382424523
+        },
+        {
+          "arrival_rank": 76,
+          "TTFT_ms": 5877.214516,
+          "TPOT_ms": 27.237830360078277,
+          "start_ns": 1792238398502668137
+        },
+        {
+          "arrival_rank": 77,
+          "TTFT_ms": 6350.963475,
+          "TPOT_ms": 25.31346523287671,
+          "start_ns": 1792238399117618885
+        },
+        {
+          "arrival_rank": 78,
+          "TTFT_ms": 6622.763715,
+          "TPOT_ms": 23.633273463796474,
+          "start_ns": 1792238399882558546
+        },
+        {
+          "arrival_rank": 79,
+          "TTFT_ms": 7716.72069,
+          "TPOT_ms": 21.535241823874756,
+          "start_ns": 1792238399989610787
+        },
+        {
+          "arrival_rank": 80,
+          "TTFT_ms": 8745.721355,
+          "TPOT_ms": 42.974560917808226,
+          "start_ns": 1792238400667778913
+        },
+        {
+          "arrival_rank": 81,
+          "TTFT_ms": 9733.629065,
+          "TPOT_ms": 44.2462723816047,
+          "start_ns": 1792238400668447128
+        },
+        {
+          "arrival_rank": 82,
+          "TTFT_ms": 8683.279182,
+          "TPOT_ms": 34.23308050880625,
+          "start_ns": 1792238404491771470
+        },
+        {
+          "arrival_rank": 83,
+          "TTFT_ms": 9164.392797999999,
+          "TPOT_ms": 32.43111364774951,
+          "start_ns": 1792238405581274891
+        },
+        {
+          "arrival_rank": 84,
+          "TTFT_ms": 7554.5601449999995,
+          "TPOT_ms": 42.57604025636008,
+          "start_ns": 1792238412081589842
+        },
+        {
+          "arrival_rank": 85,
+          "TTFT_ms": 7778.903759999999,
+          "TPOT_ms": 44.52917747553816,
+          "start_ns": 1792238413297044018
+        },
+        {
+          "arrival_rank": 86,
+          "TTFT_ms": 6961.101098,
+          "TPOT_ms": 43.169928651663405,
+          "start_ns": 1792238415047040002
+        },
+        {
+          "arrival_rank": 87,
+          "TTFT_ms": 7600.101678999999,
+          "TPOT_ms": 30.19647862035225,
+          "start_ns": 1792238415339483530
+        },
+        {
+          "arrival_rank": 88,
+          "TTFT_ms": 8084.432849,
+          "TPOT_ms": 30.130562645792562,
+          "start_ns": 1792238415785415079
+        },
+        {
+          "arrival_rank": 89,
+          "TTFT_ms": 6498.988741,
+          "TPOT_ms": 27.267520133072406,
+          "start_ns": 1792238418300858430
+        },
+        {
+          "arrival_rank": 90,
+          "TTFT_ms": 7375.811677,
+          "TPOT_ms": 35.62577859295499,
+          "start_ns": 1792238418354095269
+        },
+        {
+          "arrival_rank": 91,
+          "TTFT_ms": 8254.043603,
+          "TPOT_ms": 38.934757358121324,
+          "start_ns": 1792238418405736180
+        },
+        {
+          "arrival_rank": 92,
+          "TTFT_ms": 9005.755835,
+          "TPOT_ms": 21.91422546379648,
+          "start_ns": 1792238418584047565
+        },
+        {
+          "arrival_rank": 93,
+          "TTFT_ms": 9806.894537,
+          "TPOT_ms": 28.91500443052837,
+          "start_ns": 1792238418712981404
+        },
+        {
+          "arrival_rank": 94,
+          "TTFT_ms": 5193.619788999999,
+          "TPOT_ms": 47.52442520939334,
+          "start_ns": 1792238429758995059
+        },
+        {
+          "arrival_rank": 95,
+          "TTFT_ms": 6189.281795999999,
+          "TPOT_ms": 43.135783872798434,
+          "start_ns": 1792238430670543834
+        },
+        {
+          "arrival_rank": 96,
+          "TTFT_ms": 7708.037872,
+          "TPOT_ms": 37.69114221526418,
+          "start_ns": 1792238430969063988
+        },
+        {
+          "arrival_rank": 97,
+          "TTFT_ms": 8864.604508999999,
+          "TPOT_ms": 36.51153258121332,
+          "start_ns": 1792238431322328672
+        },
+        {
+          "arrival_rank": 98,
+          "TTFT_ms": 9742.844121,
+          "TPOT_ms": 34.10289534637965,
+          "start_ns": 1792238431376067049
+        },
+        {
+          "arrival_rank": 99,
+          "TTFT_ms": 9731.715192,
+          "TPOT_ms": 32.58814191193737,
+          "start_ns": 1792238433016899215
+        },
+        {
+          "arrival_rank": 100,
+          "TTFT_ms": 6621.088817,
+          "TPOT_ms": 36.25723948727984,
+          "start_ns": 1792238438372609035
+        },
+        {
+          "arrival_rank": 101,
+          "TTFT_ms": 8071.380553999999,
+          "TPOT_ms": 32.70741200782779,
+          "start_ns": 1792238438736033812
+        },
+        {
+          "arrival_rank": 102,
+          "TTFT_ms": 8948.561485,
+          "TPOT_ms": 30.474358945205477,
+          "start_ns": 1792238438790027438
+        },
+        {
+          "arrival_rank": 103,
+          "TTFT_ms": 9399.889095,
+          "TPOT_ms": 35.235202156555765,
+          "start_ns": 1792238439269170183
+        },
+        {
+          "arrival_rank": 104,
+          "TTFT_ms": 8201.472743999999,
+          "TPOT_ms": 33.41643142857143,
+          "start_ns": 1792238441397000815
+        },
+        {
+          "arrival_rank": 105,
+          "TTFT_ms": 7230.4668329999995,
+          "TPOT_ms": 25.11913138551859,
+          "start_ns": 1792238443298063326
+        },
+        {
+          "arrival_rank": 106,
+          "TTFT_ms": 8122.997429,
+          "TPOT_ms": 59.55907245596869,
+          "start_ns": 1792238443832891090
+        },
+        {
+          "arrival_rank": 107,
+          "TTFT_ms": 8950.512401,
+          "TPOT_ms": 29.59338369471624,
+          "start_ns": 1792238443937250979
+        },
+        {
+          "arrival_rank": 108,
+          "TTFT_ms": 9748.300366,
+          "TPOT_ms": 25.66712577886497,
+          "start_ns": 1792238444070446013
+        },
+        {
+          "arrival_rank": 109,
+          "TTFT_ms": 9708.213625,
+          "TPOT_ms": 47.70757260469667,
+          "start_ns": 1792238446558567331
+        },
+        {
+          "arrival_rank": 110,
+          "TTFT_ms": 3990.2021019999997,
+          "TPOT_ms": 38.8854776183953,
+          "start_ns": 1792238457939649105
+        },
+        {
+          "arrival_rank": 111,
+          "TTFT_ms": 5225.731803,
+          "TPOT_ms": 36.21391951076321,
+          "start_ns": 1792238458547718006
+        },
+        {
+          "arrival_rank": 112,
+          "TTFT_ms": 5857.725614999999,
+          "TPOT_ms": 38.33294116829745,
+          "start_ns": 1792238458846849142
+        },
+        {
+          "arrival_rank": 113,
+          "TTFT_ms": 6730.7496249999995,
+          "TPOT_ms": 39.068883759295495,
+          "start_ns": 1792238458904497704
+        },
+        {
+          "arrival_rank": 114,
+          "TTFT_ms": 7324.788587999999,
+          "TPOT_ms": 30.751527919765167,
+          "start_ns": 1792238459240025423
+        },
+        {
+          "arrival_rank": 115,
+          "TTFT_ms": 8501.858739,
+          "TPOT_ms": 31.127257686888452,
+          "start_ns": 1792238459403493427
+        },
+        {
+          "arrival_rank": 116,
+          "TTFT_ms": 7175.804724,
+          "TPOT_ms": 28.32167664579256,
+          "start_ns": 1792238463313542236
+        },
+        {
+          "arrival_rank": 117,
+          "TTFT_ms": 8055.369387,
+          "TPOT_ms": 25.901917125244616,
+          "start_ns": 1792238463366565302
+        },
+        {
+          "arrival_rank": 118,
+          "TTFT_ms": 8829.632985,
+          "TPOT_ms": 36.770417469667315,
+          "start_ns": 1792238463522987908
+        },
+        {
+          "arrival_rank": 119,
+          "TTFT_ms": 9751.183216,
+          "TPOT_ms": 22.43386130136986,
+          "start_ns": 1792238463532279372
+        },
+        {
+          "arrival_rank": 120,
+          "TTFT_ms": 8143.116019,
+          "TPOT_ms": 20.252790138943247,
+          "start_ns": 1792238466679795100
+        },
+        {
+          "arrival_rank": 121,
+          "TTFT_ms": 9072.789676,
+          "TPOT_ms": 18.430949849315066,
+          "start_ns": 1792238466680964652
+        },
+        {
+          "arrival_rank": 122,
+          "TTFT_ms": 9746.111554,
+          "TPOT_ms": 36.021544076320936,
+          "start_ns": 1792238466937735360
+        },
+        {
+          "arrival_rank": 123,
+          "TTFT_ms": 9718.324659,
+          "TPOT_ms": 14.877676436399213,
+          "start_ns": 1792238468015324440
+        },
+        {
+          "arrival_rank": 124,
+          "TTFT_ms": 5873.701219,
+          "TPOT_ms": 17.876012230919766,
+          "start_ns": 1792238480650988557
+        },
+        {
+          "arrival_rank": 125,
+          "TTFT_ms": 5651.8861879999995,
+          "TPOT_ms": 16.135514561643838,
+          "start_ns": 1792238481803004911
+        },
+        {
+          "arrival_rank": 126,
+          "TTFT_ms": 6103.369095,
+          "TPOT_ms": 14.460714082191778,
+          "start_ns": 1792238482282574192
+        },
+        {
+          "arrival_rank": 127,
+          "TTFT_ms": 7033.166694,
+          "TPOT_ms": 16.42214264970646,
+          "start_ns": 1792238482283407706
+        },
+        {
+          "arrival_rank": 128,
+          "TTFT_ms": 8104.062776999999,
+          "TPOT_ms": 11.099440890410959,
+          "start_ns": 1792238482393342564
+        }
+      ],
+      "TTFT_violation_ranks": [
+        9,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "TPOT_violation_ranks": [
+        1,
+        2,
+        5,
+        7,
+        8,
+        15,
+        16,
+        19,
+        28,
+        29,
+        30,
+        37,
+        42,
+        43,
+        44,
+        45,
+        51,
+        53,
+        55,
+        56,
+        68,
+        73,
+        74,
+        80,
+        81,
+        84,
+        85,
+        86,
+        94,
+        95,
+        106,
+        109
+      ],
+      "finished_ns": 1792238503370775976
+    },
+    {
+      "concurrency": 12,
+      "KV": 104448,
+      "run_dir": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-r1",
+      "started_ns": 1792238503605630524,
+      "status": "running",
+      "native_done": 0,
+      "driver_cleanup": {
+        "reaped": true,
+        "exit_code": 1
+      },
+      "telemetry_cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      },
+      "manifest_status": "failed"
+    }
+  ],
+  "started_ns": 1792238227614826232,
+  "scope": "original runner C16 then conditionalC12,128+8+1, fixed9270/source91621; oldT4 protected failure disclosed; no quality claim",
+  "heartbeat_ns": 1792238507737526636,
+  "GPU_preflight": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 1 MiB, 450.00 W, 610.57.04\n",
+  "runtime": {
+    "binary": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+    "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+    "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc"
+  },
+  "expected_env": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047"
+  },
+  "error": "AssertionError('infrastructure/runtime failure preserved; no silent retry')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/InferX/results/three-node-optimization/ucloud3/output47-C16-C12-official128-001/owner.py\", line 108, in <module>\n    assert rc==0 and m['status']=='complete','infrastructure/runtime failure preserved; no silent retry'\nAssertionError: infrastructure/runtime failure preserved; no silent retry\n",
+  "finished_ns": 1792238507735909487
+}

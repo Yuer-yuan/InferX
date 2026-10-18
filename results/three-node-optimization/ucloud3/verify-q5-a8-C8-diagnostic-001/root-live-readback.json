@@ -1,0 +1,548 @@
+{
+  "state": {
+    "phase": "COMPLETE_single_C8_diagnostic_pending_CPU_attribution",
+    "owner": {
+      "pid": 116133,
+      "start_ticks": "41325614",
+      "uid": 0,
+      "exe": "/usr/bin/python3.10",
+      "argv": [
+        "/usr/bin/python3",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/run_owned.py"
+      ]
+    },
+    "started_at": "2026-10-16T23:09:42.930524+00:00",
+    "steps": [
+      {
+        "name": "original29cold_workload_under_nsys_launch",
+        "argv": [
+          "/usr/local/cuda/bin/nsys",
+          "launch",
+          "--session-new=ucloud3_ed91_C8_diagnostic_r1",
+          "--trace=cuda,nvtx",
+          "--cuda-graph-trace=node",
+          "--wait=all",
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/run_verify_a8_sweep.py",
+          "--config",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/config.json",
+          "--output-dir",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/results",
+          "--runner",
+          "/workspace/InferX/code/submission/organizer/runner.py"
+        ],
+        "started_at": "2026-10-16T23:09:43.411997+00:00",
+        "handle": {
+          "pid": 116140,
+          "start_ticks": "41325668",
+          "uid": 0,
+          "exe": "/usr/bin/dash",
+          "argv": [
+            "/bin/sh",
+            "/usr/local/cuda/bin/nsys",
+            "launch",
+            "--session-new=ucloud3_ed91_C8_diagnostic_r1",
+            "--trace=cuda,nvtx",
+            "--cuda-graph-trace=node",
+            "--wait=all",
+            "/usr/bin/python3",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/run_verify_a8_sweep.py",
+            "--config",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/config.json",
+            "--output-dir",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/results",
+            "--runner",
+            "/workspace/InferX/code/submission/organizer/runner.py"
+          ]
+        },
+        "pidfd_open": true,
+        "exit_code": 0,
+        "pidfd_terminal": true,
+        "waited_reaped": true,
+        "finished_at": "2026-10-16T23:11:23.657699+00:00"
+      },
+      {
+        "name": "capture-start",
+        "argv": [
+          "/usr/local/cuda/bin/nsys",
+          "start",
+          "--session=ucloud3_ed91_C8_diagnostic_r1",
+          "--sample=none",
+          "--cpuctxsw=none",
+          "--force-overwrite=false",
+          "--output=/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace"
+        ],
+        "started_at": "2026-10-16T23:10:30.290277+00:00",
+        "handle": {
+          "pid": 116324,
+          "start_ticks": "41330355",
+          "uid": 0,
+          "exe": "/usr/bin/dash",
+          "argv": [
+            "/bin/sh",
+            "/usr/local/cuda/bin/nsys",
+            "start",
+            "--session=ucloud3_ed91_C8_diagnostic_r1",
+            "--sample=none",
+            "--cpuctxsw=none",
+            "--force-overwrite=false",
+            "--output=/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace"
+          ]
+        },
+        "pidfd_open": true,
+        "exit_code": 0,
+        "pidfd_terminal": true,
+        "waited_reaped": true,
+        "finished_at": "2026-10-16T23:10:31.193234+00:00",
+        "log_SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "capture-stop",
+        "argv": [
+          "/usr/local/cuda/bin/nsys",
+          "stop",
+          "--session=ucloud3_ed91_C8_diagnostic_r1"
+        ],
+        "started_at": "2026-10-16T23:11:01.195367+00:00",
+        "handle": {
+          "pid": 116345,
+          "start_ticks": "41333446",
+          "uid": 0,
+          "exe": "/usr/bin/dash",
+          "argv": [
+            "/bin/sh",
+            "/usr/local/cuda/bin/nsys",
+            "stop",
+            "--session=ucloud3_ed91_C8_diagnostic_r1"
+          ]
+        },
+        "pidfd_open": true,
+        "exit_code": 0,
+        "pidfd_terminal": true,
+        "waited_reaped": true,
+        "finished_at": "2026-10-16T23:11:05.410726+00:00",
+        "log_SHA256": "098b2106d0d94085e8e5ba501a1c23f714453c3b26d30dd2c836a2a0ad91fa43"
+      },
+      {
+        "name": "export-sqlite",
+        "argv": [
+          "/usr/local/cuda/bin/nsys",
+          "export",
+          "--type=sqlite",
+          "--output=/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace.sqlite",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace.nsys-rep"
+        ],
+        "started_at": "2026-10-16T23:11:23.919043+00:00",
+        "handle": {
+          "pid": 116421,
+          "start_ticks": "41335718",
+          "uid": 0,
+          "exe": "/usr/bin/dash",
+          "argv": [
+            "/bin/sh",
+            "/usr/local/cuda/bin/nsys",
+            "export",
+            "--type=sqlite",
+            "--output=/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace.sqlite",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace.nsys-rep"
+          ]
+        },
+        "pidfd_open": true,
+        "exit_code": 0,
+        "pidfd_terminal": true,
+        "waited_reaped": true,
+        "finished_at": "2026-10-16T23:11:25.721619+00:00",
+        "log_SHA256": "1c0ca5a11fef5a0d5dc151130e6dd4c3a65da6c334112f0cbca9db0f0ca4aac3"
+      },
+      {
+        "name": "actual-cohort-audit",
+        "argv": [
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/audit_cohorts.py",
+          "--root",
+          "/workspace/InferX/results/three-node-optimization/ucloud3",
+          "--left",
+          "verify-q5-a8-C8-pilot-ON-001/results/ON/c8",
+          "--right",
+          "verify-q5-a8-C8-diagnostic-001/results/ON/c8",
+          "--output",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/actual-cohort-audit.json"
+        ],
+        "started_at": "2026-10-16T23:11:25.722991+00:00",
+        "handle": {
+          "pid": 116426,
+          "start_ticks": "41335899",
+          "uid": 0,
+          "exe": "/usr/bin/python3.10",
+          "argv": [
+            "/usr/bin/python3",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/audit_cohorts.py",
+            "--root",
+            "/workspace/InferX/results/three-node-optimization/ucloud3",
+            "--left",
+            "verify-q5-a8-C8-pilot-ON-001/results/ON/c8",
+            "--right",
+            "verify-q5-a8-C8-diagnostic-001/results/ON/c8",
+            "--output",
+            "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/actual-cohort-audit.json"
+          ]
+        },
+        "pidfd_open": true,
+        "exit_code": 0,
+        "pidfd_terminal": true,
+        "waited_reaped": true,
+        "finished_at": "2026-10-16T23:11:25.932223+00:00",
+        "log_SHA256": "fbac97fe860f75bf8052944d80bfbc7bee61f1bd9fd136fe069ba7060535357b"
+      }
+    ],
+    "diagnostic_only": true,
+    "capture_seconds": 30,
+    "nsys_session": "ucloud3_ed91_C8_diagnostic_r1",
+    "nsys_session_is_profiler_name_not_agent_session": true,
+    "timeout_is_terminal": false,
+    "no_auto_retry": true,
+    "no_auto100": true,
+    "updated_at": "2026-10-16T23:11:26.241482+00:00",
+    "previous_terminal_handles": [
+      {
+        "pid": 115896,
+        "start_ticks": "41184820",
+        "uid": 0,
+        "exe": "/usr/bin/python3.10",
+        "argv": [
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-pilot-ON-001/run_owned.py"
+        ]
+      },
+      {
+        "pid": 115902,
+        "start_ticks": "41184871",
+        "uid": 0,
+        "exe": "/usr/bin/python3.10",
+        "argv": [
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-pilot-ON-001/run_verify_a8_sweep.py",
+          "--config",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-pilot-ON-001/config.json",
+          "--output-dir",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-pilot-ON-001/results",
+          "--runner",
+          "/workspace/InferX/code/submission/organizer/runner.py"
+        ]
+      },
+      {
+        "pid": 116030,
+        "start_ticks": "41194746",
+        "uid": 0,
+        "exe": "/usr/bin/python3.10",
+        "argv": [
+          "/usr/bin/python3",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/audit_cohorts.py",
+          "--root",
+          "/workspace/InferX/results/three-node-optimization/ucloud3",
+          "--left",
+          "verify-q5-a8-C7-pilot-pair-001/results/ON/c7",
+          "--right",
+          "verify-q5-a8-C8-pilot-ON-001/results/ON/c8",
+          "--output",
+          "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-pilot-ON-001/actual-cohorts-vs-C7ON.json"
+        ]
+      },
+      {
+        "pid": 115904,
+        "start_ticks": 41185105,
+        "uid": 0,
+        "executable": "/workspace/InferX/experiments/ucloud3-verify-q5-a8-production-proposal-001/build/apps/ninfer-serve",
+        "lifecycle": "pidfd held until reaped"
+      }
+    ],
+    "preflight_GPU": {
+      "compute_pids": "",
+      "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 1 MiB, 450.00 W, 610.57.04\n"
+    },
+    "binary_SHA256": "ed91f304cc8b97e6d8d2c5e8c4290fbf5dee0dd6a0560bb7020be5f90b6bcf3e",
+    "completed_health_reused": "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C7-pilot-pair-001/health-receipt.json",
+    "all993_source_hashes_pre_match": true,
+    "actual_launch_environment": {
+      "LD_LIBRARY_PATH": "/workspace/InferX/envs/build/lib:/usr/local/cuda-13.2/lib64",
+      "NINFER_PREFILL_A8": "all",
+      "NINFER_VERIFY_Q5_A8": "1",
+      "NINFER_SCHED_POLICY": "completion_queue",
+      "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+      "NINFER_SCHED_TRACE": "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/scheduler-events.jsonl"
+    },
+    "last_heartbeat_at": "2026-10-16T23:11:23.434279+00:00",
+    "post_warmup_replacement_trigger": {
+      "observed_at": "2026-10-16T23:10:30.289873+00:00",
+      "native_done": 6,
+      "native_output_tokens": [
+        1,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "executor_admissions": 14,
+      "last_admission": {
+        "event": "admission",
+        "start_ms": 413294633.6286,
+        "end_ms": 413294633.62863,
+        "request_id": 14,
+        "lane": 5,
+        "rows": 0,
+        "tokens": 8192,
+        "value": 0.0
+      },
+      "monotonic_ns": 413303558395133,
+      "wall_ns": 1792192230289902008
+    },
+    "capture_start_return": {
+      "wall_ns": 1792192231194203530,
+      "monotonic_ns": 413304462698535
+    },
+    "capture_stop_invoked": {
+      "wall_ns": 1792192261194540143,
+      "monotonic_ns": 413334463036218
+    },
+    "original_service_cleanup": {
+      "reaped": true,
+      "exit_code": 0,
+      "lifecycle": "direct engine child held via pidfd; no process-group or global kill"
+    },
+    "final_GPU": {
+      "compute_pids": "",
+      "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 1 MiB, 450.00 W, 610.57.04\n"
+    },
+    "all993_source_hashes_post_match": true,
+    "raw_files": {
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/.aiperf_results_ready.json": {
+        "SHA256": "5f316f75c5c0e5022c2e63b118b85856efbcd8d8887ee55fc98db893b6a5351e",
+        "bytes": 52
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/command.json": {
+        "SHA256": "fe03e122a1ec0cb5a890d54eeff621689cb76aeb4eb46ea6f116b5308f6b137f",
+        "bytes": 1124
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/console.log": {
+        "SHA256": "f9c09507961a62ad84d22cb918588d7462729f2d8f89870847c8fe586cb5a6d3",
+        "bytes": 24662
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/inputs.json": {
+        "SHA256": "fb2661323a2fe8ca6d20a31f092307c415ffb3561b1b0ef0bc35597ec2920cd1",
+        "bytes": 4657221
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/logs/aiperf.log": {
+        "SHA256": "02eebe2b7d39b2cbd77cd2ab67dcbe5df40afa5a464d9f5ef33fb3adcf0f3484",
+        "bytes": 10974
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phase_manifest.json": {
+        "SHA256": "133f9c957071de8d8552aa5dba67ccc0d07cf7e87863917bdda3a2c4c07df8b1",
+        "bytes": 1172
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/profiling/profile_export_aiperf.csv": {
+        "SHA256": "c5c6ea18ece0cdec955ae9bd7b96314b57fbdfb33cb5137f1c94062b47f32db5",
+        "bytes": 6426
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/profiling/profile_export_aiperf.json": {
+        "SHA256": "866d8acbcf27b6af46331100e724d2782c9803e346b42b4b665533a1f90197fe",
+        "bytes": 22058
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/profiling/server_metrics.json": {
+        "SHA256": "a3e625cd47c52968de825da52b2c152ddfd2048fc164c13b1ee7fe4adcd4cc52",
+        "bytes": 8120
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/warmup/profile_export_aiperf.csv": {
+        "SHA256": "61475da33384e11f160a82bd483b9c0da1291dad874aba6c3b0bb463d1ece5d0",
+        "bytes": 6385
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/warmup/profile_export_aiperf.json": {
+        "SHA256": "dd698db19c39839c98b9d7922bd15cb9abcb62f13e9e3823e73d0b43e3735c1e",
+        "bytes": 21884
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/phases/warmup/server_metrics.json": {
+        "SHA256": "b08e7eebb2a15107b206d385aef83c5b1644602f578d54ef1d169d9fe99a5fcd",
+        "bytes": 8137
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/profile_export.jsonl": {
+        "SHA256": "00aa5b21f190f6fc0b1d3ce8db3cf066fb112c64e53fabab99a2e7249ce3ae19",
+        "bytes": 127368
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/profile_export_aiperf.csv": {
+        "SHA256": "c5c6ea18ece0cdec955ae9bd7b96314b57fbdfb33cb5137f1c94062b47f32db5",
+        "bytes": 6426
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/profile_export_aiperf.json": {
+        "SHA256": "1b886284d3a8795a49fd29085a04368bac8e0512889305b1aca1f0b615598769",
+        "bytes": 42414
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/profile_export_console.txt": {
+        "SHA256": "0e217e032e4621774fb20aca0c94c9f63111ba63905b909ba5bf6a75a69a3cda",
+        "bytes": 12487
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/server_metrics_export.csv": {
+        "SHA256": "b4c94bb99ae1e794eb31c048dfa0e9a7f8d2025b2411d3d5b39e12f57a7e6c0c",
+        "bytes": 2019
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/server_metrics_export.json": {
+        "SHA256": "9848eccd2a0cf567602e01584c305d6f9e99b813089bcba2bc422ac3cc02e46f",
+        "bytes": 15504
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/c8/summary.json": {
+        "SHA256": "3d9ec52b121aa232484784a5d1a257acc18fcdd9f358497660602df6c24b6182",
+        "bytes": 1419
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/requests.jsonl": {
+        "SHA256": "0740a58c0b32ba8999e96fd40c800b55f548bc23ebb8bec2aa15215425029249",
+        "bytes": 66120
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/server.log": {
+        "SHA256": "43c852377bddb98f7fff253992db0506a6468d8ad0644005982210686e7b5824",
+        "bytes": 17797
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/ON/summary.json": {
+        "SHA256": "88c2060825f411124627441fed25cee059048fa8ccb02b1a631a5bab7101402a",
+        "bytes": 4628
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/candidate-identity.json": {
+        "SHA256": "4b914c5f8d1107885bfee05fe2f6e5f03269a1f427b7394ce8894ad1c102471a",
+        "bytes": 382
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/config.json": {
+        "SHA256": "8e636b9a077464eb6b01476024674062ada3e1f1752a696d5dc97f9c7853b6a9",
+        "bytes": 2648
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/dataset-command.json": {
+        "SHA256": "ecd36c1ce0a5d31ae4206938c7b351ccdc138d29b53f4a2f0526149b4544d09d",
+        "bytes": 318
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/dataset.jsonl": {
+        "SHA256": "dd4887cb43d5af982ca87edd5301c94297fe1e628bc4207c57ab760a14536060",
+        "bytes": 1559394
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/dataset.log": {
+        "SHA256": "88f42bb579c3a9c6d82a03825953a7256cc748bbe7a902f241aacd55eff35988",
+        "bytes": 136
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/dataset.meta.json": {
+        "SHA256": "1418353920ddde389f7eb9c4578d837a1a7917ffdee41ab05e0e3fc1403ccbf5",
+        "bytes": 377
+      },
+      "verify-q5-a8-C8-diagnostic-001/results/manifest.json": {
+        "SHA256": "f06b39353aa2d8eb197fec915b5ece63bde8b1c3b220498f47820f9be3dee134",
+        "bytes": 6334
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/actual-cohort-audit.json": {
+        "SHA256": "ff1f8346e6dde6e789748ec577c90eaccae14fc410f581c23d37d62bdc6c6f48",
+        "bytes": 8456
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/actual-cohort-audit.log": {
+        "SHA256": "fbac97fe860f75bf8052944d80bfbc7bee61f1bd9fd136fe069ba7060535357b",
+        "bytes": 170
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/capture-start.log": {
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/capture-stop.log": {
+        "SHA256": "098b2106d0d94085e8e5ba501a1c23f714453c3b26d30dd2c836a2a0ad91fa43",
+        "bytes": 2505
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/export-sqlite.log": {
+        "SHA256": "1c0ca5a11fef5a0d5dc151130e6dd4c3a65da6c334112f0cbca9db0f0ca4aac3",
+        "bytes": 8128
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/launch.log": {
+        "SHA256": "3718211e32131c0c1bf25f50c857c403858e9d529fa52d8c1dfdf9bf1400e55f",
+        "bytes": 1398
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/scheduler-events.jsonl": {
+        "SHA256": "64428c2cd06fe29ac0b77021a08cab7f06389764097f410f02d93af887e89f3d",
+        "bytes": 909624
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/trace.nsys-rep": {
+        "SHA256": "0d6c054b7cd0ad45ed238c914c7eb5b2b71b9131a518c92e93637fa85b9d0ab7",
+        "bytes": 10661031
+      },
+      "verify-q5-a8-C8-diagnostic-001-trace/trace.sqlite": {
+        "SHA256": "349960bd406f761af9bd80b6cb230fc4991c825e3db711eeac34caeecf083bcd",
+        "bytes": 31129600
+      }
+    },
+    "finished_at": "2026-10-16T23:11:26.241443+00:00",
+    "all_direct_children_waited_reaped": true
+  },
+  "actual_owners": {
+    "116133": {
+      "expected": "41325614",
+      "status": "missing"
+    },
+    "116140": {
+      "expected": "41325668",
+      "status": "missing"
+    },
+    "116324": {
+      "expected": "41330355",
+      "status": "missing"
+    },
+    "116345": {
+      "expected": "41333446",
+      "status": "missing"
+    },
+    "116421": {
+      "expected": "41335718",
+      "status": "missing"
+    },
+    "116426": {
+      "expected": "41335899",
+      "status": "missing"
+    }
+  },
+  "sqlite_inventory": [
+    {
+      "path": "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001-trace/trace.sqlite",
+      "bytes": 31129600,
+      "sha256": "349960bd406f761af9bd80b6cb230fc4991c825e3db711eeac34caeecf083bcd",
+      "CUPTI_ACTIVITY_KIND_KERNEL": 253201,
+      "CUPTI_ACTIVITY_KIND_RUNTIME": 121855,
+      "NVTX_EVENTS": 9323,
+      "first_last_kernel_ns": [
+        16999186,
+        30164783360
+      ]
+    }
+  ],
+  "native_accounting": [
+    {
+      "path": "/workspace/InferX/results/three-node-optimization/ucloud3/verify-q5-a8-C8-diagnostic-001/results/ON/requests.jsonl",
+      "done": 29,
+      "engine": {
+        "cuda_graph": true,
+        "device": 0,
+        "kv_cache": "int8-group64",
+        "kv_capacity": 131072,
+        "kv_capacity_max_page_groups": 8192,
+        "kv_capacity_mode": "explicit",
+        "kv_capacity_page_groups": 2048,
+        "log_stats_interval_ms": 5000,
+        "max_concurrency": 8,
+        "max_context": 65536,
+        "max_pending_requests": 32,
+        "pending_timeout_ms": 600000,
+        "prefill_chunk": 2048,
+        "prefix_reuse": false,
+        "proposal_head": "optimized",
+        "speculative_backend": "mtp",
+        "speculative_draft_window": 3,
+        "vision": false
+      },
+      "cold_count": 29,
+      "completion_counts": {
+        "1": 1,
+        "512": 28
+      }
+    }
+  ],
+  "root_observed_at": "2026-10-16T23:13:22.844137+00:00",
+  "inventory_scope_correction": "Trace is in sibling -trace directory named by original export command, not under run directory."
+}

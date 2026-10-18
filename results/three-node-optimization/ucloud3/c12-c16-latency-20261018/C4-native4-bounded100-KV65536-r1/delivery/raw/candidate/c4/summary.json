@@ -1,0 +1,51 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "concurrency": 4,
+  "artifacts": "/workspace/InferX/runs/u3-c12-c16-latency-20261018-C4-native4-bounded100-KV65536-r1/candidate/c4",
+  "started_at": "2026-10-17T21:29:14.195273+00:00",
+  "meets_slo": true,
+  "issues": [],
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 1132.423230304687,
+      "p50": 933.729938,
+      "p95": 2269.116713000001,
+      "p99": 3370.3649987700032
+    },
+    "inter_token_latency": {
+      "mean": 17.125205235980303,
+      "p50": 16.20901795694716,
+      "p95": 22.89114245264188,
+      "p99": 26.561817973248534
+    },
+    "request_latency": {
+      "mean": 9883.403105890618,
+      "p50": 9560.800814999999,
+      "p95": 12631.1195396,
+      "p99": 14503.63483821
+    }
+  },
+  "benchmark_duration": 318.413022464,
+  "request_throughput": 0.40198872807472913,
+  "output_token_throughput": 205.8182287742613,
+  "native_status": "完整",
+  "failed_input_length_records": 0,
+  "failed_output_length_records": 0,
+  "missing_profiling_records": 0,
+  "finished_at": "2026-10-17T21:35:01.053363+00:00",
+  "elapsed_seconds": 346.8581189569668
+}

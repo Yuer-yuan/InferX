@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-16T18:02:42.861070+00:00",
+  "scope": "Root independent zero-fuzz4file application +exactposthashes +CPUtest compile/run, actual scheduling integration source review; no GPU work",
+  "parent_binary_sha256": "7df21b6470608d80205ed3aee39747d7387913b7b1f5fbc0bcdcd82c4c969601",
+  "candidate_full_source_sha256": "ba0d90db6a292d01a0aec5cb06abb5973fb964f4ff16dd9f751d9a404ee8dbaf",
+  "patch_sha256": "f0fc0a48b6d96856b07f5195c2557e9727d58f49725cb21c873f16ccdf1cc630",
+  "preimage_sha256": {
+    "src/runtime/engine/concurrent_executor.h": "4afeb87bd22afd4a04bebd8a336c521063a0b1a51fb8499c497171023da8e7d7",
+    "tests/CMakeLists.txt": "1d3a0aa8ae77ef67d25cedaae411cb177f54c6608ffae95f511c3b03c0df48d1"
+  },
+  "post_hash_matches": {
+    "src/runtime/engine/concurrent_executor.h": true,
+    "src/runtime/engine/slo_prefill_queue_policy.h": true,
+    "tests/test_slo_prefill_queue_policy.cpp": true,
+    "tests/CMakeLists.txt": true
+  },
+  "cpu_command": [
+    "g++",
+    "-std=c++20",
+    "-O2",
+    "-UNDEBUG",
+    "-I/tmp/inferx-root-queue-demand-guj1krer/src",
+    "/tmp/inferx-root-queue-demand-guj1krer/tests/test_slo_prefill_queue_policy.cpp",
+    "-o",
+    "/tmp/inferx-root-queue-demand-guj1krer/queue-policy-test"
+  ],
+  "cpu_test_output": "FCFS cumulative demand: simultaneous/staggered/partial/singleton/empty/blocked/infeasible/zero-cost passed",
+  "integration_review": [
+    "Optin completion_queue only; baseline/budget/completion remainoriginalpaths",
+    "Counts currentpartialprefill once, thenpending_snapshot excludingheadidentity; retains queue order",
+    "Original submitted/prepare time, measuredmspertoken, margin300 andbatchmean decodeyield retained",
+    "Existing nofree-slot returnDecode precedes newpolicy; no activeprefill/multilane/slot/math/Graph changes",
+    "FCFS cumulative latest-start min isfed back as effectivefrontdeadline to originalwhole-request policy",
+    "New vector perdecision onlyCPUmetadata; GPU performance remainsunproven",
+    "Queuecancel/expiry filtering andcost errors inheritoriginalexecutor behavior; bounds arecost-model estimates, not guaranteedSLO feasibility"
+  ],
+  "qualification": "CPU correctness/source pass permits boundedn24+4 C6 measurement. Needactualtraceburstcheck andsamepayload nativecold/progress audit. No formal100 automatically until actualpilot supports it."
+}

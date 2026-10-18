@@ -1,0 +1,210 @@
+{
+  "status": "COMPLETE_JOINT_FAIL",
+  "source": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+  "binary": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+  "C": 14,
+  "native_cap": 14,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "all137cold": true,
+  "all_startup_retained": true,
+  "errors": 0,
+  "metrics": {
+    "TTFT_p95_ms": 9832.799702949998,
+    "TPOT_p95_ms": 55.5541111830724,
+    "output_tokens_per_second": 296.2183228667889
+  },
+  "cohorts": {
+    "initial14": {
+      "count": 14,
+      "TTFT_violations": [
+        9,
+        10,
+        12,
+        14
+      ],
+      "TPOT_violations": [
+        2,
+        7,
+        8,
+        13
+      ]
+    },
+    "later114": {
+      "count": 114,
+      "TTFT_violations": [
+        87,
+        88
+      ],
+      "TPOT_violations": [
+        15,
+        19,
+        27,
+        37,
+        38,
+        44,
+        57,
+        64,
+        66,
+        73,
+        81,
+        94,
+        106,
+        109
+      ]
+    }
+  },
+  "payload_same_as_parent_including_salt": true,
+  "unique_timing_join": 128,
+  "join_method": "Absolute first-token epoch and completion epoch within5ms, each unique; NOT exact header-ID match; no E2E/TTFT duration matching constraint; original128 P95 selected before association",
+  "P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 37,
+        "TTFT_ms": 9822.306153,
+        "TPOT_ms": 44.40249973385518,
+        "start_ns": 1792267314176693677,
+        "conversation_id": "session_000044",
+        "native_match_count": 1,
+        "native_id": 46,
+        "end_difference_ms": 0.813056,
+        "first_token_epoch_difference_ms": 0.589824,
+        "own_prefill_ms": 929.8322489999999,
+        "native_TTFT_minus_own_prefill_ms": 8891.195590000001,
+        "native_shared_decode_per_output_ms": 20.749808890410964,
+        "postfirst_remainder_ms": 23.652690843444216,
+        "rounds": 191,
+        "accepted": 319,
+        "drafted": 572,
+        "fallback": 1,
+        "committed_per_spec_round": 2.670157068062827,
+        "accepted_per_position": [
+          149,
+          101,
+          69
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 62,
+        "TTFT_ms": 9838.450076,
+        "TPOT_ms": 21.500237091976516,
+        "start_ns": 1792267356621564936,
+        "conversation_id": "session_000069",
+        "native_match_count": 1,
+        "native_id": 71,
+        "end_difference_ms": 0.721152,
+        "first_token_epoch_difference_ms": 0.532992,
+        "own_prefill_ms": 931.5570819999999,
+        "native_TTFT_minus_own_prefill_ms": 8905.619147,
+        "native_shared_decode_per_output_ms": 17.85070423679061,
+        "postfirst_remainder_ms": 3.6495328551859068,
+        "rounds": 164,
+        "accepted": 347,
+        "drafted": 491,
+        "fallback": 0,
+        "committed_per_spec_round": 3.1158536585365852,
+        "accepted_per_position": [
+          162,
+          161,
+          24
+        ]
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 7,
+        "TTFT_ms": 6448.091141,
+        "TPOT_ms": 55.13552297847358,
+        "start_ns": 1792267269179071436,
+        "conversation_id": "session_000014",
+        "native_match_count": 1,
+        "native_id": 16,
+        "end_difference_ms": 0.653824,
+        "first_token_epoch_difference_ms": 0.441344,
+        "own_prefill_ms": 922.829286,
+        "native_TTFT_minus_own_prefill_ms": 5524.043930000001,
+        "native_shared_decode_per_output_ms": 22.515106592954993,
+        "postfirst_remainder_ms": 32.62041638551859,
+        "rounds": 204,
+        "accepted": 307,
+        "drafted": 610,
+        "fallback": 0,
+        "committed_per_spec_round": 2.5049019607843137,
+        "accepted_per_position": [
+          141,
+          101,
+          65
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 44,
+        "TTFT_ms": 6636.814724,
+        "TPOT_ms": 55.77950483170254,
+        "start_ns": 1792267332490335429,
+        "conversation_id": "session_000051",
+        "native_match_count": 1,
+        "native_id": 53,
+        "end_difference_ms": 0.612608,
+        "first_token_epoch_difference_ms": 0.081152,
+        "own_prefill_ms": 929.633592,
+        "native_TTFT_minus_own_prefill_ms": 5705.8595270000005,
+        "native_shared_decode_per_output_ms": 21.17565865557731,
+        "postfirst_remainder_ms": 34.60384617612523,
+        "rounds": 205,
+        "accepted": 305,
+        "drafted": 613,
+        "fallback": 1,
+        "committed_per_spec_round": 2.4878048780487805,
+        "accepted_per_position": [
+          108,
+          102,
+          95
+        ]
+      }
+    ]
+  },
+  "native_yield_summary": {
+    "all": {
+      "requests": 128,
+      "committed_per_round": 3.288365776369398,
+      "median_rounds": 143.5,
+      "median_own_prefill_ms": 929.805098
+    },
+    "TPOT_fail": {
+      "requests": 18,
+      "committed_per_round": 2.5912038342261066,
+      "median_rounds": 196.0,
+      "median_own_prefill_ms": 927.0833765
+    },
+    "TPOT_pass": {
+      "requests": 110,
+      "committed_per_round": 3.439757560915881,
+      "median_rounds": 137.5,
+      "median_own_prefill_ms": 930.305903
+    }
+  },
+  "limitations": [
+    "Frozen9270/source91621 and original12env reused; C14, K3, KV121856. Exact historical C12 actualpayload including salt unchanged. Single128 selection run; not independent validation. No new build or numerical change.",
+    "Native decode is shared batch participation elapsed, not exclusive GPU time. Post-first remainder is not uniquely prefill without scheduler/GPU trace.",
+    "Numerical/Graph qualification does not establish task quality or exact greedy.",
+    "One observed selection run; no independent validation."
+  ],
+  "actual_terminal": {
+    "all_missing": {
+      "509159": true,
+      "509175": true,
+      "509176": true,
+      "509180": true
+    },
+    "all_children_reaped": true,
+    "GPU_empty": true,
+    "at_ns": 1792267552452881151
+  },
+  "raw_SHA256": "b5681522cd7c01c39b44820691d501d712a9cb2e2acab512213a24cc24eaa903"
+}

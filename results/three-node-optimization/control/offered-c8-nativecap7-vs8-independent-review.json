@@ -1,0 +1,51 @@
+{
+  "reviewed_at": "2026-10-16T19:15:09.129009+00:00",
+  "scope": "Root independent same-binary offeredC8/nativecap7-vs8 raw pilot audit; no GPU work",
+  "run": "a8-v2-offered8-cap7-vs8-r1",
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "dataset_seed": 20261016,
+  "all_client8192_512": true,
+  "errors": 0,
+  "generated_inputs_equal_except_only_cache_salt": true,
+  "command_differences_only_native_cap_and_log_path": true,
+  "arms": [
+    {
+      "offered_C": 8,
+      "native_cap": 7,
+      "requests": 24,
+      "warmup": 4,
+      "ttft_p95_ms": 11367.394774,
+      "tpot_p95_ms": 46.04392336663405,
+      "official_output_tok_s": 167.5486591044631,
+      "joint_slo": false,
+      "ttft_gt10000": 4,
+      "tpot_gt40": 3,
+      "later_n": 16,
+      "later_ttft_gt10000": 2,
+      "later_tpot_gt40": 2,
+      "native29_cold": true,
+      "cleanup_reaped": true
+    },
+    {
+      "offered_C": 8,
+      "native_cap": 8,
+      "requests": 24,
+      "warmup": 4,
+      "ttft_p95_ms": 11064.769920099996,
+      "tpot_p95_ms": 48.3515206810176,
+      "official_output_tok_s": 166.63254244737007,
+      "joint_slo": false,
+      "ttft_gt10000": 2,
+      "tpot_gt40": 4,
+      "later_n": 16,
+      "later_ttft_gt10000": 0,
+      "later_tpot_gt40": 2,
+      "native29_cold": true,
+      "cleanup_reaped": true
+    }
+  ],
+  "archive_sha256": "d788b841fe92f03cb84b5f91ff312c317c237736607230128b02ced9c161bf57",
+  "conclusion": "Both jointFAIL with later-arrival violations; no unchanged100promotion. Lower native cap alone does not solve offeredC8. Current-candidate phase profiling follows separately.",
+  "qualification": "Generated runner input identity is not a raw wire-payload join. Five-second batch averages do not prove actual per-round batch histogram."
+}

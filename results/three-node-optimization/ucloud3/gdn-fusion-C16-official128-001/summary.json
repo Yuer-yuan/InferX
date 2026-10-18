@@ -1,0 +1,336 @@
+{
+  "at": "2026-10-17T15:14:34.290008+00:00",
+  "binary_SHA256": "2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142",
+  "source_SHA256": "4fcbcf2cee012a4ec03e252cfc4bf54aa8795b72978c038d25b08396938721ad",
+  "C": 16,
+  "native_cap": 16,
+  "K": 3,
+  "KV": 139264,
+  "chunk": 2048,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "powerW": 450,
+  "traceOFF": true,
+  "all137cold": true,
+  "zero_errors": true,
+  "all_startup_retained": true,
+  "TTFT_p95_ms": 9855.90839725,
+  "TPOT_p95_ms": 48.78407089129156,
+  "output_tokens_per_second": 311.76838649641223,
+  "joint_PASS": false,
+  "TTFT_violation_ranks": [
+    11,
+    13,
+    14,
+    15,
+    16
+  ],
+  "TPOT_violation_ranks": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    11,
+    12,
+    17,
+    20,
+    28,
+    29,
+    32,
+    43,
+    44,
+    45,
+    57,
+    60,
+    61,
+    73,
+    74,
+    80,
+    81,
+    85,
+    91,
+    94,
+    112,
+    113
+  ],
+  "P95_same_request_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 108,
+        "conversation_id": "session_000115",
+        "request_start_ns": 1792249752275626053,
+        "TTFT_ms": 9817.50694,
+        "TPOT_ms": 38.022354618395305,
+        "E2E_ms": 29246.93015,
+        "prompt_SHA256": "a1331346bb31aba95037c2b733611360c79068e5fbf9e169924cca22883c17a5"
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 12,
+        "conversation_id": "session_000022",
+        "request_start_ns": 1792249595098050037,
+        "TTFT_ms": 9876.586105,
+        "TPOT_ms": 47.28060271037181,
+        "E2E_ms": 34036.974089999996,
+        "prompt_SHA256": "f6e848db60052c13f4a36d6b7638b520268a489e0d2f2dd33013c6a3b3c798e1"
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 12,
+        "conversation_id": "session_000022",
+        "request_start_ns": 1792249595098050037,
+        "TTFT_ms": 9876.586105,
+        "TPOT_ms": 47.28060271037181,
+        "E2E_ms": 34036.974089999996,
+        "prompt_SHA256": "f6e848db60052c13f4a36d6b7638b520268a489e0d2f2dd33013c6a3b3c798e1"
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 94,
+        "conversation_id": "session_000101",
+        "request_start_ns": 1792249731868721495,
+        "TTFT_ms": 7778.53997,
+        "TPOT_ms": 49.593630681017615,
+        "E2E_ms": 33120.885248,
+        "prompt_SHA256": "0f82dcc29432f05e3a6fd4c09e9a35482aa95963de86f675701b232c98469bf7"
+      }
+    ]
+  },
+  "cohort": {
+    "full137_SHA256": "62f94272362623a9d776cf99711ab67411957a1d7799b7987583b2570df4b021",
+    "phase_SHA256": {
+      "warmup": "d95825a70bfc6d759f2e4f9e7c2541e96a5fd016ffb05535109a0486a9a9569a",
+      "profiling": "a3ce19d76b555ce554b0956ffada2e14d80160b4190c9a1c8fb62f01cde6cca0"
+    },
+    "same_actual_payloads_as_previous_u3_dc99_C16_except_salt": true,
+    "same_actual_phases_as_previous_u3_dc99_C16": true
+  },
+  "throughput_scope": {
+    "original_phase_output_tps": 311.76838649641223,
+    "phase_export_seconds": 210.207329,
+    "ISO_endpoint_resolution_seconds": 1e-06,
+    "distinct_benchmark_duration": 210.20307584000003
+  },
+  "engine": {
+    "cuda_graph": true,
+    "device": 0,
+    "kv_cache": "int8-group64",
+    "kv_capacity": 139264,
+    "kv_capacity_max_page_groups": 16384,
+    "kv_capacity_mode": "explicit",
+    "kv_capacity_page_groups": 2176,
+    "log_stats_interval_ms": 5000,
+    "max_concurrency": 16,
+    "max_context": 65536,
+    "max_pending_requests": 32,
+    "pending_timeout_ms": 600000,
+    "prefill_chunk": 2048,
+    "prefix_reuse": false,
+    "proposal_head": "optimized",
+    "speculative_backend": "mtp",
+    "speculative_draft_window": 3,
+    "vision": false
+  },
+  "memory": {
+    "available_after_startup_bytes": 19610206208,
+    "available_after_weights_bytes": 30297292800,
+    "cuda_graph_allowance_bytes": 4294967296,
+    "cuda_graph_observed_bytes": 144703488,
+    "kv_capacity_headroom_bytes": 0,
+    "kv_capacity_increment_bytes": 2297856,
+    "kv_payload_bytes": 5002297344,
+    "minimum_runtime_reservation_bytes": 12184049152,
+    "planned_slack_bytes": 15466113536,
+    "request_transient": {
+      "capacity_bytes": 0,
+      "peak_used_bytes": 0,
+      "used_bytes": 0
+    },
+    "runtime_reservation_bytes": 14831179264,
+    "sequence": {
+      "capacity_bytes": 10174305792,
+      "peak_used_bytes": 10174305792,
+      "used_bytes": 10174305792
+    },
+    "weights": {
+      "capacity_bytes": 8097612800,
+      "peak_used_bytes": 8097612800,
+      "used_bytes": 8097612800
+    },
+    "workspace": {
+      "capacity_bytes": 361906176,
+      "peak_used_bytes": 0,
+      "used_bytes": 0
+    }
+  },
+  "GPU": {
+    "compute_capability_major": 8,
+    "compute_capability_minor": 9,
+    "cuda_compile_version": "13.2",
+    "cuda_driver_version": "13.3",
+    "cuda_runtime_version": "13.2",
+    "device": 0,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+    "total_device_memory_bytes": 50894602240
+  },
+  "actual_environment": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047",
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1"
+  },
+  "terminal": {
+    "observed_unix_ns": 1792249871613371509,
+    "handles": [
+      {
+        "pid": 461409,
+        "expected_start_ticks": "47061050",
+        "actual": "missing"
+      },
+      {
+        "pid": 461424,
+        "expected_start_ticks": "47061137",
+        "actual": "missing"
+      },
+      {
+        "pid": 461425,
+        "expected_start_ticks": "47061137",
+        "actual": "missing"
+      },
+      {
+        "pid": 461428,
+        "expected_start_ticks": "47061398",
+        "actual": "missing"
+      },
+      {
+        "pid": 445894,
+        "expected_start_ticks": "46836891",
+        "actual": "missing"
+      },
+      {
+        "pid": 445900,
+        "expected_start_ticks": "46837134",
+        "actual": "missing"
+      },
+      {
+        "pid": 445923,
+        "expected_start_ticks": "46837435",
+        "actual": "missing"
+      },
+      {
+        "pid": 445924,
+        "expected_start_ticks": "46837736",
+        "actual": "missing"
+      },
+      {
+        "pid": 447618,
+        "expected_start_ticks": "46840740",
+        "actual": "missing"
+      },
+      {
+        "pid": 447620,
+        "expected_start_ticks": "46841154",
+        "actual": "missing"
+      },
+      {
+        "pid": 461049,
+        "expected_start_ticks": "46935771",
+        "actual": "missing"
+      },
+      {
+        "pid": 461053,
+        "expected_start_ticks": "46935856",
+        "actual": "missing"
+      },
+      {
+        "pid": 461056,
+        "expected_start_ticks": "46936271",
+        "actual": "missing"
+      },
+      {
+        "pid": 461061,
+        "expected_start_ticks": "46936350",
+        "actual": "missing"
+      },
+      {
+        "pid": 461082,
+        "expected_start_ticks": "46942309",
+        "actual": "missing"
+      },
+      {
+        "pid": 447661,
+        "expected_start_ticks": "46851587",
+        "actual": "missing"
+      },
+      {
+        "pid": 447665,
+        "expected_start_ticks": "46851642",
+        "actual": "missing"
+      }
+    ],
+    "all_actual_missing": true,
+    "GPUapps": "",
+    "GPU": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877, 450.00 W, 1 MiB\n"
+  },
+  "delivery": {
+    "archive_SHA256": "f216689da4da433006d7f50cbd6dc3084eb2f7652052289e336b5c0d32e400b8",
+    "bytes": 9018531,
+    "files_verified": 104
+  },
+  "limitations": [
+    "Single fixed-seed original128 C16 run, not an independent seed stability confirmation",
+    "Historical dc99 C16 is a combined-version comparison, not an isolated GDN causal A/B; GQA and fusion both differ",
+    "No task-quality qualification or new profiler capture",
+    "Native2013pairzero differences supplements independent public-op FP64; does not prove all tasks"
+  ],
+  "previous_dc99_C16_comparison": {
+    "TTFT_p95_ms": {
+      "previous": 9907.686059999998,
+      "current": 9855.90839725,
+      "ratio_current_over_previous": 0.9947739903710676
+    },
+    "TPOT_p95_ms": {
+      "previous": 54.112965284442225,
+      "current": 48.78407089129156,
+      "ratio_current_over_previous": 0.9015227798894483
+    },
+    "output_tokens_per_second": {
+      "previous": 311.4782932409688,
+      "current": 311.76838649641223,
+      "ratio_current_over_previous": 1.000931343408958
+    }
+  },
+  "initial16_later112": {
+    "initial16": {
+      "count": 16,
+      "TTFT_violations": 5,
+      "TPOT_violations": 7,
+      "max_TTFT_ms": 14377.40445,
+      "max_TPOT_ms": 63.779977900195696
+    },
+    "later112": {
+      "count": 112,
+      "TTFT_violations": 0,
+      "TPOT_violations": 20,
+      "max_TTFT_ms": 9965.389981999999,
+      "max_TPOT_ms": 57.940747174168294
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "Original first100 same6632/3a7 FFN+input+outputVerify S4 target Prefill/Verify/MTP K3, generic input route matching performance, default thinking/model sampling, batch16/max32768/naturalEOS",
+  "samples": 100,
+  "instructions": 111,
+  "metrics": {
+    "prompt_level_strict": {
+      "score": 0.84,
+      "prompt_cluster_95ci": [
+        0.76,
+        0.91
+      ]
+    },
+    "inst_level_strict": {
+      "score": 0.8558558558558559,
+      "prompt_cluster_95ci": [
+        0.7894736842105263,
+        0.9181818181818182
+      ]
+    },
+    "prompt_level_loose": {
+      "score": 0.87,
+      "prompt_cluster_95ci": [
+        0.8,
+        0.93
+      ]
+    },
+    "inst_level_loose": {
+      "score": 0.8828828828828829,
+      "prompt_cluster_95ci": [
+        0.8214285714285714,
+        0.9369369369369369
+      ]
+    }
+  },
+  "failures": 0,
+  "empty_final": 0,
+  "length": 0,
+  "finish_reason_counts": {
+    "stop": 100
+  },
+  "reasoning_nonempty": 100,
+  "attempts": 100,
+  "prompts_with_multiple_attempts": 0,
+  "response_status_counts": {
+    "200": 100
+  },
+  "raw_input_generation_fields": "Exactly messages/model/max_tokens in every actual request; no thinking/temperature/seed override",
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 42,
+    "unit": "prompt cluster",
+    "percentile": "linear 2.5/97.5"
+  },
+  "original_verifier_recomputed_all100": true,
+  "all_native_score_values_match": true,
+  "verifier_files": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+    "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+    "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+    "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+    "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+  },
+  "predictions": {
+    "path": "/workspace/InferX/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl",
+    "sha256": "da5e72336ee40aa3cd2b02fd525f071ec4c9c3399594720d579895ec379a3ac3"
+  },
+  "reviews": {
+    "path": "/workspace/InferX/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl",
+    "sha256": "f1ff0f248a7aae3f078fe71192e1853353ee975001ba620a57d790a68dac31d4"
+  },
+  "qualification": "Candidate quality observation; no paired OFF arm and no pure quantization attribution. Same frozen6632/3a7 binary and generic input routing as the corresponding C16 performance candidate (qualityKV532480,performanceKV139264); no quality-only switch. Four original verifier metrics and all failures/empty/length retained. Not the published79.5 recipe reproduction or first100 representativeness claim."
+}

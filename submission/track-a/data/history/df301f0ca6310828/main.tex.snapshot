@@ -1,0 +1,323 @@
+% !TeX program = xelatex
+% Upload this file as main.tex; Overleaf compiler: XeLaTeX.
+% Charts and diagrams are native TikZ/PGFPlots; no external files needed.
+% Generated from the reviewed evidence registry. Edit this template, then refresh.
+\documentclass[10pt,aspectratio=169]{beamer}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath,booktabs,array,tikz,pgfplots}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\pgfplotsset{compat=1.18}
+\definecolor{Ink}{HTML}{10243A}
+\definecolor{Muted}{HTML}{526579}
+\definecolor{Teal}{HTML}{008B8B}
+\definecolor{Blue}{HTML}{3579C5}
+\definecolor{Orange}{HTML}{DB8438}
+\definecolor{Pale}{HTML}{EDF5F7}
+\definecolor{Line}{HTML}{DBE5EC}
+\setbeamercolor{normal text}{fg=Ink,bg=white}
+\setbeamercolor{frametitle}{fg=Ink}
+\setbeamercolor{structure}{fg=Teal}
+\setbeamercolor{block title}{fg=Ink,bg=Pale}
+\setbeamercolor{block body}{fg=Ink,bg=Pale!55}
+\setbeamercolor{itemize item}{fg=Teal}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamersize{text margin left=6mm,text margin right=6mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\raisebox{.15ex}{\scriptsize$\bullet$}}
+\setbeamertemplate{footline}{\hspace{6mm}\color{Muted}\fontsize{6}{8}\selectfont
+  InferX\quad 你说啥都队\hfill 赛道 A / 材料快照 2026-10-17 22:25 +08:00\hfill
+  \insertframenumber/8\hspace{6mm}\vspace{2mm}}
+\setbeamertemplate{frametitle}{\vspace{2mm}\insertframetitle\par
+  \vspace{1mm}{\color{Teal}\rule{12mm}{1.1mm}}\vspace{1mm}}
+\newcommand{\ixsubline}[1]{{\small\color{Muted}#1}\par\vspace{2mm}}
+\newcommand{\ixnote}[1]{{\fontsize{7.2}{9}\selectfont\color{Muted}#1\par}}
+\newcommand{\ixmetric}[3]{\begin{beamercolorbox}[wd=\linewidth,sep=2mm]{block body}
+  {\color{Teal}\fontsize{24}{27}\selectfont\bfseries #1}\quad{\small #2}\par
+  {\fontsize{7.5}{9}\selectfont\color{Muted}#3}\end{beamercolorbox}}
+\tikzset{box/.style={draw=Line,fill=Pale,rounded corners=2pt,align=center,
+  minimum height=8mm,font=\small,inner sep=3pt},
+  flow/.style={-{Latex[length=2mm]},thick,draw=Teal},
+  tag/.style={fill=Teal!9,rounded corners=2pt,inner sep=4pt,font=\scriptsize}}
+\pgfplotsset{every axis/.append style={axis line style={Line},tick style={Line},
+  tick label style={font=\scriptsize,color=Muted},label style={font=\scriptsize},
+  title style={font=\small},grid=major,grid style={Line!55},
+  legend style={font=\tiny,draw=none},clip=false}}
+\title{InferX：单卡 Qwen 推理优化}
+\author{你说啥都队\quad A / B / C}
+\date{滚动材料快照；正式版本待冻结}
+\begin{document}
+
+% 1. 项目概述
+\begin{frame}{01\quad 项目概述}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+{\color{Teal}\small INFERX / SINGLE-GPU INFERENCE}\par\vspace{3mm}
+{\fontsize{25}{32}\selectfont\bfseries
+让单卡推理\par 更快，也可核验。}\par\vspace{3mm}
+{\large Qwen3.8-27B\quad 单张 48GB RTX 4090}\par\vspace{3mm}
+\begin{tikzpicture}
+\node[tag] (a) {真 W4A4 计算};
+\node[tag,right=2mm of a] (b) {MTP / 批处理};
+\node[tag,below=2mm of a,anchor=west] at (a.south west) (c) {逐请求性能与任务质量证据};
+\end{tikzpicture}\par\vspace{3mm}
+{\small 你说啥都队\quad 成员 A / B / C}\par
+\ixnote{分工：占位符A / 占位符B / 占位符C。}\par\vspace{3mm}
+\ixnote{结果仍在更新；所有数字均对应此次材料快照。}
+\end{column}
+\begin{column}{.39\textwidth}
+\ixmetric{C12}{本轮延迟 SLO 通过}{9.50s TTFT / 37.34ms TPOT；单轮128请求}
+\vspace{2mm}
+\ixmetric{284.75}{输出 tok/s}{上述同一性能配置；原始开场样本全部保留}
+\vspace{2mm}
+\ixmetric{86\%}{IFBench prompt strict}{质量版本 40b3e867 / 原前100题；与上述性能版本分列}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\ixnote{证据：output47-C16-C12-delivery-001；quality-preparation-050。两个版本尚无联合质量/性能验收。}
+\end{frame}
+
+% 2. 问题与目标
+\begin{frame}{02\quad 问题与目标}
+\ixsubline{瓶颈不是只有 Decode：冷 Prefill 会同时拉长首 token 和已开始请求的等待。}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.60\textwidth}
+\begin{tikzpicture}[x=.72cm,y=.85cm]
+\foreach \y/\label in {0/请求1,-1/请求2,-2/请求3}{
+  \node[anchor=east,font=\scriptsize,color=Muted] at (.0,\y+.2) {\label};}
+\fill[Orange!75] (.15,0) rectangle (2.5,.45);
+\fill[Teal!75] (2.5,0) rectangle (3,.45);
+\fill[Line] (3,0) rectangle (5.5,.45);
+\fill[Teal!75] (5.5,0) rectangle (6,.45);
+\fill[Line] (.15,-1) rectangle (3,-.55);
+\fill[Orange!75] (3,-1) rectangle (5.5,-.55);
+\fill[Teal!75] (5.5,-1) rectangle (6,-.55);
+\fill[Line] (.15,-2) rectangle (6,-1.55);
+\node[font=\scriptsize] at (1.3,.22) {Prefill};
+\node[font=\scriptsize] at (4.2,-.78) {Prefill};
+\node[font=\scriptsize,color=Muted] at (3.1,-1.78) {等待准入 / 计算机会};
+\draw[flow] (.15,.8)--(6.8,.8) node[right,font=\scriptsize]{时间};
+\node[font=\tiny,color=Teal,align=center] at (6.4,-.65) {Decode\\分批执行};
+\end{tikzpicture}
+\ixnote{串行竞争示意，非实测时间比例。原生计时与 Nsight 支持瓶颈诊断；不作带宽饱和声明。}
+\vspace{3mm}
+\begin{block}{评测看每条请求的实际体验}
+\small $\mathrm{TPOT}_i=\dfrac{\mathrm{E2E}_i-\mathrm{TTFT}_i}{512-1}$\quad 再对请求取 P95。
+\end{block}
+\end{column}
+\begin{column}{.36\textwidth}
+\ixmetric{10s}{TTFT P95 上限}{客户端计时，包含排队及网络}
+\vspace{2mm}
+\ixmetric{40ms}{TPOT P95 上限}{全请求平均，非单个流式包间隔}
+\vspace{2mm}
+\small 固定单卡、8192输入 / 512输出。\par\vspace{2mm}
+\ixnote{ZIP默认 C1/2/4/8、各100+8；本轮扩展 C8/12/16/32、各128+8。质量另用原前100、C2、32768输出预算。}
+\end{column}
+\end{columns}
+\end{frame}
+
+% 3. 整体方案
+\begin{frame}{03\quad 整体方案}
+\ixsubline{保留 Qwen 模型与 NInfer/MTP 基础，围绕真实热点扩展低比特覆盖。}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{tikzpicture}[node distance=4mm]
+\node[box,text width=6.8cm] (src) {固定 FP8 来源 + 独立校准激活};
+\node[box,text width=6.8cm,below=of src] (cal) {H512 旋转 / G512 / GPTQ\quad 生成有哈希的缓存};
+\node[box,text width=2.8cm,below left=5mm and 0mm of cal.south] (pf) {冷 Prefill\\低比特 dense 投影};
+\node[box,text width=2.8cm,below right=5mm and 0mm of cal.south] (dec) {Decode / Verify\\MTP K3 + 原生批处理};
+\node[box,text width=6.8cm,below=20mm of cal] (state) {独立 KV / GDN 状态\\保留原语义、回滚及数值检查};
+\node[box,text width=6.8cm,below=of state] (api) {OpenAI API \(\rightarrow\) 原版评测 \(\rightarrow\) 原始逐请求证据};
+\draw[flow] (src)--(cal);
+\draw[flow] (cal.south)-|(pf.north);
+\draw[flow] (cal.south)-|(dec.north);
+\draw[flow] (pf.south)|-(state.west);
+\draw[flow] (dec.south)|-(state.east);
+\draw[flow] (state)--(api);
+\end{tikzpicture}
+\end{column}
+\begin{column}{.39\textwidth}
+\begin{block}{选择 NInfer 的依据}
+\small 紧凑权重、原生 MTP、可追踪 CUDA 路由；可直接改进热点并保留原版客户端统计。
+\end{block}
+\begin{block}{扩展覆盖，而非只换标签}
+\small 64层 FFN gate/up + down；\par attention/GDN 输入投影；\par 47层 GDN 输出 Prefill 路径。
+\end{block}
+\ixnote{vLLM / SGLang FP8 用作框架参照。量化格式、采样和配置不同的结果分别报告。Norm、递推状态等不宣称“全4bit”。}
+\end{column}
+\end{columns}
+\vspace{1mm}\ixnote{来源：025全层GPTQ；041输入缓存；047输出缓存；最新 output47 路径仍需同版完整任务质量。}
+\end{frame}
+
+% 4. 核心实现
+\begin{frame}{04\quad 核心实现}
+\ixsubline{先用时间线定位，再按矩阵覆盖、状态正确性和端到端结果逐级推进。}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.50\textwidth}
+\begin{tikzpicture}[node distance=3mm]
+\node[box,text width=6.7cm] (a) {量化：旋转 + GPTQ \(\rightarrow\) 真 S4 MMA\\128个 FFN 矩阵，保留 scale / SiLU / 残差语义};
+\node[box,text width=6.7cm,below=of a] (b) {执行：共享输入投影 + 原生 B16/B32\\Graph、工作区、KV / GDN 回滚共同验证};
+\node[box,text width=6.7cm,below=of b] (c) {调度：分块 Prefill + 完成预算\\同时控制首 token 和生成过程中等待};
+\draw[flow] (a)--(b);\draw[flow] (b)--(c);
+\end{tikzpicture}
+\vspace{2mm}
+\ixnote{我们：量化缓存、算子接入、批扩容、调度与证据工具。\par 上游：模型、NInfer引擎、基础量化格式及MTP机制。}
+\end{column}
+\begin{column}{.46\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.6cm,height=3.6cm,ybar,bar width=15pt,ymin=0,ymax=430,
+ xtick={1,2,3},xticklabels={FFN S4,加输入,加输出},ylabel={输出 tok/s},
+ nodes near coords,nodes near coords style={font=\scriptsize},
+ title={C32 同节点累计版本进展}]
+\addplot[fill=Teal!80,draw=none] coordinates {(1,305.910173) (2,352.410492) (3,363.576857)};
+\end{axis}
+\end{tikzpicture}\par
+\ixnote{同为128+8、K3、冷8192/512；量化覆盖随版本变化。\par 累计吞吐增加 18.9\%，仍未通过C32延迟；非单算子因果增益。}
+\vspace{2mm}
+{\color{Teal}\large\bfseries 347 条实验/检查记录}\par
+\ixnote{三节点ledger逐文件去完全重复行；含CPU、算子、整模、审计，不能等同独立GPU成功次数。}
+\end{column}
+\end{columns}
+\end{frame}
+
+% 5. 结果与证据
+\begin{frame}{05\quad 结果与证据}
+\ixsubline{吞吐与延迟一起看：C12 本轮通过，C16/C32 尚未通过。}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.47\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.7cm,height=4.1cm,xmin=0,xmax=29,ymin=0,ymax=120,
+ xlabel={TTFT P95 (s)},ylabel={TPOT P95 (ms)},title={左下区域同时满足两项 SLO}]
+\path[fill=Teal!9] (axis cs:0,0) rectangle (axis cs:10,40);
+\draw[dashed,Teal] (axis cs:10,0)--(axis cs:10,120);
+\draw[dashed,Teal] (axis cs:0,40)--(axis cs:29,40);
+\addplot[only marks,mark=*,mark size=2.5pt,color=Blue] coordinates {(7.531604,33.308551) (9.499646,37.340162) (9.934084,51.702542) (23.694501,101.157387)};
+\node[font=\scriptsize,anchor=east] at(axis cs:7.531604,33.308551){C8\ };
+\node[font=\scriptsize,anchor=west] at(axis cs:9.499646,37.340162){\ C12};
+\node[font=\scriptsize,anchor=west] at(axis cs:9.934084,51.702542){\ C16};
+\node[font=\scriptsize,anchor=east] at(axis cs:23.694501,101.157387){C32\ };
+\end{axis}
+\end{tikzpicture}
+\ixnote{每项128正式+8预热，零错误，开场样本不剔除。\par 单轮记录；C8为a332，C12/16/32为9270。}
+\end{column}
+\begin{column}{.49\textwidth}
+\fontsize{8}{11}\selectfont
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrl}
+\toprule
+并发 & 版本 & 首token/s & TPOT/ms & tok/s & SLO\\
+\midrule
+C8 & a332 & 7.53 & 33.31 & 223.45 & 通过 \\
+C12 & 9270 & 9.50 & 37.34 & 284.75 & 通过 \\
+C16 & 9270 & 9.93 & 51.70 & 307.15 & 未过 \\
+C32 & 9270 & 23.69 & 101.16 & 363.58 & 未过 \\
+\bottomrule
+\end{tabular}
+\vspace{3mm}\par
+\begin{tikzpicture}
+\begin{axis}[width=6.8cm,height=2.7cm,ybar,bar width=18pt,ymin=0,ymax=100,
+ xtick={1,2},xticklabels={FFN c3f482,加输入 40b3},ylabel={strict / \%},
+ title={IFBench 原前100：质量按版本分列},nodes near coords,
+ nodes near coords style={font=\scriptsize}]
+\addplot[fill=Orange!80,draw=none] coordinates {(1,82.000000) (2,86.000000)};
+\end{axis}
+\end{tikzpicture}
+\ixnote{默认thinking/采样、C2、max32768。\par output47完整精度未完成；上述分数不覆盖9270，亦非配对非劣证明。}
+\end{column}
+\end{columns}
+\end{frame}
+
+% 6. 工程化设计
+\begin{frame}{06\quad 工程化设计}
+\ixsubline{每个成绩都能追到输入、原始输出、配置和实际运行版本。}
+\begin{tikzpicture}[node distance=3mm]
+\node[box,text width=2.3cm] (a) {源码 / binary\\模型 / 缓存 SHA};
+\node[box,text width=2.3cm,right=of a] (b) {数值 / 状态门\\Graph / 路由检查};
+\node[box,text width=2.3cm,right=of b] (c) {原版客户端\\逐请求 / GPU日志};
+\node[box,text width=2.3cm,right=of c] (d) {独立重算\\原始失败保留};
+\node[box,text width=2.3cm,right=of d] (e) {材料快照\Markdown / TeX};
+\draw[flow] (a)--(b);\draw[flow] (b)--(c);\draw[flow] (c)--(d);\draw[flow] (d)--(e);
+\end{tikzpicture}\par\vspace{4mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.47\textwidth}
+\begin{block}{已形成的工程闭环}
+\small
+\begin{itemize}
+\item 固定tokenizer，核验8192/512和冷缓存。
+\item 原始百分位复算，保留预热与失败口径。
+\item 进程身份匹配，退出与资源释放留证。
+\item 新结果先审阅、注册，再生成图表与材料。
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{.49\textwidth}
+\begin{block}{可重复执行的材料 Skill}
+\small
+候选发现 \(\rightarrow\) 完整性/版本审核 \(\rightarrow\) 更新来源注册表\par
+\(\rightarrow\) 重算指标 \(\rightarrow\) 同步图表、表格、TeX \(\rightarrow\) 哈希检查。
+\end{block}
+\ixnote{交付：basic/ 与 track-a/，单文件Overleaf TeX。\par 最终仍须补齐私有源码/缓存发布、干净重建及演练；当前manifest仅证明材料来源快照。}
+\end{column}
+\end{columns}
+\end{frame}
+
+% 7. 成本、性能与取舍
+\begin{frame}{07\quad 成本、性能与取舍}
+\ixsubline{算子更快不保证请求更快；收益必须经过模型、状态和质量验证。}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=6.7cm,height=4.2cm,ybar,bar width=16pt,ymin=0,ymax=65,
+ symbolic x coords={parent,down053},xtick=data,
+ xticklabels={原9270,加down053},ylabel={C16 TPOT P95 / ms},
+ title={同机同payload：吞吐略升，尾延迟变差},nodes near coords,
+ nodes near coords style={font=\scriptsize}]
+\addplot[fill=Blue!75,draw=none] coordinates {(parent,51.702542) (down053,54.112965)};
+\draw[dashed,Orange] (axis cs:parent,40)--(axis cs:down053,40);
+\end{axis}
+\end{tikzpicture}
+\ixnote{单次128+8顺序对照：吞吐307.15\(\rightarrow\)311.48 (+1.41\%)，\par TPOT恶化4.66\%，不晋级；新版本也未复测C12。}
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{block}{保留失败，控制风险}
+\small
+\begin{tabular}{p{1.65cm}p{4.5cm}}
+W2探索 & 小T gate有硬件潜力；大Prefill负收益，留出重建误差更大。\\[2mm]
+FP16状态 & B32算子接近2倍；长递推精度门失败，不推广。\\[2mm]
+更大batch & 能分配显存不等于TTFT/TPOT达标；C32仍有明显差距。
+\end{tabular}
+\end{block}
+\small 单卡450W；保留量化、KV、Graph等真实预算。\par\vspace{2mm}
+\ixnote{没有电价、租用时长和完整能耗积分，不填写虚构成本或能效提升。质量/稳定性证据缺口公开保留。}
+\end{column}
+\end{columns}
+\end{frame}
+
+% 8. 总结与不足
+\begin{frame}{08\quad 总结与不足}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.53\textwidth}
+{\color{Teal}\fontsize{22}{29}\selectfont\bfseries
+从单卡部署，推进到\par 可追溯的优化闭环。}\par\vspace{4mm}
+\begin{itemize}
+\item 64层量化与原生高批执行接入。
+\item C12 本轮SLO通过：284.75 tok/s。
+\item 质量独立记录：40b3前100 strict 86\%。
+\item 新结果可持续更新到同一套材料。
+\end{itemize}
+\vspace{3mm}
+\ixnote{以上性能与质量来自不同版本，不声称联合验收完成。}
+\end{column}
+\begin{column}{.43\textwidth}
+\begin{block}{未解决的问题}
+\small C16/C32延迟未过；最新性能版缺完整质量；多seed稳定性、干净重建及最终交付冻结待完成。
+\end{block}
+\begin{block}{现场 Demo / 3分钟}
+\small 核对单卡与版本 \(\rightarrow\) 真实流式请求 \(\rightarrow\) 输出与日志 \(\rightarrow\) 定位冻结评测原始证据。
+\end{block}
+\vspace{1mm}
+{\small A：占位符A\quad B：占位符B\quad C：占位符C}\par\vspace{2mm}
+\ixnote{Github: github.com/Yuer-yuan/InferX\par 入口：submission/README.md\par 评委追问：瓶颈、量化误差、MTP收益、统计与复验。}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

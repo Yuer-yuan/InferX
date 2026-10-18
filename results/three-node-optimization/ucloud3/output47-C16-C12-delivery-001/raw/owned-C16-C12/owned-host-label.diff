@@ -1,0 +1,11 @@
+--- u1-shared-owned.py
++++ u3-owned.py
+@@ -30,7 +30,7 @@
+             self.child=subprocess.Popen(command,stdout=output,stderr=subprocess.STDOUT,
+                                         env=env,stdin=subprocess.DEVNULL,start_new_session=True)
+         self.fd=os.pidfd_open(self.child.pid)
+-        self.record=dict(identity(self.child.pid),command=command,host='ucloud',log_path=str(self.log),role=role,
++        self.record=dict(identity(self.child.pid),command=command,host='ucloud3',log_path=str(self.log),role=role,
+                          poll='verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle')
+         self.closed=False
+ 

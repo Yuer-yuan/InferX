@@ -1,4 +1,8 @@
-# 部署、评测与复验说明
+# 基础 NInfer 部署与早期评测
+
+当前100版本从完整源码获取、构建、校验到性能和原100题评测的完整流程见[中文复验指南](track-a/reproduction.md) / [English guide](track-a/reproduction-en.md)。历史冻结二进制的运行配方见[100入口](../demo/selected100/README.md)，历史结果见[当前结果](track-a/selected-results.md)。下面保留基础版本环境说明，不能用旧启动参数复现100成绩。
+
+本文保留早期 NInfer 基础版的环境安装、权重下载和原版评测步骤。新增 W4A4 算子与量化缓存版本请从[当前复验说明](track-a/reproduction.md)和[部署配置](track-a/deployment.md)进入；下文的上游源码加接口补丁只对应基础版。
 
 公共工具按引擎和功能命名，适用于类似 Linux/CUDA 机器。`ucloud1/2` 仅为本轮节点名称；第一台执行测量，第二台只部署和功能核验。结果按节点保存，不能把跨机差异当成优化收益。
 
@@ -190,20 +194,10 @@ bash "$INFERX_CODE_ROOT/submission/organizer/run.sh" \
 
 模型断连时先核对进程/日志/配置与冻结版本；无法恢复时切换已录制备用视频，并主动说明原因与版本。备用视频不能代替所有可现场运行的核心功能。
 
-## 固定版本导出
+## 最终交付与归档
 
-完成 P0 后以最终 main 提交生成完整源码和必要的原始结果包。以下操作只导出**已提交文件**，运行前确保正式材料/原始结果已纳入该提交，并先扫描秘密、模型许可与第三方数据授权。
+当前交付以[唯一交付入口](DELIVERY.md)为准。该页集中固定v1源码包、完整归档清单、外部输入获取附件，以及新构建664的实际性能和质量记录；116新量化与新依赖环境验证按各自真实回执列出。
 
-```bash
-git status --short
-git rev-parse main
-mkdir -p artifacts
-git archive --format=tar.gz --prefix=InferX/ \
-  -o artifacts/InferX-source.tar.gz main
-git bundle create artifacts/InferX-main.bundle main
-sha256sum artifacts/InferX-source.tar.gz artifacts/InferX-main.bundle \
-  > artifacts/SHA256SUMS
-git bundle verify artifacts/InferX-main.bundle
-```
+最终汇总包从显式工作区文件清单归档，同时纳入已经核验但尚未被Git跟踪的源码包、原始结果和PDF。归档后在新目录解压，逐文件复核清单、SHA256及相对链接，并保存最终归档校验值与提交回执。不要以`git archive main`替代完整交付，它仅导出该提交已跟踪的文件，会遗漏本轮材料。
 
-源码包供解压复现，bundle 保存提交历史。冻结提交 ID 与归档校验和一起交付，`artifacts/` 不回填 Git 避免自引用。当前整理版的导出只证明已有开发内容固定，**正式成绩、最终实测环境和视频待补齐后必须重新导出最终版**。
+本页前面的9270基线部署及原版四档命令保留为历史复验说明。当前所选100版本和664独立重建的操作入口为[中文完整流程](track-a/reproduction.md)及[English workflow](track-a/reproduction-en.md)，其性能和质量配置分别声明，不沿用本页历史C1/C2/C4/C8配置。

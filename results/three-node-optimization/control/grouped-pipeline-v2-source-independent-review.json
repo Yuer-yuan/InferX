@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-16T17:51:11.110878+00:00",
+  "scope": "Independent zero-fuzz patch application to original A8 two input-wrapper preimages, exact3posthashes and immutable5v1 hash checks; source/math/layout review; no GPU work",
+  "patch_sha256": "7860dbfdccc6f9e04654b9c41a1e3149f7364dd883fd9816bb19e9efb6d9714c",
+  "preimages": {
+    "src/ops/common/jg_grouped_pipeline.cuh": "absent",
+    "src/ops/attn_input_proj/q4_q5/q4_q5_attn_input_int8.cu": "210d1ff1dda2d07850e6514a82ea347932e29131762af3273f05134f56839a74",
+    "src/ops/gdn_input_proj/q4_q5/q4_q5_gdn_input_int8.cu": "8ba0d93cd2be489cfce6cfc6096bc544ae87eb6d5648d53489176350e509044c"
+  },
+  "post_hash_matches": {
+    "src/ops/common/jg_grouped_pipeline.cuh": true,
+    "src/ops/attn_input_proj/q4_q5/q4_q5_attn_input_int8.cu": true,
+    "src/ops/gdn_input_proj/q4_q5/q4_q5_gdn_input_int8.cu": true
+  },
+  "immutable_v1_hash_matches": {
+    "src/ops/common/rowsplit_tall_mma.cuh": true,
+    "src/ops/common/rowsplit_tall_a8_mma.cuh": true,
+    "src/ops/common/jg_pipeline_adapter.cuh": true,
+    "src/ops/linear_swiglu/q4/q4_linear_swiglu_int8.cu": true,
+    "src/ops/linear_add/q5/q5_linear_add_int8.cu": true
+  },
+  "source_review": [
+    "AttnQ4 q/key rows0:6144/6144:7168 andQ5gate/value sameboundaries write ownoutputs; reordered jobs independent",
+    "GDNQ4qk4096 rows +Q5v6144 append atoutputrow4096; Q5z6144 ownoutput; leadingdimension retained",
+    "Fixed128 nonpersistent jobs sum112attn/128GDN outputtileblocks; no persistencegrid",
+    "Original group64quantizer once per4096chunk, reusedscratch;4097tail covered byoperatorprobe",
+    "Production std::span+stackarray differsfromprobed std::vector hostsignature, samejobs/kernel; mustcompile+testactualproductionwrappers beforemodelperformanceclaims",
+    "Targetowner still gatesPrefill/T>=256; frozenv1FFNwrappers, Decode/Verify/v2reader/model/KV unchanged"
+  ],
+  "operator_consistency": {
+    "cases": 10,
+    "all_smoke_finite_pass": true,
+    "T2048_speedup": {
+      "attn": 1.50955,
+      "gdn": 1.46563
+    },
+    "max_pair_nrmse": 2.1400768e-05
+  },
+  "promotion": "Source approved for separatev2 candidatebuild afterfrozenv1queue ends. Require actualproductionoperator+wholemodelcold8K1 then bounded matched performance/quality; no v1hotreplace. End-to-endgainunproven."
+}

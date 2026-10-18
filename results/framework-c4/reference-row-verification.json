@@ -1,0 +1,768 @@
+{
+  "all_twelve_rows_archived_and_verified": true,
+  "rows": [
+    {
+      "order": 1,
+      "reference": {
+        "concurrency": 1,
+        "formal_requests": 12,
+        "duration_s": 234.32,
+        "ttft_p95_s": 3.481,
+        "tpot_p95_ms": 31.441,
+        "e2e_p95_s": 19.527,
+        "requests_per_s": 0.05121,
+        "output_tokens_per_s": 26.22,
+        "order": 1,
+        "warmup_requests": 4,
+        "both_slo": true
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row01-c1-seed42",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 1,
+            "expected_requests": 12,
+            "records": 12,
+            "valid_records": 12,
+            "successful_requests": 12.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 3470.6860826666666,
+                "p50": 3467.731805,
+                "p95": 3484.41687165,
+                "p99": 3490.87982793
+              },
+              "inter_token_latency": {
+                "mean": 31.461635947977822,
+                "p50": 31.478567909001956,
+                "p95": 31.48959621428571,
+                "p99": 31.490429777495105
+              },
+              "request_latency": {
+                "mean": 19547.582052083333,
+                "p50": 19557.571371500002,
+                "p95": 19561.158907949997,
+                "p99": 19562.91948479
+              }
+            },
+            "benchmark_duration": 234.745492992,
+            "request_throughput": 0.05111777273572819,
+            "output_token_throughput": 26.172299640692835,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row01-c1-seed42/aiperf"
+          },
+          "audit_sha256": "4aa591ede54cb740a018db1866d755bbef9b8a3c2a51883309c19b232b3449f5",
+          "raw_sha256": "63579f3ba1cd7e5cfa90d13b69cfb05f363d4a7091725b18be308b071d821335",
+          "actual_cohort_hashes": {
+            "warmup": "272141118caf09667bfc32ecd00564e4d4c9f600ecda155eba90b5ad1daa7b17",
+            "profiling": "9f4d10cae826b834a12c02483a65fc806a200fc5ad0c50c53b21c6e83d6d41fc"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": true
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/01-c1-n12-s42",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 1,
+            "expected_requests": 12,
+            "records": 12,
+            "valid_records": 12,
+            "successful_requests": 12.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 1909.0731095833332,
+                "p50": 1905.9993175,
+                "p95": 1926.07661385,
+                "p99": 1942.17285797
+              },
+              "inter_token_latency": {
+                "mean": 43.28408604794521,
+                "p50": 43.3182350332681,
+                "p95": 43.33399690244618,
+                "p99": 43.335383726477495
+              },
+              "request_latency": {
+                "mean": 24027.24108008333,
+                "p50": 24043.818932,
+                "p95": 24047.59732105,
+                "p99": 24048.61322341
+              }
+            },
+            "benchmark_duration": 288.608696832,
+            "request_throughput": 0.041578005929659406,
+            "output_token_throughput": 21.287939035985616,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/01-c1-n12-s42"
+          },
+          "audit_sha256": "8d719e776c94ec0218c1f90a5effd2979f8aac5a0cd97a646f49aa84f0651bdd",
+          "raw_sha256": "3b6605a3b7616bb896263a05fcca780116404e906165e956dda8f1f8389ab7c6",
+          "actual_cohort_hashes": {
+            "warmup": "272141118caf09667bfc32ecd00564e4d4c9f600ecda155eba90b5ad1daa7b17",
+            "profiling": "9f4d10cae826b834a12c02483a65fc806a200fc5ad0c50c53b21c6e83d6d41fc"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    },
+    {
+      "order": 2,
+      "reference": {
+        "concurrency": 2,
+        "formal_requests": 24,
+        "duration_s": 286.01,
+        "ttft_p95_s": 5.023,
+        "tpot_p95_ms": 37.909,
+        "e2e_p95_s": 23.826,
+        "requests_per_s": 0.08391,
+        "output_tokens_per_s": 42.96,
+        "order": 2,
+        "warmup_requests": 4,
+        "both_slo": true
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row02-c2-seed43",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 2,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 4621.864153375,
+                "p50": 4524.7275645,
+                "p95": 4618.83569315,
+                "p99": 6377.857994639999
+              },
+              "inter_token_latency": {
+                "mean": 37.65630653726353,
+                "p50": 37.81403945205479,
+                "p95": 37.979111672015655,
+                "p99": 37.980322946007824
+              },
+              "request_latency": {
+                "mean": 23864.23679391667,
+                "p50": 23866.2422415,
+                "p95": 23870.4704023,
+                "p99": 25621.89185786
+              }
+            },
+            "benchmark_duration": 286.51538432,
+            "request_throughput": 0.08375396631872851,
+            "output_token_throughput": 42.882030755189,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row02-c2-seed43/aiperf"
+          },
+          "audit_sha256": "f585e138db7a74a78008bcc6df3d02e79ebdbc46d86d91079abcc7f7f0334726",
+          "raw_sha256": "edd5c39e8e28ae226bbcc132ca8d175a8e14b011a6b48f76509b51d1034feb4f",
+          "actual_cohort_hashes": {
+            "warmup": "15a9e90ecf689fbdbf3f1d095ba518355aad3da9490b75906bdd28ad050f5efb",
+            "profiling": "8984c65106d1253a37f6bee05c85968f2c07713fa0cb9cba01983b0c548aadde"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": true
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/02-c2-n24-s43",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 2,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 2905.139461833333,
+                "p50": 2898.887664,
+                "p95": 3801.0066805,
+                "p99": 3811.3917119999996
+              },
+              "inter_token_latency": {
+                "mean": 41.84644603334964,
+                "p50": 41.82283511350293,
+                "p95": 43.56950035176125,
+                "p99": 43.5716666862818
+              },
+              "request_latency": {
+                "mean": 24288.673384875,
+                "p50": 24294.944676499996,
+                "p95": 24303.12472885,
+                "p99": 24303.6636543
+              }
+            },
+            "benchmark_duration": 291.62309324800003,
+            "request_throughput": 0.08229570826627444,
+            "output_token_throughput": 42.135402632332514,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/02-c2-n24-s43"
+          },
+          "audit_sha256": "a22927305772e137ac5a2961da7ac9748abe641a1c23fd1d7a4f290229271320",
+          "raw_sha256": "4ced807cc302800bc730af2a15833d0362c5071e7194f36df6e339ed02f8b9d8",
+          "actual_cohort_hashes": {
+            "warmup": "15a9e90ecf689fbdbf3f1d095ba518355aad3da9490b75906bdd28ad050f5efb",
+            "profiling": "8984c65106d1253a37f6bee05c85968f2c07713fa0cb9cba01983b0c548aadde"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    },
+    {
+      "order": 3,
+      "reference": {
+        "concurrency": 4,
+        "formal_requests": 32,
+        "duration_s": 249.08,
+        "ttft_p95_s": 9.395,
+        "tpot_p95_ms": 51.992,
+        "e2e_p95_s": 34.914,
+        "requests_per_s": 0.12847,
+        "output_tokens_per_s": 65.78,
+        "order": 3,
+        "warmup_requests": 4,
+        "both_slo": false
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row03-c4-seed44",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 4,
+            "expected_requests": 32,
+            "records": 32,
+            "valid_records": 32,
+            "successful_requests": 32.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 5666.43570896875,
+                "p50": 5571.310538,
+                "p95": 9783.376505649998,
+                "p99": 13022.246757470002
+              },
+              "inter_token_latency": {
+                "mean": 49.79302118970156,
+                "p50": 50.06725442954989,
+                "p95": 52.12111485088062,
+                "p99": 52.122676297279845
+              },
+              "request_latency": {
+                "mean": 31110.669536906247,
+                "p50": 31155.958994,
+                "p95": 35007.4824235,
+                "p99": 39274.62002912
+              }
+            },
+            "benchmark_duration": 249.598177536,
+            "request_throughput": 0.12815433664439457,
+            "output_token_throughput": 65.61502036193002,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row03-c4-seed44/aiperf"
+          },
+          "audit_sha256": "a70cf6afcaeb542eb75131a7c10510e935cfbc2128d876915448e636d19b9f47",
+          "raw_sha256": "d859b9c30e9f60d0e2d24e8d2a2d2b72c4db3214f1859eac49cdca6c8fc5f9e4",
+          "actual_cohort_hashes": {
+            "warmup": "526eb0b3ab962ad79233583830c5888029ea1244121a93644f49b1e36a5747fa",
+            "profiling": "563c0fbb4d0d47e9657d3b54a98a53d849b80e857210cd9090af1d57e95faacf"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/03-c4-n32-s44",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 4,
+            "expected_requests": 32,
+            "records": 32,
+            "valid_records": 32,
+            "successful_requests": 32.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 12500.201647093749,
+                "p50": 5638.2769915,
+                "p95": 30074.8128194,
+                "p99": 32077.72897722
+              },
+              "inter_token_latency": {
+                "mean": 43.052052731042075,
+                "p50": 42.0896220998043,
+                "p95": 47.668962664872794,
+                "p99": 47.67227675219178
+              },
+              "request_latency": {
+                "mean": 34499.80059265625,
+                "p50": 26397.9421595,
+                "p95": 52789.793100899995,
+                "p99": 52792.66121693
+              }
+            },
+            "benchmark_duration": 288.298521344,
+            "request_throughput": 0.11099326603806388,
+            "output_token_throughput": 56.828552211488706,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/03-c4-n32-s44"
+          },
+          "audit_sha256": "8d6fd0f71d6d8cbf4194760157db1967ca9481c09e111db0e6e1e93a38a0acff",
+          "raw_sha256": "23132fc16503983956c73fe2083553bc8b79e31da0d4c5c07a25a3b2f2640bdf",
+          "actual_cohort_hashes": {
+            "warmup": "526eb0b3ab962ad79233583830c5888029ea1244121a93644f49b1e36a5747fa",
+            "profiling": "563c0fbb4d0d47e9657d3b54a98a53d849b80e857210cd9090af1d57e95faacf"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    },
+    {
+      "order": 4,
+      "reference": {
+        "concurrency": 8,
+        "formal_requests": 24,
+        "duration_s": 186.76,
+        "ttft_p95_s": 41.822,
+        "tpot_p95_ms": 53.106,
+        "e2e_p95_s": 67.417,
+        "requests_per_s": 0.1285,
+        "output_tokens_per_s": 65.79,
+        "order": 4,
+        "warmup_requests": 8,
+        "both_slo": false
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row04-c8-seed45",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 8,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 32208.941943499998,
+                "p50": 35828.973793,
+                "p95": 42026.6461749,
+                "p99": 44366.617729009995
+              },
+              "inter_token_latency": {
+                "mean": 50.2035442167319,
+                "p50": 51.307436407045,
+                "p95": 53.210688680919766,
+                "p99": 53.226548177847356
+              },
+              "request_latency": {
+                "mean": 57862.95303825,
+                "p50": 62245.7668765,
+                "p95": 68143.0941093,
+                "p99": 71310.15336175
+              }
+            },
+            "benchmark_duration": 187.141122816,
+            "request_throughput": 0.1281978420307847,
+            "output_token_throughput": 65.63729511976176,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row04-c8-seed45/aiperf"
+          },
+          "audit_sha256": "01dcbbbabc7cb106459ad1b310780cb9f5e27998bfb7f62f9c62c7ec2ac46447",
+          "raw_sha256": "9eca0009dca0edab095ad32582338c51f4ffcdfbcf7b4a7388cb0df820c69bee",
+          "actual_cohort_hashes": {
+            "warmup": "73f26599b41656b953d1aa01c85435627e7d6c140f71e2de593f24d0a9550a18",
+            "profiling": "001c7312bdbb7469d6640a54bfb38ff85995c47903e7974b98592b4ea1d956d7"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/04-c8-n24-s45",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 8,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 40833.626818083336,
+                "p50": 43437.155534499994,
+                "p95": 58480.658398499996,
+                "p99": 58482.146276729996
+              },
+              "inter_token_latency": {
+                "mean": 42.73585379949446,
+                "p50": 40.60556710763209,
+                "p95": 47.65946077123287,
+                "p99": 47.66249418489236
+              },
+              "request_latency": {
+                "mean": 62671.648109625,
+                "p50": 65956.450565,
+                "p95": 79192.83670535,
+                "p99": 79194.76342578
+              }
+            },
+            "benchmark_duration": 211.18856883200002,
+            "request_throughput": 0.11363396201109262,
+            "output_token_throughput": 58.18058854967942,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/04-c8-n24-s45"
+          },
+          "audit_sha256": "80bb49aa9a3490aaeb952acaf908a6cb1ed9dd7df0084b2549dd09a3e2d9ac4e",
+          "raw_sha256": "e026016a1e35920b37b050568f294d6b28d4566a0518a6038d0c198f1efd37cd",
+          "actual_cohort_hashes": {
+            "warmup": "73f26599b41656b953d1aa01c85435627e7d6c140f71e2de593f24d0a9550a18",
+            "profiling": "001c7312bdbb7469d6640a54bfb38ff85995c47903e7974b98592b4ea1d956d7"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    },
+    {
+      "order": 5,
+      "reference": {
+        "concurrency": 3,
+        "formal_requests": 24,
+        "duration_s": 220.13,
+        "ttft_p95_s": 7.499,
+        "tpot_p95_ms": 44.974,
+        "e2e_p95_s": 28.865,
+        "requests_per_s": 0.10902,
+        "output_tokens_per_s": 55.82,
+        "order": 5,
+        "warmup_requests": 4,
+        "both_slo": false
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row05-c3-seed46",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 3,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 5286.594404166666,
+                "p50": 4622.14089,
+                "p95": 7525.926410650003,
+                "p99": 9787.907503539998
+              },
+              "inter_token_latency": {
+                "mean": 43.36762557167319,
+                "p50": 43.777689275929546,
+                "p95": 45.07093864324853,
+                "p99": 45.073775848512724
+              },
+              "request_latency": {
+                "mean": 27447.451071291667,
+                "p50": 27545.643227,
+                "p95": 28946.278625,
+                "p99": 32336.152129079997
+              }
+            },
+            "benchmark_duration": 220.649337088,
+            "request_throughput": 0.10876627779732292,
+            "output_token_throughput": 55.68833423222934,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row05-c3-seed46/aiperf"
+          },
+          "audit_sha256": "a37637e236cd4a3f9d9227ce3656c087a4b1925c8c6c7df3ca26b34e4fe6725b",
+          "raw_sha256": "9f222c5aa1f2fcf43773dd1c4a9fa2288b0be21623c55ec58279ecd6fc4659db",
+          "actual_cohort_hashes": {
+            "warmup": "24959261843690ca513002e4a73c8b1ecb4a98071ec735c2a86655544b86ee4f",
+            "profiling": "499b35200e5ce5253b27a5d8757bc43064573365055fe91be2dd37d47f6515a5"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/05-c3-n24-s46",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 3,
+            "expected_requests": 24,
+            "records": 24,
+            "valid_records": 24,
+            "successful_requests": 24.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 4243.753138791667,
+                "p50": 3910.3619909999998,
+                "p95": 5686.2451866,
+                "p99": 5688.19714638
+              },
+              "inter_token_latency": {
+                "mean": 43.33771807053163,
+                "p50": 43.96423721428572,
+                "p95": 47.65772171350293,
+                "p99": 47.67471227101761
+              },
+              "request_latency": {
+                "mean": 26389.32707283333,
+                "p50": 26392.587592999997,
+                "p95": 26402.680199849998,
+                "p99": 26404.893806609998
+              }
+            },
+            "benchmark_duration": 211.19553100800002,
+            "request_throughput": 0.11363591392653866,
+            "output_token_throughput": 58.18158793038779,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/05-c3-n24-s46"
+          },
+          "audit_sha256": "a8a35cefdb8f3e9f4e9ee52d16fcab8af7133f70bb19453fb423f1d458eec13c",
+          "raw_sha256": "39f2a05df0b8af3e05b69673ebabb1773e1490ae422e063dfa67090f2445fb8a",
+          "actual_cohort_hashes": {
+            "warmup": "24959261843690ca513002e4a73c8b1ecb4a98071ec735c2a86655544b86ee4f",
+            "profiling": "499b35200e5ce5253b27a5d8757bc43064573365055fe91be2dd37d47f6515a5"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    },
+    {
+      "order": 6,
+      "reference": {
+        "concurrency": 2,
+        "formal_requests": 100,
+        "duration_s": 1191.12,
+        "ttft_p95_s": 4.608,
+        "tpot_p95_ms": 37.905,
+        "e2e_p95_s": 23.818,
+        "requests_per_s": 0.08395,
+        "output_tokens_per_s": 42.98,
+        "order": 6,
+        "warmup_requests": 4,
+        "both_slo": true
+      },
+      "cases": {
+        "vllm": {
+          "status": "verified",
+          "folder": "results/framework-c4/vllm/document-performance/row06-c2-seed47",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 2,
+            "expected_requests": 100,
+            "records": 100,
+            "valid_records": 100,
+            "successful_requests": 100.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 4609.58302494,
+                "p50": 4591.3862825,
+                "p95": 5108.8599009,
+                "p99": 5128.468080180009
+              },
+              "inter_token_latency": {
+                "mean": 37.58122053428571,
+                "p50": 37.72080280039139,
+                "p95": 37.978005383561644,
+                "p99": 37.98081874757339
+              },
+              "request_latency": {
+                "mean": 23813.586717960003,
+                "p50": 23865.555665499996,
+                "p95": 23871.3572919,
+                "p99": 23895.41957691001
+              }
+            },
+            "benchmark_duration": 1193.6915619840001,
+            "request_throughput": 0.08377326037549318,
+            "output_token_throughput": 42.89190931225251,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/document-performance/row06-c2-seed47/aiperf"
+          },
+          "audit_sha256": "4580c8bb8fa45331765ab380435682fbe5609ad4e00cf57ff774154cd2a195df",
+          "raw_sha256": "8ec767a968909d65066eb8c6a20ab962ed598cae7e5233e505dca57c00d04f84",
+          "actual_cohort_hashes": {
+            "warmup": "2ab8378e1b7d75e291c02c54aaee738e6c42a788cf6d82fb7f7b9c36fb56edc6",
+            "profiling": "40ccacc73dee4b7376e57b984c0285f57903197d35ab9cbb734aa9e1b7a0f580"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": true
+        },
+        "sglang": {
+          "status": "verified",
+          "folder": "results/framework-c4/sglang/official-performance/06-c2-n100-s47",
+          "original_parser": {
+            "status": "完整",
+            "issues": [],
+            "concurrency": 2,
+            "expected_requests": 100,
+            "records": 100,
+            "valid_records": 100,
+            "successful_requests": 100.0,
+            "error_requests": 0,
+            "lengths_verified": true,
+            "osl_verified": true,
+            "input_length_basis": "model",
+            "actual_input_tokens": {
+              "min": 8192,
+              "max": 8192,
+              "mean": 8192.0
+            },
+            "metrics": {
+              "time_to_first_token": {
+                "mean": 3015.36888257,
+                "p50": 3772.3387274999995,
+                "p95": 3814.00462915,
+                "p99": 3816.27539902
+              },
+              "inter_token_latency": {
+                "mean": 41.63643229154599,
+                "p50": 40.172460031311154,
+                "p95": 43.56665186819961,
+                "p99": 43.57112192058708
+              },
+              "request_latency": {
+                "mean": 24291.58578355,
+                "p50": 24297.384116,
+                "p95": 24304.7891852,
+                "p99": 24306.42847799
+              }
+            },
+            "benchmark_duration": 1215.1138232320002,
+            "request_throughput": 0.0822965305858681,
+            "output_token_throughput": 42.135823659964466,
+            "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/sglang/official-performance/06-c2-n100-s47"
+          },
+          "audit_sha256": "6d14ae12005fbfd1dcff3ebe9081f5bda82a402dacc834fe49d3038146531b35",
+          "raw_sha256": "e6be019571451af1a723751a9fb8de73472b4c77a6199d01c9ab0186a94bb701",
+          "actual_cohort_hashes": {
+            "warmup": "2ab8378e1b7d75e291c02c54aaee738e6c42a788cf6d82fb7f7b9c36fb56edc6",
+            "profiling": "40ccacc73dee4b7376e57b984c0285f57903197d35ab9cbb734aa9e1b7a0f580"
+          },
+          "wire_and_parser_checks_pass": true,
+          "numerical_joint_slo": false
+        }
+      },
+      "cross_framework_actual_cohorts_equal": true
+    }
+  ],
+  "scope": "Original-parser and actual wire checks; numerical SLO flags require separate engine cache, GPU coverage, frozen-config and failure-history review before final acceptance."
+}

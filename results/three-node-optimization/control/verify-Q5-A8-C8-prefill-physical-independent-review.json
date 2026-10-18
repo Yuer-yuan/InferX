@@ -1,0 +1,48 @@
+{
+  "prefill_ranges": 48,
+  "mapped_kernels": 57624,
+  "unique_runtime": 253201,
+  "all_kernels": 253201,
+  "prefill_kernel_sum_ms": 19055.041607999887,
+  "families": {
+    "other": {
+      "count": 41448,
+      "kernel_sum_ms": 2109.2140769999833,
+      "fraction_of_mapped_prefill_kernel_sum": 0.1106906046384318
+    },
+    "input_grouped_A8": {
+      "count": 3072,
+      "kernel_sum_ms": 3369.685580000001,
+      "fraction_of_mapped_prefill_kernel_sum": 0.17683958132032127
+    },
+    "GDN_statepass": {
+      "count": 2304,
+      "kernel_sum_ms": 541.7591099999999,
+      "fraction_of_mapped_prefill_kernel_sum": 0.028431274050461947
+    },
+    "residual_Q5_A8": {
+      "count": 6144,
+      "kernel_sum_ms": 4849.952954999991,
+      "fraction_of_mapped_prefill_kernel_sum": 0.25452334635490026
+    },
+    "gateup_A8_persistent128": {
+      "count": 3072,
+      "kernel_sum_ms": 6750.871478999975,
+      "fraction_of_mapped_prefill_kernel_sum": 0.35428269420129493
+    },
+    "attention": {
+      "count": 1584,
+      "kernel_sum_ms": 1433.5584070000016,
+      "fraction_of_mapped_prefill_kernel_sum": 0.07523249943459322
+    }
+  },
+  "physical_window_ns": [
+    16999186,
+    30164783360
+  ],
+  "reviewed_at": "2026-10-16T23:30:14.872908+00:00",
+  "scope": "Root independent actualSQLite runtimecorrelation and sameglobalTid containingprefill.chunk NVTX phase attribution. Strictphysical range only; not allclientrequestlifetimes orhardwarecounterroofline.",
+  "mechanism": "Currentprefillgateup is biggestsinglefamily; VerifyA8 didnotchange Prefill. FastertargetVerify alone cannotremove observedqueueprefillcriticalpath underfixedarrivals.",
+  "source": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "binary": "ed91f304cc8b97e6d8d2c5e8c4290fbf5dee0dd6a0560bb7020be5f90b6bcf3e"
+}

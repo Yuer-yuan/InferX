@@ -1,0 +1,68 @@
+{
+  "reviewed_at": "2026-10-16T16:34:19.884281+00:00",
+  "run": "a8-c5-confirm-r1",
+  "protocol": "original runner cold8192/512 C5 100measured/8warmup; selection dataset seed20261016, independent seed pending",
+  "phase_counts": {
+    "warmup": 8,
+    "profiling": 100
+  },
+  "measured": {
+    "n": 100,
+    "errors": 0,
+    "all_8192_512": true,
+    "ttft_p95_ms": 9251.2646234,
+    "tpot_p95_ms": 35.07095350636008,
+    "ttft_gt10000": 3,
+    "tpot_gt40": 1,
+    "duration_seconds": 407.393512868,
+    "summary_p95_match": true,
+    "raw_committed_output_tok_s": 125.67701345943955,
+    "official_runner_output_tok_s": 125.67621505294035,
+    "throughput_note": "Raw committed512-token count divided by client-window duration is a separate consistency calculation; preserve original runner throughput for comparisons."
+  },
+  "native": {
+    "all_done": 112,
+    "cold8192_done": 109,
+    "all_long_exact8192_512": false,
+    "all_long_cache0_full_reset": true,
+    "length_counts": [
+      {
+        "computed_prefill_tokens": 8192,
+        "completion_tokens": 1,
+        "requested_output_tokens": 1,
+        "n": 1
+      },
+      {
+        "computed_prefill_tokens": 8192,
+        "completion_tokens": 512,
+        "requested_output_tokens": 512,
+        "n": 108
+      }
+    ],
+    "benchmark_done": 108,
+    "benchmark_all_computed8192": true,
+    "probe_excluded_from_benchmark": 1
+  },
+  "dataset": {
+    "tokenizer": "/workspace/InferX/models/tokenizer",
+    "revision": null,
+    "seed": 20261016,
+    "entries": 109,
+    "pool_size": 248060,
+    "isl": 8192,
+    "osl": 512,
+    "sha256": "01e5dc6d6ebe29d703194d3ef9b148f9943f46d9bbc2be1fd1da6ae3b33123d4",
+    "tokenizer_class": "Qwen2Tokenizer",
+    "tokenizer_commit": null,
+    "prompt_format": "token_ids",
+    "input_length_basis": "model"
+  },
+  "hashes": {
+    "ucloud1/raw/a8-c5-confirm-r1/manifest.json": "8d882dfde03ac0637f5bee54eb257423a35e8c5a85b3b11caf4bb1d103b7ffd5",
+    "ucloud1/raw/a8-c5-confirm-r1/a8_completion_margin300/c5/profile_export.jsonl": "2237c79562507e99317f184cb1b7d0bb9027d5d1a8badc6c644ab76aae85716e",
+    "ucloud1/raw/a8-c5-confirm-r1/a8_completion_margin300/requests.jsonl": "2fcc30f9c87ca43b2b2edae875ebbb564178e80f221ceb55fe2e7880e68e3d92",
+    "ucloud1/raw/a8-c5-confirm-r1/config.json": "cf7fccf772c08dd0a355a226aa10e5ee22f7769a4f5fa3178a3e4e2289509f56"
+  },
+  "quality": "not qualified by latency measurements or short smokes",
+  "interpretation": "Single100 performance confirmation passes jointSLO on selection seed; heldout100 unchanged candidate currently running. Source manifest labels PILOT; coordinator distinguishes request count from final qualification."
+}

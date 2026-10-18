@@ -1,0 +1,37 @@
+{
+  "reviewed_at": "2026-10-16T19:46:29.426200+00:00",
+  "scope": "Root read-only source review, independent zero-fuzz3file staging/hash checks and reviewed CPU oracle rerun in isolated temp",
+  "proposal_sha256": "a7ae22d14231f0a152ebc96460c8dce7e7a76e4ffc763604c7265764d4068f4a",
+  "actual_pre_post_files_verified": 3,
+  "zero_fuzz": true,
+  "reviewed_CPU_oracle_reproduced": true,
+  "core_shape_cases": 8,
+  "boundary_shape_cases": 7,
+  "temporary_stage": "/tmp/inferx-root-q5-r32-review-_7oxrv5t/stage",
+  "active_source_modified": false,
+  "CUDA_compiled": false,
+  "GPU_run": false,
+  "source_obstacle": "Original BM==BK guard must change to proved capacity BM<=BK for the selected BM32/BK64 instantiation.",
+  "expected_shared_bytes": [
+    22016,
+    15104
+  ],
+  "production_route_domain": {
+    "N": 5120,
+    "K": [
+      6144,
+      17408
+    ],
+    "T_inclusive": [
+      17,
+      64
+    ]
+  },
+  "limitations": [
+    "Does not emulate MMA arithmetic, PTX ldmatrix cross-lane semantics or CUDA fences.",
+    "Does not prove compiled registers, hardware occupancy, speed or quality.",
+    "No arbitrary N admission: alignment proof uses registered N5120.",
+    "Production domain T17..64 needs actual boundary conformance beyond eight timed core shapes.",
+    "Global-to-shared activation requests and B-fragment loads double; source structure does not prove speedup or preserve compiled arithmetic bitwise."
+  ]
+}

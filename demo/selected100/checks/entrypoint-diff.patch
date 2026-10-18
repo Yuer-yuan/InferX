@@ -1,0 +1,206 @@
+--- demo/selected_common.py
++++ candidate100/candidate_common.py
+@@ -1,4 +1,4 @@
+-"""Frozen selected-recipe contracts; no network or GPU operations in this module."""
++"""Isolated pending candidate100 contracts; no network or GPU operations here."""
+ from __future__ import annotations
+ 
+ import hashlib
+@@ -8,7 +8,7 @@
+ from pathlib import Path
+ import urllib.parse
+ 
+-TIERS = (4, 8, 12, 13, 14, 15, 16)
++TIERS = (4, 8, 12, 13, 14)
+ RUNNER_SHA = "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0"
+ DATA_SHA = "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599"
+ META_SHA = "1698f38c56755f029e9f61c6c915812ea09b0ed829cd71d6647259f60a9cf96f"
+@@ -20,7 +20,8 @@
+     "TMPDIR", "TMP", "TEMP", "CUDA_VISIBLE_DEVICES", "CUDA_DEVICE_ORDER",
+     "NVIDIA_VISIBLE_DEVICES", "NVIDIA_DRIVER_CAPABILITIES"))
+ MODEL_BYTES = 18210531328
+-CATALOG = Path(__file__).parent / "selected_recipes"
++PACKAGE = Path(__file__).resolve().parent
++CATALOG = PACKAGE / "candidate_recipes"
+ 
+ 
+ def require(condition, message):
+@@ -99,15 +100,9 @@
+                 limitation="Same-size payload corruption is not detected; content SHA is inherited from original receipts.")
+ 
+ 
+-def profile(name):
+-    if name == "quality100":
+-        return dict(name=name, mode="accuracy", native_concurrency=16,
+-                    client_concurrency=16, kv_capacity=532480)
+-    for c in TIERS:
+-        if name == f"perf-c{c}":
+-            return dict(name=name, mode="perf", native_concurrency=c,
+-                        client_concurrency=c, kv_capacity=max(65536, 8704*c))
+-    raise ValueError("Profile must be perf-c4/8/12/13/14/15/16 or quality100")
++def profile(recipe, name):
++    require(name in recipe["profiles"], "Profile must be perf-c4/8/12/13/14 or quality100")
++    return dict(recipe["profiles"][name])
+ 
+ 
+ def clean_environment(inherited, fixed):
+@@ -124,13 +119,13 @@
+             "Use a loopback or wildcard bind; evaluation verifies a same-host service")
+     paths = {"root":str(Path(root).resolve()), "log_dir":str(Path(log_dir).resolve())}
+     root = Path(paths["root"])
+-    paths.update(binary=str(Path(binary or root/"artifacts"/recipe["recipe_id"]/"ninfer-serve").resolve()),
++    paths.update(binary=str(Path(binary or root/"artifacts"/recipe["binary_artifact_id"]/"ninfer-serve").resolve()),
+                  model=str(Path(model or root/"assets/model/qwen3_8_27b.ninfer").resolve()),
+                  assets=str(Path(assets or root/"assets").resolve()),
+                  tokenizer=str(Path(tokenizer or root/"assets/tokenizer").resolve()),
+                  build_lib_dir=str(Path(build_lib_dir or root/"envs/build/lib").resolve()),
+                  cuda_lib_dir=str(Path(cuda_lib_dir).resolve()))
+-    settings = profile(profile_name)
++    settings = profile(recipe, profile_name)
+     require(settings["kv_capacity"] >= 65536, "KV capacity must be >= max-context (65536)")
+     fixed = {k:v.format(assets=paths["assets"]) for k,v in recipe["environment"].items()}
+     fixed.update(OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1",
+@@ -144,12 +139,14 @@
+             "--frequency-penalty", "0", "--seed", "42", "--no-ui", "--spec", "mtp",
+             "--draft-tokens", "3", "--lm-head-draft", "--request-log-jsonl",
+             str(Path(paths["log_dir"])/"requests.jsonl"), "--no-prefix-reuse", "--no-disk-cache"]
+-    return dict(schema_version=1, kind="selected_service_launch", recipe_id=recipe["recipe_id"],
++    return dict(schema_version=1, kind="candidate100_service_launch", recipe_id=recipe["recipe_id"],
+                 recipe_sha256=recipe_sha, binary_sha256=recipe["binary_sha256"],
+                 source_sha256=recipe["source_sha256"], profile=settings, paths=paths,
+                 host=host, port=port, argv=argv, environment=fixed,
+                 asset_contract=recipe["assets"]["contract"],
+-                qualification="Candidate configuration only; no new performance or task-quality claim.")
++                version_id=recipe["version_id"], selection_status=recipe["selection_status"],
++                quality_status=recipe["quality_status"],
++                qualification="Pending configuration; this entrypoint has CPU checks only. See evidence/status.json for historical run scope.")
+ 
+ 
+ def process_start(pid, proc_root=Path("/proc")):
+@@ -186,13 +183,13 @@
+ def check_service(launch_path, recipe, recipe_sha, expected_profile, base_url,
+                   proc_root=Path("/proc")):
+     launch = read_json(launch_path)
+-    require(launch.get("kind") == "selected_service_launch" and launch.get("schema_version") == 1,
+-            "Not a selected service launch receipt")
++    require(launch.get("kind") == "candidate100_service_launch" and launch.get("schema_version") == 1,
++            "Not a candidate100 service launch receipt")
+     require(launch.get("recipe_sha256") == recipe_sha and launch.get("recipe_id") == recipe["recipe_id"],
+             "Service recipe mismatch")
+     require(launch.get("binary_sha256") == recipe["binary_sha256"] and
+             launch.get("source_sha256") == recipe["source_sha256"], "Service binary/source mismatch")
+-    require(launch.get("profile") == profile(expected_profile), "Service native/KV/profile mismatch")
++    require(launch.get("profile") == profile(recipe, expected_profile), "Service native/KV/profile mismatch")
+     p = launch["paths"]
+     expected = render_service(recipe, recipe_sha, expected_profile, **p,
+                               host=launch["host"], port=launch["port"])
+--- demo/serve_selected.py
++++ candidate100/serve_candidate.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Start one frozen candidate profile; --dry-run performs no service/GPU operation."""
++"""Start a pending candidate100 profile; --dry-run performs no service/GPU operation."""
+ import argparse
+ import json
+ import os
+@@ -7,7 +7,7 @@
+ import shutil
+ import sys
+ 
+-import selected_common as common
++import candidate_common as common
+ 
+ 
+ def main(argv=None):
+--- demo/perf_selected.py
++++ candidate100/perf_candidate.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Fixed original128 performance evaluation against a verified local selected service."""
++"""Fixed original128 performance evaluation against a verified candidate100 service."""
+ import argparse
+ import json
+ import os
+@@ -8,7 +8,7 @@
+ import signal
+ import sys
+ 
+-import selected_common as common
++import candidate_common as common
+ 
+ 
+ def main(argv=None):
+@@ -18,14 +18,14 @@
+     parser.add_argument("--root", type=Path, default=Path("/workspace/InferX"))
+     parser.add_argument("--runner", type=Path)
+     parser.add_argument("--service-launch", type=Path)
+-    parser.add_argument("--frozen-dataset", required=True, type=Path)
++    parser.add_argument("--frozen-dataset", type=Path, default=common.PACKAGE/"data/dataset.jsonl")
+     parser.add_argument("--base-url", default="http://127.0.0.1:18499/v1")
+     parser.add_argument("--output-dir", required=True, type=Path)
+     parser.add_argument("--dry-run", action="store_true")
+     args = parser.parse_args(argv)
+     root = args.root.resolve()
+     recipe, sha = common.load_recipe(args.recipe)
+-    official = common.load_official(args.runner or root/"code/submission/organizer/runner.py")
++    official = common.load_official(args.runner or common.PACKAGE/"organizer/runner.py")
+     dataset, meta = common.validate_dataset(args.frozen_dataset)
+     common.require(not args.output_dir.exists(), "Evaluation output directory already exists")
+     profile_name = f"perf-c{args.concurrency}"
+@@ -45,7 +45,8 @@
+     command = official.aiperf_command(config, args.concurrency, local_dataset, dest, common.NAMESPACE, key)
+     plan = dict(recipe_id=recipe["recipe_id"], recipe_sha256=sha,
+                 binary_sha256=recipe["binary_sha256"], source_sha256=recipe["source_sha256"],
+-                profile=common.profile(profile_name), runner_sha256=common.RUNNER_SHA,
++                profile=common.profile(recipe, profile_name), runner_sha256=common.RUNNER_SHA,
++                asset_contract=recipe["assets"]["contract"], selection_status=recipe["selection_status"],
+                 dataset_source=str(dataset), dataset_sha256=common.DATA_SHA, metadata_sha256=common.META_SHA,
+                 performance_namespace=common.NAMESPACE, probe_salt=common.PROBE_SALT,
+                 expected_actual_inputs_canonical_sha256=common.INPUT_SHA,
+--- demo/accuracy_selected.py
++++ candidate100/accuracy_candidate.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Identity gate for original100 IFBench; unchanged d80 accuracy implementation."""
++"""Pending original100 IFBench profile, client/native13; no accuracy claim."""
+ import argparse
+ import json
+ import os
+@@ -8,7 +8,7 @@
+ import signal
+ import sys
+ 
+-import selected_common as common
++import candidate_common as common
+ 
+ 
+ def main(argv=None):
+@@ -23,7 +23,7 @@
+     args = parser.parse_args(argv)
+     recipe, sha = common.load_recipe(args.recipe)
+     root = args.root.resolve()
+-    official = common.load_official(args.runner or root/"code/submission/organizer/runner.py")
++    official = common.load_official(args.runner or common.PACKAGE/"organizer/runner.py")
+     common.require(not args.output_dir.exists(), "Evaluation output directory already exists")
+     launch = None
+     if not args.dry_run:
+@@ -32,14 +32,17 @@
+     tokenizer = launch["paths"]["tokenizer"] if launch else str(root/"assets/tokenizer")
+     forwarded = ["--mode", "accuracy", "--base-url", args.base_url, "--model", "qwen38-27b",
+                  "--tokenizer", tokenizer, "--env-dir", str(root/"eval-envs"),
+-                 "--eval-batch-size", "16", "--output-dir", str(args.output_dir.resolve()/"evaluation")]
++                 "--eval-batch-size", str(common.profile(recipe, "quality100")["client_concurrency"]),
++                 "--output-dir", str(args.output_dir.resolve()/"evaluation")]
+     config = official.parse_args(forwarded)
+     task = official.accuracy_config(config, config.output_dir/"accuracy")
+     common.require(task["limit"] == 100 and task["generation_config"] == {"max_tokens":32768},
+                    "Original accuracy contract changed")
+     plan = dict(recipe_id=recipe["recipe_id"], recipe_sha256=sha,
+                 binary_sha256=recipe["binary_sha256"], source_sha256=recipe["source_sha256"],
+-                profile=common.profile("quality100"), task_config=task, runner_sha256=common.RUNNER_SHA,
++                profile=common.profile(recipe, "quality100"), task_config=task, runner_sha256=common.RUNNER_SHA,
++                asset_contract=recipe["assets"]["contract"], selection_status=recipe["selection_status"],
++                quality_status=recipe["quality_status"],
+                 service_verified=launch is not None, dry_run=args.dry_run)
+     if args.dry_run:
+         print(json.dumps(plan, ensure_ascii=False, indent=2))

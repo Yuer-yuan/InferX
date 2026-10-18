@@ -1,0 +1,36 @@
+{
+  "reviewed_at": "2026-10-16T16:43:52.695233+00:00",
+  "repository": "https://github.com/JGamboa/ninfer-4090-windows",
+  "commit": "e905787f067de89ef6ef28c52d65a2ce91d425ca",
+  "source_scope": "Selected source only, fetched and read without executing its build/scripts; root AGENTS read; tree contains no nested AGENTS. Reference copy is coordinator-owned; worker may copy into own isolated implementation.",
+  "primary_performance_source": "https://github.com/JGamboa/ninfer-4090-windows/blob/e905787f067de89ef6ef28c52d65a2ce91d425ca/WINDOWS_PORT.md",
+  "relevant_sections": [
+    "Pipelined Q4/Q5 prefill GEMMs",
+    "A8 prefill GEMMs for Qwen3.8",
+    "A8 GEMM steps of128 columns",
+    "Prefill round3 persistent A8 GEMM tiles"
+  ],
+  "mechanism": [
+    "64channel activation quantization with unchanged storedQ4/Q5 codes; exactINT32 groupdot then FP32scale accumulation.",
+    "Double-buffered code/activation and triple-buffered scales; Kstep128 vs64 amortizesbarriers,warp halves pingpong CUDAdecode/FP32 against tensorMMA.",
+    "Folded gate/up SwiGLU tile and optional quantizing epilogue, persistentCTA forselected families; group/inputprojections retained nonpersistent whenmeasuredslower.",
+    "This is a prefillscope implementation; sourcekeepsnarrow decode/verify A16 routes. Moredrafting and blanketA8verifyare separatehypotheses."
+  ],
+  "comparison_limits": [
+    "PublishedWindows singlecard8Kneedle prefillaround1.5s andbenchpp2048around5.8Ktok/s are not ours cold8192/512 concurrentSLO.",
+    "Different enginev3/layoutcontract,CUDA13.4,weightartifactcomponentsandcaptureconditions; do notreplaceours v2readerorweights.",
+    "Publishedpersistent-onlyincrement is about2.2%pp2048; largergainis accumulatedpipeline+folding+quantization design, notpersistencealone.",
+    "Actual operatorprobe on ourSM89 shapes must decide feasibility, including fullworkspace sizing/oddT/tailrounding beforepromotion."
+  ],
+  "suggested_bounded_probe": "Start foldedSwiGLU andresidualQ5 atT256/257/1024/2048/4097 with existing frozen-v1A8 baseline and independent oracle. Same450W,alternatingarms,quantization included,cachepolicyreported. Rejectnohurryingwholeforkswap. Ifusefulisolateproductionprefill-only candidateafteralreadyqueuedpairedquality.",
+  "adjacent_research": [
+    {
+      "source": "https://github.com/mit-han-lab/omniserve",
+      "finding": "QServe treats dequantization/CUDA-core overhead as a separate bottleneck beyond simplememory/tensorroofline, usesquantization/kernelco-design. NativehybridMTPdrop-incompatibilitynotestablished."
+    },
+    {
+      "source": "https://arxiv.org/html/2509.01229v1",
+      "finding": "LiquidGEMM motivatesseparate dequantizationload/MMApipelineanalysis; H800/TMA/warpgroups andnewquantizationnotdirectSM89port. Mechanismreferenceonly,notpromised4090speedup."
+    }
+  ]
+}

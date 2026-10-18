@@ -1,0 +1,77 @@
+# 测试成绩与证据索引
+
+数据整理时间：2026-10-18 01:54 +08:00。
+
+## ZIP默认历史评测：100正式+8预热
+
+| 配置/节点 | 版本 | N/预热 | TTFT P95(s) | TPOT P95(ms) | E2E P95(s) | tok/s | 两项SLO |
+|---|---|---:|---:|---:|---:|---:|---|
+| 旧NInfer基线 · 1并发/ucloud1 | b604d050 | 100/8 | 3.455 | 9.009 | 8.054 | 73.593 | 通过 |
+| 旧NInfer基线 · 2并发/ucloud1 | b604d050 | 100/8 | 3.562 | 22.506 | 15.048 | 92.089 | 通过 |
+| 旧NInfer基线 · 4并发/ucloud1 | b604d050 | 100/8 | 6.998 | 45.930 | 27.422 | 94.612 | 未通过 |
+| 旧NInfer基线 · 8并发/ucloud1 | b604d050 | 100/8 | 13.861 | 90.660 | 53.280 | 103.309 | 未通过 |
+
+## 扩展容量与版本实验：128正式+8预热
+
+| 配置/节点 | 版本 | N/预热 | TTFT P95(s) | TPOT P95(ms) | E2E P95(s) | tok/s | 两项SLO |
+|---|---|---:|---:|---:|---:|---:|---|
+| 早期前馈量化版 · 8并发/ucloud3 | a3326323 | 128/8 | 7.532 | 33.309 | 23.018 | 223.454 | 通过 |
+| 前馈量化版 · 32并发/ucloud1 | c3f48207 | 128/8 | 29.324 | 122.117 | 74.832 | 305.910 | 未通过 |
+| 输入投影量化版 · 32并发/ucloud1 | 40b3e867 | 128/8 | 24.887 | 109.107 | 67.263 | 352.410 | 未通过 |
+| 输出投影量化版 · 32并发/ucloud1 | 9270f73e | 128/8 | 23.695 | 101.157 | 64.528 | 363.577 | 未通过 |
+| 输出投影量化版 · 12并发/ucloud3 | 9270f73e | 128/8 | 9.500 | 37.340 | 25.616 | 284.746 | 通过 |
+| 输出投影量化版 · 16并发/ucloud3 | 9270f73e | 128/8 | 9.934 | 51.703 | 35.104 | 307.148 | 未通过 |
+| down投影调整版 · 16并发/ucloud3 | dc99ec83 | 128/8 | 9.908 | 54.113 | 34.878 | 311.478 | 未通过 |
+| 高批注意力版 · 32并发/ucloud3 | 8b20de4d | 128/8 | 23.041 | 92.109 | 64.090 | 374.046 | 未通过 |
+| 递推状态融合版 · 32并发/ucloud3 | 2362fc01 | 128/8 | 23.088 | 96.319 | 63.248 | 375.714 | 未通过 |
+| 递推状态融合版 · 16并发/ucloud3 | 2362fc01 | 128/8 | 9.856 | 48.784 | 33.642 | 311.768 | 未通过 |
+| 验证阶段扩展版 · 16并发/ucloud1 | 66328f67 | 128/8 | 9.982 | 56.798 | 34.996 | 322.177 | 未通过 |
+| 递推状态融合版 · 16客户端 / 活动容量12/ucloud3 | 2362fc01 | 128/8 | 14.426 | 43.720 | 35.522 | 306.842 | 未通过 |
+| 递推状态融合版 · K5 / 状态融合关闭/ucloud2 | 2362fc01 | 128/8 | 10.039 | 55.519 | 35.064 | 305.390 | 未通过 |
+| 提示词查找优先版 · 16并发/ucloud3 | 4b6484e0 | 128/8 | 9.925 | 53.891 | 33.947 | 319.120 | 未通过 |
+| 混合提议版 · 16并发/ucloud1 | 38f4edfc | 128/8 | 9.898 | 52.460 | 33.878 | 344.055 | 未通过 |
+| 混合提议与调度改进版 · 16并发/ucloud1 | c72ad839 | 128/8 | 10.070 | 48.415 | 32.706 | 346.088 | 未通过 |
+| 生成进度调度改进版 · 16并发/ucloud3 | 837f0f1f | 128/8 | 9.838 | 45.745 | 33.049 | 315.734 | 未通过 |
+
+以上两表的协议/版本分别对应；只有明确标注的同机同payload增量对照才支持该增量的描述，不作为普遍加速倍数。扩展128请求不是ZIP默认100请求。
+
+## IFBench质量：按版本分列
+
+| 质量版本 | 实际测试配置 | prompt strict | inst strict | prompt loose | inst loose | 错误/空final/length |
+|---|---|---:|---:|---:|---:|---|
+| 前馈量化版 / c3f48207 | C2，默认thinking/采样；完整服务配置见原报告 | 82.00% | 83.78% | 86.00% | 87.39% | 0/2/1 |
+| 输入投影量化版 / 40b3e867 | C2，默认thinking/采样；完整服务配置见原报告 | 86.00% | 87.39% | 90.00% | 90.99% | 0/1/0 |
+| 验证阶段扩展版 / 66328f67 | C16/native16/K3，fusionON/Verify1，KV532480 | 84.00% | 85.59% | 87.00% | 88.29% | 0/0/0 |
+
+均为IFBench原前100、111指令、max32768、默认thinking及模型采样。历史C2与新C16的并发、KV及路由分别列示，不解释为纯量化收益或配对非劣；质量不自动覆盖其他binary或配置。6632质量KV532480，性能KV139264且TPOT未过，不能称同配置联合达标。
+
+## 工作量口径
+
+三个ledger共 366 条逐ledger去除完全重复行后的记录；包含CPU、算子、整模型和审计，不等于独立成功GPU实验次数。
+
+## 可追溯来源
+
+- zip-c1：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c1/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c2：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c2/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c4：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c4/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- zip-c8：[汇总](../../results/ninfer-performance/official-r1/runs/official-r1/performance/c8/summary.json)；binary `b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86`；original summary + all client records recomputed。
+- s4-c8：[汇总](../../results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate/c8/summary.json)；binary `a33263234e03c0b3607136d9a4e8722fe71cb6978e4c1171ddaf9a0216ae6129`；original summary + all client records recomputed。
+- s4-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate/c32/summary.json)；binary `c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209`；original summary + all client records recomputed。
+- input-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-input-allphase-K3-n128-r1/summary.json)；binary `40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853`；original summary only。
+- output-c32：[汇总](../../results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/run/candidate/c32/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- output-c12：[汇总](../../results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate/c12/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- output-c16：[汇总](../../results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate/c16/summary.json)；binary `9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2`；original summary + all client records recomputed。
+- down-c16：[汇总](../../results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate/c16/summary.json)；binary `dc99ec83f504723667f03e06c732e01cae92d36e62b63d0e49f1ac79ad694424`；original summary + all client records recomputed。
+- gqa-c32：[汇总](../../results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/delivery/content/raw/candidate/c32/summary.json)；binary `8b20de4daa8c0556ab9e2b69f60f5ea6ae3b1598680ee6f04a33d193b7e3a1c7`；original summary + all client records recomputed。
+- fusion-c32：[汇总](../../results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/delivery/content/raw/candidate/c32/summary.json)；binary `2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142`；original summary + all client records recomputed。
+- fusion-c16：[汇总](../../results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/delivery/content/raw/candidate/c16/summary.json)；binary `2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142`；original summary + all client records recomputed。
+- output-verify-c16：[汇总](../../results/three-node-optimization/ucloud1/output047-verify-integration-076/C16-r1/delivery/raw/candidate/c16/summary.json)；binary `66328f6735061654d31a2a67e1b92096ff38c7820ffd2c1f54febcf4a7ef2691`；original summary + all client records recomputed。
+- fusion-client16-native12：[汇总](../../results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/delivery/content/raw/candidate/c16/summary.json)；binary `2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142`；original summary + all client records recomputed。
+- k5-fusionoff-c16：[汇总](../../results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/delivery/content/C16-n128-w8/summary.json)；binary `2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142`；original summary + all client records recomputed。
+- n5-priority-c16：[汇总](../../results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/delivery/content/raw/candidate/c16/summary.json)；binary `4b6484e0ab49ac9639ccc51839ab740088f254202587ec28b4df5b599e330ffa`；original summary + all client records recomputed。
+- hybrid-c16：[汇总](../../results/three-node-optimization/ucloud1/targetK5-proposal3-combination-079/C16-r1/delivery/raw/candidate/c16/summary.json)；binary `38f4edfcdeadb4467cb6f64733a5c479250c5396ef0ca86ddf7e68fa5ef0c10e`；original summary + all client records recomputed。
+- hybrid-yield-c16：[汇总](../../results/three-node-optimization/ucloud1/hybrid079-request-yield-max-080/C16-r1/delivery/raw/candidate/c16/summary.json)；binary `c72ad839ab3de47b5a4e19a69309e7eeff911e194b3e57516b644b4211f9c71c`；original summary + all client records recomputed。
+- yield-c16：[汇总](../../results/three-node-optimization/ucloud3/request-yield-max-C16-official128-recovery002/delivery/content/raw/candidate/c16/summary.json)；binary `837f0f1f98e4d45901a2c521e145d00e01716c3880e0679b530854c827f2d925`；original summary + all client records recomputed。
+- ffn-quality：[汇总](../../results/three-node-optimization/ucloud3/c32-current-official100-001/final-raw/CPU-score-001/summary.json)；binary `c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209`；原版verifier复核汇总。
+- input-quality：[汇总](../../results/three-node-optimization/ucloud2/true-int4-input-allphase-quality-preparation-050/terminal-evidence-001/CPU-score-001/summary.json)；binary `40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853`；原版verifier复核汇总。
+- output-verify-quality：[汇总](../../results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/CPU-score-001/summary.json)；binary `66328f6735061654d31a2a67e1b92096ff38c7820ffd2c1f54febcf4a7ef2691`；原版verifier复核汇总。

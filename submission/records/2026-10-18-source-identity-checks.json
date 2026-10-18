@@ -1,0 +1,40 @@
+{
+  "scope": "Actual local raw/identity/summary checks, no model calls or mutable source fixtures",
+  "cases": [
+    {
+      "case": "actual client16/native12",
+      "passed": true,
+      "observed": "accepted, clientC=16, native=12"
+    },
+    {
+      "case": "incorrect native cap rejected",
+      "passed": true,
+      "observed": "native configuration mismatch"
+    },
+    {
+      "case": "client12 mislabel rejected",
+      "passed": true,
+      "observed": "concurrency mismatch: fusion-client16-native12"
+    },
+    {
+      "case": "source identity mismatch rejected",
+      "passed": true,
+      "observed": "source identity mismatch: fusion-client16-native12"
+    },
+    {
+      "case": "original uppercase K5 identity accepted",
+      "passed": true,
+      "observed": "accepted, clientC=16, native=16"
+    },
+    {
+      "case": "new Verify source accepted",
+      "passed": true,
+      "observed": "accepted, clientC=16, native=16"
+    },
+    {
+      "case": "mixed-binary native-cap contrast rejected before rendering",
+      "passed": true,
+      "observed": "native-cap comparison requires reviewed matching client16 configurations"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "reviewed_at": "2026-10-16T21:15:05.784635+00:00",
+  "scope": "Root independent rawfixedprefix/cachedoriginalscores/payloadrecordhash/finish/metricarithmetic audit; FP8 originalverifier execution source checked, notrerun; pairedCI formula/source reviewed",
+  "fixed_original_keys_0_199": true,
+  "samples": 200,
+  "instructions": 232,
+  "all3arms_complete_noomission": true,
+  "root_original_NInfer_400rows_all4scores_match": true,
+  "all600raw_prediction_andcanonicalrecordSHAs_match_cache": true,
+  "absolute_metrics": {
+    "fp8": {
+      "prompt_level_strict": 0.435,
+      "inst_level_strict": 0.47413793103448276,
+      "prompt_level_loose": 0.465,
+      "inst_level_loose": 0.5086206896551724
+    },
+    "none": {
+      "prompt_level_strict": 0.43,
+      "inst_level_strict": 0.47413793103448276,
+      "prompt_level_loose": 0.475,
+      "inst_level_loose": 0.521551724137931
+    },
+    "all": {
+      "prompt_level_strict": 0.43,
+      "inst_level_strict": 0.47844827586206895,
+      "prompt_level_loose": 0.465,
+      "inst_level_loose": 0.5129310344827587
+    }
+  },
+  "finish_counts": {
+    "fp8": {
+      "stop": 200
+    },
+    "none": {
+      "stop": 196,
+      "length": 4
+    },
+    "all": {
+      "stop": 197,
+      "length": 3
+    }
+  },
+  "paired_prompt_strict_FP8_minus_NInfer": {
+    "none": {
+      "FP8_minus_NInfer": 0.005,
+      "paired_prompt_cluster_95ci": [
+        -0.055,
+        0.065
+      ],
+      "FP8_higher_keys": [
+        "7",
+        "8",
+        "34",
+        "41",
+        "44",
+        "78",
+        "82",
+        "89",
+        "106",
+        "108",
+        "111",
+        "122",
+        "126",
+        "131",
+        "175",
+        "178",
+        "192",
+        "194",
+        "195"
+      ],
+      "FP8_lower_keys": [
+        "5",
+        "23",
+        "29",
+        "32",
+        "33",
+        "38",
+        "46",
+        "55",
+        "67",
+        "77",
+        "109",
+        "110",
+        "112",
+        "119",
+        "123",
+        "137",
+        "167",
+        "170"
+      ]
+    },
+    "all": {
+      "FP8_minus_NInfer": 0.005,
+      "paired_prompt_cluster_95ci": [
+        -0.04512499999999989,
+        0.055
+      ],
+      "FP8_higher_keys": [
+        "8",
+        "34",
+        "41",
+        "44",
+        "82",
+        "89",
+        "106",
+        "108",
+        "111",
+        "122",
+        "126",
+        "131",
+        "175",
+        "178",
+        "194"
+      ],
+      "FP8_lower_keys": [
+        "5",
+        "23",
+        "29",
+        "32",
+        "33",
+        "46",
+        "71",
+        "77",
+        "109",
+        "110",
+        "112",
+        "137",
+        "167",
+        "170"
+      ]
+    }
+  },
+  "qualification": "Exploratory fixedprefix200 only. Full300 continues. CIs broad; notequivalence/quantization-only effect or long-inputA8qualification. NInfer observedA8coveragezero.",
+  "source": "ucloud2/fp8-prefix200-summary-001.json"
+}

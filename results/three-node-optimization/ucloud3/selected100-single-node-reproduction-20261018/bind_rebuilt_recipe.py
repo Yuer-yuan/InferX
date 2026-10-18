@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,hashlib,shutil,time,difflib
+R=Path(__file__).resolve().parent;P=R/'entrypoint'
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def save(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+build=json.loads((R/'build-job.json').read_text());assert build['status']=='complete';assert json.loads((R/'asset-preparation-complete.json').read_text())['status']=='complete'
+assert build['source_before']==build['source_after']=='c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8'
+before={str(p.relative_to(P)):sha(p)for p in sorted(P.rglob('*'))if p.is_file()and '__pycache__'not in p.parts};save(R/'entrypoint-original-freeze.json',dict(files=before))
+recipe=json.loads((P/'candidate_recipes/100-k3-u3-47.json').read_text());original=dict(recipe)
+actual=build['binary'];assert sha(actual['path'])==actual['sha256']
+recipe.update(recipe_id='100-k3-u3-47-rebuilt-20261018',version_id='100-k3-rebuilt-20261018',binary_artifact_id='100-k3-rebuilt-20261018',binary_sha256=actual['sha256'],selection_status='independent_reproduction_no_new_performance_result_yet',quality_status='independent_reproduction_0_questions_measured',qualification='Clean normal rebuild of frozen100 source on ucloud3. This new binary has no inherited performance or quality result; actual evaluations are recorded in this reproduction run.',rebuild_provenance=dict(parent_recipe_sha256=sha(P/'candidate_recipes/100-k3-u3-47.json'),parent_binary_sha256=original['binary_sha256'],normal_clean_build=True,source_files=1023,build_identity='../build-job.json'))
+recipe['assets']['verification']='All 478 serving files plus model were content-SHA rehashed in this deployment before service launch; asset-verification.json and model-verification.json contain actual receipts. Entry point additionally checks metadata every launch.'
+dest=R/'artifacts'/recipe['binary_artifact_id']/'ninfer-serve';dest.parent.mkdir(parents=True);shutil.copy2(actual['path'],dest);assert sha(dest)==actual['sha256']
+f=P/'candidate_recipes/100-k3-u3-47-rebuilt-20261018.json';save(f,recipe)
+index=json.loads((P/'candidate_recipes/index.json').read_text());index['recipes'][recipe['recipe_id']]=sha(f);save(P/'candidate_recipes/index.json',index)
+s=(P/'candidate_common.py').read_text();old='qualification="Frozen100 measured at C4/C8/C12/C13/C14 and original100 quality; portable entrypoint CPU checked only, not a new GPU deployment. See evidence/status.json for exact scope.")';new='qualification=recipe.get("qualification", "Frozen100 measured at C4/C8/C12/C13/C14 and original100 quality; portable entrypoint CPU checked only, not a new GPU deployment. See evidence/status.json for exact scope."))';assert old in s;(P/'candidate_common.py').write_text(s.replace(old,new));(R/'entrypoint-qualification.patch').write_text(''.join(difflib.unified_diff(s.splitlines(True),(P/'candidate_common.py').read_text().splitlines(True),fromfile='candidate_common.py:original',tofile='candidate_common.py:rebuilt')))
+files={str(p.relative_to(P)):sha(p)for p in sorted(P.rglob('*'))if p.is_file()and '__pycache__'not in p.parts};save(R/'entrypoint-runtime-freeze.json',dict(files=files,aggregate_sha256=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest(),changed_existing_files=[n for n in before if files[n]!=before[n]],new_files=[n for n in files if n not in before],at_ns=time.time_ns()))
+assert sha(P/'organizer/runner.py')=='d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0'
+save(R/'rebuilt-recipe-binding.json',dict(recipe=str(f),recipe_sha256=sha(f),binary=dict(path=str(dest),sha256=sha(dest),bytes=dest.stat().st_size),source_sha256=recipe['source_sha256'],quality_questions_so_far=0,performance_requests_so_far=0,original_recipe_unchanged=sha(P/'candidate_recipes/100-k3-u3-47.json')==before['candidate_recipes/100-k3-u3-47.json']))

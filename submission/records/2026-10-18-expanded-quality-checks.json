@@ -1,0 +1,63 @@
+{
+  "scope": "Local metadata and archived per-sample verifier-output aggregation, no new model calls or rerun of original verifier implementation",
+  "cases": [
+    {
+      "case": "actual C16/native16 quality",
+      "passed": true,
+      "actual": "accepted"
+    },
+    {
+      "case": "historical C2 quality",
+      "passed": true,
+      "actual": "accepted"
+    },
+    {
+      "case": "mislabel C16 quality as C2",
+      "passed": true,
+      "actual": "quality actual runtime configuration mismatch"
+    },
+    {
+      "case": "performance KV cannot replace quality KV",
+      "passed": true,
+      "actual": "quality actual runtime configuration mismatch"
+    },
+    {
+      "case": "quality source mismatch",
+      "passed": true,
+      "actual": "quality source identity mismatch"
+    },
+    {
+      "case": "wrong Verify route",
+      "passed": true,
+      "actual": "quality route flag mismatch: NINFER_OUTPUT_S4_VERIFY"
+    },
+    {
+      "case": "missing explicit quality C",
+      "passed": true,
+      "actual": "quality requires explicit positive client concurrency"
+    }
+  ],
+  "archived100_score_numerators": {
+    "prompt_level_strict": 84,
+    "inst_level_strict": 95,
+    "prompt_level_loose": 87,
+    "inst_level_loose": 98
+  },
+  "natural_stop": 100,
+  "empty": 0,
+  "generation_error": 0,
+  "instructions": 111,
+  "talk_seconds": [
+    18,
+    28,
+    22,
+    30,
+    40,
+    35,
+    30,
+    35,
+    40,
+    22
+  ],
+  "talk_total": 300
+}

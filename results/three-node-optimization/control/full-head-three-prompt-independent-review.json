@@ -1,0 +1,81 @@
+{
+  "reviewed_at": "2026-10-16T16:15:12.760957+00:00",
+  "source": "results/three-node-optimization/ucloud3/full-head-causal-probe-001",
+  "same_service_command_except_headflag_and_log": true,
+  "cases": [
+    {
+      "session": "session_000079",
+      "same_actual_payload_except_salt": true,
+      "same_text": true,
+      "prompt_length": 8192,
+      "outputs": [
+        512,
+        512
+      ],
+      "all_cache0_fullreset": true,
+      "acceptance": [
+        0.0,
+        1.0
+      ],
+      "decode_seconds": [
+        13.118979986000001,
+        3.058954012
+      ],
+      "output_text_sha256": "e19d470f42395d624ffa1e3127ee5948355bcfde6ebfeba7113479a802a87f8b",
+      "text_snippet_escaped": "'\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad\\xad'",
+      "unique_output_characters": 1
+    },
+    {
+      "session": "session_000082",
+      "same_actual_payload_except_salt": true,
+      "same_text": true,
+      "prompt_length": 8192,
+      "outputs": [
+        512,
+        512
+      ],
+      "all_cache0_fullreset": true,
+      "acceptance": [
+        0.9902912621359223,
+        0.9902912621359223
+      ],
+      "decode_seconds": [
+        2.6404198090000017,
+        3.0557320249999993
+      ],
+      "output_text_sha256": "51a395a42495a94f6cf62faefb3a5e5b0c8413989dc582ed7b7ca0bc2d51c54e",
+      "text_snippet_escaped": "' 10000000000000000000000000000000000000000000000000000000000'",
+      "unique_output_characters": 3
+    },
+    {
+      "session": "session_000086",
+      "same_actual_payload_except_salt": true,
+      "same_text": true,
+      "prompt_length": 8192,
+      "outputs": [
+        512,
+        512
+      ],
+      "all_cache0_fullreset": true,
+      "acceptance": [
+        0.9902912621359223,
+        0.9902912621359223
+      ],
+      "decode_seconds": [
+        2.6398112199999986,
+        3.0529864919999996
+      ],
+      "output_text_sha256": "f7d23b560b92118100d5f466114930b1288eafddba7a97f40b61fd0ece51a4f4",
+      "text_snippet_escaped": "'/10000000000000000000000000000000000000000000000000000000000'",
+      "unique_output_characters": 3
+    }
+  ],
+  "qualification": "C1 selected outlier andtwo highaccept controls only; no tail/wholeworkload/quality qualification. NativeAPI no output token IDs; text agreement only. Headflag changes both vocabulary subset and head quantization, so vocabulary-exclusion cause stillneeds evidence.",
+  "superseding_artifact_correction": {
+    "at": "2026-10-16T16:39:20.244206+00:00",
+    "review": "control/decode-profile-and-head-artifact-independent-review.json",
+    "actual_full_head_format": "W8G32_F16S",
+    "actual_shortlist_head_format": "Q4G64_F16S",
+    "note": "Earlier generic Python inventory Q6 interpretation superseded by actual v2 directory and CUDA kernel evidence; raw paired timing/text evidence unchanged."
+  }
+}

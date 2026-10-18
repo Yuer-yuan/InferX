@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "binary_sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "recipe_sha256": "793398fea35858404ec882c5b1cf723343f4fe26a0a1a0fec35c8ec77de091fb",
+  "client_concurrency": 14,
+  "native_concurrency": 13,
+  "kv": 121856,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "ttft_p95_ms": 9896.417354649999,
+  "tpot_p95_ms": 38.28584995440313,
+  "output_tokens": 65536,
+  "phase_seconds": 214.944959168,
+  "output_token_throughput": 304.89665937584215,
+  "derived_meets_slo": true,
+  "parser_has_meets_slo": false,
+  "entrypoint_meets_slo": null,
+  "original_payload_verified": true,
+  "service_reaped": true,
+  "performance_json": "{\n  \"concurrency\": 14,\n  \"records\": 128,\n  \"error_requests\": 0,\n  \"metrics\": {\n    \"time_to_first_token\": {\"p95\": 9896.41735465},\n    \"inter_token_latency\": {\"p95\": 38.28584995440313}\n  },\n  \"output_token_throughput\": 304.89665937584215\n}",
+  "sources": {
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/summary.json": {
+      "sha256": "08b84fcd0afdea44d3e76d331b42aafe405db53df868413e425c76548a0392f0",
+      "bytes": 1093
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/evaluation-identity.json": {
+      "sha256": "2706b127b375eac7157137855c66ad4c48495f2c7e965ed078bc272062e22924",
+      "bytes": 347
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/launch.json": {
+      "sha256": "44afb2e2c73466abe0d93ef2ff46f52536ba04898c0c5ee2b77ca9178538c918",
+      "bytes": 8815
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "afd35bece843dcf9c04158cc1427896016096d64b045938ff45b727ce54cdca5",
+      "bytes": 22035
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/phase_manifest.json": {
+      "sha256": "a6397cd1d0103adfe5ee823d63eb1adf58a05d0961fb2b15fbc41bc331cce3bd",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/profile_export.jsonl": {
+      "sha256": "44769bda6bc968d2037baa113f164273d2889dd09ea5c61d2c737493575c0fa9",
+      "bytes": 616682
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/service-perf-c14-001/requests.jsonl": {
+      "sha256": "5ef34e7f57a75eeb19902caa4447b4807ac1fa809c1814070acbf4aa51f5f97a",
+      "bytes": 280984
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-C14-001/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-delivery/performance-terminal-snapshot.json": {
+      "sha256": "6c3682da0e9a49dc74828b0fae8537204b55d4abba7d44060cfb0c81970ca81e",
+      "bytes": 14649
+    },
+    "results/three-node-optimization/ucloud3/selected100-single-node-reproduction-20261018/performance-summary.json": {
+      "sha256": "2eec651e2f1c940d36c88252a14f631ed2380c2f11603badfecf0d234d6a7ac6",
+      "bytes": 2862
+    }
+  },
+  "scope": "One independent clean-source rebuild run with existing read-only model/caches and environments. Not quantization regeneration or a fresh operating-system installation."
+}

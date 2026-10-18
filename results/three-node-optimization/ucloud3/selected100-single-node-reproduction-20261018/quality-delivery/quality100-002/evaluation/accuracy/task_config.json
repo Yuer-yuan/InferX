@@ -1,0 +1,16 @@
+{
+  "model": "qwen38-27b",
+  "api_url": "http://127.0.0.1:18541/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "eval_type": "openai_api",
+  "datasets": [
+    "ifbench"
+  ],
+  "limit": 100,
+  "eval_batch_size": 13,
+  "generation_config": {
+    "max_tokens": 32768
+  },
+  "work_dir": "/workspace/InferX/reproductions/selected100-single-node-20261018/quality100-002/evaluation/accuracy/native",
+  "no_timestamp": true
+}

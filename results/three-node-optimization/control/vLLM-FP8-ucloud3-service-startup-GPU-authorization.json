@@ -1,0 +1,42 @@
+{
+  "authorized_at": "2026-10-17T02:03:45.724426+00:00",
+  "GPU_service_startup_authorized": true,
+  "quality_clients_authorized": false,
+  "node": "ucloud3",
+  "scope": "One originalvLLM0.31.0 FP8 qualityservice startup while CPUthree-arm package freezes; no test inference yet. Built-in model initialization/Graph warmup permitted.",
+  "service_argv": [
+    "/workspace/InferX/envs/vllm-0.31.0/bin/vllm",
+    "serve",
+    "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8088",
+    "--tensor-parallel-size",
+    "1",
+    "--dtype",
+    "auto",
+    "--gpu-memory-utilization",
+    "0.90",
+    "--max-model-len",
+    "65536",
+    "--max-num-seqs",
+    "4",
+    "--kv-cache-dtype",
+    "fp8",
+    "--reasoning-parser",
+    "qwen3",
+    "--served-model-name",
+    "qwen3.8-27b-fp8"
+  ],
+  "gates": [
+    "Worker verifies actualsoleGPUidle and alloldownedterminal immediatelybeforelaunch; bindserviceowner PID/start UID/exe andGPUUUID.",
+    "Match fullFP8model canonical66weights SHA manifest and metadata; originalvLLM0.31.0 environment identity. No offload/model/quant/KV/sampler/MTP changes.",
+    "Sameoriginalqualityargv: context65536 vsperform32768; nativecap4, gpuutil.90, kvfp8, qwen3parser, oneGPU, MTPoff. Envpath/cache/compiler-runtime adaptation isolatedandrecorded.",
+    "Fresh unused8088 port and newrundir; originaled91/baselines/oldsource/modelimmutable. No fusioncompile/profile/GPUprobe alongside.",
+    "Use v1models/version or log readiness only. No health_generate/testinference; allstartupGPUoperations belongtoowninitialization.",
+    "Preserve firstfailure if startupfails; inspectactualowner/start beforecleanup, do notsilentlychangebackend/KV/context/precision.",
+    "Three qualityclients remainunauthorized untilRoot reviews frozenCPUpackage. Cankeepreadyservicealive whileCPUreviewpending."
+  ],
+  "why": "User requests actualvLLMFP8 baseline andthinking512accuracy. Idleucloud3 hasexistingofficialenvironment/model; overlapnecessarymodelstartupwithCPUpreparation withoutinterferingnode1/2quality."
+}

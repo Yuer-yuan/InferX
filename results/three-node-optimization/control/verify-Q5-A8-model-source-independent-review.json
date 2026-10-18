@@ -1,0 +1,61 @@
+{
+  "reviewed_at": "2026-10-16T21:43:19.615546+00:00",
+  "source_sha256": "9695ce1f5162bafba9d8538217c7693653e02a0e3e814e8e923d896696dfe21a",
+  "parent_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "files": 993,
+  "unchanged_parent_files": 991,
+  "changed_files": {
+    "src/targets/qwen3_6_27b/impl/variant.cpp": {
+      "old_SHA256": "914dfc0b41d8ee295d1e9502b3d987ce405f3ef129d6ac694c45033d72127d78",
+      "new_SHA256": "be7e7e25b1398427908c1909d99c321530ae4f4d23a13cae8fe78feb797b38a6"
+    },
+    "src/targets/qwen3_6_27b/impl/verify_q5_a8.h": {
+      "old_SHA256": null,
+      "new_SHA256": "eb98fbc313398ffb606aa9948d18237d75d76d9fa1d5fbd4c8d1f62ed4717d5c"
+    }
+  },
+  "patch_sha256": "197719cd30e3ecb8f74793c99b54b37957a14d4283566ac1914b0d0e241ca057",
+  "root_zero_fuzz_apply": "patching file src/targets/qwen3_6_27b/impl/variant.cpp\npatching file src/targets/qwen3_6_27b/impl/verify_q5_a8.h\n",
+  "all993_local_hashes_match": true,
+  "private_gate_defaultOFF_startup_frozen": true,
+  "runtime_phase_callchain": "target_verify_batch_impl computes columns=width*batch then run_layers Phase::Verify; attention/GDN/FFN forward ph and actual columns to changed Variant. Ordinary rows<=8 never reach17. MTP privatebody unchanged.",
+  "current_K3_batch_routes": {
+    "1": {
+      "T": 4,
+      "new_A8_route": false
+    },
+    "2": {
+      "T": 8,
+      "new_A8_route": false
+    },
+    "3": {
+      "T": 12,
+      "new_A8_route": false
+    },
+    "4": {
+      "T": 16,
+      "new_A8_route": false
+    },
+    "5": {
+      "T": 20,
+      "new_A8_route": true
+    },
+    "6": {
+      "T": 24,
+      "new_A8_route": true
+    },
+    "7": {
+      "T": 28,
+      "new_A8_route": true
+    },
+    "8": {
+      "T": 32,
+      "new_A8_route": true
+    }
+  },
+  "workspace_source_review": "Three private leaves retain old A16 capacities, maximize A8 scratch on interval intersection17..32; FFN owns BF16 activation before temporary scoped scratch. Prefill and MTP branches/kernels/publicA16 interface remain unchanged. Real model graph/route checks still required.",
+  "quality_scope": "C7 first24 naturalEOS can exercise B5..7/T20..28 only; B8/T32 task precision remains a separate later C8 gate. Load graphB8 is numerical/route evidence, not taskquality.",
+  "decision": "Actual CPU source/route/capacity proof PASS. Authorize exact993-source portablefullmodelbuild, keep future modelGraph/route/health harness review before GPU model requests.",
+  "CPU_review_pending": false,
+  "CPU_review": "results/three-node-optimization/control/verify-Q5-A8-model-CPU-independent-review.json"
+}

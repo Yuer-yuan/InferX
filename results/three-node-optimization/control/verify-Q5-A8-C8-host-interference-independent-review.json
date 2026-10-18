@@ -1,0 +1,54 @@
+{
+  "reviewed_at": "2026-10-17T00:19:03.543776+00:00",
+  "audit_passed": true,
+  "reconstructed_requests": 28,
+  "measured": 24,
+  "all_request_progress511": true,
+  "all_863_round_memberships_reconstructed": 863,
+  "weighted_P95": {
+    "ttft": {
+      "contributors": [
+        {
+          "session": "session_000018",
+          "weight": 0.15000000000000213
+        },
+        {
+          "session": "session_000008",
+          "weight": 0.8499999999999979
+        }
+      ],
+      "ttft": 11119.30902605,
+      "tpot": 19.944791165753422,
+      "queue_ms": 9516.894100284575,
+      "queue_prefill_ms": 9512.057699981331,
+      "own_prefill_ms": 1598.7602274239064,
+      "prefill_interference_ms_per_token": 3.129675260413649,
+      "participating_decode_ms_per_token": 16.811228851463692
+    },
+    "tpot": {
+      "contributors": [
+        {
+          "session": "session_000019",
+          "weight": 0.15000000000000213
+        },
+        {
+          "session": "session_000017",
+          "weight": 0.8499999999999979
+        }
+      ],
+      "ttft": 9528.517442449996,
+      "tpot": 39.10734989520547,
+      "queue_ms": 7732.5297724485345,
+      "queue_prefill_ms": 6825.43331742881,
+      "own_prefill_ms": 1607.9152459293605,
+      "prefill_interference_ms_per_token": 19.35457286108614,
+      "participating_decode_ms_per_token": 19.74007503038049
+    }
+  },
+  "conclusion": "In this diagnostic, TTFT tail queue is dominated by competing prefill; TPOT tail has similar prefill-interference and shared-decode contributions.",
+  "limits": [
+    "Timing/duration source associations, not HTTP header IDs",
+    "Host full request lifetimes; instrumented diagnostic is separate from unprofiled SLO",
+    "Shared decode membership time is not exclusive GPU work; no hardware roofline claim"
+  ]
+}

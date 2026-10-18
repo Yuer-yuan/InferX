@@ -1,0 +1,203 @@
+{
+  "reviewed_at": "2026-10-16T23:06:08.617799+00:00",
+  "scope": "Root independent full300 local raw/native/payload/original-score-cache audit and independent CPU bootstrap; no inference, no repeated original verifier calls.",
+  "samples_per_arm": 300,
+  "instructions": 344,
+  "all900_raw_identity_prediction_hash_and_original_score_cache_checks": true,
+  "FP8_all300_actual_payload_native_input_output_ID_count_cache0_fullbudget_checks": true,
+  "rendered_plan_sampling_augmentation": "Actual request equals preserved rendered plan plus explicit sampling_seed=42; all other payload fields exact.",
+  "absolute_and_all8_paired_CIs_independently_reproduced": true,
+  "finishes": {
+    "fp8": {
+      "stop": 299,
+      "length": 1
+    },
+    "none": {
+      "stop": 295,
+      "length": 5
+    },
+    "all": {
+      "stop": 297,
+      "length": 3
+    }
+  },
+  "length_keys": {
+    "fp8": [
+      "216"
+    ],
+    "none": [
+      "106",
+      "108",
+      "111",
+      "136",
+      "201"
+    ],
+    "all": [
+      "108",
+      "111",
+      "119"
+    ]
+  },
+  "statistics": {
+    "absolute": {
+      "fp8": {
+        "prompt_level_strict": {
+          "score": 0.38666666666666666,
+          "ci": [
+            0.3333333333333333,
+            0.44
+          ]
+        },
+        "inst_level_strict": {
+          "score": 0.42151162790697677,
+          "ci": [
+            0.37037037037037035,
+            0.47368421052631576
+          ]
+        },
+        "prompt_level_loose": {
+          "score": 0.41,
+          "ci": [
+            0.3566666666666667,
+            0.4666666666666667
+          ]
+        },
+        "inst_level_loose": {
+          "score": 0.4476744186046512,
+          "ci": [
+            0.39705882352941174,
+            0.5
+          ]
+        }
+      },
+      "none": {
+        "prompt_level_strict": {
+          "score": 0.38666666666666666,
+          "ci": [
+            0.3333333333333333,
+            0.44333333333333336
+          ]
+        },
+        "inst_level_strict": {
+          "score": 0.41569767441860467,
+          "ci": [
+            0.36362975687103594,
+            0.4707644838841289
+          ]
+        },
+        "prompt_level_loose": {
+          "score": 0.42,
+          "ci": [
+            0.36666666666666664,
+            0.4766666666666667
+          ]
+        },
+        "inst_level_loose": {
+          "score": 0.45058139534883723,
+          "ci": [
+            0.39882697947214074,
+            0.5056818181818182
+          ]
+        }
+      },
+      "all": {
+        "prompt_level_strict": {
+          "score": 0.38,
+          "ci": [
+            0.32666666666666666,
+            0.43666666666666665
+          ]
+        },
+        "inst_level_strict": {
+          "score": 0.41569767441860467,
+          "ci": [
+            0.3631123919308357,
+            0.47075208913649025
+          ]
+        },
+        "prompt_level_loose": {
+          "score": 0.41,
+          "ci": [
+            0.3566666666666667,
+            0.4666666666666667
+          ]
+        },
+        "inst_level_loose": {
+          "score": 0.44476744186046513,
+          "ci": [
+            0.392439073540509,
+            0.5
+          ]
+        }
+      }
+    },
+    "paired": {
+      "none": {
+        "prompt_level_strict": {
+          "delta": 0.0,
+          "ci": [
+            -0.043333333333333335,
+            0.043333333333333335
+          ]
+        },
+        "inst_level_strict": {
+          "delta": 0.005813953488372093,
+          "ci": [
+            -0.03529411764705882,
+            0.045584262073623774
+          ]
+        },
+        "prompt_level_loose": {
+          "delta": -0.01,
+          "ci": [
+            -0.05333333333333334,
+            0.03333333333333333
+          ]
+        },
+        "inst_level_loose": {
+          "delta": -0.0029069767441860465,
+          "ci": [
+            -0.042735042735042736,
+            0.035398230088495575
+          ]
+        }
+      },
+      "all": {
+        "prompt_level_strict": {
+          "delta": 0.006666666666666667,
+          "ci": [
+            -0.03333333333333333,
+            0.043333333333333335
+          ]
+        },
+        "inst_level_strict": {
+          "delta": 0.005813953488372093,
+          "ci": [
+            -0.03188637512639029,
+            0.04142011834319527
+          ]
+        },
+        "prompt_level_loose": {
+          "delta": 0.0,
+          "ci": [
+            -0.04,
+            0.03666666666666667
+          ]
+        },
+        "inst_level_loose": {
+          "delta": 0.0029069767441860465,
+          "ci": [
+            -0.03498542274052478,
+            0.03892403215852415
+          ]
+        }
+      }
+    }
+  },
+  "limits": [
+    "Original FP8 verifiers not rerun by root; exact per-sample cache/source and original none/all root caches checked.",
+    "FP8 is practical reference, not lossless BF16; frameworks/MTP/weights differ.",
+    "Actual NInfer input IDs absent and old NInfer300 A8 coverage zero.",
+    "All paired intervals contain zero; not equivalence, noninferiority, or quantization-only causality."
+  ]
+}

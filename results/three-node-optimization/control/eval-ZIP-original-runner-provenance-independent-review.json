@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-17T02:10:53.274300+00:00",
+  "eval_zip_SHA256": "ecc1296a5773c12b1acf5ad137b7bc9ea88f55e7ec82a34e93c7fd00ffad36ad",
+  "zip_files": [
+    "README.md",
+    "runner.py",
+    "run.sh"
+  ],
+  "entrypoint_copies": [
+    {
+      "zip_member": "README.md",
+      "bytes": 8398,
+      "zip_member_SHA256": "ae2c53159661349a77a80062f3a19617f22df253fb05c1bdd343d988e6aec935",
+      "local_path": "submission/organizer/README.md",
+      "byte_equal_to_local": true
+    },
+    {
+      "zip_member": "runner.py",
+      "bytes": 43310,
+      "zip_member_SHA256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+      "local_path": "submission/organizer/runner.py",
+      "byte_equal_to_local": true
+    },
+    {
+      "zip_member": "run.sh",
+      "bytes": 3883,
+      "zip_member_SHA256": "078a2677038dbf3590b0e148546962aa27b00ef8dd11a14bbc272a96d8bc00fb",
+      "local_path": "submission/organizer/run.sh",
+      "byte_equal_to_local": true
+    }
+  ],
+  "stage_functions": {
+    "accuracy_worker": "def accuracy_worker(config_path: Path) -> None:\n    from evalscope import run_task\n    from evalscope.config import TaskConfig\n    spec = json.loads(config_path.read_text(encoding=\"utf-8\"))\n    key = os.environ.get(spec.pop(\"api_key_env\"), \"EMPTY\")\n    config = TaskConfig(**spec, api_key=key)\n    resolved = config.model_dump(mode=\"json\")\n    write_json(config_path.with_name(\"resolved_config.json\"), resolved, key)\n    run_task(task_cfg=config)",
+    "aiperf_command": "def aiperf_command(args: argparse.Namespace, concurrency: int, dataset: Path, dest: Path, salt: str, key: str) -> list[str]:\n    api = urllib.parse.urlsplit(args.base_url)\n    origin = urllib.parse.urlunsplit((api.scheme, api.netloc, \"\", \"\", \"\"))\n    command = [str(tool_python(args.env_dir, \"perf\").with_name(\"aiperf\")), \"profile\", \"--model\", args.model,\n               \"--url\", origin, \"--endpoint\", api.path + \"/completions\", \"--endpoint-type\", \"completions\", \"--streaming\",\n               \"--tokenizer\", args.tokenizer, \"--use-server-token-count\", \"--use-legacy-max-tokens\",\n               \"--input-file\", str(dataset), \"--custom-dataset-type\", \"single-turn\",\n               \"--dataset-sampling-strategy\", \"sequential\", \"--random-seed\", str(args.seed),\n               \"--extra-inputs\", json.dumps({\"ignore_eos\": True, \"temperature\": 0, \"cache_salt\": salt}),\n               \"--concurrency\", str(concurrency), \"--request-count\", str(args.perf_requests),\n               \"--warmup-request-count\", str(WARMUP), \"--workers-max\", \"2\",\n               \"--request-timeout-seconds\", str(args.request_timeout), \"--export-level\", \"records\",\n               \"--artifact-dir\", str(dest), \"--ui\", \"none\", \"--no-gpu-telemetry\", \"--api-key\", key]\n    if args.tokenizer_revision:\n        command.extend([\"--tokenizer-revision\", args.tokenizer_revision])\n    return command",
+    "accuracy_config": "def accuracy_config(args: argparse.Namespace, dest: Path) -> dict:\n    return {\"model\": args.model, \"api_url\": args.base_url, \"api_key_env\": args.api_key_env,\n            \"eval_type\": \"openai_api\", \"datasets\": [\"ifbench\"], \"limit\": LIMIT,\n            \"eval_batch_size\": args.eval_batch_size,\n            \"generation_config\": {\"max_tokens\": MAX_TOKENS},\n            \"work_dir\": str(dest / \"native\"), \"no_timestamp\": True}"
+  },
+  "interpretation": "ProvidedZIP alreadyincludes bothperf(AIPerf/rawcompletions)andaccuracy(EvalScope/chat)stages inone runner; copiedrunner isbyteidentical. Oursupervisors/collectors/auditors andMDmatrixwrapper areadditional. MDwrapper variesdocumentedrequestcounts/warmup/timeout/seeds/cache_salt relativeZIP, doesnotreplaceAIPerf/originalmetricparser. Exploratorypilots/customqualitytoggles remainseparatelabeled."
+}

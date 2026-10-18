@@ -1,0 +1,9 @@
+{
+  "amended_at": "2026-10-16T23:28:59.712044+00:00",
+  "previous_preregistration": "FP8-fast-accum-fixed-algorithm-preregistration.json",
+  "observation": "Original FAST0 opaque algorithms rejected by AlgoCheck underFAST1 descriptor (status7 bothshapes), beforeanyFAST1GEMM/timing. Preservecompatibilityfailure; not evidenceFAST1unsupported orslow.",
+  "change": "One heuristic query per FAST1 descriptor/Tshape,requestedcount1,workspace64MiB,oneAlgoCheck; freezechosenresult. No alternativecandidate/tile/workspace/search.",
+  "reason": "Algorithm selection depends on operation descriptor; FAST_ACCUM changes execution policy. Allow correct one-time descriptor-specific selection after fixedoldalgo checkfailure, beforeperformance data.",
+  "numeric_guard": "Requirebothsupported,passed_cases==10 andunsupported_shapes==[] beforetiming; never treat zero supportedcases/all_supported_cases_pass vacuously asnumericpass. Preserveallbounds/input/scalars/math.",
+  "unchanged": "Allsource/memory/shape/seed/20warmup/100samples/10blocks,FP64 representedoracles and originalthresholds. No model/taskintegration."
+}

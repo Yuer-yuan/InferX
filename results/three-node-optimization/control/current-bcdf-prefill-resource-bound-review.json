@@ -1,0 +1,76 @@
+{
+  "reviewed_at": "2026-10-16T20:33:53.473441+00:00",
+  "source": "Actual NSys kernel launch records and same-trace GPU metadata",
+  "gpu": {
+    "smCount": 128,
+    "maxRegistersPerSm": 65536,
+    "maxShmemPerSm": 102400,
+    "maxWarpsPerSm": 48,
+    "threadsPerWarp": 32,
+    "maxBlocksPerSm": 24
+  },
+  "kernels": [
+    {
+      "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)1, ninfer::ops::detail::rowsplit_tall::SwiGluQ4Problem>(const signed char *, const float *, T3, int, int, int, int)",
+      "regs": 255,
+      "static_smem": 0,
+      "dynamic_smem": 71680,
+      "local_perthread": 0,
+      "local_total": 113246208,
+      "threads": 256,
+      "grid": 128,
+      "count": 2495,
+      "sum_ms": 5531.050191,
+      "register_only_CTA_upper_bound": 1,
+      "dynamic_smem_CTA_upper_bound": 1
+    },
+    {
+      "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::V1ResidualProblem>(const signed char *, const float *, T3, int, int, int, int)",
+      "regs": 255,
+      "static_smem": 0,
+      "dynamic_smem": 71680,
+      "local_perthread": 0,
+      "local_total": 117440512,
+      "threads": 256,
+      "grid": 640,
+      "count": 4990,
+      "sum_ms": 4004.208325,
+      "register_only_CTA_upper_bound": 1,
+      "dynamic_smem_CTA_upper_bound": 1
+    },
+    {
+      "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::rowsplit_tall::GroupedProblem>(const signed char *, const float *, T3, int, int, int, int)",
+      "regs": 255,
+      "static_smem": 0,
+      "dynamic_smem": 71680,
+      "local_perthread": 0,
+      "local_total": 113246208,
+      "threads": 256,
+      "grid": 2048,
+      "count": 1872,
+      "sum_ms": 2153.220633,
+      "register_only_CTA_upper_bound": 1,
+      "dynamic_smem_CTA_upper_bound": 1
+    },
+    {
+      "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::rowsplit_tall::GroupedProblem>(const signed char *, const float *, T3, int, int, int, int)",
+      "regs": 255,
+      "static_smem": 0,
+      "dynamic_smem": 71680,
+      "local_perthread": 0,
+      "local_total": 113246208,
+      "threads": 256,
+      "grid": 1792,
+      "count": 624,
+      "sum_ms": 618.011983,
+      "register_only_CTA_upper_bound": 1,
+      "dynamic_smem_CTA_upper_bound": 1
+    }
+  ],
+  "qualifications": [
+    "Resource ceilings, not measured occupancy, spills, stall fractions, memory traffic or speedup.",
+    "localMemoryPerThread/Total are reported allocation metadata; actual load/store traffic requires further evidence.",
+    "255regs*256threads bounds resident CTAs to at most1 on65536 registers, before allocation granularity.",
+    "No change to source or workload; current native formal results unchanged."
+  ]
+}

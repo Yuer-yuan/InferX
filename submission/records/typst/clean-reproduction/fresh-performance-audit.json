@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "binary_sha256": "e919f18084f3cc09718158cfae071cdf8c58d5660715648db375643016c878f5",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "recipe_sha256": "4b7d1b7542291948bbec1af23fe99973189d48d6e171bcabc4a40e0b6c123a59",
+  "client_concurrency": 14,
+  "native_concurrency": 13,
+  "kv": 121856,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "ttft_p95_ms": 9862.210240599998,
+  "tpot_p95_ms": 39.42860192426614,
+  "output_tokens": 65536,
+  "phase_seconds": 214.497380861,
+  "observation_duration_seconds": 214.497380861,
+  "observation_start_ns": 1792287151986648137,
+  "observation_end_ns": 1792287366484028998,
+  "observation_duration_source": "c14/phase_manifest.json profiling.end_ns minus profiling.start_ns, integer ns before conversion",
+  "benchmark_duration_seconds": 214.49216998400001,
+  "throughput_denominator": "observation_duration_seconds; exported benchmark_duration is a distinct metric",
+  "output_token_throughput": 305.53286821935166,
+  "derived_meets_slo": true,
+  "parser_has_meets_slo": false,
+  "entrypoint_meets_slo": null,
+  "original_payload_verified": true,
+  "service_reaped": true,
+  "performance_json": "{\n  \"concurrency\": 14,\n  \"records\": 128,\n  \"error_requests\": 0,\n  \"metrics\": {\n    \"time_to_first_token\": {\"p95\": 9862.210240600001},\n    \"inter_token_latency\": {\"p95\": 39.42860192426614}\n  },\n  \"output_token_throughput\": 305.53286821935166\n}",
+  "sources": {
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/summary.json": {
+      "sha256": "49ec55dc25936586d97113942509a40194954cef5759c7a5f91a80da48b25eec",
+      "bytes": 1126
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/evaluation-identity.json": {
+      "sha256": "abb8861808f3a7d6335a920736e4bf5dd1017e4bf276ba6d25f7f48a41468375",
+      "bytes": 329
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/service-perf-c14/launch.json": {
+      "sha256": "d6e37553b059836208f4ef34d05220d1dcfcd13fbd6d4991ed727201334ddaa8",
+      "bytes": 9099
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/phases/profiling/profile_export_aiperf.json": {
+      "sha256": "31da459652f8d0978c5d4f33c8a3796f814285ad12fe6853c7b88f98089a0d15",
+      "bytes": 22206
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/phase_manifest.json": {
+      "sha256": "2b6a4217a35a4ec39a10e7acecc2867c7b533dc7665d3f25cdcff25e3aa51e69",
+      "bytes": 1174
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/profile_export.jsonl": {
+      "sha256": "fe8cf98caae9f92fc9f04341a800286d699e5e6b6069b19793e283f4efe7ed46",
+      "bytes": 612893
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/service-perf-c14/requests.jsonl": {
+      "sha256": "e892dcdf7f587493b8afdb882247ee3b4ef571ce6857e076631eaf7afb20316e",
+      "bytes": 281494
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/deployment116/performance-C14/c14/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "results/three-node-optimization/ucloud2/full-quantization-reproduction-116/fresh-C14-raw-001/final-evaluation-job.json": {
+      "sha256": "17aee82acce7011de3308d43fd904109a307d1176e9c5e73c32161ea804be614",
+      "bytes": 28913
+    }
+  },
+  "scope": "Independent e919 normal-source rebuild using newly fitted478 caches. Actual original137 payloads,128 measurements, phase throughput and normal service reap verified from frozen raw records. Installed dependencies and public base remain reused. No quality result inferred."
+}

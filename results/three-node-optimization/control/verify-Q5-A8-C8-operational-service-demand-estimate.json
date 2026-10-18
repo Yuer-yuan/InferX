@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-16T23:41:28.530400+00:00",
+  "scope": "Operational GPU service-demand estimate for unchanged currentbatch/yield/workmix, not a theoretical hardware roofline or universalcapacitybound.",
+  "independent_physical_and_prefill_tokens": {
+    "clock": {
+      "utcEpochNs": 1792192231181741028,
+      "utcTime": "2026-10-16T23:10:31",
+      "localTime": "2026-10-16T23:10:31",
+      "systemClockNs": 413304450234823
+    },
+    "prefill_chunks": 48,
+    "actual_host_processed_prompt_tokens": 98304,
+    "equivalent8192_prefills": 12.0,
+    "unique_prefill_executor_requests": 12,
+    "kernel_union_ms": 29643.202226,
+    "kernel_first_ns": 16999186,
+    "kernel_last_ns": 30164783360
+  },
+  "source_complete_round_accounting": {
+    "complete_rounds": 219,
+    "committed_tokens": 4174,
+    "kernel_elapsed_sum_ms": 10561.851614,
+    "strength": "Worker source-derived completegraph/round accounting; root independent full roundrecovery audit still pending."
+  },
+  "estimate": {
+    "prefill_GPU_s_per8192_request": 1.5879201339999904,
+    "decode_GPU_s_per511_committed_tokens": 1.2930297495816963,
+    "GPU_s_per_request": 2.8809498835816867,
+    "output_tok_s_if_same_demands": 177.71916232137494,
+    "prefill_fraction_of_estimated_demand": 0.5511793672807104,
+    "captured_busy_fraction_using_sessionwindow": 0.9827090053519919
+  },
+  "observed_unprofiled_C8_pilot_output_tok_s": 175.76643699980156,
+  "limits": [
+    "Capture is nonstationary and contains more equivalentprefills than completeddecode requests. Rawcapturephasefraction is not stationary per-request demand.",
+    "Complete-round sharedGPU work normalizedbyactualcommittedtokens is distinctfromper-request participating wall time; no sumsacrosssharedrequesttimes.",
+    "Changingbatch/K/acceptance/precision/arrivals changes demands; estimate doesnot forecast a newcandidate or its SLOtails.",
+    "Kernel unionsums supply neither DRAMtraffic norSM/tensor saturation. Counterpermissions remain unavailable."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "AIPerf_timeout_600_vs_600_float_equivalent": {
+    "actual": "600",
+    "rendered": "600.0"
+  },
+  "C14_actual_AIPerf_argv_equivalent_after_path_port_and_timeout_number_normalization": true,
+  "C14_actual_service_argv_equivalent_after_explicit_path_port_relocation": true,
+  "authorized_C4_capacity_fix_files": {
+    "demo/SELECTED.md": {
+      "after": "c35074b4627660e6c1467046803f5e4a2bfed0b23f442516b0a5a292747d6447",
+      "before": "88ea9ec4a5dc27103af7dff31a8ce8d956ecf60c9a63c674c95afdf66073de87"
+    },
+    "demo/selected_common.py": {
+      "after": "4b27e029eafaaa829c81f8f639301d17c942d496b932f9f30a4c93db59d1039b",
+      "before": "51417735acd771d168374aa33537f3e69ca6d7661054b1a6985566f17c17c810"
+    },
+    "demo/tests/test_selected.py": {
+      "after": "d0a3b1e48852c5dad2c457216eb146c35f8b7d1a3ccb7bd2a5919911e1ff962f",
+      "before": "51c8e9c74fb0bf66c689d1cc085e3da92bfe0058021472eb3f6110fc2573c962"
+    }
+  },
+  "both_historical_C14_inputs_match_frozen137_contract": {
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100-r2/delivery/raw/candidate/c14/inputs.json": {
+      "canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+      "file_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0"
+    },
+    "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/raw/candidate/c14/inputs.json": {
+      "canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+      "file_sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0"
+    }
+  },
+  "dry_run_count": 24,
+  "final_selected_index_unchanged": true,
+  "frozen_runner_dataset_meta_verified": true,
+  "profiles": {
+    "perf-c12": {
+      "client_concurrency": 12,
+      "kv_capacity": 104448,
+      "mode": "perf",
+      "name": "perf-c12",
+      "native_concurrency": 12
+    },
+    "perf-c13": {
+      "client_concurrency": 13,
+      "kv_capacity": 113152,
+      "mode": "perf",
+      "name": "perf-c13",
+      "native_concurrency": 13
+    },
+    "perf-c14": {
+      "client_concurrency": 14,
+      "kv_capacity": 121856,
+      "mode": "perf",
+      "name": "perf-c14",
+      "native_concurrency": 13
+    },
+    "perf-c4": {
+      "client_concurrency": 4,
+      "kv_capacity": 65536,
+      "mode": "perf",
+      "name": "perf-c4",
+      "native_concurrency": 4
+    },
+    "perf-c8": {
+      "client_concurrency": 8,
+      "kv_capacity": 69632,
+      "mode": "perf",
+      "name": "perf-c8",
+      "native_concurrency": 8
+    },
+    "quality100": {
+      "client_concurrency": 13,
+      "kv_capacity": 532480,
+      "mode": "accuracy",
+      "name": "quality100",
+      "native_concurrency": 13
+    }
+  },
+  "protected_demo_files_unchanged": 124,
+  "relocated_unittest_exit_code": 0,
+  "relocation_no_output_directories_created": true,
+  "scope": "CPU tests and dry runs only; no exec/HTTP/GPU/build/accuracy evaluation",
+  "selection_status": "pending_not_promoted"
+}

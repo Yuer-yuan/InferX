@@ -1,0 +1,167 @@
+{
+  "status": "failed",
+  "stage": "old-vs-new-environment-comparison",
+  "owner": {
+    "pid": 652062,
+    "start_ticks": "50689550",
+    "uid": 0,
+    "executable": "/usr/bin/python3.10",
+    "state": "R"
+  },
+  "started_ns": 1792285822279268589,
+  "handles": [
+    {
+      "pid": 652066,
+      "start_ticks": "50689566",
+      "uid": 0,
+      "executable": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python3.12",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/cpu-linkage-run/prepare_assets.py"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/actual-v1-prepare-assets.log",
+      "role": "actual-v1-prepare-assets",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 652165,
+      "start_ticks": "50692169",
+      "uid": 0,
+      "executable": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python3.12",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/eval-envs/evalscope-1.13.0/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/ifbench-fixed-dataset-cache-r1/check_offline_cache.py",
+        "--cache-root",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/cpu-linkage-run/cache/modelscope",
+        "--receipt",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/ifbench-original-EvalScope-loader-check.json",
+        "--evalscope"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/original-EvalScope-fixed-data-load.log",
+      "role": "original-EvalScope-fixed-data-load",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 652179,
+      "start_ticks": "50692370",
+      "uid": 0,
+      "executable": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python3.12",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/eval-envs/evalscope-1.13.0/bin/python",
+        "-c",
+        "from pathlib import Path; import json,hashlib; from evalscope.benchmarks.ifbench import evaluation_lib; actual={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(evaluation_lib.__file__).parent.glob(\"*.py\")}; expected=json.loads(Path(\"/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/expected-verifier-files.json\").read_text()); assert actual==expected; print(json.dumps(actual,indent=2))"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/new-verifier-source-identity.log",
+      "role": "new-verifier-source-identity",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 652193,
+      "start_ticks": "50692770",
+      "uid": 0,
+      "executable": "/usr/bin/bash",
+      "state": "R",
+      "command": [
+        "ldd",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/artifacts/100-k3-rebuilt-20261018/ninfer-serve"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/new-libraries-resolve-measured-binary.log",
+      "role": "new-libraries-resolve-measured-binary",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 652210,
+      "start_ticks": "50692971",
+      "uid": 0,
+      "executable": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python3.12",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/compare_environments.py"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/old-vs-new-environment-comparison.log",
+      "role": "old-vs-new-environment-comparison",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    }
+  ],
+  "steps": [
+    {
+      "name": "actual-v1-prepare-assets",
+      "argv": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/cpu-linkage-run/prepare_assets.py"
+      ],
+      "exit_code": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "original-EvalScope-fixed-data-load",
+      "argv": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/eval-envs/evalscope-1.13.0/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/ifbench-fixed-dataset-cache-r1/check_offline_cache.py",
+        "--cache-root",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/cpu-linkage-run/cache/modelscope",
+        "--receipt",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/ifbench-original-EvalScope-loader-check.json",
+        "--evalscope"
+      ],
+      "exit_code": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "new-verifier-source-identity",
+      "argv": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/eval-envs/evalscope-1.13.0/bin/python",
+        "-c",
+        "from pathlib import Path; import json,hashlib; from evalscope.benchmarks.ifbench import evaluation_lib; actual={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(evaluation_lib.__file__).parent.glob(\"*.py\")}; expected=json.loads(Path(\"/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/expected-verifier-files.json\").read_text()); assert actual==expected; print(json.dumps(actual,indent=2))"
+      ],
+      "exit_code": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "new-libraries-resolve-measured-binary",
+      "argv": [
+        "ldd",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/artifacts/100-k3-rebuilt-20261018/ninfer-serve"
+      ],
+      "exit_code": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "old-vs-new-environment-comparison",
+      "argv": [
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/envs/build/bin/python",
+        "/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/compare_environments.py"
+      ],
+      "exit_code": 1,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 1
+      }
+    }
+  ],
+  "heartbeat_ns": 1792285856447445944,
+  "error": "AssertionError('old-vs-new-environment-comparison')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/post_install_owner.py\", line 22, in <module>\n    run('old-vs-new-environment-comparison',[R/'envs/build/bin/python',R/'compare_environments.py'])\n  File \"/workspace/InferX/reproductions/selected100-environment-install-20261018-r1/post_install_owner.py\", line 12, in run\n    rc=active.child.returncode;cleanup=active.stop();active=None;j['steps'].append(dict(name=name,argv=[str(x)for x in argv],exit_code=rc,cleanup=cleanup));write_json(J,j);assert rc==0,name\nAssertionError: old-vs-new-environment-comparison\n",
+  "finished_ns": 1792285858450633578
+}

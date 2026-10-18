@@ -1,0 +1,171 @@
+{
+  "reviewed_at": "2026-10-16T22:12:53.446106+00:00",
+  "source_evidence": {
+    "src/targets/qwen3_6/impl/runtime/request_plan_impl.h": "72233932354a57b734948801e123de872a2a5355a5ba4d3dd7baad0cf003c998",
+    "src/targets/qwen3_6/impl/runtime/program_impl.h": "7b15df0fa61ed2e2eb58ac6a29f19a0e79802c23c6698df48d49975ce7beff71"
+  },
+  "actual_source_contract": "requestplan reserves prompt+effective_output-1 texttokens and +K-1 MTPtokens up tocontext; can_admit_lane checks full entitledpages, not currentliveKV.",
+  "page_tokens": 64,
+  "first24_original_quality_prompt_metadata": [
+    {
+      "key": "0",
+      "observed_prompt_tokens": 143,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "1",
+      "observed_prompt_tokens": 65,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "2",
+      "observed_prompt_tokens": 148,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "3",
+      "observed_prompt_tokens": 172,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "4",
+      "observed_prompt_tokens": 92,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "5",
+      "observed_prompt_tokens": 127,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "6",
+      "observed_prompt_tokens": 123,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "7",
+      "observed_prompt_tokens": 86,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "8",
+      "observed_prompt_tokens": 149,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "9",
+      "observed_prompt_tokens": 124,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "10",
+      "observed_prompt_tokens": 63,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    },
+    {
+      "key": "11",
+      "observed_prompt_tokens": 68,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "12",
+      "observed_prompt_tokens": 131,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "13",
+      "observed_prompt_tokens": 113,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "14",
+      "observed_prompt_tokens": 133,
+      "main_entitled_pages": 515,
+      "MTP_entitled_pages": 515
+    },
+    {
+      "key": "15",
+      "observed_prompt_tokens": 118,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "16",
+      "observed_prompt_tokens": 55,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    },
+    {
+      "key": "17",
+      "observed_prompt_tokens": 34,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    },
+    {
+      "key": "18",
+      "observed_prompt_tokens": 121,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "19",
+      "observed_prompt_tokens": 92,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "20",
+      "observed_prompt_tokens": 87,
+      "main_entitled_pages": 514,
+      "MTP_entitled_pages": 514
+    },
+    {
+      "key": "21",
+      "observed_prompt_tokens": 55,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    },
+    {
+      "key": "22",
+      "observed_prompt_tokens": 42,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    },
+    {
+      "key": "23",
+      "observed_prompt_tokens": 39,
+      "main_entitled_pages": 513,
+      "MTP_entitled_pages": 513
+    }
+  ],
+  "original_performance_KV_capacity_tokens": 131072,
+  "original_pool_page_groups": 2048,
+  "quality_output_budget": 32768,
+  "first24_main_pages_minmax": [
+    513,
+    515
+  ],
+  "max_rows_oldpool": 3,
+  "old_quality_C7_would_not_exercise_B5_to7": true,
+  "quality_only_KV_capacity_amendment_tokens": 327680,
+  "quality_pool_page_groups": 5120,
+  "first24_worst8_main_pages": 4120,
+  "first24_worst8_MTP_pages": 4120,
+  "estimated_additional_KV_bytes_from_measured_capacity_curve": 7059013632,
+  "actual_B_after_change": "Must still observe actualadmission/decode membership/GPUkernels; configurationalone notproof.",
+  "decision": "Authorize largerKV onlyfor pairedquality OFF/ON, bothsame327680/native8/context65536/K3. Keep originalmax32768/naturalEOS/payloads and officialperformanceKV131072 unchanged. C7stillcannotqualify B8taskquality. No dynamicadmission/modelsourcechange."
+}

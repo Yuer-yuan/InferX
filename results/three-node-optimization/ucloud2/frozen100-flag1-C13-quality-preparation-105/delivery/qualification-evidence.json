@@ -1,0 +1,379 @@
+{
+  "at_ns": 1792270710734913983,
+  "binary": {
+    "path": "/workspace/InferX/three-node-optimization/ucloud2/bounded-decode-membership-host-100/build/apps/ninfer-serve",
+    "bytes": 243219440,
+    "sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c"
+  },
+  "source_aggregate": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "source_identity": "/workspace/InferX/three-node-optimization/ucloud2/bounded-decode-membership-host-100/source-identity.json",
+  "parent_source": "a6acc1d26edfb10e98d294ecc1720e9ae9a5c0cc67aa0c154936b1322f52d894",
+  "parent_frozen_serve_SHA256": "c72ad839ab3de47b5a4e19a69309e7eeff911e194b3e57516b644b4211f9c71c",
+  "build": "fresh normal CMake/Ninja full build; no object/archive replacement",
+  "same_GPU_binary_as_original_frozen080": "NOT_ESTABLISHED",
+  "CUDA_compile_comparison_against098": {
+    "count098": 103,
+    "count100": 105,
+    "differences": [
+      "tools/test_kv/test_e8_codec.cu",
+      "tools/test_kv/verify_1m_retrieval.cu"
+    ],
+    "scope": "normalized command equality vs fresh098 only; not evidence of original frozen080 cubin equality"
+  },
+  "actual_CMake_flags": [
+    "BUILD_TESTING:BOOL=ON",
+    "CMAKE_BUILD_TYPE:STRING=Release",
+    "CMAKE_CUDA_ARCHITECTURES:UNINITIALIZED=89",
+    "CMAKE_CUDA_COMPILER:STRING=/usr/local/cuda-13.2/bin/nvcc",
+    "CMAKE_CUDA_FLAGS:STRING=",
+    "CMAKE_CUDA_FLAGS_DEBUG:STRING=-g",
+    "CMAKE_CUDA_FLAGS_MINSIZEREL:STRING=-O1 -DNDEBUG",
+    "CMAKE_CUDA_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+    "CMAKE_CUDA_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+    "CMAKE_CUDA_HOST_COMPILER:UNINITIALIZED=/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+    "CMAKE_CXX_COMPILER:FILEPATH=/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+    "CMAKE_CXX_FLAGS:STRING=",
+    "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+    "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+    "CMAKE_PREFIX_PATH:UNINITIALIZED=/workspace/InferX/envs/build",
+    "NINFER_BUILD_APPS:BOOL=ON",
+    "NINFER_ENABLE_UI:BOOL=OFF",
+    "CMAKE_CUDA_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CUDA_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CUDA_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CUDA_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CUDA_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+  ],
+  "actual_SDK": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Mon_Mar_02_09:52:23_PM_PST_2026\nCuda compilation tools, release 13.2, V13.2.51\nBuild cuda_13.2.r13.2/compiler.37434383_0\n",
+  "actual_host_SDK": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 13.4.0-20) 13.4.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "runtime_dependencies": {
+    "/workspace/InferX/envs/build/lib/libavformat.so.60": {
+      "realpath": "/workspace/InferX/envs/build/lib/libavformat.so.60.16.100",
+      "bytes": 2709392,
+      "sha256": "e65d751bd563c25f069fe6bcaf479909fb0af084d9465591122c5d820fe05b68"
+    },
+    "/workspace/InferX/envs/build/lib/libavcodec.so.60": {
+      "realpath": "/workspace/InferX/envs/build/lib/libavcodec.so.60.31.102",
+      "bytes": 15461096,
+      "sha256": "24ff15af74e8ec575c5a5920d3f5b0409ad426dab188e19b811f44a79bc3d1bf"
+    },
+    "/workspace/InferX/envs/build/lib/libavutil.so.58": {
+      "realpath": "/workspace/InferX/envs/build/lib/libavutil.so.58.29.100",
+      "bytes": 985016,
+      "sha256": "5c521d8d156a95223116a3bbcf1d88312505a0872c081a7ee99b3b386a8734af"
+    },
+    "/workspace/InferX/envs/build/lib/libswscale.so.7": {
+      "realpath": "/workspace/InferX/envs/build/lib/libswscale.so.7.5.100",
+      "bytes": 579472,
+      "sha256": "d3839b6713fdaec9410aba7d361218b39994951f10d84650a0e4db79e81c5ca4"
+    },
+    "/workspace/InferX/envs/build/lib/libcurl.so.4": {
+      "realpath": "/workspace/InferX/envs/build/lib/libcurl.so.4.8.0",
+      "bytes": 1091456,
+      "sha256": "8e1aeae870c1869777e5fe5dfc639c54ae94da56119e49d9aaf5f7df20e3a5d0"
+    },
+    "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13": {
+      "realpath": "/usr/local/cuda-13.2/targets/x86_64-linux/lib/libcudart.so.13.2.51",
+      "bytes": 773920,
+      "sha256": "b91e6809ea37ba83705404974e3e2d1eb41a62d965f50fb0f6975153833576f3"
+    },
+    "/workspace/InferX/envs/build/lib/libstdc++.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libstdc++.so.6.0.36",
+      "bytes": 23874544,
+      "sha256": "10f0d3c46c070acd4abea2ccf2500ff0ec77e9b90154b82ea2720dba05510cb9"
+    },
+    "/lib/x86_64-linux-gnu/libm.so.6": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "bytes": 940560,
+      "sha256": "297737a3541eb0bbe4c288045edc483321f24c21a237972c51d589cf2864a0b7"
+    },
+    "/workspace/InferX/envs/build/lib/libgcc_s.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libgcc_s.so.1",
+      "bytes": 922624,
+      "sha256": "5444fbe71e8cfe3bd05cdf2b44bd8c2e553e6e7e276977089b5e4e1a1ceed531"
+    },
+    "/lib/x86_64-linux-gnu/libc.so.6": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "bytes": 2220400,
+      "sha256": "6813de4f45796f58134ca3f06b3179344ddfea192cad73ea0af35375b1b66e76"
+    },
+    "/workspace/InferX/envs/build/lib/libxml2.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libxml2.so.2.13.9",
+      "bytes": 1598072,
+      "sha256": "1c2c6582f34fe3d03533f35699329f1642f91cc748f4c395928d9d2a3c27be27"
+    },
+    "/workspace/InferX/envs/build/lib/libbz2.so.1.0": {
+      "realpath": "/workspace/InferX/envs/build/lib/libbz2.so.1.0.8",
+      "bytes": 241912,
+      "sha256": "89167cfb36a81306dcf8f439436f46dda12f0bbf4877b9f87abfd079bf765c46"
+    },
+    "/workspace/InferX/envs/build/lib/libz.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libz.so.1.3.2",
+      "bytes": 117168,
+      "sha256": "3c6fd78e248a60e45081bcc77031204a7cb64a88ff2e27fc786ef12ae7e91fca"
+    },
+    "/workspace/InferX/envs/build/lib/libssl.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libssl.so.3",
+      "bytes": 1228008,
+      "sha256": "9f9fc1f5ab856181716b7dff697daf16aa5b0f47f7add572c491ac31a10ef8f4"
+    },
+    "/workspace/InferX/envs/build/lib/libcrypto.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libcrypto.so.3",
+      "bytes": 7252896,
+      "sha256": "2a03fc98b1fd7631d07727eea1dbcc3cf8a189fc68a2d6ea12de49674306ba21"
+    },
+    "/workspace/InferX/envs/build/lib/libiconv.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libiconv.so.2.7.0",
+      "bytes": 1182640,
+      "sha256": "59b942b8a9dfabcfec7d65ff2be1de2e59902765837768ca37468cef5dca9571"
+    },
+    "/lib/x86_64-linux-gnu/libpthread.so.0": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+      "bytes": 21448,
+      "sha256": "fdfd7d83a335ba12bd73e857f95a798dae0355f37935231966fd088647978e23"
+    },
+    "/workspace/InferX/envs/build/lib/libswresample.so.4": {
+      "realpath": "/workspace/InferX/envs/build/lib/libswresample.so.4.12.100",
+      "bytes": 133008,
+      "sha256": "9cf507ddc15b3a52b12c6c02e98fdb4c225aadc45a92a6c6b6863d3711564c36"
+    },
+    "/workspace/InferX/envs/build/lib/libvpx.so.9": {
+      "realpath": "/workspace/InferX/envs/build/lib/libvpx.so.9.0.1",
+      "bytes": 2213864,
+      "sha256": "8d81d0efd8300570cd0cc2113c10e32ab33edefb0ad47e89f03ae148c7cd1ac3"
+    },
+    "/workspace/InferX/envs/build/lib/liblzma.so.5": {
+      "realpath": "/workspace/InferX/envs/build/lib/liblzma.so.5",
+      "bytes": 222712,
+      "sha256": "491c01c02da5a22f5825a7c05a561e175aa70c203d5e462dfe90b5040dbdaf50"
+    },
+    "/workspace/InferX/envs/build/lib/libdav1d.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libdav1d.so.6.9.0",
+      "bytes": 2626568,
+      "sha256": "a038bbe046d0b2c1188432d0e3c454f2c665cb247d657a79e2ffb1c0d456f493"
+    },
+    "/workspace/InferX/envs/build/lib/libaom.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libaom.so.3.9.1",
+      "bytes": 7632336,
+      "sha256": "691b31194c942398cb63df59608a2ebfcf55a8c7bcefab5540f86e4a7bbceb51"
+    },
+    "/workspace/InferX/envs/build/lib/libmp3lame.so.0": {
+      "realpath": "/workspace/InferX/envs/build/lib/libmp3lame.so.0.0.0",
+      "bytes": 328552,
+      "sha256": "ee71cd2b3a432a27d688117984acc673fe9d397812789daf4ffbbf8622aabd6f"
+    },
+    "/workspace/InferX/envs/build/lib/libopus.so.0": {
+      "realpath": "/workspace/InferX/envs/build/lib/libopus.so.0.11.1",
+      "bytes": 532392,
+      "sha256": "292ff7b84cdb39dc5fc217801ea9cd8209b677461d97871794d0c938a7f106fb"
+    },
+    "/workspace/InferX/envs/build/lib/libSvtAv1Enc.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libSvtAv1Enc.so.2.3.0",
+      "bytes": 8042144,
+      "sha256": "ae7609c65c0acfaf6eb0a466c1c38845f9ce7c3fd231010cef9ce9c108a25a39"
+    },
+    "/workspace/InferX/envs/build/lib/libx264.so.164": {
+      "realpath": "/workspace/InferX/envs/build/lib/libx264.so.164",
+      "bytes": 2090992,
+      "sha256": "d794f4d94dcb51d2facca4073ab1f881ff7212f44e05eaef994beef05764d5b6"
+    },
+    "/workspace/InferX/envs/build/lib/libx265.so.199": {
+      "realpath": "/workspace/InferX/envs/build/lib/libx265.so.199",
+      "bytes": 23165472,
+      "sha256": "9ed0d2ab24a8c17e55f3bb1ca83ebef7631dadd05b61ab12db1af08c8984a34f"
+    },
+    "/workspace/InferX/envs/build/lib/libopenh264.so.7": {
+      "realpath": "/workspace/InferX/envs/build/lib/libopenh264.so.2.4.1",
+      "bytes": 1368888,
+      "sha256": "f149bf604894786817ac5c39c2a66278c42dbc382ef4fe8c2d4ef3c008cd8618"
+    },
+    "/workspace/InferX/envs/build/lib/libva.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libva.so.2.2400.0",
+      "bytes": 247056,
+      "sha256": "3b40b1e43e4bc2082f081e63752a40c4754bdd0f8b40b6c635b1239708647b3b"
+    },
+    "/lib/x86_64-linux-gnu/libdl.so.2": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+      "bytes": 14432,
+      "sha256": "b970e7f9969a175b5e0726977ee998753fd7cc10512937dafc24ce659508a16a"
+    },
+    "/workspace/InferX/envs/build/lib/libva-drm.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libva-drm.so.2.2400.0",
+      "bytes": 16688,
+      "sha256": "459f7a07f92d24799c11a22735d7d5346255910855f3822cc38772e60f32e05f"
+    },
+    "/workspace/InferX/envs/build/lib/libva-x11.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libva-x11.so.2.2400.0",
+      "bytes": 27952,
+      "sha256": "c72db4bdfcde78b066c5cf08a00f0a0779406796010558b0d3bced1ef1441d6f"
+    },
+    "/workspace/InferX/envs/build/lib/libX11.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libX11.so.6.4.0",
+      "bytes": 1476144,
+      "sha256": "26c3f2e8cedf6a4fa85ff71f07192478e6fbd3a95731861ecd95b4732b987897"
+    },
+    "/workspace/InferX/envs/build/lib/libnghttp2.so.14": {
+      "realpath": "/workspace/InferX/envs/build/lib/libnghttp2.so.14.29.3",
+      "bytes": 200576,
+      "sha256": "90ea9756606017da9b40f5ded6de140b98c3bbaac301a3c12f02ee2b15a204bd"
+    },
+    "/workspace/InferX/envs/build/lib/libssh2.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libssh2.so.1.0.1",
+      "bytes": 351048,
+      "sha256": "3b209bcbd821d33e16776334b02194bc4cba05d1f412f6252aadbd8668c4c78d"
+    },
+    "/workspace/InferX/envs/build/lib/libgssapi_krb5.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libgssapi_krb5.so.2.2",
+      "bytes": 400248,
+      "sha256": "04e09df891c1901c4ff6e79d41be809cf04c90671c2cb102d8812209d7f01701"
+    },
+    "/workspace/InferX/envs/build/lib/libzstd.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libzstd.so.1.5.7",
+      "bytes": 1198840,
+      "sha256": "b0e2bad8c117a3ad7d344d7924272d12b8e363956efb91b5074e43d4e201a08d"
+    },
+    "/lib/x86_64-linux-gnu/librt.so.1": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/librt.so.1",
+      "bytes": 14664,
+      "sha256": "90fb160909274fd6e967ecded88653c1ceeec579b9e92bdada2e7a1d0ca04c69"
+    },
+    "/lib64/ld-linux-x86-64.so.2": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "bytes": 240936,
+      "sha256": "35611512d50a8a878e1c2989685dbbf11c1ca53394825fca5f7debaf18add552"
+    },
+    "/workspace/InferX/envs/build/lib/libicuuc.so.75": {
+      "realpath": "/workspace/InferX/envs/build/lib/libicuuc.so.75.1",
+      "bytes": 2585632,
+      "sha256": "c9a25b3248c0b20fe3e2bf10042fba72009eed6d72422dca53c8ac169ca65d1b"
+    },
+    "/workspace/InferX/envs/build/lib/libdrm.so.2": {
+      "realpath": "/workspace/InferX/envs/build/lib/libdrm.so.2.129.0",
+      "bytes": 110680,
+      "sha256": "79478753f163ce9757714c791bd2740dc59d6ed26222b629cc9c17910bdac18f"
+    },
+    "/workspace/InferX/envs/build/lib/libXext.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libXext.so.6.4.0",
+      "bytes": 96344,
+      "sha256": "c7fda8b9d4a5a444a0b5f8279754867c5a8df34305b7ffc0c08c630598573707"
+    },
+    "/workspace/InferX/envs/build/lib/libXfixes.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libXfixes.so.3.1.0",
+      "bytes": 34720,
+      "sha256": "c9576da345aec0b06ac54bb2589d001234d9993e6ffee13c239ceff27410e33c"
+    },
+    "/workspace/InferX/envs/build/lib/libX11-xcb.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libX11-xcb.so.1.0.0",
+      "bytes": 14992,
+      "sha256": "c89b4356a5ea9832e4e9542e4fab5aa729a81f8cfec36663666d66ba34cdc805"
+    },
+    "/workspace/InferX/envs/build/lib/libxcb.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libxcb.so.1.1.0",
+      "bytes": 228648,
+      "sha256": "504faa0ca490d23e89505bb430892f18992979a7856869e776ae711fcaab79d7"
+    },
+    "/workspace/InferX/envs/build/lib/libxcb-dri3.so.0": {
+      "realpath": "/workspace/InferX/envs/build/lib/libxcb-dri3.so.0.1.0",
+      "bytes": 27688,
+      "sha256": "eeae4c0815883ebb451dae3d48dde1ee2cecfa30a187b0a95531f37ad9823f0d"
+    },
+    "/workspace/InferX/envs/build/lib/libkrb5.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libkrb5.so.3.3",
+      "bytes": 1064752,
+      "sha256": "a707d839cc9991d36c6bc13f48cfc189037970785db13fa6fe2eed7037060701"
+    },
+    "/workspace/InferX/envs/build/lib/libk5crypto.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libk5crypto.so.3.1",
+      "bytes": 112432,
+      "sha256": "73b90eff29b55af2317c17be164a36adab72db193d9b403974c39b5277999a13"
+    },
+    "/workspace/InferX/envs/build/lib/libcom_err.so.3": {
+      "realpath": "/workspace/InferX/envs/build/lib/libcom_err.so.3.0",
+      "bytes": 21952,
+      "sha256": "5788f4585d9d8febea117fc3d38fd52012af2e5167995603663dd708c75c57cb"
+    },
+    "/workspace/InferX/envs/build/lib/libkrb5support.so.0": {
+      "realpath": "/workspace/InferX/envs/build/lib/libkrb5support.so.0.1",
+      "bytes": 66072,
+      "sha256": "ecf1d6c0c918f694cc90d6c2d8497fc16ca82d7e79671590d183dd1a94b1ad76"
+    },
+    "/workspace/InferX/envs/build/lib/libkeyutils.so.1": {
+      "realpath": "/workspace/InferX/envs/build/lib/libkeyutils.so.1.10",
+      "bytes": 39192,
+      "sha256": "bfe024accca85c9f39b7c0e5bf8f2e551f45989db6ea4de2d4cf5bd5319f8e9d"
+    },
+    "/lib/x86_64-linux-gnu/libresolv.so.2": {
+      "realpath": "/usr/lib/x86_64-linux-gnu/libresolv.so.2",
+      "bytes": 68552,
+      "sha256": "cdacacfa8812fa80927a7b6e84ad7ac17047a7cd7885e6186eb455de0f729987"
+    },
+    "/workspace/InferX/envs/build/lib/libicudata.so.75": {
+      "realpath": "/workspace/InferX/envs/build/lib/libicudata.so.75.1",
+      "bytes": 30741448,
+      "sha256": "e065d9cbce8450291e1e8f9125f9a115a07b0181728217b7bf4e3db65c60a322"
+    },
+    "/workspace/InferX/envs/build/lib/libXau.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libXau.so.6.0.0",
+      "bytes": 17144,
+      "sha256": "dcc7de4960c165b97b5faa8b3bdeb4dfc2439b5066f1f9b2f2e3aca9478267ff"
+    },
+    "/workspace/InferX/envs/build/lib/libXdmcp.so.6": {
+      "realpath": "/workspace/InferX/envs/build/lib/libXdmcp.so.6.0.0",
+      "bytes": 30144,
+      "sha256": "dcdabcb94e17c6b1057a751e43574882ba44bf9b0fa0ff0e75dbf7b30f9e3b63"
+    }
+  },
+  "environment": {
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_S4_GPTQ_CACHE": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-layer-GPTQ-025",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-input-GPTQ-041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-output-GPTQ-047",
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+    "NINFER_OUTPUT_S4_VERIFY": "1",
+    "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+    "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+    "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+    "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "1"
+  },
+  "CPU_tests": {
+    "passed": 7,
+    "failed": 0,
+    "log": "registered-CPU-CTest.log"
+  },
+  "native_boundary099": {
+    "counts": [
+      4866,
+      4866
+    ],
+    "differences": 0,
+    "first_differences": [],
+    "passed": true,
+    "PF_record_bank_checks_per_arm": 8,
+    "skipped_cancel_reuse": true,
+    "official_perf": false,
+    "policy_qualified": false
+  },
+  "all_owners_children_terminal": true,
+  "GPU_empty": true,
+  "HTTP_started_on_ucloud2": false,
+  "execution_owner": "Root transfer to ucloud1; unique original128+8+1 C14 against094; causal mechanism requires samebinary OFF/ON if promising",
+  "operator_math_source_unchanged": true,
+  "default_OFF": true,
+  "production_perf_qualified": false
+}

@@ -1,0 +1,108 @@
+{
+  "recorded_at": "2026-10-16T19:45:03.708366+00:00",
+  "scope": "Actual kernel launch evidence and one source-only row-tile proposal; no new GPU measurement",
+  "source_files": {
+    "src/ops/linear/q5/q5_rowsplit_gemm_mma.cuh": "9d213fad119014c3e76710d36ec03f34a884f0fe6f8cedd8ddfd950dd6a2ebed",
+    "src/ops/linear_add/q5/q5_linear_add_gemm_mma.cu": "cf86a15bb7342a1b5f92efeb30ab779b5d65b73a889f965ef2cd2520f882eda0",
+    "src/ops/linear_add/q5/q5_linear_add_plan.cpp": "f0121886ff2bd38845b572a65295e550d125bbf314d8277668a68aed9d95e472"
+  },
+  "hardware": {
+    "name": "NVIDIA GeForce RTX 4090",
+    "SMs": 128,
+    "nominal_memory_bandwidth_B_s": 1008096000000,
+    "qualification": "Nsight target metadata, not measured bandwidth/occupancy"
+  },
+  "actual_kernel": "q5_rowsplit_gemm_mma_kernel",
+  "actual_grid": [
+    1,
+    80,
+    1
+  ],
+  "actual_threads": 128,
+  "actual_registers_per_thread": 69,
+  "actual_static_shared_bytes": 22016,
+  "measured_B8_K3": {
+    "whole_graph_kernel_ms": 61.69646915625001,
+    "target_Q5_generic_kernel_ms": 22.697602656250027,
+    "target_Q5_fraction_of_graph": 0.3678914363602719
+  },
+  "schedules": [
+    {
+      "BM": 64,
+      "BN": 32,
+      "BK": 64,
+      "WM": 32,
+      "WN": 16,
+      "threads": 128,
+      "logical_CTAs": 80,
+      "static_schedule_shared_bytes": 22016,
+      "MMA_accumulators_per_thread": 16,
+      "CTA_collective_projected_elements": 2048,
+      "Bs0_capacity_elements": 2048
+    },
+    {
+      "BM": 32,
+      "BN": 32,
+      "BK": 64,
+      "WM": 16,
+      "WN": 16,
+      "threads": 128,
+      "logical_CTAs": 160,
+      "static_schedule_shared_bytes": 15104,
+      "MMA_accumulators_per_thread": 8,
+      "CTA_collective_projected_elements": 1024,
+      "Bs0_capacity_elements": 2048
+    }
+  ],
+  "launch_bound": "A kernel with80CTAs can place its own CTAs on at most80of128SMs at a time. This does not establish measured SM occupancy or bandwidth saturation.",
+  "scope_of_existing_route": "Q5 LinearAdd N5120,K6144or17408,T17..64. for_each_token_slice capacity=32*65535; eachT<=64 uses one CUDA launch with grid.x=ceil(T/32), not separateper32 launches.",
+  "source_obstacle": "Collective residual currently static_assert(BM==BK). Proposed BM32 requires proof-backed capacity condition BM<=BK and correct shared-memory reuse; not simply an alias replacement.",
+  "semantics": "Keep same group64/K order/BF16 MMA FP32 accumulation/BF16 projected rounding and BF16 residual addition. Do not assert bitwise equality before actual validation.",
+  "graph_only_opportunity": [
+    {
+      "operator_speedup": 1.25,
+      "resulting_graph_ms": 57.156948625000005,
+      "graph_speedup": 1.0794220237513599
+    },
+    {
+      "operator_speedup": 1.5,
+      "resulting_graph_ms": 54.13060160416667,
+      "graph_speedup": 1.1397706163956796
+    },
+    {
+      "operator_speedup": 2.0,
+      "resulting_graph_ms": 50.347667828125,
+      "graph_speedup": 1.2254086796406762
+    }
+  ],
+  "limitations": [
+    "Increasing CTA count may add activation traffic and does not guarantee faster whole-operation or application performance.",
+    "GPU stage share is a partial capture; do not multiply it into host P95 as a workload gain forecast.",
+    "Previously rejected token-column-split whole-model failures remain; this output-row tile hypothesis differs.",
+    "No implementation/build/GPU probe yet. Existing performance and quality owners remain untouched."
+  ],
+  "primary_references": [
+    {
+      "title": "NVIDIA Efficient GEMM in CUDA",
+      "url": "https://docs.nvidia.com/cutlass/latest/media/docs/cpp/efficient_gemm.html",
+      "relevance": "Insufficient output tiles can leave too few CTAs; K-splitting is a different approach requiring reduction."
+    },
+    {
+      "title": "NVIDIA Matrix Multiplication Background",
+      "url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/",
+      "relevance": "Tile reuse versus parallelism and wave quantization; smaller tiles are not universally faster."
+    },
+    {
+      "title": "Marlin official repository",
+      "url": "https://github.com/IST-DASLab/marlin",
+      "relevance": "Small-batch quantized GEMM uses warp-level parallelism, cache and striped partitioning. FP16xINT4 is not a drop-in Q5/BF16/group64 native kernel."
+    },
+    {
+      "title": "Stream-K original paper",
+      "url": "https://arxiv.org/abs/2301.03598",
+      "relevance": "Related work-centric K-loop partitioning; not implemented by the proposed R32 row-tile change; published speedups not transferred."
+    }
+  ],
+  "correction_at": "2026-10-16T20:22:51.643010+00:00",
+  "current_evidence": "Corrected standaloneR4 numerics allpass; small down gain, attnout regression, no uniformroute/fullmodelpromotion."
+}

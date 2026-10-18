@@ -1,0 +1,10 @@
+{
+  "stage": "CPU-only postrun raw audit",
+  "error": "AssertionError: total65536 divided by benchmark_duration did not equal original throughput",
+  "cause": "benchmark_duration is a different span from exported profiling start/end",
+  "C16_wrong_formula": 307.1532614710924,
+  "C16_original": 307.14775409839956,
+  "C12_wrong_formula": 284.75179255730467,
+  "C12_original": 284.7460191622023,
+  "recovery": "Keep original throughput; validate it against profiling start/end with explicit microsecond serialization bound. No GPU, model, original stats, or SLO threshold changes."
+}

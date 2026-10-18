@@ -1,0 +1,702 @@
+{
+  "reviewed_at": "2026-10-16T20:33:26.259999+00:00",
+  "scope": "Actual current cap8 NSys CUDA kernels, root repeated launch-to-host-phase mapping; partial30s diagnostic only",
+  "data": {
+    "prefill_chunk": {
+      "kernel_sum_ms": 15612.870288999644,
+      "top_shapes": [
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)1, ninfer::ops::detail::rowsplit_tall::SwiGluQ4Problem>(const signed char *, const float *, T3, int, int, int, int)",
+          "grid": [
+            128,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 255,
+          "static_shared_bytes": 0,
+          "count": 2495,
+          "sum_ms": 5531.050191000009,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.35426222652326905,
+          "mean_ms": 2.2168537839679394
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::V1ResidualProblem>(const signed char *, const float *, T3, int, int, int, int)",
+          "grid": [
+            640,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 255,
+          "static_shared_bytes": 0,
+          "count": 4990,
+          "sum_ms": 4004.2083249999964,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.2564684296276541,
+          "mean_ms": 0.8024465581162318
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::rowsplit_tall::GroupedProblem>(const signed char *, const float *, T3, int, int, int, int)",
+          "grid": [
+            2048,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 255,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 2153.2206330000017,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.13791318272317268,
+          "mean_ms": 1.1502246971153856
+        },
+        {
+          "symbol": "void ninfer::ops::gqa_attention_prefill_i8_kernel<ninfer::ops::GqaGeometry<(int)24, (int)4, (int)1>, (bool)0, (bool)0, (bool)0, (bool)0, (bool)0, ninfer::ops::GqaPrefillBatchMetadata<(bool)0>>(const __nv_bfloat16 *, const signed char *, const unsigned char *, const __half *, const __half *, T7, const int *, float, __nv_bfloat16 *, int)",
+          "grid": [
+            32,
+            24,
+            1
+          ],
+          "block": [
+            512,
+            1,
+            1
+          ],
+          "registers": 120,
+          "static_shared_bytes": 0,
+          "count": 623,
+          "sum_ms": 1139.7563909999985,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.0730010798720999,
+          "mean_ms": 1.829464512038521
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)0, ninfer::ops::detail::rowsplit_tall::GroupedProblem>(const signed char *, const float *, T3, int, int, int, int)",
+          "grid": [
+            1792,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 255,
+          "static_shared_bytes": 0,
+          "count": 624,
+          "sum_ms": 618.0119830000004,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.03958349563919922,
+          "mean_ms": 0.9904038189102571
+        },
+        {
+          "symbol": "void ninfer::ops::detail::gated_delta_net::chunked::state_passing::state_passing_kernel<(int)16>(const __nv_bfloat16 *, const __nv_bfloat16 *, const __nv_bfloat16 *, const float *, const float *, __nv_bfloat16 *, __nv_bfloat16 *, float *, ninfer::ops::detail::gated_delta_net::head_map, int)",
+          "grid": [
+            384,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 128,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 442.430582,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.028337555735137517,
+          "mean_ms": 0.23634112286324788
+        },
+        {
+          "symbol": "void ninfer::ops::detail::gated_delta_net::chunked::output::output_kernel<(bool)1>(const __nv_bfloat16 *, const __nv_bfloat16 *, const __nv_bfloat16 *, const float *, const __nv_bfloat16 *, __nv_bfloat16 *, ninfer::ops::detail::gated_delta_net::head_map, float, int)",
+          "grid": [
+            11,
+            48,
+            1
+          ],
+          "block": [
+            128,
+            1,
+            1
+          ],
+          "registers": 127,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 282.0994560000002,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.018068391703654832,
+          "mean_ms": 0.15069415384615395
+        },
+        {
+          "symbol": "ninfer::ops::detail::<unnamed>::act_quant_g64_kernel(const __nv_bfloat16 *, signed char *, float *, int, int, int, int)",
+          "grid": [
+            69632,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 23,
+          "static_shared_bytes": 0,
+          "count": 2495,
+          "sum_ms": 251.7211390000001,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.01612266894815332,
+          "mean_ms": 0.10089023607214433
+        },
+        {
+          "symbol": "void ninfer::ops::detail::gated_delta_net::chunked::prepare_wy_wu::prepare_wy_wu_kernel<(int)64, (int)32, (int)8>(const __nv_bfloat16 *, const __nv_bfloat16 *, const float *, const float *, __nv_bfloat16 *, __nv_bfloat16 *, float *, ninfer::ops::detail::gated_delta_net::head_map)",
+          "grid": [
+            32,
+            48,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 79,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 245.07762500000024,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.015697153724044868,
+          "mean_ms": 0.13091753472222234
+        },
+        {
+          "symbol": "ninfer::ops::causal_conv1d_prefill_pairs_kernel(const __nv_bfloat16 *, const __nv_bfloat16 *, const __nv_bfloat16 *, __nv_bfloat16 *, int, int)",
+          "grid": [
+            40960,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 38,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 167.94236500000017,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.010756661772712431,
+          "mean_ms": 0.0897128018162394
+        },
+        {
+          "symbol": "void ninfer::ops::rmsnorm_warp_bf16x2_kernel<(ninfer::ops::RmsEpilogue)2, (int)512>(const __nv_bfloat162 *, const __nv_bfloat162 *, const __nv_bfloat162 *, __nv_bfloat162 *, int, long, float)",
+          "grid": [
+            6144,
+            1,
+            1
+          ],
+          "block": [
+            512,
+            1,
+            1
+          ],
+          "registers": 30,
+          "static_shared_bytes": 0,
+          "count": 1872,
+          "sum_ms": 131.83579999999984,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.008444046325862795,
+          "mean_ms": 0.07042510683760675
+        },
+        {
+          "symbol": "void ninfer::ops::rmsnorm_cta_bf16x2_kernel<(ninfer::ops::RmsEpilogue)0, (int)512, (int)8>(const __nv_bfloat162 *, const __nv_bfloat162 *, const __nv_bfloat162 *, __nv_bfloat162 *, int, long, float)",
+          "grid": [
+            2048,
+            1,
+            1
+          ],
+          "block": [
+            512,
+            1,
+            1
+          ],
+          "registers": 33,
+          "static_shared_bytes": 68,
+          "count": 5143,
+          "sum_ms": 130.8220119999996,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.008379113486401846,
+          "mean_ms": 0.025436906863698153
+        },
+        {
+          "symbol": "ninfer::ops::detail::<unnamed>::act_quant_g64_kernel(const __nv_bfloat16 *, signed char *, float *, int, int, int, int)",
+          "grid": [
+            20480,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 23,
+          "static_shared_bytes": 0,
+          "count": 4991,
+          "sum_ms": 122.44830399999961,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.007842779817768228,
+          "mean_ms": 0.024533821679022162
+        },
+        {
+          "symbol": "ninfer::ops::detail::<unnamed>::act_quant_g64_kernel(const __nv_bfloat16 *, signed char *, float *, int, int, int, int)",
+          "grid": [
+            24576,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 23,
+          "static_shared_bytes": 0,
+          "count": 2495,
+          "sum_ms": 75.56915300000017,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.004840183233523941,
+          "mean_ms": 0.03028823767535077
+        },
+        {
+          "symbol": "void ninfer::ops::detail::w8_rowsplit_gemm_mma_kernel<ninfer::ops::detail::W8RowSplitMmaGemmSchedule<(int)64, (int)128, (int)64, (int)16, (int)2, (int)2, (int)64, (int)2>, (bool)1, (ninfer::ops::detail::W8Epilogue)0, ninfer::ops::detail::W8ContiguousOutput>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, T4, int, int, int, int)",
+          "grid": [
+            80,
+            16,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 116,
+          "static_shared_bytes": 46080,
+          "count": 38,
+          "sum_ms": 65.32808400000002,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.004184245612161923,
+          "mean_ms": 1.7191601052631584
+        },
+        {
+          "symbol": "void ninfer::ops::l2norm_warp_bf16x2_kernel<(int)512>(const __nv_bfloat162 *, __nv_bfloat162 *, int, long, float)",
+          "grid": [
+            2048,
+            1,
+            1
+          ],
+          "block": [
+            512,
+            1,
+            1
+          ],
+          "registers": 20,
+          "static_shared_bytes": 0,
+          "count": 3744,
+          "sum_ms": 58.12873500000014,
+          "B_bins": {},
+          "share_phase_kernel_sum": 0.0037231293108837193,
+          "mean_ms": 0.015525837339743628
+        }
+      ]
+    },
+    "decode_round": {
+      "kernel_sum_ms": 13863.073157010538,
+      "top_shapes": [
+        {
+          "symbol": "void ninfer::ops::detail::q5_rowsplit_gemm_mma_kernel<ninfer::ops::detail::Q5RowSplitMmaGemmSchedule<(int)64, (int)32, (int)64, (int)32, (int)16, (int)2, (int)4, (ninfer::ops::detail::Q5FragmentPipeline)1, (ninfer::ops::Cache)0, (ninfer::ops::Cache)0, (ninfer::ops::detail::Q5ScaleLoad)1>, (bool)0, (ninfer::ops::detail::Q5MmaEpilogue)2>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, const unsigned char *, const __nv_bfloat16 *, __nv_bfloat16 *, int, int, int, int)",
+          "grid": [
+            1,
+            80,
+            1
+          ],
+          "block": [
+            128,
+            1,
+            1
+          ],
+          "registers": 69,
+          "static_shared_bytes": 22016,
+          "count": 20736,
+          "sum_ms": 3694.9495539999866,
+          "B_bins": {
+            "7": 4992,
+            "6": 12544,
+            "5": 3200
+          },
+          "share_phase_kernel_sum": 0.26653177922035676,
+          "mean_ms": 0.17819008265817837
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_grouped_mma_kernel<ninfer::ops::detail::GemmCfg<(int)64, (int)128, (int)64, (int)32, (int)32, (int)2, (int)1, (bool)0, (bool)1, (bool)1>, (bool)0, (ninfer::ops::detail::RowSplitGroupedMmaCodec)0, (int)4>(const __nv_bfloat16 *, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, int, int, int)",
+          "grid": [
+            1,
+            256,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 99,
+          "static_shared_bytes": 46592,
+          "count": 9312,
+          "sum_ms": 1848.3851320000008,
+          "B_bins": {
+            "8": 1536,
+            "7": 1872,
+            "6": 4704,
+            "5": 1200
+          },
+          "share_phase_kernel_sum": 0.13333155722872853,
+          "mean_ms": 0.19849496692439872
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)24, (int)24, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 91,
+          "static_shared_bytes": 28928,
+          "count": 6272,
+          "sum_ms": 1098.2581459999985,
+          "B_bins": {
+            "6": 6272
+          },
+          "share_phase_kernel_sum": 0.0792218387338316,
+          "mean_ms": 0.1751049339923467
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q5_rowsplit_gemm_mma_kernel<ninfer::ops::detail::Q5RowSplitMmaGemmSchedule<(int)64, (int)32, (int)64, (int)32, (int)16, (int)2, (int)4, (ninfer::ops::detail::Q5FragmentPipeline)1, (ninfer::ops::Cache)0, (ninfer::ops::Cache)0, (ninfer::ops::detail::Q5ScaleLoad)1>, (bool)1, (ninfer::ops::detail::Q5MmaEpilogue)2>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, const unsigned char *, const __nv_bfloat16 *, __nv_bfloat16 *, int, int, int, int)",
+          "grid": [
+            1,
+            80,
+            1
+          ],
+          "block": [
+            128,
+            1,
+            1
+          ],
+          "registers": 69,
+          "static_shared_bytes": 22016,
+          "count": 4096,
+          "sum_ms": 726.3232850000009,
+          "B_bins": {
+            "8": 4096
+          },
+          "share_phase_kernel_sum": 0.0523926604710082,
+          "mean_ms": 0.17732502075195333
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)32, (int)28, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 83,
+          "static_shared_bytes": 37120,
+          "count": 2496,
+          "sum_ms": 535.3577949999996,
+          "B_bins": {
+            "7": 2496
+          },
+          "share_phase_kernel_sum": 0.03861754092592881,
+          "mean_ms": 0.21448629607371777
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)32, (int)32, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 80,
+          "static_shared_bytes": 37120,
+          "count": 2048,
+          "sum_ms": 463.0528770000002,
+          "B_bins": {
+            "8": 2048
+          },
+          "share_phase_kernel_sum": 0.033401892333362965,
+          "mean_ms": 0.22610003759765634
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)16, (int)16, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 55,
+          "static_shared_bytes": 41472,
+          "count": 2048,
+          "sum_ms": 291.5442540000004,
+          "B_bins": {
+            "4": 2048
+          },
+          "share_phase_kernel_sum": 0.021030275949497308,
+          "mean_ms": 0.1423555927734377
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_grouped_mma_kernel<ninfer::ops::detail::GemmCfg<(int)32, (int)64, (int)64, (int)16, (int)16, (int)4, (int)1, (bool)0, (bool)1, (bool)1>, (bool)0, (ninfer::ops::detail::RowSplitGroupedMmaCodec)2, (int)2>(const __nv_bfloat16 *, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, int, int, int)",
+          "grid": [
+            1,
+            224,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 43,
+          "static_shared_bytes": 42496,
+          "count": 2704,
+          "sum_ms": 272.40644800000035,
+          "B_bins": {
+            "8": 512,
+            "7": 624,
+            "6": 1568
+          },
+          "share_phase_kernel_sum": 0.0196497879593346,
+          "mean_ms": 0.10074202958579895
+        },
+        {
+          "symbol": "void ninfer::ops::gqa_attention_decode_i8_tiled_kernel<ninfer::ops::GqaGeometry<(int)24, (int)4, (int)1>, (int)4, (int)8, (int)2, (int)32, (bool)0, (bool)0, (bool)0, (bool)0, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, ninfer::ops::GqaAppendInput>(const __nv_bfloat16 *, T15, const int *, signed char *, unsigned char *, __half *, __half *, const int *, const int *, const int *, int, int, int, int, float, __nv_bfloat16 *, float *, float *)",
+          "grid": [
+            4,
+            64,
+            6
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 128,
+          "static_shared_bytes": 43648,
+          "count": 1666,
+          "sum_ms": 267.5236110000005,
+          "B_bins": {
+            "6": 1666
+          },
+          "share_phase_kernel_sum": 0.0192975690144659,
+          "mean_ms": 0.160578397959184
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)16, (int)12, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 55,
+          "static_shared_bytes": 41472,
+          "count": 1984,
+          "sum_ms": 264.169974,
+          "B_bins": {
+            "3": 1984
+          },
+          "share_phase_kernel_sum": 0.019055657501627597,
+          "mean_ms": 0.13315018850806454
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q4_small_t_mma_kernel<ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTGeometry, (int)24, (int)20, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTEpilogue, ninfer::ops::detail::<unnamed>::Q4SwiGluSmallTRows>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, T4, T5)",
+          "grid": [
+            2176,
+            1,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 85,
+          "static_shared_bytes": 28928,
+          "count": 1600,
+          "sum_ms": 261.0356030000001,
+          "B_bins": {
+            "5": 1600
+          },
+          "share_phase_kernel_sum": 0.01882956253952932,
+          "mean_ms": 0.16314725187500007
+        },
+        {
+          "symbol": "void ninfer::ops::detail::gated_delta_net::recurrent_fold_kernel<ninfer::ops::detail::gated_delta_net::FoldGeometry<(int)48, (int)16, (int)48, (int)10240>>(ninfer::ops::detail::gated_delta_net::FoldAccess<T1>)",
+          "grid": [
+            48,
+            6,
+            384
+          ],
+          "block": [
+            32,
+            4,
+            1
+          ],
+          "registers": 72,
+          "static_shared_bytes": 0,
+          "count": 98,
+          "sum_ms": 199.681043,
+          "B_bins": {
+            "6": 98
+          },
+          "share_phase_kernel_sum": 0.014403807924725662,
+          "mean_ms": 2.037561663265306
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q5_small_t_mma_kernel<ninfer::ops::detail::Q5SmallTGeometry<(int)5120, (int)17408>, (int)16, (int)16, ninfer::ops::detail::Q5SmallTMmaResidualAtomicEpilogue, ninfer::ops::detail::Q5SmallTMmaIdentityRows, (int)2>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, int, int, T4, T5)",
+          "grid": [
+            320,
+            2,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 64,
+          "static_shared_bytes": 43520,
+          "count": 2048,
+          "sum_ms": 195.0330680000004,
+          "B_bins": {
+            "4": 2048
+          },
+          "share_phase_kernel_sum": 0.014068530533676975,
+          "mean_ms": 0.0952309902343752
+        },
+        {
+          "symbol": "void ninfer::ops::detail::rowsplit_grouped_mma_kernel<ninfer::ops::detail::GemmCfg<(int)32, (int)64, (int)64, (int)16, (int)16, (int)4, (int)1, (bool)0, (bool)1, (bool)1>, (bool)0, (ninfer::ops::detail::RowSplitGroupedMmaCodec)1, (int)2>(const __nv_bfloat16 *, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, ninfer::ops::detail::RowSplitGroupedMmaJob, int, int, int)",
+          "grid": [
+            1,
+            224,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 56,
+          "static_shared_bytes": 41472,
+          "count": 2704,
+          "sum_ms": 193.14132500000017,
+          "B_bins": {
+            "8": 512,
+            "7": 624,
+            "6": 1568
+          },
+          "share_phase_kernel_sum": 0.01393207139661734,
+          "mean_ms": 0.07142800480769237
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q5_small_t_mma_kernel<ninfer::ops::detail::Q5SmallTGeometry<(int)5120, (int)17408>, (int)16, (int)12, ninfer::ops::detail::Q5SmallTMmaResidualAtomicEpilogue, ninfer::ops::detail::Q5SmallTMmaIdentityRows, (int)2>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, const unsigned char *, __nv_bfloat16 *, int, int, T4, T5)",
+          "grid": [
+            320,
+            2,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 64,
+          "static_shared_bytes": 43520,
+          "count": 1984,
+          "sum_ms": 174.6079589999996,
+          "B_bins": {
+            "3": 1984
+          },
+          "share_phase_kernel_sum": 0.012595184128542276,
+          "mean_ms": 0.08800804385080625
+        },
+        {
+          "symbol": "void ninfer::ops::detail::q5_rowsplit_gemm_mma_kernel<ninfer::ops::detail::Q5RowSplitMmaGemmSchedule<(int)64, (int)16, (int)64, (int)16, (int)8, (int)2, (int)3, (ninfer::ops::detail::Q5FragmentPipeline)0, (ninfer::ops::Cache)1, (ninfer::ops::Cache)1, (ninfer::ops::detail::Q5ScaleLoad)1>, (bool)1, (ninfer::ops::detail::Q5MmaEpilogue)2>(const __nv_bfloat16 *, const unsigned char *, const unsigned char *, const unsigned char *, const __nv_bfloat16 *, __nv_bfloat16 *, int, int, int, int)",
+          "grid": [
+            1,
+            80,
+            1
+          ],
+          "block": [
+            256,
+            1,
+            1
+          ],
+          "registers": 39,
+          "static_shared_bytes": 17920,
+          "count": 2048,
+          "sum_ms": 154.1148449999999,
+          "B_bins": {
+            "4": 2048
+          },
+          "share_phase_kernel_sum": 0.011116932245435364,
+          "mean_ms": 0.0752513891601562
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Kernel-sum shares are not same-request critical-path shares.",
+    "No measured occupancy, hardware roofline or DRAM traffic.",
+    "Shape-specific resource records come from these kernel launches."
+  ]
+}

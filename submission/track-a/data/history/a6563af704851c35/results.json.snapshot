@@ -1,0 +1,1246 @@
+{
+  "schema_version": 1,
+  "state": "rolling_materials_snapshot_not_final_release",
+  "team": {
+    "name": "你说啥都队",
+    "project": "InferX",
+    "members": [
+      "A",
+      "B",
+      "C"
+    ],
+    "division": [
+      "占位符A",
+      "占位符B",
+      "占位符C"
+    ]
+  },
+  "roles": {
+    "capacity_plot": [
+      "output-c12",
+      "fusion-c16",
+      "fusion-c32"
+    ],
+    "headline_capacity": "output-c12",
+    "headline_quality": "output-verify-quality",
+    "progression_plot": [
+      "s4-c32",
+      "input-c32",
+      "output-c32"
+    ]
+  },
+  "performance": [
+    {
+      "id": "zip-c1",
+      "label": "旧ZIP C1",
+      "node": "ucloud1",
+      "c": 1,
+      "n": 100,
+      "warmup": 8,
+      "k": 4,
+      "kv": 131072,
+      "summary": "results/ninfer-performance/official-r1/runs/official-r1/performance/c1/summary.json",
+      "binary": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+      "identity": "",
+      "raw": "results/ninfer-performance/official-r1/runs/official-r1/performance/c1/profile_export.jsonl",
+      "native": "",
+      "plot_label": "旧ZIP C1",
+      "ttft_s": 3.4545112888499996,
+      "tpot_ms": 9.00900106594912,
+      "e2e_s": 8.0542150286,
+      "tps": 73.59296213517845,
+      "errors": 0,
+      "joint_slo": true,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 0,
+        "tpot": 0
+      },
+      "native_capacity": 1
+    },
+    {
+      "id": "zip-c2",
+      "label": "旧ZIP C2",
+      "node": "ucloud1",
+      "c": 2,
+      "n": 100,
+      "warmup": 8,
+      "k": 4,
+      "kv": 131072,
+      "summary": "results/ninfer-performance/official-r1/runs/official-r1/performance/c2/summary.json",
+      "binary": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+      "identity": "",
+      "raw": "results/ninfer-performance/official-r1/runs/official-r1/performance/c2/profile_export.jsonl",
+      "native": "",
+      "plot_label": "旧ZIP C2",
+      "ttft_s": 3.5622561655,
+      "tpot_ms": 22.506397312426614,
+      "e2e_s": 15.0477129266,
+      "tps": 92.0894884040625,
+      "errors": 0,
+      "joint_slo": true,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 0,
+        "tpot": 0
+      },
+      "native_capacity": 2
+    },
+    {
+      "id": "zip-c4",
+      "label": "旧ZIP C4",
+      "node": "ucloud1",
+      "c": 4,
+      "n": 100,
+      "warmup": 8,
+      "k": 4,
+      "kv": 131072,
+      "summary": "results/ninfer-performance/official-r1/runs/official-r1/performance/c4/summary.json",
+      "binary": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+      "identity": "",
+      "raw": "results/ninfer-performance/official-r1/runs/official-r1/performance/c4/profile_export.jsonl",
+      "native": "",
+      "plot_label": "旧ZIP C4",
+      "ttft_s": 6.998141771099999,
+      "tpot_ms": 45.92975632348337,
+      "e2e_s": 27.421892328899997,
+      "tps": 94.61218276134117,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 2,
+        "tpot": 17
+      },
+      "native_capacity": 4
+    },
+    {
+      "id": "zip-c8",
+      "label": "旧ZIP C8",
+      "node": "ucloud1",
+      "c": 8,
+      "n": 100,
+      "warmup": 8,
+      "k": 4,
+      "kv": 131072,
+      "summary": "results/ninfer-performance/official-r1/runs/official-r1/performance/c8/summary.json",
+      "binary": "b604d0507e753de76e6b3b288011434b2bb07f9038738f8c73768ddac8dfba86",
+      "identity": "",
+      "raw": "results/ninfer-performance/official-r1/runs/official-r1/performance/c8/profile_export.jsonl",
+      "native": "",
+      "plot_label": "旧ZIP C8",
+      "ttft_s": 13.860561318099998,
+      "tpot_ms": 90.65970908228962,
+      "e2e_s": 53.27995598149999,
+      "tps": 103.30903873314139,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 9,
+        "tpot": 94
+      },
+      "native_capacity": 8
+    },
+    {
+      "id": "s4-c8",
+      "label": "FFN S4 C8",
+      "node": "ucloud3",
+      "c": 8,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "summary": "results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate/c8/summary.json",
+      "binary": "a33263234e03c0b3607136d9a4e8722fe71cb6978e4c1171ddaf9a0216ae6129",
+      "identity": "results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate/c8/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/c32-tonight/C8-target-s4-K3-n128-r1/results/raw/candidate/requests.jsonl",
+      "plot_label": "FFN S4 C8",
+      "ttft_s": 7.5316041961,
+      "tpot_ms": 33.30855084354207,
+      "e2e_s": 23.01812630175,
+      "tps": 223.45432592232189,
+      "errors": 0,
+      "joint_slo": true,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "ce8fa3c8ba401b1e4d9fb0f87e2ecf09c3569f439afb7fe9bf758f787ab40a9d",
+      "individual_violations": {
+        "ttft": 0,
+        "tpot": 0
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 15875178496,
+        "available_after_weights_bytes": 23886299136,
+        "cuda_graph_allowance_bytes": 2147483648,
+        "cuda_graph_observed_bytes": 71303168,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5001216000,
+        "minimum_runtime_reservation_bytes": 7434471168,
+        "planned_slack_bytes": 13804697856,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 10081601280,
+        "sequence": {
+          "capacity_bytes": 7572211456,
+          "peak_used_bytes": 7572211456,
+          "used_bytes": 7572211456
+        },
+        "weights": {
+          "capacity_bytes": 17901798400,
+          "peak_used_bytes": 17901798400,
+          "used_bytes": 17901798400
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 8
+    },
+    {
+      "id": "s4-c32",
+      "label": "FFN S4 C32",
+      "node": "ucloud1",
+      "c": 32,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 278528,
+      "summary": "results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate/c32/summary.json",
+      "binary": "c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209",
+      "identity": "results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate/c32/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate/requests.jsonl",
+      "plot_label": "FFN S4",
+      "ttft_s": 29.324266342800005,
+      "tpot_ms": 122.11745779677105,
+      "e2e_s": 74.83236347745,
+      "tps": 305.9101734452884,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "eb0a8bb9194d8d54fa79d613780cc3c11df31bf6386ea18d41f9748d15bc77fc",
+      "individual_violations": {
+        "ttft": 32,
+        "tpot": 118
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 12838502400,
+        "available_after_weights_bytes": 33690484736,
+        "cuda_graph_allowance_bytes": 8589934592,
+        "cuda_graph_observed_bytes": 260046848,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 10004594688,
+        "minimum_runtime_reservation_bytes": 21528670208,
+        "planned_slack_bytes": 4514549760,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 29175934976,
+        "sequence": {
+          "capacity_bytes": 20224094208,
+          "peak_used_bytes": 20224094208,
+          "used_bytes": 20224094208
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 32
+    },
+    {
+      "id": "input-c32",
+      "label": "加输入 S4 C32",
+      "node": "ucloud1",
+      "c": 32,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 278528,
+      "summary": "results/three-node-optimization/ucloud1/c32-tonight/C32-input-allphase-K3-n128-r1/summary.json",
+      "binary": "40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853",
+      "identity": "",
+      "raw": "",
+      "native": "",
+      "plot_label": "加输入",
+      "ttft_s": 24.886950420550004,
+      "tpot_ms": 109.10721993101762,
+      "e2e_s": 67.26333856654999,
+      "tps": 352.41049227093885,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary only",
+      "native_capacity": 32
+    },
+    {
+      "id": "output-c32",
+      "label": "加输出 S4 C32",
+      "node": "ucloud1",
+      "c": 32,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 278528,
+      "summary": "results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/run/candidate/c32/summary.json",
+      "binary": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "identity": "results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/control/runtime-identity.json",
+      "raw": "results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/run/candidate/c32/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud1/c32-tonight/C32-output47-on-allphase-K3-n128-r1/raw/run/candidate/requests.jsonl",
+      "plot_label": "加输出",
+      "ttft_s": 23.694500605100007,
+      "tpot_ms": 101.15738747495108,
+      "e2e_s": 64.52809229555,
+      "tps": 363.5768570345252,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "individual_violations": {
+        "ttft": 31,
+        "tpot": 112
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 9418047488,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 8589934592,
+        "cuda_graph_observed_bytes": 287309824,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 10004594688,
+        "minimum_runtime_reservation_bytes": 21528670208,
+        "planned_slack_bytes": 1121357824,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 29175934976,
+        "sequence": {
+          "capacity_bytes": 20224094208,
+          "peak_used_bytes": 20224094208,
+          "used_bytes": 20224094208
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 32
+    },
+    {
+      "id": "output-c12",
+      "label": "output47 C12",
+      "node": "ucloud3",
+      "c": 12,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 104448,
+      "summary": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate/c12/summary.json",
+      "binary": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "identity": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate/c12/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C12/candidate/requests.jsonl",
+      "plot_label": "output47 C12",
+      "ttft_s": 9.49964601075,
+      "tpot_ms": 37.34016170127202,
+      "e2e_s": 25.615961047099997,
+      "tps": 284.7460191622023,
+      "errors": 0,
+      "joint_slo": true,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "individual_violations": {
+        "ttft": 2,
+        "tpot": 2
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 22223257600,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 3221225472,
+        "cuda_graph_observed_bytes": 109051904,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 3751723008,
+        "minimum_runtime_reservation_bytes": 9783504128,
+        "planned_slack_bytes": 19116692224,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 11180600576,
+        "sequence": {
+          "capacity_bytes": 7597468928,
+          "peak_used_bytes": 7597468928,
+          "used_bytes": 7597468928
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 12
+    },
+    {
+      "id": "output-c16",
+      "label": "output47 C16",
+      "node": "ucloud3",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "summary": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate/c16/summary.json",
+      "binary": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+      "identity": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/output47-C16-C12-delivery-001/raw/C16/candidate/requests.jsonl",
+      "plot_label": "output47 C16",
+      "ttft_s": 9.9340843386,
+      "tpot_ms": 51.702542206849344,
+      "e2e_s": 35.103758880300006,
+      "tps": 307.14775409839956,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+      "individual_violations": {
+        "ttft": 6,
+        "tpot": 32
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19662635008,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 4294967296,
+        "cuda_graph_observed_bytes": 144703488,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 12132537344,
+        "planned_slack_bytes": 15517625344,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 14779667456,
+        "sequence": {
+          "capacity_bytes": 10122793984,
+          "peak_used_bytes": 10122793984,
+          "used_bytes": 10122793984
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 16
+    },
+    {
+      "id": "down-c16",
+      "label": "加 down053 C16",
+      "node": "ucloud3",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "summary": "results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate/c16/summary.json",
+      "binary": "dc99ec83f504723667f03e06c732e01cae92d36e62b63d0e49f1ac79ad694424",
+      "identity": "results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/down053-C16-official128-001/delivery/raw/run/candidate/requests.jsonl",
+      "plot_label": "加 down053 C16",
+      "ttft_s": 9.90768606,
+      "tpot_ms": 54.112965284442296,
+      "e2e_s": 34.878378917599996,
+      "tps": 311.4782932409688,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "source_identity": "f592cb8d4278c0cabd6a7044479d2aee129a4c2b4b6336b430ce297779af6198",
+      "individual_violations": {
+        "ttft": 5,
+        "tpot": 26
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19662635008,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 4294967296,
+        "cuda_graph_observed_bytes": 144703488,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 12132537344,
+        "planned_slack_bytes": 15517625344,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 14779667456,
+        "sequence": {
+          "capacity_bytes": 10122793984,
+          "peak_used_bytes": 10122793984,
+          "used_bytes": 10122793984
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 16
+    },
+    {
+      "id": "gqa-c32",
+      "label": "GQA高批 C32",
+      "node": "ucloud3",
+      "c": 32,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 278528,
+      "summary": "results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/delivery/content/raw/candidate/c32/summary.json",
+      "binary": "8b20de4daa8c0556ab9e2b69f60f5ea6ae3b1598680ee6f04a33d193b7e3a1c7",
+      "source_identity": "61a15f2f08d8efd9f185c4edabbad6370104584f522446537c765617b94a045e",
+      "identity": "results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/delivery/content/raw/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/delivery/content/raw/candidate/c32/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/delivery/content/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud3/gqa-highbatch-C32-official128-001/REPORT.md",
+      "plot_label": "GQA高批 C32",
+      "ttft_s": 23.040530955150004,
+      "tpot_ms": 92.1090246126223,
+      "e2e_s": 64.0895499525,
+      "tps": 374.04613950952967,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 29,
+        "tpot": 112
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 9418047488,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 8589934592,
+        "cuda_graph_observed_bytes": 287309824,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 10004594688,
+        "minimum_runtime_reservation_bytes": 21528670208,
+        "planned_slack_bytes": 1121357824,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 29175934976,
+        "sequence": {
+          "capacity_bytes": 20224094208,
+          "peak_used_bytes": 20224094208,
+          "used_bytes": 20224094208
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 32
+    },
+    {
+      "id": "fusion-c32",
+      "label": "GDN融合 C32",
+      "node": "ucloud3",
+      "c": 32,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 278528,
+      "summary": "results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/delivery/content/raw/candidate/c32/summary.json",
+      "binary": "2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142",
+      "source_identity": "4fcbcf2cee012a4ec03e252cfc4bf54aa8795b72978c038d25b08396938721ad",
+      "identity": "results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/delivery/content/raw/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/delivery/content/raw/candidate/c32/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/delivery/content/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud3/gdn-fusion-C32-official128-001/REPORT.md",
+      "plot_label": "GDN融合 C32",
+      "ttft_s": 23.088048895400004,
+      "tpot_ms": 96.31934076311154,
+      "e2e_s": 63.24783840715,
+      "tps": 375.7142096280879,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 29,
+        "tpot": 108
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 9315287040,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 8589934592,
+        "cuda_graph_observed_bytes": 287309824,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 10004594688,
+        "minimum_runtime_reservation_bytes": 21631693568,
+        "planned_slack_bytes": 1018334464,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 29278958336,
+        "sequence": {
+          "capacity_bytes": 20327117568,
+          "peak_used_bytes": 20327117568,
+          "used_bytes": 20327117568
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 32
+    },
+    {
+      "id": "fusion-c16",
+      "label": "GDN融合 C16",
+      "node": "ucloud3",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "summary": "results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/delivery/content/raw/candidate/c16/summary.json",
+      "binary": "2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142",
+      "source_identity": "4fcbcf2cee012a4ec03e252cfc4bf54aa8795b72978c038d25b08396938721ad",
+      "identity": "results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/delivery/content/raw/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/delivery/content/raw/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/delivery/content/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud3/gdn-fusion-C16-official128-001/REPORT.md",
+      "plot_label": "GDN融合 C16",
+      "ttft_s": 9.855908397250001,
+      "tpot_ms": 48.7840708912916,
+      "e2e_s": 33.64208349505001,
+      "tps": 311.76838649641223,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 5,
+        "tpot": 27
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19610206208,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 4294967296,
+        "cuda_graph_observed_bytes": 144703488,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 12184049152,
+        "planned_slack_bytes": 15466113536,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 14831179264,
+        "sequence": {
+          "capacity_bytes": 10174305792,
+          "peak_used_bytes": 10174305792,
+          "used_bytes": 10174305792
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      },
+      "native_capacity": 16
+    },
+    {
+      "id": "output-verify-c16",
+      "label": "Verify047 C16/K3",
+      "node": "ucloud1",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "native_capacity": 16,
+      "summary": "results/three-node-optimization/ucloud1/output047-verify-integration-076/C16-r1/delivery/raw/candidate/c16/summary.json",
+      "identity": "results/three-node-optimization/ucloud1/output047-verify-integration-076/C16-r1/delivery/raw/candidate-identity.json",
+      "binary": "66328f6735061654d31a2a67e1b92096ff38c7820ffd2c1f54febcf4a7ef2691",
+      "source_identity": "3a7ea905ba0774a4ddce4f007cc98836cabc9feac2e5efcc5605567aae0cb47d",
+      "raw": "results/three-node-optimization/ucloud1/output047-verify-integration-076/C16-r1/delivery/raw/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud1/output047-verify-integration-076/C16-r1/delivery/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud1/output047-verify-integration-076/REPORT.md",
+      "plot_label": "Verify047 C16/K3",
+      "scope": "NINFER_OUTPUT_S4_VERIFY=1; fusionON; u3 parent is not a same-card control; no task quality",
+      "ttft_s": 9.98208456575,
+      "tpot_ms": 56.79772347084149,
+      "e2e_s": 34.99604489555,
+      "tps": 322.1768843284077,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 7,
+        "tpot": 25
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19610206208,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 4294967296,
+        "cuda_graph_observed_bytes": 144703488,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 12184049152,
+        "planned_slack_bytes": 15466113536,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 14831179264,
+        "sequence": {
+          "capacity_bytes": 10174305792,
+          "peak_used_bytes": 10174305792,
+          "used_bytes": 10174305792
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      }
+    },
+    {
+      "id": "fusion-client16-native12",
+      "label": "客户端C16/native12/K3",
+      "node": "ucloud3",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "native_capacity": 12,
+      "summary": "results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/delivery/content/raw/candidate/c16/summary.json",
+      "identity": "results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/delivery/content/raw/candidate-identity.json",
+      "binary": "2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142",
+      "source_identity": "4fcbcf2cee012a4ec03e252cfc4bf54aa8795b72978c038d25b08396938721ad",
+      "raw": "results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/delivery/content/raw/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/delivery/content/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud3/gdn-fusion-client16-native12-001/REPORT.md",
+      "plot_label": "客户端C16/native12/K3",
+      "scope": "Client C16, native cap12, fusionON; same-host native16 control; NOT client C12",
+      "ttft_s": 14.426440144599999,
+      "tpot_ms": 43.719737541291586,
+      "e2e_s": 35.52167773345,
+      "tps": 306.8421332375325,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 32,
+        "tpot": 16
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 20933509120,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 3221225472,
+        "cuda_graph_observed_bytes": 109051904,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5001756672,
+        "minimum_runtime_reservation_bytes": 9822137856,
+        "planned_slack_bytes": 17828024832,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 12469267968,
+        "sequence": {
+          "capacity_bytes": 8886136320,
+          "peak_used_bytes": 8886136320,
+          "used_bytes": 8886136320
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      }
+    },
+    {
+      "id": "k5-fusionoff-c16",
+      "label": "C16/K5/fusionOFF",
+      "node": "ucloud2",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 5,
+      "kv": 139264,
+      "native_capacity": 16,
+      "summary": "results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/delivery/content/C16-n128-w8/summary.json",
+      "identity": "results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/delivery/content/parent-runtime.json",
+      "binary": "2362fc019db65e2704ed9a8477116ea8630dd5896f5762be35a673e568759142",
+      "source_identity": "4fcbcf2cee012a4ec03e252cfc4bf54aa8795b72978c038d25b08396938721ad",
+      "raw": "results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/delivery/content/C16-n128-w8/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/delivery/content/service/native.jsonl",
+      "report": "results/three-node-optimization/ucloud2/native16-K5-C16-075-r2/REPORT.md",
+      "plot_label": "C16/K5/fusionOFF",
+      "scope": "K5/fusionOFF on u2; K3/fusionON parent on u3 is contextual, not isolated K contrast",
+      "ttft_s": 10.038679777650001,
+      "tpot_ms": 55.519199268395305,
+      "e2e_s": 35.064477897950006,
+      "tps": 305.3898791405883,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 7,
+        "tpot": 35
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19585040384,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 5368709120,
+        "cuda_graph_observed_bytes": 146800640,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 13280040960,
+        "planned_slack_bytes": 14370121728,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 15927171072,
+        "sequence": {
+          "capacity_bytes": 10196555776,
+          "peak_used_bytes": 10196555776,
+          "used_bytes": 10196555776
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      }
+    },
+    {
+      "id": "n5-priority-c16",
+      "label": "N5优先 C16/K3",
+      "node": "ucloud3",
+      "c": 16,
+      "n": 128,
+      "warmup": 8,
+      "k": 3,
+      "kv": 139264,
+      "native_capacity": 16,
+      "summary": "results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/delivery/content/raw/candidate/c16/summary.json",
+      "binary": "4b6484e0ab49ac9639ccc51839ab740088f254202587ec28b4df5b599e330ffa",
+      "source_identity": "328fafc3a4c1730d9dc9212b23b1e6b7bad90d757f6748566c1348fb37cc10df",
+      "identity": "results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/delivery/content/raw/candidate-identity.json",
+      "raw": "results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/delivery/content/raw/candidate/c16/profile_export.jsonl",
+      "native": "results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/delivery/content/raw/candidate/requests.jsonl",
+      "report": "results/three-node-optimization/ucloud3/prompt-lookup-N5-C16-official128-recovery002/REPORT.md",
+      "plot_label": "N5优先",
+      "scope": "Same u3 payload/cohort as2362; N5 proposal priority, still target verified; TPOT regresses; no task quality",
+      "ttft_s": 9.924642552949999,
+      "tpot_ms": 53.89075536829746,
+      "e2e_s": 33.9466277496,
+      "tps": 319.1197473423606,
+      "errors": 0,
+      "joint_slo": false,
+      "verification": "original summary + all client records recomputed",
+      "individual_violations": {
+        "ttft": 5,
+        "tpot": 34
+      },
+      "native_cold": 137,
+      "gpu": {
+        "compute_capability_major": 8,
+        "compute_capability_minor": 9,
+        "cuda_compile_version": "13.2",
+        "cuda_driver_version": "13.3",
+        "cuda_runtime_version": "13.2",
+        "device": 0,
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "gpu_uuid": "GPU-ef83db6a-8dad-6be1-ba4e-38c279abd877",
+        "total_device_memory_bytes": 50894602240
+      },
+      "startup_memory": {
+        "available_after_startup_bytes": 19610206208,
+        "available_after_weights_bytes": 30297292800,
+        "cuda_graph_allowance_bytes": 4294967296,
+        "cuda_graph_observed_bytes": 144703488,
+        "kv_capacity_headroom_bytes": 0,
+        "kv_capacity_increment_bytes": 2297856,
+        "kv_payload_bytes": 5002297344,
+        "minimum_runtime_reservation_bytes": 12184049152,
+        "planned_slack_bytes": 15466113536,
+        "request_transient": {
+          "capacity_bytes": 0,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        },
+        "runtime_reservation_bytes": 14831179264,
+        "sequence": {
+          "capacity_bytes": 10174305792,
+          "peak_used_bytes": 10174305792,
+          "used_bytes": 10174305792
+        },
+        "weights": {
+          "capacity_bytes": 8097612800,
+          "peak_used_bytes": 8097612800,
+          "used_bytes": 8097612800
+        },
+        "workspace": {
+          "capacity_bytes": 361906176,
+          "peak_used_bytes": 0,
+          "used_bytes": 0
+        }
+      }
+    }
+  ],
+  "quality": [
+    {
+      "id": "ffn-quality",
+      "label": "全FFN S4",
+      "summary": "results/three-node-optimization/ucloud3/c32-current-official100-001/final-raw/CPU-score-001/summary.json",
+      "binary": "c3f482079962708672f72c0716d1730f440c1a4fdfe99994073a3be88be1d209",
+      "scope": "C2/default-thinking/default-sampling/max32768; not later output47 or high-batch task qualification",
+      "identity": "results/three-node-optimization/ucloud1/c32-tonight/C32-target-s4-omit-K3-n128-r3/raw/run/candidate-identity.json",
+      "client_c": 2,
+      "protocol": "C2，默认thinking/采样；完整服务配置见原报告",
+      "scores": {
+        "prompt_level_strict": 0.82,
+        "inst_level_strict": 0.8378378378378378,
+        "prompt_level_loose": 0.86,
+        "inst_level_loose": 0.8738738738738738
+      },
+      "empty": 2,
+      "length": 1,
+      "errors": 0,
+      "n": 100,
+      "instructions": 111
+    },
+    {
+      "id": "input-quality",
+      "label": "加输入 S4",
+      "summary": "results/three-node-optimization/ucloud2/true-int4-input-allphase-quality-preparation-050/terminal-evidence-001/CPU-score-001/summary.json",
+      "binary": "40b3e867ef2b78da801d6f39613a1722619c06a1c3932fa87cb021f36d0f6853",
+      "scope": "C2/default-thinking/default-sampling/max32768; not later output47 or high-batch task qualification",
+      "client_c": 2,
+      "protocol": "C2，默认thinking/采样；完整服务配置见原报告",
+      "scores": {
+        "prompt_level_strict": 0.86,
+        "inst_level_strict": 0.8738738738738738,
+        "prompt_level_loose": 0.9,
+        "inst_level_loose": 0.9099099099099099
+      },
+      "empty": 1,
+      "length": 0,
+      "errors": 0,
+      "n": 100,
+      "instructions": 111
+    },
+    {
+      "id": "output-verify-quality",
+      "label": "Verify047",
+      "node": "ucloud2",
+      "summary": "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/CPU-score-001/summary.json",
+      "binary": "66328f6735061654d31a2a67e1b92096ff38c7820ffd2c1f54febcf4a7ef2691",
+      "source_identity": "3a7ea905ba0774a4ddce4f007cc98836cabc9feac2e5efcc5605567aae0cb47d",
+      "identity": "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/delivery/content/expected-runtime.json",
+      "runtime": "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/runtime-summary.json",
+      "report": "results/three-node-optimization/ucloud2/outputVerify-K3-C16-quality-076/REPORT.md",
+      "client_c": 16,
+      "native_capacity": 16,
+      "k": 3,
+      "kv": 532480,
+      "route_flags": {
+        "NINFER_OUTPUT_S4_VERIFY": "1",
+        "NINFER_GDN_FOLD_RECORD_FUSION": "1"
+      },
+      "protocol": "C16/native16/K3，fusionON/Verify1，KV532480",
+      "scope": "Original100/111; default thinking/model sampling, max32768, natural EOS; quality KV differs from performance KV139264. Not a controlled comparison to historical C2 quality.",
+      "scores": {
+        "prompt_level_strict": 0.84,
+        "inst_level_strict": 0.8558558558558559,
+        "prompt_level_loose": 0.87,
+        "inst_level_loose": 0.8828828828828829
+      },
+      "empty": 0,
+      "length": 0,
+      "errors": 0,
+      "n": 100,
+      "instructions": 111
+    }
+  ],
+  "workload": {
+    "ledgers": [
+      {
+        "path": "results/three-node-optimization/ucloud1/experiments.jsonl",
+        "snapshot": "submission/track-a/data/ledger-snapshots/443db50d12e879986d7ece795f942c73c233d277d08ba541fee002f3fe2e22bc.jsonl",
+        "records": 109,
+        "distinct_records": 109
+      },
+      {
+        "path": "results/three-node-optimization/ucloud2/experiments.jsonl",
+        "snapshot": "submission/track-a/data/ledger-snapshots/23f0ca0cdcafee66c68afb112dae68262e8b913a7f05535b27f390228d5550f5.jsonl",
+        "records": 76,
+        "distinct_records": 76
+      },
+      {
+        "path": "results/three-node-optimization/ucloud3/experiments.jsonl",
+        "snapshot": "submission/track-a/data/ledger-snapshots/37ada531726843c6c88afd9804be6761e86860c79e2ea83a498661ad430261c5.jsonl",
+        "records": 176,
+        "distinct_records": 176
+      }
+    ],
+    "distinct_records": 361,
+    "meaning": "Exact-deduplicated ledger records, including CPU, operator, model and audit stages; not independent successful GPU experiment count."
+  },
+  "notes": [
+    "正在更新的材料快照，尚非最终提交版本；新结果须审阅后注册。",
+    "C12只有一次128请求通过证据；C16/C32延迟仍未达标。",
+    "input-c32当前注册来源只有原版汇总，本工具没有该条本地逐请求重算证据；其余有raw的行逐条重算。",
+    "工作量为ledger记录口径，包含CPU/算子/整模/审计；不是独立GPU实验数。",
+    "新增W4A4缓存与私有源码还需最终发布归档，旧baseline release包不覆盖本轮新增路径。",
+    "新增8b20 C32与2362 C16/C32完整128+8，仍未联合通过；2362没有C12或完整任务质量。GDN同payload C32吞吐略升但TPOT尾部恶化，不晋级。",
+    "本轮新增6632 Verify047 C16、2362客户端C16/native12及K5/fusionOFF C16，均完整128+8且未联合通过；客户端并发与native容量分别标注，跨卡/多变量不作因果比较。无新完整100任务质量。",
+    "最新完整候选质量改为6632原前100：strict84/100、C16/native16/KV532480，0错误/空final/length；与6632性能KV139264不同且性能TPOT未过，不联合宣称达标。旧40b3/C2的86%保留，非受控质量升降。",
+    "新增N5优先4b6484 C16/K3完整128+8，吞吐略升但TPOT恶化，未晋级；hybrid K5/proposal3仅CPU准备，不是新增模型或性能通过。"
+  ],
+  "updated_at_shanghai": "2026-10-18 00:37 +08:00",
+  "input_fingerprint": "a6563af704851c358d484a96c67f0755b4f6b89e73733c0adda0031650303e69",
+  "generator": {
+    "refresh.py": "5e09c05c5b3d7567123cc8a9fec0ffee4829fd18bd9967937c1e41c7fd94a9a9",
+    "main.tex.in": "d05964ac54704d32f038f1576743eb738fdc2e6fdcb662fdde44672a3b0aba9c"
+  }
+}

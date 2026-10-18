@@ -1,0 +1,244 @@
+{
+  "status": "complete",
+  "stage": "normal_serve_and_registered7_CPU_terminal",
+  "owner": {
+    "pid": 615918,
+    "start_ticks": "50349866",
+    "uid": 0,
+    "executable": "/usr/bin/python3.10",
+    "state": "R"
+  },
+  "handles": [
+    {
+      "pid": 615922,
+      "start_ticks": "50349895",
+      "uid": 0,
+      "executable": "/usr/local/cuda-13.2/bin/nvcc",
+      "state": "R",
+      "command": [
+        "/usr/local/cuda-13.2/bin/nvcc",
+        "--version"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/SDK.log",
+      "role": "SDK",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 615931,
+      "start_ticks": "50350096",
+      "uid": 0,
+      "executable": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+        "--version"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/host-SDK.log",
+      "role": "host-SDK",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 615938,
+      "start_ticks": "50350296",
+      "uid": 0,
+      "executable": "/workspace/InferX/envs/build/bin/cmake",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/envs/build/bin/cmake",
+        "-S",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/source",
+        "-B",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CUDA_ARCHITECTURES=89",
+        "-DCMAKE_CUDA_COMPILER=/usr/local/cuda-13.2/bin/nvcc",
+        "-DCMAKE_CUDA_HOST_COMPILER=/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+        "-DCMAKE_PREFIX_PATH=/workspace/InferX/envs/build",
+        "-DNINFER_BUILD_APPS=ON",
+        "-DBUILD_TESTING=ON",
+        "-DNINFER_BUILD_BENCHMARKS=OFF",
+        "-DNINFER_ENABLE_UI=OFF",
+        "-DFETCHCONTENT_SOURCE_DIR_XGRAMMAR_SOURCE=/workspace/InferX/source/xgrammar_source-src"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/configure.log",
+      "role": "configure",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 616743,
+      "start_ticks": "50350897",
+      "uid": 0,
+      "executable": "/workspace/InferX/envs/build/bin/cmake",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/envs/build/bin/cmake",
+        "--build",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "--target",
+        "ninfer-serve",
+        "ninfer_slo_bounded_decode_membership_test",
+        "ninfer_slo_completion_policy_test",
+        "ninfer_slo_prefill_queue_policy_test",
+        "ninfer_slo_budget_policy_test",
+        "--parallel",
+        "4"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/normal-build.log",
+      "role": "normal-build",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 640998,
+      "start_ticks": "50381754",
+      "uid": 0,
+      "executable": "/workspace/InferX/envs/build/bin/ctest",
+      "state": "R",
+      "command": [
+        "/workspace/InferX/envs/build/bin/ctest",
+        "--test-dir",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "--output-on-failure",
+        "-R",
+        "^ninfer_slo_(bounded_decode_membership.*|completion_policy_test|prefill_queue_policy_test|budget_policy_test)$"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/registered-CPU-CTest.log",
+      "role": "registered-CPU-CTest",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    },
+    {
+      "pid": 641010,
+      "start_ticks": "50381972",
+      "uid": 0,
+      "executable": "/usr/bin/bash",
+      "state": "R",
+      "command": [
+        "ldd",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build/apps/ninfer-serve"
+      ],
+      "host": "ucloud3",
+      "log_path": "/workspace/InferX/reproductions/selected100-single-node-20261018/runtime-dependencies.log",
+      "role": "runtime-dependencies",
+      "poll": "verify /proc/PID/stat start_ticks and read log; owned pidfd lifecycle"
+    }
+  ],
+  "steps": [
+    {
+      "name": "SDK",
+      "argv": [
+        "/usr/local/cuda-13.2/bin/nvcc",
+        "--version"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "host-SDK",
+      "argv": [
+        "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+        "--version"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "configure",
+      "argv": [
+        "/workspace/InferX/envs/build/bin/cmake",
+        "-S",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/source",
+        "-B",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CUDA_ARCHITECTURES=89",
+        "-DCMAKE_CUDA_COMPILER=/usr/local/cuda-13.2/bin/nvcc",
+        "-DCMAKE_CUDA_HOST_COMPILER=/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+        "-DCMAKE_PREFIX_PATH=/workspace/InferX/envs/build",
+        "-DNINFER_BUILD_APPS=ON",
+        "-DBUILD_TESTING=ON",
+        "-DNINFER_BUILD_BENCHMARKS=OFF",
+        "-DNINFER_ENABLE_UI=OFF",
+        "-DFETCHCONTENT_SOURCE_DIR_XGRAMMAR_SOURCE=/workspace/InferX/source/xgrammar_source-src"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "normal-build",
+      "argv": [
+        "/workspace/InferX/envs/build/bin/cmake",
+        "--build",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "--target",
+        "ninfer-serve",
+        "ninfer_slo_bounded_decode_membership_test",
+        "ninfer_slo_completion_policy_test",
+        "ninfer_slo_prefill_queue_policy_test",
+        "ninfer_slo_budget_policy_test",
+        "--parallel",
+        "4"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "registered-CPU-CTest",
+      "argv": [
+        "/workspace/InferX/envs/build/bin/ctest",
+        "--test-dir",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build",
+        "--output-on-failure",
+        "-R",
+        "^ninfer_slo_(bounded_decode_membership.*|completion_policy_test|prefill_queue_policy_test|budget_policy_test)$"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "runtime-dependencies",
+      "argv": [
+        "ldd",
+        "/workspace/InferX/reproductions/selected100-single-node-20261018/build/apps/ninfer-serve"
+      ],
+      "exitcode": 0,
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0
+      }
+    }
+  ],
+  "started_ns": 1792282425442041683,
+  "source_before": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "preflight_GPU_empty": true,
+  "heartbeat_ns": 1792282746461951859,
+  "binary": {
+    "path": "/workspace/InferX/reproductions/selected100-single-node-20261018/build/apps/ninfer-serve",
+    "bytes": 243207152,
+    "sha256": "664cfbb989da8de5aaf58b755ecb68717a966c6992a3e377a8b04e2b2f1f7518"
+  },
+  "source_after": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "finished_ns": 1792282748848830333
+}

@@ -1,0 +1,270 @@
+{
+  "status": "COMPLETE_JOINT_FAIL",
+  "source": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "binary": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "C": 15,
+  "native_cap": 13,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "seed": 20261016,
+  "all137cold": true,
+  "all_startup_retained": true,
+  "errors": 0,
+  "metrics": {
+    "TTFT_p95_ms": 9960.20872945,
+    "TPOT_p95_ms": 41.881277424755375,
+    "output_tokens_per_second": 309.66179224381347
+  },
+  "cohorts": {
+    "initial15": {
+      "count": 15,
+      "TTFT_violations": [
+        10,
+        11,
+        13,
+        15
+      ],
+      "TPOT_violations": [
+        1,
+        2,
+        11,
+        12
+      ]
+    },
+    "later113": {
+      "count": 113,
+      "TTFT_violations": [
+        26,
+        50
+      ],
+      "TPOT_violations": [
+        28,
+        64,
+        65,
+        87,
+        116
+      ]
+    }
+  },
+  "payload_same_as_parent_including_salt": true,
+  "unique_timing_join": 128,
+  "join_method": "Absolute first-token epoch and completion epoch within5ms, each unique; NOT exact header-ID match; no E2E/TTFT duration matching constraint; original128 P95 selected before association",
+  "P95_contributors": {
+    "TTFT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 77,
+        "TTFT_ms": 9901.967993,
+        "TPOT_ms": 29.177624015655574,
+        "start_ns": 1792273612521897153,
+        "conversation_id": "session_000084",
+        "native_match_count": 1,
+        "native_id": 86,
+        "end_difference_ms": 0.700416,
+        "first_token_epoch_difference_ms": 0.865024,
+        "own_prefill_ms": 905.3540760000001,
+        "native_TTFT_minus_own_prefill_ms": 8994.723798,
+        "native_shared_decode_per_output_ms": 12.44895265753424,
+        "postfirst_remainder_ms": 16.728671358121332,
+        "rounds": 129,
+        "accepted": 381,
+        "drafted": 387,
+        "fallback": 1,
+        "committed_per_spec_round": 3.953488372093023,
+        "accepted_per_position": [
+          127,
+          127,
+          127
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 65,
+        "TTFT_ms": 9991.569126,
+        "TPOT_ms": 41.665653093933464,
+        "start_ns": 1792273592341055931,
+        "conversation_id": "session_000072",
+        "native_match_count": 1,
+        "native_id": 74,
+        "end_difference_ms": 0.87552,
+        "first_token_epoch_difference_ms": 0.37888,
+        "own_prefill_ms": 905.910547,
+        "native_TTFT_minus_own_prefill_ms": 9083.675568,
+        "native_shared_decode_per_output_ms": 20.34610819960861,
+        "postfirst_remainder_ms": 21.319544894324853,
+        "rounds": 208,
+        "accepted": 303,
+        "drafted": 622,
+        "fallback": 0,
+        "committed_per_spec_round": 2.456730769230769,
+        "accepted_per_position": [
+          157,
+          115,
+          31
+        ]
+      }
+    ],
+    "TPOT_ms": [
+      {
+        "weight": 0.3500000000000085,
+        "arrival_rank": 65,
+        "TTFT_ms": 9991.569126,
+        "TPOT_ms": 41.665653093933464,
+        "start_ns": 1792273592341055931,
+        "conversation_id": "session_000072",
+        "native_match_count": 1,
+        "native_id": 74,
+        "end_difference_ms": 0.87552,
+        "first_token_epoch_difference_ms": 0.37888,
+        "own_prefill_ms": 905.910547,
+        "native_TTFT_minus_own_prefill_ms": 9083.675568,
+        "native_shared_decode_per_output_ms": 20.34610819960861,
+        "postfirst_remainder_ms": 21.319544894324853,
+        "rounds": 208,
+        "accepted": 303,
+        "drafted": 622,
+        "fallback": 0,
+        "committed_per_spec_round": 2.456730769230769,
+        "accepted_per_position": [
+          157,
+          115,
+          31
+        ]
+      },
+      {
+        "weight": 0.6499999999999915,
+        "arrival_rank": 87,
+        "TTFT_ms": 8402.449370999999,
+        "TPOT_ms": 41.997382833659486,
+        "start_ns": 1792273631539198340,
+        "conversation_id": "session_000094",
+        "native_match_count": 1,
+        "native_id": 96,
+        "end_difference_ms": 0.60032,
+        "first_token_epoch_difference_ms": 0.36608,
+        "own_prefill_ms": 903.1078380000001,
+        "native_TTFT_minus_own_prefill_ms": 7497.291771999999,
+        "native_shared_decode_per_output_ms": 18.852042178082183,
+        "postfirst_remainder_ms": 23.145340655577304,
+        "rounds": 194,
+        "accepted": 316,
+        "drafted": 582,
+        "fallback": 1,
+        "committed_per_spec_round": 2.6288659793814433,
+        "accepted_per_position": [
+          158,
+          98,
+          60
+        ]
+      }
+    ]
+  },
+  "native_yield_summary": {
+    "all": {
+      "requests": 128,
+      "committed_per_round": 3.2755562236921225,
+      "median_rounds": 154.5,
+      "median_own_prefill_ms": 905.46892
+    },
+    "TPOT_fail": {
+      "requests": 9,
+      "committed_per_round": 2.509011469142545,
+      "median_rounds": 194,
+      "median_own_prefill_ms": 904.1534899999999
+    },
+    "TPOT_pass": {
+      "requests": 119,
+      "committed_per_round": 3.352993103448276,
+      "median_rounds": 148,
+      "median_own_prefill_ms": 905.5319420000001
+    }
+  },
+  "limitations": [
+    "Normalbuild100/sourcec976/binarye4ed plus B9selectorON; old18env unchanged, N5 priority0/hybrid0; offeredC15/native13/K3/KV130560. Exact094 actualpayload including salt unchanged. Original080 GPU cubin equality NOT_ESTABLISHED; candidate build+policy comparison, no pure scheduling causal claim. Single128 selection, no independent validation.",
+    "Native decode is shared batch participation elapsed, not exclusive GPU time. Post-first remainder is not uniquely prefill without scheduler/GPU trace.",
+    "Numerical/Graph qualification does not establish task quality or exact greedy.",
+    "One observed selection run; no independent validation."
+  ],
+  "actual_terminal": {
+    "all_missing": {
+      "527762": true,
+      "527776": true,
+      "527777": true,
+      "527779": true
+    },
+    "all_children_reaped": true,
+    "GPU_empty": true,
+    "at_ns": 1792273918013673390
+  },
+  "raw_SHA256": "29e63f33b006a90ccb971dbded141c7ce3994fcae549089000702f83a277f200",
+  "selector_observation": {
+    "startup": [
+      "bounded_decode_membership_startup enabled=1"
+    ],
+    "first_success": [
+      "bounded_decode_membership_first_success full_B=13 selected_B=9 full_rounds_due=2"
+    ],
+    "actual_subset_observed": true,
+    "scope": "One startup and first-success log only; no exact batch histogram inferred; traceOFF"
+  },
+  "samebinary_C13_capacity_reference": {
+    "parent_metrics": {
+      "TTFT_p95_ms": 9706.0680633,
+      "TPOT_p95_ms": 38.18116718571429,
+      "output_tokens_per_second": 302.96810100156847
+    },
+    "relative_change_percent": {
+      "TTFT_p95_ms": 2.6183688852434717,
+      "TPOT_p95_ms": 9.690930141144305,
+      "output_tokens_per_second": 2.209371620350997
+    },
+    "scope": "samebinary and payload; different offered concurrency/KV, a capacity reference only"
+  },
+  "actual_client_phase_TPS": {
+    "profiling": {
+      "requests": 128,
+      "output_tokens": 65536,
+      "start_ns": 1792273500871651707,
+      "end_ns": 1792273712506091951,
+      "span_seconds": 211.634440244,
+      "output_tokens_per_second": 309.6660445456868,
+      "denominator": "last client request_end_ns minus first client request_start_ns within actual benchmark_phase; all requests retained"
+    },
+    "warmup": {
+      "requests": 8,
+      "output_tokens": 4096,
+      "start_ns": 1792273485770526219,
+      "end_ns": 1792273500867403664,
+      "span_seconds": 15.096877445,
+      "output_tokens_per_second": 271.3143837142675,
+      "denominator": "last client request_end_ns minus first client request_start_ns within actual benchmark_phase; all requests retained"
+    }
+  },
+  "official_parser_throughput_unchanged": {
+    "benchmark_duration": 211.63422848000002,
+    "output_token_throughput": 309.66179224381347,
+    "request_throughput": 0.6048081879761982
+  },
+  "offered_concurrency": 15,
+  "native_cap_not_client_concurrency": 13,
+  "official_phase_TPS": {
+    "warmup": {
+      "requests": 8,
+      "output_tokens": 4096,
+      "start_ns": 1792273485767654286,
+      "end_ns": 1792273500868680055,
+      "phase_manifest_seconds": 15.101025769,
+      "output_tokens_per_second": 271.23985235548935
+    },
+    "profiling": {
+      "requests": 128,
+      "output_tokens": 65536,
+      "start_ns": 1792273500869903495,
+      "end_ns": 1792273712507249921,
+      "phase_manifest_seconds": 211.637346426,
+      "output_tokens_per_second": 309.6617922438135
+    }
+  },
+  "throughput_denominator_correction": "Previously labeled actual_client_phase_TPS uses request minstart/maxend, is diagnostic, not official phase; phase-throughput.json retained unchanged for provenance"
+}

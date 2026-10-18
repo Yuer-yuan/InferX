@@ -1,0 +1,18 @@
+{
+  "registered_at": "2026-10-16T23:33:43.795631+00:00",
+  "worker": "ucloud3",
+  "stage": "isolated_Verify_Q4_SwiGLU_natural64_A8_001",
+  "basis": "Actualcurrented91/C8targetVerifyQ4SwiGLUA16 family2643.82318ms/9425.359412ms=28.05%,largesttargetfamily. ExistingQ5A8production source9695 unchanged; PFdominantTTFT handled separately on2.",
+  "candidate": "Existingunchanged rowsplit_tall_a8::launch<64,false>(rowsplit_tall::SwiGluQ4Problem); activationgroup64 quantization then foldedFP32SwiGLU/finalBF16. No newepilog/no materializedBF16gates/FP8.",
+  "baseline": "ActualcurrentT20/24/28/32 public A16 SmallTExact Q4 gateup route, not prefill R32C128 comparator. Sameactual34816x5120 layer0packedW/scales/BF16X.",
+  "shapes": [
+    20,
+    24,
+    28,
+    32
+  ],
+  "numeric": "IndependentFP64 logical and separatelyrepresentedA8/A16 profiles; full outputoracles feasible smallT, exactactivationcode/scalebits and guard/graphscratch; zero/dense/groupoutlier. No inheritedoldtol or BF16bitparityclaim.",
+  "timing": "20warmups then12fixedABBA blocks with8samples perposition (384samples/shape,192perarm), fixedseed42. EagerandCUDAgraph wholeOp, includingactivationquant; separatephysicalNSys. No grid/NCU retry.",
+  "screen": "ActualCUDAgraph T28/T32 median latency >=10%lower, T20/T24 <=5%regression; independentnumericpass. Allrawfailurekept.",
+  "scope": "Isolatedoperator source/build/GPU authorized aftercurrenttracejobsterminal; no runtimeintegration, noK7/guarddomain64/modelrun orqualityrequests. Preserve source9695/binaryed91/all84productgate."
+}

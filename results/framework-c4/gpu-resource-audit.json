@@ -1,0 +1,1248 @@
+{
+  "schema_version": 1,
+  "scope": "Offline GPU UUID, sampling coverage and observed-point resource statistics only; does not certify payload/cache/numerical SLO/config identity beyond UUID.",
+  "timestamp_assumption": "Independent CSV timestamps parsed as UTC; host timezone evidence must be verified separately.",
+  "statistics_semantics": "Only points with start_ns <= sample_ns <= end_ns. Point means and observed point extrema; no continuous averages/peaks or causal/bandwidth conclusions.",
+  "reference_verification_input": {
+    "filename": "results/framework-c4/reference-row-verification.json",
+    "stored_bytes": 29149,
+    "uncompressed_bytes": 29149,
+    "sha256_stored": "8d3d9e531b17da6c2b98f0fa973943484eb4bceedb4908d74da6249482e3d4bb",
+    "sha256_uncompressed": "8d3d9e531b17da6c2b98f0fa973943484eb4bceedb4908d74da6249482e3d4bb"
+  },
+  "reference": {
+    "expected_cases": 12,
+    "audited_cases": 12,
+    "passing_cases": 11,
+    "all_12_complete_coverage": false,
+    "cases": [
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row01-c1-seed42",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row01-c1-seed42/aiperf/profile_export.jsonl",
+            "stored_bytes": 125999,
+            "uncompressed_bytes": 125999,
+            "sha256_stored": "9983b4545254c412491bea9dc990b17e38e526e7b8a30f68a434a0bc045d9522",
+            "sha256_uncompressed": "9983b4545254c412491bea9dc990b17e38e526e7b8a30f68a434a0bc045d9522"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row01-c1-seed42/gpu.csv",
+            "stored_bytes": 34764,
+            "uncompressed_bytes": 34764,
+            "sha256_stored": "11b45951457891959e2f2e9c52be12e45b10ac0fdcbe1dea9e8f05934fb3e049",
+            "sha256_uncompressed": "11b45951457891959e2f2e9c52be12e45b10ac0fdcbe1dea9e8f05934fb3e049"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792156128462557320,
+          "request_end_ns_max": 1792156363208157886,
+          "duration_s": 234.745600566,
+          "profiling_records": 12
+        },
+        "coverage": {
+          "total_samples": 321,
+          "formal_window_samples": 234,
+          "first_sample_ns": 1792156046298000000,
+          "last_sample_ns": 1792156366383000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792156128332000000,
+              "after_ns": 1792156129333000000
+            },
+            "end": {
+              "before_ns": 1792156362382000000,
+              "after_ns": 1792156363382000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 234,
+            "min": 42958.0,
+            "max": 42958.0,
+            "point_mean": 42958.0
+          },
+          "gpu_utilization_percent": {
+            "count": 234,
+            "min": 83.0,
+            "max": 100.0,
+            "point_mean": 99.92735042735043
+          },
+          "power_w": {
+            "count": 234,
+            "min": 325.29,
+            "max": 451.75,
+            "point_mean": 347.8391025641026
+          },
+          "temperature_c": {
+            "count": 234,
+            "min": 59.0,
+            "max": 72.0,
+            "point_mean": 63.20940170940171
+          },
+          "sm_clock_mhz": {
+            "count": 234,
+            "min": 2565.0,
+            "max": 2655.0,
+            "point_mean": 2648.7179487179487
+          }
+        },
+        "order": 1
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/01-c1-n12-s42",
+        "status": "pass",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/01-c1-n12-s42/profile_export.jsonl",
+            "stored_bytes": 125381,
+            "uncompressed_bytes": 125381,
+            "sha256_stored": "1e684087253fc42584e3f0fdaf7a1fb3af7cd3dcb1377bc81d25341de00d0661",
+            "sha256_uncompressed": "1e684087253fc42584e3f0fdaf7a1fb3af7cd3dcb1377bc81d25341de00d0661"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/01-c1-n12-s42/gpu.csv.gz",
+            "stored_bytes": 3438,
+            "uncompressed_bytes": 53189,
+            "sha256_stored": "dd0e0a09395e2b21a7c4760f8344bd71d3566cd9095648467bdebfc171fee1dd",
+            "sha256_uncompressed": "8c198dba6d2e34a80f91f1c511ba5c5252de011cedd9280e04d2567a6824632c"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792155955853460073,
+          "request_end_ns_max": 1792156244462280236,
+          "duration_s": 288.608820163,
+          "profiling_records": 12
+        },
+        "coverage": {
+          "total_samples": 390,
+          "formal_window_samples": 289,
+          "first_sample_ns": 1792155855898000000,
+          "last_sample_ns": 1792156245016000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.01,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792155954934000000,
+              "after_ns": 1792155955935000000
+            },
+            "end": {
+              "before_ns": 1792156244016000000,
+              "after_ns": 1792156245016000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 289,
+            "min": 47227.0,
+            "max": 47229.0,
+            "point_mean": 47227.66435986159
+          },
+          "gpu_utilization_percent": {
+            "count": 289,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 289,
+            "min": 327.4,
+            "max": 448.5,
+            "point_mean": 337.8456747404844
+          },
+          "temperature_c": {
+            "count": 289,
+            "min": 59.0,
+            "max": 69.0,
+            "point_mean": 60.74740484429066
+          },
+          "sm_clock_mhz": {
+            "count": 289,
+            "min": 2460.0,
+            "max": 2670.0,
+            "point_mean": 2660.8650519031144
+          }
+        },
+        "order": 1
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row02-c2-seed43",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row02-c2-seed43/aiperf/profile_export.jsonl",
+            "stored_bytes": 211708,
+            "uncompressed_bytes": 211708,
+            "sha256_stored": "5512f2702a405bc467248e02570810b04b3ba747edb0022d42ac0747641e50f6",
+            "sha256_uncompressed": "5512f2702a405bc467248e02570810b04b3ba747edb0022d42ac0747641e50f6"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row02-c2-seed43/gpu.csv",
+            "stored_bytes": 37034,
+            "uncompressed_bytes": 37034,
+            "sha256_stored": "0c00b755937b83e70404bf522927376d35d794d02f6825b9d331329f3cc0b727",
+            "sha256_uncompressed": "0c00b755937b83e70404bf522927376d35d794d02f6825b9d331329f3cc0b727"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792156512175075010,
+          "request_end_ns_max": 1792156798721998509,
+          "duration_s": 286.546923499,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 342,
+          "formal_window_samples": 287,
+          "first_sample_ns": 1792156460480000000,
+          "last_sample_ns": 1792156801561000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792156511500000000,
+              "after_ns": 1792156512501000000
+            },
+            "end": {
+              "before_ns": 1792156798560000000,
+              "after_ns": 1792156799561000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 287,
+            "min": 43110.0,
+            "max": 43110.0,
+            "point_mean": 43110.0
+          },
+          "gpu_utilization_percent": {
+            "count": 287,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 287,
+            "min": 311.5,
+            "max": 453.41,
+            "point_mean": 352.44174216027875
+          },
+          "temperature_c": {
+            "count": 287,
+            "min": 58.0,
+            "max": 73.0,
+            "point_mean": 64.01393728222996
+          },
+          "sm_clock_mhz": {
+            "count": 287,
+            "min": 2565.0,
+            "max": 2655.0,
+            "point_mean": 2643.815331010453
+          }
+        },
+        "order": 2
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/02-c2-n24-s43",
+        "status": "pass",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/02-c2-n24-s43/profile_export.jsonl",
+            "stored_bytes": 216201,
+            "uncompressed_bytes": 216201,
+            "sha256_stored": "eacd02a1357c3b08eb7c2b36b99cef1f350cfe60fc47528b0aafea719f61d42c",
+            "sha256_uncompressed": "eacd02a1357c3b08eb7c2b36b99cef1f350cfe60fc47528b0aafea719f61d42c"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/02-c2-n24-s43/gpu.csv.gz",
+            "stored_bytes": 3214,
+            "uncompressed_bytes": 47067,
+            "sha256_stored": "5841cac711e9450206300ab2472edaf9a4ebb1f75a5684efc3bbcfe12f2c2ebb",
+            "sha256_uncompressed": "ce6a135febf65aa26e5aaffff0a3eda4bbadef3d061fe3e314278f90c6608da0"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792156598986558289,
+          "request_end_ns_max": 1792156890609772378,
+          "duration_s": 291.623214089,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 345,
+          "formal_window_samples": 291,
+          "first_sample_ns": 1792156546656000000,
+          "last_sample_ns": 1792156890755000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.009,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792156598679000000,
+              "after_ns": 1792156599679000000
+            },
+            "end": {
+              "before_ns": 1792156889755000000,
+              "after_ns": 1792156890755000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 291,
+            "min": 47229.0,
+            "max": 47229.0,
+            "point_mean": 47229.0
+          },
+          "gpu_utilization_percent": {
+            "count": 291,
+            "min": 96.0,
+            "max": 100.0,
+            "point_mean": 99.9553264604811
+          },
+          "power_w": {
+            "count": 291,
+            "min": 341.11,
+            "max": 451.91,
+            "point_mean": 359.109587628866
+          },
+          "temperature_c": {
+            "count": 291,
+            "min": 59.0,
+            "max": 71.0,
+            "point_mean": 62.54295532646048
+          },
+          "sm_clock_mhz": {
+            "count": 291,
+            "min": 2460.0,
+            "max": 2670.0,
+            "point_mean": 2648.917525773196
+          }
+        },
+        "order": 2
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row03-c4-seed44",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row03-c4-seed44/aiperf/profile_export.jsonl",
+            "stored_bytes": 283736,
+            "uncompressed_bytes": 283736,
+            "sha256_stored": "7c350760c5d9720d0981f2cb829f15b902b65113e302008a62958b8a464b8893",
+            "sha256_uncompressed": "7c350760c5d9720d0981f2cb829f15b902b65113e302008a62958b8a464b8893"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row03-c4-seed44/gpu.csv",
+            "stored_bytes": 31311,
+            "uncompressed_bytes": 31311,
+            "sha256_stored": "919c3319836493dc5caa030b865c256974fd44a1c6c0ba789e42613fd50f1118",
+            "sha256_uncompressed": "919c3319836493dc5caa030b865c256974fd44a1c6c0ba789e42613fd50f1118"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792156841840701987,
+          "request_end_ns_max": 1792157091533181885,
+          "duration_s": 249.692479898,
+          "profiling_records": 32
+        },
+        "coverage": {
+          "total_samples": 289,
+          "formal_window_samples": 250,
+          "first_sample_ns": 1792156806390000000,
+          "last_sample_ns": 1792157094461000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792156841408000000,
+              "after_ns": 1792156842408000000
+            },
+            "end": {
+              "before_ns": 1792157091460000000,
+              "after_ns": 1792157092461000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 250,
+            "min": 43110.0,
+            "max": 43110.0,
+            "point_mean": 43110.0
+          },
+          "gpu_utilization_percent": {
+            "count": 250,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 250,
+            "min": 316.19,
+            "max": 452.3,
+            "point_mean": 375.81311999999997
+          },
+          "temperature_c": {
+            "count": 250,
+            "min": 61.0,
+            "max": 75.0,
+            "point_mean": 67.308
+          },
+          "sm_clock_mhz": {
+            "count": 250,
+            "min": 2565.0,
+            "max": 2655.0,
+            "point_mean": 2634.42
+          }
+        },
+        "order": 3
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/03-c4-n32-s44",
+        "status": "pass",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/03-c4-n32-s44/profile_export.jsonl",
+            "stored_bytes": 298369,
+            "uncompressed_bytes": 298369,
+            "sha256_stored": "3bb46201de2ba7a0a96d573a47c3ee8dd16fa9bc3ff1f0580afec3808810a1a3",
+            "sha256_uncompressed": "3bb46201de2ba7a0a96d573a47c3ee8dd16fa9bc3ff1f0580afec3808810a1a3"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/03-c4-n32-s44/gpu.csv.gz",
+            "stored_bytes": 3365,
+            "uncompressed_bytes": 46941,
+            "sha256_stored": "e2d47f286400db666b2d5ff1487d7a76a2b6a3d729380232e58f122d95e86116",
+            "sha256_uncompressed": "bf5763c79f5c86c5810c6a3e2dc714fec8dabcdaceab34e50cb4883bcb7b48b0"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792156946969822617,
+          "request_end_ns_max": 1792157235269127802,
+          "duration_s": 288.299305185,
+          "profiling_records": 32
+        },
+        "coverage": {
+          "total_samples": 344,
+          "formal_window_samples": 288,
+          "first_sample_ns": 1792156892614000000,
+          "last_sample_ns": 1792157235709000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.007,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792156946635000000,
+              "after_ns": 1792156947635000000
+            },
+            "end": {
+              "before_ns": 1792157234709000000,
+              "after_ns": 1792157235709000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 288,
+            "min": 47229.0,
+            "max": 47229.0,
+            "point_mean": 47229.0
+          },
+          "gpu_utilization_percent": {
+            "count": 288,
+            "min": 94.0,
+            "max": 100.0,
+            "point_mean": 99.92013888888889
+          },
+          "power_w": {
+            "count": 288,
+            "min": 342.79,
+            "max": 450.17,
+            "point_mean": 366.0238194444444
+          },
+          "temperature_c": {
+            "count": 288,
+            "min": 60.0,
+            "max": 71.0,
+            "point_mean": 63.21527777777778
+          },
+          "sm_clock_mhz": {
+            "count": 288,
+            "min": 2475.0,
+            "max": 2670.0,
+            "point_mean": 2642.1875
+          }
+        },
+        "order": 3
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row04-c8-seed45",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row04-c8-seed45/aiperf/profile_export.jsonl",
+            "stored_bytes": 240798,
+            "uncompressed_bytes": 240798,
+            "sha256_stored": "dc4a73b0f14dfe2f40af35ccb6bd22dd18fb7b78fcf2832ae19dcde4abbc999a",
+            "sha256_uncompressed": "dc4a73b0f14dfe2f40af35ccb6bd22dd18fb7b78fcf2832ae19dcde4abbc999a"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row04-c8-seed45/gpu.csv",
+            "stored_bytes": 27960,
+            "uncompressed_bytes": 27960,
+            "sha256_stored": "2b5d5395499f9e4b814f13518b97c63bc1e921e4723a6e971ab26b9400166942",
+            "sha256_uncompressed": "2b5d5395499f9e4b814f13518b97c63bc1e921e4723a6e971ab26b9400166942"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157165899926623,
+          "request_end_ns_max": 1792157353103875275,
+          "duration_s": 187.203948652,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 258,
+          "formal_window_samples": 187,
+          "first_sample_ns": 1792157099348000000,
+          "last_sample_ns": 1792157356420000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157165374000000,
+              "after_ns": 1792157166374000000
+            },
+            "end": {
+              "before_ns": 1792157352419000000,
+              "after_ns": 1792157353419000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 187,
+            "min": 43110.0,
+            "max": 43110.0,
+            "point_mean": 43110.0
+          },
+          "gpu_utilization_percent": {
+            "count": 187,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 187,
+            "min": 316.93,
+            "max": 452.02,
+            "point_mean": 375.848449197861
+          },
+          "temperature_c": {
+            "count": 187,
+            "min": 62.0,
+            "max": 75.0,
+            "point_mean": 67.37967914438502
+          },
+          "sm_clock_mhz": {
+            "count": 187,
+            "min": 2565.0,
+            "max": 2655.0,
+            "point_mean": 2634.5454545454545
+          }
+        },
+        "order": 4
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/04-c8-n24-s45",
+        "status": "fail",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [
+          "formal endpoints not bracketed strictly before and after"
+        ],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/profile_export.jsonl",
+            "stored_bytes": 244728,
+            "uncompressed_bytes": 244728,
+            "sha256_stored": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca",
+            "sha256_uncompressed": "a70df291b453881011418ed6afedda9d4b2c16c1da7f66471ab38569cef766ca"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/04-c8-n24-s45/gpu.csv.gz",
+            "stored_bytes": 2925,
+            "uncompressed_bytes": 40007,
+            "sha256_stored": "cee51ae5abec69c044337b746a723395b5bf8bae5295bb329053abe0f458f888",
+            "sha256_uncompressed": "94c07657606d39fbe1af0b905195691d256992e282861f85e3a01521240cc291"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157318631291320,
+          "request_end_ns_max": 1792157529830973290,
+          "duration_s": 211.19968197,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 293,
+          "formal_window_samples": 212,
+          "first_sample_ns": 1792157237658000000,
+          "last_sample_ns": 1792157529751000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.007,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157317693000000,
+              "after_ns": 1792157318693000000
+            },
+            "end": {
+              "before_ns": 1792157529751000000,
+              "after_ns": null
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 212,
+            "min": 47229.0,
+            "max": 47229.0,
+            "point_mean": 47229.0
+          },
+          "gpu_utilization_percent": {
+            "count": 212,
+            "min": 95.0,
+            "max": 100.0,
+            "point_mean": 99.88679245283019
+          },
+          "power_w": {
+            "count": 212,
+            "min": 343.73,
+            "max": 450.68,
+            "point_mean": 366.89033018867923
+          },
+          "temperature_c": {
+            "count": 212,
+            "min": 61.0,
+            "max": 71.0,
+            "point_mean": 63.386792452830186
+          },
+          "sm_clock_mhz": {
+            "count": 212,
+            "min": 2445.0,
+            "max": 2670.0,
+            "point_mean": 2640.495283018868
+          }
+        },
+        "order": 4
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row05-c3-seed46",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row05-c3-seed46/aiperf/profile_export.jsonl",
+            "stored_bytes": 213549,
+            "uncompressed_bytes": 213549,
+            "sha256_stored": "464f99b254cfb1061e33d70e9b40ca6fa58f4294a9f8d9e822c987f2539db69b",
+            "sha256_uncompressed": "464f99b254cfb1061e33d70e9b40ca6fa58f4294a9f8d9e822c987f2539db69b"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row05-c3-seed46/gpu.csv",
+            "stored_bytes": 29902,
+            "uncompressed_bytes": 29902,
+            "sha256_stored": "2bd6c58f37d9bbf6e1bb36c364636bdc37f03687f1794b9cba1cc9432f2b1a65",
+            "sha256_uncompressed": "2bd6c58f37d9bbf6e1bb36c364636bdc37f03687f1794b9cba1cc9432f2b1a65"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157412241201858,
+          "request_end_ns_max": 1792157632890646741,
+          "duration_s": 220.649444883,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 276,
+          "formal_window_samples": 221,
+          "first_sample_ns": 1792157361263000000,
+          "last_sample_ns": 1792157636342000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157411283000000,
+              "after_ns": 1792157412283000000
+            },
+            "end": {
+              "before_ns": 1792157632341000000,
+              "after_ns": 1792157633341000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 221,
+            "min": 43110.0,
+            "max": 43110.0,
+            "point_mean": 43110.0
+          },
+          "gpu_utilization_percent": {
+            "count": 221,
+            "min": 96.0,
+            "max": 100.0,
+            "point_mean": 99.98190045248869
+          },
+          "power_w": {
+            "count": 221,
+            "min": 316.18,
+            "max": 453.24,
+            "point_mean": 366.3368325791855
+          },
+          "temperature_c": {
+            "count": 221,
+            "min": 61.0,
+            "max": 74.0,
+            "point_mean": 66.02714932126698
+          },
+          "sm_clock_mhz": {
+            "count": 221,
+            "min": 2565.0,
+            "max": 2655.0,
+            "point_mean": 2638.371040723982
+          }
+        },
+        "order": 5
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/05-c3-n24-s46",
+        "status": "pass",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/05-c3-n24-s46/profile_export.jsonl",
+            "stored_bytes": 225715,
+            "uncompressed_bytes": 225715,
+            "sha256_stored": "9abaa08fa342208e236f2d03de8c6f7c3938e50064748beda75deb633bfc8abf",
+            "sha256_uncompressed": "9abaa08fa342208e236f2d03de8c6f7c3938e50064748beda75deb633bfc8abf"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/05-c3-n24-s46/gpu.csv.gz",
+            "stored_bytes": 2681,
+            "uncompressed_bytes": 36471,
+            "sha256_stored": "3f0f936bbc0156ab53fd94a23e7ab27bdf5b55e397856ed33eed1596e6354243",
+            "sha256_uncompressed": "63bb5aa6fd96096c612ec012e98d282addd544aef68848c1465ccb78ad11d1a6"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157585972716854,
+          "request_end_ns_max": 1792157797168247838,
+          "duration_s": 211.195530984,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 267,
+          "formal_window_samples": 211,
+          "first_sample_ns": 1792157531654000000,
+          "last_sample_ns": 1792157797732000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.007,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157585677000000,
+              "after_ns": 1792157586677000000
+            },
+            "end": {
+              "before_ns": 1792157796732000000,
+              "after_ns": 1792157797732000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 211,
+            "min": 47229.0,
+            "max": 47229.0,
+            "point_mean": 47229.0
+          },
+          "gpu_utilization_percent": {
+            "count": 211,
+            "min": 96.0,
+            "max": 100.0,
+            "point_mean": 99.93838862559242
+          },
+          "power_w": {
+            "count": 211,
+            "min": 343.94,
+            "max": 452.33,
+            "point_mean": 367.17905213270143
+          },
+          "temperature_c": {
+            "count": 211,
+            "min": 61.0,
+            "max": 71.0,
+            "point_mean": 63.492890995260666
+          },
+          "sm_clock_mhz": {
+            "count": 211,
+            "min": 2475.0,
+            "max": 2670.0,
+            "point_mean": 2640.5687203791467
+          }
+        },
+        "order": 5
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/document-performance/row06-c2-seed47",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/document-performance/row06-c2-seed47/aiperf/profile_export.jsonl",
+            "stored_bytes": 805152,
+            "uncompressed_bytes": 805152,
+            "sha256_stored": "687c287d7ddebbd8b236da539db8b74aed0be1edeecff6c82542e34cef2dd98c",
+            "sha256_uncompressed": "687c287d7ddebbd8b236da539db8b74aed0be1edeecff6c82542e34cef2dd98c"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/document-performance/row06-c2-seed47/gpu.csv",
+            "stored_bytes": 135306,
+            "uncompressed_bytes": 135306,
+            "sha256_stored": "7409ad2aa8cc061f428844368aa223cee8f6f237b3286cdc3d352ba9904936a8",
+            "sha256_uncompressed": "7409ad2aa8cc061f428844368aa223cee8f6f237b3286cdc3d352ba9904936a8"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157693066586481,
+          "request_end_ns_max": 1792158886758384040,
+          "duration_s": 1193.691797559,
+          "profiling_records": 100
+        },
+        "coverage": {
+          "total_samples": 1252,
+          "formal_window_samples": 1194,
+          "first_sample_ns": 1792157641245000000,
+          "last_sample_ns": 1792158892664000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.029,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157692263000000,
+              "after_ns": 1792157693263000000
+            },
+            "end": {
+              "before_ns": 1792158886662000000,
+              "after_ns": 1792158887663000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 1194,
+            "min": 43110.0,
+            "max": 43110.0,
+            "point_mean": 43110.0
+          },
+          "gpu_utilization_percent": {
+            "count": 1194,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 1194,
+            "min": 312.27,
+            "max": 453.95,
+            "point_mean": 353.0419262981575
+          },
+          "temperature_c": {
+            "count": 1194,
+            "min": 60.0,
+            "max": 74.0,
+            "point_mean": 64.58040201005025
+          },
+          "sm_clock_mhz": {
+            "count": 1194,
+            "min": 2550.0,
+            "max": 2655.0,
+            "point_mean": 2643.429648241206
+          }
+        },
+        "order": 6
+      },
+      {
+        "framework": "sglang",
+        "folder": "results/framework-c4/sglang/official-performance/06-c2-n100-s47",
+        "status": "pass",
+        "expected_uuid": "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/sglang/official-performance/06-c2-n100-s47/profile_export.jsonl",
+            "stored_bytes": 827481,
+            "uncompressed_bytes": 827481,
+            "sha256_stored": "ca7c2b3fbcfe875df876a36e550e26e4afb1cfe44891d1336656041318c4fbf9",
+            "sha256_uncompressed": "ca7c2b3fbcfe875df876a36e550e26e4afb1cfe44891d1336656041318c4fbf9"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/sglang/official-performance/06-c2-n100-s47/gpu.csv.gz",
+            "stored_bytes": 10914,
+            "uncompressed_bytes": 172725,
+            "sha256_stored": "d571815f119d98bff13846049ea75d60a8964447ca2f2a9367b846be2781a524",
+            "sha256_uncompressed": "4320e378cf08e0bf3515ba27d956c219b9b8a8eb0b522bcea1b8970b9f71d79d"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792157852283114871,
+          "request_end_ns_max": 1792159067396991633,
+          "duration_s": 1215.113876762,
+          "profiling_records": 100
+        },
+        "coverage": {
+          "total_samples": 1269,
+          "formal_window_samples": 1215,
+          "first_sample_ns": 1792157799593000000,
+          "last_sample_ns": 1792159067933000000,
+          "observed_uuids": [
+            "GPU-c1c59c83-fc0a-2baf-58a5-84bd4020924c"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.006,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792157851613000000,
+              "after_ns": 1792157852613000000
+            },
+            "end": {
+              "before_ns": 1792159066933000000,
+              "after_ns": 1792159067933000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 1215,
+            "min": 47229.0,
+            "max": 47229.0,
+            "point_mean": 47229.0
+          },
+          "gpu_utilization_percent": {
+            "count": 1215,
+            "min": 93.0,
+            "max": 100.0,
+            "point_mean": 99.93415637860082
+          },
+          "power_w": {
+            "count": 1215,
+            "min": 341.66,
+            "max": 452.03,
+            "point_mean": 359.28065020576133
+          },
+          "temperature_c": {
+            "count": 1215,
+            "min": 59.0,
+            "max": 71.0,
+            "point_mean": 62.57283950617284
+          },
+          "sm_clock_mhz": {
+            "count": 1215,
+            "min": 2445.0,
+            "max": 2670.0,
+            "point_mean": 2649.4691358024693
+          }
+        },
+        "order": 6
+      }
+    ],
+    "skipped_unverified": []
+  },
+  "capacity8": {
+    "expected_cases": 2,
+    "status": "audited",
+    "prerequisites": [
+      {
+        "folder": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44",
+        "ready": true,
+        "inputs": {
+          "input_audit": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44/input-audit.json",
+            "stored_bytes": 18007,
+            "uncompressed_bytes": 18007,
+            "sha256_stored": "daf7e148d3f8490c9b8ab06d46f2780702aba62f6cf98b02cd3f4746b3db01fb",
+            "sha256_uncompressed": "daf7e148d3f8490c9b8ab06d46f2780702aba62f6cf98b02cd3f4746b3db01fb"
+          },
+          "summary": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44/summary.json",
+            "stored_bytes": 1885,
+            "uncompressed_bytes": 1885,
+            "sha256_stored": "126454f15960c96efed21b02669388add6153022cc142f81e56f43650aebd327",
+            "sha256_uncompressed": "126454f15960c96efed21b02669388add6153022cc142f81e56f43650aebd327"
+          }
+        }
+      },
+      {
+        "folder": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45",
+        "ready": true,
+        "inputs": {
+          "input_audit": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45/input-audit.json",
+            "stored_bytes": 16107,
+            "uncompressed_bytes": 16107,
+            "sha256_stored": "4a8956be4f89b4517927f7d8fd1a83059af903e7f3164f8784220fc7431ca183",
+            "sha256_uncompressed": "4a8956be4f89b4517927f7d8fd1a83059af903e7f3164f8784220fc7431ca183"
+          },
+          "summary": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45/summary.json",
+            "stored_bytes": 1872,
+            "uncompressed_bytes": 1872,
+            "sha256_stored": "16346ae318bc313480518abfb5db6556b845ad7bbb6f84ea74bdd14b4397fe7b",
+            "sha256_uncompressed": "16346ae318bc313480518abfb5db6556b845ad7bbb6f84ea74bdd14b4397fe7b"
+          }
+        }
+      }
+    ],
+    "audited_cases": 2,
+    "all_2_complete_coverage": true,
+    "cases": [
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44/aiperf/profile_export.jsonl",
+            "stored_bytes": 289943,
+            "uncompressed_bytes": 289943,
+            "sha256_stored": "3a73defeb624569af063d58dcb1892a56db2ba8be9a53c4c5a88b9dab3831eca",
+            "sha256_uncompressed": "3a73defeb624569af063d58dcb1892a56db2ba8be9a53c4c5a88b9dab3831eca"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44/gpu.csv",
+            "stored_bytes": 31310,
+            "uncompressed_bytes": 31310,
+            "sha256_stored": "95b1e2a59b265a9e89b88aea7ab27375d514e206195d2c93d8c5cfe522384abc",
+            "sha256_uncompressed": "95b1e2a59b265a9e89b88aea7ab27375d514e206195d2c93d8c5cfe522384abc"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792159028376668526,
+          "request_end_ns_max": 1792159277884322502,
+          "duration_s": 249.507653976,
+          "profiling_records": 32
+        },
+        "coverage": {
+          "total_samples": 289,
+          "formal_window_samples": 249,
+          "first_sample_ns": 1792158993022000000,
+          "last_sample_ns": 1792159281100000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.008,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792159028039000000,
+              "after_ns": 1792159029039000000
+            },
+            "end": {
+              "before_ns": 1792159277099000000,
+              "after_ns": 1792159278099000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 249,
+            "min": 43082.0,
+            "max": 43082.0,
+            "point_mean": 43082.0
+          },
+          "gpu_utilization_percent": {
+            "count": 249,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 249,
+            "min": 315.51,
+            "max": 452.23,
+            "point_mean": 375.8536947791165
+          },
+          "temperature_c": {
+            "count": 249,
+            "min": 60.0,
+            "max": 75.0,
+            "point_mean": 66.95180722891567
+          },
+          "sm_clock_mhz": {
+            "count": 249,
+            "min": 2550.0,
+            "max": 2655.0,
+            "point_mean": 2635.3614457831327
+          }
+        }
+      },
+      {
+        "framework": "vllm",
+        "folder": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45",
+        "status": "pass",
+        "expected_uuid": "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353",
+        "issues": [],
+        "inputs": {
+          "profile": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45/aiperf/profile_export.jsonl",
+            "stored_bytes": 248164,
+            "uncompressed_bytes": 248164,
+            "sha256_stored": "81bf2467f4411750c905f101014836281c345ccab38fc5d7229e266d69090f3f",
+            "sha256_uncompressed": "81bf2467f4411750c905f101014836281c345ccab38fc5d7229e266d69090f3f"
+          },
+          "gpu_csv": {
+            "filename": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45/gpu.csv",
+            "stored_bytes": 20619,
+            "uncompressed_bytes": 20619,
+            "sha256_stored": "3cd38516dd21089a3f87204d68c20bef0e8553936178d2c5adf39276f23fde22",
+            "sha256_uncompressed": "3cd38516dd21089a3f87204d68c20bef0e8553936178d2c5adf39276f23fde22"
+          }
+        },
+        "formal_window": {
+          "request_start_ns_min": 1792159336151511568,
+          "request_end_ns_max": 1792159472507904682,
+          "duration_s": 136.356393114,
+          "profiling_records": 24
+        },
+        "coverage": {
+          "total_samples": 190,
+          "formal_window_samples": 137,
+          "first_sample_ns": 1792159286197000000,
+          "last_sample_ns": 1792159475255000000,
+          "observed_uuids": [
+            "GPU-e7536e1c-450e-152d-e5e2-92c032a1c353"
+          ],
+          "timestamps_strictly_increasing": true,
+          "max_gap_s": 1.007,
+          "max_allowed_gap_s": 5,
+          "endpoint_brackets": {
+            "start": {
+              "before_ns": 1792159335217000000,
+              "after_ns": 1792159336217000000
+            },
+            "end": {
+              "before_ns": 1792159472254000000,
+              "after_ns": 1792159473254000000
+            }
+          }
+        },
+        "observed_point_statistics": {
+          "memory_used_mib": {
+            "count": 137,
+            "min": 43082.0,
+            "max": 43082.0,
+            "point_mean": 43082.0
+          },
+          "gpu_utilization_percent": {
+            "count": 137,
+            "min": 100.0,
+            "max": 100.0,
+            "point_mean": 100.0
+          },
+          "power_w": {
+            "count": 137,
+            "min": 326.24,
+            "max": 449.45,
+            "point_mean": 401.93941605839416
+          },
+          "temperature_c": {
+            "count": 137,
+            "min": 62.0,
+            "max": 77.0,
+            "point_mean": 70.8905109489051
+          },
+          "sm_clock_mhz": {
+            "count": 137,
+            "min": 2580.0,
+            "max": 2655.0,
+            "point_mean": 2624.3430656934306
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "reviewed_at": "2026-10-17T01:05:37.894084+00:00",
+  "source_document": "Qwen3.8-27B基准测试.md",
+  "source_document_sha256": "fd4fd21834edba676d5a30f44e5e29cad37da5232ac42b594cd3b19e6052538d",
+  "official_reference": {
+    "limit": 100,
+    "batch": 2,
+    "max_tokens": 32768,
+    "scores": [
+      0.8,
+      0.76,
+      0.76
+    ],
+    "metric_unspecified": true,
+    "duplicate_FP8_without_MTP_columns": true,
+    "thinking_sampling_version_revision_unspecified": true
+  },
+  "current_scored_file": "/workspace/InferX/runs/ucloud1-slo/verify-q5-a8-ifbench300-kv327680-graph-r1/paired-scores/per-sample.jsonl",
+  "current_scored_file_sha256": "e5ac5b32a4df7917d71105a1dd94f8ba53e89dcb104b4af3e501bd1499fa1132",
+  "legacy_reference_file": "results/three-node-optimization/ucloud2/fp8-full300-paired-per-sample-001.jsonl",
+  "legacy_reference_file_sha256": "812e0d493e317b5101d03ab52de73e415329a3fe128f5660f8d50c3f160e7a36",
+  "all300_prompt_hash_instruction_counts_match": true,
+  "current_full300_cached_counts_match_independent_original600_review": true,
+  "first100": {
+    "OFF": {
+      "prompt_level_strict": {
+        "correct": 54,
+        "denominator": 100,
+        "score": 0.54
+      },
+      "inst_level_strict": {
+        "correct": 64,
+        "denominator": 111,
+        "score": 0.5765765765765766
+      },
+      "prompt_level_loose": {
+        "correct": 55,
+        "denominator": 100,
+        "score": 0.55
+      },
+      "inst_level_loose": {
+        "correct": 66,
+        "denominator": 111,
+        "score": 0.5945945945945946
+      },
+      "length": 0
+    },
+    "ON": {
+      "prompt_level_strict": {
+        "correct": 54,
+        "denominator": 100,
+        "score": 0.54
+      },
+      "inst_level_strict": {
+        "correct": 64,
+        "denominator": 111,
+        "score": 0.5765765765765766
+      },
+      "prompt_level_loose": {
+        "correct": 54,
+        "denominator": 100,
+        "score": 0.54
+      },
+      "inst_level_loose": {
+        "correct": 65,
+        "denominator": 111,
+        "score": 0.5855855855855856
+      },
+      "length": 0
+    },
+    "FP8_no_thinking_MTP_off": {
+      "prompt_level_strict": {
+        "correct": 53,
+        "denominator": 100,
+        "score": 0.53
+      },
+      "inst_level_strict": {
+        "correct": 62,
+        "denominator": 111,
+        "score": 0.5585585585585585
+      },
+      "prompt_level_loose": {
+        "correct": 54,
+        "denominator": 100,
+        "score": 0.54
+      },
+      "inst_level_loose": {
+        "correct": 65,
+        "denominator": 111,
+        "score": 0.5855855855855856
+      },
+      "length": 0
+    }
+  },
+  "full300": {
+    "OFF": {
+      "prompt_level_strict": {
+        "correct": 109,
+        "denominator": 300,
+        "score": 0.36333333333333334
+      },
+      "inst_level_strict": {
+        "correct": 136,
+        "denominator": 344,
+        "score": 0.3953488372093023
+      },
+      "prompt_level_loose": {
+        "correct": 119,
+        "denominator": 300,
+        "score": 0.39666666666666667
+      },
+      "inst_level_loose": {
+        "correct": 147,
+        "denominator": 344,
+        "score": 0.4273255813953488
+      },
+      "length": 4
+    },
+    "ON": {
+      "prompt_level_strict": {
+        "correct": 118,
+        "denominator": 300,
+        "score": 0.3933333333333333
+      },
+      "inst_level_strict": {
+        "correct": 147,
+        "denominator": 344,
+        "score": 0.4273255813953488
+      },
+      "prompt_level_loose": {
+        "correct": 125,
+        "denominator": 300,
+        "score": 0.4166666666666667
+      },
+      "inst_level_loose": {
+        "correct": 155,
+        "denominator": 344,
+        "score": 0.45058139534883723
+      },
+      "length": 5
+    },
+    "FP8_no_thinking_MTP_off": {
+      "prompt_level_strict": {
+        "correct": 116,
+        "denominator": 300,
+        "score": 0.38666666666666666
+      },
+      "inst_level_strict": {
+        "correct": 145,
+        "denominator": 344,
+        "score": 0.42151162790697677
+      },
+      "prompt_level_loose": {
+        "correct": 123,
+        "denominator": 300,
+        "score": 0.41
+      },
+      "inst_level_loose": {
+        "correct": 154,
+        "denominator": 344,
+        "score": 0.4476744186046512
+      },
+      "length": 1
+    }
+  },
+  "conclusions": [
+    "Current first100 strict prompt54%, versus original NInfer55% and practical FP8 no-thinking/MTP-off53%.",
+    "Current full30039.33% must not be compared directly with official first10076-80%.",
+    "Even after first100 alignment, current four metrics54-58.56% do not reproduce the supplied76-80%.",
+    "Practical FP8 shares no-thinking/greedy protocol; it is not an independent reproduction of unspecified official defaults.",
+    "No identified cause or absolute-quality qualification; inspect effective thinking/sampling/template/model/data/metric before attributing the gap to quantization or new kernels."
+  ]
+}

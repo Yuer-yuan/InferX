@@ -1,0 +1,226 @@
+{
+  "reviewed_at": "2026-10-16T19:20:14.654193+00:00",
+  "scope": "Source-derived NInfer single-user no-thinking rendered-string equivalence to saved FP8 inputs; actual six FP8 input/native usage audit",
+  "full300_original_prompts_match": true,
+  "full300_rendered_strings_equal_source_derived_NInfer": true,
+  "six_rendered_strings_equal_source_derived_NInfer": true,
+  "outer_ascii_whitespace_trimmed_prompts": 2,
+  "requests_actual_raw_ID_hashes_verified": 6,
+  "six_nativecache0": true,
+  "six_no_truncations": true,
+  "six_input_tokens": [
+    8203,
+    8203,
+    8203,
+    8204,
+    8204,
+    8203
+  ],
+  "worker_objective_passes": 4,
+  "source": "source/ninfer-ucloud1-pipeline-queue-grouped-v2/src/targets/qwen3_6/impl/frontend/chat_template.cpp",
+  "template_sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+  "qualifications": [
+    "Source path: ReasoningEffort template/no thinking/one user/no system/no tools; ASCII trim included.",
+    "Actual NInfer token IDs are not captured. Equal rendered strings and tokenizer metadata are source-level evidence, not native ID hash equality.",
+    "FP8 vs NInfer differs in weights/framework/arithmetic/MTP/concurrency, not isolated quantization."
+  ],
+  "six_objective_verdicts_independently_reproduced": true,
+  "six_objective_checks": [
+    {
+      "case": "retrieve-middle",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "parsed": {
+          "answer": "VIOLET-7319"
+        },
+        "expected": "VIOLET-7319"
+      }
+    },
+    {
+      "case": "retrieve-early",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "parsed": {
+          "answer": "MAPLE-2047"
+        },
+        "expected": "MAPLE-2047"
+      }
+    },
+    {
+      "case": "ledger-net",
+      "passed": false,
+      "details": {
+        "passed": false,
+        "parsed": {
+          "answer": 181
+        },
+        "expected": 257
+      }
+    },
+    {
+      "case": "composed-transform",
+      "passed": false,
+      "details": {
+        "passed": false,
+        "parsed": {
+          "answer": 44
+        },
+        "expected": 81
+      }
+    },
+    {
+      "case": "code-stable-unique",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": [],
+            "actual": [],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              1,
+              2,
+              1,
+              3,
+              2
+            ],
+            "expected": [
+              1,
+              2,
+              3
+            ],
+            "actual": [
+              1,
+              2,
+              3
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -2,
+              0,
+              -2,
+              4,
+              0
+            ],
+            "expected": [
+              -2,
+              0,
+              4
+            ],
+            "actual": [
+              -2,
+              0,
+              4
+            ],
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5
+            ],
+            "expected": [
+              5
+            ],
+            "actual": [
+              5
+            ],
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "case": "code-increasing-run",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "tests": [
+          {
+            "input": [],
+            "expected": 0,
+            "actual": 0,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              1,
+              2,
+              2,
+              3,
+              4
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              5,
+              4,
+              3
+            ],
+            "expected": 1,
+            "actual": 1,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              -3,
+              -2,
+              -1,
+              0
+            ],
+            "expected": 4,
+            "actual": 4,
+            "unchanged": true,
+            "pass": true
+          },
+          {
+            "input": [
+              4,
+              1,
+              2,
+              3,
+              0,
+              1
+            ],
+            "expected": 3,
+            "actual": 3,
+            "unchanged": true,
+            "pass": true
+          }
+        ],
+        "exit_code": 0,
+        "stderr": ""
+      }
+    }
+  ],
+  "arithmetic_expected_answers_independently_recomputed": true
+}

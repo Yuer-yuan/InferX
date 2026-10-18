@@ -1,0 +1,123 @@
+{
+  "reviewed_at": "2026-10-16T17:49:52.072151+00:00",
+  "scope": "Root independent raw SSE IDs/native outcomes, real runtime correlation+launch-thread annotations, GPU phase sums and interval unions; no GPU work",
+  "cases": [
+    {
+      "C": 5,
+      "actual_SSE_native_exact_joins": 28,
+      "all_client_8192_512": true,
+      "native_internal_final_output_count_hist": {
+        "515": 4,
+        "513": 10,
+        "516": 3,
+        "512": 6,
+        "514": 5
+      },
+      "all_warmup_ends_before_GPU_window": true,
+      "mixed_progress_rounds": 60,
+      "actual_decode_B_hist": {
+        "4": 15,
+        "5": 43,
+        "3": 2
+      },
+      "total_kernel_count": 93328,
+      "mapped_kernel_count": 90281,
+      "kernels_without_unique_runtime": 2949,
+      "phase_kernel_ms": {
+        "other": 6.438380000000048,
+        "draft": 617.5588120000014,
+        "target_verify": 2876.273438000377,
+        "draft_extend": 338.6954610000003,
+        "target_prefill": 4368.249278999993
+      },
+      "fp8_kernel_ms": 5833.590201999963,
+      "fp8_share_of_mapped_kernel_sum": 0.7107880004371931,
+      "mapped_kernel_union_ms": 8143.207372802734,
+      "diagnostic_client_tpot_linear_p95_ms": 54.615629736301365,
+      "trace_gz_sha256": "88094eef71729b4a0e770a06ed24fe1b189483d148d0166b606af814d1af0c13"
+    },
+    {
+      "C": 6,
+      "actual_SSE_native_exact_joins": 28,
+      "all_client_8192_512": true,
+      "native_internal_final_output_count_hist": {
+        "513": 10,
+        "515": 7,
+        "514": 5,
+        "516": 1,
+        "512": 5
+      },
+      "all_warmup_ends_before_GPU_window": true,
+      "mixed_progress_rounds": 58,
+      "actual_decode_B_hist": {
+        "5": 17,
+        "6": 36,
+        "4": 5
+      },
+      "total_kernel_count": 94780,
+      "mapped_kernel_count": 90851,
+      "kernels_without_unique_runtime": 3796,
+      "phase_kernel_ms": {
+        "other": 6.311641000000035,
+        "draft_extend": 378.56846499999915,
+        "target_prefill": 6118.570928999999,
+        "draft": 599.6954289999971,
+        "target_verify": 2872.195891000503
+      },
+      "fp8_kernel_ms": 7167.884396000001,
+      "fp8_share_of_mapped_kernel_sum": 0.718560239930697,
+      "mapped_kernel_union_ms": 9908.545836425781,
+      "diagnostic_client_tpot_linear_p95_ms": 63.66271344080235,
+      "trace_gz_sha256": "36bfa5bcffe0f0eedce20ec1034190d86ba36dba1c35bedb4ed6a2493b521ab3"
+    },
+    {
+      "C": 8,
+      "actual_SSE_native_exact_joins": 28,
+      "all_client_8192_512": true,
+      "native_internal_final_output_count_hist": {
+        "513": 9,
+        "515": 8,
+        "516": 2,
+        "512": 5,
+        "514": 4
+      },
+      "all_warmup_ends_before_GPU_window": true,
+      "mixed_progress_rounds": 58,
+      "actual_decode_B_hist": {
+        "5": 17,
+        "6": 36,
+        "4": 5
+      },
+      "total_kernel_count": 94779,
+      "mapped_kernel_count": 90851,
+      "kernels_without_unique_runtime": 3796,
+      "phase_kernel_ms": {
+        "other": 6.219486000000048,
+        "draft_extend": 378.79675799999916,
+        "target_prefill": 6125.944450999973,
+        "draft": 599.381769999997,
+        "target_verify": 2872.4287890005644
+      },
+      "fp8_kernel_ms": 7175.406177999977,
+      "fp8_share_of_mapped_kernel_sum": 0.7187789838542556,
+      "mapped_kernel_union_ms": 9915.936270996093,
+      "diagnostic_client_tpot_linear_p95_ms": 63.52579859892367,
+      "trace_gz_sha256": "5d87c4c853e46be1ae8c71aa33cd6528c0fb45501118906793b710b1e71d9ec3"
+    }
+  ],
+  "source_parser_review": [
+    "Observer wraps original Python calls exactly once, reads CPU token lists/tensor metadata, no explicit tensor-value copies or GPU synchronization.",
+    "Native/client exact IDs are extracted from actual raw SSE packet ids, not time inference.",
+    "GPU phases match runtime launch thread and enclosing annotations; exact phase kernel sums independently reproduced.",
+    "Worker measured_tpot_tail_request uses nearest-rank upper contributor, not the official linear-interpolated P95. Do not present its per-request stage values as exact P95 decomposition."
+  ],
+  "limitations": [
+    "Instrumented replay timings are excluded from performance qualification.",
+    "Shared batch intervals are not exclusive request GPU charges or a dependency DAG.",
+    "Only about64 scheduler calls captured; full28-job native/client histories do not imply complete GPU coverage for each tail.",
+    "C8 offered concurrency still reaches at most6 native active decode requests under this R6 service; admission queue matters.",
+    "FP8 GEMM dominance is kernel time attribution, not a measured bandwidth/compute roofline. NCU counters unavailable.",
+    "Replay BF16 GEMMs are not exclusively attributed to LM head from capture-time Python annotations.",
+    "Native internal MTP output_ids end at512..516 while client output is512. Native progress sums/coverage may include terminal overshoot and are not exact delivered-output token accounting."
+  ]
+}

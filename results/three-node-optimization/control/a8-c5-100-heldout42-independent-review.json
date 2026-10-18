@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-16T16:38:14.609806+00:00",
+  "run": "a8-c5-heldout42-r1",
+  "selection_seed": 20261016,
+  "heldout_dataset_seed": 42,
+  "requests": 100,
+  "warmup": 8,
+  "all_measured8192_512": true,
+  "errors": 0,
+  "ttft_p95_ms": 10269.95086585,
+  "tpot_p95_ms": 35.84271582837573,
+  "official_output_tok_s": 126.28662721856557,
+  "ttft_gt10000": 6,
+  "tpot_gt40": 0,
+  "summary_p95_match": true,
+  "joint_slo": false,
+  "same_service_command_except_log": true,
+  "all_native_long_cold": true,
+  "native_length_counts": [
+    {
+      "prompt": 8192,
+      "out": 1,
+      "n": 1
+    },
+    {
+      "prompt": 8192,
+      "out": 512,
+      "n": 108
+    }
+  ],
+  "dataset_sha256": "bcfec27543e2eb2a9695cd998fa505fa091264ad0e5abed06989d1a43084adbc",
+  "hashes": {
+    "archive": "534a042111d0286c4b4d6c7ab53377589b3dbb3051310895d273afa7e60eda7d",
+    "profile_export_jsonl": "7bb4191c6c24a4cb8bee7cae0b6e8bb4e9c38a48e922766f86846ca16e0ec999",
+    "native_requests_jsonl": "c1996589359c420df9bc571ee5e6466245d93a3685d0ed19448f0a648edfc45b"
+  },
+  "conclusion": "Unchanged C5 candidate passes selection100 but fails heldout100 TTFT. Do not establish general C5 capacity or retune unchanged-candidate margin using this heldout as another selection result."
+}

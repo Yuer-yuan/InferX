@@ -1,0 +1,219 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "started_at": "2026-10-17T12:03:18.707123+00:00",
+  "run_id": "8a90faa7364b4a6aad73eac63d71d369",
+  "runner": "/workspace/InferX/code/submission/organizer/runner.py",
+  "runner_sha256": "d80df390cf6d1d50129796b31fdd7f4d1e95d0043d3b942d47ac582118702fb0",
+  "config_sha256": "b22a08728e76fa802e6b689a313ff370cab9ddb6acdbd3b7712ba0c4f71568ba",
+  "selected_cases": [
+    "candidate"
+  ],
+  "cases": [
+    {
+      "label": "PILOT",
+      "name": "candidate",
+      "command": [
+        "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+        "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18487",
+        "--model-id",
+        "qwen38-27b",
+        "--max-context",
+        "65536",
+        "--kv-capacity",
+        "104448",
+        "--max-concurrency",
+        "12",
+        "--max-pending-requests",
+        "32",
+        "--pending-timeout-ms",
+        "600000",
+        "--prefill-chunk",
+        "2048",
+        "--kv-dtype",
+        "int8",
+        "--presence-penalty",
+        "0",
+        "--frequency-penalty",
+        "0",
+        "--seed",
+        "42",
+        "--no-ui",
+        "--spec",
+        "mtp",
+        "--draft-tokens",
+        "3",
+        "--lm-head-draft",
+        "--request-log-jsonl",
+        "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/candidate/requests.jsonl",
+        "--no-prefix-reuse",
+        "--no-disk-cache"
+      ],
+      "concurrencies": [
+        12
+      ],
+      "started_at": "2026-10-17T12:03:20.839445+00:00",
+      "status": "complete",
+      "tiers": [
+        {
+          "label": "PILOT",
+          "status": "complete",
+          "concurrency": 12,
+          "artifacts": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/candidate/c12",
+          "started_at": "2026-10-17T12:03:54.913160+00:00",
+          "meets_slo": true,
+          "issues": [],
+          "expected_requests": 128,
+          "records": 128,
+          "valid_records": 128,
+          "successful_requests": 128.0,
+          "error_requests": 0,
+          "lengths_verified": true,
+          "osl_verified": true,
+          "input_length_basis": "model",
+          "actual_input_tokens": {
+            "min": 8192,
+            "max": 8192,
+            "mean": 8192.0
+          },
+          "metrics": {
+            "time_to_first_token": {
+              "mean": 6118.54017990625,
+              "p50": 5999.924965,
+              "p95": 9499.64601075,
+              "p99": 10017.046317420001
+            },
+            "inter_token_latency": {
+              "mean": 29.097169020165712,
+              "p50": 29.9219339667319,
+              "p95": 37.34016170127202,
+              "p99": 46.52450324909984
+            },
+            "request_latency": {
+              "mean": 20987.193549210933,
+              "p50": 20785.673145,
+              "p95": 25615.961047099998,
+              "p99": 29759.997293660006
+            }
+          },
+          "benchmark_duration": 230.151316736,
+          "request_throughput": 0.5561445686761763,
+          "output_token_throughput": 284.7460191622023,
+          "native_status": "完整",
+          "failed_input_length_records": 0,
+          "failed_output_length_records": 0,
+          "missing_profiling_records": 0,
+          "finished_at": "2026-10-17T12:08:07.474297+00:00",
+          "elapsed_seconds": 252.56116725096945
+        }
+      ],
+      "server_log": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/candidate/server.log",
+      "cleanup": {
+        "reaped": true,
+        "exit_code": 0,
+        "lifecycle": "direct engine child held via pidfd; no process-group or global kill"
+      },
+      "port_preflight": {
+        "status": "unused",
+        "started_at": "2026-10-17T12:03:20.839702+00:00",
+        "timeout_seconds": 0,
+        "previous_owned_server": null,
+        "attempts": 1,
+        "waited_seconds": 0.0019191059982404113
+      },
+      "pid": 396210,
+      "start_ticks": 45967411,
+      "owned_identity": {
+        "pid": 396210,
+        "start_ticks": 45967411,
+        "uid": 0,
+        "executable": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+        "lifecycle": "pidfd held until reaped"
+      },
+      "ready_at": "2026-10-17T12:03:53.997578+00:00",
+      "numeric_gate": {
+        "status": "passed",
+        "receipt": {
+          "kind": "frozen_candidate_numeric_qualification",
+          "passed": true,
+          "binary": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+          "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+          "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+          "evidence": {
+            "runtime": {
+              "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/runtime-ready-compat.json",
+              "sha256": "ee5cb697a05e8eeac4305c8a5ed107bf728fd1932a812a17f5346043fc2da4f1"
+            },
+            "selected_model_seam": {
+              "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/model-seam-qualification.json",
+              "sha256": "176661ac088d312ce3fd8effa7147615df9d733248073ffb95816adbda6d2e42"
+            },
+            "authorization": {
+              "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/authorization.json",
+              "sha256": "9764c630027a98bfbf0da61693f79ceac3284e56652a6925ecdde0bd31d54165"
+            },
+            "quality_cancel_terminal": {
+              "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-current-official100-001/actual-user-cancel-terminal.json",
+              "sha256": "472a0d18f92f9d7aee7833c8353fb442463a70e1c34bc40fc631adb85db2a9bd"
+            }
+          },
+          "scope": "Root-authorized selected47 model-owned L1T1/L2T2044 PASS only; original oldT4 parity FAILED and separately diagnosed. Reuse exact9270 build/registration/helper gates, no full task quality claim."
+        },
+        "sha256": "fb392c9ad74695d4f097778c1b5c3695a3c332aba03e991d98c212db048b648f"
+      },
+      "candidate_build_qualification": {
+        "kind": "native32_s4_startup_qualification",
+        "passed": true,
+        "binary": "/workspace/InferX/experiments/ucloud3-c32-tonight/output47-quality-001/runtime9270/ninfer-serve",
+        "binary_sha256": "9270f73e92409bc94e4b8223adb755c8b1527e611eec21e1ef8778482d0b74c2",
+        "source_sha256": "91621a3c46a4c901a51863442704ea7c398ebdfb73ade9f3b1c4afac4ab235cc",
+        "evidence": {
+          "runtime": {
+            "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/runtime-ready-compat.json",
+            "sha256": "ee5cb697a05e8eeac4305c8a5ed107bf728fd1932a812a17f5346043fc2da4f1"
+          },
+          "selected_model_seam": {
+            "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/model-seam-qualification.json",
+            "sha256": "176661ac088d312ce3fd8effa7147615df9d733248073ffb95816adbda6d2e42"
+          },
+          "authorization": {
+            "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/authorization.json",
+            "sha256": "9764c630027a98bfbf0da61693f79ceac3284e56652a6925ecdde0bd31d54165"
+          },
+          "quality_cancel_terminal": {
+            "path": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-current-official100-001/actual-user-cancel-terminal.json",
+            "sha256": "472a0d18f92f9d7aee7833c8353fb442463a70e1c34bc40fc631adb85db2a9bd"
+          }
+        },
+        "scope": "CPU/source/cache build qualification only. GPU numeric gate is checked after startup and before any original probe/performance request.",
+        "receipt": "/workspace/InferX/results/three-node-optimization/ucloud3/output47-C12-official128-recovery002/qualification.json",
+        "receipt_sha256": "de8d2f3b7d6e5601425b0a0fdf20d0c5373030256cf25a26a265f03c8d2de5d5",
+        "freshservice_semantic_smoke_completed": false
+      },
+      "probe": {
+        "cache_salt": "8a90faa7364b4a6aad73eac63d71d369:candidate:probe",
+        "status": "complete",
+        "excluded_from_metrics": true
+      },
+      "finished_at": "2026-10-17T12:08:08.039924+00:00",
+      "elapsed_seconds": 287.2005303989863
+    }
+  ],
+  "any_slo_met": true,
+  "slo": {
+    "ttft_p95_max_ms": 10000,
+    "tpot_p95_max_ms": 40
+  },
+  "note": "PILOT only; no official score. Probe and warmup excluded; cache isolation not verified by telemetry.",
+  "dataset": {
+    "path": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/dataset.jsonl",
+    "metadata": "/workspace/InferX/runs/ucloud3-slo/output47-C12-K3-n128-recovery002/dataset.meta.json",
+    "sha256": "82f78595fde320cf91293248a94c48770f6d7116abb6dd065cc11d13d0ff9599"
+  },
+  "finished_at": "2026-10-17T12:08:08.041221+00:00",
+  "elapsed_seconds": 289.3337558389758
+}

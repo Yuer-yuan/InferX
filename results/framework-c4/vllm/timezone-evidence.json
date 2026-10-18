@@ -1,0 +1,114 @@
+{
+  "captured_unix": 1792160679.8079376,
+  "captured_utc": "2026-10-16T14:24:39.807938+00:00",
+  "hostname": "cpod-1wjh4iq1ibw7",
+  "date_local": "2026-10-16T14:24:39+00:00",
+  "date_utc": "2026-10-16T14:24:39+00:00",
+  "python_local": "2026-10-16T14:24:39.807938+00:00",
+  "time_tzname": [
+    "UTC",
+    "UTC"
+  ],
+  "time_timezone": 0,
+  "time_altzone": 0,
+  "time_daylight": 0,
+  "capture_environment": {
+    "TZ": null,
+    "TZDIR": null
+  },
+  "timezone_files": [
+    {
+      "path": "/etc/localtime",
+      "exists": false,
+      "lexists": false,
+      "is_symlink": false,
+      "link": null,
+      "resolved": "/etc/localtime",
+      "sha256": null,
+      "lstat": null,
+      "target_stat": null
+    },
+    {
+      "path": "/etc/timezone",
+      "exists": false,
+      "lexists": false,
+      "is_symlink": false,
+      "link": null,
+      "resolved": "/etc/timezone",
+      "sha256": null,
+      "lstat": null,
+      "target_stat": null
+    },
+    {
+      "path": "/usr/share/zoneinfo/Etc/UTC",
+      "exists": false,
+      "lexists": false,
+      "is_symlink": false,
+      "link": null,
+      "resolved": "/usr/share/zoneinfo/Etc/UTC",
+      "sha256": null,
+      "lstat": null,
+      "target_stat": null
+    }
+  ],
+  "boot_unix": 1791778794,
+  "clock_ticks_per_second": 100,
+  "live_processes": [
+    {
+      "pid": 42518,
+      "ppid": 1,
+      "command": "/usr/bin/python3 /workspace/InferX/framework-c4/vllm/run_after_document.py ",
+      "proc_start_ticks": "37981916",
+      "proc_start_unix": 1792158613.16,
+      "timezone_environment": []
+    },
+    {
+      "pid": 43403,
+      "ppid": 43399,
+      "command": "nvidia-smi --query-gpu=timestamp,uuid,memory.used,utilization.gpu,power.draw,temperature.gpu,clocks.sm --format=csv -l 1 ",
+      "proc_start_ticks": "38077675",
+      "proc_start_unix": 1792159570.75,
+      "timezone_environment": []
+    }
+  ],
+  "retained_operator_sources": {
+    "run_document.py": {
+      "sha256": "0b55bdce4e3765274033e25f38775e2ee54b6c7e828495373a2780d37e321588",
+      "stat": {
+        "st_ino": 41567655,
+        "st_size": 12783,
+        "st_mtime_ns": 1792158438470490007,
+        "st_ctime_ns": 1792158438470490007
+      },
+      "sampler_lines": [
+        "    log=(out/'gpu.csv').open('w');sampler=subprocess.Popen(['nvidia-smi','--query-gpu=timestamp,uuid,memory.used,utilization.gpu,power.draw,temperature.gpu,clocks.sm','--format=csv','-l','1'],stdout=log,stderr=subprocess.STDOUT)"
+      ],
+      "contains_TZ_assignment": false
+    },
+    "run_after_document.py": {
+      "sha256": "5e24cd74048d529b066c9f41720f008697ddf91ca79ad13b10ecee0398721170",
+      "stat": {
+        "st_ino": 41602621,
+        "st_size": 2491,
+        "st_mtime_ns": 1792158605348415630,
+        "st_ctime_ns": 1792158605348415630
+      },
+      "sampler_lines": [],
+      "contains_TZ_assignment": false
+    },
+    "run_quality.py": {
+      "sha256": "9ba36e742a329e4cbaa7584d55177716aa770708a6230df1819f914c415b013a",
+      "stat": {
+        "st_ino": 41602619,
+        "st_size": 2861,
+        "st_mtime_ns": 1792158433223710765,
+        "st_ctime_ns": 1792158433223710765
+      },
+      "sampler_lines": [
+        "    sampler = subprocess.Popen(['nvidia-smi', '--query-gpu=timestamp,uuid,memory.used,utilization.gpu,power.draw,temperature.gpu,clocks.sm', '--format=csv', '-l', '1'], stdout=gpu, stderr=subprocess.STDOUT)"
+      ],
+      "contains_TZ_assignment": false
+    }
+  },
+  "limitations": "Captured after performance. Current UTC state alone does not prove historical timezone unchanged. The durable post-document parent predates capacity runs; its inherited timezone environment and retained sources support inheritance without overrides. Document samplers exited; historical consistency is independently checked using saved CSV timestamps against saved epoch run starts and raw request windows."
+}

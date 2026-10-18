@@ -1,0 +1,51 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "concurrency": 16,
+  "artifacts": "/workspace/InferX/runs/ucloud3-slo/gdn-fusion-C16-K3-n128-r1/candidate/c16",
+  "started_at": "2026-10-17T15:06:15.856747+00:00",
+  "meets_slo": false,
+  "issues": [],
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 7832.187323945311,
+      "p50": 7989.893658499999,
+      "p95": 9855.908397250001,
+      "p99": 13235.962335210002
+    },
+    "inter_token_latency": {
+      "mean": 34.243163097113495,
+      "p50": 34.846604799412916,
+      "p95": 48.7840708912916,
+      "p99": 58.0337628841683
+    },
+    "request_latency": {
+      "mean": 25330.443666570314,
+      "p50": 24871.27923,
+      "p95": 33642.08349505001,
+      "p99": 34533.51576545
+    }
+  },
+  "benchmark_duration": 210.20307584000003,
+  "request_throughput": 0.6089226298758051,
+  "output_token_throughput": 311.76838649641223,
+  "native_status": "完整",
+  "failed_input_length_records": 0,
+  "failed_output_length_records": 0,
+  "missing_profiling_records": 0,
+  "finished_at": "2026-10-17T15:10:08.186977+00:00",
+  "elapsed_seconds": 232.33026107901242
+}

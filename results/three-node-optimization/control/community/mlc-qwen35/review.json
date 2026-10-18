@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-10-16T18:21:56.561213+00:00",
+  "repository": "mlc-ai/mlc-llm",
+  "commit": "8978ea9aec626d64096aaa92fbc89bda2e3ea802",
+  "sources": [
+    "https://github.com/mlc-ai/mlc-llm/blob/8978ea9aec626d64096aaa92fbc89bda2e3ea802/python/mlc_llm/model/qwen35/qwen35_model.py",
+    "https://github.com/mlc-ai/mlc-llm/blob/8978ea9aec626d64096aaa92fbc89bda2e3ea802/python/mlc_llm/model/qwen35/qwen35_loader.py",
+    "https://github.com/mlc-ai/mlc-llm/issues/3492"
+  ],
+  "source_facts": [
+    "Upstream qwen35 model/loader exists with nestedHFtext_config handling, hybridfullattention/GDN andRNNState batch_prefill/batch_decode/batch_verify. This isnot Jetson-only evidence.",
+    "InspectedGDN TIR function explicitlyloopssequence tokens serially andmaintainsFP32state. It isnot thechunkwiseGDN path alreadyprofiled inNInfer.",
+    "Inspectedmodel/loader have no nativeMTPmodule/weightmapping; genericbatch_verify entry alone doesnotprove nativeQwenMTP support. Repository-wide capability notfullyaudited.",
+    "HF weightloader maps fullmodel sourceweights intoMLC fusedprojections; NInfer v2/ExL packedartifact isnot adropinMLC weightfile. Missingqwen35_quantization.py404preserved, notruntimefailure.",
+    "OrinPOC issue concernsdifferent35BMoE/differentconditions. No officialcold8192/512/4090SLO resultprovidedthere."
+  ],
+  "decision": "No immediatelysupported source-level win overcurrent1.573s dense-prefill/nativeMTP route identified. KeepMLCasresearch candidate, deferfullnewtoolchain/weightconversionuntil strongSM89/hybrid/nativeMTP readiness justification. NotclaimingMLCcannotoutperform orisJetson-only.",
+  "performance_claim": "None; noMLCruntime installed or GPU benchmark executed inthisreview."
+}

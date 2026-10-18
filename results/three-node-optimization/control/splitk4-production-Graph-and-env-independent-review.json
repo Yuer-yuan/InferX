@@ -1,0 +1,56 @@
+{
+  "reviewed_at": "2026-10-16T21:41:45.454122+00:00",
+  "archive_sha256": "42fe75d28ada7cadcd6cfe3cc21592d5ee8710e67fa975e5edb285e593d1bd63",
+  "archive_bytes": 30629463,
+  "arms": [
+    {
+      "gate": 0,
+      "cases": 10,
+      "numeric_records": 60,
+      "original_FP64_oracles": 120,
+      "graph_nodes": 10,
+      "workspace_reset_finite_guards_pass": true,
+      "saved_full_output_SHAs_match_numeric_records": true
+    },
+    {
+      "gate": 1,
+      "cases": 10,
+      "numeric_records": 60,
+      "original_FP64_oracles": 120,
+      "graph_nodes": 16,
+      "workspace_reset_finite_guards_pass": true,
+      "saved_full_output_SHAs_match_numeric_records": true
+    }
+  ],
+  "actual_caller_sha256": "fafa563c209113cb0c5d59d48d907f8db7167e93465bdc06bc267c98ea7a5743",
+  "actual_graph_caller_binary_sha256": "6aa9462d42f3c5274b6f1da4d906ca1b9c3c962dbad77b7659ef1c524d5e1545",
+  "all4Graphchildren_exit0_reaped": true,
+  "formal_actual_envs": {
+    "splitk4_off": {
+      "pid": 284680,
+      "start_ticks": 40745309,
+      "actual_ninfer_env": {
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "NINFER_VERIFY_SLICES": "none",
+        "NINFER_Q5_SPLITK4": "0"
+      }
+    },
+    "splitk4_on": {
+      "pid": 284850,
+      "start_ticks": 40761242,
+      "actual_ninfer_env": {
+        "NINFER_PREFILL_A8": "all",
+        "NINFER_SCHED_POLICY": "completion_queue",
+        "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+        "NINFER_VERIFY_SLICES": "none",
+        "NINFER_Q5_SPLITK4": "1"
+      }
+    }
+  },
+  "health_ON_prefill_A8_env_absent": true,
+  "health_note": "Separate ON health starts with default BF16-prefill, while both formal pilots actual /proc environment correctly has Prefill A8=all; new SplitK4 gate is active in ON health. Do not describe all health flags as identical to formal.",
+  "cosmetic_API3_rerun": "not_launched; actual successful SDK compatibility caller remains valid",
+  "preserved_controller_failure": "r1 /usr/bin/env exec identity mismatch; exact health child recovered with matching PID/start/binary; no invented parent exit code"
+}

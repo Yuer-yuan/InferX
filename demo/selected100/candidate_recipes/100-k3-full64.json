@@ -1,0 +1,107 @@
+{
+  "assets": {
+    "cache_evidence": [
+      {
+        "path": "results/three-node-optimization/ucloud2/frozen080-K3-C13-perf-095/inherited-current512-cache-SHA.json",
+        "sha256": "12a6239fca1677a82385b47eb4c2822c0d693a1d14fe9f72e03b5437fa624c2e"
+      }
+    ],
+    "contract": {
+      "file": "assets-full64.json",
+      "sha256": "b7a95de6dedd2319e9e1c7b32e21775e7d1b7fb0bee84e6f3ded216cf25abc1b"
+    },
+    "equivalence_evidence": {
+      "file": "evidence/assets-equivalence.json",
+      "sha256": "b1dd4589e44271d5ba61262b19f69a6512d907a9b8bf9f33f11996687a3daee1"
+    },
+    "loader_evidence": {
+      "file": "evidence/100-loader-verification.json",
+      "sha256": "9bed6491e506897c884d1e1ca3e638994039c4afa35b49d03d5d37a4e0994263"
+    },
+    "model_evidence": {
+      "path": "results/three-node-optimization/ucloud2/frozen080-K3-C13-perf-095/delivery/control/actual-model-identity.json",
+      "sha256": "258726abc90234238c6a9336fb0e86ba6b61ab288fb7ee50e03e735601ad3ba0"
+    },
+    "original_cache_roots": {
+      "weights025": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-layer-GPTQ-025",
+      "weights041": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-input-GPTQ-041",
+      "weights047": "/workspace/InferX/three-node-optimization/ucloud2/true-int4-all-output-GPTQ-047"
+    },
+    "original_model_path": "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "verification": "Exact serving layer/file sets and sizes; SHA values inherited from frozen receipts, no content rehash."
+  },
+  "binary_artifact_id": "100-k3",
+  "binary_sha256": "e4ed1bf4baebf7da3a81e4aed01307c7e3e7ae97faef7672c507ed21bdaeb38c",
+  "environment": {
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "{assets}/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "{assets}/weights047",
+    "NINFER_OUTPUT_S4_VERIFY": "1",
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+    "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+    "NINFER_S4_GPTQ_CACHE": "{assets}/weights025",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "1",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "300",
+    "NINFER_VERIFY_Q5_A8": "1"
+  },
+  "profiles": {
+    "perf-c12": {
+      "client_concurrency": 12,
+      "kv_capacity": 104448,
+      "mode": "perf",
+      "name": "perf-c12",
+      "native_concurrency": 12
+    },
+    "perf-c13": {
+      "client_concurrency": 13,
+      "kv_capacity": 113152,
+      "mode": "perf",
+      "name": "perf-c13",
+      "native_concurrency": 13
+    },
+    "perf-c14": {
+      "client_concurrency": 14,
+      "kv_capacity": 121856,
+      "mode": "perf",
+      "name": "perf-c14",
+      "native_concurrency": 13
+    },
+    "perf-c4": {
+      "client_concurrency": 4,
+      "kv_capacity": 65536,
+      "mode": "perf",
+      "name": "perf-c4",
+      "native_concurrency": 4
+    },
+    "perf-c8": {
+      "client_concurrency": 8,
+      "kv_capacity": 69632,
+      "mode": "perf",
+      "name": "perf-c8",
+      "native_concurrency": 8
+    },
+    "quality100": {
+      "client_concurrency": 13,
+      "kv_capacity": 532480,
+      "mode": "accuracy",
+      "name": "quality100",
+      "native_concurrency": 13
+    }
+  },
+  "quality_status": "105_complete_100_strict85_loose88_empty1",
+  "recipe_id": "100-k3-full64",
+  "schema_version": 1,
+  "selection_status": "selected_measured_C4_C8_C12_C13_C14",
+  "source_sha256": "c976692d9657408308193b50772c700382a6e243d9da353165205dc5252f76a8",
+  "status": "candidate",
+  "version_id": "100-k3"
+}

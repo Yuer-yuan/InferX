@@ -1,0 +1,80 @@
+{
+  "reviewed_at": "2026-10-17T01:14:23.657325+00:00",
+  "scope": "Root independent CPU actual allW recode and all10 Xcodes/scalebits; exact INT64 new random cell checks",
+  "weight_elements_checked": 178257920,
+  "weight_codes_and_scale_bits_mismatches": 0,
+  "W_relative_l2": 0.008336307300568502,
+  "W_maxabs": 0.0016606845892965794,
+  "original_weight_recode_SHA256": "8e9740cd978a46534403ba1c1ebd09ef365d0d9ab0d17c97fc617eacfe87610f",
+  "activation_elements_checked": 58982400,
+  "exact_integer_cells_checked": 2560,
+  "integer_bound": 82580480,
+  "cases": [
+    {
+      "T": 256,
+      "pattern": "dense",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.009055721653317746
+    },
+    {
+      "T": 256,
+      "pattern": "basis",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 3.725290298461914e-09
+    },
+    {
+      "T": 256,
+      "pattern": "zero",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0
+    },
+    {
+      "T": 256,
+      "pattern": "outlier",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.15460411827409606
+    },
+    {
+      "T": 256,
+      "pattern": "edges",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.00831780558184933
+    },
+    {
+      "T": 2048,
+      "pattern": "dense",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.009055721653317746
+    },
+    {
+      "T": 2048,
+      "pattern": "basis",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 3.725290298461914e-09
+    },
+    {
+      "T": 2048,
+      "pattern": "zero",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0
+    },
+    {
+      "T": 2048,
+      "pattern": "outlier",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.15460411827409606
+    },
+    {
+      "T": 2048,
+      "pattern": "edges",
+      "exact_integer_cells_checked": 256,
+      "token0_relative_l2": 0.00831780558184933
+    }
+  ],
+  "GPU_postSiLU_numeric_PASS": false,
+  "GPU_authorized": false,
+  "limits": [
+    "Integer cell checks are a sample, not a full independent recomputation of all400million raw cells.",
+    "No GPU/SiLU/task-quality or speed qualification; new activation outlier error remains relevant."
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "document-literal": {
+    "non_default_args": {
+      "model_tag": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "host": "127.0.0.1",
+      "port": 8088,
+      "model": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "max_model_len": 32768,
+      "served_model_name": [
+        "qwen3.8-27b-fp8"
+      ],
+      "reasoning_parser": "qwen3",
+      "gpu_memory_utilization": 0.9,
+      "kv_cache_dtype": "fp8",
+      "max_num_seqs": 4
+    },
+    "resolved_startup": {
+      "max_seq_len": "32768",
+      "speculative_config": "None",
+      "dtype": "torch.bfloat16",
+      "kv_cache_dtype": "fp8",
+      "seed": "0",
+      "enable_prefix_caching": "True",
+      "enable_chunked_prefill": "True",
+      "cudagraph_capture_sizes": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "compile_ranges_endpoints": [
+        2048
+      ],
+      "available_kv_cache_gib": "11.56",
+      "kv_cache_tokens": "292,484",
+      "cuda_graph_pool_actual_gib": "0.05"
+    },
+    "command": [
+      "/workspace/InferX/envs/vllm-0.31.0/bin/vllm",
+      "serve",
+      "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8088",
+      "--tensor-parallel-size",
+      "1",
+      "--dtype",
+      "auto",
+      "--gpu-memory-utilization",
+      "0.90",
+      "--max-model-len",
+      "32768",
+      "--max-num-seqs",
+      "4",
+      "--kv-cache-dtype",
+      "fp8",
+      "--reasoning-parser",
+      "qwen3",
+      "--served-model-name",
+      "qwen3.8-27b-fp8"
+    ],
+    "environment": {
+      "PATH": "/workspace/InferX/envs/vllm-0.31.0/bin:/usr/local/cuda-13.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+      "CC": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-gcc",
+      "CXX": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+      "NVCC_CCBIN": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+      "LD_LIBRARY_PATH": "/workspace/InferX/envs/build/lib",
+      "FLASHINFER_WORKSPACE_BASE": "/workspace/InferX/cache/flashinfer-vllm",
+      "CUDA_HOME": "/usr/local/cuda-13.2",
+      "HF_HOME": "/workspace/InferX/cache/huggingface-framework-vllm",
+      "HF_ENDPOINT": "https://hf-mirror.com",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "XDG_CACHE_HOME": "/workspace/InferX/cache/vllm-xdg",
+      "VLLM_CACHE_ROOT": "/workspace/InferX/cache/vllm",
+      "TORCHINDUCTOR_CACHE_DIR": "/workspace/InferX/cache/torchinductor-vllm",
+      "TRITON_CACHE_DIR": "/workspace/InferX/cache/triton-vllm",
+      "CUDA_CACHE_PATH": "/workspace/InferX/cache/cuda-vllm",
+      "TMPDIR": "/workspace/InferX/tmp",
+      "OMP_NUM_THREADS": "1"
+    }
+  },
+  "capacity8-context32k": {
+    "non_default_args": {
+      "model_tag": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "host": "127.0.0.1",
+      "port": 8088,
+      "model": "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "max_model_len": 32768,
+      "served_model_name": [
+        "qwen3.8-27b-fp8"
+      ],
+      "reasoning_parser": "qwen3",
+      "gpu_memory_utilization": 0.9,
+      "kv_cache_dtype": "fp8",
+      "max_num_seqs": 8
+    },
+    "resolved_startup": {
+      "max_seq_len": "32768",
+      "speculative_config": "None",
+      "dtype": "torch.bfloat16",
+      "kv_cache_dtype": "fp8",
+      "seed": "0",
+      "enable_prefix_caching": "True",
+      "enable_chunked_prefill": "True",
+      "cudagraph_capture_sizes": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "compile_ranges_endpoints": [
+        2048
+      ],
+      "available_kv_cache_gib": "11.52",
+      "kv_cache_tokens": "291,271",
+      "cuda_graph_pool_actual_gib": "0.06"
+    },
+    "command": [
+      "/workspace/InferX/envs/vllm-0.31.0/bin/vllm",
+      "serve",
+      "/model/ModelScope/Qwen/Qwen3.8-27B-FP8",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8088",
+      "--tensor-parallel-size",
+      "1",
+      "--dtype",
+      "auto",
+      "--gpu-memory-utilization",
+      "0.90",
+      "--max-model-len",
+      "32768",
+      "--max-num-seqs",
+      "8",
+      "--kv-cache-dtype",
+      "fp8",
+      "--reasoning-parser",
+      "qwen3",
+      "--served-model-name",
+      "qwen3.8-27b-fp8"
+    ],
+    "environment": {
+      "PATH": "/workspace/InferX/envs/vllm-0.31.0/bin:/usr/local/cuda-13.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+      "CC": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-gcc",
+      "CXX": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+      "NVCC_CCBIN": "/workspace/InferX/envs/build/bin/x86_64-conda-linux-gnu-g++",
+      "LD_LIBRARY_PATH": "/workspace/InferX/envs/build/lib",
+      "FLASHINFER_WORKSPACE_BASE": "/workspace/InferX/cache/flashinfer-vllm",
+      "CUDA_HOME": "/usr/local/cuda-13.2",
+      "HF_HOME": "/workspace/InferX/cache/huggingface-framework-vllm",
+      "HF_ENDPOINT": "https://hf-mirror.com",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "XDG_CACHE_HOME": "/workspace/InferX/cache/vllm-xdg",
+      "VLLM_CACHE_ROOT": "/workspace/InferX/cache/vllm",
+      "TORCHINDUCTOR_CACHE_DIR": "/workspace/InferX/cache/torchinductor-vllm",
+      "TRITON_CACHE_DIR": "/workspace/InferX/cache/triton-vllm",
+      "CUDA_CACHE_PATH": "/workspace/InferX/cache/cuda-vllm",
+      "TMPDIR": "/workspace/InferX/tmp",
+      "OMP_NUM_THREADS": "1"
+    }
+  },
+  "explicit_command_diff": [
+    {
+      "index": 16,
+      "baseline": "4",
+      "capacity8": "8"
+    }
+  ],
+  "startup_resolved_diff": {
+    "cudagraph_capture_sizes": {
+      "baseline": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "capacity8": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "available_kv_cache_gib": {
+      "baseline": "11.56",
+      "capacity8": "11.52"
+    },
+    "kv_cache_tokens": {
+      "baseline": "292,484",
+      "capacity8": "291,271"
+    },
+    "cuda_graph_pool_actual_gib": {
+      "baseline": "0.05",
+      "capacity8": "0.06"
+    }
+  }
+}

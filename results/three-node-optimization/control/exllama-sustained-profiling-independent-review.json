@@ -1,0 +1,97 @@
+{
+  "reviewed_at": "2026-10-16T19:08:47.292329+00:00",
+  "role": "root_independent_CPU_diagnostic_review",
+  "official_performance": false,
+  "independent_same_thread_full_API_NVTX_containment": true,
+  "all_phase_counts_sums_unions_match_worker003": true,
+  "kernel_count": 292588,
+  "kernel_runtime_correlation_matches": 292588,
+  "graph_node_kernel_count": 108329,
+  "actual_f16acc_kernel_count": 9921,
+  "GPU_union_ms": 26836.932161,
+  "phases": {
+    "unmapped": {
+      "kernel_count": 672,
+      "GPU_union_ms": 0.978489,
+      "kernel_sum_ms": 0.978489
+    },
+    "prefill": {
+      "kernel_count": 76427,
+      "GPU_union_ms": 19780.759457,
+      "kernel_sum_ms": 19780.759457
+    },
+    "draft": {
+      "kernel_count": 17355,
+      "GPU_union_ms": 1158.59859,
+      "kernel_sum_ms": 1158.749572
+    },
+    "target_verify": {
+      "kernel_count": 181545,
+      "GPU_union_ms": 5643.766868,
+      "kernel_sum_ms": 5644.226171
+    },
+    "verify_control_or_unscoped_draft_extend": {
+      "kernel_count": 11207,
+      "GPU_union_ms": 139.300868,
+      "kernel_sum_ms": 139.300868
+    },
+    "draft_extend_observed_lower_bound": {
+      "kernel_count": 5382,
+      "GPU_union_ms": 113.527889,
+      "kernel_sum_ms": 113.527889
+    }
+  },
+  "prefill_reconstruct_hgemm_union_ms": 16982.953488,
+  "prefill_fraction_of_GPU_activity_union": 0.7370723053712458,
+  "actual_client_native_ID_and_prompt_hash_joins": 28,
+  "all_8192input_512output_cold": true,
+  "capture_trigger": {
+    "batch": 298,
+    "prepared": 10,
+    "finished": 6,
+    "measured_replacements_started": 2,
+    "measured_finished": 2,
+    "jobs": [
+      {
+        "serial": 6,
+        "request_id": "158b4f0e9e7f48f693cad7456c5398bf",
+        "committed": 329,
+        "accepted": 214,
+        "rejected": 246,
+        "prefill_done": true,
+        "kv_positions": [
+          8520
+        ]
+      },
+      {
+        "serial": 7,
+        "request_id": "1df76c12e9b04eeab00742c0e3c19e0e",
+        "committed": 424,
+        "accepted": 309,
+        "rejected": 151,
+        "prefill_done": true,
+        "kv_positions": [
+          8615
+        ]
+      },
+      {
+        "serial": 8,
+        "request_id": "35962abbe42e4e13afae99b7e8b31db4",
+        "committed": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "prefill_done": false,
+        "kv_positions": [
+          7936
+        ]
+      }
+    ]
+  },
+  "qualifications": [
+    "Partial steady-state diagnostic; instrumented timings excluded from performance.",
+    "Nested module times overlap; GDN includes projections.",
+    "Actual Model role separates target; control/unscoped draft-extend remains explicit.",
+    "No hardware counters or measured roofline. Activity union is not occupancy/bandwidth.",
+    "Request coverage partial; phase fractions do not decompose request P95."
+  ]
+}

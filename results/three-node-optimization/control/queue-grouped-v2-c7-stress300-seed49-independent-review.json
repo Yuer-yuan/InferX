@@ -1,0 +1,34 @@
+{
+  "reviewed_at": "2026-10-16T19:47:53.845249+00:00",
+  "scope": "Root independent raw supplementary300+8 stress audit; not a replacement for original100",
+  "run": "a8-v2-c7-stress300-seed49-r1",
+  "offered_C": 7,
+  "native_cap": 8,
+  "dataset_seed": 49,
+  "requests": 300,
+  "warmup": 8,
+  "errors": 0,
+  "all8192_512": true,
+  "ttft_p95_ms": 9533.210308349999,
+  "tpot_p95_ms": 38.30792451017612,
+  "official_output_tok_s": 163.8124348183752,
+  "joint_slo": true,
+  "native309_cold": true,
+  "all_startup_kept": true,
+  "initial7": {
+    "n": 7,
+    "TTFT_gt10000": 1,
+    "TPOT_gt40": 1
+  },
+  "later293": {
+    "n": 293,
+    "TTFT_gt10000": 1,
+    "TPOT_gt40": 3
+  },
+  "cleanup_reaped": true,
+  "binary_sha256": "bcdf0d36d90882b55e1ff67bc49b60172f6e22cd12e66cfefa3b171c14b20619",
+  "full_source_sha256": "23548389380f3c3e54d6cf6cf7b3344bfcaf44e9c7264e7df163886d32881165",
+  "same_argv_as_selection100_except_log_path": true,
+  "archive_sha256": "f783c2d174358ab839e845f31423de9fc7724ac534eef46ad533a8e06dcf5976",
+  "qualification": "Fixed candidate now has two passing100-request seeds plus independent300-request supplementary stress. This strengthens C7 evidence, not universal stability or broad-quality qualification. Higher offeredC8 remains unqualified."
+}

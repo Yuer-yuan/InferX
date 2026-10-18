@@ -1,0 +1,4316 @@
+{
+  "overview": {
+    "id": "overview",
+    "title": {
+      "zh": "并发请求共享单卡",
+      "en": "Concurrent requests share one GPU"
+    },
+    "claim": "Concurrent requests share one GPU and receive streamed outputs; counts are illustrative.",
+    "nodes": [
+      {
+        "id": "requesttitle",
+        "x": 1.3,
+        "y": 2.3,
+        "w": 2.5,
+        "h": 0.65,
+        "zh": "并发请求",
+        "en": "Requests",
+        "role": "text",
+        "font": 14,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "responsetitle",
+        "x": 10.0,
+        "y": 2.3,
+        "w": 2.8,
+        "h": 0.65,
+        "zh": "流式响应",
+        "en": "Responses",
+        "role": "text",
+        "font": 14,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gpu",
+        "x": 5.65,
+        "y": 5.0,
+        "w": 4.3,
+        "h": 4.8,
+        "zh": "",
+        "en": "",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "servicename",
+        "x": 5.65,
+        "y": 3.25,
+        "w": 3.7,
+        "h": 0.7,
+        "zh": "InferX",
+        "en": "InferX",
+        "role": "text",
+        "font": 18,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "modelname",
+        "x": 5.65,
+        "y": 4.05,
+        "w": 3.9,
+        "h": 0.5,
+        "zh": "Qwen3.8-27B",
+        "en": "Qwen3.8-27B",
+        "role": "text",
+        "font": 13,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "device",
+        "x": 5.65,
+        "y": 5.3,
+        "w": 2.6,
+        "h": 1.7,
+        "zh": "GPU",
+        "en": "GPU",
+        "role": "neutral",
+        "font": 19,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gpulabel",
+        "x": 5.65,
+        "y": 6.75,
+        "w": 3.9,
+        "h": 0.5,
+        "zh": "1 × 48GB RTX 4090",
+        "en": "1 × 48GB RTX 4090",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "request0",
+        "x": 1.3,
+        "y": 3.65,
+        "w": 2.0,
+        "h": 0.85,
+        "zh": "请求 1",
+        "en": "Req. 1",
+        "role": "neutral",
+        "font": 12,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "answer0",
+        "x": 10.0,
+        "y": 3.65,
+        "w": 2.3,
+        "h": 0.85,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token00",
+        "x": 9.3,
+        "y": 3.65,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token01",
+        "x": 9.8,
+        "y": 3.65,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token02",
+        "x": 10.3,
+        "y": 3.65,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "inputport0",
+        "x": 3.5,
+        "y": 3.65,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "outputport0",
+        "x": 7.8,
+        "y": 3.65,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "request1",
+        "x": 1.3,
+        "y": 4.9,
+        "w": 2.0,
+        "h": 0.85,
+        "zh": "请求 2",
+        "en": "Req. 2",
+        "role": "neutral",
+        "font": 12,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "answer1",
+        "x": 10.0,
+        "y": 4.9,
+        "w": 2.3,
+        "h": 0.85,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token10",
+        "x": 9.3,
+        "y": 4.9,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token11",
+        "x": 9.8,
+        "y": 4.9,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token12",
+        "x": 10.3,
+        "y": 4.9,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "inputport1",
+        "x": 3.5,
+        "y": 4.9,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "outputport1",
+        "x": 7.8,
+        "y": 4.9,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "request2",
+        "x": 1.3,
+        "y": 6.15,
+        "w": 2.0,
+        "h": 0.85,
+        "zh": "请求 3",
+        "en": "Req. 3",
+        "role": "neutral",
+        "font": 12,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "answer2",
+        "x": 10.0,
+        "y": 6.15,
+        "w": 2.3,
+        "h": 0.85,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token20",
+        "x": 9.3,
+        "y": 6.15,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token21",
+        "x": 9.8,
+        "y": 6.15,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "token22",
+        "x": 10.3,
+        "y": 6.15,
+        "w": 0.32,
+        "h": 0.3,
+        "zh": "",
+        "en": "",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "inputport2",
+        "x": 3.5,
+        "y": 6.15,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "outputport2",
+        "x": 7.8,
+        "y": 6.15,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "morerequests",
+        "x": 1.3,
+        "y": 7.05,
+        "w": 2.0,
+        "h": 0.6,
+        "zh": "…",
+        "en": "…",
+        "role": "text",
+        "font": 18,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "moreanswers",
+        "x": 10.0,
+        "y": 7.05,
+        "w": 2.3,
+        "h": 0.6,
+        "zh": "…",
+        "en": "…",
+        "role": "text",
+        "font": 18,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "limit",
+        "x": 5.65,
+        "y": 8.15,
+        "w": 11.2,
+        "h": 0.55,
+        "zh": "首字与生成延迟均受SLO约束",
+        "en": "First-token and generation latency SLOs",
+        "role": "text",
+        "font": 13,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "limitvalues",
+        "x": 5.65,
+        "y": 8.9,
+        "w": 11.2,
+        "h": 0.5,
+        "zh": "TTFT P95 ≤ 10s   ·   TPOT P95 ≤ 40ms",
+        "en": "TTFT P95 ≤ 10s   ·   TPOT P95 ≤ 40ms",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "request0",
+        "b": "inputport0",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.3,
+            3.65
+          ],
+          [
+            3.495,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.495,
+              3.65
+            ],
+            [
+              3.375,
+              3.605
+            ],
+            [
+              3.375,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "outputport0",
+        "b": "answer0",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            7.805,
+            3.65
+          ],
+          [
+            8.85,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              8.85,
+              3.65
+            ],
+            [
+              8.73,
+              3.605
+            ],
+            [
+              8.73,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "request1",
+        "b": "inputport1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.3,
+            4.9
+          ],
+          [
+            3.495,
+            4.9
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.495,
+              4.9
+            ],
+            [
+              3.375,
+              4.855
+            ],
+            [
+              3.375,
+              4.945
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "outputport1",
+        "b": "answer1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            7.805,
+            4.9
+          ],
+          [
+            8.85,
+            4.9
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              8.85,
+              4.9
+            ],
+            [
+              8.73,
+              4.855
+            ],
+            [
+              8.73,
+              4.945
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "request2",
+        "b": "inputport2",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.3,
+            6.15
+          ],
+          [
+            3.495,
+            6.15
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.495,
+              6.15
+            ],
+            [
+              3.375,
+              6.105
+            ],
+            [
+              3.375,
+              6.195
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "outputport2",
+        "b": "answer2",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            7.805,
+            6.15
+          ],
+          [
+            8.85,
+            6.15
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              8.85,
+              6.15
+            ],
+            [
+              8.73,
+              6.105
+            ],
+            [
+              8.73,
+              6.195
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      -0.04999999999999996,
+      1.8749999999999998,
+      11.5,
+      9.25
+    ]
+  },
+  "problems": {
+    "id": "problems",
+    "title": {
+      "zh": "并发推理的两项瓶颈",
+      "en": "Two bottlenecks in concurrent inference"
+    },
+    "claim": "Shared-GPU stage contention and matrix execution cost motivate scheduling and kernel optimization. MTP concurrency is an engineering adaptation shown separately; no measured time or bottleneck shares are shown.",
+    "nodes": [
+      {
+        "id": "pdtitle",
+        "x": 2.4,
+        "y": 2.15,
+        "w": 4.7,
+        "h": 0.45,
+        "zh": "I  预填充与解码干扰",
+        "en": "I  P/D interference",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "p",
+        "x": 1.8,
+        "y": 3.15,
+        "w": 2.9,
+        "h": 0.7,
+        "zh": "Prefill",
+        "en": "Prefill",
+        "role": "neutral",
+        "font": 11,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "d",
+        "x": 4.0,
+        "y": 3.15,
+        "w": 1.0,
+        "h": 0.7,
+        "zh": "D",
+        "en": "D",
+        "role": "mechanism",
+        "font": 11,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "wait",
+        "x": 1.8,
+        "y": 4.05,
+        "w": 2.9,
+        "h": 0.55,
+        "zh": "解码等待",
+        "en": "Decode waits",
+        "role": "text",
+        "font": 11,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "pdnote",
+        "x": 2.4,
+        "y": 4.9,
+        "w": 4.7,
+        "h": 0.45,
+        "zh": "共享GPU的执行时间",
+        "en": "Shared GPU execution time",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "matrixtitle",
+        "x": 7.7,
+        "y": 2.15,
+        "w": 4.7,
+        "h": 0.45,
+        "zh": "II  算子效率",
+        "en": "II  Operator efficiency",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "problemw00",
+        "x": 7.34,
+        "y": 2.83,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw01",
+        "x": 7.58,
+        "y": 2.83,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw02",
+        "x": 7.82,
+        "y": 2.83,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw03",
+        "x": 8.06,
+        "y": 2.83,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw10",
+        "x": 7.34,
+        "y": 3.0700000000000003,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw11",
+        "x": 7.58,
+        "y": 3.0700000000000003,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw12",
+        "x": 7.82,
+        "y": 3.0700000000000003,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "problemw13",
+        "x": 8.06,
+        "y": 3.0700000000000003,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "x",
+        "x": 5.85,
+        "y": 3.9,
+        "w": 0.5,
+        "h": 0.6,
+        "zh": "x",
+        "en": "x",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "op",
+        "x": 7.7,
+        "y": 3.9,
+        "w": 2.4,
+        "h": 0.7,
+        "zh": "矩阵运算",
+        "en": "Matrix execution",
+        "role": "neutral",
+        "font": 11,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "y",
+        "x": 9.55,
+        "y": 3.9,
+        "w": 0.5,
+        "h": 0.6,
+        "zh": "y",
+        "en": "y",
+        "role": "text",
+        "font": 12,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "wport",
+        "x": 7.7,
+        "y": 3.25,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "matrixnote",
+        "x": 7.7,
+        "y": 4.9,
+        "w": 4.7,
+        "h": 0.45,
+        "zh": "计算与权重访存开销",
+        "en": "Compute and weight-access cost",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "p",
+        "b": "d",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            3.25,
+            3.15
+          ],
+          [
+            3.5,
+            3.15
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.5,
+              3.15
+            ],
+            [
+              3.38,
+              3.105
+            ],
+            [
+              3.38,
+              3.195
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "x",
+        "b": "op",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            6.1,
+            3.9
+          ],
+          [
+            6.5,
+            3.9
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.5,
+              3.9
+            ],
+            [
+              6.38,
+              3.855
+            ],
+            [
+              6.38,
+              3.945
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "op",
+        "b": "y",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.9,
+            3.9
+          ],
+          [
+            9.3,
+            3.9
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.3,
+              3.9
+            ],
+            [
+              9.180000000000001,
+              3.855
+            ],
+            [
+              9.180000000000001,
+              3.945
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "wport",
+        "b": "op",
+        "ap": "south",
+        "bp": "north",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            7.7,
+            3.255
+          ],
+          [
+            7.7,
+            3.55
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.7,
+              3.55
+            ],
+            [
+              7.745,
+              3.4299999999999997
+            ],
+            [
+              7.655,
+              3.4299999999999997
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      -0.05000000000000018,
+      1.8249999999999997,
+      10.15,
+      5.225
+    ]
+  },
+  "architecture": {
+    "id": "architecture",
+    "title": {
+      "zh": "部署与推理架构",
+      "en": "Deployment and inference architecture"
+    },
+    "claim": "One GPU executes quantized prefill/decode while per-request state feeds the host scheduler.",
+    "nodes": [
+      {
+        "id": "api",
+        "x": 0.8,
+        "y": 3.65,
+        "w": 1.5,
+        "h": 0.5,
+        "zh": "请求",
+        "en": "Requests",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "queue",
+        "x": 2.55,
+        "y": 3.65,
+        "w": 1.2,
+        "h": 0.7,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "q0",
+        "x": 2.18,
+        "y": 3.65,
+        "w": 0.25,
+        "h": 0.5,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "q1",
+        "x": 2.5500000000000003,
+        "y": 3.65,
+        "w": 0.25,
+        "h": 0.5,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "q2",
+        "x": 2.92,
+        "y": 3.65,
+        "w": 0.25,
+        "h": 0.5,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "qlabel",
+        "x": 2.55,
+        "y": 4.35,
+        "w": 1.5,
+        "h": 0.4,
+        "zh": "等待队列",
+        "en": "Queue",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "sched",
+        "x": 5.15,
+        "y": 3.65,
+        "w": 2.5,
+        "h": 0.95,
+        "zh": "①  进度调度\n预填充 / 解码",
+        "en": "①  Scheduler\nPrefill / decode",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "gpu",
+        "x": 9.65,
+        "y": 4.4,
+        "w": 4.7,
+        "h": 4.1,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gputitle",
+        "x": 9.65,
+        "y": 2.66,
+        "w": 4.2,
+        "h": 0.4,
+        "zh": "单张48GB RTX 4090",
+        "en": "One 48GB RTX 4090",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "exec",
+        "x": 9.65,
+        "y": 3.65,
+        "w": 3.65,
+        "h": 0.95,
+        "zh": "②  INT4计算\nMTP验证",
+        "en": "②  INT4 kernels /\nMTP verification",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "state0",
+        "x": 9.65,
+        "y": 4.85,
+        "w": 3.65,
+        "h": 0.37,
+        "zh": "请求A  |  KV · 状态 · 进度",
+        "en": "A  |  KV / state / progress",
+        "role": "state",
+        "font": 9,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "state1",
+        "x": 9.65,
+        "y": 5.279999999999999,
+        "w": 3.65,
+        "h": 0.37,
+        "zh": "请求B  |  KV · 状态 · 进度",
+        "en": "B  |  KV / state / progress",
+        "role": "state",
+        "font": 9,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "state2",
+        "x": 9.65,
+        "y": 5.71,
+        "w": 3.65,
+        "h": 0.37,
+        "zh": "请求…  |  各自独立维护",
+        "en": "…  |  own KV / state",
+        "role": "state",
+        "font": 9,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "statecap",
+        "x": 9.65,
+        "y": 6.18,
+        "w": 3.8,
+        "h": 0.35,
+        "zh": "工程：MTP并发适配",
+        "en": "Engineering: MTP state",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "weights",
+        "x": 5.15,
+        "y": 5.55,
+        "w": 2.5,
+        "h": 0.95,
+        "zh": "校准后的\n4bit权重",
+        "en": "Calibrated\n4-bit weights",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "out",
+        "x": 14.0,
+        "y": 3.65,
+        "w": 2.0,
+        "h": 0.7,
+        "zh": "流式响应",
+        "en": "Streamed\nresponses",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "feedbacklabel",
+        "x": 5.4,
+        "y": 6.7,
+        "w": 3.1,
+        "h": 0.35,
+        "zh": "反馈已提交进度",
+        "en": "Committed progress",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "api",
+        "b": "queue",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            1.55,
+            3.65
+          ],
+          [
+            1.9499999999999997,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              1.9499999999999997,
+              3.65
+            ],
+            [
+              1.8299999999999996,
+              3.605
+            ],
+            [
+              1.8299999999999996,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "queue",
+        "b": "sched",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            3.15,
+            3.65
+          ],
+          [
+            3.9000000000000004,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.9000000000000004,
+              3.65
+            ],
+            [
+              3.7800000000000002,
+              3.605
+            ],
+            [
+              3.7800000000000002,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "sched",
+        "b": "exec",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            6.4,
+            3.65
+          ],
+          [
+            7.825,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.825,
+              3.65
+            ],
+            [
+              7.705,
+              3.605
+            ],
+            [
+              7.705,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "exec",
+        "b": "out",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            11.475,
+            3.65
+          ],
+          [
+            13.0,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              13.0,
+              3.65
+            ],
+            [
+              12.88,
+              3.605
+            ],
+            [
+              12.88,
+              3.695
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "weights",
+        "b": "exec",
+        "ap": "east",
+        "bp": "south west",
+        "via": [
+          [
+            7.0,
+            5.55
+          ],
+          [
+            7.0,
+            4.3
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            6.4,
+            5.55
+          ],
+          [
+            7.0,
+            5.55
+          ],
+          [
+            7.0,
+            4.3
+          ],
+          [
+            7.825,
+            3.9587499999999998
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.825,
+              3.9587499999999998
+            ],
+            [
+              7.6969115749069195,
+              3.963034315251514
+            ],
+            [
+              7.731312106191141,
+              4.046200434839742
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "exec",
+        "b": "state0",
+        "ap": "south",
+        "bp": "north",
+        "via": [],
+        "kind": "bidirectional",
+        "points": [
+          [
+            9.65,
+            4.125
+          ],
+          [
+            9.65,
+            4.665
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.65,
+              4.665
+            ],
+            [
+              9.695,
+              4.545
+            ],
+            [
+              9.605,
+              4.545
+            ]
+          ],
+          [
+            [
+              9.65,
+              4.125
+            ],
+            [
+              9.605,
+              4.245
+            ],
+            [
+              9.695,
+              4.245
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "state2",
+        "b": "sched",
+        "ap": "south",
+        "bp": "south west",
+        "via": [
+          [
+            9.65,
+            6.7
+          ],
+          [
+            3.6,
+            6.7
+          ],
+          [
+            3.6,
+            4.4
+          ]
+        ],
+        "kind": "feedback",
+        "points": [
+          [
+            9.65,
+            5.895
+          ],
+          [
+            9.65,
+            6.7
+          ],
+          [
+            3.6,
+            6.7
+          ],
+          [
+            3.6,
+            4.4
+          ],
+          [
+            3.9000000000000004,
+            3.9587499999999998
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              3.9000000000000004,
+              3.9587499999999998
+            ],
+            [
+              3.795316833724879,
+              4.032685341336976
+            ],
+            [
+              3.8697441402608668,
+              4.083287476092322
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      -0.04999999999999996,
+      2.2500000000000004,
+      15.1,
+      6.975
+    ]
+  },
+  "int4": {
+    "id": "int4",
+    "title": {
+      "zh": "INT4计算流程",
+      "en": "Actual INT4 computation path"
+    },
+    "claim": "Quantized weights and activations feed integer dot products; separate scales restore the output.",
+    "nodes": [
+      {
+        "id": "wgrid00",
+        "x": 0.8700000000000001,
+        "y": 3.01,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid01",
+        "x": 1.11,
+        "y": 3.01,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid02",
+        "x": 1.35,
+        "y": 3.01,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid03",
+        "x": 1.59,
+        "y": 3.01,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid04",
+        "x": 1.83,
+        "y": 3.01,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid10",
+        "x": 0.8700000000000001,
+        "y": 3.25,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid11",
+        "x": 1.11,
+        "y": 3.25,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid12",
+        "x": 1.35,
+        "y": 3.25,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid13",
+        "x": 1.59,
+        "y": 3.25,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid14",
+        "x": 1.83,
+        "y": 3.25,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid20",
+        "x": 0.8700000000000001,
+        "y": 3.49,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid21",
+        "x": 1.11,
+        "y": 3.49,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid22",
+        "x": 1.35,
+        "y": 3.49,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid23",
+        "x": 1.59,
+        "y": 3.49,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wgrid24",
+        "x": 1.83,
+        "y": 3.49,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid00",
+        "x": 0.8700000000000001,
+        "y": 5.06,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid01",
+        "x": 1.11,
+        "y": 5.06,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid02",
+        "x": 1.35,
+        "y": 5.06,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid03",
+        "x": 1.59,
+        "y": 5.06,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid04",
+        "x": 1.83,
+        "y": 5.06,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid10",
+        "x": 0.8700000000000001,
+        "y": 5.3,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid11",
+        "x": 1.11,
+        "y": 5.3,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid12",
+        "x": 1.35,
+        "y": 5.3,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid13",
+        "x": 1.59,
+        "y": 5.3,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid14",
+        "x": 1.83,
+        "y": 5.3,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid20",
+        "x": 0.8700000000000001,
+        "y": 5.54,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid21",
+        "x": 1.11,
+        "y": 5.54,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid22",
+        "x": 1.35,
+        "y": 5.54,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid23",
+        "x": 1.59,
+        "y": 5.54,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "agrid24",
+        "x": 1.83,
+        "y": 5.54,
+        "w": 0.204,
+        "h": 0.204,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "wlabel",
+        "x": 1.35,
+        "y": 2.42,
+        "w": 2.3,
+        "h": 0.4,
+        "zh": "离线权重量化",
+        "en": "Offline weights",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "alabel",
+        "x": 1.35,
+        "y": 6.08,
+        "w": 2.3,
+        "h": 0.4,
+        "zh": "在线激活量化",
+        "en": "Online activations",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "wport",
+        "x": 2.08,
+        "y": 3.25,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "aport",
+        "x": 2.08,
+        "y": 5.3,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "wq",
+        "x": 4.05,
+        "y": 3.25,
+        "w": 2.8,
+        "h": 0.85,
+        "zh": "H512 / GPTQ\nW4 · G512",
+        "en": "H512 / GPTQ\nW4 · G512",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "aq",
+        "x": 4.05,
+        "y": 5.3,
+        "w": 2.8,
+        "h": 0.85,
+        "zh": "H512 / 动态量化\nA4 · G512",
+        "en": "H512 / quant.\nA4 · G512",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "mma",
+        "x": 7.65,
+        "y": 4.3,
+        "w": 2.55,
+        "h": 2.15,
+        "zh": "",
+        "en": "",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "compute00",
+        "x": 7.1850000000000005,
+        "y": 3.845,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute01",
+        "x": 7.495,
+        "y": 3.845,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute02",
+        "x": 7.805000000000001,
+        "y": 3.845,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute03",
+        "x": 8.115,
+        "y": 3.845,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute10",
+        "x": 7.1850000000000005,
+        "y": 4.155,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute11",
+        "x": 7.495,
+        "y": 4.155,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute12",
+        "x": 7.805000000000001,
+        "y": 4.155,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "compute13",
+        "x": 8.115,
+        "y": 4.155,
+        "w": 0.2635,
+        "h": 0.2635,
+        "zh": "",
+        "en": "",
+        "role": "tile",
+        "font": 10,
+        "stroke": "D9B8C0",
+        "fill": "F5E8EB"
+      },
+      {
+        "id": "mmalabel",
+        "x": 7.65,
+        "y": 4.82,
+        "w": 2.4,
+        "h": 0.55,
+        "zh": "INT4矩阵指令",
+        "en": "INT4 MMA",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ep",
+        "x": 10.9,
+        "y": 4.3,
+        "w": 1.75,
+        "h": 1.05,
+        "zh": "缩放与累加",
+        "en": "Rescale\nAccumulate",
+        "role": "neutral",
+        "font": 9,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid00",
+        "x": 13.575,
+        "y": 4.05,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid01",
+        "x": 13.825,
+        "y": 4.05,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid02",
+        "x": 14.075,
+        "y": 4.05,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid03",
+        "x": 14.325,
+        "y": 4.05,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid10",
+        "x": 13.575,
+        "y": 4.3,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid11",
+        "x": 13.825,
+        "y": 4.3,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid12",
+        "x": 14.075,
+        "y": 4.3,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid13",
+        "x": 14.325,
+        "y": 4.3,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid20",
+        "x": 13.575,
+        "y": 4.55,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid21",
+        "x": 13.825,
+        "y": 4.55,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid22",
+        "x": 14.075,
+        "y": 4.55,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ogrid23",
+        "x": 14.325,
+        "y": 4.55,
+        "w": 0.2125,
+        "h": 0.2125,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "oport",
+        "x": 13.35,
+        "y": 4.3,
+        "w": 0.01,
+        "h": 0.01,
+        "zh": "",
+        "en": "",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "olabel",
+        "x": 13.95,
+        "y": 5.18,
+        "w": 2.0,
+        "h": 0.4,
+        "zh": "BF16输出",
+        "en": "BF16 output",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "ws",
+        "x": 7.7,
+        "y": 2.35,
+        "w": 2.5,
+        "h": 0.35,
+        "zh": "权重缩放因子",
+        "en": "Weight scales",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "as",
+        "x": 7.7,
+        "y": 6.25,
+        "w": 2.5,
+        "h": 0.35,
+        "zh": "激活缩放因子",
+        "en": "Activation scales",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "wport",
+        "b": "wq",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.085,
+            3.25
+          ],
+          [
+            2.65,
+            3.25
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              2.65,
+              3.25
+            ],
+            [
+              2.53,
+              3.205
+            ],
+            [
+              2.53,
+              3.295
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "aport",
+        "b": "aq",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.085,
+            5.3
+          ],
+          [
+            2.65,
+            5.3
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              2.65,
+              5.3
+            ],
+            [
+              2.53,
+              5.255
+            ],
+            [
+              2.53,
+              5.345
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "wq",
+        "b": "mma",
+        "ap": "east",
+        "bp": "north west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            5.449999999999999,
+            3.25
+          ],
+          [
+            6.375,
+            3.60125
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.375,
+              3.60125
+            ],
+            [
+              6.2787907690778475,
+              3.5165813287846803
+            ],
+            [
+              6.246841042204743,
+              3.6007193995537086
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "aq",
+        "b": "mma",
+        "ap": "east",
+        "bp": "south west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            5.449999999999999,
+            5.3
+          ],
+          [
+            6.375,
+            4.998749999999999
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.375,
+              4.998749999999999
+            ],
+            [
+              6.246963575881986,
+              4.993122025313493
+            ],
+            [
+              6.274833614911739,
+              5.0786980787658464
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "mma",
+        "b": "ep",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.925,
+            4.3
+          ],
+          [
+            10.025,
+            4.3
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              10.025,
+              4.3
+            ],
+            [
+              9.905000000000001,
+              4.255
+            ],
+            [
+              9.905000000000001,
+              4.345
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "ep",
+        "b": "oport",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            11.775,
+            4.3
+          ],
+          [
+            13.344999999999999,
+            4.3
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              13.344999999999999,
+              4.3
+            ],
+            [
+              13.225,
+              4.255
+            ],
+            [
+              13.225,
+              4.345
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "wq",
+        "b": "ep",
+        "ap": "north",
+        "bp": "north",
+        "via": [
+          [
+            4.05,
+            2.35
+          ],
+          [
+            10.9,
+            2.35
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            4.05,
+            2.825
+          ],
+          [
+            4.05,
+            2.35
+          ],
+          [
+            10.9,
+            2.35
+          ],
+          [
+            10.9,
+            3.775
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              10.9,
+              3.775
+            ],
+            [
+              10.945,
+              3.655
+            ],
+            [
+              10.855,
+              3.655
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "aq",
+        "b": "ep",
+        "ap": "south",
+        "bp": "south",
+        "via": [
+          [
+            4.05,
+            6.25
+          ],
+          [
+            10.9,
+            6.25
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            4.05,
+            5.725
+          ],
+          [
+            4.05,
+            6.25
+          ],
+          [
+            10.9,
+            6.25
+          ],
+          [
+            10.9,
+            4.825
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              10.9,
+              4.825
+            ],
+            [
+              10.855,
+              4.945
+            ],
+            [
+              10.945,
+              4.945
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.10000000000000017,
+      2.075,
+      15.049999999999999,
+      6.5249999999999995
+    ]
+  },
+  "state": {
+    "id": "state",
+    "title": {
+      "zh": "请求状态隔离与提交",
+      "en": "Independent request state and commit"
+    },
+    "claim": "Requests accept different draft prefixes; KV and recurrent state follow their own actual commits.",
+    "nodes": [
+      {
+        "id": "draftlabel",
+        "x": 4.3,
+        "y": 2.3,
+        "w": 4.7,
+        "h": 0.4,
+        "zh": "MTP候选（示意）",
+        "en": "MTP draft tokens (illustrative)",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "statelabel",
+        "x": 11.9,
+        "y": 2.3,
+        "w": 4.7,
+        "h": 0.4,
+        "zh": "独立的KV、递推状态与进度",
+        "en": "Own KV / recurrent state / progress",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "req0",
+        "x": 1.25,
+        "y": 3.55,
+        "w": 1.7,
+        "h": 0.5,
+        "zh": "请求A",
+        "en": "Request A",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "draftrow0",
+        "x": 4.25,
+        "y": 3.55,
+        "w": 3.35,
+        "h": 0.98,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "t00",
+        "x": 3.1,
+        "y": 3.55,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "a1",
+        "en": "a1",
+        "role": "accept",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F0DEE2"
+      },
+      {
+        "id": "t01",
+        "x": 4.25,
+        "y": 3.55,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "a2",
+        "en": "a2",
+        "role": "accept",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F0DEE2"
+      },
+      {
+        "id": "t02",
+        "x": 5.4,
+        "y": 3.55,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "a3",
+        "en": "a3",
+        "role": "reject",
+        "font": 10,
+        "stroke": "AAB3BE",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "verify0",
+        "x": 7.4,
+        "y": 3.55,
+        "w": 1.35,
+        "h": 0.82,
+        "zh": "验证",
+        "en": "Verify",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "state0",
+        "x": 11.65,
+        "y": 3.55,
+        "w": 4.0,
+        "h": 1.0,
+        "zh": "A：接受前2个\n按提交结果更新状态",
+        "en": "A: accept 2 drafts\nUpdate own state",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "req1",
+        "x": 1.25,
+        "y": 5.2,
+        "w": 1.7,
+        "h": 0.5,
+        "zh": "请求B",
+        "en": "Request B",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "draftrow1",
+        "x": 4.25,
+        "y": 5.2,
+        "w": 3.35,
+        "h": 0.98,
+        "zh": "",
+        "en": "",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "t10",
+        "x": 3.1,
+        "y": 5.2,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "b1",
+        "en": "b1",
+        "role": "accept",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F0DEE2"
+      },
+      {
+        "id": "t11",
+        "x": 4.25,
+        "y": 5.2,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "b2",
+        "en": "b2",
+        "role": "reject",
+        "font": 10,
+        "stroke": "AAB3BE",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "t12",
+        "x": 5.4,
+        "y": 5.2,
+        "w": 0.72,
+        "h": 0.72,
+        "zh": "b3",
+        "en": "b3",
+        "role": "reject",
+        "font": 10,
+        "stroke": "AAB3BE",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "verify1",
+        "x": 7.4,
+        "y": 5.2,
+        "w": 1.35,
+        "h": 0.82,
+        "zh": "验证",
+        "en": "Verify",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "state1",
+        "x": 11.65,
+        "y": 5.2,
+        "w": 4.0,
+        "h": 1.0,
+        "zh": "B：接受前1个\n按提交结果更新状态",
+        "en": "B: accept 1 draft\nUpdate own state",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "legend",
+        "x": 7.5,
+        "y": 6.35,
+        "w": 14.0,
+        "h": 0.4,
+        "zh": "实线框：接受；虚线框：拒绝。省略回退Token，接受数与最终提交数不同。",
+        "en": "Solid: accepted; dashed: rejected. Drafts only; fallback omitted. Accepted drafts ≠ total commits.",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "req0",
+        "b": "draftrow0",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.1,
+            3.55
+          ],
+          [
+            2.575,
+            3.55
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              2.575,
+              3.55
+            ],
+            [
+              2.455,
+              3.505
+            ],
+            [
+              2.455,
+              3.5949999999999998
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "draftrow0",
+        "b": "verify0",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            5.925,
+            3.55
+          ],
+          [
+            6.7250000000000005,
+            3.55
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.7250000000000005,
+              3.55
+            ],
+            [
+              6.605,
+              3.505
+            ],
+            [
+              6.605,
+              3.5949999999999998
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "verify0",
+        "b": "state0",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.075000000000001,
+            3.55
+          ],
+          [
+            9.65,
+            3.55
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.65,
+              3.55
+            ],
+            [
+              9.530000000000001,
+              3.505
+            ],
+            [
+              9.530000000000001,
+              3.5949999999999998
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "req1",
+        "b": "draftrow1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.1,
+            5.2
+          ],
+          [
+            2.575,
+            5.2
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              2.575,
+              5.2
+            ],
+            [
+              2.455,
+              5.155
+            ],
+            [
+              2.455,
+              5.245
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "draftrow1",
+        "b": "verify1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            5.925,
+            5.2
+          ],
+          [
+            6.7250000000000005,
+            5.2
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.7250000000000005,
+              5.2
+            ],
+            [
+              6.605,
+              5.155
+            ],
+            [
+              6.605,
+              5.245
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "verify1",
+        "b": "state1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.075000000000001,
+            5.2
+          ],
+          [
+            9.65,
+            5.2
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.65,
+              5.2
+            ],
+            [
+              9.530000000000001,
+              5.155
+            ],
+            [
+              9.530000000000001,
+              5.245
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.30000000000000004,
+      1.9999999999999996,
+      14.6,
+      6.6499999999999995
+    ]
+  },
+  "schedule": {
+    "id": "schedule",
+    "title": {
+      "zh": "分块预填充与进度调度",
+      "en": "Chunked prefill and progress-aware scheduling"
+    },
+    "claim": "Chunk boundaries permit work selection; remaining-work estimates use each request’s committed progress.",
+    "nodes": [
+      {
+        "id": "inputlabel",
+        "x": 2.2,
+        "y": 2.8,
+        "w": 3.1,
+        "h": 0.6,
+        "zh": "8192 Token输入",
+        "en": "8192-token input",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gpulabel",
+        "x": 2.2,
+        "y": 4.45,
+        "w": 3.1,
+        "h": 0.8,
+        "zh": "单卡执行顺序\n（机制示意）",
+        "en": "One GPU\nIllustrative order",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "chunk0",
+        "x": 5.55,
+        "y": 2.8,
+        "w": 2.25,
+        "h": 0.7,
+        "zh": "2048",
+        "en": "2048",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "pf0",
+        "x": 5.02,
+        "y": 4.45,
+        "w": 1.28,
+        "h": 0.8,
+        "zh": "预填充",
+        "en": "PF",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gen0",
+        "x": 6.27,
+        "y": 4.45,
+        "w": 0.95,
+        "h": 0.8,
+        "zh": "解码",
+        "en": "Gen",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "chunk1",
+        "x": 7.949999999999999,
+        "y": 2.8,
+        "w": 2.25,
+        "h": 0.7,
+        "zh": "2048",
+        "en": "2048",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "pf1",
+        "x": 7.42,
+        "y": 4.45,
+        "w": 1.28,
+        "h": 0.8,
+        "zh": "预填充",
+        "en": "PF",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gen1",
+        "x": 8.67,
+        "y": 4.45,
+        "w": 0.95,
+        "h": 0.8,
+        "zh": "解码",
+        "en": "Gen",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "chunk2",
+        "x": 10.35,
+        "y": 2.8,
+        "w": 2.25,
+        "h": 0.7,
+        "zh": "2048",
+        "en": "2048",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "pf2",
+        "x": 9.82,
+        "y": 4.45,
+        "w": 1.28,
+        "h": 0.8,
+        "zh": "预填充",
+        "en": "PF",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gen2",
+        "x": 11.07,
+        "y": 4.45,
+        "w": 0.95,
+        "h": 0.8,
+        "zh": "解码",
+        "en": "Gen",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "chunk3",
+        "x": 12.75,
+        "y": 2.8,
+        "w": 2.25,
+        "h": 0.7,
+        "zh": "2048",
+        "en": "2048",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "pf3",
+        "x": 12.219999999999999,
+        "y": 4.45,
+        "w": 1.28,
+        "h": 0.8,
+        "zh": "预填充",
+        "en": "PF",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "gen3",
+        "x": 13.469999999999999,
+        "y": 4.45,
+        "w": 0.95,
+        "h": 0.8,
+        "zh": "解码",
+        "en": "Gen",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "budget",
+        "x": 9.2,
+        "y": 5.95,
+        "w": 9.5,
+        "h": 0.72,
+        "zh": "剩余轮次 = max（批次估计，单请求估计）",
+        "en": "Rounds = max(batch estimate, per-request estimate)",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "chunknote",
+        "x": 11.25,
+        "y": 3.6,
+        "w": 5.5,
+        "h": 0.35,
+        "zh": "分块之间重新调度",
+        "en": "Select work between chunks",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "chunk1",
+        "b": "pf2",
+        "ap": "south",
+        "bp": "north",
+        "via": [
+          [
+            7.95,
+            3.6
+          ],
+          [
+            9.82,
+            3.6
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            7.949999999999999,
+            3.15
+          ],
+          [
+            7.95,
+            3.6
+          ],
+          [
+            9.82,
+            3.6
+          ],
+          [
+            9.82,
+            4.05
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.82,
+              4.05
+            ],
+            [
+              9.865,
+              3.9299999999999997
+            ],
+            [
+              9.775,
+              3.9299999999999997
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "budget",
+        "b": "gen1",
+        "ap": "north",
+        "bp": "south",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            9.2,
+            5.59
+          ],
+          [
+            8.67,
+            4.8500000000000005
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              8.67,
+              4.8500000000000005
+            ],
+            [
+              8.703288664498109,
+              4.973761321970689
+            ],
+            [
+              8.776457808246425,
+              4.921356394691489
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.5500000000000002,
+      2.3499999999999996,
+      14.1,
+      6.41
+    ]
+  },
+  "bounded-decode": {
+    "id": "bounded-decode",
+    "title": {
+      "zh": "有界解码成员选择",
+      "en": "Bounded decode membership"
+    },
+    "claim": "After the original scheduler chooses decode, eligible B10–14 states may serve the nine least-lax requests once; omitted requests require at least three full-round costs of slack, then two actual full-ready decode rounds are mandatory. Arrows show policy order, not measured timing or a pure host speedup.",
+    "nodes": [
+      {
+        "id": "guard",
+        "x": 2.1,
+        "y": 2.5,
+        "w": 3.6,
+        "h": 1.4,
+        "zh": "检查时限余量\n与就绪请求数",
+        "en": "Check slack\nand ready count",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "subset",
+        "x": 6.65,
+        "y": 2.5,
+        "w": 3.7,
+        "h": 1.4,
+        "zh": "本轮服务\n余量最小的9个",
+        "en": "This decode round\nNine least-lax rows",
+        "role": "mechanism",
+        "font": 10,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "full1",
+        "x": 11.15,
+        "y": 2.5,
+        "w": 3.6,
+        "h": 1.4,
+        "zh": "下一解码轮\n全部就绪请求",
+        "en": "Next decode\nAll ready requests",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "full2",
+        "x": 15.55,
+        "y": 2.5,
+        "w": 3.6,
+        "h": 1.4,
+        "zh": "再下一解码轮\n全部就绪请求",
+        "en": "Following decode\nAll ready requests",
+        "role": "state",
+        "font": 10,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "eligible",
+        "x": 4.4,
+        "y": 1.35,
+        "w": 3.2,
+        "h": 0.55,
+        "zh": "触发条件满足",
+        "en": "Eligible state",
+        "role": "text",
+        "font": 9,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "fallback",
+        "x": 2.1,
+        "y": 4.65,
+        "w": 3.6,
+        "h": 1.0,
+        "zh": "否则仍服务全员",
+        "en": "Otherwise:\nserve all ready",
+        "role": "neutral",
+        "font": 10,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "spare",
+        "x": 6.65,
+        "y": 4.55,
+        "w": 4.2,
+        "h": 1.2,
+        "zh": "暂缓请求的余量\n≥ 3轮全员解码成本",
+        "en": "Omitted-row slack\n≥ 3 full-round costs",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "cadence",
+        "x": 13.25,
+        "y": 4.55,
+        "w": 7.2,
+        "h": 1.2,
+        "zh": "必须完成两轮全员解码\n预填充不消耗这两个轮次",
+        "en": "Complete two full decode rounds;\nprefill does not consume this count",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "guard",
+        "b": "subset",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            3.9000000000000004,
+            2.5
+          ],
+          [
+            4.800000000000001,
+            2.5
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              4.800000000000001,
+              2.5
+            ],
+            [
+              4.680000000000001,
+              2.455
+            ],
+            [
+              4.680000000000001,
+              2.545
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "subset",
+        "b": "full1",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.5,
+            2.5
+          ],
+          [
+            9.35,
+            2.5
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.35,
+              2.5
+            ],
+            [
+              9.23,
+              2.455
+            ],
+            [
+              9.23,
+              2.545
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "full1",
+        "b": "full2",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            12.950000000000001,
+            2.5
+          ],
+          [
+            13.75,
+            2.5
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              13.75,
+              2.5
+            ],
+            [
+              13.63,
+              2.455
+            ],
+            [
+              13.63,
+              2.545
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "guard",
+        "b": "fallback",
+        "ap": "south",
+        "bp": "north",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            2.1,
+            3.2
+          ],
+          [
+            2.1,
+            4.15
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              2.1,
+              4.15
+            ],
+            [
+              2.145,
+              4.03
+            ],
+            [
+              2.055,
+              4.03
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "spare",
+        "b": "subset",
+        "ap": "north",
+        "bp": "south",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            6.65,
+            3.9499999999999997
+          ],
+          [
+            6.65,
+            3.2
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.65,
+              3.2
+            ],
+            [
+              6.605,
+              3.3200000000000003
+            ],
+            [
+              6.695,
+              3.3200000000000003
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.20000000000000004,
+      0.9750000000000002,
+      17.450000000000003,
+      5.25
+    ]
+  },
+  "commit-lifecycle": {
+    "id": "commit-lifecycle",
+    "title": {
+      "zh": "逐请求裁决与提交顺序",
+      "en": "Per-request resolution and commit order"
+    },
+    "claim": "Target-verified row tokens are clipped by output policy, then pending model state is resolved before request counters and output are committed. Cancelled rows commit zero; arrows are dependencies, not timing.",
+    "nodes": [
+      {
+        "id": "verify",
+        "x": 2.0,
+        "y": 3.0,
+        "w": 3.1,
+        "h": 1.3,
+        "zh": "候选序列\n目标模型验证",
+        "en": "Target-model\nverification",
+        "role": "neutral",
+        "font": 11,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "policy",
+        "x": 6.3,
+        "y": 3.0,
+        "w": 3.5,
+        "h": 1.3,
+        "zh": "输出裁决\nEOS / stop / 预算",
+        "en": "Output policy\nEOS / stop / budget",
+        "role": "mechanism",
+        "font": 11,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "resolve",
+        "x": 10.8,
+        "y": 3.0,
+        "w": 3.5,
+        "h": 1.3,
+        "zh": "逐请求处理状态\n提交 / 回滚",
+        "en": "Resolve state\nCommit / roll back",
+        "role": "state",
+        "font": 11,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "publish",
+        "x": 15.2,
+        "y": 3.0,
+        "w": 3.3,
+        "h": 1.3,
+        "zh": "更新提交记录\n发布有效输出",
+        "en": "Update commits\nPublish output",
+        "role": "neutral",
+        "font": 11,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "cancel",
+        "x": 6.3,
+        "y": 4.9,
+        "w": 4.5,
+        "h": 0.7,
+        "zh": "取消标记 → 提交长度为0",
+        "en": "Cancellation → zero commits",
+        "role": "text",
+        "font": 10,
+        "stroke": "657180",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "verify",
+        "b": "policy",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            3.55,
+            3.0
+          ],
+          [
+            4.55,
+            3.0
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              4.55,
+              3.0
+            ],
+            [
+              4.43,
+              2.955
+            ],
+            [
+              4.43,
+              3.045
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "policy",
+        "b": "resolve",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            8.05,
+            3.0
+          ],
+          [
+            9.05,
+            3.0
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              9.05,
+              3.0
+            ],
+            [
+              8.930000000000001,
+              2.955
+            ],
+            [
+              8.930000000000001,
+              3.045
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "resolve",
+        "b": "publish",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            12.55,
+            3.0
+          ],
+          [
+            13.549999999999999,
+            3.0
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              13.549999999999999,
+              3.0
+            ],
+            [
+              13.43,
+              2.955
+            ],
+            [
+              13.43,
+              3.045
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "cancel",
+        "b": "policy",
+        "ap": "north",
+        "bp": "south",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            6.3,
+            4.550000000000001
+          ],
+          [
+            6.3,
+            3.65
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              6.3,
+              3.65
+            ],
+            [
+              6.255,
+              3.77
+            ],
+            [
+              6.345,
+              3.77
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.35,
+      2.25,
+      16.95,
+      5.35
+    ]
+  },
+  "observability": {
+    "id": "observability",
+    "title": {
+      "zh": "从三类记录定位等待与异常",
+      "en": "Correlate three observation sources"
+    },
+    "claim": "Client timings, native logs and GPU samples support offline analysis of the same run; no automatic causal tracing is implied.",
+    "nodes": [
+      {
+        "id": "client",
+        "x": 3.0,
+        "y": 2.6,
+        "w": 5.2,
+        "h": 1.35,
+        "zh": "客户端时序\n首字 / 完成 / 错误",
+        "en": "Client timing\nFirst / last / errors",
+        "role": "state",
+        "font": 14,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "native",
+        "x": 3.0,
+        "y": 4.7,
+        "w": 5.2,
+        "h": 1.35,
+        "zh": "引擎请求日志\n输入 / 缓存 / 提交",
+        "en": "Engine log\nInput / cache / state",
+        "role": "state",
+        "font": 14,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "gpu_samples",
+        "x": 3.0,
+        "y": 6.8,
+        "w": 5.2,
+        "h": 1.35,
+        "zh": "GPU采样\n显存 / 利用率 / 功耗",
+        "en": "GPU samples\nMemory / load / power",
+        "role": "state",
+        "font": 14,
+        "stroke": "32649A",
+        "fill": "F2F6FA"
+      },
+      {
+        "id": "analysis",
+        "x": 10.2,
+        "y": 4.7,
+        "w": 4.5,
+        "h": 2.65,
+        "zh": "同次运行\n配置与时间对照\n离线分析",
+        "en": "Compare one run\nConfig + time\nOffline analysis",
+        "role": "mechanism",
+        "font": 14,
+        "stroke": "7E2635",
+        "fill": "F9F2F3"
+      },
+      {
+        "id": "latency",
+        "x": 17.2,
+        "y": 3.45,
+        "w": 5.2,
+        "h": 1.7,
+        "zh": "延迟与吞吐\nP95 / 总tok/s",
+        "en": "Latency + throughput\nP95 / total tok/s",
+        "role": "neutral",
+        "font": 14,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      },
+      {
+        "id": "diagnosis",
+        "x": 17.2,
+        "y": 5.95,
+        "w": 5.2,
+        "h": 1.7,
+        "zh": "资源与异常\n对照日志排查",
+        "en": "Resources + errors\nInspect matching logs",
+        "role": "neutral",
+        "font": 14,
+        "stroke": "CCD3DB",
+        "fill": "FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "a": "client",
+        "b": "analysis",
+        "ap": "east",
+        "bp": "west",
+        "via": [
+          [
+            6.8,
+            2.6
+          ],
+          [
+            6.8,
+            4.7
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            5.6,
+            2.6
+          ],
+          [
+            6.8,
+            2.6
+          ],
+          [
+            6.8,
+            4.7
+          ],
+          [
+            7.949999999999999,
+            4.7
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.949999999999999,
+              4.7
+            ],
+            [
+              7.829999999999999,
+              4.655
+            ],
+            [
+              7.829999999999999,
+              4.745
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "native",
+        "b": "analysis",
+        "ap": "east",
+        "bp": "west",
+        "via": [],
+        "kind": "flow",
+        "points": [
+          [
+            5.6,
+            4.7
+          ],
+          [
+            7.949999999999999,
+            4.7
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.949999999999999,
+              4.7
+            ],
+            [
+              7.829999999999999,
+              4.655
+            ],
+            [
+              7.829999999999999,
+              4.745
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "gpu_samples",
+        "b": "analysis",
+        "ap": "east",
+        "bp": "west",
+        "via": [
+          [
+            6.8,
+            6.8
+          ],
+          [
+            6.8,
+            4.7
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            5.6,
+            6.8
+          ],
+          [
+            6.8,
+            6.8
+          ],
+          [
+            6.8,
+            4.7
+          ],
+          [
+            7.949999999999999,
+            4.7
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              7.949999999999999,
+              4.7
+            ],
+            [
+              7.829999999999999,
+              4.655
+            ],
+            [
+              7.829999999999999,
+              4.745
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "analysis",
+        "b": "latency",
+        "ap": "east",
+        "bp": "west",
+        "via": [
+          [
+            13.5,
+            4.7
+          ],
+          [
+            13.5,
+            3.45
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            12.45,
+            4.7
+          ],
+          [
+            13.5,
+            4.7
+          ],
+          [
+            13.5,
+            3.45
+          ],
+          [
+            14.6,
+            3.45
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              14.6,
+              3.45
+            ],
+            [
+              14.48,
+              3.4050000000000002
+            ],
+            [
+              14.48,
+              3.495
+            ]
+          ]
+        ]
+      },
+      {
+        "a": "analysis",
+        "b": "diagnosis",
+        "ap": "east",
+        "bp": "west",
+        "via": [
+          [
+            13.5,
+            4.7
+          ],
+          [
+            13.5,
+            5.95
+          ]
+        ],
+        "kind": "flow",
+        "points": [
+          [
+            12.45,
+            4.7
+          ],
+          [
+            13.5,
+            4.7
+          ],
+          [
+            13.5,
+            5.95
+          ],
+          [
+            14.6,
+            5.95
+          ]
+        ],
+        "arrows": [
+          [
+            [
+              14.6,
+              5.95
+            ],
+            [
+              14.48,
+              5.905
+            ],
+            [
+              14.48,
+              5.995
+            ]
+          ]
+        ]
+      }
+    ],
+    "bounds": [
+      0.29999999999999993,
+      1.825,
+      19.900000000000002,
+      7.574999999999999
+    ]
+  }
+}

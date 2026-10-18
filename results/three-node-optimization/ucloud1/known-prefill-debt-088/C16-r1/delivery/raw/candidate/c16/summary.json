@@ -1,0 +1,51 @@
+{
+  "label": "PILOT",
+  "status": "complete",
+  "concurrency": 16,
+  "artifacts": "/workspace/InferX/runs/ucloud1-slo/known-prefill-debt088-C16-K5-n128-r1/candidate/c16",
+  "started_at": "2026-10-17T18:49:19.740002+00:00",
+  "meets_slo": false,
+  "issues": [],
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 7202.292228148436,
+      "p50": 6860.454508499999,
+      "p95": 11705.30344235,
+      "p99": 13523.15709687
+    },
+    "inter_token_latency": {
+      "mean": 26.207687849299777,
+      "p50": 24.884602720156558,
+      "p95": 48.22186623943249,
+      "p99": 56.742914655362064
+    },
+    "request_latency": {
+      "mean": 20594.420719140624,
+      "p50": 19216.9210485,
+      "p95": 31968.17849895,
+      "p99": 33914.344452310004
+    }
+  },
+  "benchmark_duration": 171.57804928000002,
+  "request_throughput": 0.7460039054323327,
+  "output_token_throughput": 381.95399958135437,
+  "native_status": "完整",
+  "failed_input_length_records": 0,
+  "failed_output_length_records": 0,
+  "missing_profiling_records": 0,
+  "finished_at": "2026-10-17T18:52:31.312037+00:00",
+  "elapsed_seconds": 191.57205185800558
+}

@@ -1,0 +1,130 @@
+{
+  "reviewed_at": "2026-10-16T23:27:27.771331+00:00",
+  "scope": "Root independently recomputes original400 unprofiled wholeOp CSV medians/P95 and originalSQL physical evidence; finite-domain numeric oracle code and original10-case receipts reviewed, not rerun.",
+  "shapes": {
+    "256": {
+      "samples_per_arm": 100,
+      "wholeOp_ms": {
+        "A8": {
+          "median": 0.346112012863,
+          "p95": 0.3523888066409
+        },
+        "FP8": {
+          "median": 0.382975995541,
+          "p95": 0.406563195586
+        }
+      },
+      "latency_reduction_fraction": -0.10650882173393872,
+      "screen_pass": false,
+      "csv_sha256": "3e711738df89e9293ef1f365c606d3e3357d37c674ef8e9d307fb1d5d33ae624"
+    },
+    "2048": {
+      "samples_per_arm": 100,
+      "wholeOp_ms": {
+        "A8": {
+          "median": 2.168848037715,
+          "p95": 2.2098430991195
+        },
+        "FP8": {
+          "median": 2.631551980975,
+          "p95": 2.7064465045920003
+        }
+      },
+      "latency_reduction_fraction": -0.21334087737538487,
+      "screen_pass": false,
+      "csv_sha256": "84ffcb83571876f75a394b9b2f29af65f0b92ac46ca05b289882b51122fcaa46"
+    }
+  },
+  "physical_diagnostic_excludes3warmup_per_shape": {
+    "256": {
+      "A8": {
+        "act_quant": {
+          "count": 5,
+          "kernel_sum_ms": 0.025216000000000002,
+          "mean_kernel_ms": 0.0050432
+        },
+        "A8_GEMM": {
+          "count": 5,
+          "kernel_sum_ms": 1.69253,
+          "mean_kernel_ms": 0.33850600000000003
+        }
+      },
+      "FP8": {
+        "amax_partial": {
+          "count": 5,
+          "kernel_sum_ms": 0.011647999999999999,
+          "mean_kernel_ms": 0.0023296
+        },
+        "scale_finalize": {
+          "count": 5,
+          "kernel_sum_ms": 0.007616,
+          "mean_kernel_ms": 0.0015232000000000002
+        },
+        "encode": {
+          "count": 5,
+          "kernel_sum_ms": 0.019585,
+          "mean_kernel_ms": 0.003917
+        },
+        "gemm": {
+          "count": 5,
+          "kernel_sum_ms": 1.7818109999999998,
+          "mean_kernel_ms": 0.35636219999999996
+        },
+        "swiglu": {
+          "count": 5,
+          "kernel_sum_ms": 0.07836800000000001,
+          "mean_kernel_ms": 0.015673600000000003
+        }
+      }
+    },
+    "2048": {
+      "A8": {
+        "act_quant": {
+          "count": 5,
+          "kernel_sum_ms": 0.184066,
+          "mean_kernel_ms": 0.036813200000000004
+        },
+        "A8_GEMM": {
+          "count": 5,
+          "kernel_sum_ms": 10.627502,
+          "mean_kernel_ms": 2.1255004
+        }
+      },
+      "FP8": {
+        "amax_partial": {
+          "count": 5,
+          "kernel_sum_ms": 0.13011299999999998,
+          "mean_kernel_ms": 0.026022599999999996
+        },
+        "scale_finalize": {
+          "count": 5,
+          "kernel_sum_ms": 0.01056,
+          "mean_kernel_ms": 0.002112
+        },
+        "encode": {
+          "count": 5,
+          "kernel_sum_ms": 0.059041,
+          "mean_kernel_ms": 0.011808200000000001
+        },
+        "gemm": {
+          "count": 5,
+          "kernel_sum_ms": 11.482519,
+          "mean_kernel_ms": 2.2965038
+        },
+        "swiglu": {
+          "count": 5,
+          "kernel_sum_ms": 1.1876280000000001,
+          "mean_kernel_ms": 0.23752560000000003
+        }
+      }
+    }
+  },
+  "actual_native_SM89_FP8_execution": true,
+  "decision": "Reject unchanged FAST_ACCUM0 candidate at both preregistered shapes; no model integration or task-quality rollout. A new FAST1 fixed-algorithm precision experiment is separately preregistered; no original algo/workspace grid.",
+  "limits": [
+    "Single isolated actualweight operator at T256/T2048, not end-to-end SLO or full-model accuracy.",
+    "Numeric original10-case/fullcachebits/FP64CPU receipts reviewed with source; root has not repeated full CPU FP64 outputs.",
+    "Only finite fixtures and valid scale metadata tested; production invalid-input handling not covered.",
+    "Native FP8 kernel names and timeline do not supply measured roofline counters."
+  ]
+}

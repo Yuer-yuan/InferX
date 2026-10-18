@@ -1,0 +1,184 @@
+{
+  "at": "2026-10-17T00:16:12.749678+00:00",
+  "numeric_gate_pass": false,
+  "promotion_eligible": false,
+  "scope": "Rejected precision speed reference only; no model/SLO/quality result",
+  "archive_sha256": "d4996fac28f43ef1949776149fa4655045c7c9775e0bcb36a08f280f0c8c1db8",
+  "timing": {
+    "256": {
+      "median_ms": {
+        "A8": 0.345088005066,
+        "FP8": 0.375808000565
+      },
+      "P95_ms": {
+        "A8": 0.34739678651079997,
+        "FP8": 0.37998560965015
+      },
+      "relative_slowdown": 0.0890207571634507,
+      "all10_paired_blocks_slower": true,
+      "block_slowdowns": [
+        0.09480642204658873,
+        0.09130353046710504,
+        0.08998008984314976,
+        0.08832528789480953,
+        0.0952425921650808,
+        0.09314226561019612,
+        0.08734520469474649,
+        0.08580289849279366,
+        0.08683950979948163,
+        0.09062972015553727
+      ]
+    },
+    "2048": {
+      "median_ms": {
+        "A8": 2.1984000206000003,
+        "FP8": 2.57491207123
+      },
+      "P95_ms": {
+        "A8": 2.2436191201230002,
+        "FP8": 2.6747232913925
+      },
+      "relative_slowdown": 0.17126639697139368,
+      "all10_paired_blocks_slower": true,
+      "block_slowdowns": [
+        0.1760251083517408,
+        0.17255354526331312,
+        0.19245977774676382,
+        0.1451061522046455,
+        0.17114214525057814,
+        0.19145973521132476,
+        0.22941880685322968,
+        0.14355064480938862,
+        0.20330017655057864,
+        0.1614226346041614
+      ]
+    }
+  },
+  "physical": {
+    "mapped_kernels": 70,
+    "excluded_warmup_setup_kernels": 42,
+    "operators_per_shape_arm": 5,
+    "join": "Actual unique CUDA correlation and full same-thread NVTX API containment, same process prefix",
+    "per_kernel": [
+      {
+        "T": 256,
+        "arm": "A8",
+        "name": "ninfer::ops::detail::<unnamed>::act_quant_g64_kernel(const __nv_bfloat16 *, signed char *, float *, int, int, int, int)",
+        "count": 5,
+        "mean_ms": 0.005037
+      },
+      {
+        "T": 256,
+        "arm": "A8",
+        "name": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)1, ninfer::ops::detail::rowsplit_tall::SwiGluQ4Problem>(const signed char *, const float *, T3, int, int, int, int)",
+        "count": 5,
+        "mean_ms": 0.3395508
+      },
+      {
+        "T": 256,
+        "arm": "FP8",
+        "name": "finish_amax(const float *, int, float *)",
+        "count": 5,
+        "mean_ms": 0.001517
+      },
+      {
+        "T": 256,
+        "arm": "FP8",
+        "name": "sm89_xmma_gemm_e4m3bf16_e4m3f32_f32_tn_n_tilesize64x64x64_stage4_warpsize2x2x1_tensor16x8x32_execute_kernel__5x_cublas",
+        "count": 5,
+        "mean_ms": 0.3497336
+      },
+      {
+        "T": 256,
+        "arm": "FP8",
+        "name": "swiglu(const __nv_bfloat16 *, __nv_bfloat16 *, int)",
+        "count": 5,
+        "mean_ms": 0.015853
+      },
+      {
+        "T": 256,
+        "arm": "FP8",
+        "name": "void encode<(bool)0>(const void *, const __half *, const float *, unsigned char *, unsigned long)",
+        "count": 5,
+        "mean_ms": 0.0039168
+      },
+      {
+        "T": 256,
+        "arm": "FP8",
+        "name": "void partial_amax<(bool)0>(const void *, const __half *, float *, unsigned long)",
+        "count": 5,
+        "mean_ms": 0.002317
+      },
+      {
+        "T": 2048,
+        "arm": "A8",
+        "name": "ninfer::ops::detail::<unnamed>::act_quant_g64_kernel(const __nv_bfloat16 *, signed char *, float *, int, int, int, int)",
+        "count": 5,
+        "mean_ms": 0.036724
+      },
+      {
+        "T": 2048,
+        "arm": "A8",
+        "name": "void ninfer::ops::detail::rowsplit_tall_a8::rowsplit_tall_a8_kernel<(int)128, (bool)1, ninfer::ops::detail::rowsplit_tall::SwiGluQ4Problem>(const signed char *, const float *, T3, int, int, int, int)",
+        "count": 5,
+        "mean_ms": 2.1106452
+      },
+      {
+        "T": 2048,
+        "arm": "FP8",
+        "name": "finish_amax(const float *, int, float *)",
+        "count": 5,
+        "mean_ms": 0.0020992
+      },
+      {
+        "T": 2048,
+        "arm": "FP8",
+        "name": "sm89_xmma_gemm_e4m3bf16_e4m3f32_f32_tn_n_tilesize128x128x64_stage3_warpsize2x2x1_tensor16x8x32_execute_kernel__5x_cublas",
+        "count": 5,
+        "mean_ms": 2.2490092
+      },
+      {
+        "T": 2048,
+        "arm": "FP8",
+        "name": "swiglu(const __nv_bfloat16 *, __nv_bfloat16 *, int)",
+        "count": 5,
+        "mean_ms": 0.238711
+      },
+      {
+        "T": 2048,
+        "arm": "FP8",
+        "name": "void encode<(bool)0>(const void *, const __half *, const float *, unsigned char *, unsigned long)",
+        "count": 5,
+        "mean_ms": 0.0117184
+      },
+      {
+        "T": 2048,
+        "arm": "FP8",
+        "name": "void partial_amax<(bool)0>(const void *, const __half *, float *, unsigned long)",
+        "count": 5,
+        "mean_ms": 0.026036
+      }
+    ]
+  },
+  "guard_receipts": {
+    "256": {
+      "numeric_gate_pass": false,
+      "precision_status": "rejectedprecision",
+      "qualification": "NOTqualification",
+      "intact": true
+    },
+    "2048": {
+      "numeric_gate_pass": false,
+      "precision_status": "rejectedprecision",
+      "qualification": "NOTqualification",
+      "intact": true
+    }
+  },
+  "audit_passed": true,
+  "limitations": [
+    "No original precision gate pass; prior failures remain",
+    "Original FP64 numeric matrices and worker bootstrap CIs not rerun here",
+    "No hardware traffic/occupancy/roofline measurement",
+    "Synthetic activations and real first-layer weights; no model integration"
+  ]
+}

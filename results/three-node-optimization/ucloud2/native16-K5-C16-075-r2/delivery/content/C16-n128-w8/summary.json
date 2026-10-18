@@ -1,0 +1,44 @@
+{
+  "status": "完整",
+  "issues": [],
+  "concurrency": 16,
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 8101.012490398436,
+      "p50": 8461.7348595,
+      "p95": 10038.67977765,
+      "p99": 13374.317866210004
+    },
+    "inter_token_latency": {
+      "mean": 34.549216444563356,
+      "p50": 35.51081263209393,
+      "p95": 55.519199268395305,
+      "p99": 63.28348396604699
+    },
+    "request_latency": {
+      "mean": 25755.662093570303,
+      "p50": 25104.625240999998,
+      "p95": 35064.477897950004,
+      "p99": 38500.28722015
+    }
+  },
+  "benchmark_duration": 214.59414041600002,
+  "request_throughput": 0.5964646076964615,
+  "output_token_throughput": 305.3898791405883,
+  "artifacts": "/workspace/InferX/three-node-optimization/ucloud2/native16-K5-C16-075-r2/C16-n128-w8",
+  "returncode": 0,
+  "scope": "single ucloud2 existing2362/source4fcb native16 K5 fusionOFF; not causal K3 comparison"
+}

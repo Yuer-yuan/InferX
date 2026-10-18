@@ -1,0 +1,116 @@
+{
+  "layer": 20,
+  "kind": "gdn",
+  "N": 5120,
+  "K": 6144,
+  "H": 512,
+  "group": 512,
+  "row_order": [
+    "output0:5120, original output row order; residual not part of offline linear fit"
+  ],
+  "sources": [
+    {
+      "key": "model.language_model.layers.20.linear_attn.out_proj.weight",
+      "shape": [
+        5120,
+        6144
+      ],
+      "shard": "layers-20.safetensors",
+      "sha256": "52fd00c68d4f1df96ba701290c04237257ebb832879bb0b6a629525809d84a64",
+      "scale_shard": "layers-20.safetensors",
+      "scale_sha256": "52fd00c68d4f1df96ba701290c04237257ebb832879bb0b6a629525809d84a64",
+      "logical_profile": "FP32(E4M3*BF16scale), no extraBF16 cast"
+    }
+  ],
+  "training_files": [
+    {
+      "name": "L20-chunk0-output-input.bf16",
+      "sha256": "7fd1d7e4f7a3d930368d9385c67ba832ab481322c8b842a1ce5291ae0a49b799"
+    },
+    {
+      "name": "L20-chunk1-output-input.bf16",
+      "sha256": "da95df3f963345f032e7969daeb6f1a29a300267531f109e72aa84d0ee50a1ba"
+    },
+    {
+      "name": "L20-chunk2-output-input.bf16",
+      "sha256": "e182033511848ca7d73b2cfe735ccb37857952bab998287c541fe989c5bde329"
+    },
+    {
+      "name": "L20-chunk3-output-input.bf16",
+      "sha256": "fb382ec0007f2fed6ecf483c218b577a16056b9a78833678e6f89a9f3d08345e"
+    },
+    {
+      "name": "L20-chunk4-output-input.bf16",
+      "sha256": "08c2b4dd0bfdc8b90cd101e00ceb11ef9a4d795b146b8d3d61bff37925480971"
+    },
+    {
+      "name": "L20-chunk5-output-input.bf16",
+      "sha256": "a0fb48a675a6351651a216ed4c2c4160ee5a39af92eeade54d686b31b24ecf83"
+    },
+    {
+      "name": "L20-chunk6-output-input.bf16",
+      "sha256": "9910f7b4c725a2bc652ef134243c953deb02a77bd0d1c00191ac40701bc99c21"
+    },
+    {
+      "name": "L20-chunk7-output-input.bf16",
+      "sha256": "f7f8d961634a46c1d0c987736f87c936b884378d5a7a11b4c458067057b54fcb"
+    },
+    {
+      "name": "L20-chunk8-output-input.bf16",
+      "sha256": "9a47b19e4ddae1ff163fe249fe94afe7d9e3ab2537ff769052ab0ab043abc5be"
+    },
+    {
+      "name": "L20-chunk9-output-input.bf16",
+      "sha256": "15a87cd68ac8bee253377b36e1093ee3fa65df56882a65f96a6ee15e3a25643b"
+    },
+    {
+      "name": "L20-chunk10-output-input.bf16",
+      "sha256": "383573860b512e6a1776ce42f84129056898e5335a22ee727d08b0ed99a97e13"
+    },
+    {
+      "name": "L20-chunk11-output-input.bf16",
+      "sha256": "6721f829be6808ece9869b589cbebe20b2a5963adeacdc1c46204665681c5a47"
+    },
+    {
+      "name": "L20-chunk12-output-input.bf16",
+      "sha256": "f6fbe55d6689199ae52961744e614125de6c9872c106ad073d092a4db3610f04"
+    },
+    {
+      "name": "L20-chunk13-output-input.bf16",
+      "sha256": "5354694e01449acc98a23b3fe25468dc6474148dca7f3d67aca9f569fe0aa180"
+    },
+    {
+      "name": "L20-chunk14-output-input.bf16",
+      "sha256": "0c68b54cca6f29b710bc4942b46f48ec14511b37ed9637d0288a7696c573051d"
+    },
+    {
+      "name": "L20-chunk15-output-input.bf16",
+      "sha256": "ec28fc4b3193961511b7ba727ceaafa96580ca59ba29ce2556d1abd36d3490d9"
+    }
+  ],
+  "heldout_values_read": false,
+  "files": {
+    "fit-equivalence.json": {
+      "bytes": 2610,
+      "sha256": "aec5dd337b89d20f53036d9d12625568473192e6de69227b92b029ae79b3f8ca"
+    },
+    "expanded.i8": {
+      "bytes": 31457280,
+      "sha256": "0de935f305181de0230117e6e7c3284f3b15d86057b98c0a1bf6dbf97532300f"
+    },
+    "packed.bin": {
+      "bytes": 15728640,
+      "sha256": "8711da45b2557e57a5a4cd5e4947a6a85a8c2c95a381424f23c1ad755d46eda2"
+    },
+    "scales.f32": {
+      "bytes": 245760,
+      "sha256": "c6146af458a2f69e6603ba62da40b8ad2f03a03850b86ba3279ebf6da96911c9"
+    },
+    "hessians.json": {
+      "bytes": 931,
+      "sha256": "d945dc9aa41f0d564ea84a38e4e2434b5b80cfe1a38e25f02b420932bff87ce4"
+    }
+  },
+  "profile": "same015/025 fixedGPTQ; new projection data only",
+  "fit_seconds": 5.886512775032315
+}

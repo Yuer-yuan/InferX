@@ -1,0 +1,570 @@
+{
+  "status": "complete_actual_route_recovery_and_original_scores_pending_root_review",
+  "started_at": "2026-10-16T20:09:53.565325+00:00",
+  "original_failed_manifest_sha256": "a30a468752cc5f54a6b950152084a68fb5a4060882c28302145811b12be8776e",
+  "steps": [
+    {
+      "label": "attribute_none",
+      "command": [
+        "/usr/bin/python3",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-cpu-recovery-001/attribute_ordinal_v2.py",
+        "/workspace/InferX/results/three-node-optimization/ucloud3",
+        "none",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/none"
+      ],
+      "started_at": "2026-10-16T20:09:53.677444+00:00",
+      "handle": {
+        "pid": 61582,
+        "proc_start_ticks": "40246694",
+        "uid": 0,
+        "executable": "/usr/bin/python3.10",
+        "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/attribute_none.log"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-10-16T20:09:58.120660+00:00"
+    },
+    {
+      "label": "attribute_all",
+      "command": [
+        "/usr/bin/python3",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-cpu-recovery-001/attribute_ordinal_v2.py",
+        "/workspace/InferX/results/three-node-optimization/ucloud3",
+        "all",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/all"
+      ],
+      "started_at": "2026-10-16T20:09:58.121594+00:00",
+      "handle": {
+        "pid": 61653,
+        "proc_start_ticks": "40247139",
+        "uid": 0,
+        "executable": "/usr/bin/python3.10",
+        "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/attribute_all.log"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-10-16T20:10:02.577247+00:00"
+    },
+    {
+      "label": "original_gated_score",
+      "command": [
+        "/workspace/InferX/eval-envs/evalscope-1.13.0/bin/python",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-preparation/score_pair.py",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-grouped-v2-001/none/collection/responses.jsonl",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-grouped-v2-001/all/collection/responses.jsonl",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/scored-actual-routes",
+        "--baseline-coverage",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/none/actual-coverage.jsonl",
+        "--candidate-coverage",
+        "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/all/actual-coverage.jsonl",
+        "--bootstrap",
+        "10000"
+      ],
+      "started_at": "2026-10-16T20:10:02.577848+00:00",
+      "handle": {
+        "pid": 61731,
+        "proc_start_ticks": "40247584",
+        "uid": 0,
+        "executable": "/workspace/InferX/envs/build/bin/python3.12",
+        "log_path": "/workspace/InferX/results/three-node-optimization/ucloud3/quality-full300-cpu-ordinal-recovery-002/original_gated_score.log"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-10-16T20:10:08.439365+00:00"
+    }
+  ],
+  "GPU_requests": 0,
+  "updated_at": "2026-10-16T20:10:09.096333+00:00",
+  "task_only_and_original_gated_metrics_exactly_match": true,
+  "score_summary": {
+    "samples": 300,
+    "instruction_count": 344,
+    "metrics": {
+      "prompt_level_strict": {
+        "baseline": 0.38666666666666666,
+        "candidate": 0.38,
+        "delta": -0.006666666666666667,
+        "paired_prompt_cluster_95ci": [
+          -0.03,
+          0.016666666666666666
+        ],
+        "improved_prompts": 5,
+        "worsened_prompts": 7
+      },
+      "inst_level_strict": {
+        "baseline": 0.41569767441860467,
+        "candidate": 0.41569767441860467,
+        "delta": 0.0,
+        "paired_prompt_cluster_95ci": [
+          -0.020588235294117647,
+          0.020527859237536656
+        ],
+        "improved_prompts": 7,
+        "worsened_prompts": 7
+      },
+      "prompt_level_loose": {
+        "baseline": 0.42,
+        "candidate": 0.41,
+        "delta": -0.01,
+        "paired_prompt_cluster_95ci": [
+          -0.03333333333333333,
+          0.013333333333333334
+        ],
+        "improved_prompts": 5,
+        "worsened_prompts": 8
+      },
+      "inst_level_loose": {
+        "baseline": 0.45058139534883723,
+        "candidate": 0.44476744186046513,
+        "delta": -0.005813953488372093,
+        "paired_prompt_cluster_95ci": [
+          -0.03098810376382589,
+          0.019943019943019943
+        ],
+        "improved_prompts": 6,
+        "worsened_prompts": 8
+      }
+    },
+    "verifier_files": {
+      "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+      "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+      "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+      "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+      "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+    },
+    "observed_A8_covered_samples": 0,
+    "observed_A8_tokens": 0,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 42,
+    "qualification": "paired evidence for this fixed corpus; actual A8 routing coverage must accompany results; no universal stability claim"
+  },
+  "coverage": {
+    "none": {
+      "status": "ORDINAL_ACTUAL_ROUTE_RECOVERY_PASSED",
+      "arm": "none",
+      "samples": 300,
+      "trace_prefill_chunks": 602,
+      "startup_chunks": [
+        {
+          "start": 6327901049,
+          "end": 6402229458,
+          "globalTid": 282452132160407,
+          "T": 9
+        },
+        {
+          "start": 6402573461,
+          "end": 6427379811,
+          "globalTid": 282452132160407,
+          "T": 4
+        }
+      ],
+      "initial_input_chunks": 600,
+      "whole_run_actual_quantizer_kernels": 0,
+      "actual_A8_samples": 0,
+      "actual_A8_tokens": 0,
+      "all_actual_kernels_unique_runtime_correlated": 655235,
+      "initial_input_correlated_kernels": 547432,
+      "outside_initial_input_correlated_kernels_retained": 107803,
+      "diagnostic_tables": {
+        "DIAGNOSTIC_EVENT": [
+          {
+            "timestamp": 0,
+            "timestampType": 1,
+            "source": 3,
+            "severity": 1,
+            "text": "Profiling has started.",
+            "globalPid": -144115188075855872
+          },
+          {
+            "timestamp": 40890,
+            "timestampType": 1,
+            "source": 2,
+            "severity": 1,
+            "text": "Process was launched by the profiler, see /tmp/nvidia/nsight_systems/quadd_session_1058232/streams/pid_58243_stdout.log and stderr.log for program output",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 53285193,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Common injection library initialized successfully.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 237445102,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Buffers holding CUDA trace data will be flushed on CudaProfilerStop() call. See --flush-on-cudaprofilerstop to control this behavior.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 272277067,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Loaded CUPTI library: /usr/local/cuda-13.2/nsight-systems-2025.6.3/target-linux-x64/libcupti.so.13.2",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 272282107,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 2,
+            "text": "Installed CUDA driver version (13.3) is not supported by this build of Nsight Systems. CUDA trace will be collected using libraries for driver version 13.2",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 560510337,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Enabling trace for device graph launch",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 568242337,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "CUDA injection initialized successfully.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 3714956781,
+            "timestampType": 2,
+            "source": 3,
+            "severity": 1,
+            "text": "Number of NVTX events collected: \t133887.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 3714969620,
+            "timestampType": 2,
+            "source": 3,
+            "severity": 1,
+            "text": "Number of CUDA events collected: \t2677006.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 4476871353,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "NVTX injection initialized successfully.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 2704082301207,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Number of CUPTI events produced: \t3018493, CUPTI buffers: 50.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 2704082315117,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "CUDA hardware tracing is not supported on this system. A legacy (software instrumented) trace was collected instead.",
+            "globalPid": 282452132102144
+          },
+          {
+            "timestamp": 2704617077993,
+            "timestampType": 1,
+            "source": 3,
+            "severity": 1,
+            "text": "Profiling has stopped.",
+            "globalPid": -144115188075855872
+          }
+        ],
+        "ENUM_DIAGNOSTIC_SEVERITY_LEVEL": [
+          {
+            "id": 0,
+            "name": "UnknownLevel",
+            "label": "Unknown"
+          },
+          {
+            "id": 1,
+            "name": "Info",
+            "label": "Info"
+          },
+          {
+            "id": 2,
+            "name": "Warning",
+            "label": "Warning"
+          },
+          {
+            "id": 3,
+            "name": "Error",
+            "label": "Error"
+          },
+          {
+            "id": 4,
+            "name": "Verbose",
+            "label": "Verbose"
+          }
+        ],
+        "ENUM_DIAGNOSTIC_SOURCE_TYPE": [
+          {
+            "id": 0,
+            "name": "UnknownSource",
+            "label": "Unknown source"
+          },
+          {
+            "id": 1,
+            "name": "Injection",
+            "label": "Injection"
+          },
+          {
+            "id": 2,
+            "name": "Daemon",
+            "label": "Daemon"
+          },
+          {
+            "id": 3,
+            "name": "Analysis",
+            "label": "Analysis"
+          }
+        ],
+        "ENUM_DIAGNOSTIC_TIMESTAMP_SOURCE": [
+          {
+            "id": 0,
+            "name": "UnknownTimestamp",
+            "label": "Unknown timestamp"
+          },
+          {
+            "id": 1,
+            "name": "TargetTimestamp",
+            "label": "Target timestamp"
+          },
+          {
+            "id": 2,
+            "name": "HostTimestamp",
+            "label": "Host timestamp"
+          }
+        ]
+      },
+      "dropped_event_limit": "Complete expected prefill/native sequence and unique available kernel correlations checked; absence of loss diagnostics alone is not a universal no-drop proof.",
+      "original_failed_gate_preserved": true,
+      "wall_window_widened": false,
+      "attributor_sha256": "3860654b27d9d83cbd52d537d27e58c48984fba4c0e9307a92ac9e25f3a95258",
+      "original_failed_manifest_sha256": "a30a468752cc5f54a6b950152084a68fb5a4060882c28302145811b12be8776e"
+    },
+    "all": {
+      "status": "ORDINAL_ACTUAL_ROUTE_RECOVERY_PASSED",
+      "arm": "all",
+      "samples": 300,
+      "trace_prefill_chunks": 602,
+      "startup_chunks": [
+        {
+          "start": 6050866405,
+          "end": 6124397400,
+          "globalTid": 282462433371645,
+          "T": 9
+        },
+        {
+          "start": 6124739667,
+          "end": 6149374751,
+          "globalTid": 282462433371645,
+          "T": 4
+        }
+      ],
+      "initial_input_chunks": 600,
+      "whole_run_actual_quantizer_kernels": 0,
+      "actual_A8_samples": 0,
+      "actual_A8_tokens": 0,
+      "all_actual_kernels_unique_runtime_correlated": 653216,
+      "initial_input_correlated_kernels": 547432,
+      "outside_initial_input_correlated_kernels_retained": 105784,
+      "diagnostic_tables": {
+        "DIAGNOSTIC_EVENT": [
+          {
+            "timestamp": 0,
+            "timestampType": 1,
+            "source": 3,
+            "severity": 1,
+            "text": "Profiling has started.",
+            "globalPid": -144115188075855872
+          },
+          {
+            "timestamp": 46290,
+            "timestampType": 1,
+            "source": 2,
+            "severity": 1,
+            "text": "Process was launched by the profiler, see /tmp/nvidia/nsight_systems/quadd_session_1058846/streams/pid_58857_stdout.log and stderr.log for program output",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 37113439,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Common injection library initialized successfully.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 200788576,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Buffers holding CUDA trace data will be flushed on CudaProfilerStop() call. See --flush-on-cudaprofilerstop to control this behavior.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 244116313,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Loaded CUPTI library: /usr/local/cuda-13.2/nsight-systems-2025.6.3/target-linux-x64/libcupti.so.13.2",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 244123143,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 2,
+            "text": "Installed CUDA driver version (13.3) is not supported by this build of Nsight Systems. CUDA trace will be collected using libraries for driver version 13.2",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 515535834,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Enabling trace for device graph launch",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 523181772,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "CUDA injection initialized successfully.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 3783609366,
+            "timestampType": 2,
+            "source": 3,
+            "severity": 1,
+            "text": "Number of NVTX events collected: \t133887.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 3783621796,
+            "timestampType": 2,
+            "source": 3,
+            "severity": 1,
+            "text": "Number of CUDA events collected: \t2664232.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 4220025729,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "NVTX injection initialized successfully.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 2644561692983,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "Number of CUPTI events produced: \t2999555, CUPTI buffers: 50.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 2644561707243,
+            "timestampType": 1,
+            "source": 1,
+            "severity": 1,
+            "text": "CUDA hardware tracing is not supported on this system. A legacy (software instrumented) trace was collected instead.",
+            "globalPid": 282462433312768
+          },
+          {
+            "timestamp": 2645028221702,
+            "timestampType": 1,
+            "source": 3,
+            "severity": 1,
+            "text": "Profiling has stopped.",
+            "globalPid": -144115188075855872
+          }
+        ],
+        "ENUM_DIAGNOSTIC_SEVERITY_LEVEL": [
+          {
+            "id": 0,
+            "name": "UnknownLevel",
+            "label": "Unknown"
+          },
+          {
+            "id": 1,
+            "name": "Info",
+            "label": "Info"
+          },
+          {
+            "id": 2,
+            "name": "Warning",
+            "label": "Warning"
+          },
+          {
+            "id": 3,
+            "name": "Error",
+            "label": "Error"
+          },
+          {
+            "id": 4,
+            "name": "Verbose",
+            "label": "Verbose"
+          }
+        ],
+        "ENUM_DIAGNOSTIC_SOURCE_TYPE": [
+          {
+            "id": 0,
+            "name": "UnknownSource",
+            "label": "Unknown source"
+          },
+          {
+            "id": 1,
+            "name": "Injection",
+            "label": "Injection"
+          },
+          {
+            "id": 2,
+            "name": "Daemon",
+            "label": "Daemon"
+          },
+          {
+            "id": 3,
+            "name": "Analysis",
+            "label": "Analysis"
+          }
+        ],
+        "ENUM_DIAGNOSTIC_TIMESTAMP_SOURCE": [
+          {
+            "id": 0,
+            "name": "UnknownTimestamp",
+            "label": "Unknown timestamp"
+          },
+          {
+            "id": 1,
+            "name": "TargetTimestamp",
+            "label": "Target timestamp"
+          },
+          {
+            "id": 2,
+            "name": "HostTimestamp",
+            "label": "Host timestamp"
+          }
+        ]
+      },
+      "dropped_event_limit": "Complete expected prefill/native sequence and unique available kernel correlations checked; absence of loss diagnostics alone is not a universal no-drop proof.",
+      "original_failed_gate_preserved": true,
+      "wall_window_widened": false,
+      "attributor_sha256": "3860654b27d9d83cbd52d537d27e58c48984fba4c0e9307a92ac9e25f3a95258",
+      "original_failed_manifest_sha256": "a30a468752cc5f54a6b950152084a68fb5a4060882c28302145811b12be8776e"
+    }
+  },
+  "finished_at": "2026-10-16T20:10:09.096313+00:00"
+}

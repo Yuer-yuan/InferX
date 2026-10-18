@@ -1,0 +1,150 @@
+{
+  "cases": [
+    {
+      "order": 3,
+      "concurrency": 4,
+      "actual_cohorts_equal_to_4slot": true,
+      "folder": "results/framework-c4/vllm/capacity8-performance/row03-c4-seed44",
+      "original_parser": {
+        "status": "完整",
+        "issues": [],
+        "concurrency": 4,
+        "expected_requests": 32,
+        "records": 32,
+        "valid_records": 32,
+        "successful_requests": 32.0,
+        "error_requests": 0,
+        "lengths_verified": true,
+        "osl_verified": true,
+        "input_length_basis": "model",
+        "actual_input_tokens": {
+          "min": 8192,
+          "max": 8192,
+          "mean": 8192.0
+        },
+        "metrics": {
+          "time_to_first_token": {
+            "mean": 5658.99066553125,
+            "p50": 5566.5816925,
+            "p95": 9753.232118899998,
+            "p99": 12980.658190100003
+          },
+          "inter_token_latency": {
+            "mean": 49.76939828657045,
+            "p50": 50.04126302641878,
+            "p95": 52.088860099021524,
+            "p99": 52.10032543943248
+          },
+          "request_latency": {
+            "mean": 31091.153189968747,
+            "p50": 31135.433896,
+            "p95": 34951.334883999996,
+            "p99": 39213.996330890004
+          }
+        },
+        "benchmark_duration": 249.507544832,
+        "request_throughput": 0.12824909019231237,
+        "output_token_throughput": 65.66353417846393,
+        "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/capacity8-performance/row03-c4-seed44/aiperf"
+      },
+      "audit_sha256": "daf7e148d3f8490c9b8ab06d46f2780702aba62f6cf98b02cd3f4746b3db01fb",
+      "raw_sha256": "8b13183c74210e68bcc5769706d0a0112f410702be612854279d4eaa622a8536",
+      "actual_cohort_hashes": {
+        "warmup": "526eb0b3ab962ad79233583830c5888029ea1244121a93644f49b1e36a5747fa",
+        "profiling": "563c0fbb4d0d47e9657d3b54a98a53d849b80e857210cd9090af1d57e95faacf"
+      },
+      "wire_and_parser_checks_pass": true,
+      "numerical_joint_slo": false
+    },
+    {
+      "order": 4,
+      "concurrency": 8,
+      "actual_cohorts_equal_to_4slot": true,
+      "folder": "results/framework-c4/vllm/capacity8-performance/row04-c8-seed45",
+      "original_parser": {
+        "status": "完整",
+        "issues": [],
+        "concurrency": 8,
+        "expected_requests": 24,
+        "records": 24,
+        "valid_records": 24,
+        "successful_requests": 24.0,
+        "error_requests": 0,
+        "lengths_verified": true,
+        "osl_verified": true,
+        "input_length_basis": "model",
+        "actual_input_tokens": {
+          "min": 8192,
+          "max": 8192,
+          "mean": 8192.0
+        },
+        "metrics": {
+          "time_to_first_token": {
+            "mean": 9191.038711583333,
+            "p50": 5607.8093265,
+            "p95": 25169.064118300004,
+            "p99": 27216.84546369
+          },
+          "inter_token_latency": {
+            "mean": 70.55676529044358,
+            "p50": 77.2567966663405,
+            "p95": 79.2185717163405,
+            "p99": 79.32686851146771
+          },
+          "request_latency": {
+            "mean": 45245.545775,
+            "p50": 45102.074942499996,
+            "p95": 64113.53092315,
+            "p99": 67296.2024038
+          }
+        },
+        "benchmark_duration": 136.293502464,
+        "request_throughput": 0.17600211082757689,
+        "output_token_throughput": 90.11308074371937,
+        "artifacts": "/home/yuer/mypro/InferX/results/framework-c4/vllm/capacity8-performance/row04-c8-seed45/aiperf"
+      },
+      "audit_sha256": "4a8956be4f89b4517927f7d8fd1a83059af903e7f3164f8784220fc7431ca183",
+      "raw_sha256": "35d2d9cd95623e31e1fc1d7867ff3be9fc9dca0e23ab433b0d7644a1ff58f7a1",
+      "actual_cohort_hashes": {
+        "warmup": "73f26599b41656b953d1aa01c85435627e7d6c140f71e2de593f24d0a9550a18",
+        "profiling": "001c7312bdbb7469d6640a54bfb38ff85995c47903e7974b98592b4ea1d956d7"
+      },
+      "wire_and_parser_checks_pass": true,
+      "numerical_joint_slo": false
+    }
+  ],
+  "both_cases_wire_and_parser_verified": true,
+  "baseline_verification_sha256": "8d3d9e531b17da6c2b98f0fa973943484eb4bceedb4908d74da6249482e3d4bb",
+  "config_comparison_sha256": "fe680a862b5bda09a6c53c131c784f715ec330eb806db9f341e46697893ab658",
+  "explicit_change": "max-num-seqs 4 to 8; same recorded environment",
+  "derived_config_changes": {
+    "cudagraph_capture_sizes": {
+      "baseline": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "capacity8": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "available_kv_cache_gib": {
+      "baseline": "11.56",
+      "capacity8": "11.52"
+    },
+    "kv_cache_tokens": {
+      "baseline": "292,484",
+      "capacity8": "291,271"
+    },
+    "cuda_graph_pool_actual_gib": {
+      "baseline": "0.05",
+      "capacity8": "0.06"
+    }
+  },
+  "scope": "Payload, parser, recorded configuration and actual cohort checks. GPU coverage, native cache counters, failure history and service identity require separate review."
+}
