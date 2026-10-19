@@ -1,0 +1,2632 @@
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/kernel/gqa_attention_prefill_i8.cuh artifacts/8876-24gb-projected-grace/source/src/ops/kernel/gqa_attention_prefill_i8.cuh
+--- artifacts/8876-24gb-kit100/source/src/ops/kernel/gqa_attention_prefill_i8.cuh	2026-10-17 22:25:41.220680700 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/kernel/gqa_attention_prefill_i8.cuh	2026-10-19 04:25:59.988220354 +0800
+@@ -15,6 +15,7 @@
+ #include "ops/kernel/gqa_attention_prefill_common.cuh"
+ 
+ #include <cstdint>
++#include <type_traits>
+ 
+ namespace ninfer::ops {
+ 
+@@ -376,6 +377,7 @@
+     constexpr int Groups        = kGqaPrefillI8Groups;
+     constexpr int GroupKc       = kGqaKvQuantGroup / 32;
+     constexpr int QKNt          = Bc / 8;
++    constexpr bool UsePlain27LDS137 = std::is_same_v<Geometry, Gqa27Geometry> && !PackedV && !RotateK && !RotateV && !PackedK && !E8Root;
+     constexpr int PVNtPerWarp   = D / (kGqaPrefillI8DConsumers * 8);
+     constexpr int PVKs          = Bc / 16;
+     constexpr int ProducerWarps = kGqaPrefillI8RowTiles;
+@@ -644,10 +646,15 @@
+                 } else {
+                     const int scale_row0 = row_base + gid;
+                     const int scale_row1 = scale_row0 + 8;
+-                    qs0                  = lid == 0 ? q_scale[scale_row0 * Groups + grp] : 0.0f;
+-                    qs1                  = lid == 0 ? q_scale[scale_row1 * Groups + grp] : 0.0f;
+-                    qs0                  = __shfl_sync(FullMask, qs0, gid * 4);
+-                    qs1                  = __shfl_sync(FullMask, qs1, gid * 4);
++                    if constexpr (UsePlain27LDS137) {
++                        qs0 = q_scale[scale_row0 * Groups + grp];
++                        qs1 = q_scale[scale_row1 * Groups + grp];
++                    } else {
++                        qs0                  = lid == 0 ? q_scale[scale_row0 * Groups + grp] : 0.0f;
++                        qs1                  = lid == 0 ? q_scale[scale_row1 * Groups + grp] : 0.0f;
++                        qs0                  = __shfl_sync(FullMask, qs0, gid * 4);
++                        qs1                  = __shfl_sync(FullMask, qs1, gid * 4);
++                    }
+                 }
+ 
+                 unsigned af[GroupKc][4];
+@@ -678,12 +685,17 @@
+                     const int keyb = keya + 1;
+                     float ks0      = 0.0f;
+                     float ks1      = 0.0f;
+-                    if (gid == 0) {
++                    if constexpr (UsePlain27LDS137) {
+                         ks0 = __half2float(k_scale_s[keya * Groups + grp]);
+                         ks1 = __half2float(k_scale_s[keyb * Groups + grp]);
++                    } else {
++                        if (gid == 0) {
++                            ks0 = __half2float(k_scale_s[keya * Groups + grp]);
++                            ks1 = __half2float(k_scale_s[keyb * Groups + grp]);
++                        }
++                        ks0          = __shfl_sync(FullMask, ks0, lid);
++                        ks1          = __shfl_sync(FullMask, ks1, lid);
+                     }
+-                    ks0          = __shfl_sync(FullMask, ks0, lid);
+-                    ks1          = __shfl_sync(FullMask, ks1, lid);
+                     score[nt][0] = __fmaf_rn(qs0 * ks0, static_cast<float>(c0), score[nt][0]);
+                     score[nt][1] = __fmaf_rn(qs0 * ks1, static_cast<float>(c1), score[nt][1]);
+                     score[nt][2] = __fmaf_rn(qs1 * ks0, static_cast<float>(c2), score[nt][2]);
+@@ -825,10 +837,15 @@
+                 } else {
+                     const int scale_row0 = row_base + gid;
+                     const int scale_row1 = scale_row0 + 8;
+-                    qs0                  = lid == 0 ? q_scale[scale_row0 * Groups + grp] : 0.0f;
+-                    qs1                  = lid == 0 ? q_scale[scale_row1 * Groups + grp] : 0.0f;
+-                    qs0                  = __shfl_sync(FullMask, qs0, gid * 4);
+-                    qs1                  = __shfl_sync(FullMask, qs1, gid * 4);
++                    if constexpr (UsePlain27LDS137) {
++                        qs0 = q_scale[scale_row0 * Groups + grp];
++                        qs1 = q_scale[scale_row1 * Groups + grp];
++                    } else {
++                        qs0                  = lid == 0 ? q_scale[scale_row0 * Groups + grp] : 0.0f;
++                        qs1                  = lid == 0 ? q_scale[scale_row1 * Groups + grp] : 0.0f;
++                        qs0                  = __shfl_sync(FullMask, qs0, gid * 4);
++                        qs1                  = __shfl_sync(FullMask, qs1, gid * 4);
++                    }
+                 }
+ 
+                 unsigned af[GroupKc][4];
+@@ -859,12 +876,17 @@
+                     const int keyb = keya + 1;
+                     float ks0      = 0.0f;
+                     float ks1      = 0.0f;
+-                    if (gid == 0) {
++                    if constexpr (UsePlain27LDS137) {
+                         ks0 = __half2float(k_scale_s[keya * Groups + grp]);
+                         ks1 = __half2float(k_scale_s[keyb * Groups + grp]);
++                    } else {
++                        if (gid == 0) {
++                            ks0 = __half2float(k_scale_s[keya * Groups + grp]);
++                            ks1 = __half2float(k_scale_s[keyb * Groups + grp]);
++                        }
++                        ks0          = __shfl_sync(FullMask, ks0, lid);
++                        ks1          = __shfl_sync(FullMask, ks1, lid);
+                     }
+-                    ks0          = __shfl_sync(FullMask, ks0, lid);
+-                    ks1          = __shfl_sync(FullMask, ks1, lid);
+                     score[nt][0] = __fmaf_rn(qs0 * ks0, static_cast<float>(c0), score[nt][0]);
+                     score[nt][1] = __fmaf_rn(qs0 * ks1, static_cast<float>(c1), score[nt][1]);
+                     score[nt][2] = __fmaf_rn(qs1 * ks0, static_cast<float>(c2), score[nt][2]);
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_dispatch.cpp artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_dispatch.cpp
+--- artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_dispatch.cpp	2026-10-17 22:25:41.232019000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_dispatch.cpp	2026-10-19 07:05:09.728343812 +0800
+@@ -1,4 +1,5 @@
+ #include "ops/linear/q4/q4_dispatch.h"
++#include "ops/linear/q4/q4_draft_head_t16_policy.h"
+ 
+ #include <stdexcept>
+ 
+@@ -37,9 +38,13 @@
+             if (t <= 4) { return launch_q4_simt_r8_c4; }
+             if (t <= 16) { return launch_q4_simt_r8_c8; }
+             return launch_q4_mma_r64_c128;
+-        case 131072:
+-            if (t <= 8) { return launch_q4_draft_head_small_t; }
++        case 131072: {
++            const bool extended = q4_draft_head_t16_enabled();
++            if (t <= 8 || q4_draft_head_t16_shape(n, k, t, extended)) {
++                return launch_q4_draft_head_small_t;
++            }
+             return launch_q4_mma_r64_c128;
++        }
+         default:
+             break;
+         }
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_draft_head_t16_policy.h artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_draft_head_t16_policy.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_draft_head_t16_policy.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_draft_head_t16_policy.h	2026-10-19 07:05:09.728142957 +0800
+@@ -0,0 +1,20 @@
++#pragma once
++#include <cstdint>
++#include <cstdlib>
++#include <stdexcept>
++#include <string_view>
++namespace ninfer::ops::detail {
++inline bool parse_q4_draft_head_t16(const char* value) {
++    if (!value || std::string_view(value) == "0") return false;
++    if (std::string_view(value) == "1") return true;
++    throw std::invalid_argument("NINFER_Q4_DRAFT_HEAD_T16 must be 0 or 1");
++}
++inline bool q4_draft_head_t16_enabled() {
++    static const bool enabled = parse_q4_draft_head_t16(std::getenv("NINFER_Q4_DRAFT_HEAD_T16"));
++    return enabled;
++}
++inline constexpr bool q4_draft_head_t16_shape(std::int32_t n, std::int32_t k,
++                                             std::int32_t t, bool enabled) noexcept {
++    return enabled && n == 131072 && k == 5120 && t >= 9 && t <= 16;
++}
++} // namespace ninfer::ops::detail
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_small_t_mma.cu artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_small_t_mma.cu
+--- artifacts/8876-24gb-kit100/source/src/ops/linear/q4/q4_small_t_mma.cu	2026-10-17 22:25:41.233689300 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear/q4/q4_small_t_mma.cu	2026-10-19 07:05:09.728553887 +0800
+@@ -12,7 +12,7 @@
+ namespace {
+ 
+ constexpr int kFirstSmallT    = 1;
+-constexpr int kLastFullT      = 8;
++constexpr int kLastFullT      = 16;
+ constexpr int kLastOptimizedT = 20;
+ using FullGeometry            = Q4DraftHeadGeometry<5120>;
+ using OptimizedGeometry       = Q4DraftHeadGeometry<2048>;
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear/q5/q5_small_t_mma.cu artifacts/8876-24gb-projected-grace/source/src/ops/linear/q5/q5_small_t_mma.cu
+--- artifacts/8876-24gb-kit100/source/src/ops/linear/q5/q5_small_t_mma.cu	2026-10-17 22:25:41.235846500 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear/q5/q5_small_t_mma.cu	2026-10-19 02:40:29.345179188 +0800
+@@ -62,11 +62,11 @@
+         (Geometry::kOutputRows + Schedule::kRowsPerCta - 1) / Schedule::kRowsPerCta;
+     const auto in_ld  = static_cast<std::int32_t>(x.nb[1] / sizeof(__nv_bfloat16));
+     const auto out_ld = static_cast<std::int32_t>(out.nb[1] / sizeof(__nv_bfloat16));
+-    constexpr int kSplits = 2;
++    constexpr int kSplits = 1;
+     const dim3 grid(static_cast<unsigned>(kBlocks), static_cast<unsigned>(kSplits), 1u);
+-    const Q5SmallTMmaResidualAtomicEpilogue epilogue{};
++    const Q5SmallTMmaResidualEpilogue epilogue{};
+ 
+-    q5_small_t_mma_kernel<Geometry, TileTokens, ActiveTokens, Q5SmallTMmaResidualAtomicEpilogue,
++    q5_small_t_mma_kernel<Geometry, TileTokens, ActiveTokens, Q5SmallTMmaResidualEpilogue,
+                           Q5SmallTMmaIdentityRows, kSplits>
+         <<<grid, Schedule::kThreads, 0, stream>>>(
+             static_cast<const __nv_bfloat16*>(x.data),
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear/q5/q5_small_t_mma.cuh artifacts/8876-24gb-projected-grace/source/src/ops/linear/q5/q5_small_t_mma.cuh
+--- artifacts/8876-24gb-kit100/source/src/ops/linear/q5/q5_small_t_mma.cuh	2026-10-17 22:25:41.236014600 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear/q5/q5_small_t_mma.cuh	2026-10-19 02:40:29.344917383 +0800
+@@ -29,19 +29,13 @@
+     }
+ };
+ 
++// A single CTA owns the full dot product and the final residual conversion.
++// Split atomic BF16 updates make residual+a+b depend on CTA arrival order.
+ struct Q5SmallTMmaResidualEpilogue {
+     __device__ __forceinline__ void store(__nv_bfloat16* out, int out_ld, int row, int col,
+                                           float acc) const {
+         auto* dst = &out[static_cast<std::int64_t>(col) * out_ld + row];
+-        *dst      = __hadd(*dst, __float2bfloat16_rn(acc));
+-    }
+-};
+-
+-struct Q5SmallTMmaResidualAtomicEpilogue {
+-    __device__ __forceinline__ void store(__nv_bfloat16* out, int out_ld, int row, int col,
+-                                          float acc) const {
+-        auto* dst = &out[static_cast<std::int64_t>(col) * out_ld + row];
+-        atomicAdd(dst, __float2bfloat16_rn(acc));
++        *dst = __float2bfloat16_rn(__bfloat162float(*dst) + acc);
+     }
+ };
+ 
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_s4.cu artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_s4.cu
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_s4.cu	2026-10-17 23:28:45.322831400 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_s4.cu	2026-10-19 03:04:07.912709525 +0800
+@@ -33,6 +33,7 @@
+ }
+ void output_s4_begin() {
+     if (!output_s4_enabled() || begun) throw std::runtime_error("outputS4 one model lifetime");
++    validate_output_s4_configuration(output_s4_enabled(),output_s4_verify_enabled(),output_s4_full_coverage_enabled(),output_s4_omit_legacy_enabled());
+     begun = true; views.reserve(47);
+     CUDA_CHECK(ucloud3::output_s4_op::prepare_attributes());
+     (void)ninfer::device_sm_count();
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_s4.h artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_s4.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_s4.h	2026-10-17 23:28:45.322595100 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_s4.h	2026-10-19 03:04:07.912519759 +0800
+@@ -18,6 +18,10 @@
+ void output_s4_load_register(const Weight&, std::uint8_t*, int layer, cudaStream_t);
+ void output_s4_seal();
+ bool output_s4_registered(const Weight&);
++inline void require_output_s4_route_if_omitted(const Weight& weight){
++    if(output_s4_omit_legacy_enabled()&&output_s4_registered(weight))
++        throw std::logic_error("selected output payload omitted: legacy fallback unavailable");
++}
+ void output_s4_launch(const Tensor&, const Weight&, Tensor&, const OutputS4Scratch&, cudaStream_t,
+                       bool verify_phase = false);
+ template<class Allocator> OutputS4Scratch output_s4_workspace(Allocator& arena, int T) {
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_verify_policy.h artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_verify_policy.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/private_output_verify_policy.h	2026-10-17 23:28:45.322349000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/private_output_verify_policy.h	2026-10-19 03:02:58.745531689 +0800
+@@ -2,6 +2,7 @@
+ #include <cstdlib>
+ #include <stdexcept>
+ #include <string_view>
++#include <string>
+ namespace ninfer::ops::detail {
+ // Read once before capacity planning/Graph capture. Never toggle an existing Program.
+ inline bool output_s4_verify_enabled() {
+@@ -13,10 +14,38 @@
+     }();
+     return enabled;
+ }
+-inline constexpr bool output_s4_verify_shape(int tokens) noexcept {
+-    return tokens >= 33 && tokens <= 128;
++inline bool parse_output_s4_flag(const char* value,const char* name) {
++    if(!value||std::string_view(value)=="0")return false;
++    if(std::string_view(value)=="1")return true;
++    throw std::invalid_argument(std::string(name)+" must be 0 or 1");
+ }
+-inline constexpr int output_s4_verify_peak_tokens(int first, int last) noexcept {
+-    return first <= last && first <= 128 && last >= 33 ? (last < 128 ? last : 128) : 0;
++inline bool output_s4_full_coverage_enabled(){
++    static const bool enabled=parse_output_s4_flag(std::getenv("NINFER_OUTPUT_S4_FULL_COVERAGE"),"NINFER_OUTPUT_S4_FULL_COVERAGE");
++    return enabled;
++}
++inline bool output_s4_omit_legacy_enabled(){
++    static const bool enabled=parse_output_s4_flag(std::getenv("NINFER_OUTPUT_S4_OMIT_LEGACY"),"NINFER_OUTPUT_S4_OMIT_LEGACY");
++    return enabled;
++}
++inline void validate_output_s4_configuration(bool s4,bool verify,bool full,bool omit){
++    if(((full||omit)&&(!s4||!verify))||(omit&&!full))
++        throw std::invalid_argument("selected output payload omission requires outputS4, Verify and full coverage");
++}
++inline constexpr bool output_s4_verify_shape(int tokens,bool full) noexcept {
++    return full ? tokens>=1&&tokens<=2048 : tokens>=33&&tokens<=128;
++}
++inline bool output_s4_verify_shape(int tokens){
++    return output_s4_verify_shape(tokens,output_s4_full_coverage_enabled());
++}
++inline constexpr int output_s4_verify_peak_tokens(int first,int last,bool full) noexcept {
++    const int lower=full?1:33,upper=full?2048:128;
++    return first>0&&first<=last&&first<=upper&&last>=lower ? (last<upper?last:upper):0;
++}
++inline int output_s4_verify_peak_tokens(int first,int last){
++    return output_s4_verify_peak_tokens(first,last,output_s4_full_coverage_enabled());
++}
++inline void validate_output_s4_token_interval(int first,int last,bool omitted){
++    if(first<1||first>last||(omitted&&last>2048))
++        throw std::invalid_argument("selected output payload omitted outside T1..2048 coverage");
+ }
+ } // namespace ninfer::ops::detail
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_gemm_simt.cu artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_gemm_simt.cu
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_gemm_simt.cu	2026-10-17 22:25:41.240833500 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_gemm_simt.cu	2026-10-19 02:40:29.345779458 +0800
+@@ -4,7 +4,7 @@
+ 
+ namespace ninfer::ops::detail {
+ 
+-void q5_linear_add_split2_exact_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
++void q5_linear_add_fullk_exact_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
+                                        cudaStream_t stream) {
+     launch_q5_linear_add_small_t_mma(x, w, residual_out, stream);
+ }
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_kernels.h artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_kernels.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_kernels.h	2026-10-17 22:25:41.241162800 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_kernels.h	2026-10-19 02:40:29.345943766 +0800
+@@ -8,7 +8,7 @@
+ 
+ void q5_linear_add_gemv_residual_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
+                                         cudaStream_t stream);
+-void q5_linear_add_split2_exact_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
++void q5_linear_add_fullk_exact_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
+                                        cudaStream_t stream);
+ void q5_linear_add_mma_r64_c16_launch(const Tensor& x, const Weight& w, Tensor& residual_out,
+                                       cudaStream_t stream);
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_plan.cpp artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_plan.cpp
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_plan.cpp	2026-10-17 22:25:41.241277200 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_plan.cpp	2026-10-19 02:40:29.345588366 +0800
+@@ -38,7 +38,7 @@
+ 
+ constexpr std::array<RouteSpec, 6> kK6144Routes{{
+     {{1, 1}, Q5LinearAddScheduleId::GemvResidual},
+-    {{2, 13}, Q5LinearAddScheduleId::Split2ExactResidual},
++    {{2, 13}, Q5LinearAddScheduleId::MmaExactResidual},
+     {{14, 16}, Q5LinearAddScheduleId::MmaResidualR64C16},
+     {{17, 64}, Q5LinearAddScheduleId::MmaResidualR64C32},
+     {{65, 128}, Q5LinearAddScheduleId::MmaResidualR64C64},
+@@ -47,7 +47,7 @@
+ 
+ constexpr std::array<RouteSpec, 5> kK17408Routes{{
+     {{1, 1}, Q5LinearAddScheduleId::GemvResidual},
+-    {{2, 16}, Q5LinearAddScheduleId::Split2ExactResidual},
++    {{2, 16}, Q5LinearAddScheduleId::MmaExactResidual},
+     {{17, 64}, Q5LinearAddScheduleId::MmaResidualR64C32},
+     {{65, 128}, Q5LinearAddScheduleId::MmaResidualR64C64},
+     {{129, kAnyCols}, Q5LinearAddScheduleId::MmaResidualR64C128},
+@@ -83,8 +83,8 @@
+     switch (schedule) {
+     case Q5LinearAddScheduleId::GemvResidual:
+         return "linear_add.q5.gemv.residual";
+-    case Q5LinearAddScheduleId::Split2ExactResidual:
+-        return "linear_add.q5.simt.split2.exact.residual";
++    case Q5LinearAddScheduleId::MmaExactResidual:
++        return "linear_add.q5.mma.fullk.exact.residual";
+     case Q5LinearAddScheduleId::MmaResidualR64C16:
+         return "linear_add.q5.mma.r64.c16.cta_collective_residual";
+     case Q5LinearAddScheduleId::MmaResidualR64C24:
+@@ -142,8 +142,8 @@
+     case Q5LinearAddScheduleId::GemvResidual:
+         q5_linear_add_gemv_residual_launch(x, w, residual_out, stream);
+         return;
+-    case Q5LinearAddScheduleId::Split2ExactResidual:
+-        q5_linear_add_split2_exact_launch(x, w, residual_out, stream);
++    case Q5LinearAddScheduleId::MmaExactResidual:
++        q5_linear_add_fullk_exact_launch(x, w, residual_out, stream);
+         return;
+     case Q5LinearAddScheduleId::MmaResidualR64C16:
+         q5_linear_add_mma_r64_c16_launch(x, w, residual_out, stream);
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_plan.h artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_plan.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_add/q5/q5_linear_add_plan.h	2026-10-17 22:25:41.241421500 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_add/q5/q5_linear_add_plan.h	2026-10-19 02:40:29.345382430 +0800
+@@ -11,7 +11,7 @@
+ 
+ enum class Q5LinearAddScheduleId {
+     GemvResidual,
+-    Split2ExactResidual,
++    MmaExactResidual,
+     MmaResidualR64C16,
+     MmaResidualR64C24,
+     MmaResidualR64C32,
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_swiglu/q4/private_input_s4.cu artifacts/8876-24gb-projected-grace/source/src/ops/linear_swiglu/q4/private_input_s4.cu
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_swiglu/q4/private_input_s4.cu	2026-10-17 22:25:41.247659200 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_swiglu/q4/private_input_s4.cu	2026-10-19 00:08:22.778894064 +0800
+@@ -1,4 +1,5 @@
+ #include "private_input_s4.h"
++#include "private_fullk_prefill.h"
+ #include "private_input_gdn_s4.cuh"
+ #include "private_input_attention_s4.cuh"
+ #include "private_input_h512.cuh"
+@@ -34,6 +35,17 @@
+ }
+ }
+ bool input_s4_enabled(){const char* s=std::getenv("NINFER_INPUT_S4");return s&&!std::strcmp(s,"1");}
++bool input_s4_omit_legacy_enabled(){
++ static const bool enabled=[](){
++  const char* s=std::getenv("NINFER_INPUT_S4_OMIT_LEGACY");
++  if(!s||!std::strcmp(s,"0"))return false;
++  if(std::strcmp(s,"1"))throw std::invalid_argument("NINFER_INPUT_S4_OMIT_LEGACY supports 0/1");
++  if(!input_s4_enabled()||!fullk_s4_omit_legacy_enabled())
++   throw std::invalid_argument("input omission requires inputS4 and the bounded all-target S4 profile");
++  return true;
++ }();
++ return enabled;
++}
+ void input_s4_begin(){
+  if(begun)throw std::runtime_error("private inputS4 supports one model lifetime per process");
+  begun=true;views.reserve(64);
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/ops/linear_swiglu/q4/private_input_s4.h artifacts/8876-24gb-projected-grace/source/src/ops/linear_swiglu/q4/private_input_s4.h
+--- artifacts/8876-24gb-kit100/source/src/ops/linear_swiglu/q4/private_input_s4.h	2026-10-17 22:25:41.247782700 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/ops/linear_swiglu/q4/private_input_s4.h	2026-10-19 00:09:03.671859209 +0800
+@@ -4,10 +4,16 @@
+ #include <cuda_runtime.h>
+ #include <cstddef>
+ #include <cstdint>
++#include <stdexcept>
+ namespace ninfer::ops::detail {
+ // Private single-model-per-process experiment. Cache allocation belongs to the existing
+ // LoadedModelData::fullk_gate_storage, appended after its unchanged all64FFN prefix.
+ bool input_s4_enabled();
++bool input_s4_omit_legacy_enabled();
++inline void require_input_s4_route_if_omitted() {
++    if (input_s4_omit_legacy_enabled())
++        throw std::logic_error("omitted target input weights require the qualified S4 route");
++}
+ inline constexpr std::size_t input_s4_codes(int layer){return std::size_t((layer+1)%4==0?14336:16384)*5120/2;}
+ inline constexpr std::size_t input_s4_scales(int layer){return std::size_t((layer+1)%4==0?14336:16384)*10*4;}
+ inline constexpr std::size_t input_s4_total_bytes=std::size_t(16)*14336*2600+std::size_t(48)*16384*2600;
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/cold_memory_policy.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/cold_memory_policy.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/cold_memory_policy.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/cold_memory_policy.h	2026-10-19 00:08:22.774892101 +0800
+@@ -0,0 +1,40 @@
++#pragma once
++
++#include <charconv>
++#include <cstddef>
++#include <cstdlib>
++#include <optional>
++#include <stdexcept>
++#include <string_view>
++
++namespace ninfer::runtime {
++
++// Frozen before planning. Cold mode reserves no reusable turn-checkpoint state;
++// requests that enable prefix reuse must be rejected before admission.
++inline bool cold_request_state_enabled() {
++    static const bool enabled = [] {
++        const char* value = std::getenv("NINFER_COLD_REQUEST_STATE");
++        if (!value || std::string_view(value) == "0") return false;
++        if (std::string_view(value) == "1") return true;
++        throw std::invalid_argument("NINFER_COLD_REQUEST_STATE must be 0 or 1");
++    }();
++    return enabled;
++}
++
++inline std::optional<std::size_t> cuda_graph_allowance_override() {
++    static const auto bytes = []() -> std::optional<std::size_t> {
++        const char* value = std::getenv("NINFER_CUDA_GRAPH_ALLOWANCE_MB");
++        if (!value) return std::nullopt;
++        const std::string_view text(value);
++        unsigned mib = 0;
++        const auto result = std::from_chars(text.data(), text.data() + text.size(), mib);
++        if (result.ec != std::errc{} || result.ptr != text.data() + text.size() ||
++            mib < 64 || mib > 65536) {
++            throw std::invalid_argument("NINFER_CUDA_GRAPH_ALLOWANCE_MB must be an integer in [64,65536]");
++        }
++        return std::size_t(mib) * 1024U * 1024U;
++    }();
++    return bytes;
++}
++
++} // namespace ninfer::runtime
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/concurrent_executor.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/concurrent_executor.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/concurrent_executor.h	2026-10-18 04:47:52.589352100 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/concurrent_executor.h	2026-10-19 08:48:28.865338558 +0800
+@@ -11,6 +11,11 @@
+ #include "runtime/engine/slo_completion_policy.h"
+ #include "runtime/engine/slo_bounded_decode_membership.h"
+ #include "runtime/engine/slo_prefill_queue_policy.h"
++#include "runtime/engine/slo_expired_completion_soft_pf.h"
++#include "runtime/engine/slo_unexpired_decode_priority.h"
++#include "runtime/engine/slo_tpot_recovery.h"
++#include "runtime/engine/slo_expired_prefill_grace.h"
++#include "runtime/engine/slo_projected_prefill_grace.h"
+ #include "runtime/engine/scheduler_trace.h"
+ #include "runtime/generation/generation_budget.h"
+ #include "targets/qwen3_6/export/ninfer/targets/qwen3_6/frontend.h"
+@@ -105,6 +110,38 @@
+         }
+         std::fprintf(stderr, "bounded_decode_membership_startup enabled=%d\n",
+                      bounded_decode_membership_scheduler_ ? 1 : 0);
++        if (expired_completion_soft_pf_scheduler_) {
++            if (!queue_demand_scheduler_) {
++                throw std::invalid_argument("expired completion soft PF requires completion_queue");
++            }
++            std::fprintf(stderr, "expired_completion_soft_pf_startup enabled=1\n");
++        }
++        validate_unexpired_decode_priority(
++            unexpired_decode_priority_scheduler_, queue_demand_scheduler_,
++            options.speculative.backend == SpeculativeBackend::Mtp,
++            options.speculative.draft_tokens, options.max_concurrency,
++            bounded_decode_membership_scheduler_);
++        if (unexpired_decode_priority_scheduler_) {
++            std::fprintf(stderr,
++                         "unexpired_decode_priority_startup enabled=1 max_subset_services=3\n");
++        }
++        validate_tpot_recovery(tpot_recovery_scheduler_, queue_demand_scheduler_,
++                              options.speculative.backend == SpeculativeBackend::Mtp,
++                              options.speculative.draft_tokens, options.max_concurrency,
++                              request_yield_max_scheduler_, bounded_decode_membership_scheduler_,
++                              unexpired_decode_priority_scheduler_);
++        if (tpot_recovery_scheduler_) {
++            std::fprintf(stderr,
++                         "tpot_recovery_startup enabled=1 selected_B=5 mandatory_full_services=2 min_ready=10 warning_TPOT_ms=32\n");
++        }
++        validate_expired_prefill_grace(expired_prefill_grace_scheduler_,queue_demand_scheduler_);
++        if(expired_prefill_grace_scheduler_)std::fprintf(stderr,"expired_prefill_grace_startup enabled=1 window_ms=10000\n");
++        validate_projected_prefill_grace(projected_prefill_grace_scheduler_,
++                                        queue_demand_scheduler_, expired_prefill_grace_scheduler_);
++        if (projected_prefill_grace_scheduler_) {
++            std::fprintf(stderr,"projected_prefill_grace_startup enabled=1 window_ms=10000 external_margin_ms=%.3f\n",
++                         completion_ttft_margin_ms_);
++        }
+         worker_ = std::thread([this] { worker_loop(); });
+     }
+ 
+@@ -1115,7 +1152,8 @@
+ 
+     // Invoked ONLY after the original worker selected decode using full-ready membership.
+     void run_bounded_decode_round(const RoundMembership& full) {
+-        if (!bounded_decode_membership_scheduler_) {
++        if (!bounded_decode_membership_scheduler_ && !unexpired_decode_priority_scheduler_ &&
++            !tpot_recovery_scheduler_) {
+             run_decode_round(full);
+             return;
+         }
+@@ -1136,6 +1174,59 @@
+                 static_cast<unsigned>(request->generated.size()), request->budget->remaining(),
+                 request_yield_max_scheduler_ ? request->committed_decode_rounds : 0};
+         }
++        if (tpot_recovery_scheduler_) {
++            const auto selection = choose_tpot_recovery_membership(
++                true, SchedulerTrace::now_ms(),
++                completion_costs_.get(static_cast<unsigned>(full.size)), completion_costs_.get(5),
++                std::span<const BoundedDecodeView>(views.data(), full.size), tpot_recovery_cadence_);
++            RoundMembership selected;
++            if (selection.use_subset) {
++                for (const auto index : selection.indices) {
++                    selected.lanes[selected.size] = full.lanes[index];
++                    selected.budgets[selected.size++] = full.budgets[index];
++                }
++            }
++            const unsigned committed = run_decode_round(selection.use_subset ? selected : full);
++            tpot_recovery_cadence_.record_completed_decode(selection.use_subset);
++            if (selection.use_subset && committed && !tpot_recovery_first_subset_logged_) {
++                tpot_recovery_first_subset_logged_ = true;
++                std::fprintf(stderr,
++                             "tpot_recovery_first_success full_B=%zu selected_B=%zu committed=%u mandatory_full_services=2\n",
++                             full.size, selected.size, committed);
++            }
++            trace_.event("tpot_recovery_selection", SchedulerTrace::now_ms(), 0, 0,
++                         static_cast<unsigned>(full.size),
++                         static_cast<unsigned>(selection.use_subset ? selected.size : full.size),
++                         static_cast<double>(tpot_recovery_cadence_.full_rounds_due()));
++            return;
++        }
++        if (unexpired_decode_priority_scheduler_) {
++            const auto selection = choose_unexpired_decode_membership(
++                true, SchedulerTrace::now_ms(),
++                std::span<const BoundedDecodeView>(views.data(), full.size),
++                unexpired_decode_cadence_);
++            RoundMembership selected;
++            if (selection.use_subset) {
++                for (std::size_t i = 0; i < selection.size; ++i) {
++                    const auto index = selection.indices[i];
++                    selected.lanes[selected.size] = full.lanes[index];
++                    selected.budgets[selected.size++] = full.budgets[index];
++                }
++            }
++            const unsigned committed = run_decode_round(selection.use_subset ? selected : full);
++            unexpired_decode_cadence_.record_completed_decode(selection.use_subset, committed);
++            if (selection.use_subset && !unexpired_decode_first_subset_logged_) {
++                unexpired_decode_first_subset_logged_ = true;
++                std::fprintf(stderr,
++                             "unexpired_decode_priority_first_success full_B=%zu selected_B=%zu subset_services=%u\n",
++                             full.size, selected.size, unexpired_decode_cadence_.subsets_completed());
++            }
++            trace_.event("unexpired_decode_selection", SchedulerTrace::now_ms(), 0, 0,
++                         static_cast<unsigned>(full.size),
++                         static_cast<unsigned>(selection.use_subset ? selected.size : full.size),
++                         static_cast<double>(unexpired_decode_cadence_.subsets_completed()));
++            return;
++        }
+         const auto selection = choose_bounded_decode_membership(
+             true, SchedulerTrace::now_ms(), completion_costs_.get(static_cast<unsigned>(full.size)),
+             std::span<const BoundedDecodeView>(views.data(), full.size), bounded_decode_cadence_);
+@@ -1158,7 +1249,7 @@
+         }
+     }
+ 
+-    void run_decode_round(const RoundMembership& membership) {
++    unsigned run_decode_round(const RoundMembership& membership) {
+         const double started_ms = SchedulerTrace::now_ms();
+         const std::span<const std::uint32_t> lanes = membership.lane_span();
+         const BatchedGeneratedRound round =
+@@ -1253,8 +1344,12 @@
+         for (std::size_t row = 0; row < lanes.size(); ++row) { total_tokens += accepted[row]; }
+         completion_costs_.observe(static_cast<unsigned>(lanes.size()),
+                                   SchedulerTrace::now_ms() - started_ms, total_tokens);
++        if (expired_completion_soft_pf_scheduler_) {
++            expired_completion_soft_pf_cadence_.record_completed_decode(total_tokens);
++        }
+         trace_.event("decode_round", started_ms, 0, 0,
+                      static_cast<unsigned>(lanes.size()), total_tokens);
++        return total_tokens;
+     }
+ 
+     void record_prefill_unit(const std::shared_ptr<Request>& request,
+@@ -1263,6 +1358,19 @@
+         costs_.observe_prefill(elapsed_ms, step.processed_prompt_tokens);
+         request->remaining_prefill_tokens -=
+             std::min(request->remaining_prefill_tokens, step.processed_prompt_tokens);
++        if (expired_completion_soft_pf_scheduler_) {
++            const bool consumed_credit = expired_completion_soft_pf_pending_ &&
++                step.processed_prompt_tokens > 0 && expired_completion_soft_pf_cadence_.available();
++            expired_completion_soft_pf_cadence_.record_completed_prefill(
++                expired_completion_soft_pf_pending_, step.processed_prompt_tokens);
++            if (consumed_credit && !expired_completion_soft_pf_first_success_logged_) {
++                expired_completion_soft_pf_first_success_logged_ = true;
++                std::fprintf(stderr,
++                             "expired_completion_soft_pf_first_success processed_tokens=%u decode_due=1\n",
++                             static_cast<unsigned>(step.processed_prompt_tokens));
++            }
++            expired_completion_soft_pf_pending_ = false;
++        }
+         trace_.event("prefill_chunk", started_ms, request->id,
+                      request->lane.value_or(0), 1, step.processed_prompt_tokens,
+                      request->remaining_prefill_tokens);
+@@ -1332,10 +1440,39 @@
+                     demand.push_back({deadline,
+                         costs_.prefill_ms_per_token * request->prompt_summary.prompt_tokens});
+                 }
++                unsigned graced_prefills=0;
++                unsigned projected_prefills=0;
++                double cumulative_prefill_ms=0;
++                for(auto& p:demand){
++                    const double original=p.deadline_ms;
++                    cumulative_prefill_ms+=p.remaining_ms;
++                    const double projected=projected_prefill_scheduling_deadline(
++                        projected_prefill_grace_scheduler_,now_ms,original,
++                        cumulative_prefill_ms,completion_ttft_margin_ms_);
++                    projected_prefills+=projected>original;
++                    const double expired=expired_prefill_scheduling_deadline(
++                        expired_prefill_grace_scheduler_,now_ms,original);
++                    p.deadline_ms=std::max(projected,expired);
++                    graced_prefills+=expired>original;
++                }
++                if(projected_prefills&&!projected_prefill_grace_first_logged_){
++                    projected_prefill_grace_first_logged_=true;
++                    std::fprintf(stderr,"projected_prefill_grace_first_applied predicted_late_prefills=%u window_ms=10000\n",projected_prefills);
++                }
++                if(graced_prefills&&!expired_prefill_grace_first_logged_){
++                    expired_prefill_grace_first_logged_=true;
++                    std::fprintf(stderr,"expired_prefill_grace_first_applied late_prefills=%u window_ms=10000\n",graced_prefills);
++                }
+                 const auto boundary = fcfs_prefill_boundary(demand);
+                 effective_deadline_ms = boundary.effective_front_deadline_ms;
+                 choice = choose_fcfs_completion_unit(now_ms, demand, chunk_ms, decode_cost, 40.0,
+                                                      decode_views);
++                if (expired_completion_soft_pf_scheduler_ && allow_expired_completion_soft_pf(
++                        true, choice, now_ms, demand, chunk_ms, decode_cost, decode_views,
++                        expired_completion_soft_pf_cadence_)) {
++                    choice = CompletionChoice::Prefill;
++                    expired_completion_soft_pf_pending_ = true;
++                }
+                 trace_.event("queue_latest_start", now_ms, prefill->id, prefill->lane.value_or(0),
+                              static_cast<unsigned>(demand.size()), remaining,
+                              boundary.latest_start_ms - now_ms);
+@@ -1411,6 +1548,7 @@
+                 const auto cancelled_at_boundary = snapshot_cancellations();
+                 cancel_active_requests(cancelled_at_boundary);
+                 const RoundMembership membership = build_round_membership();
++                expired_completion_soft_pf_pending_ = false;
+                 const bool budget_decode = budget_scheduler_ && prefer_budget_decode(membership);
+ 
+                 if (prefill_lane_) {
+@@ -1458,7 +1596,21 @@
+     bool completion_scheduler_ = false;
+     bool queue_demand_scheduler_ = false;
+     const bool request_yield_max_scheduler_ = completion_request_yield_max_enabled();
++    const bool tpot_recovery_scheduler_ = tpot_recovery_enabled();
++    BoundedDecodeCadence tpot_recovery_cadence_;
++    bool tpot_recovery_first_subset_logged_ = false;
+     const bool bounded_decode_membership_scheduler_ = bounded_decode_membership_enabled();
++    const bool expired_prefill_grace_scheduler_ = expired_prefill_grace_enabled();
++    bool expired_prefill_grace_first_logged_ = false;
++    const bool projected_prefill_grace_scheduler_ = projected_prefill_grace_enabled();
++    bool projected_prefill_grace_first_logged_ = false;
++    const bool expired_completion_soft_pf_scheduler_ = expired_completion_soft_pf_enabled();
++    ExpiredCompletionSoftPfCadence expired_completion_soft_pf_cadence_;
++    bool expired_completion_soft_pf_pending_ = false;
++    bool expired_completion_soft_pf_first_success_logged_ = false;
++    const bool unexpired_decode_priority_scheduler_ = unexpired_decode_priority_enabled();
++    UnexpiredDecodeCadence unexpired_decode_cadence_;
++    bool unexpired_decode_first_subset_logged_ = false;
+     BoundedDecodeCadence bounded_decode_cadence_;
+     bool bounded_decode_first_subset_logged_ = false;
+     double completion_ttft_margin_ms_ = 300.0;
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_expired_completion_soft_pf.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_expired_completion_soft_pf.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_expired_completion_soft_pf.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_expired_completion_soft_pf.h	2026-10-19 01:03:51.038287837 +0800
+@@ -0,0 +1,93 @@
++#pragma once
++
++#include "runtime/engine/slo_prefill_queue_policy.h"
++
++namespace ninfer::runtime {
++inline bool parse_expired_completion_soft_pf(const char* value) {
++    if (value == nullptr || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF supports 0/1");
++}
++
++inline bool expired_completion_soft_pf_enabled() {
++    static const bool enabled = parse_expired_completion_soft_pf(
++        std::getenv("NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF"));
++    return enabled;
++}
++
++// At most one additional soft PF unit between successful decode services.
++// Ordinary/hard PF and control-only work never unlock the credit.
++class ExpiredCompletionSoftPfCadence {
++public:
++    [[nodiscard]] bool available() const { return !decode_due_; }
++    void record_completed_prefill(bool was_override, unsigned processed_tokens) {
++        if (was_override && processed_tokens) { decode_due_ = true; }
++    }
++    void record_completed_decode(unsigned noncancelled_committed_tokens) {
++        if (noncancelled_committed_tokens) { decode_due_ = false; }
++    }
++private:
++    bool decode_due_ = false;
++};
++
++// The caller has already made the ORIGINAL all-row/all-predecessor decision.
++// Returning false preserves that decision exactly, including hard-PF conflicts.
++[[nodiscard]] inline bool allow_expired_completion_soft_pf(
++    bool enabled, CompletionChoice original, double now_ms,
++    std::span<const PrefillDemandView> prefills, double next_chunk_ms,
++    BatchCostBin decode, std::span<const CompletionBudgetView> decodes,
++    const ExpiredCompletionSoftPfCadence& cadence) {
++    if (!enabled || original != CompletionChoice::Decode || !cadence.available() ||
++        prefills.empty() || decodes.empty() || !decode.observations ||
++        !std::isfinite(now_ms) || now_ms < 0 ||
++        !std::isfinite(next_chunk_ms) || next_chunk_ms <= 0 ||
++        !std::isfinite(decode.round_ms) || decode.round_ms <= 0 ||
++        !std::isfinite(decode.tokens_per_row_round) || decode.tokens_per_row_round <= 0) {
++        return false;
++    }
++    double cumulative_ms = 0;
++    for (const auto& p : prefills) {
++        if (!std::isfinite(p.deadline_ms) || !std::isfinite(p.remaining_ms) ||
++            p.remaining_ms < 0) { return false; }
++        cumulative_ms += p.remaining_ms;
++        if (!std::isfinite(cumulative_ms) ||
++            !std::isfinite(p.deadline_ms - cumulative_ms)) { return false; }
++    }
++    if (next_chunk_ms > prefills.front().remaining_ms) { return false; }
++    const auto boundary = fcfs_prefill_boundary(prefills);
++    // Use the same arithmetic as the original whole-completion hard boundary.
++    const double pf_laxity = boundary.effective_front_deadline_ms - now_ms -
++                             prefills.front().remaining_ms;
++    if (!std::isfinite(pf_laxity) || pf_laxity <= decode.round_ms) { return false; }
++
++    bool has_expired = false;
++    bool has_unexpired = false;
++    double min_unexpired_laxity = std::numeric_limits<double>::infinity();
++    for (const auto& d : decodes) {
++        if (!d.committed_tokens || !d.remaining_tokens ||
++            d.remaining_tokens > std::numeric_limits<unsigned>::max() - d.committed_tokens ||
++            !std::isfinite(d.first_token_ms) || d.first_token_ms < 0 ||
++            d.first_token_ms > now_ms) { return false; }
++        const unsigned total = d.committed_tokens + d.remaining_tokens;
++        const double deadline = d.first_token_ms + (total - 1) * 40.0;
++        const double work = completion_remaining_rounds(d, decode.tokens_per_row_round) *
++                            decode.round_ms;
++        const double laxity = deadline - now_ms - work;
++        if (!std::isfinite(deadline) || !std::isfinite(work) || !std::isfinite(laxity)) {
++            return false;
++        }
++        // A negative forecast laxity ALONE must never discard an active deadline.
++        if (deadline <= now_ms) { has_expired = true; }
++        else {
++            has_unexpired = true;
++            min_unexpired_laxity = std::min(min_unexpired_laxity, laxity);
++        }
++    }
++    if (!has_expired || !has_unexpired || min_unexpired_laxity < next_chunk_ms) {
++        return false;
++    }
++    const double after_pf = min_unexpired_laxity - next_chunk_ms;
++    const double after_decode = pf_laxity - decode.round_ms;
++    return std::isfinite(after_pf) && std::isfinite(after_decode) && after_pf >= after_decode;
++}
++} // namespace ninfer::runtime
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_expired_prefill_grace.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_expired_prefill_grace.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_expired_prefill_grace.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_expired_prefill_grace.h	2026-10-19 07:53:05.320696246 +0800
+@@ -0,0 +1,27 @@
++#pragma once
++#include <cmath>
++#include <cstdlib>
++#include <stdexcept>
++#include <string_view>
++namespace ninfer::runtime {
++inline bool parse_expired_prefill_grace(const char* value) {
++ if(value==nullptr||std::string_view(value)=="0")return false;
++ if(std::string_view(value)=="1")return true;
++ throw std::invalid_argument("NINFER_SCHED_EXPIRED_PREFILL_GRACE supports 0/1");
++}
++inline bool expired_prefill_grace_enabled(){
++ static const bool value=parse_expired_prefill_grace(std::getenv("NINFER_SCHED_EXPIRED_PREFILL_GRACE"));return value;
++}
++inline void validate_expired_prefill_grace(bool enabled,bool completion_queue){
++ if(enabled&&!completion_queue)throw std::invalid_argument("expired prefill grace requires completion_queue");
++}
++// Caller always supplies the ORIGINAL absolute deadline from immutable submit time.
++// This never changes a Request or admits/reorders work; the one wall-clock window
++// ends at original+10000 even if no PF was scheduled during it.
++inline double expired_prefill_scheduling_deadline(bool enabled,double now,double original){
++ if(!enabled||!std::isfinite(now)||now<0||!std::isfinite(original)||original<0)return original;
++ const double end=original+10000.0;
++ if(!std::isfinite(end)||now<original||now>=end)return original;
++ return end;
++}
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_projected_prefill_grace.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_projected_prefill_grace.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_projected_prefill_grace.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_projected_prefill_grace.h	2026-10-19 08:48:10.407711519 +0800
+@@ -0,0 +1,51 @@
++#pragma once
++
++#include <cmath>
++#include <cstdlib>
++#include <stdexcept>
++#include <string_view>
++
++namespace ninfer::runtime {
++
++inline bool parse_projected_prefill_grace(const char* value) {
++    if (!value || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_SCHED_PROJECTED_PREFILL_GRACE supports 0/1");
++}
++
++inline bool projected_prefill_grace_enabled() {
++    static const bool enabled = parse_projected_prefill_grace(
++        std::getenv("NINFER_SCHED_PROJECTED_PREFILL_GRACE"));
++    return enabled;
++}
++
++inline void validate_projected_prefill_grace(bool enabled, bool completion_queue,
++                                           bool expired_grace) {
++    if (enabled && (!completion_queue || !expired_grace)) {
++        throw std::invalid_argument(
++            "projected prefill grace requires completion_queue and expired prefill grace");
++    }
++}
++
++// Work includes every FCFS predecessor. The prediction uses the external target,
++// restoring the existing internal reserve, and does not change any Request.
++// The existing expired policy handles [original, original+10000); both policies
++// always derive their bound from the same immutable original deadline.
++inline double projected_prefill_scheduling_deadline(
++    bool enabled, double now, double original, double cumulative_work, double margin) {
++    if (!enabled || !std::isfinite(now) || now < 0 || !std::isfinite(original) ||
++        original < 0 || now >= original || !std::isfinite(cumulative_work) ||
++        cumulative_work < 0 || !std::isfinite(margin) || margin < 0) {
++        return original;
++    }
++    const double earliest = now + cumulative_work;
++    const double external = original + margin;
++    const double end = original + 10000.0;
++    if (!std::isfinite(earliest) || !std::isfinite(external) || !std::isfinite(end) ||
++        earliest <= external) {
++        return original;
++    }
++    return end;
++}
++
++} // namespace ninfer::runtime
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_tpot_recovery.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_tpot_recovery.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_tpot_recovery.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_tpot_recovery.h	2026-10-19 05:36:32.587206293 +0800
+@@ -0,0 +1,85 @@
++#pragma once
++#include "runtime/engine/slo_bounded_decode_membership.h"
++
++namespace ninfer::runtime {
++inline bool parse_tpot_recovery(const char* value) {
++    if (!value || std::string_view(value)=="0") return false;
++    if (std::string_view(value)=="1") return true;
++    throw std::invalid_argument("NINFER_SCHED_TPOT_RECOVERY supports 0/1");
++}
++inline bool tpot_recovery_enabled() {
++    static const bool enabled=parse_tpot_recovery(std::getenv("NINFER_SCHED_TPOT_RECOVERY"));
++    return enabled;
++}
++inline void validate_tpot_recovery(bool enabled, bool completion_queue, bool mtp,
++                                  unsigned k, unsigned native, bool own_yield,
++                                  bool old_bounded, bool old_unexpired) {
++    if (enabled && (!completion_queue || !mtp || k!=3 || native==0 || native>16 ||
++                    !own_yield || old_bounded || old_unexpired))
++        throw std::invalid_argument("TPOT recovery requires completion_queue, MTP K3, native1..16, request yield and older membership policies off");
++}
++struct TpotRecoverySelection {
++    bool use_subset=false;
++    std::array<std::size_t,5> indices{};
++};
++
++// Forecasts use committed history and actually observed costs. They are policy
++// estimates, not guarantees; all omitted rows receive the next two full services.
++inline TpotRecoverySelection choose_tpot_recovery_membership(
++    bool enabled, double now_ms, BatchCostBin full, BatchCostBin small,
++    std::span<const BoundedDecodeView> ready, const BoundedDecodeCadence& cadence) {
++    if (!enabled || cadence.full_rounds_due() || ready.size()<10 || ready.size()>16 ||
++        !std::isfinite(now_ms) || now_ms<0 || !full.observations || !small.observations ||
++        !std::isfinite(full.round_ms) || !std::isfinite(small.round_ms) ||
++        small.round_ms<=0 || full.round_ms<=small.round_ms) return {};
++    const double priority_round=(2*full.round_ms+small.round_ms)/3;
++    const double omitted_round=(2*full.round_ms+small.round_ms)/2;
++    if (!std::isfinite(priority_round) || !std::isfinite(omitted_round)) return {};
++    struct Forecast {
++        std::size_t index=0; std::uint32_t lane=0;
++        double tpot=0, normal=0, omitted=0, duration=0;
++        bool mature=false;
++    };
++    std::array<Forecast,16> forecasts{}, candidates{};
++    std::size_t count=0;
++    for (std::size_t i=0;i<ready.size();++i) {
++        const auto& row=ready[i]; const auto& d=row.completion;
++        if (!row.live || row.lane>=16 || !d.committed_tokens || !d.remaining_tokens ||
++            !std::isfinite(d.first_token_ms) || d.first_token_ms<0 || d.first_token_ms>now_ms ||
++            d.remaining_tokens>std::numeric_limits<unsigned>::max()-d.committed_tokens) return {};
++        for (std::size_t j=0;j<i;++j) if (ready[j].lane==row.lane) return {};
++        // Ordinary K3 commits one to four tokens per resolved noncancelled round.
++        if (d.committed_decode_rounds>d.committed_tokens-1 ||
++            (d.committed_tokens>1 && d.committed_decode_rounds<
++             (std::uint64_t(d.committed_tokens)-1+3)/4)) return {};
++        if (d.committed_tokens<33 || d.committed_decode_rounds<8) continue;
++        const double own_yield=double(d.committed_tokens-1)/double(d.committed_decode_rounds);
++        if (!std::isfinite(own_yield) || own_yield<=0 || own_yield>4) return {};
++        const double remaining_rounds=std::ceil(d.remaining_tokens/std::max(1.,own_yield));
++        const double intervals=double(d.committed_tokens)+double(d.remaining_tokens)-1;
++        const double duration=intervals*40.; const double elapsed=now_ms-d.first_token_ms;
++        const double normal=elapsed+remaining_rounds*full.round_ms;
++        const double recovered=elapsed+remaining_rounds*priority_round;
++        const double omitted=elapsed+remaining_rounds*omitted_round;
++        if (!std::isfinite(normal) || !std::isfinite(recovered) || !std::isfinite(omitted)) return {};
++        Forecast f{i,row.lane,normal/intervals,normal,omitted,duration,true};forecasts[i]=f;
++        if (d.remaining_tokens>=64 && recovered<=duration) candidates[count++]=f;
++    }
++    if (count<5) return {};
++    std::sort(candidates.begin(),candidates.begin()+count,[](const Forecast& a,const Forecast& b){
++        return a.tpot!=b.tpot ? a.tpot>b.tpot : a.lane<b.lane;
++    });
++    if (candidates[0].tpot<32.) return {}; // Internal warning, external SLO remains40ms.
++    TpotRecoverySelection result;
++    for (std::size_t i=0;i<5;++i) result.indices[i]=candidates[i].index;
++    std::sort(result.indices.begin(),result.indices.end());
++    for (std::size_t i=0;i<ready.size();++i) {
++        const auto& f=forecasts[i];
++        if (!f.mature || std::find(result.indices.begin(),result.indices.end(),i)!=result.indices.end()) continue;
++        // Protect rows that the current full-service forecast can still finish.
++        // Infeasible/expired rows remain admitted and receive both full services.
++        if (f.normal<=f.duration && f.omitted>f.duration) return {};
++    }
++    result.use_subset=true; return result;
++}
++} // namespace ninfer::runtime
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_unexpired_decode_priority.h artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_unexpired_decode_priority.h
+--- artifacts/8876-24gb-kit100/source/src/runtime/engine/slo_unexpired_decode_priority.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/runtime/engine/slo_unexpired_decode_priority.h	2026-10-19 01:45:02.378566333 +0800
+@@ -0,0 +1,68 @@
++#pragma once
++#include "runtime/engine/slo_bounded_decode_membership.h"
++
++namespace ninfer::runtime {
++inline bool parse_unexpired_decode_priority(const char* value) {
++    if (value == nullptr || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY supports 0/1");
++}
++inline bool unexpired_decode_priority_enabled() {
++    static const bool enabled = parse_unexpired_decode_priority(
++        std::getenv("NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY"));
++    return enabled;
++}
++inline void validate_unexpired_decode_priority(bool enabled, bool completion_queue,
++                                               bool mtp, unsigned k, unsigned native,
++                                               bool old_bounded) {
++    if (enabled && (!completion_queue || !mtp || k != 3 || native == 0 || native > 16 || old_bounded)) {
++        throw std::invalid_argument(
++            "unexpired decode priority requires completion_queue, MTP K3, native1..16 and bounded membership off");
++    }
++}
++class UnexpiredDecodeCadence {
++public:
++    [[nodiscard]] unsigned subsets_completed() const { return subsets_completed_; }
++    void record_completed_decode(bool subset, unsigned committed_tokens) {
++        if (committed_tokens == 0) { return; }
++        if (!subset) { subsets_completed_ = 0; }
++        else if (subsets_completed_ < 3) { ++subsets_completed_; }
++    }
++private:
++    unsigned subsets_completed_ = 0;
++};
++struct UnexpiredDecodeSelection {
++    bool use_subset = false;
++    std::size_t size = 0;
++    std::array<std::size_t, 16> indices{};
++};
++// The original full-ready chooser must already have selected Decode. No forecast
++// can omit an unexpired row; every fourth positive-token service uses the full snapshot.
++[[nodiscard]] inline UnexpiredDecodeSelection choose_unexpired_decode_membership(
++    bool enabled, double now_ms, std::span<const BoundedDecodeView> ready,
++    const UnexpiredDecodeCadence& cadence) {
++    if (!enabled || cadence.subsets_completed() >= 3 || ready.size() < 2 || ready.size() > 16 ||
++        !std::isfinite(now_ms) || now_ms < 0) { return {}; }
++    UnexpiredDecodeSelection result;
++    for (std::size_t i = 0; i < ready.size(); ++i) {
++        const auto& row = ready[i];
++        const auto& request = row.completion;
++        if (!row.live || row.lane >= 16 || !request.committed_tokens || !request.remaining_tokens ||
++            !std::isfinite(request.first_token_ms) || request.first_token_ms < 0 ||
++            request.first_token_ms > now_ms ||
++            request.remaining_tokens > std::numeric_limits<unsigned>::max() - request.committed_tokens) {
++            return {};
++        }
++        for (std::size_t j = 0; j < i; ++j) {
++            if (ready[j].lane == row.lane) { return {}; }
++        }
++        const unsigned total = request.committed_tokens + request.remaining_tokens;
++        const double deadline = request.first_token_ms + (total - 1) * 40.0;
++        if (!std::isfinite(deadline)) { return {}; }
++        if (deadline > now_ms) { result.indices[result.size++] = i; }
++    }
++    if (result.size == 0 || result.size == ready.size()) { return {}; }
++    result.use_subset = true;
++    return result;
++}
++} // namespace ninfer::runtime
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/gdn_single_row_policy.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/gdn_single_row_policy.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/gdn_single_row_policy.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/gdn_single_row_policy.h	2026-10-19 02:03:58.143019564 +0800
+@@ -0,0 +1,26 @@
++#pragma once
++#include <cstdint>
++#include <cstdlib>
++#include <span>
++#include <stdexcept>
++#include <string_view>
++#include <utility>
++
++namespace ninfer::targets::qwen3_6::detail::NINFER_QWEN36_RUNTIME_NS {
++inline bool parse_gdn_single_row_eager(const char* value) {
++    if (value == nullptr || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_GDN_SINGLE_ROW_EAGER supports 0/1");
++}
++inline bool gdn_single_row_eager_enabled() {
++    static const bool enabled = parse_gdn_single_row_eager(std::getenv("NINFER_GDN_SINGLE_ROW_EAGER"));
++    return enabled;
++}
++// The callback owns stream synchronization and Program failure cleanup. Do not
++// retain the lane or metadata; the following prepare() constructs a fresh snapshot.
++template <class MaterializeLane>
++void materialize_single_gdn_row(bool enabled, std::span<const std::uint32_t> lanes,
++                                MaterializeLane&& materialize) {
++    if (enabled && lanes.size() == 1) { std::forward<MaterializeLane>(materialize)(lanes.front()); }
++}
++} // namespace ninfer::targets::qwen3_6::detail::NINFER_QWEN36_RUNTIME_NS
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/layouts_impl.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/layouts_impl.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/layouts_impl.h	2026-10-18 00:27:39.858332600 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/layouts_impl.h	2026-10-19 00:08:22.776893083 +0800
+@@ -562,6 +562,9 @@
+ }
+ 
+ void validate_target_options(DeviceContext& device, const EngineOptions& options) {
++    if (runtime::cold_request_state_enabled() && options.enable_prompt_cache) {
++        throw std::invalid_argument("cold request state requires disk prompt cache disabled");
++    }
+     if (options.max_context == 0 || options.max_context > Variant::maximum_context) {
+         throw std::invalid_argument("max_context exceeds the variant native context capacity");
+     }
+@@ -699,6 +702,12 @@
+         }
+     }
+ 
++    if (impl->use_cuda_graph) {
++        if (const auto override_bytes = runtime::cuda_graph_allowance_override()) {
++            // Program capture still checks observed consumption against this hard budget.
++            impl->graph_allowance_bytes = *override_bytes;
++        }
++    }
+     impl->enable_prompt_cache = inputs.enable_prompt_cache;
+ 
+     impl->device_reservation_bytes = checked_add(
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/linear_state_slots.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/linear_state_slots.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/linear_state_slots.h	2026-10-17 22:25:41.272055600 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/linear_state_slots.h	2026-10-19 00:08:22.775892592 +0800
+@@ -1,5 +1,7 @@
+ #pragma once
+ 
++#include "runtime/engine/cold_memory_policy.h"
++
+ #include <cstdint>
+ #include <limits>
+ #include <stdexcept>
+@@ -14,7 +16,7 @@
+                 static_cast<std::uint32_t>(std::numeric_limits<std::int32_t>::max() / 2)) {
+             throw std::invalid_argument("Qwen3.6 Linear Attention concurrency is invalid");
+         }
+-        return static_cast<std::int32_t>(2U * max_concurrency);
++        return static_cast<std::int32_t>((runtime::cold_request_state_enabled() ? 1U : 2U) * max_concurrency);
+     }
+ 
+     [[nodiscard]] static std::int32_t current_state_slot(std::uint32_t lane,
+@@ -27,6 +29,8 @@
+ 
+     [[nodiscard]] static std::int32_t turn_checkpoint_state_slot(std::uint32_t lane,
+                                                                  std::uint32_t max_concurrency) {
++        (void)current_state_slot(lane, max_concurrency);
++        if (runtime::cold_request_state_enabled()) return -1;
+         return static_cast<std::int32_t>(max_concurrency) +
+                current_state_slot(lane, max_concurrency);
+     }
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/program.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/program.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/program.h	2026-10-18 00:20:42.128113300 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/program.h	2026-10-19 03:33:15.202515707 +0800
+@@ -6,6 +6,7 @@
+ #include "core/disk_state_cache.h"
+ #include "core/gdn_replay_records.h"
+ #include "targets/qwen3_6/impl/runtime/gdn_pending_state.h"
++#include "targets/qwen3_6/impl/runtime/prompt_lookup_yield.h"
+ #include "ninfer/ops/sampling.h"
+ #include "core/decode_graph.h"
+ #include <ninfer/targets/qwen3_6/prepared_prompt.h>
+@@ -101,6 +102,8 @@
+     std::uint32_t base_S        = 0;
+     std::uint32_t prompt_tokens = 0;
+     std::uint32_t produced      = 0;
++    bool lookup_override = false;
++    std::uint32_t lookup_drafted = 0;
+ };
+ 
+ enum class Lifecycle : std::uint8_t {
+@@ -181,6 +184,7 @@
+     GenerationTimings timings;
+     SpeculativeStats speculative_stats;
+     PromptLookupCounters prompt_lookup;
++    PromptLookupYieldHistory lookup_yield;
+ 
+     struct Prefill {
+         PreparedPromptData prompt;
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/program_impl.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/program_impl.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/program_impl.h	2026-10-18 00:27:39.857394200 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/program_impl.h	2026-10-19 03:33:15.204064056 +0800
+@@ -1,5 +1,6 @@
+ #include "targets/qwen3_6/impl/runtime/instance.h"
+ #include "targets/qwen3_6/impl/runtime/program.h"
++#include "targets/qwen3_6/impl/runtime/gdn_single_row_policy.h"
+ 
+ #include "targets/qwen3_6/impl/runtime/schedule.h"
+ #include "targets/qwen3_6/impl/runtime/prompt_lookup.h"
+@@ -246,6 +247,15 @@
+                                                              sizeof(qwen3_6::DFlashDecodeEgress))
+                       : std::nullopt) {
+     (void)prompt_lookup_n5_priority_enabled();
++    validate_prompt_lookup_n5_consensus(
++        prompt_lookup_n5_consensus_enabled(), draft_window,
++        speculative_backend == SpeculativeBackend::Mtp,
++        prompt_lookup_n5_priority_enabled(), prompt_lookup_n5_hybrid_enabled());
++    validate_prompt_lookup_yield_mode(prompt_lookup_n5_low_yield_enabled(),prompt_lookup_n5_consensus_enabled());
++    if(prompt_lookup_n5_low_yield_enabled())std::fprintf(stderr,"prompt_lookup_n5_low_yield_startup enabled=1 baseline_window=8 maximum_accepted=8\n");
++    if (prompt_lookup_n5_consensus_enabled()) {
++        std::fprintf(stderr, "prompt_lookup_n5_consensus_startup enabled=1 histories=2 K=3\n");
++    }
+     if (prompt_lookup_n5_hybrid_enabled() &&
+         (draft_window != 5 || speculative_backend != SpeculativeBackend::Mtp)) {
+         throw std::invalid_argument("N5 hybrid requires a fixed MTP K5/width6 Program");
+@@ -279,6 +289,13 @@
+         gdn_pending.emplace(max_concurrency, draft_window + 1);
+         gdn_capture_reset(max_concurrency);
+     }
++    if (gdn_single_row_eager_enabled() && (!gdn_pending || draft_window != 3 ||
++        speculative_backend != SpeculativeBackend::Mtp)) {
++        throw std::invalid_argument("single-row eager GDN requires deferred MTP K3");
++    }
++    if (gdn_single_row_eager_enabled()) {
++        std::fprintf(stderr, "gdn_single_row_eager_startup enabled=1\n");
++    }
+     if (replay_records.has_value() != (speculative_backend != SpeculativeBackend::None)) {
+         throw std::logic_error("ReplaySSM records do not match the sequence plan");
+     }
+@@ -1061,6 +1078,8 @@
+ 
+             const PendingCandidate pending = request.pending;
+             const std::uint32_t committed  = accepted_tokens[row];
++            if(speculative_backend==SpeculativeBackend::Mtp&&prompt_lookup_n5_low_yield_enabled())
++                request.lookup_yield.record(committed-1,pending.lookup_override,pending.lookup_drafted);
+             const TokenId* token_base =
+                 speculative_backend == SpeculativeBackend::Mtp
+                     ? mtp_host_egress->licensed_tokens.data() + row * width
+@@ -1755,7 +1774,8 @@
+                         .view({TextConfig::token_domain});
+     CUDA_CHECK(cudaMemsetAsync(counts.data, 0, counts.bytes(), device.stream));
+     request.prompt_lookup = {};
+-    if (prompt_lookup_n5_priority_enabled()) {
++    request.lookup_yield.reset();
++    if (prompt_lookup_n5_priority_enabled() || prompt_lookup_n5_consensus_enabled()) {
+         request.prompt_lookup.serial = ++next_prompt_lookup_serial;
+     }
+     request.sampling_host     = config;
+@@ -2268,6 +2288,8 @@
+                 if (!gdn_pending->lane(lane).valid ||
+                     gdn_pending->lane(lane).logical != sequences[lane].execution_frontier)
+                     throw std::logic_error("GDN physical/logical frontier mismatch");
++            materialize_single_gdn_row(gdn_single_row_eager_enabled(), lanes,
++                                       [&](std::uint32_t lane) { gdn_materialize_lane(lane); });
+             gdn_pending->prepare(gdn_record_bank, lanes, draft_window + 1,
+                                  [&](const auto& lease) { gdn_materialize_lease(lease); });
+             gdn_upload_controls(gdn_pending->controls());
+@@ -2280,9 +2302,12 @@
+                                               request.sampling_host.disable_speculation,
+                                               request.sampling_host.temperature) &&
+                 budgets[row].generated_tokens_remaining > 1 &&
++                (!prompt_lookup_n5_low_yield_enabled()||request.lookup_yield.eligible()) &&
+                 sequence.execution_frontier + 1 < capacity) {
+                 ++request.prompt_lookup.attempts;
+-                const auto lookup = find_prompt_lookup_n5_draft(sequence.ledger, draft_window);
++                const auto lookup = prompt_lookup_n5_consensus_enabled()
++                                        ? find_prompt_lookup_n5_consensus_draft(sequence.ledger, draft_window)
++                                        : find_prompt_lookup_n5_draft(sequence.ledger, draft_window);
+                 if (lookup.count != 0) {
+                     sequence.mtp_draft_count = lookup.count;
+                     std::copy_n(lookup.tokens.begin(), lookup.count, sequence.mtp_drafts.begin());
+@@ -2399,6 +2424,8 @@
+                 .base_S        = base_S,
+                 .prompt_tokens = 0,
+                 .produced      = static_cast<std::uint32_t>(count_i),
++                .lookup_override = lookup_overrides[row],
++                .lookup_drafted = pcur,
+             };
+             request.lifecycle = Lifecycle::Pending;
+             request.timings.decode_seconds += seconds;
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/prompt_lookup.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/prompt_lookup.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/prompt_lookup.h	2026-10-18 00:27:39.856866400 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/prompt_lookup.h	2026-10-19 01:27:01.125675114 +0800
+@@ -29,6 +29,26 @@
+     return enabled;
+ }
+ 
++inline bool parse_prompt_lookup_n5_consensus(const char* value) {
++    if (value == nullptr || std::string_view(value) == "0") { return false; }
++    if (std::string_view(value) == "1") { return true; }
++    throw std::invalid_argument("NINFER_PROMPT_LOOKUP_N5_CONSENSUS must be 0 or 1");
++}
++
++inline bool prompt_lookup_n5_consensus_enabled() {
++    static const bool enabled = parse_prompt_lookup_n5_consensus(
++        std::getenv("NINFER_PROMPT_LOOKUP_N5_CONSENSUS"));
++    return enabled;
++}
++
++inline void validate_prompt_lookup_n5_consensus(bool enabled, std::uint32_t k,
++                                               bool mtp, bool priority, bool hybrid) {
++    if (enabled && (k != 3 || !mtp || priority || hybrid)) {
++        throw std::invalid_argument(
++            "N5 consensus requires MTP K3 and original N5 priority/hybrid disabled");
++    }
++}
++
+ // Fixed process mode: target K5/width6, steady-state MTP proposals capped at 3.
+ // Prefill still executes its original K5 bridge; only its consumed draft prefix is capped.
+ inline bool prompt_lookup_n5_hybrid_enabled() {
+@@ -47,7 +67,7 @@
+ 
+ inline bool use_prompt_lookup_n5_priority(std::uint32_t k, bool disabled,
+                                          float temperature) {
+-    return ((prompt_lookup_n5_priority_enabled() && k == 3) ||
++    return (((prompt_lookup_n5_priority_enabled() || prompt_lookup_n5_consensus_enabled()) && k == 3) ||
+             (prompt_lookup_n5_hybrid_enabled() && k == 5)) &&
+            !disabled && temperature == 0.0f;
+ }
+@@ -76,6 +96,36 @@
+     return result;
+ }
+ 
++// Keep the original proposal only when the two most recent matching N5
++// histories agree. A third older match never resolves disagreement of the first two.
++inline PromptLookupDraft find_prompt_lookup_n5_consensus_draft(
++    std::span<const TokenId> ledger, std::uint32_t max_drafts = 3) noexcept {
++    PromptLookupDraft first{};
++    const std::size_t total = ledger.size();
++    const std::size_t limit = std::min<std::size_t>(max_drafts, first.tokens.size());
++    if (total < 10 || limit == 0) { return first; }
++    for (std::size_t i = total - 5; i >= 5; --i) {
++        const std::size_t pos = i - 1;
++        bool matches = true;
++        for (std::size_t n = 0; n < 5; ++n) {
++            matches = matches && ledger[pos - 4 + n] == ledger[total - 5 + n];
++        }
++        if (!matches) { continue; }
++        const auto count = static_cast<std::uint32_t>(std::min(limit, total - pos - 1));
++        if (first.count == 0) {
++            first.count = count;
++            std::copy_n(ledger.begin() + pos + 1, count, first.tokens.begin());
++            continue;
++        }
++        if (first.count != count) { return {}; }
++        for (std::uint32_t d = 0; d < count; ++d) {
++            if (first.tokens[d] != ledger[pos + 1 + d]) { return {}; }
++        }
++        return first;
++    }
++    return {};
++}
++
+ // Fast hierarchical context n-gram lookup over the active sequence ledger.
+ // Tries N=5 and N=4 match first for maximum continuation confidence and deep multi-token leaps,
+ // then falls back to N=3 and N=2 to capture smaller programming identifiers.
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/prompt_lookup_yield.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/prompt_lookup_yield.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/prompt_lookup_yield.h	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/prompt_lookup_yield.h	2026-10-19 03:33:15.160930934 +0800
+@@ -0,0 +1,40 @@
++#pragma once
++#include <array>
++#include <cstdint>
++#include <cstdlib>
++#include <stdexcept>
++#include <string_view>
++namespace ninfer::targets::qwen3_6::detail::NINFER_QWEN36_RUNTIME_NS {
++inline bool parse_prompt_lookup_n5_low_yield(const char* value){
++    if(!value||std::string_view(value)=="0")return false;
++    if(std::string_view(value)=="1")return true;
++    throw std::invalid_argument("NINFER_PROMPT_LOOKUP_N5_LOW_YIELD must be 0 or 1");
++}
++inline bool prompt_lookup_n5_low_yield_enabled(){
++    static const bool enabled=parse_prompt_lookup_n5_low_yield(std::getenv("NINFER_PROMPT_LOOKUP_N5_LOW_YIELD"));
++    return enabled;
++}
++inline void validate_prompt_lookup_yield_mode(bool enabled,bool consensus){
++    if(enabled&&!consensus)throw std::invalid_argument("low-yield lookup requires N5 consensus mode");
++}
++// Request-owned baseline acceptance estimate. Successful lookup observations are
++// not evidence that baseline MTP recovered; failed lookups require fresh samples.
++class PromptLookupYieldHistory {
++public:
++    bool eligible()const noexcept{return count_==8&&sum_<=8;}
++    unsigned samples()const noexcept{return count_;}
++    unsigned accepted_sum()const noexcept{return sum_;}
++    void reset()noexcept{accepted_={};count_=sum_=next_=0;}
++    void record(unsigned committed_drafts,bool lookup_override,unsigned proposed_drafts){
++        if(committed_drafts>3||proposed_drafts>3||
++           (lookup_override&&(proposed_drafts==0||committed_drafts>proposed_drafts)))
++            throw std::invalid_argument("invalid K3 lookup yield feedback");
++        if(lookup_override){if(committed_drafts!=proposed_drafts)reset();return;}
++        if(count_==8)sum_-=accepted_[next_];else ++count_;
++        accepted_[next_]=static_cast<std::uint8_t>(committed_drafts);sum_+=committed_drafts;next_=(next_+1)%8;
++    }
++private:
++    std::array<std::uint8_t,8> accepted_{};
++    unsigned count_=0,sum_=0,next_=0;
++};
++} // namespace ninfer::targets::qwen3_6::detail
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/request_plan_impl.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/request_plan_impl.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/request_plan_impl.h	2026-10-17 22:25:41.272993600 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/request_plan_impl.h	2026-10-19 00:09:03.672860315 +0800
+@@ -1,4 +1,5 @@
+ #include "targets/qwen3_6/impl/runtime/instance.h"
++#include "runtime/engine/cold_memory_policy.h"
+ #include "targets/qwen3_6/impl/runtime/program.h"
+ 
+ #include "targets/qwen3_6/impl/runtime/schedule.h"
+@@ -97,6 +98,9 @@
+     base->summary.transient_alignment    = 1;
+     base->summary.transient_bytes        = 0;
+     base->sampling                       = translate_sampling(options.sampling);
++    if (runtime::cold_request_state_enabled() && options.allow_prefix_reuse) {
++        throw std::invalid_argument("cold request state does not support prefix reuse");
++    }
+     base->allow_prefix_reuse             = options.allow_prefix_reuse;
+     base->token_mask                     = options.token_mask;
+     base->disable_speculation            = options.disable_speculation;
+@@ -152,7 +156,7 @@
+         if (candidate == 0 || candidate >= base->summary.prompt_tokens) {
+             throw std::invalid_argument("turn rewrite boundary must lie inside the prompt");
+         }
+-        base->turn_rewrite_boundary = candidate;
++        if (!runtime::cold_request_state_enabled()) base->turn_rewrite_boundary = candidate;
+     }
+     const std::size_t cold_prefill_splits =
+         (base->vision_control != nullptr ? base->vision_control->items.size() : 0ULL) +
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/text_context_impl.h artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/text_context_impl.h
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6/impl/runtime/text_context_impl.h	2026-10-17 22:25:41.273552200 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6/impl/runtime/text_context_impl.h	2026-10-19 00:13:28.498964129 +0800
+@@ -234,7 +234,7 @@
+     if (mtp_enabled() && !io_.mtp_decode && !io_.mtp) {
+         throw std::invalid_argument("MTP TextContext requires MTP round state");
+     }
+-    set_linear_state_slots(0, state_.slot_count() > 1 ? 1 : 0);
++    set_linear_state_slots(0, state_.slot_count() > 1 ? 1 : -1);
+     bind();
+ }
+ 
+@@ -242,7 +242,7 @@
+ 
+ void TextContext::set_linear_state_slots(std::int32_t current_slot,
+                                          std::int32_t turn_checkpoint_slot) {
+-    if (current_slot < 0 || current_slot >= state_.slot_count() || turn_checkpoint_slot < 0 ||
++    if (current_slot < 0 || current_slot >= state_.slot_count() || turn_checkpoint_slot < -1 ||
+         turn_checkpoint_slot >= state_.slot_count() || current_slot == turn_checkpoint_slot) {
+         throw std::invalid_argument("TextContext Linear Attention slots are invalid");
+     }
+@@ -1091,6 +1091,9 @@
+         checkpoint_abs > base64 && checkpoint_abs <= base64 + static_cast<std::int64_t>(T);
+     const int checkpoint_rel = has_turn_checkpoint ? static_cast<int>(checkpoint_abs - base64) : -1;
+     const std::int32_t turn_checkpoint_slot = linear_state_turn_checkpoint_slot_;
++    if (has_turn_checkpoint && turn_checkpoint_slot < 0) {
++        throw std::logic_error("turn checkpoint capture requires reserved checkpoint state");
++    }
+ 
+     const bool prepare_mtp_prompt = mtp_enabled() && io_.mtp.has_value();
+     if (prepare_mtp_prompt &&
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6_27b/impl/load/bindings.cpp artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6_27b/impl/load/bindings.cpp
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6_27b/impl/load/bindings.cpp	2026-10-17 22:25:41.276422300 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6_27b/impl/load/bindings.cpp	2026-10-19 03:04:07.912231082 +0800
+@@ -63,6 +63,40 @@
+                       .format = format};
+ }
+ 
++WeightPlan bind_target_input_weight(artifact::Binder& binder, std::string_view name,
++                                   NumericFormat format,
++                                   std::initializer_list<std::uint64_t> shape) {
++    if (!ops::detail::input_s4_omit_legacy_enabled()) return bind_weight(binder, name, format, shape);
++    return WeightPlan{.object = artifact::bind_tensor(binder, name, format, shape,
++                                                    artifact::TensorPlacement::ValidateOnly),
++                      .format = format};
++}
++
++WeightPlan bind_target_output_weight(artifact::Binder& binder,std::string_view name,int layer){
++    if(!ops::detail::output_s4_omit_legacy_enabled()||!ops::detail::output_s4_selected_layer(layer))
++        return bind_weight(binder,name,NumericFormat::Q5G64_F16S,{5120,6144});
++    return WeightPlan{.object=artifact::bind_tensor(binder,name,NumericFormat::Q5G64_F16S,{5120,6144},artifact::TensorPlacement::ValidateOnly),.format=NumericFormat::Q5G64_F16S};
++}
++Weight omitted_output_registration_weight(){
++    Weight out{};out.qtype=QType::Q5G64_F16S;out.n=5120;out.k=6144;out.ndim=2;
++    out.shape[0]=out.padded_shape[0]=5120;out.shape[1]=out.padded_shape[1]=6144;
++    out.group=out.group_size=64;out.layout=QuantLayout::RowSplit;out.scale_dtype=DType::FP16;
++    return out;
++}
++
++// Descriptor metadata only. It cannot be consumed by a legacy operator. The S4
++// registry receives a unique cache address as its key after cache allocation.
++Weight omitted_input_registration_weight(std::int32_t rows, QType type) {
++    Weight out{};
++    out.qtype = type;
++    out.n = rows;
++    out.k = 5120;
++    out.ndim = 2;
++    out.shape[0] = out.padded_shape[0] = rows;
++    out.shape[1] = out.padded_shape[1] = 5120;
++    return out;
++}
++
+ Weight materialized_weight(const artifact::MaterializedArtifact& materialized,
+                            const WeightPlan& plan, std::int32_t rows, std::int32_t columns) {
+     return artifact::materialized_weight(materialized, plan.object, plan.format, rows, columns);
+@@ -108,6 +142,11 @@
+ load_attention_projection(const FullAttentionPlan& plan,
+                           const artifact::MaterializedArtifact& materialized) {
+     if (const auto* split = std::get_if<SplitAttentionProjectionPlan>(&plan.projection)) {
++        if (ops::detail::input_s4_omit_legacy_enabled()) {
++            return SplitAttentionProjectionPayload{
++                .query_key = omitted_input_registration_weight(7168, QType::Q4G64_F16S),
++                .gate_value = omitted_input_registration_weight(7168, QType::Q5G64_F16S)};
++        }
+         return SplitAttentionProjectionPayload{
+             .query_key  = materialized_weight(materialized, split->query_key, 7168, 5120),
+             .gate_value = materialized_weight(materialized, split->gate_value, 7168, 5120),
+@@ -123,6 +162,11 @@
+ GdnInputProjectionPayload
+ load_gdn_input_projection(const GdnPlan& plan, const artifact::MaterializedArtifact& materialized) {
+     if (const auto* split = std::get_if<SplitGdnInputProjectionPlan>(&plan.input_projection)) {
++        if (ops::detail::input_s4_omit_legacy_enabled()) {
++            return SplitGdnInputProjectionPayload{
++                .query_key = omitted_input_registration_weight(4096, QType::Q4G64_F16S),
++                .value_z = omitted_input_registration_weight(12288, QType::Q5G64_F16S)};
++        }
+         return SplitGdnInputProjectionPayload{
+             .query_key = materialized_weight(materialized, split->query_key, 4096, 5120),
+             .value_z   = materialized_weight(materialized, split->value_z, 12288, 5120),
+@@ -136,6 +180,7 @@
+ }
+ 
+ void bind_groupwise_text_layers(artifact::Binder& binder, BindingPlan& out) {
++    ops::detail::validate_output_s4_configuration(ops::detail::output_s4_enabled(),ops::detail::output_s4_verify_enabled(),ops::detail::output_s4_full_coverage_enabled(),ops::detail::output_s4_omit_legacy_enabled());
+     for (std::size_t layer = 0; layer < kTextLayers; ++layer) {
+         TextLayerPlan& target    = out.text_layers[layer];
+         const std::string prefix = "text/layers/" + std::to_string(layer) + "/";
+@@ -144,9 +189,9 @@
+         target.is_full_attention = is_full_layer(layer);
+         if (target.is_full_attention) {
+             target.attention.projection = SplitAttentionProjectionPlan{
+-                .query_key  = bind_weight(binder, prefix + "attention/query_key",
++                .query_key  = bind_target_input_weight(binder, prefix + "attention/query_key",
+                                           NumericFormat::Q4G64_F16S, {7168, 5120}),
+-                .gate_value = bind_weight(binder, prefix + "attention/gate_value",
++                .gate_value = bind_target_input_weight(binder, prefix + "attention/gate_value",
+                                           NumericFormat::Q5G64_F16S, {7168, 5120}),
+             };
+             target.attention.query_norm = artifact::bind_device_tensor(
+@@ -167,15 +212,15 @@
+             target.gdn.b_projection = artifact::bind_device_tensor(
+                 binder, prefix + "gdn/b_projection", NumericFormat::BF16, {48, 5120});
+             target.gdn.input_projection = SplitGdnInputProjectionPlan{
+-                .query_key = bind_weight(binder, prefix + "gdn/query_key",
++                .query_key = bind_target_input_weight(binder, prefix + "gdn/query_key",
+                                          NumericFormat::Q4G64_F16S, {4096, 5120}),
+-                .value_z   = bind_weight(binder, prefix + "gdn/value_z", NumericFormat::Q5G64_F16S,
++                .value_z   = bind_target_input_weight(binder, prefix + "gdn/value_z", NumericFormat::Q5G64_F16S,
+                                          {12288, 5120}),
+             };
+             target.gdn.norm = artifact::bind_device_tensor(binder, prefix + "gdn/norm",
+                                                            NumericFormat::BF16, {128});
+             target.gdn.output =
+-                bind_weight(binder, prefix + "gdn/output", NumericFormat::Q5G64_F16S, {5120, 6144});
++                bind_target_output_weight(binder,prefix+"gdn/output",int(layer));
+         }
+         target.post_attention_norm = artifact::bind_device_tensor(
+             binder, prefix + "post_attention_norm", NumericFormat::BF16, {5120});
+@@ -364,7 +409,9 @@
+             target.projection.input_projection = load_gdn_input_projection(source.gdn, backing);
+             target.norm =
+                 artifact::materialized_tensor(backing, source.gdn.norm, NumericFormat::BF16, {128});
+-            target.output = materialized_weight(backing, source.gdn.output, 5120, 6144);
++            target.output = ops::detail::output_s4_omit_legacy_enabled()&&ops::detail::output_s4_selected_layer(int(layer))
++                                ? omitted_output_registration_weight()
++                                : materialized_weight(backing, source.gdn.output, 5120, 6144);
+             target.post_attention_norm = artifact::materialized_tensor(
+                 backing, source.post_attention_norm, NumericFormat::BF16, {5120});
+             target.post_mixer = load_mlp(source.mlp, backing, ops::detail::fullk_s4_omit_legacy_enabled());
+@@ -394,18 +441,19 @@
+                 ops::detail::input_s4_begin();fi=gi=0;std::size_t offset=0;
+                 auto* input_base=static_cast<std::uint8_t*>(fullk_gate_storage.p)+kTextLayers*layer_bytes;
+                 for(std::size_t layer=0;layer<kTextLayers;++layer){
+-                    const Weight* source_key=nullptr;
++                    Weight* source_key=nullptr;
+                     if(plan.text_layers[layer].is_full_attention){
+                         auto& split=std::get<SplitAttentionProjectionPayload>(full_layers.at(fi++).projection);source_key=&split.query_key;
+                     }else{
+                         auto& split=std::get<SplitGdnInputProjectionPayload>(gdn_layers.at(gi++).projection.input_projection);source_key=&split.query_key;
+                     }
++                    if (ops::detail::input_s4_omit_legacy_enabled()) source_key->qdata = input_base + offset;
+                     ops::detail::input_s4_load_register(*source_key,input_base+offset,int(layer),stream);
+                     offset+=ops::detail::input_s4_codes(int(layer))+ops::detail::input_s4_scales(int(layer));
+                 }
+                 if(offset!=ops::detail::input_s4_total_bytes)throw std::runtime_error("inputS4 cache byte accounting");
+                 ops::detail::input_s4_seal();
+-                std::fprintf(stderr,"INPUT_S4_cache_load layers=64 appended_bytes=%zu unchanged_FFN_prefix_bytes=%zu legacy_input_weights_retained=1\n",offset,kTextLayers*layer_bytes);
++                std::fprintf(stderr,"INPUT_S4_cache_load layers=64 appended_bytes=%zu unchanged_FFN_prefix_bytes=%zu legacy_input_weights_retained=%d\n",offset,kTextLayers*layer_bytes,!ops::detail::input_s4_omit_legacy_enabled());
+             }
+             if(ops::detail::output_s4_enabled()){
+                 ops::detail::output_s4_begin();gi=0;std::size_t offset=0;
+@@ -413,14 +461,15 @@
+                     (ops::detail::input_s4_enabled()?ops::detail::input_s4_total_bytes:0);
+                 for(std::size_t layer=0;layer<kTextLayers;++layer){
+                     if(plan.text_layers[layer].is_full_attention)continue;
+-                    const auto& weight=gdn_layers.at(gi++).output;
++                    auto& weight=gdn_layers.at(gi++).output;
+                     if(!ops::detail::output_s4_selected_layer(int(layer)))continue;
++                    if(ops::detail::output_s4_omit_legacy_enabled())weight.qdata=output_base+offset;
+                     ops::detail::output_s4_load_register(weight,output_base+offset,int(layer),stream);
+                     offset+=ops::detail::output_s4_layer_bytes;
+                 }
+                 if(offset!=ops::detail::output_s4_total_bytes)throw std::runtime_error("outputS4 exact47 cache accounting");
+                 ops::detail::output_s4_seal();
+-                std::fprintf(stderr,"OUTPUT_S4_cache_load layers=47 appended_bytes=%zu old_outputs_retained=64 phase=Prefill T=1..2048\n",offset);
++                std::fprintf(stderr,"OUTPUT_S4_cache_load layers=47 appended_bytes=%zu old_outputs_retained=%d omitted_original_bytes=%zu full_coverage=%d\n",offset,ops::detail::output_s4_omit_legacy_enabled()?17:64,ops::detail::output_s4_omit_legacy_enabled()?std::size_t(970260480):0,ops::detail::output_s4_full_coverage_enabled());
+             }
+             CUDA_CHECK(cudaStreamSynchronize(stream));CUDA_CHECK(cudaStreamDestroy(stream));stream=nullptr;
+         }catch(...){if(stream)cudaStreamDestroy(stream);throw;}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/src/targets/qwen3_6_27b/impl/variant.cpp artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6_27b/impl/variant.cpp
+--- artifacts/8876-24gb-kit100/source/src/targets/qwen3_6_27b/impl/variant.cpp	2026-10-17 23:28:45.323170000 +0800
++++ artifacts/8876-24gb-projected-grace/source/src/targets/qwen3_6_27b/impl/variant.cpp	2026-10-19 03:04:07.913021233 +0800
+@@ -151,6 +151,7 @@
+             if (ops::detail::input_s4_attention(hidden, split->query_key, query, gate, key, value, scratch, stream)) return;
+             throw std::logic_error("qualified target inputS4 route unexpectedly declined");
+         }
++        ops::detail::require_input_s4_route_if_omitted();
+         if (phase == qwen3_6::TextPhase::Prefill && hidden.ne[1] >= 256 &&
+             ops::detail::prefill_a8_enabled("proj")) {
+             auto scope = workspace.scope();
+@@ -228,6 +229,7 @@
+             if (ops::detail::input_s4_gdn(hidden, split->query_key, qkv, output_gate_flat, scratch, stream)) return;
+             throw std::logic_error("qualified target inputS4 route unexpectedly declined");
+         }
++        ops::detail::require_input_s4_route_if_omitted();
+         if (phase == qwen3_6::TextPhase::Prefill && hidden.ne[1] >= 256 &&
+             ops::detail::prefill_a8_enabled("proj")) {
+             auto scope = workspace.scope();
+@@ -277,6 +279,7 @@
+                 snapshot_base_slot, query, key, value, stream);
+             return;
+         }
++        ops::detail::require_input_s4_route_if_omitted();
+         ops::gdn_input_proj_conv_snapshot(hidden, split->query_key, split->value_z, conv_weight,
+                                           conv_states, valid_columns, initial_slot,
+                                           snapshot_base_slot, query, key, value, output_gate_view,
+@@ -318,6 +321,7 @@
+             query, key, value, stream);
+         return;
+     }
++    ops::detail::require_input_s4_route_if_omitted();
+     auto workspace_scope     = workspace.scope();
+     const DeviceSpan storage = workspace.alloc_bytes(gdn_record_workspace_bytes(hidden, weights));
+     WorkspaceArena leaf_workspace(storage);
+@@ -351,6 +355,7 @@
+         ops::detail::output_s4_launch(hidden, weight, residual, scratch, stream, output_verify);
+         return;
+     }
++    ops::detail::require_output_s4_route_if_omitted(weight);
+     if (use_verify_q5_a8(phase, hidden.ne[1])) {
+         auto scope = workspace.scope();
+         const auto scratch = ops::detail::prefill_a8_workspace(workspace, hidden.ne[0], hidden.ne[1]);
+@@ -556,6 +561,7 @@
+                                                                     std::int32_t first,
+                                                                     std::int32_t last) {
+     validate_token_interval(first, last);
++    ops::detail::validate_output_s4_token_interval(first,last,ops::detail::output_s4_omit_legacy_enabled());
+     const int output_prefill_tokens = phase == qwen3_6::TextPhase::Prefill && first <= 2048
+                                           ? std::min(last, 2048) : 0;
+     const int output_verify_tokens = phase == qwen3_6::TextPhase::Verify &&
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/CMakeLists.txt artifacts/8876-24gb-projected-grace/source/tests/CMakeLists.txt
+--- artifacts/8876-24gb-kit100/source/tests/CMakeLists.txt	2026-10-18 04:43:20.819926500 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/CMakeLists.txt	2026-10-19 08:48:10.412712542 +0800
+@@ -1,5 +1,25 @@
+ find_package(Python3 REQUIRED COMPONENTS Interpreter)
+ 
++add_executable(ninfer_cold_memory_policy_test test_cold_memory_policy.cpp)
++target_include_directories(ninfer_cold_memory_policy_test PRIVATE ${PROJECT_SOURCE_DIR}/src)
++foreach(mode default cold invalid-cold)
++  add_test(NAME ninfer_cold_memory_${mode} COMMAND ninfer_cold_memory_policy_test ${mode})
++  if(mode STREQUAL "cold")
++    set(cold_value 1)
++  elseif(mode STREQUAL "invalid-cold")
++    set(cold_value invalid)
++  else()
++    set(cold_value 0)
++  endif()
++  set_tests_properties(ninfer_cold_memory_${mode} PROPERTIES ENVIRONMENT
++    "NINFER_COLD_REQUEST_STATE=${cold_value};NINFER_CUDA_GRAPH_ALLOWANCE_MB=256")
++endforeach()
++foreach(budget 0 -1 63 65537 256x invalid)
++  add_test(NAME ninfer_cold_memory_budget_${budget} COMMAND ninfer_cold_memory_policy_test invalid-budget)
++  set_tests_properties(ninfer_cold_memory_budget_${budget} PROPERTIES ENVIRONMENT
++    "NINFER_COLD_REQUEST_STATE=0;NINFER_CUDA_GRAPH_ALLOWANCE_MB=${budget}")
++endforeach()
++
+ # This target deliberately receives no src/, CUDA, artifact, kernel, or target
+ # include root. It proves that the installed product headers stand alone.
+ add_executable(ninfer_public_api_test test_public_api.cpp)
+@@ -136,6 +156,25 @@
+   ${PROJECT_SOURCE_DIR}/src/targets/qwen3_6_27b/export)
+ target_link_libraries(ninfer_qwen3_6_27b_load_plan_test PRIVATE ${NINFER_CUDART_TARGET})
+ set_tests_properties(ninfer_qwen3_6_27b_load_plan_test PROPERTIES SKIP_RETURN_CODE 77)
++
++ninfer_add_test(ninfer_input_omission_plan_test
++  SOURCES targets/qwen3_6_27b/test_input_omission_plan.cpp
++  LIBRARIES ninfer_engine)
++target_include_directories(ninfer_input_omission_plan_test PRIVATE
++  ${PROJECT_SOURCE_DIR}/src/targets/qwen3_6_27b/export
++  ${PROJECT_SOURCE_DIR}/src/targets/qwen3_6/export)
++target_link_libraries(ninfer_input_omission_plan_test PRIVATE ${NINFER_CUDART_TARGET})
++set_tests_properties(ninfer_input_omission_plan_test PROPERTIES SKIP_RETURN_CODE 77)
++foreach(mode legacy omitted)
++  add_test(NAME ninfer_input_omission_${mode} COMMAND ninfer_input_omission_plan_test ${mode})
++  if(mode STREQUAL "omitted")
++    set(omit_value 1)
++  else()
++    set(omit_value 0)
++  endif()
++  set_tests_properties(ninfer_input_omission_${mode} PROPERTIES SKIP_RETURN_CODE 77 ENVIRONMENT
++    "NINFER_INPUT_S4_OMIT_LEGACY=${omit_value};NINFER_INPUT_S4=1;NINFER_PREFILL_FULLK=s4gptq64ffn;NINFER_S4_TARGET_FFN=1;NINFER_S4_OMIT_LEGACY_FFN=1")
++endforeach()
+ ninfer_add_test(ninfer_qwen3_6_35b_a3b_real_test
+   SOURCES targets/qwen3_6_35b_a3b/test_engine_real.cpp
+   LIBRARIES ninfer_engine)
+@@ -344,4 +383,109 @@
+ 
+ ninfer_add_test(ninfer_gdn_pending_state_test SOURCES gdn_pending_state_test.cpp)
+ 
++ninfer_add_test(ninfer_slo_expired_completion_soft_pf_test SOURCES test_slo_expired_completion_soft_pf.cpp)
++target_compile_options(ninfer_slo_expired_completion_soft_pf_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
++add_test(NAME ninfer_slo_expired_completion_soft_pf_off COMMAND ninfer_slo_expired_completion_soft_pf_test 0)
++add_test(NAME ninfer_slo_expired_completion_soft_pf_on COMMAND ninfer_slo_expired_completion_soft_pf_test 1)
++add_test(NAME ninfer_slo_expired_completion_soft_pf_invalid COMMAND ninfer_slo_expired_completion_soft_pf_test invalid)
++
+ ninfer_add_op_test(ninfer_gdn_deferred_graph_test SOURCES ops/test_gdn_deferred_graph.cpp LIBRARIES ninfer_ops)
++
++
++ninfer_add_test(ninfer_prompt_lookup_consensus_test SOURCES test_prompt_lookup_consensus.cpp)
++target_compile_options(ninfer_prompt_lookup_consensus_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
++add_test(NAME ninfer_prompt_lookup_consensus_off COMMAND ninfer_prompt_lookup_consensus_test 0)
++set_tests_properties(ninfer_prompt_lookup_consensus_off PROPERTIES ENVIRONMENT "NINFER_PROMPT_LOOKUP_N5_CONSENSUS=0")
++add_test(NAME ninfer_prompt_lookup_consensus_on COMMAND ninfer_prompt_lookup_consensus_test 1)
++set_tests_properties(ninfer_prompt_lookup_consensus_on PROPERTIES ENVIRONMENT "NINFER_PROMPT_LOOKUP_N5_CONSENSUS=1")
++add_test(NAME ninfer_prompt_lookup_consensus_invalid COMMAND ninfer_prompt_lookup_consensus_test invalid)
++set_tests_properties(ninfer_prompt_lookup_consensus_invalid PROPERTIES ENVIRONMENT "NINFER_PROMPT_LOOKUP_N5_CONSENSUS=2")
++
++
++ninfer_add_test(ninfer_slo_unexpired_decode_priority_test SOURCES test_slo_unexpired_decode_priority.cpp)
++target_compile_options(ninfer_slo_unexpired_decode_priority_test PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-UNDEBUG>)
++add_test(NAME ninfer_slo_unexpired_decode_priority_off COMMAND ninfer_slo_unexpired_decode_priority_test 0)
++set_tests_properties(ninfer_slo_unexpired_decode_priority_off PROPERTIES ENVIRONMENT "NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY=0")
++add_test(NAME ninfer_slo_unexpired_decode_priority_on COMMAND ninfer_slo_unexpired_decode_priority_test 1)
++set_tests_properties(ninfer_slo_unexpired_decode_priority_on PROPERTIES ENVIRONMENT "NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY=1")
++add_test(NAME ninfer_slo_unexpired_decode_priority_invalid COMMAND ninfer_slo_unexpired_decode_priority_test invalid)
++set_tests_properties(ninfer_slo_unexpired_decode_priority_invalid PROPERTIES ENVIRONMENT "NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY=2")
++
++
++add_test(NAME ninfer_gdn_single_row_eager_off COMMAND ninfer_gdn_pending_state_test 0)
++set_tests_properties(ninfer_gdn_single_row_eager_off PROPERTIES ENVIRONMENT "NINFER_GDN_SINGLE_ROW_EAGER=0")
++add_test(NAME ninfer_gdn_single_row_eager_on COMMAND ninfer_gdn_pending_state_test 1)
++set_tests_properties(ninfer_gdn_single_row_eager_on PROPERTIES ENVIRONMENT "NINFER_GDN_SINGLE_ROW_EAGER=1")
++add_test(NAME ninfer_gdn_single_row_eager_invalid COMMAND ninfer_gdn_pending_state_test invalid)
++set_tests_properties(ninfer_gdn_single_row_eager_invalid PROPERTIES ENVIRONMENT "NINFER_GDN_SINGLE_ROW_EAGER=2")
++
++ninfer_add_op_test(ninfer_q5_ordered_residual_test
++  SOURCES ops/linear_add/test_q5_ordered.cpp
++  LIBRARIES ninfer_ops)
++
++ninfer_add_test(ninfer_output_s4_coverage_test SOURCES test_output_s4_coverage.cpp LIBRARIES ninfer_core)
++add_test(NAME ninfer_output_s4_flags_on_test COMMAND ninfer_output_s4_coverage_test on)
++set_tests_properties(ninfer_output_s4_flags_on_test PROPERTIES ENVIRONMENT "NINFER_OUTPUT_S4_FULL_COVERAGE=1;NINFER_OUTPUT_S4_OMIT_LEGACY=1")
++add_test(NAME ninfer_output_s4_full_invalid_test COMMAND ninfer_output_s4_coverage_test bad)
++set_tests_properties(ninfer_output_s4_full_invalid_test PROPERTIES ENVIRONMENT "NINFER_OUTPUT_S4_FULL_COVERAGE=bad")
++add_test(NAME ninfer_output_s4_omit_invalid_test COMMAND ninfer_output_s4_coverage_test bad)
++set_tests_properties(ninfer_output_s4_omit_invalid_test PROPERTIES ENVIRONMENT "NINFER_OUTPUT_S4_OMIT_LEGACY=bad")
++ninfer_add_test(ninfer_output_s4_inventory_test
++  SOURCES targets/qwen3_6_27b/test_output_s4_inventory.cpp
++  LIBRARIES ninfer_engine)
++target_include_directories(ninfer_output_s4_inventory_test PRIVATE
++  ${PROJECT_SOURCE_DIR}/src/targets/qwen3_6/export
++  ${PROJECT_SOURCE_DIR}/src/targets/qwen3_6_27b/export)
++set_tests_properties(ninfer_output_s4_inventory_test PROPERTIES SKIP_RETURN_CODE 77)
++add_test(NAME ninfer_output_s4_omitted_inventory_test COMMAND ninfer_output_s4_inventory_test)
++set_tests_properties(ninfer_output_s4_omitted_inventory_test PROPERTIES SKIP_RETURN_CODE 77
++  ENVIRONMENT "NINFER_OUTPUT_S4=1;NINFER_OUTPUT_S4_VERIFY=1;NINFER_OUTPUT_S4_FULL_COVERAGE=1;NINFER_OUTPUT_S4_OMIT_LEGACY=1")
++
++foreach(output_test ninfer_output_s4_coverage_test ninfer_output_s4_inventory_test)
++  if(MSVC)
++    target_compile_options(${output_test} PRIVATE /UNDEBUG)
++  else()
++    target_compile_options(${output_test} PRIVATE -UNDEBUG)
++  endif()
++endforeach()
++
++ninfer_add_test(ninfer_prompt_lookup_yield_test SOURCES test_prompt_lookup_yield.cpp LIBRARIES ninfer_core)
++foreach(yield_mode 0 1 invalid)
++  add_test(NAME ninfer_prompt_lookup_yield_${yield_mode}_test COMMAND ninfer_prompt_lookup_yield_test ${yield_mode})
++  set_tests_properties(ninfer_prompt_lookup_yield_${yield_mode}_test PROPERTIES ENVIRONMENT "NINFER_PROMPT_LOOKUP_N5_LOW_YIELD=${yield_mode}")
++endforeach()
++
++ninfer_add_test(ninfer_slo_tpot_recovery_test SOURCES test_slo_tpot_recovery.cpp)
++foreach(recovery_mode 0 1 invalid)
++  add_test(NAME ninfer_slo_tpot_recovery_${recovery_mode}_test
++    COMMAND ninfer_slo_tpot_recovery_test ${recovery_mode})
++  set_tests_properties(ninfer_slo_tpot_recovery_${recovery_mode}_test PROPERTIES
++    ENVIRONMENT "NINFER_SCHED_TPOT_RECOVERY=${recovery_mode}")
++endforeach()
++
++# Extended existing Q4 head kernel, default OFF; actual public Op math runs in both modes.
++ninfer_add_test(ninfer_q4_draft_head_t16_policy_test
++  SOURCES test_q4_draft_head_t16_policy.cpp LIBRARIES ninfer_ops)
++foreach(head_mode 0 1 invalid)
++  add_test(NAME ninfer_q4_draft_head_t16_${head_mode}_test
++    COMMAND ninfer_q4_draft_head_t16_policy_test ${head_mode})
++  set_tests_properties(ninfer_q4_draft_head_t16_${head_mode}_test PROPERTIES
++    ENVIRONMENT "NINFER_Q4_DRAFT_HEAD_T16=${head_mode}")
++endforeach()
++add_test(NAME ninfer_linear_q4_head_t16_extended_test COMMAND ninfer_linear_q4_a16_test)
++set_tests_properties(ninfer_linear_q4_head_t16_extended_test PROPERTIES
++  ENVIRONMENT "NINFER_Q4_DRAFT_HEAD_T16=1" SKIP_RETURN_CODE 77)
++
++ninfer_add_test(ninfer_slo_expired_prefill_grace_test SOURCES test_slo_expired_prefill_grace.cpp)
++foreach(grace_mode 0 1 invalid)
++ add_test(NAME ninfer_slo_expired_prefill_grace_${grace_mode}_test COMMAND ninfer_slo_expired_prefill_grace_test ${grace_mode})
++ set_tests_properties(ninfer_slo_expired_prefill_grace_${grace_mode}_test PROPERTIES ENVIRONMENT "NINFER_SCHED_EXPIRED_PREFILL_GRACE=${grace_mode}")
++endforeach()
++
++ninfer_add_test(ninfer_slo_projected_prefill_grace_test SOURCES test_slo_projected_prefill_grace.cpp)
++foreach(projected_grace_mode 0 1 invalid)
++ add_test(NAME ninfer_slo_projected_prefill_grace_${projected_grace_mode}_test
++   COMMAND ninfer_slo_projected_prefill_grace_test ${projected_grace_mode})
++ set_tests_properties(ninfer_slo_projected_prefill_grace_${projected_grace_mode}_test PROPERTIES
++   ENVIRONMENT "NINFER_SCHED_PROJECTED_PREFILL_GRACE=${projected_grace_mode}")
++endforeach()
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/gdn_pending_state_test.cpp artifacts/8876-24gb-projected-grace/source/tests/gdn_pending_state_test.cpp
+--- artifacts/8876-24gb-kit100/source/tests/gdn_pending_state_test.cpp	2026-10-17 22:25:41.337657700 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/gdn_pending_state_test.cpp	2026-10-19 02:03:57.995218259 +0800
+@@ -1,6 +1,7 @@
+ #define NINFER_QWEN36_RUNTIME_NS private_probe
+ #include "targets/qwen3_6/impl/runtime/gdn_pending_state.h"
+ #include "targets/qwen3_6/impl/runtime/gdn_pending_failure_guard.h"
++#include "targets/qwen3_6/impl/runtime/gdn_single_row_policy.h"
+ #include <algorithm>
+ #include <cstdio>
+ #include <vector>
+@@ -125,7 +126,17 @@
+     check(cleared == expected && p.failed_lanes() == 0, "failure cleanup acknowledgement mismatch");
+ }
+ 
+-int main() {
++int main(int argc, char** argv) {
++    using namespace ninfer::targets::qwen3_6::detail::private_probe;
++    if (argc == 2) {
++        bool invalid = false, value = false;
++        try { value = gdn_single_row_eager_enabled(); }
++        catch (const std::invalid_argument&) { invalid = true; }
++        const std::string mode = argv[1];
++        check(invalid == (mode == "invalid"), "single-row flag rejection mismatch");
++        if (!invalid) check(value == (mode == "1"), "single-row flag value mismatch");
++        return 0;
++    }
+     try {
+         Model m;
+         for (unsigned i = 0; i < 4; i++) m.install(i, 10, 17 + i);
+@@ -267,6 +278,40 @@
+               "omitted bank-reclaim failure escaped Program cleanup");
+         printf(
+             "{\"case\":\"omitted_lane_failure_domain_drained_noexcept_cleanup\",\"pass\":true}\n");
++        Model single_eager;
++        for (unsigned id = 0; id < 4; ++id) single_eager.install(id);
++        single_eager.run(0, {2, 0}, {{3, false, false}, {1, false, false}});
++        std::array<unsigned, 1> one_lane{0};
++        unsigned callbacks = 0;
++        auto fold_lane = [&](unsigned lane) {
++            ++callbacks;
++            single_eager.p.materialize(lane, [&](auto lease) { single_eager.fold(lease); });
++        };
++        materialize_single_gdn_row(false, one_lane, fold_lane);
++        check(callbacks == 0 && single_eager.p.lane(0).pending,
++              "disabled eager policy changed ownership");
++        std::array<unsigned, 2> two_lanes{0, 2};
++        materialize_single_gdn_row(true, two_lanes, fold_lane);
++        check(callbacks == 0, "eager policy touched a multi-row batch");
++        for (unsigned round = 0; round < 3; ++round) {
++            const auto before = single_eager.p.lane(0).logical;
++            materialize_single_gdn_row(true, one_lane, fold_lane);
++            check(!single_eager.p.lane(0).pending &&
++                      single_eager.p.lane(0).physical == before,
++                  "single-row accepted prefix was not materialized");
++            single_eager.verify();
++            single_eager.run(1 - round % 2, {0}, {{4, false, false}});
++        }
++        check(callbacks == 3, "single-row callback count changed");
++        check(!parse_gdn_single_row_eager(nullptr) && !parse_gdn_single_row_eager("0") &&
++                  parse_gdn_single_row_eager("1"), "single-row flag parser mismatch");
++        for (auto bad : {"", "2", "true", "01", " 1"}) {
++            bool rejected = false;
++            try { (void)parse_gdn_single_row_eager(bad); }
++            catch (const std::invalid_argument&) { rejected = true; }
++            check(rejected, "invalid single-row flag accepted");
++        }
++        printf("{\"case\":\"single_row_eager_chronological_prefix_no_double_conv\",\"pass\":true}\n");
+         printf("{\"status\":\"PASS\",\"scope\":\"CPU ownership protocol with independent eager "
+                "chronological recurrence; not runtime GPU integration\"}\n");
+     } catch (const std::exception& e) {
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/ops/linear/test_q4_a16.cpp artifacts/8876-24gb-projected-grace/source/tests/ops/linear/test_q4_a16.cpp
+--- artifacts/8876-24gb-kit100/source/tests/ops/linear/test_q4_a16.cpp	2026-10-17 22:25:41.282506700 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/ops/linear/test_q4_a16.cpp	2026-10-19 07:05:09.728575823 +0800
+@@ -50,7 +50,8 @@
+                           {34816, 5120, 113U, Comparison::Sampled, false, kN34816K5120});
+ 
+     constexpr std::array kN131072K5120{
+-        a16(1), a16(2), a16(3), a16(4), a16(5), a16(6), a16(7), a16(8), a16(9), a16(128),
++        a16(1), a16(2), a16(3), a16(4), a16(5), a16(6), a16(7), a16(8),
++        a16(9), a16(10), a16(11), a16(12), a16(13), a16(14), a16(15), a16(16), a16(17), a16(128),
+     };
+     failures += run_shape("Q4_A16", ActivationCompute::A16, make_q4g64_f16s_weight,
+                           {131072, 5120, 127U, Comparison::Sampled, false, kN131072K5120});
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/ops/linear_add/test_q5_ordered.cpp artifacts/8876-24gb-projected-grace/source/tests/ops/linear_add/test_q5_ordered.cpp
+--- artifacts/8876-24gb-kit100/source/tests/ops/linear_add/test_q5_ordered.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/ops/linear_add/test_q5_ordered.cpp	2026-10-19 02:39:22.769632418 +0800
+@@ -0,0 +1,89 @@
++#include "ninfer/ops/linear_add.h"
++#include "ops/op_tester.h"
++#include "ops/quantized_weight.h"
++
++#include <array>
++#include <iostream>
++#include <vector>
++
++namespace {
++using namespace ninfer;
++namespace tst = ninfer::test;
++
++int run(int k) {
++    constexpr int n = 5120, maximum_t = 16;
++    auto packed = tst::quantized_weight::make_patterned_weight(
++        QType::Q5G64_F16S, n, k, 739U,
++        {tst::quantized_weight::RowSplitScalePattern::Small,
++         tst::quantized_weight::RowSplitCodePattern::Hashed});
++    std::vector<float> activation(k * maximum_t), residual(n * maximum_t);
++    tst::fill_uniform(activation, 20261019U, -2.f, 2.f);
++    tst::fill_uniform(residual, 20261020U, -8.f, 8.f);
++    tst::round_to_bf16(activation);
++    tst::round_to_bf16(residual);
++    std::vector<std::uint16_t> x(activation.size()), initial(residual.size());
++    for (size_t i = 0; i < x.size(); ++i) x[i] = tst::f32_to_bf16(activation[i]);
++    for (size_t i = 0; i < initial.size(); ++i) initial[i] = tst::f32_to_bf16(residual[i]);
++    tst::GuardedDeviceBuffer dx(x.size()*2), dw(packed.payload.size()), source(initial.size()*2), out(initial.size()*2);
++    dx.copy_from_host(x.data(), dx.bytes());
++    dw.copy_from_host(packed.payload.data(), dw.bytes());
++    source.copy_from_host(initial.data(), source.bytes());
++    const auto weight = packed.device_weight(dw.data());
++    WorkspaceArena workspace(std::max<size_t>(256, ops::linear_add_workspace_capacity_bytes(QType::Q5G64_F16S,n,k,1,maximum_t)));
++    cudaStream_t stream{};
++    tst::cuda_check(cudaStreamCreateWithFlags(&stream,cudaStreamNonBlocking),"create stream");
++    tst::cuda_synchronize(); // Publish initialized inputs to nonblocking stream.
++    int failures=0;
++    const std::array<int,7> oracle_rows{0,1,127,1023,2559,4095,5119};
++    std::vector<int> tokens{2,4,8,13};
++    if(k==17408) tokens.push_back(16);
++    for(int t:tokens){
++        Tensor input(dx.data(),DType::BF16,{k,t}), output(out.data(),DType::BF16,{n,t});
++        auto execute=[&]{
++            tst::cuda_check(cudaMemcpyAsync(out.data(),source.data(),out.bytes(),cudaMemcpyDeviceToDevice,stream),"restore residual");
++            workspace.reset();
++            ops::linear_add(input,weight,output,workspace,stream);
++        };
++        execute();tst::cuda_synchronize(stream);
++        auto reference_bits=tst::from_device<std::uint16_t>(out.data(),size_t(n)*t);
++        std::vector<double> actual,oracle;
++        for(int col=0;col<t;++col) for(int row:oracle_rows){
++            double sum=double(residual[size_t(col)*n+row]);
++            for(int j=0;j<k;++j)
++                sum+=tst::quantized_weight::logical_weight_fp64(packed,row,j)*double(activation[size_t(col)*k+j]);
++            oracle.push_back(sum);actual.push_back(tst::bf16_to_f32(reference_bits[size_t(col)*n+row]));
++        }
++        const std::string label="Q5 ordered residual K="+std::to_string(k)+" T="+std::to_string(t);
++        failures+=tst::verify_reduction(label,actual,oracle,{1./256,1./256,2./256});
++        for(auto value:reference_bits) if((value&0x7f80U)==0x7f80U){++failures;break;}
++        cudaGraph_t graph{};cudaGraphExec_t executable{};
++        tst::cuda_check(cudaStreamBeginCapture(stream,cudaStreamCaptureModeThreadLocal),"capture begin");execute();
++        tst::cuda_check(cudaStreamEndCapture(stream,&graph),"capture end");
++        tst::cuda_check(cudaGraphInstantiate(&executable,graph,0),"instantiate");
++        size_t changed=0;
++        for(int repeat=0;repeat<64;++repeat){
++            if(repeat&1)tst::cuda_check(cudaGraphLaunch(executable,stream),"graph repeat");else execute();
++            tst::cuda_synchronize(stream);
++            auto bits=tst::from_device<std::uint16_t>(out.data(),size_t(n)*t);
++            for(size_t i=0;i<bits.size();++i)changed+=bits[i]!=reference_bits[i];
++        }
++        std::cout<<label<<" repeats=64 changed_elements="<<changed<<'\n';
++        if(changed)++failures;
++        tst::cuda_check(cudaGraphExecDestroy(executable),"destroy exec");
++        tst::cuda_check(cudaGraphDestroy(graph),"destroy graph");
++        auto all_output=tst::from_device<std::uint16_t>(out.data(),initial.size());
++        for(size_t i=size_t(n)*t;i<initial.size();++i)if(all_output[i]!=initial[i]){++failures;break;}
++    }
++    failures+=dx.verify_guards("ordered activation")+dw.verify_guards("ordered weights")+source.verify_guards("reset source")+out.verify_guards("ordered output");
++    failures+=tst::from_device<std::uint16_t>(dx.data(),x.size())!=x;
++    failures+=tst::from_device<std::uint16_t>(source.data(),initial.size())!=initial;
++    failures+=tst::from_device<std::uint8_t>(dw.data(),packed.payload.size())!=packed.payload;
++    tst::cuda_check(cudaStreamDestroy(stream),"destroy stream");
++    return failures;
++}
++}
++int main(){
++    if(tst::cuda_unavailable())return 77;
++    try{return run(6144)+run(17408)==0?0:1;}
++    catch(const std::exception&e){std::cerr<<e.what()<<'\n';return 1;}
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/ops/test_gqa_attention.cpp artifacts/8876-24gb-projected-grace/source/tests/ops/test_gqa_attention.cpp
+--- artifacts/8876-24gb-kit100/source/tests/ops/test_gqa_attention.cpp	2026-10-17 22:25:41.287598800 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/ops/test_gqa_attention.cpp	2026-10-19 00:26:20.029081093 +0800
+@@ -1231,12 +1231,20 @@
+         cuda_check(cudaStreamEndCapture(stream, &graph), "capture end");
+         std::size_t count = 0, edges = 0;
+         cuda_check(cudaGraphGetNodes(graph, nullptr, &count), "Graph node count");
++#if CUDART_VERSION >= 13000
+         cuda_check(cudaGraphGetEdges(graph, nullptr, nullptr, nullptr, &edges), "Graph edge count");
++#else
++        cuda_check(cudaGraphGetEdges_v2(graph, nullptr, nullptr, nullptr, &edges), "Graph edge count");
++#endif
+         if (count != 2 || edges != 1) throw std::runtime_error("GQA Graph must contain two dependent kernels");
+         std::vector<cudaGraphNode_t> nodes(count);
+         cuda_check(cudaGraphGetNodes(graph, nodes.data(), &count), "Graph nodes");
+         cudaGraphNode_t from{}, to{};
++#if CUDART_VERSION >= 13000
+         cuda_check(cudaGraphGetEdges(graph, &from, &to, nullptr, &edges), "Graph edge");
++#else
++        cuda_check(cudaGraphGetEdges_v2(graph, &from, &to, nullptr, &edges), "Graph edge");
++#endif
+         int sms = 0;
+         cuda_check(cudaDeviceGetAttribute(&sms, cudaDevAttrMultiProcessorCount, 0), "SM count");
+         const int expected_splits = batch < 16 ? 64 : std::min(64, (4 * sms + 4 * batch - 1) / (4 * batch));
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/targets/qwen3_6_27b/test_input_omission_plan.cpp artifacts/8876-24gb-projected-grace/source/tests/targets/qwen3_6_27b/test_input_omission_plan.cpp
+--- artifacts/8876-24gb-kit100/source/tests/targets/qwen3_6_27b/test_input_omission_plan.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/targets/qwen3_6_27b/test_input_omission_plan.cpp	2026-10-19 00:31:57.806021770 +0800
+@@ -0,0 +1,48 @@
++#include "artifact/binder.h"
++#include "artifact/reader.h"
++#include "targets/qwen3_6_27b/impl/load/bindings.h"
++#include "ops/linear_swiglu/q4/private_input_s4.h"
++#include <cstdlib>
++#include <iostream>
++#include <string>
++
++int main(int argc, char** argv) {
++    const char* path = std::getenv("NINFER_QWEN3_8_27B_WEIGHTS");
++    if (!path) return 77;
++    const bool omitted = argc > 1 && std::string(argv[1]) == "omitted";
++    try {
++        using namespace ninfer::targets::qwen3_6_27b::detail;
++        ninfer::artifact::Reader reader(path);
++        ninfer::artifact::Binder binder(reader);
++        const auto profile = ninfer::targets::qwen3_6_27b::Package::resolve_weights(reader.identity());
++        const auto plan = bind_artifact(binder, profile,
++            {.vision=false, .speculative=ninfer::SpeculativeBackend::Mtp,
++             .proposal_head=ninfer::ProposalHead::Optimized});
++        std::size_t legacy_bytes = 0, legacy_count = 0;
++        for (const auto& item : plan.materialization.device_objects) {
++            const auto& object = reader.objects().at(item.object.index);
++            const auto name = ninfer::artifact::object_name(object);
++            if (name.starts_with("text/layers/") &&
++                (name.ends_with("/gdn/query_key") || name.ends_with("/gdn/value_z") ||
++                 name.ends_with("/attention/query_key") || name.ends_with("/attention/gate_value"))) {
++                ++legacy_count;
++                legacy_bytes += reader.payload(object).data.size();
++            }
++        }
++        if (legacy_count != (omitted ? 0U : 128U) ||
++            legacy_bytes != (omitted ? 0ULL : 3213885440ULL))
++            throw std::runtime_error("wrong original input device payload set");
++        if (omitted) {
++            try { ninfer::ops::detail::require_input_s4_route_if_omitted(); return 1; }
++            catch (const std::logic_error&) {}
++        } else {
++            ninfer::ops::detail::require_input_s4_route_if_omitted();
++        }
++        std::cout << "input_count=" << legacy_count << " input_bytes=" << legacy_bytes
++                  << " materialized_bytes=" << plan.materialization.device_capacity_bytes << '\n';
++        return 0;
++    } catch (const std::exception& error) {
++        std::cerr << error.what() << '\n';
++        return 1;
++    }
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/targets/qwen3_6_27b/test_output_s4_inventory.cpp artifacts/8876-24gb-projected-grace/source/tests/targets/qwen3_6_27b/test_output_s4_inventory.cpp
+--- artifacts/8876-24gb-kit100/source/tests/targets/qwen3_6_27b/test_output_s4_inventory.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/targets/qwen3_6_27b/test_output_s4_inventory.cpp	2026-10-19 03:13:07.628179827 +0800
+@@ -0,0 +1,35 @@
++#include "artifact/reader.h"
++#include "artifact/binder.h"
++#include "ops/linear_add/q5/private_output_s4.h"
++#include "targets/qwen3_6_27b/impl/load/bindings.h"
++#include <ninfer/targets/qwen3_6_27b/package.h>
++#include <cassert>
++#include <cstdlib>
++#include <iostream>
++#include <set>
++#include <string>
++int main(){
++ const char* path=std::getenv("NINFER_QWEN3_8_27B_WEIGHTS");if(!path||!*path)return 77;
++ try{
++  using namespace ninfer;namespace td=targets::qwen3_6_27b::detail;
++  artifact::Reader reader(path);artifact::Binder binder(reader);
++  auto profile=targets::qwen3_6_27b::Package::resolve_weights(reader.identity());
++  auto load=td::bind_artifact(binder,profile,{.vision=true,.speculative=SpeculativeBackend::Mtp,.proposal_head=ProposalHead::Optimized});
++  bool omit=ops::detail::output_s4_omit_legacy_enabled();auto&plan=load.materialization;
++  assert(plan.object_count==reader.objects().size());assert(plan.host_objects.size()==6);
++  assert(plan.device_objects.size()==(omit?1071:1118));
++  std::set<size_t> device;for(auto&m:plan.device_objects){auto inserted=device.insert(m.object.index);assert(inserted.second);assert(m.bytes==artifact::object_bytes(reader.objects().at(m.object.index)));}
++  size_t selected_bytes=0;int selected=0,retained=0;
++  for(int l=0;l<64;++l){
++   const auto&layer=load.bindings.text_layers[l];const auto&out=layer.is_full_attention?layer.attention.output:layer.gdn.output;
++   auto&descriptor=reader.objects().at(out.object.index);
++   assert(artifact::object_name(descriptor)=="text/layers/"+std::to_string(l)+(layer.is_full_attention?"/attention/output":"/gdn/output"));
++   bool selected_layer=l>0&&(l+1)%4!=0;
++   assert(device.contains(out.object.index)==!(omit&&selected_layer));
++   if(selected_layer){selected_bytes+=artifact::object_bytes(descriptor);++selected;}
++   else ++retained;
++  }
++  assert(selected==47&&retained==17&&selected_bytes==970260480);
++  std::cout<<"OUTPUT_INVENTORY omitted="<<omit<<" selected_original_bytes="<<selected_bytes<<" device_capacity_bytes="<<plan.device_capacity_bytes<<" device_objects="<<device.size()<<'\n';return 0;
++ }catch(const std::exception&e){std::cerr<<e.what()<<'\n';return 1;}
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_cold_memory_policy.cpp artifacts/8876-24gb-projected-grace/source/tests/test_cold_memory_policy.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_cold_memory_policy.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_cold_memory_policy.cpp	2026-10-19 00:10:25.797427327 +0800
+@@ -0,0 +1,39 @@
++#include "runtime/engine/cold_memory_policy.h"
++#define NINFER_QWEN36_RUNTIME_NS cold_memory_test
++#include "targets/qwen3_6/impl/runtime/linear_state_slots.h"
++#include <iostream>
++#include <stdexcept>
++#include <string_view>
++
++int main(int argc, char** argv) {
++    using Slots = ninfer::targets::qwen3_6::detail::cold_memory_test::LinearStateSlots;
++    const std::string_view mode = argc > 1 ? argv[1] : "default";
++    try {
++        if (mode == "invalid-cold") {
++            try { (void)ninfer::runtime::cold_request_state_enabled(); }
++            catch (const std::invalid_argument&) { return 0; }
++            throw std::runtime_error("invalid cold flag accepted");
++        }
++        if (mode == "invalid-budget") {
++            try { (void)ninfer::runtime::cuda_graph_allowance_override(); }
++            catch (const std::invalid_argument&) { return 0; }
++            throw std::runtime_error("invalid Graph budget accepted");
++        }
++        const bool cold = mode == "cold";
++        if (ninfer::runtime::cold_request_state_enabled() != cold ||
++            Slots::state_slot_count(16) != (cold ? 16 : 32) ||
++            Slots::current_state_slot(15,16) != 15 ||
++            Slots::turn_checkpoint_state_slot(15,16) != (cold ? -1 : 31))
++            throw std::runtime_error("state role mapping mismatch");
++        try { (void)Slots::turn_checkpoint_state_slot(16,16); return 1; }
++        catch (const std::out_of_range&) {}
++        try { (void)Slots::state_slot_count(0); return 1; }
++        catch (const std::invalid_argument&) {}
++        const auto budget = ninfer::runtime::cuda_graph_allowance_override();
++        if (!budget || *budget != (256ULL << 20)) throw std::runtime_error("Graph budget mismatch");
++        return 0;
++    } catch (const std::exception& error) {
++        std::cerr << error.what() << '\n';
++        return 1;
++    }
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_output_s4_coverage.cpp artifacts/8876-24gb-projected-grace/source/tests/test_output_s4_coverage.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_output_s4_coverage.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_output_s4_coverage.cpp	2026-10-19 03:02:58.745281930 +0800
+@@ -0,0 +1,26 @@
++#include "ops/linear_add/q5/private_output_verify_policy.h"
++#include "ops/linear_add/q5/fixed_output_mask.h"
++#include <cassert>
++#include <algorithm>
++#include <iostream>
++using namespace ninfer::ops::detail;
++int main(int argc,char**argv){
++ if(argc==2){std::string mode=argv[1];bool invalid=false;try{bool full=output_s4_full_coverage_enabled(),omit=output_s4_omit_legacy_enabled();assert(mode=="on"&&full&&omit);}catch(const std::invalid_argument&){invalid=true;}assert(invalid==(mode!="on"));return 0;}
++ assert(!parse_output_s4_flag(nullptr,"test")&&!parse_output_s4_flag("0","test")&&parse_output_s4_flag("1","test"));
++ for(auto v:{"","2","true","01"," 1"}){bool bad=false;try{(void)parse_output_s4_flag(v,"test");}catch(const std::invalid_argument&){bad=true;}assert(bad);}
++ for(int mask=0;mask<16;++mask){bool s4=mask&1,verify=mask&2,full=mask&4,omit=mask&8;bool bad=false;try{validate_output_s4_configuration(s4,verify,full,omit);}catch(const std::invalid_argument&){bad=true;}assert(bad==((full||omit)&&(!s4||!verify)||(omit&&!full)));}
++ for(bool full:{false,true}){
++  for(int t=-1;t<=2050;++t)assert(output_s4_verify_shape(t,full)==(full?t>=1&&t<=2048:t>=33&&t<=128));
++  for(int first:{-1,0,1,2,32,33,127,128,129,2047,2048,2049})for(int last:{0,1,32,33,128,129,2048,2049,4096}){
++   int expected=0;if(first>0&&first<=last)for(int t=first;t<=last;++t)if(full?t<=2048:(t>=33&&t<=128))expected=t;
++   assert(output_s4_verify_peak_tokens(first,last,full)==expected);
++  }
++ }
++ for(int first:{1,33,2048})validate_output_s4_token_interval(first,2048,true);
++ for(auto pair:{std::pair{0,1},std::pair{2,1},std::pair{1,2049}}){bool bad=false;try{validate_output_s4_token_interval(pair.first,pair.second,true);}catch(const std::invalid_argument&){bad=true;}assert(bad);}
++ validate_output_s4_token_interval(1,4096,false);
++ int selected=0;for(int l=0;l<64;++l){assert(output_s4_selected_layer(l)==(l>0&&(l+1)%4!=0));selected+=output_s4_selected_layer(l);}assert(selected==47);
++ constexpr size_t per_layer=size_t(5120)*6144/2+size_t(5120)*6144/8+size_t(5120)*(6144/64)*2;
++ assert(per_layer==20643840&&per_layer*47==970260480);
++ std::cout<<"selected47 output coverage/configuration/interval/payload contracts PASS\n";
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_prompt_lookup_consensus.cpp artifacts/8876-24gb-projected-grace/source/tests/test_prompt_lookup_consensus.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_prompt_lookup_consensus.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_prompt_lookup_consensus.cpp	2026-10-19 01:26:22.300555408 +0800
+@@ -0,0 +1,36 @@
++#define NINFER_QWEN36_RUNTIME_NS consensus_test_runtime
++#include "targets/qwen3_6/impl/runtime/prompt_lookup.h"
++#include <cassert>
++#include <iostream>
++#include <vector>
++using namespace ninfer::targets::qwen3_6::detail::consensus_test_runtime;
++using V=std::vector<ninfer::TokenId>;
++void append(V& x,const V& v){x.insert(x.end(),v.begin(),v.end());}
++int main(int argc,char**argv){
++ if(argc==2){
++  bool rejected=false,value=false;
++  try{value=prompt_lookup_n5_consensus_enabled();}catch(const std::invalid_argument&){rejected=true;}
++  const std::string mode=argv[1];assert(rejected==(mode=="invalid"));if(!rejected)assert(value==(mode=="1"));
++  if(mode=="1"){assert(use_prompt_lookup_n5_priority(3,false,0.f));assert(!use_prompt_lookup_n5_priority(3,false,1.f));assert(!use_prompt_lookup_n5_priority(3,true,0.f));assert(!use_prompt_lookup_n5_priority(5,false,0.f));}
++  return 0;
++ }
++ const V a{101,102,103,104,105},p{7,8,9,10,11},bad{17,18,19,20,21};
++ V one=a;append(one,p);one.push_back(900);append(one,a);
++ assert(find_prompt_lookup_n5_draft(one,3).count==3);
++ assert(find_prompt_lookup_n5_consensus_draft(one,3).count==0);
++ V agree=a;append(agree,p);agree.push_back(900);append(agree,a);append(agree,p);agree.push_back(901);append(agree,a);
++ for(unsigned limit:{1u,2u,3u,5u,9u}){auto d=find_prompt_lookup_n5_consensus_draft(agree,limit);assert(d.count==std::min(limit,5u));for(unsigned i=0;i<d.count;++i)assert(d.tokens[i]==p[i]);}
++ assert(find_prompt_lookup_n5_consensus_draft(agree,0).count==0);
++ V disagree=a;append(disagree,p);disagree.push_back(900);append(disagree,a);append(disagree,bad);disagree.push_back(901);append(disagree,a);
++ assert(find_prompt_lookup_n5_consensus_draft(disagree,3).count==0);
++ V older=a;append(older,bad);older.push_back(902);append(older,agree);auto d=find_prompt_lookup_n5_consensus_draft(older,3);assert(d.count==3&&d.tokens[0]==7&&d.tokens[2]==9);
++ V older_agrees=a;append(older_agrees,bad);older_agrees.push_back(902);append(older_agrees,disagree);assert(find_prompt_lookup_n5_consensus_draft(older_agrees,3).count==0);
++ for(unsigned n=0;n<10;++n)assert(find_prompt_lookup_n5_consensus_draft(V(n,1),3).count==0);
++ auto repeat=find_prompt_lookup_n5_consensus_draft(V(32,4),3);assert(repeat.count==3&&repeat.tokens[0]==4&&repeat.tokens[2]==4);
++ V long_input(8192,777);append(long_input,agree);auto l=find_prompt_lookup_n5_consensus_draft(long_input,3);assert(l.count==3&&l.tokens[0]==7&&l.tokens[2]==9);
++ assert(!parse_prompt_lookup_n5_consensus(nullptr));assert(!parse_prompt_lookup_n5_consensus("0"));assert(parse_prompt_lookup_n5_consensus("1"));
++ for(auto value:{"","2","true","01"," 1","1x"}){bool bad_flag=false;try{(void)parse_prompt_lookup_n5_consensus(value);}catch(const std::invalid_argument&){bad_flag=true;}assert(bad_flag);}
++ validate_prompt_lookup_n5_consensus(false,5,false,true,true);validate_prompt_lookup_n5_consensus(true,3,true,false,false);
++ for(int which=0;which<4;++which){bool error=false;try{validate_prompt_lookup_n5_consensus(true,which==0?5:3,which!=1,which==2,which==3);}catch(const std::invalid_argument&){error=true;}assert(error);}
++ std::cout<<"consensus contracts PASS\n";
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_prompt_lookup_yield.cpp artifacts/8876-24gb-projected-grace/source/tests/test_prompt_lookup_yield.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_prompt_lookup_yield.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_prompt_lookup_yield.cpp	2026-10-19 03:32:42.720574063 +0800
+@@ -0,0 +1,22 @@
++#define NINFER_QWEN36_RUNTIME_NS yield_test_runtime
++#include "targets/qwen3_6/impl/runtime/prompt_lookup_yield.h"
++#include <iostream>
++#include <string>
++#include <vector>
++#include <numeric>
++using namespace ninfer::targets::qwen3_6::detail::yield_test_runtime;
++void need(bool value){if(!value)throw std::runtime_error("lookup yield contract failed");}
++int main(int argc,char**argv){try{
++ if(argc==2){std::string mode=argv[1];bool invalid=false,value=false;try{value=prompt_lookup_n5_low_yield_enabled();}catch(const std::invalid_argument&){invalid=true;}need(invalid==(mode=="invalid"));if(!invalid)need(value==(mode=="1"));return 0;}
++ need(!parse_prompt_lookup_n5_low_yield(nullptr)&&!parse_prompt_lookup_n5_low_yield("0")&&parse_prompt_lookup_n5_low_yield("1"));
++ for(auto s:{"","01","2","true"," 1"}){bool bad=false;try{parse_prompt_lookup_n5_low_yield(s);}catch(const std::invalid_argument&){bad=true;}need(bad);}
++ for(int low=0;low<2;++low)for(int consensus=0;consensus<2;++consensus){bool bad=false;try{validate_prompt_lookup_yield_mode(low,consensus);}catch(const std::invalid_argument&){bad=true;}need(bad==bool(low&&!consensus));}
++ PromptLookupYieldHistory h;need(!h.eligible()&&h.samples()==0&&h.accepted_sum()==0);
++ for(int i=0;i<7;++i){h.record(1,false,3);need(!h.eligible());}h.record(1,false,3);need(h.eligible()&&h.accepted_sum()==8);
++ h.record(3,true,3);need(h.eligible()&&h.samples()==8&&h.accepted_sum()==8);h.record(2,true,3);need(!h.eligible()&&h.samples()==0);
++ for(int i=0;i<8;++i)h.record(1,false,3);h.record(2,false,3);need(!h.eligible()&&h.accepted_sum()==9);
++ for(auto c:{std::array<unsigned,3>{4,0,3},std::array<unsigned,3>{1,1,0},std::array<unsigned,3>{2,1,1},std::array<unsigned,3>{0,0,4}}){auto count=h.samples(),sum=h.accepted_sum();bool bad=false;try{h.record(c[0],bool(c[1]),c[2]);}catch(const std::invalid_argument&){bad=true;}need(bad&&h.samples()==count&&h.accepted_sum()==sum);}
++ h.reset();need(h.samples()==0&&!h.eligible());std::vector<unsigned> chronological;unsigned random=20261019;
++ for(unsigned i=0;i<4096;++i){random=random*1664525+1013904223;unsigned accepted=(random>>12)&3;bool override=(random&7)==0;h.record(accepted,override,3);if(override){if(accepted<3)chronological.clear();}else{chronological.push_back(accepted);if(chronological.size()>8)chronological.erase(chronological.begin());}unsigned sum=std::accumulate(chronological.begin(),chronological.end(),0u);need(h.samples()==chronological.size()&&h.accepted_sum()==sum&&h.eligible()==(chronological.size()==8&&sum<=8));}
++ PromptLookupYieldHistory other;need(other.samples()==0);h.reset();need(h.samples()==0&&!h.eligible());std::cout<<"low-yield lookup immutable-invalid/window/reset/feedback contracts PASS\n";return 0;
++}catch(const std::exception&e){std::cerr<<e.what()<<'\n';return 1;}}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_q4_draft_head_t16_policy.cpp artifacts/8876-24gb-projected-grace/source/tests/test_q4_draft_head_t16_policy.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_q4_draft_head_t16_policy.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_q4_draft_head_t16_policy.cpp	2026-10-19 07:05:09.728902422 +0800
+@@ -0,0 +1,32 @@
++#include "ops/linear/q4/q4_draft_head_t16_policy.h"
++#include "ops/linear/q4/q4_dispatch.h"
++#include <array>
++#include <climits>
++#include <iostream>
++#include <string_view>
++using namespace ninfer::ops::detail;
++namespace {
++void need(bool ok,const char* why){if(!ok)throw std::runtime_error(why);}
++template<class F>void rejects(F f){bool bad=false;try{f();}catch(const std::invalid_argument&){bad=true;}need(bad,"expected invalid argument");}
++}
++int main(int argc,char** argv){try{
++    const std::string_view mode=argc>1?argv[1]:"default";
++    if(mode=="invalid"){
++        rejects([]{(void)select_q4_a16_launch(131072,5120,1);});
++        return 0;
++    }
++    const bool enabled=mode=="1";
++    need(q4_draft_head_t16_enabled()==enabled,"resolved opt-in flag");
++    need(!parse_q4_draft_head_t16(nullptr)&&!parse_q4_draft_head_t16("0")&&parse_q4_draft_head_t16("1"),"strict flag values");
++    for(auto value:{"","2","true","01"," 1","1 "})rejects([&]{(void)parse_q4_draft_head_t16(value);});
++    for(int t=1;t<=8;++t)need(select_q4_a16_launch(131072,5120,t)==launch_q4_draft_head_small_t,"existing small-T route");
++    for(int t=9;t<=16;++t)need(select_q4_a16_launch(131072,5120,t)==(enabled?launch_q4_draft_head_small_t:launch_q4_mma_r64_c128),"exact extended route");
++    for(int t:{17,32,64,128})need(select_q4_a16_launch(131072,5120,t)==launch_q4_mma_r64_c128,"larger T stays existing route");
++    need(select_q4_a16_launch(131072,2048,16)==launch_q4_draft_head_small_t,"other head geometry route");
++    need(select_q4_a16_launch(6144,5120,16)==launch_q4_simt_r8_c8,"other projection route");
++    for(int t:{INT_MIN,0,1,8,17,INT_MAX})need(!q4_draft_head_t16_shape(131072,5120,t,true),"bounded extension");
++    need(!q4_draft_head_t16_shape(34816,5120,16,true)&&!q4_draft_head_t16_shape(131072,2048,16,true)&&!q4_draft_head_t16_shape(131072,5120,16,false),"exact geometry opt-in");
++    rejects([]{(void)select_q4_a16_launch(131072,5120,0);});
++    std::cout<<"Q4 head small-T dispatch and strict opt-in PASS\n";
++    return 0;
++}catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_slo_expired_completion_soft_pf.cpp artifacts/8876-24gb-projected-grace/source/tests/test_slo_expired_completion_soft_pf.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_slo_expired_completion_soft_pf.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_slo_expired_completion_soft_pf.cpp	2026-10-19 01:03:51.038748322 +0800
+@@ -0,0 +1,161 @@
++#include "runtime/engine/slo_expired_completion_soft_pf.h"
++#include "runtime/engine/slo_bounded_decode_membership.h"
++
++#include <cassert>
++#include <iostream>
++#include <vector>
++
++namespace {
++using namespace ninfer::runtime;
++constexpr double now = 10000;
++constexpr BatchCostBin cost{40, 2, 1};
++constexpr double nan = std::numeric_limits<double>::quiet_NaN();
++constexpr double inf = std::numeric_limits<double>::infinity();
++const std::vector<PrefillDemandView> queue{{12000, 1000}};
++const std::vector<CompletionBudgetView> rows{{6040, 90, 10, 0}, {8040, 90, 10, 0}};
++
++bool allow(const std::vector<CompletionBudgetView>& r,
++           const std::vector<PrefillDemandView>& q = queue, BatchCostBin bin = cost,
++           double time = now, double chunk = 200,
++           const ExpiredCompletionSoftPfCadence& cadence = {}) {
++    const auto original = choose_fcfs_completion_unit(time, q, chunk, bin, 40, r);
++    return allow_expired_completion_soft_pf(true, original, time, q, chunk, bin, r, cadence);
++}
++
++void contracts() {
++    const auto original = choose_fcfs_completion_unit(now, queue, 200, cost, 40, rows);
++    assert(original == CompletionChoice::Decode);
++    assert(allow(rows)); // now == first + 99*40 is genuinely elapsed.
++    auto changed = rows;
++    changed[0].first_token_ms += .001;
++    assert(!allow(changed)); // Negative forecast laxity, but deadline not elapsed.
++    changed = rows;
++    changed[0].first_token_ms -= .001;
++    assert(allow(changed));
++    changed = rows;
++    changed[1].first_token_ms = 6040;
++    assert(!allow(changed)); // ALL overdue: never turn an empty min into +infinity.
++    changed = rows;
++    changed[0] = changed[1];
++    assert(!allow(changed)); // No overdue: preserve original choice.
++    changed = rows;
++    changed[1].first_token_ms = 7000;
++    assert(!allow(changed)); // Unexpired can spare200, but filtered comparison still Decode.
++    changed[1].first_token_ms = 6400;
++    assert(!allow(changed)); // Unexpired cannot spare the chunk.
++
++    for (double slack : {-10., 0., 40.}) {
++        const std::vector<PrefillDemandView> hard{{now + 1000 + slack, 1000}};
++        const auto old = choose_fcfs_completion_unit(now, hard, 200, cost, 40, rows);
++        assert(old == CompletionChoice::PrefillDeadlineConflict);
++        assert(!allow(rows, hard));
++    }
++    // A later tight predecessor remains in the PF prefix; do not use just the head.
++    assert(!allow(rows, {{12000, 1000}, {12040, 1000}}));
++    assert(!allow(rows, {}));
++    assert(!allow({}));
++    assert(!allow(rows, queue, {40, 2, 0}));
++    for (double bad : {nan, inf, -inf, -1., 0.}) {
++        assert(!allow(rows, queue, {bad, 2, 1}));
++        assert(!allow(rows, queue, {40, bad, 1}));
++        assert(!allow(rows, queue, cost, now, bad));
++    }
++    for (double bad : {nan, inf, -inf, -1.}) {
++        assert(!allow(rows, queue, cost, bad));
++    }
++    assert(!allow(rows, queue, cost, now, 1001));
++    assert(!allow(rows, {{nan, 1000}}));
++    assert(!allow(rows, {{12000, inf}}));
++    assert(!allow(rows, {{12000, -1}}));
++    assert(!allow(rows, {{12000, 1000}, {inf, 1000}}));
++    for (double bad : {nan, inf, -inf, -1., now + 1}) {
++        changed = rows;
++        changed[1].first_token_ms = bad;
++        assert(!allow(changed));
++    }
++    changed = rows;
++    changed[0].committed_tokens = 0;
++    assert(!allow(changed));
++    changed = rows;
++    changed[0].remaining_tokens = 0;
++    assert(!allow(changed));
++    changed = rows;
++    changed[0].remaining_tokens = std::numeric_limits<unsigned>::max();
++    assert(!allow(changed));
++    changed = rows;
++    changed[1].first_token_ms = 7400;
++    assert(allow(changed));
++    changed[1].committed_decode_rounds = 1000;
++    assert(!allow(changed)); // Preserve own-yield max, do not just use batch yield.
++    assert(!allow_expired_completion_soft_pf(false, original, now, queue, 200, cost, rows, {}));
++    assert(!allow_expired_completion_soft_pf(false, original, nan, {}, nan, {}, {}, {}));
++    assert(!allow_expired_completion_soft_pf(true, CompletionChoice::Prefill, now, queue,
++                                           200, cost, rows, {}));
++
++    ExpiredCompletionSoftPfCadence cadence;
++    assert(cadence.available());
++    assert(allow(rows, queue, cost, now, 200, cadence));
++    assert(cadence.available()); // A pure proposal cannot consume a credit.
++    cadence.record_completed_prefill(true, 0); // cancelled/control-only admission.
++    cadence.record_completed_prefill(false, 2048); // ordinary/hard PF.
++    assert(cadence.available());
++    cadence.record_completed_prefill(true, 2048);
++    assert(!cadence.available());
++    assert(!allow(rows, queue, cost, now, 200, cadence));
++    cadence.record_completed_prefill(false, 2048);
++    cadence.record_completed_prefill(true, 2048);
++    cadence.record_completed_decode(0); // empty/all-cancelled round.
++    assert(!cadence.available());
++    assert(!allow(rows, queue, cost, now, 200, cadence));
++    cadence.record_completed_decode(1); // actual committed, noncancelled token.
++    assert(cadence.available());
++    assert(allow(rows, queue, cost, now, 200, cadence));
++
++    // Existing bounded ranking cannot omit an actually overdue row: omitted
++    // rows must have positive reserve. No membership policy change is necessary.
++    std::vector<BoundedDecodeView> views;
++    for (unsigned i = 0; i < 14; ++i) {
++        views.push_back({i, i == 13 ? rows[0] : rows[1], true});
++    }
++    const auto subset = choose_bounded_decode_membership(true, now, cost, views, {});
++    assert(subset.use_subset);
++    assert(std::find(subset.indices.begin(), subset.indices.end(), 13) != subset.indices.end());
++    for (unsigned i = 0; i < 10; ++i) { views[i].completion = rows[0]; }
++    assert(!choose_bounded_decode_membership(true, now, cost, views, {}).use_subset);
++}
++
++void set_flag(const char* value) {
++#ifdef _WIN32
++    assert(_putenv_s("NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF", value ? value : "") == 0);
++#else
++    if (value) { assert(setenv("NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF", value, 1) == 0); }
++    else { assert(unsetenv("NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF") == 0); }
++#endif
++}
++} // namespace
++
++int main(int argc, char** argv) {
++    using namespace ninfer::runtime;
++    if (argc > 1 && std::string_view(argv[1]) == "invalid") {
++        for (const char* bad : {"", "2", "-1", "1 ", "true", "nan"}) {
++            bool rejected = false;
++            try { (void)parse_expired_completion_soft_pf(bad); }
++            catch (const std::invalid_argument&) { rejected = true; }
++            assert(rejected);
++        }
++        set_flag("invalid");
++        bool rejected = false;
++        try { (void)expired_completion_soft_pf_enabled(); }
++        catch (const std::invalid_argument&) { rejected = true; }
++        assert(rejected);
++    } else {
++        const char* value = argc > 1 ? argv[1] : nullptr;
++        set_flag(value);
++        const bool expected = value && std::string_view(value) == "1";
++        assert(expired_completion_soft_pf_enabled() == expected);
++        set_flag(expected ? "0" : "1");
++        assert(expired_completion_soft_pf_enabled() == expected); // process frozen.
++        contracts();
++    }
++    std::cout << "expired completion soft PF CPU contracts PASS\n";
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_slo_expired_prefill_grace.cpp artifacts/8876-24gb-projected-grace/source/tests/test_slo_expired_prefill_grace.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_slo_expired_prefill_grace.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_slo_expired_prefill_grace.cpp	2026-10-19 07:53:34.179181262 +0800
+@@ -0,0 +1,36 @@
++#include "runtime/engine/slo_expired_prefill_grace.h"
++#include "runtime/engine/slo_prefill_queue_policy.h"
++#include <array>
++#include <iostream>
++using namespace ninfer::runtime;
++void need(bool b,const char*m){if(!b)throw std::runtime_error(m);}
++template<class F>void rejects(F f){bool caught=false;try{f();}catch(const std::invalid_argument&){caught=true;}need(caught,"expected invalid argument");}
++void cases(){
++ need(!parse_expired_prefill_grace(nullptr)&&!parse_expired_prefill_grace("0")&&parse_expired_prefill_grace("1"),"strict booleans");
++ for(auto p:{"", "true", "2", " 1", "1 "})rejects([&]{parse_expired_prefill_grace(p);});
++ for(double now:{9999.,10000.,10001.,19999.,20000.,20001.}){
++  double want=now>=10000&&now<20000?20000:10000;
++  need(expired_prefill_scheduling_deadline(true,now,10000)==want,"bounded absolute window");
++  need(expired_prefill_scheduling_deadline(false,now,10000)==10000,"OFF exact");
++  need(expired_prefill_scheduling_deadline(true,now+2e10,10000+2e10)==want+2e10,"monotonic translation");
++ }
++ for(double bad:{-1.,double(NAN),double(INFINITY)}){
++  need(expired_prefill_scheduling_deadline(true,bad,10000)==10000,"invalid clock preserves original");
++  double got=expired_prefill_scheduling_deadline(true,10050,bad);need(std::isnan(bad)?std::isnan(got):got==bad,"invalid deadline preserved");
++ }
++ std::array<PrefillDemandView,2> original{{{10000,1000},{10000,1000}}};auto late=original;
++ for(auto&p:late)p.deadline_ms=expired_prefill_scheduling_deadline(true,10050,p.deadline_ms);
++ need(original[0].deadline_ms==10000&&original[1].deadline_ms==10000,"original demands immutable");
++ BatchCostBin bin{50,3,1};std::array<CompletionBudgetView,1>d{{{0,100,412,33}}};
++ // Independent: original latest-start8000, graced18000; completion laxity3490.
++ need(fcfs_prefill_boundary(original).latest_start_ms==8000&&fcfs_prefill_boundary(late).latest_start_ms==18000,"FCFS arithmetic");
++ need(choose_fcfs_completion_unit(10050,original,250,bin,40,d)==CompletionChoice::Prefill,"baseline hard PF");
++ need(choose_fcfs_completion_unit(10050,late,250,bin,40,d)==CompletionChoice::Decode,"grace licenses full decode");
++ auto mixed=original;mixed[1].deadline_ms=13000;for(auto&p:mixed)p.deadline_ms=expired_prefill_scheduling_deadline(true,10050,p.deadline_ms);
++ need(mixed[0].deadline_ms==20000&&mixed[1].deadline_ms==13000&&fcfs_prefill_boundary(mixed).latest_start_ms==11000,"fresh successor retains deadline/order/work");
++ auto old=original;for(auto&p:old)p.deadline_ms=expired_prefill_scheduling_deadline(true,20000,p.deadline_ms);
++ need(choose_fcfs_completion_unit(20000,old,250,bin,40,d)==CompletionChoice::PrefillDeadlineConflict,"PF forced after one window");
++ need(choose_fcfs_completion_unit(10050,late,250,bin,40,d,false)==CompletionChoice::Decode,"no admission slot cannot license PF");
++ validate_expired_prefill_grace(false,false);validate_expired_prefill_grace(false,true);validate_expired_prefill_grace(true,true);rejects([]{validate_expired_prefill_grace(true,false);});
++}
++int main(int argc,char**argv){try{if(argc>1){std::string m=argv[1];if(m=="invalid")rejects([]{(void)expired_prefill_grace_enabled();});else need(expired_prefill_grace_enabled()==(m=="1"),"environment parser");}else cases();return 0;}catch(const std::exception&e){std::cerr<<e.what()<<'\n';return 1;}}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_slo_projected_prefill_grace.cpp artifacts/8876-24gb-projected-grace/source/tests/test_slo_projected_prefill_grace.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_slo_projected_prefill_grace.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_slo_projected_prefill_grace.cpp	2026-10-19 08:48:10.407711519 +0800
+@@ -0,0 +1,94 @@
++#include "runtime/engine/slo_projected_prefill_grace.h"
++#include "runtime/engine/slo_expired_prefill_grace.h"
++#include "runtime/engine/slo_prefill_queue_policy.h"
++#include <array>
++#include <iostream>
++
++using namespace ninfer::runtime;
++void need(bool ok, const char* message) {
++    if (!ok) { throw std::runtime_error(message); }
++}
++template<class F> void rejects(F f) {
++    bool caught = false;
++    try { f(); } catch (const std::invalid_argument&) { caught = true; }
++    need(caught, "expected invalid argument");
++}
++void cases() {
++    need(!parse_projected_prefill_grace(nullptr) && !parse_projected_prefill_grace("0") &&
++         parse_projected_prefill_grace("1"), "strict flags");
++    for (auto text : {"", "true", "2", " 1", "1 "}) {
++        rejects([&] { parse_projected_prefill_grace(text); });
++    }
++    for (double shift : {0., 2e10}) {
++        for (double work : {0., 900., 1050., 1051., 5000.}) {
++            const double want = (work > 1050 ? 19900. : 9900.) + shift;
++            need(projected_prefill_scheduling_deadline(true, 9000+shift, 9900+shift,
++                                                       work, 150) == want,
++                 "external equality, reserve and translation");
++            need(projected_prefill_scheduling_deadline(false, 9000+shift, 9900+shift,
++                                                       work, 150) == 9900+shift,
++                 "OFF preserves original");
++        }
++    }
++    for (double bad : {-1., double(NAN), double(INFINITY)}) {
++        need(projected_prefill_scheduling_deadline(true,bad,9900,2000,150)==9900,
++             "invalid now");
++        need(projected_prefill_scheduling_deadline(true,9000,9900,bad,150)==9900,
++             "invalid work");
++        need(projected_prefill_scheduling_deadline(true,9000,9900,2000,bad)==9900,
++             "invalid margin");
++        const double value=projected_prefill_scheduling_deadline(true,9000,bad,2000,150);
++        need(std::isnan(bad) ? std::isnan(value) : value==bad, "invalid original");
++    }
++    need(projected_prefill_scheduling_deadline(true,1e308,1.5e308,1e308,150)==1.5e308,
++         "overflow does not grant grace");
++    for (double now : {9900.,10000.,19899.,19900.,20000.}) {
++        need(projected_prefill_scheduling_deadline(true,now,9900,2000,150)==9900,
++             "projected policy cannot renew expired window");
++        const double want=now<19900 ? 19900 : 9900;
++        need(std::max(projected_prefill_scheduling_deadline(true,now,9900,2000,150),
++                      expired_prefill_scheduling_deadline(true,now,9900))==want,
++             "combined one absolute window");
++    }
++    const std::array<PrefillDemandView,2> original{{{9900,500},{9900,1500}}};
++    auto adjusted=original;
++    double cumulative=0;
++    for (auto& row : adjusted) {
++        cumulative+=row.remaining_ms;
++        row.deadline_ms=projected_prefill_scheduling_deadline(true,9000,row.deadline_ms,
++                                                             cumulative,150);
++    }
++    need(original[1].deadline_ms==9900 && adjusted[0].deadline_ms==9900 &&
++         adjusted[1].deadline_ms==19900, "only projected-missed successor changes");
++    need(adjusted[0].remaining_ms==500 && adjusted[1].remaining_ms==1500,
++         "all FCFS work preserved");
++    need(fcfs_prefill_boundary(original).latest_start_ms==7900 &&
++         fcfs_prefill_boundary(adjusted).latest_start_ms==9400, "independent FCFS arithmetic");
++    const BatchCostBin bin{80,3,1};
++    const std::array<CompletionBudgetView,1> decodes{{{0,100,412,33}}};
++    need(choose_fcfs_completion_unit(9000,original,200,bin,40,decodes)==CompletionChoice::Prefill,
++         "original hard PF");
++    need(choose_fcfs_completion_unit(9000,adjusted,200,bin,40,decodes)==CompletionChoice::Decode,
++         "projected queue allows decode");
++    need(choose_fcfs_completion_unit(9000,adjusted,200,bin,40,decodes,false)==CompletionChoice::Decode,
++         "no admission slot cannot license PF");
++    validate_projected_prefill_grace(false,false,false);
++    validate_projected_prefill_grace(true,true,true);
++    rejects([] { validate_projected_prefill_grace(true,false,true); });
++    rejects([] { validate_projected_prefill_grace(true,true,false); });
++}
++int main(int argc, char** argv) {
++    try {
++        if (argc==1) { cases(); }
++        else if (std::string_view(argv[1])=="invalid") {
++            rejects([] { (void)projected_prefill_grace_enabled(); });
++        } else {
++            need(projected_prefill_grace_enabled()==(std::string_view(argv[1])=="1"),
++                 "environment parser");
++        }
++        return 0;
++    } catch (const std::exception& e) {
++        std::cerr << e.what() << '\n';
++        return 1;
++    }
++}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_slo_tpot_recovery.cpp artifacts/8876-24gb-projected-grace/source/tests/test_slo_tpot_recovery.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_slo_tpot_recovery.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_slo_tpot_recovery.cpp	2026-10-19 05:35:53.355963333 +0800
+@@ -0,0 +1,41 @@
++#include "runtime/engine/slo_tpot_recovery.h"
++#include <array>
++#include <climits>
++#include <iostream>
++
++using namespace ninfer::runtime;
++namespace {
++void need(bool b,const char* m){if(!b)throw std::runtime_error(m);}
++template<class F>void rejects(F f){bool threw=false;try{f();}catch(const std::invalid_argument&){threw=true;}need(threw,"expected invalid argument");}
++auto fixture(){std::array<BoundedDecodeView,16> rows{};for(unsigned i=0;i<16;++i)rows[i]={i,{0,256,256,85},true};return rows;}
++void cases(){
++ BatchCostBin full{52,3,8},small{39.5,3,8};BoundedDecodeCadence cadence;
++ auto rows=fixture();auto pick=[&](auto& data,double now=13000.){return choose_tpot_recovery_membership(true,now,full,small,data,cadence);};
++ // Independent arithmetic: R=ceil(256/(255/85))=86. Full17.472s,
++ // priority17.1136667s and omitted19.1705s all within20.440s.
++ auto s=pick(rows);need(s.use_subset,"risk fixture must recover");need(s.indices==std::array<std::size_t,5>{0,1,2,3,4},"stable lane tie/order");
++ auto reverse=rows;std::reverse(reverse.begin(),reverse.end());s=pick(reverse);need(s.use_subset&&s.indices==std::array<std::size_t,5>{11,12,13,14,15},"original snapshot index mapping");
++ auto translated=rows;for(auto& r:translated)r.completion.first_token_ms=2e10;s=pick(translated,2e10+13000);need(s.use_subset&&s.indices==std::array<std::size_t,5>{0,1,2,3,4},"monotonic translation");
++ need(!pick(rows,10000).use_subset,"healthy forecast");need(!pick(rows,25000).use_subset,"expired/infeasible priority");
++ need(!choose_tpot_recovery_membership(false,13000,full,small,rows,cadence).use_subset,"disabled");
++ auto guarded=rows;for(unsigned i=0;i<6;++i)guarded[i].completion={0,192,320,64};
++ // Six rows: full18.616s still feasible; omitted20.749s would fail.
++ need(!pick(guarded).use_subset,"sixth omitted feasible row must be protected");
++ auto hopeless=rows;hopeless[0].completion={0,64,448,32};s=pick(hopeless);need(s.use_subset&&s.indices==std::array<std::size_t,5>{1,2,3,4,5},"infeasible row retained for full services");
++ cadence.record_completed_decode(true);need(cadence.full_rounds_due()==2,"two full services owed");
++ for(int i=0;i<3;++i)need(!pick(hopeless).use_subset,"selection alone must not consume cadence");
++ cadence.record_completed_decode(false);need(!pick(hopeless).use_subset&&cadence.full_rounds_due()==1,"first full service");
++ cadence.record_completed_decode(false);need(pick(hopeless).use_subset&&cadence.full_rounds_due()==0,"second full service");
++ auto newborn=rows;for(auto& r:newborn)r.completion={0,32,480,8};need(!pick(newborn).use_subset,"immature rows");
++ auto ending=rows;for(auto& r:ending)r.completion={0,480,32,160};need(!pick(ending).use_subset,"near-end rows");
++ for(auto n:{1u,2u,5u,9u})need(!choose_tpot_recovery_membership(true,13000,full,small,std::span(rows).first(n),cadence).use_subset,"small native/full ready set");
++ std::array<BoundedDecodeView,17> oversized{};need(!choose_tpot_recovery_membership(true,13000,full,small,oversized,cadence).use_subset,"oversized snapshot");
++ for(int bad=0;bad<9;++bad){auto data=rows;switch(bad){case 0:data[1].lane=data[0].lane;break;case 1:data[0].lane=16;break;case 2:data[0].live=false;break;case 3:data[0].completion.remaining_tokens=0;break;case 4:data[0].completion.first_token_ms=13001;break;case 5:data[0].completion.first_token_ms=NAN;break;case 6:data[0].completion.first_token_ms=-1;break;case 7:data[0].completion.remaining_tokens=UINT_MAX;break;case 8:data[0].completion.committed_decode_rounds=1;break;}need(!pick(data).use_subset,"invalid snapshot must use full");}
++ for(double now:std::array<double,3>{-1.,double(NAN),double(INFINITY)})need(!pick(rows,now).use_subset,"invalid current clock");
++ auto good_full=full,good_small=small;
++ for(int bad=0;bad<6;++bad){full=good_full;small=good_small;switch(bad){case 0:full.observations=0;break;case 1:small.observations=0;break;case 2:small.round_ms=full.round_ms;break;case 3:small.round_ms=0;break;case 4:full.round_ms=NAN;break;case 5:small.round_ms=INFINITY;break;}need(!pick(rows).use_subset,"invalid/unobserved cost");}full=good_full;small=good_small;
++ validate_tpot_recovery(true,true,true,3,16,true,false,false);validate_tpot_recovery(true,true,true,3,2,true,false,false);validate_tpot_recovery(false,false,false,0,0,false,true,true);
++ rejects([]{validate_tpot_recovery(true,false,true,3,16,true,false,false);});rejects([]{validate_tpot_recovery(true,true,false,3,16,true,false,false);});rejects([]{validate_tpot_recovery(true,true,true,2,16,true,false,false);});rejects([]{validate_tpot_recovery(true,true,true,3,0,true,false,false);});rejects([]{validate_tpot_recovery(true,true,true,3,17,true,false,false);});rejects([]{validate_tpot_recovery(true,true,true,3,16,false,false,false);});rejects([]{validate_tpot_recovery(true,true,true,3,16,true,true,false);});rejects([]{validate_tpot_recovery(true,true,true,3,16,true,false,true);});
++}
++}
++int main(int argc,char** argv){try{if(argc>1){std::string mode=argv[1];if(mode=="invalid")rejects([]{(void)tpot_recovery_enabled();});else need(tpot_recovery_enabled()==(mode=="1"),"environment parser");return 0;}cases();std::cout<<"TPOT recovery independent forecast/budget/snapshot/cadence checks PASS\n";return 0;}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}
+diff -ru -N '--exclude=*.orig' artifacts/8876-24gb-kit100/source/tests/test_slo_unexpired_decode_priority.cpp artifacts/8876-24gb-projected-grace/source/tests/test_slo_unexpired_decode_priority.cpp
+--- artifacts/8876-24gb-kit100/source/tests/test_slo_unexpired_decode_priority.cpp	1970-01-01 08:00:00.000000000 +0800
++++ artifacts/8876-24gb-projected-grace/source/tests/test_slo_unexpired_decode_priority.cpp	2026-10-19 01:44:09.108939854 +0800
+@@ -0,0 +1,21 @@
++#include "runtime/engine/slo_unexpired_decode_priority.h"
++#include <cassert>
++#include <iostream>
++#include <vector>
++using namespace ninfer::runtime;
++using Rows=std::vector<BoundedDecodeView>;
++int main(int argc,char**argv){
++ if(argc==2){bool invalid=false,value=false;try{value=unexpired_decode_priority_enabled();}catch(const std::invalid_argument&){invalid=true;}std::string a=argv[1];assert(invalid==(a=="invalid"));if(!invalid)assert(value==(a=="1"));return 0;}
++ const double now=10000;Rows rows{{3,{6040,90,10,0},true},{1,{6040.001,90,10,0},true},{8,{8040,90,10,0},true}};
++ UnexpiredDecodeCadence c;auto d=choose_unexpired_decode_membership(true,now,rows,c);assert(d.use_subset&&d.size==2&&d.indices[0]==1&&d.indices[1]==2);
++ for(int i=0;i<3;++i){assert(choose_unexpired_decode_membership(true,now,rows,c).use_subset);c.record_completed_decode(true,0);assert(c.subsets_completed()==unsigned(i));c.record_completed_decode(true,1);}
++ assert(c.subsets_completed()==3&&!choose_unexpired_decode_membership(true,now,rows,c).use_subset);c.record_completed_decode(false,0);assert(c.subsets_completed()==3);c.record_completed_decode(false,1);assert(c.subsets_completed()==0&&choose_unexpired_decode_membership(true,now,rows,c).use_subset);
++ auto all=rows;all[0].completion.first_token_ms=8040;assert(!choose_unexpired_decode_membership(true,now,all,c).use_subset);all=rows;for(auto&r:all)r.completion.first_token_ms=6040;assert(!choose_unexpired_decode_membership(true,now,all,c).use_subset);
++ assert(!choose_unexpired_decode_membership(false,now,rows,c).use_subset);assert(!choose_unexpired_decode_membership(true,now,{},c).use_subset);assert(!choose_unexpired_decode_membership(true,now,Rows{rows[0]},c).use_subset);
++ Rows max;for(unsigned i=0;i<16;++i)max.push_back({i,{i%2?8040.:6040.,90,10,0},true});d=choose_unexpired_decode_membership(true,now,max,c);assert(d.use_subset&&d.size==8);for(unsigned i=0;i<8;++i)assert(d.indices[i]==2*i+1);max.push_back({16,{8040,90,10,0},true});assert(!choose_unexpired_decode_membership(true,now,max,c).use_subset);
++ for(double t:{-1.,std::numeric_limits<double>::quiet_NaN(),std::numeric_limits<double>::infinity()})assert(!choose_unexpired_decode_membership(true,t,rows,c).use_subset);
++ for(int which=0;which<9;++which){auto bad=rows;auto&r=bad[0];switch(which){case 0:r.live=false;break;case 1:r.lane=16;break;case 2:r.lane=1;break;case 3:r.completion.committed_tokens=0;break;case 4:r.completion.remaining_tokens=0;break;case 5:r.completion.first_token_ms=now+1;break;case 6:r.completion.first_token_ms=-1;break;case 7:r.completion.first_token_ms=std::numeric_limits<double>::quiet_NaN();break;case 8:r.completion.remaining_tokens=std::numeric_limits<unsigned>::max();break;}assert(!choose_unexpired_decode_membership(true,now,bad,c).use_subset);}
++ assert(!parse_unexpired_decode_priority(nullptr)&&!parse_unexpired_decode_priority("0")&&parse_unexpired_decode_priority("1"));for(auto v:{"","2","true","01"," 1"}){bool bad=false;try{(void)parse_unexpired_decode_priority(v);}catch(const std::invalid_argument&){bad=true;}assert(bad);}
++ validate_unexpired_decode_priority(false,false,false,8,32,true);validate_unexpired_decode_priority(true,true,true,3,16,false);for(int i=0;i<5;++i){bool bad=false;try{validate_unexpired_decode_priority(true,i!=0,i!=1,i==2?5:3,i==3?17:16,i==4);}catch(const std::invalid_argument&){bad=true;}assert(bad);}
++ std::cout<<"unexpired decode contracts PASS\n";
++}

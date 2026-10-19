@@ -1,0 +1,91 @@
+{
+  "auditor_sha256": "ddad073c072ae629549bb6b7da20c58a75c153fa4d85f35871910148fa51b411",
+  "frozen_cohort_sha256": "46efae98afa29367a2e288455341fcdd49a05975b2ea21dcfd08015f5d6c1824",
+  "status": "COMPLETE_INDEPENDENTLY_RECOMPUTED_100",
+  "samples": 100,
+  "instructions": 111,
+  "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+  "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+  "recipe_sha256": "0e842a40d79085d927b3013b2958694cd37878ddeb3f1c44988165b4e0aae12e",
+  "profile": {
+    "name": "quality100",
+    "mode": "accuracy",
+    "client_concurrency": 2,
+    "native_concurrency": 2,
+    "kv_capacity": 131072,
+    "kv_dtype": "int8",
+    "prefill_chunk": 2048
+  },
+  "metrics": {
+    "prompt_level_strict": {
+      "score": 0.87,
+      "numerator": 87,
+      "denominator": 100
+    },
+    "inst_level_strict": {
+      "score": 0.8828828828828829,
+      "numerator": 98,
+      "denominator": 111
+    },
+    "prompt_level_loose": {
+      "score": 0.91,
+      "numerator": 91,
+      "denominator": 100
+    },
+    "inst_level_loose": {
+      "score": 0.918918918918919,
+      "numerator": 102,
+      "denominator": 111
+    }
+  },
+  "errors": 0,
+  "native_started": 100,
+  "native_done": 100,
+  "all100cold": true,
+  "original_first100_metadata_all_match": true,
+  "original_verifier_recomputed_all100": true,
+  "all_native_scores_exact_match": true,
+  "empty_final": 0,
+  "reasoning_nonempty": 100,
+  "stop_reason_counts": {
+    "stop": 100
+  },
+  "native_finish_reason_counts": {
+    "stop_token": 100
+  },
+  "length_stops": 0,
+  "sampling_values": [
+    {
+      "frequency_penalty": 0.0,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "seed": 42,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.949999988079071
+    }
+  ],
+  "verifier_files": {
+    "ifbench_adapter.py": "89a231ff439a6e9eba7fc4af79d8edd20c08d11538fc961244593b3ffaa36001",
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "instructions.py": "88b2c712d3be581e9cd9331f4bdd5057c86d5442074e1866b938033f8a3c4d0f",
+    "evaluation_lib.py": "7f6c663b5f8226bb183d569bf16f505191b3d2c547219bca023aa2b974bae5ce",
+    "instructions_registry.py": "a8f7b9abcf96151c98ed581fd9336aab926ccfe427ac1b45ca30ac675ddbe7f9",
+    "instructions_util.py": "a3b3cc757ef218af66aa848fb0d895bbe4ffabeb227d099e1ffe92066fc39346"
+  },
+  "raw_identity": {
+    "predictions": {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/projected-prefill-grace-confirm-quality100/accuracy/native/predictions/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "44a5d79120a329c3a714ad4c6d438a227cefb7591008a7099dbfa77d000b61fe"
+    },
+    "reviews": {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/projected-prefill-grace-confirm-quality100/accuracy/native/reviews/qwen38-27b/ifbench_default.jsonl",
+      "sha256": "65655f531ea976f5e60521c8615aab0c339f136cd61bcf092d9a52cf6d54d7fe"
+    },
+    "native": {
+      "path": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/projected-prefill-grace-confirm-quality100/requests.jsonl",
+      "sha256": "a9e05eb4796473b83c886cd79d4459bff5f344c52b6fa69cd2a0723d4a7813dd"
+    }
+  },
+  "scope": "Own 8876 quality inference on selected performance binary and unchanged weight/KV/kernel/environment profile; original first100 and unmodified EvalScope1.13.0 verifier. All empty/length cases retained; no inherited score or model-wide quality guarantee."
+}

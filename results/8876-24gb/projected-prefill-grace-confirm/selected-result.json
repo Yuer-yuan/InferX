@@ -1,0 +1,150 @@
+{
+  "status": "QUALIFIED",
+  "completed_at": "2026-10-19T02:11:27.015648+00:00",
+  "machine": "8876",
+  "gpu": "one standard24GB RTX4090",
+  "gpu_uuid": "GPU-a66b08e8-8b65-0faf-22e2-b951a97b2b03",
+  "performance_contract": {
+    "client_concurrency": 16,
+    "native_concurrency": 16,
+    "input_tokens": 8192,
+    "output_tokens": 512,
+    "measured_per_run": 128,
+    "warmup_per_run": 8,
+    "probe_per_run": 1,
+    "ttft_p95_limit_ms": 10000,
+    "tpot_p95_limit_ms": 40
+  },
+  "performance": {
+    "status": "THREE_FORMAL_PERFORMANCE_PASSES",
+    "runs": [
+      {
+        "run": 1,
+        "seed": 20261016,
+        "ttft_p95_ms": 9888.90121305,
+        "tpot_p95_ms": 39.63768435636007,
+        "output_token_throughput": 332.86354636513926,
+        "all137cold": true,
+        "errors": 0,
+        "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+        "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+        "payload_canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+        "audit": "results/8876-24gb/projected-prefill-grace/independent-audit.json",
+        "audit_sha256": "eb72f6364e3499cede77b1a8c75c245a94b33f3fc26abad710413649764d4a5e",
+        "peak_GPU_used_MiB": 23539.0,
+        "minimum_GPU_free_MiB": 569.0
+      },
+      {
+        "run": 2,
+        "seed": 20261016,
+        "ttft_p95_ms": 9856.828430349999,
+        "tpot_p95_ms": 39.29192795068493,
+        "output_token_throughput": 329.71756672062793,
+        "all137cold": true,
+        "errors": 0,
+        "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+        "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+        "payload_canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+        "audit": "results/8876-24gb/projected-prefill-grace-confirm/independent-same128-r2-audit.json",
+        "audit_sha256": "a177b742eb9c9eef4a29f24ee995054e8889f29daa4628960489a252acc2603f",
+        "peak_GPU_used_MiB": 23539.0,
+        "minimum_GPU_free_MiB": 569.0
+      },
+      {
+        "run": 3,
+        "seed": 20261019,
+        "ttft_p95_ms": 9871.622180699998,
+        "tpot_p95_ms": 39.22175905567514,
+        "output_token_throughput": 333.41057673337224,
+        "all137cold": true,
+        "errors": 0,
+        "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+        "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+        "payload_canonical_sha256": "d2503dfdae4a9e7198faa0d1aa97af93817b0a02b078ff4d33013233259287a8",
+        "audit": "results/8876-24gb/projected-prefill-grace-confirm/independent-fresh128-20261019-r3-audit.json",
+        "audit_sha256": "28990044983e42fc7eba0e3a1b9e9abb66d536dc0914e696472442837859229d",
+        "peak_GPU_used_MiB": 23539.0,
+        "minimum_GPU_free_MiB": 569.0
+      }
+    ],
+    "measured_requests": 384,
+    "cold_requests_including_warmups_and_probes": 411,
+    "own_original100_score": 0.87,
+    "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+    "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+    "worst_ttft_p95_ms": 9888.90121305,
+    "worst_tpot_p95_ms": 39.63768435636007
+  },
+  "quality": {
+    "metrics": {
+      "prompt_level_strict": {
+        "score": 0.87,
+        "numerator": 87,
+        "denominator": 100
+      },
+      "inst_level_strict": {
+        "score": 0.8828828828828829,
+        "numerator": 98,
+        "denominator": 111
+      },
+      "prompt_level_loose": {
+        "score": 0.91,
+        "numerator": 91,
+        "denominator": 100
+      },
+      "inst_level_loose": {
+        "score": 0.918918918918919,
+        "numerator": 102,
+        "denominator": 111
+      }
+    },
+    "original_first100": true,
+    "instructions": 111,
+    "thinking": true,
+    "max_tokens": 32768,
+    "natural_stops": 100,
+    "errors": 0,
+    "independently_recomputed": true,
+    "profile": {
+      "name": "quality100",
+      "mode": "accuracy",
+      "client_concurrency": 2,
+      "native_concurrency": 2,
+      "kv_capacity": 131072,
+      "kv_dtype": "int8",
+      "prefill_chunk": 2048
+    },
+    "sampling": [
+      {
+        "frequency_penalty": 0.0,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "seed": 42,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.949999988079071
+      }
+    ],
+    "receipt": "quality-independent/summary.json",
+    "raw": "projected-prefill-grace-confirm-quality100"
+  },
+  "build": {
+    "registered": 151,
+    "passed": 147,
+    "skipped": 4,
+    "failed": 0,
+    "proof": "../projected-prefill-grace/independent-build-receipt-check.json"
+  },
+  "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+  "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+  "source_patch": "../projected-prefill-grace/full-source-vs-kit100.patch",
+  "reproduction": "../projected-prefill-grace/reproduction.json",
+  "peak_GPU_used_MiB": 23539.0,
+  "minimum_GPU_free_MiB": 569.0,
+  "all_owned_children_reaped": true,
+  "GPU0_idle": true,
+  "scope": "Three original-protocol trace-off performance runs, including one fixed fresh seed, and own original100 strict score. Accuracy uses original batch2 settings; no inherited task score. TTFT and TPOT margins remain small; this evidence does not cover arbitrary workloads.",
+  "local_source_tree": "/home/yuer/mypro/InferX/artifacts/8876-24gb-projected-grace/source",
+  "remote_source_tree": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/kit100/source",
+  "remote_binary": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/projected-prefill-grace-bin/ninfer-serve"
+}

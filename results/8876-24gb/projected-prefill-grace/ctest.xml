@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="(empty)"
+	tests="151"
+	failures="0"
+	disabled="0"
+	skipped="4"
+	hostname=""
+	time="208"
+	timestamp="2026-10-19T08:49:30"
+	>
+	<testcase name="ninfer_prompt_lookup_priority_default" classname="ninfer_prompt_lookup_priority_default" time="0.0451249" status="run">
+		<properties/>
+		<system-out>PASS comparisons=100000 frozen=0
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_priority_on" classname="ninfer_prompt_lookup_priority_on" time="0.0248151" status="run">
+		<properties/>
+		<system-out>PASS comparisons=100000 frozen=1
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_priority_invalid" classname="ninfer_prompt_lookup_priority_invalid" time="0.00473528" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_default" classname="ninfer_cold_memory_default" time="0.00481259" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_cold" classname="ninfer_cold_memory_cold" time="0.00505227" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_invalid-cold" classname="ninfer_cold_memory_invalid-cold" time="0.00483281" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_0" classname="ninfer_cold_memory_budget_0" time="0.00483401" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_-1" classname="ninfer_cold_memory_budget_-1" time="0.00266583" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_63" classname="ninfer_cold_memory_budget_63" time="0.00481319" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_65537" classname="ninfer_cold_memory_budget_65537" time="0.00481138" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_256x" classname="ninfer_cold_memory_budget_256x" time="0.00593513" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_cold_memory_budget_invalid" classname="ninfer_cold_memory_budget_invalid" time="0.00502765" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_public_api_test" classname="ninfer_public_api_test" time="0.00453568" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_artifact_reader_test" classname="ninfer_artifact_reader_test" time="0.0071219" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_artifact_materialization_test" classname="ninfer_artifact_materialization_test" time="0.672315" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_device_test" classname="ninfer_device_test" time="0.644247" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_decode_graph_test" classname="ninfer_decode_graph_test" time="0.631859" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_tensor_test" classname="ninfer_tensor_test" time="0.00548303" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_arena_test" classname="ninfer_arena_test" time="0.630612" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_request_memory_test" classname="ninfer_request_memory_test" time="0.629596" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_admission_policy_test" classname="ninfer_admission_policy_test" time="0.00525898" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_budget_policy_test" classname="ninfer_slo_budget_policy_test" time="0.00453772" status="run">
+		<properties/>
+		<system-out>SLO budget policy: empty, token credit, TTFT conflict, membership, zero progress passed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_capacity_test" classname="ninfer_kv_capacity_test" time="0.00477668" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sampling_defaults_test" classname="ninfer_sampling_defaults_test" time="0.0604459" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_cache_test" classname="ninfer_kv_cache_test" time="0.632436" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_state_store_test" classname="ninfer_state_store_test" time="0.621413" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_replay_records_test" classname="ninfer_gdn_replay_records_test" time="0.00652512" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_disk_state_cache_test" classname="ninfer_disk_state_cache_test" time="1.77793" status="run">
+		<properties/>
+		<system-out>Starting Comprehensive DiskStateCache &amp; DirectStorage test suite...
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=256 (new pages=1, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] removed 3 invalid/incomplete manifest(s) on startup
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=512 (new pages=4, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=512 (new pages=4, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 11ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 9ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 10ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=3 (new pages=0, 8.0MB) in 11ms
+[info] ninfer: [prompt-cache] incoming request arrived: prioritized execution (cleared 1 queued snapshot save(s))
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=128 (new pages=2, 0.0MB) in 0ms
+[info] ninfer: [prompt-cache] saved CoW snapshot tokens=192 (...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_chunked_kv_snapshot_restore_test" classname="ninfer_chunked_kv_snapshot_restore_test" time="0.771191" status="run">
+		<properties/>
+		<system-out>Starting Chunked KV Snapshot Restore &amp; MTP Parity test suite...
+Running test_multi_batch_chunked_gather_save...
+Running test_multi_batch_chunked_scatter_restore...
+Running test_mtp_kv_partial_restore_stride_bug...
+Running test_streamed_chunked_save_no_sync_in_loop...
+All Chunked KV Snapshot Restore &amp; MTP Parity tests PASSED.
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_frontend_test" classname="ninfer_qwen3_6_frontend_test" time="24.7783" status="run">
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_27B_HF_DIR is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_runtime_mechanisms_test" classname="ninfer_qwen3_6_runtime_mechanisms_test" time="0.00567679" status="run">
+		<properties/>
+		<system-out>Qwen3.6 runtime mechanism checks passed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_prefix_real_test" classname="ninfer_qwen3_6_27b_prefix_real_test" time="0.0217626" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_27B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_load_plan_test" classname="ninfer_qwen3_6_27b_load_plan_test" time="0.609261" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_input_omission_plan_test" classname="ninfer_input_omission_plan_test" time="0.0550936" status="run">
+		<properties/>
+		<system-out>input_count=128 input_bytes=3213885440 materialized_bytes=17901798400
+</system-out>
+	</testcase>
+	<testcase name="ninfer_input_omission_legacy" classname="ninfer_input_omission_legacy" time="0.0516472" status="run">
+		<properties/>
+		<system-out>input_count=128 input_bytes=3213885440 materialized_bytes=8097612800
+</system-out>
+	</testcase>
+	<testcase name="ninfer_input_omission_omitted" classname="ninfer_input_omission_omitted" time="0.0525974" status="run">
+		<properties/>
+		<system-out>input_count=0 input_bytes=0 materialized_bytes=4883727360
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_real_test" classname="ninfer_qwen3_6_35b_a3b_real_test" time="0.0467796" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_35B_A3B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_dflash_real_test" classname="ninfer_qwen3_6_35b_a3b_dflash_real_test" time="0.0463359" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: NINFER_QWEN3_6_35B_A3B_WEIGHTS is not set
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_35b_a3b_dflash_load_plan_test" classname="ninfer_qwen3_6_35b_a3b_dflash_load_plan_test" time="0.00569428" status="notrun">
+		<skipped message="SKIP_RETURN_CODE=77"/>
+		<properties/>
+		<system-out>skip: real 35B artifact is unavailable at "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/kit100/source/out/qwen3_6_35b_a3b.ninfer"
+</system-out>
+	</testcase>
+	<testcase name="ninfer_openai_schema_test" classname="ninfer_openai_schema_test" time="0.0482603" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_responses_schema_test" classname="ninfer_responses_schema_test" time="0.00849132" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_metrics_test" classname="ninfer_serve_metrics_test" time="0.00479616" status="run">
+		<properties/>
+		<system-out>OK serve metrics
+</system-out>
+	</testcase>
+	<testcase name="ninfer_response_store_test" classname="ninfer_response_store_test" time="0.00489179" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_anthropic_schema_test" classname="ninfer_anthropic_schema_test" time="0.00672233" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_tool_call_parser_test" classname="ninfer_tool_call_parser_test" time="0.00486818" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_options_test" classname="ninfer_serve_options_test" time="0.00517273" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_request_log_test" classname="ninfer_request_log_test" time="0.0466928" status="run">
+		<properties/>
+		<system-out>ok
+</system-out>
+	</testcase>
+	<testcase name="ninfer_serve_ui_test" classname="ninfer_serve_ui_test" time="0.0492194" status="run">
+		<properties/>
+		<system-out>INFO: Built without embedded WebUI assets (stub mode)
+</system-out>
+	</testcase>
+	<testcase name="ninfer_bench_support_test" classname="ninfer_bench_support_test" time="0.0059355" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_add_bias_test" classname="ninfer_add_bias_test" time="0.692052" status="run">
+		<properties/>
+		<system-out>OK add_bias
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gelu_test" classname="ninfer_gelu_test" time="0.660558" status="run">
+		<properties/>
+		<system-out>OK gelu
+</system-out>
+	</testcase>
+	<testcase name="ninfer_silu_mul_test" classname="ninfer_silu_mul_test" time="0.533185" status="run">
+		<properties/>
+		<system-out>OK silu_mul
+</system-out>
+	</testcase>
+	<testcase name="ninfer_residual_add_test" classname="ninfer_residual_add_test" time="0.609917" status="run">
+		<properties/>
+		<system-out>OK residual_add
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sigmoid_mul_test" classname="ninfer_sigmoid_mul_test" time="0.677407" status="run">
+		<properties/>
+		<system-out>OK sigmoid_mul
+</system-out>
+	</testcase>
+	<testcase name="ninfer_rmsnorm_test" classname="ninfer_rmsnorm_test" time="0.675098" status="run">
+		<properties/>
+		<system-out>OK rmsnorm
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_rmsnorm_test" classname="ninfer_gated_rmsnorm_test" time="0.521711" status="run">
+		<properties/>
+		<system-out>OK gated_rmsnorm
+</system-out>
+	</testcase>
+	<testcase name="ninfer_l2norm_test" classname="ninfer_l2norm_test" time="0.669562" status="run">
+		<properties/>
+		<system-out>OK l2norm correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_delta_net_test" classname="ninfer_gated_delta_net_test" time="3.90033" status="run">
+		<properties/>
+		<system-out>OK gated_delta_net correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_causal_conv1d_silu_test" classname="ninfer_causal_conv1d_silu_test" time="1.03064" status="run">
+		<properties/>
+		<system-out>OK causal_conv1d_silu
+</system-out>
+	</testcase>
+	<testcase name="ninfer_layer_norm_test" classname="ninfer_layer_norm_test" time="0.806427" status="run">
+		<properties/>
+		<system-out>OK layer_norm correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_embedding_test" classname="ninfer_embedding_test" time="0.703571" status="run">
+		<properties/>
+		<system-out>OK embedding correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_argmax_test" classname="ninfer_argmax_test" time="1.00203" status="run">
+		<properties/>
+		<system-out>OK argmax
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_gating_test" classname="ninfer_gdn_gating_test" time="0.492559" status="run">
+		<properties/>
+		<system-out>OK gdn_gating correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_gating_proj_test" classname="ninfer_gdn_gating_proj_test" time="2.17642" status="run">
+		<properties/>
+		<system-out>OK gdn_gating_proj correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_rope_test" classname="ninfer_rope_test" time="0.508386" status="run">
+		<properties/>
+		<system-out>OK rope correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_vision_pos_embed_test" classname="ninfer_vision_pos_embed_test" time="0.532502" status="run">
+		<properties/>
+		<system-out>OK vision_pos_embed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_vision_attention_test" classname="ninfer_vision_attention_test" time="0.679372" status="run">
+		<properties/>
+		<system-out>vision_attention: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sampling_test" classname="ninfer_sampling_test" time="0.558323" status="run">
+		<properties/>
+		<system-out>    sample top-k/top-p/min-p FP64 distribution match (max z=1.42365)
+    sample top-k public cap FP64 distribution match (max z=1.77583)
+    sample real token-domain B=8 FP64 distribution match (max z=0.863831)
+OK sample public contract
+</system-out>
+	</testcase>
+	<testcase name="ninfer_scalar_test" classname="ninfer_scalar_test" time="0.559881" status="run">
+		<properties/>
+		<system-out>OK scalar public contract
+</system-out>
+	</testcase>
+	<testcase name="ninfer_cast_test" classname="ninfer_cast_test" time="0.489132" status="run">
+		<properties/>
+		<system-out>OK cast_fp32_to_bf16
+</system-out>
+	</testcase>
+	<testcase name="ninfer_scatter_test" classname="ninfer_scatter_test" time="0.557888" status="run">
+		<properties/>
+		<system-out>OK scatter and extract_bf16_columns
+</system-out>
+	</testcase>
+	<testcase name="ninfer_position_test" classname="ninfer_position_test" time="0.509076" status="run">
+		<properties/>
+		<system-out>OK position
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gqa_attention_test" classname="ninfer_gqa_attention_test" time="71.0854" status="run">
+		<properties/>
+		<system-out>GQA public Graph B=8 splits=64 replays=2 workspace=25559040
+GQA public Graph B=15 splits=64 replays=2 workspace=47923200
+GQA public Graph B=16 splits=8 replays=2 workspace=51118080
+GQA public Graph B=32 splits=4 replays=2 workspace=102236160
+PASS gqa_attention public-contract correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_bidirectional_gqa_attention_test" classname="ninfer_bidirectional_gqa_attention_test" time="1.37868" status="run">
+		<properties/>
+		<system-out>bidirectional_gqa_attention: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_swa_test" classname="ninfer_swa_test" time="2.27997" status="run">
+		<properties/>
+		<system-out>swa: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_kv_cache_append_prefix_test" classname="ninfer_kv_cache_append_prefix_test" time="1.03725" status="run">
+		<properties/>
+		<system-out>kv_cache_append_prefix: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prepare_masked_block_test" classname="ninfer_prepare_masked_block_test" time="0.495828" status="run">
+		<properties/>
+		<system-out>prepare_masked_block: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_sparse_moe_test" classname="ninfer_sparse_moe_test" time="3.23426" status="run">
+		<properties/>
+		<system-out>OK sparse_moe correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_mtp_pack_test" classname="ninfer_mtp_pack_test" time="0.535587" status="run">
+		<properties/>
+		<system-out>OK mtp_pack
+</system-out>
+	</testcase>
+	<testcase name="ninfer_mtp_round_test" classname="ninfer_mtp_round_test" time="0.477027" status="run">
+		<properties/>
+		<system-out>mtp_round: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_speculative_round_test" classname="ninfer_speculative_round_test" time="0.598321" status="run">
+		<properties/>
+		<system-out>speculative_round: PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q4_a16_test" classname="ninfer_linear_q4_a16_test" time="4.04029" status="run">
+		<properties/>
+		<system-out>OK Q4_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q5_a16_test" classname="ninfer_linear_q5_a16_test" time="3.86793" status="run">
+		<properties/>
+		<system-out>OK Q5_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q6_a16_test" classname="ninfer_linear_q6_a16_test" time="2.85886" status="run">
+		<properties/>
+		<system-out>OK Q6_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_w8_a16_test" classname="ninfer_linear_w8_a16_test" time="6.51855" status="run">
+		<properties/>
+		<system-out>OK W8_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_bf16_a16_test" classname="ninfer_linear_bf16_a16_test" time="4.20274" status="run">
+		<properties/>
+		<system-out>OK BF16_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_attn_input_proj_test" classname="ninfer_attn_input_proj_test" time="4.6624" status="run">
+		<properties/>
+		<system-out>OK attn_input_proj
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_test" classname="ninfer_gdn_input_proj_test" time="1.36985" status="run">
+		<properties/>
+		<system-out>OK gdn_input_proj
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_conv_snapshot_test" classname="ninfer_gdn_input_proj_conv_snapshot_test" time="1.59965" status="run">
+		<properties/>
+		<system-out>OK gdn_input_proj_conv_snapshot
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_input_proj_conv_record_test" classname="ninfer_gdn_input_proj_conv_record_test" time="1.09708" status="run">
+		<properties/>
+		<system-out>OK gdn_input_proj_conv_record
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gated_delta_net_replay_record_test" classname="ninfer_gated_delta_net_replay_record_test" time="1.6921" status="run">
+		<properties/>
+		<system-out>OK gated_delta_net_replay_record
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_replay_fold_test" classname="ninfer_gdn_replay_fold_test" time="17.3272" status="run">
+		<properties/>
+		<system-out>OK gdn_replay_fold
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_q5_a16_test" classname="ninfer_linear_add_q5_a16_test" time="0.936329" status="run">
+		<properties/>
+		<system-out>OK Q5_A16 LinearAdd
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_bf16_a16_test" classname="ninfer_linear_add_bf16_a16_test" time="1.03367" status="run">
+		<properties/>
+		<system-out>OK BF16_A16 LinearAdd
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_add_w8_a16_test" classname="ninfer_linear_add_w8_a16_test" time="1.61292" status="run">
+		<properties/>
+		<system-out>OK W8_A16 LinearAdd
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_pair_w8_a16_test" classname="ninfer_linear_pair_w8_a16_test" time="0.845712" status="run">
+		<properties/>
+		<system-out>OK W8_A16 LinearPair
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_swiglu_q4_a16_test" classname="ninfer_linear_swiglu_q4_a16_test" time="1.97467" status="run">
+		<properties/>
+		<system-out>OK LinearSwiGLU Q4_A16 correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_linear_swiglu_w8_a16_test" classname="ninfer_linear_swiglu_w8_a16_test" time="0.826942" status="run">
+		<properties/>
+		<system-out>OK LinearSwiGLU W8_A16 correctness
+</system-out>
+	</testcase>
+	<testcase name="ninfer_qwen3_6_27b_visual_scatter_test" classname="ninfer_qwen3_6_27b_visual_scatter_test" time="0.550023" status="run">
+		<properties/>
+		<system-out>OK shifted visual composition
+</system-out>
+	</testcase>
+	<testcase name="ninfer_test_e8_codec" classname="ninfer_test_e8_codec" time="5.60375" status="run">
+		<properties/>
+		<system-out>=================================================================
+   NInfer: True E8 Conway-Sloane Lattice Microbenchmark
+   Target: NVIDIA GeForce RTX 4090 (sm_89, 24 GB VRAM)
+=================================================================
+
+[1/5] Memory Footprint for 1000000 Tokens (1 Head @ 256-dim):
+  Uncompressed FP32 Keys:        976.56 MB (0.95 GB)
+  Method 1: 2-Stage E8 Root Codec: 122.07 MB (128 bytes/tok total, 8.0x compression)
+  Method 2: General E8 Lattice:   129.70 MB (136 bytes/tok total, 7.2x compression)
+
+[2/5] Synthesizing 1000000 realistic transformer KV activations...
+[3/5] Benchmarking Method 1: Two-Stage E8 Root Codec (2 bits/dim)...
+  Encoding Time: 5.42 ms | Decode Time: 1.20 ms (832.00 M tok/s)
+
+[4/5] Benchmarking Method 2: General Conway-Sloane E8 Lattice Point (4 bits/dim)...
+  Encoding Time: 7.11 ms | Decode Time: 0.20 ms (5055.00 M tok/s)
+
+[5/5] Comparative Parity vs FP32 Ground Truth across 1000000 Tokens:
+  Method 1: Two-Stage E8 Root Codec (2-bit):
+    Cosine Similarity: 96.15...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_completion_policy_test" classname="ninfer_slo_completion_policy_test" time="0.00465239" status="run">
+		<properties/>
+		<system-out>completion policy: whole horizon, deadline conflict, empty set, batch cost/yield bins, zero progress passed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_bounded_decode_membership_test" classname="ninfer_slo_bounded_decode_membership_test" time="0.00455818" status="run">
+		<properties/>
+		<system-out>bounded membership selector/cadence CPU contracts passed; no performance claim
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_bounded_decode_membership_off" classname="ninfer_slo_bounded_decode_membership_off" time="0.00451471" status="run">
+		<properties/>
+		<system-out>bounded membership selector/cadence CPU contracts passed; no performance claim
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_bounded_decode_membership_on" classname="ninfer_slo_bounded_decode_membership_on" time="0.00449385" status="run">
+		<properties/>
+		<system-out>bounded membership selector/cadence CPU contracts passed; no performance claim
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_bounded_decode_membership_invalid" classname="ninfer_slo_bounded_decode_membership_invalid" time="0.00448944" status="run">
+		<properties/>
+		<system-out>bounded membership selector/cadence CPU contracts passed; no performance claim
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_prefill_queue_policy_test" classname="ninfer_slo_prefill_queue_policy_test" time="0.00429912" status="run">
+		<properties/>
+		<system-out>FCFS cumulative demand: simultaneous/staggered/partial/singleton/empty/blocked/infeasible/zero-cost passed
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_pending_state_test" classname="ninfer_gdn_pending_state_test" time="0.00470326" status="run">
+		<properties/>
+		<system-out>{"case":"reorder_omit_bank_reuse_terminal_snapshot_abort_restore_cancel","pass":true}
+{"case":"partial_materialize_verify_resolve_failure_invalidates","pass":true}
+{"case":"stable_controls_two_bank_parity_capture_reset","pass":true}
+{"case":"fixed_width_synthetic_capture_and_produced_bound","pass":true}
+{"case":"omitted_lane_failure_domain_drained_noexcept_cleanup","pass":true}
+{"case":"single_row_eager_chronological_prefix_no_double_conv","pass":true}
+{"status":"PASS","scope":"CPU ownership protocol with independent eager chronological recurrence; not runtime GPU integration"}
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_completion_soft_pf_test" classname="ninfer_slo_expired_completion_soft_pf_test" time="0.0043171" status="run">
+		<properties/>
+		<system-out>expired completion soft PF CPU contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_completion_soft_pf_off" classname="ninfer_slo_expired_completion_soft_pf_off" time="0.0042848" status="run">
+		<properties/>
+		<system-out>expired completion soft PF CPU contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_completion_soft_pf_on" classname="ninfer_slo_expired_completion_soft_pf_on" time="0.00433039" status="run">
+		<properties/>
+		<system-out>expired completion soft PF CPU contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_completion_soft_pf_invalid" classname="ninfer_slo_expired_completion_soft_pf_invalid" time="0.00448594" status="run">
+		<properties/>
+		<system-out>expired completion soft PF CPU contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_deferred_graph_test" classname="ninfer_gdn_deferred_graph_test" time="6.19243" status="run">
+		<properties/>
+		<system-out>{"dynamic_round":0,"bank":0,"lanes":[0,1],"accepted":[3,1],"pass":true}
+{"independent_fp64_state_abs":2.39345094785e-09,"output_abs":3.04185254058e-05,"output_bound":3.58007076687e-05}
+{"dynamic_round":1,"bank":1,"lanes":[1,2],"accepted":[4,2],"pass":true}
+{"dynamic_round":2,"bank":0,"lanes":[2,3],"accepted":[1,4],"pass":true}
+{"dynamic_round":3,"bank":1,"lanes":[3,0],"accepted":[2,3],"pass":true}
+{"dynamic_round":4,"bank":0,"lanes":[0,1],"accepted":[4,1],"pass":true}
+{"dynamic_round":5,"bank":1,"lanes":[1,2],"accepted":[3,2],"pass":true}
+{"dynamic_round":6,"bank":0,"lanes":[2,0],"accepted":[0,4],"pass":true}
+{"dynamic_round":7,"bank":1,"lanes":[1,3],"accepted":[2,4],"pass":true}
+{"capture_device_reset_and_replay":true,"fixed_width":4,"valid_one_fallback":true}
+{"dynamic_graph_pass":true,"layers":48,"physical_slots":4,"active_rows":2,"rounds":8,"scope":"production public ops plus private host protocol, not model execution"}
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_consensus_test" classname="ninfer_prompt_lookup_consensus_test" time="0.0049337" status="run">
+		<properties/>
+		<system-out>consensus contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_consensus_off" classname="ninfer_prompt_lookup_consensus_off" time="0.00444455" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_consensus_on" classname="ninfer_prompt_lookup_consensus_on" time="0.00441299" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_consensus_invalid" classname="ninfer_prompt_lookup_consensus_invalid" time="0.00192732" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_unexpired_decode_priority_test" classname="ninfer_slo_unexpired_decode_priority_test" time="0.00446686" status="run">
+		<properties/>
+		<system-out>unexpired decode contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_unexpired_decode_priority_off" classname="ninfer_slo_unexpired_decode_priority_off" time="0.00437337" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_unexpired_decode_priority_on" classname="ninfer_slo_unexpired_decode_priority_on" time="0.00446241" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_unexpired_decode_priority_invalid" classname="ninfer_slo_unexpired_decode_priority_invalid" time="0.00451824" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_single_row_eager_off" classname="ninfer_gdn_single_row_eager_off" time="0.00438183" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_single_row_eager_on" classname="ninfer_gdn_single_row_eager_on" time="0.00443595" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_gdn_single_row_eager_invalid" classname="ninfer_gdn_single_row_eager_invalid" time="0.00447673" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_q5_ordered_residual_test" classname="ninfer_q5_ordered_residual_test" time="0.946355" status="run">
+		<properties/>
+		<system-out>Q5 ordered residual K=6144 T=2 repeats=64 changed_elements=0
+Q5 ordered residual K=6144 T=4 repeats=64 changed_elements=0
+Q5 ordered residual K=6144 T=8 repeats=64 changed_elements=0
+Q5 ordered residual K=6144 T=13 repeats=64 changed_elements=0
+Q5 ordered residual K=17408 T=2 repeats=64 changed_elements=0
+Q5 ordered residual K=17408 T=4 repeats=64 changed_elements=0
+Q5 ordered residual K=17408 T=8 repeats=64 changed_elements=0
+Q5 ordered residual K=17408 T=13 repeats=64 changed_elements=0
+Q5 ordered residual K=17408 T=16 repeats=64 changed_elements=0
+</system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_coverage_test" classname="ninfer_output_s4_coverage_test" time="0.00538323" status="run">
+		<properties/>
+		<system-out>selected47 output coverage/configuration/interval/payload contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_flags_on_test" classname="ninfer_output_s4_flags_on_test" time="0.00446541" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_full_invalid_test" classname="ninfer_output_s4_full_invalid_test" time="0.00469819" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_omit_invalid_test" classname="ninfer_output_s4_omit_invalid_test" time="0.00462337" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_inventory_test" classname="ninfer_output_s4_inventory_test" time="0.0535272" status="run">
+		<properties/>
+		<system-out>OUTPUT_INVENTORY omitted=0 selected_original_bytes=970260480 device_capacity_bytes=18197517824 device_objects=1118
+</system-out>
+	</testcase>
+	<testcase name="ninfer_output_s4_omitted_inventory_test" classname="ninfer_output_s4_omitted_inventory_test" time="0.0513168" status="run">
+		<properties/>
+		<system-out>OUTPUT_INVENTORY omitted=1 selected_original_bytes=970260480 device_capacity_bytes=17227257344 device_objects=1071
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_yield_test" classname="ninfer_prompt_lookup_yield_test" time="0.00496844" status="run">
+		<properties/>
+		<system-out>low-yield lookup immutable-invalid/window/reset/feedback contracts PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_yield_0_test" classname="ninfer_prompt_lookup_yield_0_test" time="0.00467365" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_yield_1_test" classname="ninfer_prompt_lookup_yield_1_test" time="0.00456717" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_prompt_lookup_yield_invalid_test" classname="ninfer_prompt_lookup_yield_invalid_test" time="0.00511892" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_tpot_recovery_test" classname="ninfer_slo_tpot_recovery_test" time="0.00467982" status="run">
+		<properties/>
+		<system-out>TPOT recovery independent forecast/budget/snapshot/cadence checks PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_tpot_recovery_0_test" classname="ninfer_slo_tpot_recovery_0_test" time="0.00466994" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_tpot_recovery_1_test" classname="ninfer_slo_tpot_recovery_1_test" time="0.00487397" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_tpot_recovery_invalid_test" classname="ninfer_slo_tpot_recovery_invalid_test" time="0.00491848" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_q4_draft_head_t16_policy_test" classname="ninfer_q4_draft_head_t16_policy_test" time="0.00551468" status="run">
+		<properties/>
+		<system-out>Q4 head small-T dispatch and strict opt-in PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_q4_draft_head_t16_0_test" classname="ninfer_q4_draft_head_t16_0_test" time="0.00558766" status="run">
+		<properties/>
+		<system-out>Q4 head small-T dispatch and strict opt-in PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_q4_draft_head_t16_1_test" classname="ninfer_q4_draft_head_t16_1_test" time="0.00550787" status="run">
+		<properties/>
+		<system-out>Q4 head small-T dispatch and strict opt-in PASS
+</system-out>
+	</testcase>
+	<testcase name="ninfer_q4_draft_head_t16_invalid_test" classname="ninfer_q4_draft_head_t16_invalid_test" time="0.00565947" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_linear_q4_head_t16_extended_test" classname="ninfer_linear_q4_head_t16_extended_test" time="4.27444" status="run">
+		<properties/>
+		<system-out>OK Q4_A16 Linear
+</system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_prefill_grace_test" classname="ninfer_slo_expired_prefill_grace_test" time="0.00498676" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_prefill_grace_0_test" classname="ninfer_slo_expired_prefill_grace_0_test" time="0.00451595" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_prefill_grace_1_test" classname="ninfer_slo_expired_prefill_grace_1_test" time="0.00439213" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_expired_prefill_grace_invalid_test" classname="ninfer_slo_expired_prefill_grace_invalid_test" time="0.00450902" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_projected_prefill_grace_test" classname="ninfer_slo_projected_prefill_grace_test" time="0.00440942" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_projected_prefill_grace_0_test" classname="ninfer_slo_projected_prefill_grace_0_test" time="0.00437901" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_projected_prefill_grace_1_test" classname="ninfer_slo_projected_prefill_grace_1_test" time="0.00438553" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="ninfer_slo_projected_prefill_grace_invalid_test" classname="ninfer_slo_projected_prefill_grace_invalid_test" time="0.00455771" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+</testsuite>

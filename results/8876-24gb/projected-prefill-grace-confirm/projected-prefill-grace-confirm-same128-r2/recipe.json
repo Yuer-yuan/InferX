@@ -1,0 +1,131 @@
+{
+  "assets": {
+    "cache_evidence": [
+      {
+        "path": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/dependency-receipt.json",
+        "sha256": "6af41b66629f514707e2ffe93c9439f60e53bb606292d8baa06565f9f7e01bd2"
+      }
+    ],
+    "contract": {
+      "file": "assets-u3-47.json",
+      "sha256": "7f1f5dbd1b6b288f165852772ed0c8090cc8f5abc0a73265a14f3b604d0b911a"
+    },
+    "equivalence_evidence": {
+      "file": "evidence/assets-equivalence.json",
+      "sha256": "b1dd4589e44271d5ba61262b19f69a6512d907a9b8bf9f33f11996687a3daee1"
+    },
+    "loader_evidence": {
+      "file": "evidence/100-loader-verification.json",
+      "sha256": "9bed6491e506897c884d1e1ca3e638994039c4afa35b49d03d5d37a4e0994263"
+    },
+    "model_evidence": {
+      "path": "results/three-node-optimization/ucloud3/c12-c16-latency-20261018/C14-native13-bounded100/delivery/control/actual-model-identity.json",
+      "sha256": "7756e67e396d76b2a6ed8b7310b1c34ed25278071a99f06930a566dc494b81a9"
+    },
+    "original_cache_roots": {
+      "weights025": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights025",
+      "weights041": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights041",
+      "weights047": "/workspace/InferX/experiments/ucloud3-c32-tonight/weights047"
+    },
+    "original_model_path": "/workspace/InferX/models/qwen38-ninfer/qwen3_8_27b.ninfer",
+    "verification": "Exact serving layer/file sets and sizes; SHA values inherited from frozen receipts, no content rehash."
+  },
+  "binary_artifact_id": "100-k3",
+  "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+  "environment": {
+    "NINFER_DOWN_H512_SINGLEWARP": "1",
+    "NINFER_GDN_FOLD_RECORD_FUSION": "1",
+    "NINFER_INPUT_S4": "1",
+    "NINFER_INPUT_S4_CACHE": "{assets}/weights041",
+    "NINFER_OUTPUT_S4": "1",
+    "NINFER_OUTPUT_S4_CACHE": "{assets}/weights047",
+    "NINFER_OUTPUT_S4_VERIFY": "1",
+    "NINFER_PREFILL_A8": "all",
+    "NINFER_PREFILL_FULLK": "s4gptq64ffn",
+    "NINFER_PROMPT_LOOKUP_N5_HYBRID": "0",
+    "NINFER_PROMPT_LOOKUP_N5_PRIORITY": "0",
+    "NINFER_S4_GPTQ_CACHE": "{assets}/weights025",
+    "NINFER_S4_OMIT_LEGACY_FFN": "1",
+    "NINFER_S4_TARGET_FFN": "1",
+    "NINFER_SCHED_BOUNDED_DECODE_MEMBERSHIP": "0",
+    "NINFER_SCHED_POLICY": "completion_queue",
+    "NINFER_SCHED_REQUEST_YIELD_MAX": "1",
+    "NINFER_SCHED_TTFT_MARGIN_MS": "150",
+    "NINFER_VERIFY_Q5_A8": "1",
+    "NINFER_INPUT_S4_OMIT_LEGACY": "1",
+    "NINFER_COLD_REQUEST_STATE": "1",
+    "NINFER_CUDA_GRAPH_ALLOWANCE_MB": "256",
+    "NINFER_SCHED_EXPIRED_COMPLETION_SOFT_PF": "1",
+    "NINFER_PROMPT_LOOKUP_N5_CONSENSUS": "1",
+    "NINFER_PROMPT_LOOKUP_N5_LOW_YIELD": "0",
+    "NINFER_Q4_DRAFT_HEAD_T16": "1",
+    "NINFER_SCHED_EXPIRED_PREFILL_GRACE": "1",
+    "NINFER_SCHED_PROJECTED_PREFILL_GRACE": "1",
+    "NINFER_SCHED_UNEXPIRED_DECODE_PRIORITY": "0",
+    "NINFER_SCHED_TPOT_RECOVERY": "1",
+    "NINFER_GDN_SINGLE_ROW_EAGER": "1",
+    "NINFER_OUTPUT_S4_FULL_COVERAGE": "1",
+    "NINFER_OUTPUT_S4_OMIT_LEGACY": "1"
+  },
+  "profiles": {
+    "perf-c12": {
+      "client_concurrency": 12,
+      "kv_capacity": 104448,
+      "mode": "perf",
+      "name": "perf-c12",
+      "native_concurrency": 12
+    },
+    "perf-c13": {
+      "client_concurrency": 13,
+      "kv_capacity": 113152,
+      "mode": "perf",
+      "name": "perf-c13",
+      "native_concurrency": 13
+    },
+    "perf-c14": {
+      "client_concurrency": 14,
+      "kv_capacity": 121856,
+      "mode": "perf",
+      "name": "perf-c14",
+      "native_concurrency": 13
+    },
+    "perf-c4": {
+      "client_concurrency": 4,
+      "kv_capacity": 65536,
+      "mode": "perf",
+      "name": "perf-c4",
+      "native_concurrency": 4
+    },
+    "perf-c8": {
+      "client_concurrency": 8,
+      "kv_capacity": 69632,
+      "mode": "perf",
+      "name": "perf-c8",
+      "native_concurrency": 8
+    },
+    "quality100": {
+      "client_concurrency": 13,
+      "kv_capacity": 532480,
+      "mode": "accuracy",
+      "name": "quality100",
+      "native_concurrency": 13
+    },
+    "perf-c16": {
+      "name": "perf-c16",
+      "mode": "perf",
+      "client_concurrency": 16,
+      "native_concurrency": 16,
+      "kv_capacity": 139264,
+      "kv_dtype": "int8",
+      "prefill_chunk": 2048
+    }
+  },
+  "quality_status": "pending",
+  "recipe_id": "8876-projected-prefill-grace-cuda128-int8",
+  "schema_version": 1,
+  "selection_status": "unqualified",
+  "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+  "status": "candidate",
+  "version_id": "8876-projected-prefill-grace-int8",
+  "qualification": "Experimental omitted47 output payloads, full selected-output S4 coverage, INT8 KV, ordered Q5, softPF, all-yield two-match consensus lookup and bounded TPOT recovery, existing small-T draft head extended9..16, PF2048 and150ms internal TTFTreserve; plain INT8 Gqa27 shared-read optimization; bounded expired and projected-external-deadline prefill grace; own performance and original100 quality pending."
+}

@@ -1,0 +1,79 @@
+{
+  "integrity": "PASS",
+  "joint_slo": true,
+  "ttft_p95_ms": 9888.90121305,
+  "tpot_p95_ms": 39.63768435636007,
+  "output_token_throughput": 332.86354636513926,
+  "profiling_start_ns": 1792371251995222912,
+  "profiling_end_ns": 1792371448880705614,
+  "observation_seconds": 196.885482702,
+  "client_concurrency": 16,
+  "native_concurrency": 16,
+  "measured": 128,
+  "warmup": 8,
+  "probe": 1,
+  "all137cold": true,
+  "errors": 0,
+  "service_reaped": true,
+  "kv_cache": "int8-group64",
+  "binary_sha256": "9794763639fd2f102c8cd23d457006699eb5b45ae388d4cb167423d26be588b0",
+  "source_sha256": "44c210050cd1846834259da92f05f15d4aa1fbe0b8daaa27e89dd6365c15b7a6",
+  "payload_canonical_sha256": "6a22077fc53f81d60176e844adc01dd2dfeb7af19adebe9069f1d9e52969c7d1",
+  "prefill_chunk": 2048,
+  "violations": {
+    "time_to_first_token": [
+      "6ffe8e2c-7a02-4c71-a149-9b386eb11ed3",
+      "891be7ea-b3df-4c01-ac51-1071a00d521d",
+      "23b1c232-013b-420d-a91a-8e29a24a58fc",
+      "ac90c748-af7d-422d-ae36-3f6960e51a29",
+      "d3b34882-4229-4f7a-a3e7-c36f708c4bd0"
+    ],
+    "inter_token_latency": [
+      "6f77496c-39eb-4be9-8fb4-8d847d342713",
+      "f67f8205-a74c-415b-91fb-5e563afbc320",
+      "080f3d5e-ae45-47e6-b11d-5c0a9a18fe4b",
+      "2ab5b6bc-8380-4304-b21b-68b4992a70ff",
+      "3a1d9dec-12c8-42b5-8df8-edffab927df4"
+    ]
+  },
+  "quality": "unmeasured; no inherited score",
+  "sources": {
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/summary.json": {
+      "sha256": "22b4f5689ef101296468dba7fcdf2c1e05fa91e8f255ae0f5c61de1ea16c99d9",
+      "bytes": 1213
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/launch.json": {
+      "sha256": "22182f6f07c39ed5ad4c565295b5c0e72c34da9a522c4552073349595a151d01",
+      "bytes": 10657
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/recipe.json": {
+      "sha256": "53759ae2005d392ba678448e5031899328407ebc76fad9df3fd24e84e058c6c3",
+      "bytes": 5017
+    },
+    "results/8876-24gb/projected-prefill-grace/projected-prefill-grace-perf-status.json": {
+      "sha256": "15c7383e6274559278cdf0aafb3c786a0e7305283fba46d517229791d69b8ba7",
+      "bytes": 993
+    },
+    "results/8876-24gb/projected-prefill-grace/qualification.json": {
+      "sha256": "ee7482e400df5389b338d3723c4a3e80bc8dd8e73e8c15fc9c7defd59cd9bb82",
+      "bytes": 2723
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/c16/profile_export.jsonl": {
+      "sha256": "d2cd45a49fd3cdf7043d2b090639cd67ed4c3315b9fd966617c53de6c38e6021",
+      "bytes": 595740
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/requests.jsonl": {
+      "sha256": "74a2001d412b9ab053893aa8cc7f40b46100125d052d38cdea0c74dccffd1b38",
+      "bytes": 280194
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/c16/inputs.json": {
+      "sha256": "bf08e56dc69a061769efe3ecbd6b355c5d216243f6e6434da8a7640bcde565d0",
+      "bytes": 22001612
+    },
+    "/home/yuer/mypro/InferX/results/8876-24gb/projected-prefill-grace/C16-projected-prefill-grace-int8-margin150-original128-r1/c16/phase_manifest.json": {
+      "sha256": "60650856242720368191cc16fc852b70fb442c379a160828f6c1f3679375e289",
+      "bytes": 1174
+    }
+  },
+  "auditor_sha256": "8d62675ee82287e099171c11dd90b7627ebd2838657058c36d68feaff49ce47e"
+}

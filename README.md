@@ -1,14 +1,39 @@
 # InferX
 
-InferX 面向单张 **48GB RTX 4090** 上的 Qwen3.8-27B 推理，基于 NInfer-4090 优化量化算子、批处理、状态管理和调度。测试同时报告吞吐、请求延迟与任务质量，并保留对应版本和原始结果。
+InferX 面向单张 RTX 4090 上的 Qwen3.8-27B 推理，基于 NInfer-4090 优化量化算子、批处理、状态管理和调度。最新版本已在标准 **24GB RTX 4090** 上完成 C16 性能测试及原始 100 题 IFBench 精度评测；早期 48GB 卡实验另行保留。测试同时报告吞吐、请求延迟与任务质量，并保留对应版本和原始结果。
 
 队名：**你说啥都队**。成员：**陈文欣、张志雄、郭坤昌**。
+
+## 最新实测：单张 24GB RTX 4090（2026-10-19）
+
+`projected-prefill-grace` 版本在节点 `8876` 的一张标准 24GB RTX 4090 上，三轮正式测试均满足 **TTFT P95 ≤ 10 s、TPOT P95 ≤ 40 ms**。客户端与引擎并发均为 **16**，每条正式请求实际输入 **8192 tokens**、输出 **512 tokens**；每轮包含 128 条正式测量、8 条预热及 1 条探测。使用未修改的原评测器，关闭 prefix/disk cache 复用与诊断 trace。
+
+| 正式测试 | 输入 seed | TTFT P95（s） | TPOT P95（ms） | 输出吞吐（tokens/s） |
+|---|---:|---:|---:|---:|
+| 首轮 | 20261016 | 9.888901 | 39.637684 | 332.864 |
+| 相同输入复测 | 20261016 | 9.856828 | 39.291928 | 329.718 |
+| 原生成器新 seed | 20261019 | 9.871622 | 39.221759 | 333.411 |
+
+合计 **384 条正式请求全部成功**；计入预热和探测的 411 条请求均无前缀复用。三轮峰值 GPU 显存均为 **23,539 MiB**，最低剩余 **569 MiB**。最差一轮的 TTFT / TPOT 余量分别为 111.099 ms / 0.362316 ms，余量仍小，结论限于上述实测协议。
+
+同一源码、二进制、权重和 INT8 KV 配置完成本次独立的原始前 100 题 IFBench 评测，结果如下：
+
+| 精度指标 | 通过 / 总数 | 得分 |
+|---|---:|---:|
+| Prompt-level strict（严格整题） | **87 / 100** | **87.00%** |
+| Instruction-level strict（严格指令） | 98 / 111 | 88.29% |
+| Prompt-level loose（宽松整题） | 91 / 100 | 91.00% |
+| Instruction-level loose（宽松指令） | 102 / 111 | 91.89% |
+
+精度使用独立的 **client2/native2、KV 131072、thinking 开启、max_tokens=32768** 配置与模型默认采样；100 条均自然结束，零请求错误、零截断、零空最终答案。原版 EvalScope 1.13.0 评分器在 CPU 上逐题重算，全部与原评分一致。性能 C16 与精度 C2 分别评测，精度分数来自本次运行。
+
+源码正常构建后，CTest **147 项通过、4 项原有模型相关跳过、0 项失败**。完整数据、逐题评分、原始记录、源码补丁及复现配置见 **[24GB 版本结果与复现材料](results/8876-24gb/published/README.md)**；机器可读汇总见 [selected-result.json](results/8876-24gb/projected-prefill-grace-confirm/selected-result.json)。
 
 | 你想了解什么 | 从这里开始 |
 |---|---|
 | 项目与答辩内容 | [材料总览](submission/README.md)、[中文 PDF](submission/basic/presentation/InferX-ZH.pdf) / [English PDF](submission/basic/presentation/InferX-EN.pdf)、[Typst 与实时预览](submission/basic/presentation/README.md)、[技术报告](submission/track-a/README.md) |
-| 性能、精度和原始证据 | [Benchmark 报告](submission/track-a/benchmark.md)、[成绩与证据索引](submission/track-a/generated-results.md) |
-| 如何部署和复测 | [部署配置](submission/track-a/deployment.md)、[复验步骤](submission/track-a/reproduction.md) |
+| 性能、精度和原始证据 | [最新 24GB C16 / IFBench 结果](results/8876-24gb/published/README.md)、[历史 48GB Benchmark 报告](submission/track-a/benchmark.md)、[历史提交成绩与证据索引](submission/track-a/generated-results.md) |
+| 如何部署和复测 | [24GB 源码与配置](results/8876-24gb/published/README.md#源码与复现配置)、[历史 48GB 部署配置](submission/track-a/deployment.md)、[历史 48GB 复验步骤](submission/track-a/reproduction.md) |
 | 如何现场演示 | [现场性能评测](submission/basic/demo.md) |
 | 团队提交前需要准备什么 | [提交清单](submission/records/2026-10-18-submission-checklist.md) |
 

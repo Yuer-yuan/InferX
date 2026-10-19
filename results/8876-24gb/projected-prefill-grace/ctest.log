@@ -1,0 +1,314 @@
+Internal ctest changing into directory: /home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/build100
+Test project /home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/build100
+        Start   1: ninfer_prompt_lookup_priority_default
+  1/151 Test   #1: ninfer_prompt_lookup_priority_default .............   Passed    0.05 sec
+        Start   2: ninfer_prompt_lookup_priority_on
+  2/151 Test   #2: ninfer_prompt_lookup_priority_on ..................   Passed    0.02 sec
+        Start   3: ninfer_prompt_lookup_priority_invalid
+  3/151 Test   #3: ninfer_prompt_lookup_priority_invalid .............   Passed    0.00 sec
+        Start   4: ninfer_cold_memory_default
+  4/151 Test   #4: ninfer_cold_memory_default ........................   Passed    0.00 sec
+        Start   5: ninfer_cold_memory_cold
+  5/151 Test   #5: ninfer_cold_memory_cold ...........................   Passed    0.01 sec
+        Start   6: ninfer_cold_memory_invalid-cold
+  6/151 Test   #6: ninfer_cold_memory_invalid-cold ...................   Passed    0.00 sec
+        Start   7: ninfer_cold_memory_budget_0
+  7/151 Test   #7: ninfer_cold_memory_budget_0 .......................   Passed    0.00 sec
+        Start   8: ninfer_cold_memory_budget_-1
+  8/151 Test   #8: ninfer_cold_memory_budget_-1 ......................   Passed    0.00 sec
+        Start   9: ninfer_cold_memory_budget_63
+  9/151 Test   #9: ninfer_cold_memory_budget_63 ......................   Passed    0.00 sec
+        Start  10: ninfer_cold_memory_budget_65537
+ 10/151 Test  #10: ninfer_cold_memory_budget_65537 ...................   Passed    0.00 sec
+        Start  11: ninfer_cold_memory_budget_256x
+ 11/151 Test  #11: ninfer_cold_memory_budget_256x ....................   Passed    0.01 sec
+        Start  12: ninfer_cold_memory_budget_invalid
+ 12/151 Test  #12: ninfer_cold_memory_budget_invalid .................   Passed    0.01 sec
+        Start  13: ninfer_public_api_test
+ 13/151 Test  #13: ninfer_public_api_test ............................   Passed    0.00 sec
+        Start  14: ninfer_artifact_reader_test
+ 14/151 Test  #14: ninfer_artifact_reader_test .......................   Passed    0.01 sec
+        Start  15: ninfer_artifact_materialization_test
+ 15/151 Test  #15: ninfer_artifact_materialization_test ..............   Passed    0.67 sec
+        Start  16: ninfer_device_test
+ 16/151 Test  #16: ninfer_device_test ................................   Passed    0.64 sec
+        Start  17: ninfer_decode_graph_test
+ 17/151 Test  #17: ninfer_decode_graph_test ..........................   Passed    0.63 sec
+        Start  18: ninfer_tensor_test
+ 18/151 Test  #18: ninfer_tensor_test ................................   Passed    0.01 sec
+        Start  19: ninfer_arena_test
+ 19/151 Test  #19: ninfer_arena_test .................................   Passed    0.63 sec
+        Start  20: ninfer_request_memory_test
+ 20/151 Test  #20: ninfer_request_memory_test ........................   Passed    0.63 sec
+        Start  21: ninfer_admission_policy_test
+ 21/151 Test  #21: ninfer_admission_policy_test ......................   Passed    0.01 sec
+        Start  22: ninfer_slo_budget_policy_test
+ 22/151 Test  #22: ninfer_slo_budget_policy_test .....................   Passed    0.00 sec
+        Start  23: ninfer_kv_capacity_test
+ 23/151 Test  #23: ninfer_kv_capacity_test ...........................   Passed    0.00 sec
+        Start  24: ninfer_sampling_defaults_test
+ 24/151 Test  #24: ninfer_sampling_defaults_test .....................   Passed    0.06 sec
+        Start  25: ninfer_kv_cache_test
+ 25/151 Test  #25: ninfer_kv_cache_test ..............................   Passed    0.63 sec
+        Start  26: ninfer_state_store_test
+ 26/151 Test  #26: ninfer_state_store_test ...........................   Passed    0.62 sec
+        Start  27: ninfer_gdn_replay_records_test
+ 27/151 Test  #27: ninfer_gdn_replay_records_test ....................   Passed    0.01 sec
+        Start  28: ninfer_disk_state_cache_test
+ 28/151 Test  #28: ninfer_disk_state_cache_test ......................   Passed    1.78 sec
+        Start  29: ninfer_chunked_kv_snapshot_restore_test
+ 29/151 Test  #29: ninfer_chunked_kv_snapshot_restore_test ...........   Passed    0.77 sec
+        Start  30: ninfer_qwen3_6_frontend_test
+ 30/151 Test  #30: ninfer_qwen3_6_frontend_test ......................   Passed   24.78 sec
+        Start  31: ninfer_qwen3_6_runtime_mechanisms_test
+ 31/151 Test  #31: ninfer_qwen3_6_runtime_mechanisms_test ............   Passed    0.01 sec
+        Start  32: ninfer_qwen3_6_27b_prefix_real_test
+ 32/151 Test  #32: ninfer_qwen3_6_27b_prefix_real_test ...............***Skipped   0.02 sec
+        Start  33: ninfer_qwen3_6_27b_load_plan_test
+ 33/151 Test  #33: ninfer_qwen3_6_27b_load_plan_test .................   Passed    0.61 sec
+        Start  34: ninfer_input_omission_plan_test
+ 34/151 Test  #34: ninfer_input_omission_plan_test ...................   Passed    0.06 sec
+        Start  35: ninfer_input_omission_legacy
+ 35/151 Test  #35: ninfer_input_omission_legacy ......................   Passed    0.05 sec
+        Start  36: ninfer_input_omission_omitted
+ 36/151 Test  #36: ninfer_input_omission_omitted .....................   Passed    0.05 sec
+        Start  37: ninfer_qwen3_6_35b_a3b_real_test
+ 37/151 Test  #37: ninfer_qwen3_6_35b_a3b_real_test ..................***Skipped   0.05 sec
+        Start  38: ninfer_qwen3_6_35b_a3b_dflash_real_test
+ 38/151 Test  #38: ninfer_qwen3_6_35b_a3b_dflash_real_test ...........***Skipped   0.05 sec
+        Start  39: ninfer_qwen3_6_35b_a3b_dflash_load_plan_test
+ 39/151 Test  #39: ninfer_qwen3_6_35b_a3b_dflash_load_plan_test ......***Skipped   0.01 sec
+        Start  40: ninfer_openai_schema_test
+ 40/151 Test  #40: ninfer_openai_schema_test .........................   Passed    0.05 sec
+        Start  41: ninfer_responses_schema_test
+ 41/151 Test  #41: ninfer_responses_schema_test ......................   Passed    0.01 sec
+        Start  42: ninfer_serve_metrics_test
+ 42/151 Test  #42: ninfer_serve_metrics_test .........................   Passed    0.00 sec
+        Start  43: ninfer_response_store_test
+ 43/151 Test  #43: ninfer_response_store_test ........................   Passed    0.00 sec
+        Start  44: ninfer_anthropic_schema_test
+ 44/151 Test  #44: ninfer_anthropic_schema_test ......................   Passed    0.01 sec
+        Start  45: ninfer_tool_call_parser_test
+ 45/151 Test  #45: ninfer_tool_call_parser_test ......................   Passed    0.00 sec
+        Start  46: ninfer_serve_options_test
+ 46/151 Test  #46: ninfer_serve_options_test .........................   Passed    0.01 sec
+        Start  47: ninfer_request_log_test
+ 47/151 Test  #47: ninfer_request_log_test ...........................   Passed    0.05 sec
+        Start  48: ninfer_serve_ui_test
+ 48/151 Test  #48: ninfer_serve_ui_test ..............................   Passed    0.05 sec
+        Start  49: ninfer_bench_support_test
+ 49/151 Test  #49: ninfer_bench_support_test .........................   Passed    0.01 sec
+        Start  50: ninfer_add_bias_test
+ 50/151 Test  #50: ninfer_add_bias_test ..............................   Passed    0.69 sec
+        Start  51: ninfer_gelu_test
+ 51/151 Test  #51: ninfer_gelu_test ..................................   Passed    0.66 sec
+        Start  52: ninfer_silu_mul_test
+ 52/151 Test  #52: ninfer_silu_mul_test ..............................   Passed    0.53 sec
+        Start  53: ninfer_residual_add_test
+ 53/151 Test  #53: ninfer_residual_add_test ..........................   Passed    0.61 sec
+        Start  54: ninfer_sigmoid_mul_test
+ 54/151 Test  #54: ninfer_sigmoid_mul_test ...........................   Passed    0.68 sec
+        Start  55: ninfer_rmsnorm_test
+ 55/151 Test  #55: ninfer_rmsnorm_test ...............................   Passed    0.68 sec
+        Start  56: ninfer_gated_rmsnorm_test
+ 56/151 Test  #56: ninfer_gated_rmsnorm_test .........................   Passed    0.52 sec
+        Start  57: ninfer_l2norm_test
+ 57/151 Test  #57: ninfer_l2norm_test ................................   Passed    0.67 sec
+        Start  58: ninfer_gated_delta_net_test
+ 58/151 Test  #58: ninfer_gated_delta_net_test .......................   Passed    3.90 sec
+        Start  59: ninfer_causal_conv1d_silu_test
+ 59/151 Test  #59: ninfer_causal_conv1d_silu_test ....................   Passed    1.03 sec
+        Start  60: ninfer_layer_norm_test
+ 60/151 Test  #60: ninfer_layer_norm_test ............................   Passed    0.81 sec
+        Start  61: ninfer_embedding_test
+ 61/151 Test  #61: ninfer_embedding_test .............................   Passed    0.70 sec
+        Start  62: ninfer_argmax_test
+ 62/151 Test  #62: ninfer_argmax_test ................................   Passed    1.00 sec
+        Start  63: ninfer_gdn_gating_test
+ 63/151 Test  #63: ninfer_gdn_gating_test ............................   Passed    0.49 sec
+        Start  64: ninfer_gdn_gating_proj_test
+ 64/151 Test  #64: ninfer_gdn_gating_proj_test .......................   Passed    2.18 sec
+        Start  65: ninfer_rope_test
+ 65/151 Test  #65: ninfer_rope_test ..................................   Passed    0.51 sec
+        Start  66: ninfer_vision_pos_embed_test
+ 66/151 Test  #66: ninfer_vision_pos_embed_test ......................   Passed    0.53 sec
+        Start  67: ninfer_vision_attention_test
+ 67/151 Test  #67: ninfer_vision_attention_test ......................   Passed    0.68 sec
+        Start  68: ninfer_sampling_test
+ 68/151 Test  #68: ninfer_sampling_test ..............................   Passed    0.56 sec
+        Start  69: ninfer_scalar_test
+ 69/151 Test  #69: ninfer_scalar_test ................................   Passed    0.56 sec
+        Start  70: ninfer_cast_test
+ 70/151 Test  #70: ninfer_cast_test ..................................   Passed    0.49 sec
+        Start  71: ninfer_scatter_test
+ 71/151 Test  #71: ninfer_scatter_test ...............................   Passed    0.56 sec
+        Start  72: ninfer_position_test
+ 72/151 Test  #72: ninfer_position_test ..............................   Passed    0.51 sec
+        Start  73: ninfer_gqa_attention_test
+ 73/151 Test  #73: ninfer_gqa_attention_test .........................   Passed   71.09 sec
+        Start  74: ninfer_bidirectional_gqa_attention_test
+ 74/151 Test  #74: ninfer_bidirectional_gqa_attention_test ...........   Passed    1.38 sec
+        Start  75: ninfer_swa_test
+ 75/151 Test  #75: ninfer_swa_test ...................................   Passed    2.28 sec
+        Start  76: ninfer_kv_cache_append_prefix_test
+ 76/151 Test  #76: ninfer_kv_cache_append_prefix_test ................   Passed    1.04 sec
+        Start  77: ninfer_prepare_masked_block_test
+ 77/151 Test  #77: ninfer_prepare_masked_block_test ..................   Passed    0.50 sec
+        Start  78: ninfer_sparse_moe_test
+ 78/151 Test  #78: ninfer_sparse_moe_test ............................   Passed    3.23 sec
+        Start  79: ninfer_mtp_pack_test
+ 79/151 Test  #79: ninfer_mtp_pack_test ..............................   Passed    0.54 sec
+        Start  80: ninfer_mtp_round_test
+ 80/151 Test  #80: ninfer_mtp_round_test .............................   Passed    0.48 sec
+        Start  81: ninfer_speculative_round_test
+ 81/151 Test  #81: ninfer_speculative_round_test .....................   Passed    0.60 sec
+        Start  82: ninfer_linear_q4_a16_test
+ 82/151 Test  #82: ninfer_linear_q4_a16_test .........................   Passed    4.04 sec
+        Start  83: ninfer_linear_q5_a16_test
+ 83/151 Test  #83: ninfer_linear_q5_a16_test .........................   Passed    3.87 sec
+        Start  84: ninfer_linear_q6_a16_test
+ 84/151 Test  #84: ninfer_linear_q6_a16_test .........................   Passed    2.86 sec
+        Start  85: ninfer_linear_w8_a16_test
+ 85/151 Test  #85: ninfer_linear_w8_a16_test .........................   Passed    6.52 sec
+        Start  86: ninfer_linear_bf16_a16_test
+ 86/151 Test  #86: ninfer_linear_bf16_a16_test .......................   Passed    4.20 sec
+        Start  87: ninfer_attn_input_proj_test
+ 87/151 Test  #87: ninfer_attn_input_proj_test .......................   Passed    4.66 sec
+        Start  88: ninfer_gdn_input_proj_test
+ 88/151 Test  #88: ninfer_gdn_input_proj_test ........................   Passed    1.37 sec
+        Start  89: ninfer_gdn_input_proj_conv_snapshot_test
+ 89/151 Test  #89: ninfer_gdn_input_proj_conv_snapshot_test ..........   Passed    1.60 sec
+        Start  90: ninfer_gdn_input_proj_conv_record_test
+ 90/151 Test  #90: ninfer_gdn_input_proj_conv_record_test ............   Passed    1.10 sec
+        Start  91: ninfer_gated_delta_net_replay_record_test
+ 91/151 Test  #91: ninfer_gated_delta_net_replay_record_test .........   Passed    1.69 sec
+        Start  92: ninfer_gdn_replay_fold_test
+ 92/151 Test  #92: ninfer_gdn_replay_fold_test .......................   Passed   17.33 sec
+        Start  93: ninfer_linear_add_q5_a16_test
+ 93/151 Test  #93: ninfer_linear_add_q5_a16_test .....................   Passed    0.94 sec
+        Start  94: ninfer_linear_add_bf16_a16_test
+ 94/151 Test  #94: ninfer_linear_add_bf16_a16_test ...................   Passed    1.03 sec
+        Start  95: ninfer_linear_add_w8_a16_test
+ 95/151 Test  #95: ninfer_linear_add_w8_a16_test .....................   Passed    1.61 sec
+        Start  96: ninfer_linear_pair_w8_a16_test
+ 96/151 Test  #96: ninfer_linear_pair_w8_a16_test ....................   Passed    0.85 sec
+        Start  97: ninfer_linear_swiglu_q4_a16_test
+ 97/151 Test  #97: ninfer_linear_swiglu_q4_a16_test ..................   Passed    1.97 sec
+        Start  98: ninfer_linear_swiglu_w8_a16_test
+ 98/151 Test  #98: ninfer_linear_swiglu_w8_a16_test ..................   Passed    0.83 sec
+        Start  99: ninfer_qwen3_6_27b_visual_scatter_test
+ 99/151 Test  #99: ninfer_qwen3_6_27b_visual_scatter_test ............   Passed    0.55 sec
+        Start 100: ninfer_test_e8_codec
+100/151 Test #100: ninfer_test_e8_codec ..............................   Passed    5.60 sec
+        Start 101: ninfer_slo_completion_policy_test
+101/151 Test #101: ninfer_slo_completion_policy_test .................   Passed    0.00 sec
+        Start 102: ninfer_slo_bounded_decode_membership_test
+102/151 Test #102: ninfer_slo_bounded_decode_membership_test .........   Passed    0.00 sec
+        Start 103: ninfer_slo_bounded_decode_membership_off
+103/151 Test #103: ninfer_slo_bounded_decode_membership_off ..........   Passed    0.00 sec
+        Start 104: ninfer_slo_bounded_decode_membership_on
+104/151 Test #104: ninfer_slo_bounded_decode_membership_on ...........   Passed    0.00 sec
+        Start 105: ninfer_slo_bounded_decode_membership_invalid
+105/151 Test #105: ninfer_slo_bounded_decode_membership_invalid ......   Passed    0.00 sec
+        Start 106: ninfer_slo_prefill_queue_policy_test
+106/151 Test #106: ninfer_slo_prefill_queue_policy_test ..............   Passed    0.00 sec
+        Start 107: ninfer_gdn_pending_state_test
+107/151 Test #107: ninfer_gdn_pending_state_test .....................   Passed    0.00 sec
+        Start 108: ninfer_slo_expired_completion_soft_pf_test
+108/151 Test #108: ninfer_slo_expired_completion_soft_pf_test ........   Passed    0.00 sec
+        Start 109: ninfer_slo_expired_completion_soft_pf_off
+109/151 Test #109: ninfer_slo_expired_completion_soft_pf_off .........   Passed    0.00 sec
+        Start 110: ninfer_slo_expired_completion_soft_pf_on
+110/151 Test #110: ninfer_slo_expired_completion_soft_pf_on ..........   Passed    0.00 sec
+        Start 111: ninfer_slo_expired_completion_soft_pf_invalid
+111/151 Test #111: ninfer_slo_expired_completion_soft_pf_invalid .....   Passed    0.00 sec
+        Start 112: ninfer_gdn_deferred_graph_test
+112/151 Test #112: ninfer_gdn_deferred_graph_test ....................   Passed    6.19 sec
+        Start 113: ninfer_prompt_lookup_consensus_test
+113/151 Test #113: ninfer_prompt_lookup_consensus_test ...............   Passed    0.00 sec
+        Start 114: ninfer_prompt_lookup_consensus_off
+114/151 Test #114: ninfer_prompt_lookup_consensus_off ................   Passed    0.00 sec
+        Start 115: ninfer_prompt_lookup_consensus_on
+115/151 Test #115: ninfer_prompt_lookup_consensus_on .................   Passed    0.00 sec
+        Start 116: ninfer_prompt_lookup_consensus_invalid
+116/151 Test #116: ninfer_prompt_lookup_consensus_invalid ............   Passed    0.00 sec
+        Start 117: ninfer_slo_unexpired_decode_priority_test
+117/151 Test #117: ninfer_slo_unexpired_decode_priority_test .........   Passed    0.00 sec
+        Start 118: ninfer_slo_unexpired_decode_priority_off
+118/151 Test #118: ninfer_slo_unexpired_decode_priority_off ..........   Passed    0.00 sec
+        Start 119: ninfer_slo_unexpired_decode_priority_on
+119/151 Test #119: ninfer_slo_unexpired_decode_priority_on ...........   Passed    0.00 sec
+        Start 120: ninfer_slo_unexpired_decode_priority_invalid
+120/151 Test #120: ninfer_slo_unexpired_decode_priority_invalid ......   Passed    0.00 sec
+        Start 121: ninfer_gdn_single_row_eager_off
+121/151 Test #121: ninfer_gdn_single_row_eager_off ...................   Passed    0.00 sec
+        Start 122: ninfer_gdn_single_row_eager_on
+122/151 Test #122: ninfer_gdn_single_row_eager_on ....................   Passed    0.00 sec
+        Start 123: ninfer_gdn_single_row_eager_invalid
+123/151 Test #123: ninfer_gdn_single_row_eager_invalid ...............   Passed    0.00 sec
+        Start 124: ninfer_q5_ordered_residual_test
+124/151 Test #124: ninfer_q5_ordered_residual_test ...................   Passed    0.95 sec
+        Start 125: ninfer_output_s4_coverage_test
+125/151 Test #125: ninfer_output_s4_coverage_test ....................   Passed    0.01 sec
+        Start 126: ninfer_output_s4_flags_on_test
+126/151 Test #126: ninfer_output_s4_flags_on_test ....................   Passed    0.00 sec
+        Start 127: ninfer_output_s4_full_invalid_test
+127/151 Test #127: ninfer_output_s4_full_invalid_test ................   Passed    0.00 sec
+        Start 128: ninfer_output_s4_omit_invalid_test
+128/151 Test #128: ninfer_output_s4_omit_invalid_test ................   Passed    0.00 sec
+        Start 129: ninfer_output_s4_inventory_test
+129/151 Test #129: ninfer_output_s4_inventory_test ...................   Passed    0.05 sec
+        Start 130: ninfer_output_s4_omitted_inventory_test
+130/151 Test #130: ninfer_output_s4_omitted_inventory_test ...........   Passed    0.05 sec
+        Start 131: ninfer_prompt_lookup_yield_test
+131/151 Test #131: ninfer_prompt_lookup_yield_test ...................   Passed    0.00 sec
+        Start 132: ninfer_prompt_lookup_yield_0_test
+132/151 Test #132: ninfer_prompt_lookup_yield_0_test .................   Passed    0.00 sec
+        Start 133: ninfer_prompt_lookup_yield_1_test
+133/151 Test #133: ninfer_prompt_lookup_yield_1_test .................   Passed    0.00 sec
+        Start 134: ninfer_prompt_lookup_yield_invalid_test
+134/151 Test #134: ninfer_prompt_lookup_yield_invalid_test ...........   Passed    0.01 sec
+        Start 135: ninfer_slo_tpot_recovery_test
+135/151 Test #135: ninfer_slo_tpot_recovery_test .....................   Passed    0.00 sec
+        Start 136: ninfer_slo_tpot_recovery_0_test
+136/151 Test #136: ninfer_slo_tpot_recovery_0_test ...................   Passed    0.00 sec
+        Start 137: ninfer_slo_tpot_recovery_1_test
+137/151 Test #137: ninfer_slo_tpot_recovery_1_test ...................   Passed    0.00 sec
+        Start 138: ninfer_slo_tpot_recovery_invalid_test
+138/151 Test #138: ninfer_slo_tpot_recovery_invalid_test .............   Passed    0.00 sec
+        Start 139: ninfer_q4_draft_head_t16_policy_test
+139/151 Test #139: ninfer_q4_draft_head_t16_policy_test ..............   Passed    0.01 sec
+        Start 140: ninfer_q4_draft_head_t16_0_test
+140/151 Test #140: ninfer_q4_draft_head_t16_0_test ...................   Passed    0.01 sec
+        Start 141: ninfer_q4_draft_head_t16_1_test
+141/151 Test #141: ninfer_q4_draft_head_t16_1_test ...................   Passed    0.01 sec
+        Start 142: ninfer_q4_draft_head_t16_invalid_test
+142/151 Test #142: ninfer_q4_draft_head_t16_invalid_test .............   Passed    0.01 sec
+        Start 143: ninfer_linear_q4_head_t16_extended_test
+143/151 Test #143: ninfer_linear_q4_head_t16_extended_test ...........   Passed    4.27 sec
+        Start 144: ninfer_slo_expired_prefill_grace_test
+144/151 Test #144: ninfer_slo_expired_prefill_grace_test .............   Passed    0.00 sec
+        Start 145: ninfer_slo_expired_prefill_grace_0_test
+145/151 Test #145: ninfer_slo_expired_prefill_grace_0_test ...........   Passed    0.00 sec
+        Start 146: ninfer_slo_expired_prefill_grace_1_test
+146/151 Test #146: ninfer_slo_expired_prefill_grace_1_test ...........   Passed    0.00 sec
+        Start 147: ninfer_slo_expired_prefill_grace_invalid_test
+147/151 Test #147: ninfer_slo_expired_prefill_grace_invalid_test .....   Passed    0.00 sec
+        Start 148: ninfer_slo_projected_prefill_grace_test
+148/151 Test #148: ninfer_slo_projected_prefill_grace_test ...........   Passed    0.00 sec
+        Start 149: ninfer_slo_projected_prefill_grace_0_test
+149/151 Test #149: ninfer_slo_projected_prefill_grace_0_test .........   Passed    0.00 sec
+        Start 150: ninfer_slo_projected_prefill_grace_1_test
+150/151 Test #150: ninfer_slo_projected_prefill_grace_1_test .........   Passed    0.00 sec
+        Start 151: ninfer_slo_projected_prefill_grace_invalid_test
+151/151 Test #151: ninfer_slo_projected_prefill_grace_invalid_test ...   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 151
+
+Total Test time (real) = 208.20 sec
+
+The following tests did not run:
+	 32 - ninfer_qwen3_6_27b_prefix_real_test (Skipped)
+	 37 - ninfer_qwen3_6_35b_a3b_real_test (Skipped)
+	 38 - ninfer_qwen3_6_35b_a3b_dflash_real_test (Skipped)
+	 39 - ninfer_qwen3_6_35b_a3b_dflash_load_plan_test (Skipped)

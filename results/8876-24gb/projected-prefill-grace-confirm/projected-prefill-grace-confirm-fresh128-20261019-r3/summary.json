@@ -1,0 +1,47 @@
+{
+  "status": "\u5b8c\u6574",
+  "issues": [],
+  "concurrency": 16,
+  "expected_requests": 128,
+  "records": 128,
+  "valid_records": 128,
+  "successful_requests": 128.0,
+  "error_requests": 0,
+  "lengths_verified": true,
+  "osl_verified": true,
+  "input_length_basis": "model",
+  "actual_input_tokens": {
+    "min": 8192,
+    "max": 8192,
+    "mean": 8192.0
+  },
+  "metrics": {
+    "time_to_first_token": {
+      "mean": 7599.939829257813,
+      "p50": 7296.695012,
+      "p95": 9871.622180699998,
+      "p99": 17914.544441760005
+    },
+    "inter_token_latency": {
+      "mean": 32.1621271760488,
+      "p50": 32.80135794520548,
+      "p95": 39.22175905567514,
+      "p99": 42.025575248727996
+    },
+    "request_latency": {
+      "mean": 24034.786816218748,
+      "p50": 23666.078049,
+      "p95": 29666.790711750004,
+      "p99": 36416.095325300004
+    }
+  },
+  "benchmark_duration": 196.553560064,
+  "request_throughput": 0.6511925326823677,
+  "output_token_throughput": 333.41057673337224,
+  "artifacts": "/home/guokc/mypro/gnn-mount-sda1/InferX/experiments/c16-24gb-20261018/projected-prefill-grace-confirm-fresh128-20261019-r3/c16",
+  "all137cold": true,
+  "diagnostic": false,
+  "seed": 20261019,
+  "input_contract_sha256": "1754074c812553216949ceb884877ebd823d11c4172ccdcbfae95055d79f05d1",
+  "meets_slo": true
+}
